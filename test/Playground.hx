@@ -25,7 +25,9 @@ class TestView extends View<{}>
         <div>
             <list interactive twoLine>
                 <listLinkItem>
-                    <listStartIcon>bluetooth</listStartIcon>
+                    <listStartIcon noRipple>folder</listStartIcon>
+            asdasd
+
                 </listLinkItem>
                 <listItem >Hey</listItem>
             </list>

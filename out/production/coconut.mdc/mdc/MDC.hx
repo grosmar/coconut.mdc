@@ -1,15 +1,9 @@
 package mdc;
-import haxe.DynamicAccess;
 import js.html.DOMElement;
 import js.html.Node;
 import js.html.MutationRecord;
 import js.html.MutationObserver;
-import js.html.Event;
-import js.html.Element;
-import mdc.List.*;
-import vdom.VNode;
-import vdom.VNode.Children;
-import vdom.VDom.EditableAttr;
+
 class MDC
 {
 	static function __init__()
