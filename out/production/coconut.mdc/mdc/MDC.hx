@@ -20,6 +20,7 @@ class MDC
 					if ( node.nodeType ==  Node.ELEMENT_NODE )
 					{
 						register(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
+						register(node, "mdc-ripple-upgraded", MDCRipple, "MDCRipple");
 						register(node, "mdc-radio", MDCRadio, "MDCRadio");
 					}
 				}
