@@ -25,5 +25,8 @@
     <orderEntry type="library" name="lix:tink_syntaxhub" level="project" />
     <orderEntry type="library" name="lix:tink_priority" level="project" />
     <orderEntry type="library" name="lix:tink_pure" level="project" />
+    <orderEntry type="library" name="lix:coconut.vdom" level="project" />
+    <orderEntry type="library" name="lix:tink_csss" level="project" />
+    <orderEntry type="library" name="lix:js-virtual-dom" level="project" />
   </component>
 </module>
