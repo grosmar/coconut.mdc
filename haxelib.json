@@ -1,0 +1,17 @@
+{
+  "name": "coconut.mdc",
+  "license": "MIT",
+  "tags": [
+    "coconut",
+    "mdc"
+  ],
+  "classPath": "src",
+  "contributors": [
+    "grosmar"
+  ],
+  "releasenote": "initial release",
+  "version": "0.1.0",
+  "dependencies": {
+    "coconut.ui": ""
+  }
+}
