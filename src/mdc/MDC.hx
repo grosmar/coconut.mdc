@@ -22,6 +22,7 @@ class MDC
 						register(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
 						register(node, "mdc-ripple-upgraded", MDCRipple, "MDCRipple");
 						register(node, "mdc-radio", MDCRadio, "MDCRadio");
+						register(node, "mdc-tab-bar", MDCTabBar, "MDCTabBar");
 					}
 				}
 
@@ -29,7 +30,9 @@ class MDC
 				{
 					if ( node.nodeType ==  Node.ELEMENT_NODE )
 					{
+						unregister(node, "mdc-tab-bar", "MDCTabBar");
 						unregister(node, "mdc-ripple-surface", "MDCRipple");
+						unregister(node, "mdc-ripple-upgraded", "MDCRipple");
 						unregister(node, "mdc-radio", "MDCRadio");
 					}
 				}
@@ -48,6 +51,8 @@ class MDC
 
 		for ( i in list )
 		{
+			if ( Reflect.getProperty(i, ref) != null )
+				continue;
 			var handler = Type.createInstance(handler, [i]);
 
 			Reflect.setProperty(i, ref, handler);
@@ -71,16 +76,13 @@ class MDC
 }
 
 @:native("window.mdc.ripple.MDCRipple")
-extern class MDCRipple extends MDCComponent
-{
-
-}
+extern class MDCRipple extends MDCComponent { }
 
 @:native("window.mdc.radio.MDCRadio")
-extern class MDCRadio extends MDCComponent
-{
+extern class MDCRadio extends MDCComponent { }
 
-}
+@:native("window.mdc.tabs.MDCTabBar")
+extern class MDCTabBar extends MDCComponent { }
 
 extern class MDCComponent
 {

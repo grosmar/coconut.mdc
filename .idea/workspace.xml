@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14356a14-4eff-4d9a-9bbd-c041524f6617" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mdc/List.hx" afterPath="$PROJECT_DIR$/src/mdc/List.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/test/Playground.hx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="40" column="6" lean-forward="true" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+              <caret line="40" column="6" lean-forward="false" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -48,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/src/mdc/List.hx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="455">
-              <caret line="52" column="108" lean-forward="true" selection-start-line="52" selection-start-column="108" selection-end-line="52" selection-end-column="108" />
+              <caret line="52" column="108" lean-forward="false" selection-start-line="52" selection-start-column="108" selection-end-line="52" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -287,12 +287,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1511807804624</updated>
-      <workItem from="1511807805995" duration="2840000" />
+      <workItem from="1511807805995" duration="3422000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2840000" />
+    <option name="totallyTimeSpent" value="3422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1932" height="1048" extended-state="0" />
@@ -357,7 +357,7 @@
     <entry file="file://$PROJECT_DIR$/test/Playground.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="40" column="6" lean-forward="true" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+          <caret line="40" column="6" lean-forward="false" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -365,7 +365,7 @@
     <entry file="file://$PROJECT_DIR$/src/mdc/List.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
-          <caret line="52" column="108" lean-forward="true" selection-start-line="52" selection-start-column="108" selection-end-line="52" selection-end-column="108" />
+          <caret line="52" column="108" lean-forward="false" selection-start-line="52" selection-start-column="108" selection-end-line="52" selection-end-column="108" />
           <folding />
         </state>
       </provider>
