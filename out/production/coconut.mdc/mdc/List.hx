@@ -4,6 +4,7 @@ package mdc;
  * @prop two-line = false
  * @prop interactive = false
  */
+import mdc.MDC.RippleAttr;
 import vdom.VDom.AnchorAttr;
 import vdom.Attr;
 import vdom.VNode;
@@ -26,8 +27,20 @@ import coconut.ui.View;
 }*/
 
 @:tink
-class List
+class List extends View<ListAttr>
 {
+
+	function render(attr)
+	{
+		var className = attr.className.add(["mdc-list" => true,
+											"mdc-list--two-line" => attr.twoLine,
+											"mdc-list--avatar-list" => attr.avatarList,
+											"mdc-list--dense" => attr.dense ]);
+
+		return attr.interactive
+			   ? @hxx '<nav className=${className} {...attr}>${attr.items}</nav>'
+			   : @hxx '<ul className=${className} {...attr}>${attr.items}</ul>';
+	}
 
 	static public function list(attr:ListAttr, children:VNode):VNode
 		return attr.interactive
@@ -61,6 +74,12 @@ class List
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
+	static public function listEndIcon(attr:{>Attr, >RippleAttr, }, children:VNode):VNode
+		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
+													"material-icons" => true,
+													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
+						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
+
 	static public function listStartImage(attr:{>ImgAttr, >RippleAttr, }, children:VNode):VNode
 		return @hxx '<img class=${attr.className.add(["mdc-list-item__start-detail" => true,
 													  "mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
@@ -70,6 +89,12 @@ class List
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
+
+	static public function listItemText(attr:Attr, children:VNode):VNode
+		return @hxx '<span class=${attr.className.add(["mdc-list-item__text" => true])} {...attr}>{children}</span>';
+
+	static public function listItemTextSecondary(attr:Attr, children:VNode):VNode
+		return @hxx '<span class=${attr.className.add(["mdc-list-item__text__secondary" => true])} {...attr}>{children}</span>';
 }
 
 @:pure
@@ -78,9 +103,7 @@ typedef ListAttr = {>Attr,
 	@:optional var twoLine(default,never):Bool;
 	@:optional var avatarList(default,never):Bool;
 	@:optional var interactive(default,never):Bool;
+
+	@:optional var items(default,never):VNode;
 }
 
-typedef RippleAttr = {
-	@:optional var ripple:Bool;
-	@:optional var unboundedRipple:Bool;
-}

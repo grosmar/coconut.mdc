@@ -128,3 +128,8 @@ extern class MDCComponent
 
 	function destroy():Void;
 }
+
+typedef RippleAttr = {
+	@:optional var ripple:Bool;
+	@:optional var unboundedRipple:Bool;
+}
