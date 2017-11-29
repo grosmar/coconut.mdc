@@ -7,6 +7,7 @@ import mdc.MDC;
 import mdc.*;
 import mdc.List.*;
 import mdc.TabBar.*;
+import mdc.TabBar.TabBarType;
 
 class Playground
 {
@@ -34,6 +35,7 @@ class TestView extends View<{}>
         <Button label="Unelevated" unelevated />
         <Button label="Icon" icon="favorite" />
     </div>
+
     <h1>Raised Buttons</h1>
     <div>
         <Button label="Simple" raised onclick={trace("clicked")} />
@@ -55,8 +57,19 @@ class TestView extends View<{}>
                 </tabs>
             </TabBar>
         </div>
+
+        <div class="float" >
+            <TabBar type={TabBarType.Icon}>
+                <tabs>
+                    <tab icon="camera" active />
+                    <tab icon="colorize" />
+                    <tab icon="edit" />
+                </tabs>
+            </TabBar>
+        </div>
+
         <div class="float">
-            <TabBar>
+            <TabBar type={TabBarType.IconWithText}>
                 <tabs>
                     <tab icon="camera" active>Tab1</tab>
                     <tab icon="colorize">Tab2</tab>
@@ -79,6 +92,7 @@ class TestView extends View<{}>
                 </items>
             </List>
         </div>
+
         <div class="float">
             <h2>Dense list</h2>
             <List>

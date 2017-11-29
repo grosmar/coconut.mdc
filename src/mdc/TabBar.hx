@@ -78,7 +78,7 @@ class TabBar extends View<{>Attr,
     }
 }
 
-@:enum abstract TabBarType(String) from String to String {
+@:enum abstract TabBarType(String) to String {
     var Text = "";
     var Icon = "mdc-tab-bar--icon-tab-bar";
     var IconWithText = "mdc-tab-bar--icons-with-text";

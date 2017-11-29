@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14356a14-4eff-4d9a-9bbd-c041524f6617" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/playground/index.js" afterPath="$PROJECT_DIR$/bin/playground/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mdc/TabBar.hx" afterPath="$PROJECT_DIR$/src/mdc/TabBar.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/Playground.hx" afterPath="$PROJECT_DIR$/test/Playground.hx" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,11 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/Playground.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3150">
-              <caret line="150" column="38" lean-forward="false" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="38" />
+            <state relative-caret-position="84">
+              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TabBar.hx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="80" column="34" lean-forward="false" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -54,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -134,10 +146,11 @@
         <option value="$PROJECT_DIR$/src/mdc/TextField.hx" />
         <option value="$PROJECT_DIR$/src/mdc/MDC.hx" />
         <option value="$PROJECT_DIR$/src/mdc/Button.hx" />
-        <option value="$PROJECT_DIR$/test/Playground.hx" />
         <option value="$PROJECT_DIR$/src/mdc/List.hx" />
         <option value="$PROJECT_DIR$/bin/playground/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/mdc/TabBar.hx" />
+        <option value="$PROJECT_DIR$/test/Playground.hx" />
       </list>
     </option>
   </component>
@@ -352,12 +365,12 @@
       <workItem from="1511870505255" duration="819000" />
       <workItem from="1511977114987" duration="1535000" />
       <workItem from="1511980402721" duration="363000" />
-      <workItem from="1511980782482" duration="4443000" />
+      <workItem from="1511980782482" duration="4690000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10639000" />
+    <option name="totallyTimeSpent" value="10886000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -645,14 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/Playground.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3150">
-          <caret line="150" column="38" lean-forward="false" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdc/List.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
@@ -693,6 +698,22 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="80" column="34" lean-forward="false" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Playground.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
