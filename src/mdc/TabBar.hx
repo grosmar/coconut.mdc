@@ -1,23 +1,41 @@
 package mdc;
 
-import haxe.ds.ObjectMap;
-import tink.CoreApi.CallbackLink;
+import vdom.VDom.AnchorAttr;
 import mdc.MDC.MDCTabBar;
 import vdom.VNode;
 import vdom.Attr;
+import vdom.VDom.*;
 import coconut.ui.View;
-class TabBar extends View<{>Attr, tabs:VNode, ontabchange:UInt->Void}>
+//import coconut.Ui.hxx;
+
+class TabBar extends View<{>Attr,
+                            var tabs:VNode;
+                            @:optional var type:TabBarType;
+                            @:optional function ontabchange(index:UInt):Void;}>
 {
+    /*
     var ind:Int = Math.random();
-    /*static var viewCache = new Map<Int, TabBar>();
 
     static public function tabBar(attr:{>Attr, function ontabchange(index:UInt):Void;}, children:VNode)
-    {
-        js.Browser.console.log("NEWWWWW", attr.key);
-        var t = viewCache.exists(cast attr.key) ? viewCache.get(cast attr.key) : new TabBar({attr:attr, children:children});
-        viewCache.set(cast attr.key, t);
-        return t;
-    }*/
+        return new TabBar({attr:attr, children:children});*/
+
+    static public inline function tab(attr:{>AnchorAttr, ?active:Bool, ?icon:String, ?text:String}, ?children:VNode):VNode
+        return @hxx '<a class=${attr.className.add(["mdc-tab" => true,
+                                                    "mdc-tab--active" => attr.active])} {...attr} >
+            <if ${attr.icon != null}>
+                <tabIcon>${attr.icon}</tabIcon>
+            </if>
+            <if ${attr.text != null}>
+                <tabText>${attr.text}</tabText>
+            </if>
+            ${children}
+        </a>';
+
+    static public inline function tabIcon(attr:Attr, children:VNode):VNode
+        return @hxx '<i class=${attr.className.add(["mdc-tab__icon" => true, "material-icons" => true])} {...attr} >${children}</i>';
+
+    static public inline function tabText(attr:Attr, children:VNode):VNode
+        return @hxx '<span class=${attr.className.add(["mdc-tab__icon-text" => true])} {...attr} >${children}</span>';
 
     var handler:MDCTabBar;
 
@@ -25,10 +43,11 @@ class TabBar extends View<{>Attr, tabs:VNode, ontabchange:UInt->Void}>
 
     function render(data)
     {
-        js.Browser.console.log("rend", ind);
+        //js.Browser.console.log("rend", ind);
         ontabchangeCB = data.ontabchange;
 
-        return @hxx '<nav class=${data.className.add(["mdc-tab-bar" => true])} {...data}>
+        var type:String = data.type != null ? data.type : TabBarType.Text;
+        return @hxx '<nav class=${data.className.add(["mdc-tab-bar" => true, type => true])} {...data}>
             ${data.tabs}
             <span class="mdc-tab-bar__indicator" ></span>
         </nav>';
@@ -40,27 +59,27 @@ class TabBar extends View<{>Attr, tabs:VNode, ontabchange:UInt->Void}>
         return index;
     }
 
-    override function beforeInit()
-    {
-        js.Browser.console.log("before", ind);
-    }
-
     override function afterInit(elem)
     {
-        js.Browser.console.log("init", ind);
+        //js.Browser.console.log("init", ind);
         this.handler = new MDCTabBar(elem);
         handler.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
-            ontabchangeCB(handler.activeTabIndex);
+            if (ontabchangeCB != null )
+                ontabchangeCB(handler.activeTabIndex);
         });
     }
 
     override function destroy()
     {
-        js.Browser.console.log("dest", this.handler != null, ind);
-        return;
+        /*js.Browser.console.log("dest", this.handler != null, ind);
 
         if ( this.handler != null )
-            this.handler.destroy();
+            this.handler.destroy();*/
     }
 }
 
+@:enum abstract TabBarType(String) from String to String {
+    var Text = "";
+    var Icon = "mdc-tab-bar--icon-tab-bar";
+    var IconWithText = "mdc-tab-bar--icons-with-text";
+}

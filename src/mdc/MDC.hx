@@ -7,6 +7,8 @@ import js.html.MutationObserver;
 
 class MDC
 {
+	public static inline var DEFAULT_RIPPLE = true;
+
 	static public function getTabBar( elem:View<Dynamic>):MDCTabBar
 	{
 		return cast(Reflect.getProperty(elem.toElement(),"MDCTabBar"), MDCTabBar);
@@ -40,7 +42,7 @@ class MDC
 				{
 					if ( node.nodeType ==  Node.ELEMENT_NODE )
 					{
-						unregisterAll(node, "mdc-tab-bar", "MDCTabBar");
+						//unregisterAll(node, "mdc-tab-bar", "MDCTabBar");
 						unregisterAll(node, "mdc-ripple-surface", "MDCRipple");
 						unregisterAll(node, "mdc-ripple-upgraded", "MDCRipple");
 						unregisterAll(node, "mdc-radio", "MDCRadio");
@@ -105,6 +107,9 @@ class MDC
 
 @:native("window.mdc.ripple.MDCRipple")
 extern class MDCRipple extends MDCComponent { }
+
+@:native("mdc.textField.MDCTextField")
+extern class MDCTextField extends MDCComponent { }
 
 @:native("window.mdc.radio.MDCRadio")
 extern class MDCRadio extends MDCComponent { }
