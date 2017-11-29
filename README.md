@@ -14,11 +14,11 @@ Check test/Playground.hx for usage examples.
 # Components done 
 &#10003; Button
 
-&#10003; TabBar
-
 &#10003; List
 
 &#10003; Ripple (temporary solution)
+
+&#10003; TabBar
 
 &#10003; TextField
 
