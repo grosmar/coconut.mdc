@@ -62,6 +62,7 @@ class List extends View<ListAttr>
 		return @hxx '<a href=${attr.href != null ? attr.href : "#"}
 						class=${attr.className.add(["mdc-list-item" => true,
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
+						onclick=${attr.onclick}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</a>';
 
 	static public function listStartDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode

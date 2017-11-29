@@ -16,19 +16,19 @@ class TextField extends View<{>Attr, ?label:String, ?value:String, ?disabled:Boo
     var handler:MDCTextField;
 
 
-    function render(data)
+    function render(attr)
     {
-        return @hxx '<div class=${data.className.add(["mdc-text-field" => true,
-                                                      "mdc-text-field--disabled" => data.disabled,
-                                                      "mdc-text-field--with-leading-icon" => data.icon != null,
-                                                      "mdc-text-field--box" => data.box])} {...data}>
-                        <if ${data.icon != null && data.iconPos != TextFieldIconPos.Right}>
-                            <i class="material-icons mdc-text-field__icon">${data.icon}</i>
+        return @hxx '<div class=${attr.className.add(["mdc-text-field" => true,
+                                                      "mdc-text-field--disabled" => attr.disabled,
+                                                      "mdc-text-field--with-leading-icon" => attr.icon != null,
+                                                      "mdc-text-field--box" => attr.box])} {...attr}>
+                        <if ${attr.icon != null && attr.iconPos != TextFieldIconPos.Right}>
+                            <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
                         </if>
-                        <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${data.value}/>
-                        <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${data.label}</label>
-                        <if ${data.icon != null && data.iconPos == TextFieldIconPos.Right}>
-                            <i class="material-icons mdc-text-field__icon">${data.icon}</i>
+                        <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
+                        <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
+                        <if ${attr.icon != null && attr.iconPos == TextFieldIconPos.Right}>
+                            <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
                         </if>
                         <div class="mdc-text-field__bottom-line"></div>
                     </div>';

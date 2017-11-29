@@ -41,14 +41,14 @@ class TabBar extends View<{>Attr,
 
     var ontabchangeCB:UInt->Void;
 
-    function render(data)
+    function render(attr)
     {
         //js.Browser.console.log("rend", ind);
-        ontabchangeCB = data.ontabchange;
+        ontabchangeCB = attr.ontabchange;
 
-        var type:String = data.type != null ? data.type : TabBarType.Text;
-        return @hxx '<nav class=${data.className.add(["mdc-tab-bar" => true, type => true])} {...data}>
-            ${data.tabs}
+        var type:String = attr.type != null ? attr.type : TabBarType.Text;
+        return @hxx '<nav class=${attr.className.add(["mdc-tab-bar" => true, type => true])} {...attr}>
+            ${attr.tabs}
             <span class="mdc-tab-bar__indicator" ></span>
         </nav>';
     }
