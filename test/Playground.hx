@@ -148,27 +148,27 @@ class TestView extends View<{}>
                 <items>
                     <listItem>
                         <listStartImage src="https://randomuser.me/api/portraits/women/1.jpg">folder</listStartImage>
-                        <listItemText>
+                        <listText>
                             Item title 1
-                            <listItemTextSecondary>Secondary text 1</listItemTextSecondary>
-                        </listItemText>
+                            <listTextSecondary>Secondary text 1</listTextSecondary>
+                        </listText>
                         <listEndIcon>info</listEndIcon>
                     </listItem>
                     <listItem>
                         <listStartImage src="https://randomuser.me/api/portraits/women/2.jpg">folder</listStartImage>
-                        <listItemText>
+                        <listText>
                             Item title 2
-                            <listItemTextSecondary>Secondary text 2</listItemTextSecondary>
-                        </listItemText>
+                            <listTextSecondary>Secondary text 2</listTextSecondary>
+                        </listText>
                         <listEndIcon>info</listEndIcon>
                     </listItem>
                     <listDivider inset />
                     <listItem>
                         <listStartImage src="https://randomuser.me/api/portraits/women/3.jpg">folder</listStartImage>
-                        <listItemText>
+                        <listText>
                             Item title 3
-                            <listItemTextSecondary>Secondary text 3</listItemTextSecondary>
-                        </listItemText>
+                            <listTextSecondary>Secondary text 3</listTextSecondary>
+                        </listText>
                         <listEndIcon>info</listEndIcon>
                     </listItem>
                 </items>

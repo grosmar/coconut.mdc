@@ -53,48 +53,48 @@ class List extends View<ListAttr>
 		 										   "mdc-list--two-line" => attr.twoLine,
 											 	   "mdc-list--avatar-list" => attr.avatarList ])} {...attr}>{children}</ul>';
 
-	static public function listItem(attr:{>Attr, >RippleAttr, }, children:VNode):VNode
+	static public function listItem(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<li class=${attr.className.add(["mdc-list-item" => true,
 													 "mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						 data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>${children}</li>';
 
-	static public function listLinkItem(attr:{>AnchorAttr, >RippleAttr, }, children:VNode):VNode
+	static public function listLinkItem(attr:{>AnchorAttr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<a href=${attr.href != null ? attr.href : "#"}
 						class=${attr.className.add(["mdc-list-item" => true,
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</a>';
 
-	static public function listStartDetail(attr:{>Attr, >RippleAttr, }, children:VNode):VNode
+	static public function listStartDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__start-detail" => true,
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 													data-mdc-ripple-is-unbounded={attr.unboundedRipple} {...attr}>{children}</i>';
 
-	static public function listStartIcon(attr:{>Attr, >RippleAttr, }, children:VNode):VNode
+	static public function listStartIcon(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__start-detail" => true,
 													"material-icons" => true,
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
-	static public function listEndIcon(attr:{>Attr, >RippleAttr, }, children:VNode):VNode
+	static public function listEndIcon(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
 													"material-icons" => true,
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
-	static public function listStartImage(attr:{>ImgAttr, >RippleAttr, }, children:VNode):VNode
+	static public function listStartImage(attr:{>ImgAttr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<img class=${attr.className.add(["mdc-list-item__start-detail" => true,
 													  "mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						  data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr} />';
 
-	static public function listEndDetail(attr:{>Attr, >RippleAttr, }, children:VNode):VNode
+	static public function listEndDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
-	static public function listItemText(attr:Attr, ?children:VNode):VNode
+	static public function listText(attr:Attr, ?children:VNode):VNode
 		return @hxx '<span class=${attr.className.add(["mdc-list-item__text" => true])} {...attr}>{children}</span>';
 
-	static public function listItemTextSecondary(attr:Attr, ?children:VNode):VNode
+	static public function listTextSecondary(attr:Attr, ?children:VNode):VNode
 		return @hxx '<span class=${attr.className.add(["mdc-list-item__text__secondary" => true])} {...attr}>{children}</span>';
 
 	static public function listDivider(attr:{>Attr, ?inset:Bool}, ?children:VNode):VNode

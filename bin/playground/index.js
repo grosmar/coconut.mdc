@@ -3419,14 +3419,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			var __coco_cache7 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
 			var children58 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children59 = mdc_List.listItemText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 1",mdc_List.listItemTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 1"]))]));
+			var children59 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 1",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 1"]))]));
 			var children60 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children58,children59,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
 			var children61 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children62 = mdc_List.listItemText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 2",mdc_List.listItemTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 2"]))]));
+			var children62 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 2",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 2"]))]));
 			var children63 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children61,children62,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
 			var children64 = mdc_List.listDivider({ inset : true});
 			var children65 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children66 = mdc_List.listItemText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 3",mdc_List.listItemTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 3"]))]));
+			var children66 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 3",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 3"]))]));
 			return { avatarList : true, interactive : true, twoLine : true, items : vdom__$VNode_VNode_$Impl_$.flatten([children60,children63,children64,mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children65,children66,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]))])};
 		})))])]);
 		var children67 = vdom_VDom.h("h1",{ },["TextField"]);
@@ -7864,7 +7864,7 @@ mdc_List.listEndDetail = function(attr,children) {
 	}, onwheel : function(event75) {
 	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
 };
-mdc_List.listItemText = function(attr,children) {
+mdc_List.listText = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
@@ -7951,7 +7951,7 @@ mdc_List.listItemText = function(attr,children) {
 	}, onwheel : function(event75) {
 	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
 };
-mdc_List.listItemTextSecondary = function(attr,children) {
+mdc_List.listTextSecondary = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
