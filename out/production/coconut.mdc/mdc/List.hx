@@ -26,7 +26,8 @@ import coconut.ui.View;
 	}
 }*/
 
-@:tink
+//TODO: add list group support
+
 class List extends View<ListAttr>
 {
 
@@ -90,11 +91,14 @@ class List extends View<ListAttr>
 													"mdc-ripple-upgraded" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
-	static public function listItemText(attr:Attr, children:VNode):VNode
+	static public function listItemText(attr:Attr, ?children:VNode):VNode
 		return @hxx '<span class=${attr.className.add(["mdc-list-item__text" => true])} {...attr}>{children}</span>';
 
-	static public function listItemTextSecondary(attr:Attr, children:VNode):VNode
+	static public function listItemTextSecondary(attr:Attr, ?children:VNode):VNode
 		return @hxx '<span class=${attr.className.add(["mdc-list-item__text__secondary" => true])} {...attr}>{children}</span>';
+
+	static public function listDivider(attr:{>Attr, ?inset:Bool}, ?children:VNode):VNode
+		return @hxx '<li class=${attr.className.add(["mdc-list-divider" => true, "mdc-list-divider--inset" => attr.inset])} {...attr}>{children}</li>';
 }
 
 @:pure

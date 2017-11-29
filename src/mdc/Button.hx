@@ -6,7 +6,7 @@ import vdom.VDom.*;
 import coconut.ui.View;
 //import coconut.Ui.hxx;
 
-class Button extends View<{>InputAttr, ?label:String, ?disabled:Bool, ?icon:String, ?iconPos:ButtonIconPos, ?raised:Bool, ?unelevated:Bool, ?stroked:Bool, ?dense:Bool, ?compact:Bool, ?ripple:Bool}>
+class Button extends View<{>InputAttr, ?label:String, ?disabled:Bool, ?icon:String, ?raised:Bool, ?unelevated:Bool, ?stroked:Bool, ?dense:Bool, ?compact:Bool, ?ripple:Bool}>
 {
 
     function render(data)
@@ -18,18 +18,10 @@ class Button extends View<{>InputAttr, ?label:String, ?disabled:Bool, ?icon:Stri
                                                          "mdc-button--stroked" => data.stroked,
                                                          "mdc-button--dense" => data.dense,
                                                          "mdc-button--compact" => data.compact])} {...data} >
-            <if ${data.icon != null && data.iconPos != ButtonIconPos.Right}>
+            <if ${data.icon != null}>
                 <i class="mdc-button__icon material-icons">${data.icon}</i>
             </if>
             ${data.label}
-            <if ${data.icon != null && data.iconPos == ButtonIconPos.Right}>
-                <i class="mdc-button__icon material-icons">${data.icon}</i>
-            </if>
         </button>';
     }
-}
-
-@:enum abstract ButtonIconPos(String) from String to String {
-    var Left = "left";
-    var Right = "right";
 }
