@@ -17,7 +17,8 @@ class Button extends View<{>InputAttr, ?label:String, ?disabled:Bool, ?icon:Stri
                                                          "mdc-button--unelevated" => attr.unelevated,
                                                          "mdc-button--stroked" => attr.stroked,
                                                          "mdc-button--dense" => attr.dense,
-                                                         "mdc-button--compact" => attr.compact])} {...attr} >
+                                                         "mdc-button--compact" => attr.compact])} {...attr}
+                             onclick=${attr.onclick}>
             <if ${attr.icon != null}>
                 <i class="mdc-button__icon material-icons">${attr.icon}</i>
             </if>
