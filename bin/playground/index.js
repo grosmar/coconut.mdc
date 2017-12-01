@@ -3445,15 +3445,19 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		}))),this.__coco__cache.getFactory("TextField",function(data23) {
 			return new mdc_TextField(data23);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Textarea", textArea : true};
-		}))),vdom_VDom.h("br",{ }),this.__coco__cache.getFactory("TextField",function(data24) {
+			return { label : "TextArea", textArea : true};
+		}))),this.__coco__cache.getFactory("TextField",function(data24) {
 			return new mdc_TextField(data24);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Text fullWidth", fullWidth : true};
-		}))),this.__coco__cache.getFactory("TextField",function(data25) {
+			return { label : "Icon TextArea", textArea : true};
+		}))),vdom_VDom.h("br",{ }),this.__coco__cache.getFactory("TextField",function(data25) {
 			return new mdc_TextField(data25);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Textarea fullWidth", textArea : true, fullWidth : true};
+			return { label : "Text input fullWidth", fullWidth : true};
+		}))),this.__coco__cache.getFactory("TextField",function(data26) {
+			return new mdc_TextField(data26);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "TextArea fullWidth", textArea : true, fullWidth : true};
 		})))];
 		return vdom_VDom.h("div",attr,[children,children2,children3,children5,children6,children7,children51,children52,children62,vdom_VDom.h("div",{ },children63)]);
 	}
