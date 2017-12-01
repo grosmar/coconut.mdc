@@ -181,6 +181,10 @@ class TestView extends View<{}>
         <TextField label="Text input" />
         <TextField label="Boxed input" box />
         <TextField label="Icon input" box icon="list" />
+        <TextField label="TextArea" textArea  />
+        <br/>
+        <TextField label="Text input fullWidth" fullWidth />
+        <TextField label="TextArea fullWidth" textArea fullWidth />
     </div>
 </div>
     ';
