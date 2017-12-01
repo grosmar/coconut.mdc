@@ -37,7 +37,7 @@ class TabBar extends View<{>Attr,
     static public inline function tabText(attr:Attr, children:VNode):VNode
         return @hxx '<span class=${attr.className.add(["mdc-tab__icon-text" => true])} {...attr} >${children}</span>';
 
-    var handler:MDCTabBar;
+    var mdcTabBar:MDCTabBar;
 
     var ontabchangeCB:UInt->Void;
 
@@ -55,26 +55,23 @@ class TabBar extends View<{>Attr,
 
     function set_activeTabIndex(index:UInt)
     {
-        handler.activeTabIndex = index;
+        mdcTabBar.activeTabIndex = index;
         return index;
     }
 
     override function afterInit(elem)
     {
-        //js.Browser.console.log("init", ind);
-        this.handler = new MDCTabBar(elem);
-        handler.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
+        this.mdcTabBar = new MDCTabBar(elem);
+        mdcTabBar.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
             if (ontabchangeCB != null )
-                ontabchangeCB(handler.activeTabIndex);
+                ontabchangeCB(mdcTabBar.activeTabIndex);
         });
     }
 
     override function destroy()
     {
-        /*js.Browser.console.log("dest", this.handler != null, ind);
-
-        if ( this.handler != null )
-            this.handler.destroy();*/
+        if ( this.mdcTabBar != null )
+            this.mdcTabBar.destroy();
     }
 }
 

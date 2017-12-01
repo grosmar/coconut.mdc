@@ -1,5 +1,6 @@
 package mdc;
 
+import js.html.DOMElement;
 import mdc.MDC.MDCTextField;
 import vdom.VNode;
 import vdom.Attr;
@@ -7,26 +8,33 @@ import vdom.VDom.*;
 import coconut.ui.View;
 //import coconut.Ui.hxx;
 
-class TextField extends View<{>Attr, ?label:String, ?value:String, ?disabled:Bool, ?icon:String, ?iconPos:TextFieldIconPos, ?box:Bool}>
+class TextField extends View<TextFieldAttr>
 {
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
 
+    var mdcTextField:MDCTextField;
 
-    var handler:MDCTextField;
 
-
-    function render(attr)
+    function render(attr:TextFieldAttr)
     {
         return @hxx '<div class=${attr.className.add(["mdc-text-field" => true,
                                                       "mdc-text-field--disabled" => attr.disabled,
                                                       "mdc-text-field--with-leading-icon" => attr.icon != null,
-                                                      "mdc-text-field--box" => attr.box])} {...attr}>
+                                                      "mdc-text-field--box" => attr.box,
+                                                      "mdc-text-field--textarea" => attr.textArea,
+                                                      "mdc-text-field--fullwidth" => attr.fullWidth])} {...attr}>
                         <if ${attr.icon != null && attr.iconPos != TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
                         </if>
-                        <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
-                        <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
+                        <if ${attr.textArea}>
+                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}>${attr.value}</textarea>
+                        <else>
+                            <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
+                        </if>
+                        <if ${attr.label != null}>
+                            <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
+                        </if>
                         <if ${attr.icon != null && attr.iconPos == TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
                         </if>
@@ -34,23 +42,27 @@ class TextField extends View<{>Attr, ?label:String, ?value:String, ?disabled:Boo
                     </div>';
     }
 
-    override function afterInit(elem)
+    override function afterInit(elem:DOMElement)
     {
-        //js.Browser.console.log("init", ind);
-        this.handler = new MDCTextField(elem);
-        /*handler.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
-            if (ontabchangeCB != null )
-                ontabchangeCB(handler.activeTabIndex);
-        });*/
+        this.mdcTextField = new MDCTextField(elem);
     }
 
     override function destroy()
     {
-        /*js.Browser.console.log("dest", this.handler != null, ind);
-
-        if ( this.handler != null )
-            this.handler.destroy();*/
+        if ( this.mdcTextField != null )
+            this.mdcTextField.destroy();
     }
+}
+
+typedef TextFieldAttr = {>Attr,
+    @:optional var label(default,never):String;
+    @:optional var value(default,never):String;
+    @:optional var disabled(default,never):Bool;
+    @:optional var icon(default,never):String;
+    @:optional var iconPos(default,never):TextFieldIconPos;
+    @:optional var box(default,never):Bool;
+    @:optional var fullWidth(default,never):Bool;
+    @:optional var textArea(default,never):Bool;
 }
 
 @:enum abstract TextFieldType(String) from String to String {

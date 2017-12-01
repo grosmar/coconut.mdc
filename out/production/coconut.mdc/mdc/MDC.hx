@@ -16,6 +16,7 @@ class MDC
 
 	static function __init__()
 	{
+		// TODO: remove
 		// TODO: deeply check it's performance and if it's leaking!!!
 		var observer = new MutationObserver( function( mutations:Array<MutationRecord>, mo:MutationObserver)
 		{
@@ -28,11 +29,9 @@ class MDC
 					if ( node.nodeType ==  Node.ELEMENT_NODE )
 					{
 						registerAll(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
-						registerAll(node, "mdc-ripple-upgraded", MDCRipple, "MDCRipple");
-						registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");
+						//registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");
 						/*registerAll(node, "mdc-tab-bar", MDCTabBar, "MDCTabBar");
 						registerAll(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
-						registerAll(node, "mdc-ripple-upgraded", MDCRipple, "MDCRipple");
 						registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");*/
 
 					}
@@ -44,8 +43,7 @@ class MDC
 					{
 						//unregisterAll(node, "mdc-tab-bar", "MDCTabBar");
 						unregisterAll(node, "mdc-ripple-surface", "MDCRipple");
-						unregisterAll(node, "mdc-ripple-upgraded", "MDCRipple");
-						unregisterAll(node, "mdc-radio", "MDCRadio");
+						//unregisterAll(node, "mdc-radio", "MDCRadio");
 					}
 				}
 			}
