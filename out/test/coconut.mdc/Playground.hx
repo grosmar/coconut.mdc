@@ -182,7 +182,6 @@ class TestView extends View<{}>
         <TextField label="Boxed input" box />
         <TextField label="Icon input" box icon="list" />
         <TextField label="TextArea" textArea  />
-        <TextField label="Icon TextArea" textArea />
         <br/>
         <TextField label="Text input fullWidth" fullWidth />
         <TextField label="TextArea fullWidth" textArea fullWidth />
