@@ -11,13 +11,9 @@ import coconut.ui.View;
 class TabBar extends View<{>Attr,
                             var tabs:VNode;
                             @:optional var type:TabBarType;
+                            @:optional var selectedTabIndex:Int;
                             @:optional function ontabchange(index:UInt):Void;}>
 {
-    /*
-    var ind:Int = Math.random();
-
-    static public function tabBar(attr:{>Attr, function ontabchange(index:UInt):Void;}, children:VNode)
-        return new TabBar({attr:attr, children:children});*/
 
     static public inline function tab(attr:{>AnchorAttr, ?active:Bool, ?icon:String, ?text:String}, ?children:VNode):VNode
         return @hxx '<a class=${attr.className.add(["mdc-tab" => true,
@@ -39,12 +35,14 @@ class TabBar extends View<{>Attr,
 
     var mdcTabBar:MDCTabBar;
 
-    var ontabchangeCB:UInt->Void;
+    var ontabchangeCB:Int->Void;
+    var selectedTabIndex:Int;
 
     function render(attr)
     {
         //js.Browser.console.log("rend", ind);
         ontabchangeCB = attr.ontabchange;
+        selectedTabIndex = attr.selectedTabIndex;
 
         var type:String = attr.type != null ? attr.type : TabBarType.Text;
         return @hxx '<nav class=${attr.className.add(["mdc-tab-bar" => true, type => true])} {...attr}>
@@ -53,16 +51,11 @@ class TabBar extends View<{>Attr,
         </nav>';
     }
 
-    function set_activeTabIndex(index:UInt)
-    {
-        mdcTabBar.activeTabIndex = index;
-        return index;
-    }
-
     override function afterInit(elem)
     {
         this.mdcTabBar = new MDCTabBar(elem);
         mdcTabBar.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
+
             if (ontabchangeCB != null )
                 ontabchangeCB(mdcTabBar.activeTabIndex);
         });

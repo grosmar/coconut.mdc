@@ -11,6 +11,9 @@ class Checkbox extends View<CheckboxAttr>
 {
     var mdcCheckbox:MDCCheckbox;
 
+    static inline var checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
+
+    //TODO: fix svg support
     function render(attr:CheckboxAttr)
     {
         return
@@ -18,36 +21,27 @@ class Checkbox extends View<CheckboxAttr>
                 @hxx '<div class="mdc-form-field" {...attr}>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
-                                   id="my-checkbox"
+                                   onchange=${attr.onchecked(event.target.checked)}
                                    value=${attr.value}
+                                   checked=${attr.checked}
                                    class="mdc-checkbox__native-control"/>
                               <div class="mdc-checkbox__background">
-                                  <svg class="mdc-checkbox__checkmark"
-                                   viewBox="0 0 24 24">
-                                    <path class="mdc-checkbox__checkmark__path"
-                                      fill="none"
-                                      stroke="white"
-                                      d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                                  </svg>
-                                  <div class="mdc-checkbox__mixedmark"></div>
+                                  <div style={checkSvg} class="mdc-checkbox__checkmark" />
+                            <div class="mdc-checkbox__mixedmark"></div>
                               </div>
                           </div>
 
-                          <label htmlFor    ="my-checkbox">${attr.label}</label>
+                          <label htmlFor="my-checkbox">${attr.label}</label>
                     </div>';
             else
                 @hxx '<div class="mdc-checkbox" {...attr}>
                       <input type="checkbox"
                              value=${attr.value}
+                             checked=${attr.checked}
+                             onchange=${attr.onchecked(event.target.checked)}
                              class="mdc-checkbox__native-control"/>
                       <div class="mdc-checkbox__background">
-                        <svg class="mdc-checkbox__checkmark"
-                             viewBox="0 0 24 24">
-                          <path class="mdc-checkbox__checkmark__path"
-                                fill="none"
-                                stroke="white"
-                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                        </svg>
+                        <div style={checkSvg} class="mdc-checkbox__checkmark" />
                         <div class="mdc-checkbox__mixedmark"></div>
                       </div>
                     </div>';
@@ -76,6 +70,7 @@ typedef CheckboxAttr = {>Attr,
     @:optional var checked(default,never):Bool;
     @:optional var indeterminate(default,never):Bool;
     @:optional var value(default,never):String;
+    @:optional function onchecked(checked:Bool):Void;
 }
 
 typedef SvgAttr = {>Attr,
