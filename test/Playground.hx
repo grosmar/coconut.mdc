@@ -13,8 +13,8 @@ class Playground
 {
     public static function main()
     {
-        //MDC.init();
-        var view = new TestView({});
+        var model = new TestModel({});
+        var view = new TestView({model: model});
         js.Browser.document.getElementById("app").appendChild(view.toElement());
     }
 
@@ -22,11 +22,11 @@ class Playground
 
 }
 
-class TestView extends View<{}>
+class TestView extends View<{model:TestModel}>
 {
     function render() '
-<div class="demo">
-    <h1>Normal Buttons</h1>
+<div class="demo" key={model}>
+    <!--<h1>Normal Buttons</h1>
     <div>
         <Button label="Simple" onclick={trace("clicked")} />
         <Button label="Dense" dense/>
@@ -46,19 +46,19 @@ class TestView extends View<{}>
         <Button label="Icon" raised icon="favorite" />
     </div>
 
-    <h1>TabBar</h1>
-    <div class="flex-container">
-        <div class="float">
-            <TabBar>
+    <h1>TabBar</h1>-->
+    <div class="flex-container" key={model}>
+        <div class="float" key={model.keyt1}>
+            <TabBar ontabchange={function (index) model.activeTabIndex = index} key={model.keyt2}>
                 <tabs>
-                    <tab active>Tab1</tab>
-                    <tab>Tab2</tab>
-                    <tab>Tab3</tab>
+                    <tab active key={model.keyte1}>Tab1</tab>
+                    <tab key={model.keyte2}>Tab2</tab>
+                    <tab key={model.keyte3}>Tab3</tab>
                 </tabs>
             </TabBar>
         </div>
 
-        <div class="float" >
+<!--        <div class="float" >
             <TabBar type={TabBarType.Icon}>
                 <tabs>
                     <tab icon="camera" active />
@@ -68,7 +68,7 @@ class TestView extends View<{}>
             </TabBar>
         </div>
 
-        <div class="float">
+        <div class="float" >
             <TabBar type={TabBarType.IconWithText}>
                 <tabs>
                     <tab icon="camera" active>Tab1</tab>
@@ -76,10 +76,16 @@ class TestView extends View<{}>
                     <tab icon="edit">Tab3</tab>
                 </tabs>
             </TabBar>
-        </div>
+        </div>-->
     </div>
 
+    <div key={model.key0}>
+        <div key={model.key1} style={"border: 1px solid black; display:" + (model.activeTabIndex == 0 ? "block" : "none")}>Tab content 1...</div>
+        <div key={model.key2} style={"border: 1px solid black; display:" + (model.activeTabIndex == 1 ? "block" : "none")}>Tab content 2...</div>
+        <div key={model.key3} style={"border: 1px solid black; display:" + (model.activeTabIndex == 2 ? "block" : "none")}>Tab content 3...</div>
+    </div>
 
+<!--
     <h1>List</h1>
     <div class="flex-container">
         <div class="float">
@@ -185,7 +191,7 @@ class TestView extends View<{}>
         <br/>
         <TextField label="Text input fullWidth" fullWidth />
         <TextField label="TextArea fullWidth" textArea fullWidth />
-    </div>
+    </div>-->
 </div>
     ';
 }

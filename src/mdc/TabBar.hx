@@ -47,7 +47,7 @@ class TabBar extends View<{>Attr,
         var type:String = attr.type != null ? attr.type : TabBarType.Text;
         return @hxx '<nav class=${attr.className.add(["mdc-tab-bar" => true, type => true])} {...attr}>
             ${attr.tabs}
-            <span class="mdc-tab-bar__indicator" ></span>
+            <span class="mdc-tab-bar__indicator" key={this} ></span>
         </nav>';
     }
 
