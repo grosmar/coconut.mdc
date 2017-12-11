@@ -14,6 +14,21 @@ class TestModel implements Model
 	@:constant var keyte1:{} = {};
 	@:constant var keyte2:{} = {};
 	@:constant var keyte3:{} = {};
+	@:constant var keyc1:{} = {};
 
 	@:editable var activeTabIndex:Int = @byDefault 0;
+
+	@:observable var notificationList:List<Notification> = @byDefault List.fromArray([]);
+
+	@:computed var notificationCount:Int = notificationList.count( function(n) return n.unread );
+
+	@:transition function addNotification(notification:Notification)
+	{
+		return /*{};*/{notificationList: notificationList.prepend(notification)};
+	}
+}
+
+typedef Notification =
+{
+	var unread(default, never):Bool;
 }

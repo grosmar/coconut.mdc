@@ -446,10 +446,30 @@ Math.__name__ = ["Math"];
 var Playground = function() { };
 $hxClasses["Playground"] = Playground;
 Playground.__name__ = ["Playground"];
+Playground.model = null;
 Playground.main = function() {
-	var model = new TestModel({ });
-	var view = new TestView(tink_state__$Observable_Observable_$Impl_$["const"]({ model : model}));
+	Playground.model = new TestModel({ });
+	var view = new TestView(tink_state__$Observable_Observable_$Impl_$["const"]({ model : Playground.model}));
 	window.document.getElementById("app").appendChild(view.toElement());
+	var this1 = new tink_state__$State_StateObject("");
+	var _ownUserId = this1;
+	var ownUserId = _ownUserId;
+	tink_state__$Observable_Observable_$Impl_$.nextTime(ownUserId,null,function(v) {
+		return v != "";
+	}).handle(function(v1) {
+		Playground.sync();
+	});
+	haxe_Timer.delay(function() {
+		_ownUserId.set("1");
+	},2000);
+};
+Playground.sync = function() {
+	haxe_Log.trace("asdasd",{ fileName : "Playground.hx", lineNumber : 38, className : "Playground", methodName : "sync"});
+	var _g = 0;
+	while(_g < 50) {
+		var i = _g++;
+		Playground.model.addNotification({ unread : Math.random() > 0.5});
+	}
 };
 var vdom_Widget = function() {
 	this.type = "Widget";
@@ -771,6 +791,7 @@ var TestView = function(data) {
 		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
 		return _gthis.render(tmp);
 	});
+	this.__cocodata = data;
 };
 $hxClasses["TestView"] = TestView;
 TestView.__name__ = ["TestView"];
@@ -781,7 +802,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var attr = { className : vdom__$Attr_ClassName_$Impl_$.ofString("demo"), key : vdom__$Attr_Key_$Impl_$.ofObj(model)};
 		var attr1 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container"), key : vdom__$Attr_Key_$Impl_$.ofObj(model)};
 		var attr2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float"), key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_keyt1())};
-		var __f = this.__coco__cache.getFactory("TabBar",function(data) {
+		var __f = coconut_ui_tools_ViewCache.get().getFactory("TabBar",function(data) {
 			return new mdc_TabBar(data);
 		});
 		var __s = __f.forKey(model.get_keyt2(),function() {
@@ -797,9 +818,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		});
 		tink_state__$Observable_Observable_$Impl_$.stack.push(__s.a);
 		__s.a.set(function() {
-			var __coco_cache = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
+			var __coco_cache = coconut_ui_tools_ViewCache.get();
 			var attr3 = { active : true, key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_keyte1())};
-			var children = vdom__$VNode_VNode_$Impl_$.flatten(["Tab1"]);
+			var i = model.get_notificationCount();
+			var children = vdom__$VNode_VNode_$Impl_$.flatten([i == null ? "null" : "" + i]);
 			var __v_0 = attr3;
 			var attr4 = attr3.className;
 			var _g = new haxe_ds_StringMap();
@@ -814,7 +836,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			} else {
 				_g.h["mdc-tab--active"] = value;
 			}
-			var attr5 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr4,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, href : __v_0.href, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
+			var attr21 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr4,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, href : __v_0.href, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
 			}, onblur : function(event1) {
 			}, oncanplay : function(event2) {
 			}, oncanplaythrough : function(event3) {
@@ -893,10 +915,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, target : __v_0.target, title : __v_0.title, type : __v_0.type};
 			var children1;
 			if(attr3.icon != null) {
-				var attr6 = { };
+				var attr31 = { };
 				var children2 = vdom__$VNode_VNode_$Impl_$.flatten([attr3.icon]);
-				var __v_01 = attr6;
-				var attr7 = attr6.className;
+				var __v_01 = attr31;
+				var attr32 = attr31.className;
 				var _g1 = new haxe_ds_StringMap();
 				if(__map_reserved["mdc-tab__icon"] != null) {
 					_g1.setReserved("mdc-tab__icon",true);
@@ -908,7 +930,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g1.h["material-icons"] = true;
 				}
-				children1 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr7,vdom__$Attr_ClassName_$Impl_$.ofMap(_g1)), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event76) {
+				children1 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr32,vdom__$Attr_ClassName_$Impl_$.ofMap(_g1)), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event76) {
 				}, onblur : function(event77) {
 				}, oncanplay : function(event78) {
 				}, oncanplaythrough : function(event79) {
@@ -990,17 +1012,17 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}
 			var children3;
 			if(attr3.text != null) {
-				var attr8 = { };
+				var attr5 = { };
 				var children4 = vdom__$VNode_VNode_$Impl_$.flatten([attr3.text]);
-				var __v_02 = attr8;
-				var attr9 = attr8.className;
+				var __v_02 = attr5;
+				var attr51 = attr5.className;
 				var _g2 = new haxe_ds_StringMap();
 				if(__map_reserved["mdc-tab__icon-text"] != null) {
 					_g2.setReserved("mdc-tab__icon-text",true);
 				} else {
 					_g2.h["mdc-tab__icon-text"] = true;
 				}
-				children3 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr9,vdom__$Attr_ClassName_$Impl_$.ofMap(_g2)), accessKey : __v_02.accessKey, accessKeyLabel : __v_02.accessKeyLabel, attributes : __v_02.attributes, contentEditable : __v_02.contentEditable, dir : __v_02.dir, draggable : __v_02.draggable, hidden : __v_02.hidden, id : __v_02.id, key : __v_02.key, lang : __v_02.lang, onabort : function(event152) {
+				children3 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr51,vdom__$Attr_ClassName_$Impl_$.ofMap(_g2)), accessKey : __v_02.accessKey, accessKeyLabel : __v_02.accessKeyLabel, attributes : __v_02.attributes, contentEditable : __v_02.contentEditable, dir : __v_02.dir, draggable : __v_02.draggable, hidden : __v_02.hidden, id : __v_02.id, key : __v_02.key, lang : __v_02.lang, onabort : function(event152) {
 				}, onblur : function(event153) {
 				}, oncanplay : function(event154) {
 				}, oncanplaythrough : function(event155) {
@@ -1080,580 +1102,586 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			} else {
 				children3 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children5 = vdom_VDom.h("a",attr5,[children1,children3,children]);
-			var attr10 = { key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_keyte2())};
+			var children5 = vdom_VDom.h("a",attr21,[children1,children3,children]);
+			var attr6 = { key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_keyte2())};
 			var children6 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab2"]);
-			var __v_03 = attr10;
-			var attr11 = attr10.className;
+			var __v_03 = attr6;
+			var attr7 = attr6.className;
 			var _g3 = new haxe_ds_StringMap();
 			if(__map_reserved["mdc-tab"] != null) {
 				_g3.setReserved("mdc-tab",true);
 			} else {
 				_g3.h["mdc-tab"] = true;
 			}
-			var value1 = attr10.active;
+			var value1 = attr6.active;
 			if(__map_reserved["mdc-tab--active"] != null) {
 				_g3.setReserved("mdc-tab--active",value1);
 			} else {
 				_g3.h["mdc-tab--active"] = value1;
 			}
-			var attr12 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr11,vdom__$Attr_ClassName_$Impl_$.ofMap(_g3)), accessKey : __v_03.accessKey, accessKeyLabel : __v_03.accessKeyLabel, attributes : __v_03.attributes, contentEditable : __v_03.contentEditable, dir : __v_03.dir, draggable : __v_03.draggable, hidden : __v_03.hidden, href : __v_03.href, id : __v_03.id, key : __v_03.key, lang : __v_03.lang, onabort : function(event228) {
-			}, onblur : function(event229) {
-			}, oncanplay : function(event230) {
-			}, oncanplaythrough : function(event231) {
-			}, onchange : function(event232) {
-			}, onclick : function(event233) {
-			}, oncontextmenu : function(event234) {
-			}, oncopy : function(event235) {
-			}, oncut : function(event236) {
-			}, ondblclick : function(event237) {
-			}, ondrag : function(event238) {
-			}, ondragend : function(event239) {
-			}, ondragenter : function(event240) {
-			}, ondragleave : function(event241) {
-			}, ondragover : function(event242) {
-			}, ondragstart : function(event243) {
-			}, ondrop : function(event244) {
-			}, ondurationchange : function(event245) {
-			}, onemptied : function(event246) {
-			}, onended : function(event247) {
-			}, onerror : function(event248) {
-			}, onfocus : function(event249) {
-			}, onfullscreenchange : function(event250) {
-			}, onfullscreenerror : function(event251) {
-			}, ongotpointercapture : function(event252) {
-			}, oninput : function(event253) {
-			}, oninvalid : function(event254) {
-			}, onkeydown : function(event255) {
-			}, onkeypress : function(event256) {
-			}, onkeyup : function(event257) {
-			}, onload : function(event258) {
-			}, onloadeddata : function(event259) {
-			}, onloadedmetadata : function(event260) {
-			}, onloadstart : function(event261) {
-			}, onlostpointercapture : function(event262) {
-			}, onmousedown : function(event263) {
-			}, onmouseenter : function(event264) {
-			}, onmouseleave : function(event265) {
-			}, onmousemove : function(event266) {
-			}, onmouseout : function(event267) {
-			}, onmouseover : function(event268) {
-			}, onmouseup : function(event269) {
-			}, onpaste : function(event270) {
-			}, onpause : function(event271) {
-			}, onplay : function(event272) {
-			}, onplaying : function(event273) {
-			}, onpointercancel : function(event274) {
-			}, onpointerdown : function(event275) {
-			}, onpointerenter : function(event276) {
-			}, onpointerleave : function(event277) {
-			}, onpointerlockchange : function(event278) {
-			}, onpointerlockerror : function(event279) {
-			}, onpointermove : function(event280) {
-			}, onpointerout : function(event281) {
-			}, onpointerover : function(event282) {
-			}, onpointerup : function(event283) {
-			}, onprogress : function(event284) {
-			}, onratechange : function(event285) {
-			}, onreset : function(event286) {
-			}, onresize : function(event287) {
-			}, onscroll : function(event288) {
-			}, onseeked : function(event289) {
-			}, onseeking : function(event290) {
-			}, onselect : function(event291) {
-			}, onshow : function(event292) {
-			}, onstalled : function(event293) {
-			}, onsubmit : function(event294) {
-			}, onsuspend : function(event295) {
-			}, ontimeupdate : function(event296) {
-			}, ontouchcancel : function(event297) {
-			}, ontouchend : function(event298) {
-			}, ontouchmove : function(event299) {
-			}, ontouchstart : function(event300) {
-			}, onvolumechange : function(event301) {
-			}, onwaiting : function(event302) {
-			}, onwheel : function(event303) {
+			var attr22 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr7,vdom__$Attr_ClassName_$Impl_$.ofMap(_g3)), accessKey : __v_03.accessKey, accessKeyLabel : __v_03.accessKeyLabel, attributes : __v_03.attributes, contentEditable : __v_03.contentEditable, dir : __v_03.dir, draggable : __v_03.draggable, hidden : __v_03.hidden, href : __v_03.href, id : __v_03.id, key : __v_03.key, lang : __v_03.lang, onabort : function(event228) {
+			}, onblur : function(event1100) {
+			}, oncanplay : function(event229) {
+			}, oncanplaythrough : function(event310) {
+			}, onchange : function(event410) {
+			}, onclick : function(event510) {
+			}, oncontextmenu : function(event610) {
+			}, oncopy : function(event710) {
+			}, oncut : function(event810) {
+			}, ondblclick : function(event910) {
+			}, ondrag : function(event1010) {
+			}, ondragend : function(event1110) {
+			}, ondragenter : function(event1210) {
+			}, ondragleave : function(event1310) {
+			}, ondragover : function(event1410) {
+			}, ondragstart : function(event1510) {
+			}, ondrop : function(event1610) {
+			}, ondurationchange : function(event1710) {
+			}, onemptied : function(event1810) {
+			}, onended : function(event1910) {
+			}, onerror : function(event2010) {
+			}, onfocus : function(event2110) {
+			}, onfullscreenchange : function(event2210) {
+			}, onfullscreenerror : function(event231) {
+			}, ongotpointercapture : function(event241) {
+			}, oninput : function(event251) {
+			}, oninvalid : function(event261) {
+			}, onkeydown : function(event271) {
+			}, onkeypress : function(event281) {
+			}, onkeyup : function(event291) {
+			}, onload : function(event301) {
+			}, onloadeddata : function(event311) {
+			}, onloadedmetadata : function(event321) {
+			}, onloadstart : function(event331) {
+			}, onlostpointercapture : function(event341) {
+			}, onmousedown : function(event351) {
+			}, onmouseenter : function(event361) {
+			}, onmouseleave : function(event371) {
+			}, onmousemove : function(event381) {
+			}, onmouseout : function(event391) {
+			}, onmouseover : function(event401) {
+			}, onmouseup : function(event411) {
+			}, onpaste : function(event421) {
+			}, onpause : function(event431) {
+			}, onplay : function(event441) {
+			}, onplaying : function(event451) {
+			}, onpointercancel : function(event461) {
+			}, onpointerdown : function(event471) {
+			}, onpointerenter : function(event481) {
+			}, onpointerleave : function(event491) {
+			}, onpointerlockchange : function(event501) {
+			}, onpointerlockerror : function(event511) {
+			}, onpointermove : function(event521) {
+			}, onpointerout : function(event531) {
+			}, onpointerover : function(event541) {
+			}, onpointerup : function(event551) {
+			}, onprogress : function(event561) {
+			}, onratechange : function(event571) {
+			}, onreset : function(event581) {
+			}, onresize : function(event591) {
+			}, onscroll : function(event601) {
+			}, onseeked : function(event611) {
+			}, onseeking : function(event621) {
+			}, onselect : function(event631) {
+			}, onshow : function(event641) {
+			}, onstalled : function(event651) {
+			}, onsubmit : function(event661) {
+			}, onsuspend : function(event671) {
+			}, ontimeupdate : function(event681) {
+			}, ontouchcancel : function(event691) {
+			}, ontouchend : function(event701) {
+			}, ontouchmove : function(event711) {
+			}, ontouchstart : function(event721) {
+			}, onvolumechange : function(event731) {
+			}, onwaiting : function(event741) {
+			}, onwheel : function(event751) {
 			}, spellcheck : __v_03.spellcheck, style : __v_03.style, tabIndex : __v_03.tabIndex, target : __v_03.target, title : __v_03.title, type : __v_03.type};
 			var children7;
-			if(attr10.icon != null) {
-				var attr13 = { };
-				var children8 = vdom__$VNode_VNode_$Impl_$.flatten([attr10.icon]);
-				var __v_04 = attr13;
-				var attr14 = attr13.className;
-				var _g4 = new haxe_ds_StringMap();
+			if(attr6.icon != null) {
+				var attr33 = { };
+				var children21 = vdom__$VNode_VNode_$Impl_$.flatten([attr6.icon]);
+				var __v_011 = attr33;
+				var attr34 = attr33.className;
+				var _g11 = new haxe_ds_StringMap();
 				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g4.setReserved("mdc-tab__icon",true);
+					_g11.setReserved("mdc-tab__icon",true);
 				} else {
-					_g4.h["mdc-tab__icon"] = true;
+					_g11.h["mdc-tab__icon"] = true;
 				}
 				if(__map_reserved["material-icons"] != null) {
-					_g4.setReserved("material-icons",true);
+					_g11.setReserved("material-icons",true);
 				} else {
-					_g4.h["material-icons"] = true;
+					_g11.h["material-icons"] = true;
 				}
-				children7 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr14,vdom__$Attr_ClassName_$Impl_$.ofMap(_g4)), accessKey : __v_04.accessKey, accessKeyLabel : __v_04.accessKeyLabel, attributes : __v_04.attributes, contentEditable : __v_04.contentEditable, dir : __v_04.dir, draggable : __v_04.draggable, hidden : __v_04.hidden, id : __v_04.id, key : __v_04.key, lang : __v_04.lang, onabort : function(event304) {
-				}, onblur : function(event305) {
-				}, oncanplay : function(event306) {
-				}, oncanplaythrough : function(event307) {
-				}, onchange : function(event308) {
-				}, onclick : function(event309) {
-				}, oncontextmenu : function(event310) {
-				}, oncopy : function(event311) {
-				}, oncut : function(event312) {
-				}, ondblclick : function(event313) {
-				}, ondrag : function(event314) {
-				}, ondragend : function(event315) {
-				}, ondragenter : function(event316) {
-				}, ondragleave : function(event317) {
-				}, ondragover : function(event318) {
-				}, ondragstart : function(event319) {
-				}, ondrop : function(event320) {
-				}, ondurationchange : function(event321) {
-				}, onemptied : function(event322) {
-				}, onended : function(event323) {
-				}, onerror : function(event324) {
-				}, onfocus : function(event325) {
-				}, onfullscreenchange : function(event326) {
-				}, onfullscreenerror : function(event327) {
-				}, ongotpointercapture : function(event328) {
-				}, oninput : function(event329) {
-				}, oninvalid : function(event330) {
-				}, onkeydown : function(event331) {
-				}, onkeypress : function(event332) {
-				}, onkeyup : function(event333) {
-				}, onload : function(event334) {
-				}, onloadeddata : function(event335) {
-				}, onloadedmetadata : function(event336) {
-				}, onloadstart : function(event337) {
-				}, onlostpointercapture : function(event338) {
-				}, onmousedown : function(event339) {
-				}, onmouseenter : function(event340) {
-				}, onmouseleave : function(event341) {
-				}, onmousemove : function(event342) {
-				}, onmouseout : function(event343) {
-				}, onmouseover : function(event344) {
-				}, onmouseup : function(event345) {
-				}, onpaste : function(event346) {
-				}, onpause : function(event347) {
-				}, onplay : function(event348) {
-				}, onplaying : function(event349) {
-				}, onpointercancel : function(event350) {
-				}, onpointerdown : function(event351) {
-				}, onpointerenter : function(event352) {
-				}, onpointerleave : function(event353) {
-				}, onpointerlockchange : function(event354) {
-				}, onpointerlockerror : function(event355) {
-				}, onpointermove : function(event356) {
-				}, onpointerout : function(event357) {
-				}, onpointerover : function(event358) {
-				}, onpointerup : function(event359) {
-				}, onprogress : function(event360) {
-				}, onratechange : function(event361) {
-				}, onreset : function(event362) {
-				}, onresize : function(event363) {
-				}, onscroll : function(event364) {
-				}, onseeked : function(event365) {
-				}, onseeking : function(event366) {
-				}, onselect : function(event367) {
-				}, onshow : function(event368) {
-				}, onstalled : function(event369) {
-				}, onsubmit : function(event370) {
-				}, onsuspend : function(event371) {
-				}, ontimeupdate : function(event372) {
-				}, ontouchcancel : function(event373) {
-				}, ontouchend : function(event374) {
-				}, ontouchmove : function(event375) {
-				}, ontouchstart : function(event376) {
-				}, onvolumechange : function(event377) {
-				}, onwaiting : function(event378) {
-				}, onwheel : function(event379) {
-				}, spellcheck : __v_04.spellcheck, style : __v_04.style, tabIndex : __v_04.tabIndex, title : __v_04.title},[children8])]);
+				children7 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr34,vdom__$Attr_ClassName_$Impl_$.ofMap(_g11)), accessKey : __v_011.accessKey, accessKeyLabel : __v_011.accessKeyLabel, attributes : __v_011.attributes, contentEditable : __v_011.contentEditable, dir : __v_011.dir, draggable : __v_011.draggable, hidden : __v_011.hidden, id : __v_011.id, key : __v_011.key, lang : __v_011.lang, onabort : function(event761) {
+				}, onblur : function(event771) {
+				}, oncanplay : function(event781) {
+				}, oncanplaythrough : function(event791) {
+				}, onchange : function(event801) {
+				}, onclick : function(event811) {
+				}, oncontextmenu : function(event821) {
+				}, oncopy : function(event831) {
+				}, oncut : function(event841) {
+				}, ondblclick : function(event851) {
+				}, ondrag : function(event861) {
+				}, ondragend : function(event871) {
+				}, ondragenter : function(event881) {
+				}, ondragleave : function(event891) {
+				}, ondragover : function(event901) {
+				}, ondragstart : function(event911) {
+				}, ondrop : function(event921) {
+				}, ondurationchange : function(event931) {
+				}, onemptied : function(event941) {
+				}, onended : function(event951) {
+				}, onerror : function(event961) {
+				}, onfocus : function(event971) {
+				}, onfullscreenchange : function(event981) {
+				}, onfullscreenerror : function(event991) {
+				}, ongotpointercapture : function(event1001) {
+				}, oninput : function(event1011) {
+				}, oninvalid : function(event1021) {
+				}, onkeydown : function(event1031) {
+				}, onkeypress : function(event1041) {
+				}, onkeyup : function(event1051) {
+				}, onload : function(event1061) {
+				}, onloadeddata : function(event1071) {
+				}, onloadedmetadata : function(event1081) {
+				}, onloadstart : function(event1091) {
+				}, onlostpointercapture : function(event1101) {
+				}, onmousedown : function(event1111) {
+				}, onmouseenter : function(event1121) {
+				}, onmouseleave : function(event1131) {
+				}, onmousemove : function(event1141) {
+				}, onmouseout : function(event1151) {
+				}, onmouseover : function(event1161) {
+				}, onmouseup : function(event1171) {
+				}, onpaste : function(event1181) {
+				}, onpause : function(event1191) {
+				}, onplay : function(event1201) {
+				}, onplaying : function(event1211) {
+				}, onpointercancel : function(event1221) {
+				}, onpointerdown : function(event1231) {
+				}, onpointerenter : function(event1241) {
+				}, onpointerleave : function(event1251) {
+				}, onpointerlockchange : function(event1261) {
+				}, onpointerlockerror : function(event1271) {
+				}, onpointermove : function(event1281) {
+				}, onpointerout : function(event1291) {
+				}, onpointerover : function(event1301) {
+				}, onpointerup : function(event1311) {
+				}, onprogress : function(event1321) {
+				}, onratechange : function(event1331) {
+				}, onreset : function(event1341) {
+				}, onresize : function(event1351) {
+				}, onscroll : function(event1361) {
+				}, onseeked : function(event1371) {
+				}, onseeking : function(event1381) {
+				}, onselect : function(event1391) {
+				}, onshow : function(event1401) {
+				}, onstalled : function(event1411) {
+				}, onsubmit : function(event1421) {
+				}, onsuspend : function(event1431) {
+				}, ontimeupdate : function(event1441) {
+				}, ontouchcancel : function(event1451) {
+				}, ontouchend : function(event1461) {
+				}, ontouchmove : function(event1471) {
+				}, ontouchstart : function(event1481) {
+				}, onvolumechange : function(event1491) {
+				}, onwaiting : function(event1501) {
+				}, onwheel : function(event1511) {
+				}, spellcheck : __v_011.spellcheck, style : __v_011.style, tabIndex : __v_011.tabIndex, title : __v_011.title},[children21])]);
 			} else {
 				children7 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children9;
-			if(attr10.text != null) {
-				var attr15 = { };
-				var children10 = vdom__$VNode_VNode_$Impl_$.flatten([attr10.text]);
-				var __v_05 = attr15;
-				var attr16 = attr15.className;
-				var _g5 = new haxe_ds_StringMap();
+			var children8;
+			if(attr6.text != null) {
+				var attr52 = { };
+				var children41 = vdom__$VNode_VNode_$Impl_$.flatten([attr6.text]);
+				var __v_021 = attr52;
+				var attr53 = attr52.className;
+				var _g21 = new haxe_ds_StringMap();
 				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g5.setReserved("mdc-tab__icon-text",true);
+					_g21.setReserved("mdc-tab__icon-text",true);
 				} else {
-					_g5.h["mdc-tab__icon-text"] = true;
+					_g21.h["mdc-tab__icon-text"] = true;
 				}
-				children9 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr16,vdom__$Attr_ClassName_$Impl_$.ofMap(_g5)), accessKey : __v_05.accessKey, accessKeyLabel : __v_05.accessKeyLabel, attributes : __v_05.attributes, contentEditable : __v_05.contentEditable, dir : __v_05.dir, draggable : __v_05.draggable, hidden : __v_05.hidden, id : __v_05.id, key : __v_05.key, lang : __v_05.lang, onabort : function(event380) {
-				}, onblur : function(event381) {
-				}, oncanplay : function(event382) {
-				}, oncanplaythrough : function(event383) {
-				}, onchange : function(event384) {
-				}, onclick : function(event385) {
-				}, oncontextmenu : function(event386) {
-				}, oncopy : function(event387) {
-				}, oncut : function(event388) {
-				}, ondblclick : function(event389) {
-				}, ondrag : function(event390) {
-				}, ondragend : function(event391) {
-				}, ondragenter : function(event392) {
-				}, ondragleave : function(event393) {
-				}, ondragover : function(event394) {
-				}, ondragstart : function(event395) {
-				}, ondrop : function(event396) {
-				}, ondurationchange : function(event397) {
-				}, onemptied : function(event398) {
-				}, onended : function(event399) {
-				}, onerror : function(event400) {
-				}, onfocus : function(event401) {
-				}, onfullscreenchange : function(event402) {
-				}, onfullscreenerror : function(event403) {
-				}, ongotpointercapture : function(event404) {
-				}, oninput : function(event405) {
-				}, oninvalid : function(event406) {
-				}, onkeydown : function(event407) {
-				}, onkeypress : function(event408) {
-				}, onkeyup : function(event409) {
-				}, onload : function(event410) {
-				}, onloadeddata : function(event411) {
-				}, onloadedmetadata : function(event412) {
-				}, onloadstart : function(event413) {
-				}, onlostpointercapture : function(event414) {
-				}, onmousedown : function(event415) {
-				}, onmouseenter : function(event416) {
-				}, onmouseleave : function(event417) {
-				}, onmousemove : function(event418) {
-				}, onmouseout : function(event419) {
-				}, onmouseover : function(event420) {
-				}, onmouseup : function(event421) {
-				}, onpaste : function(event422) {
-				}, onpause : function(event423) {
-				}, onplay : function(event424) {
-				}, onplaying : function(event425) {
-				}, onpointercancel : function(event426) {
-				}, onpointerdown : function(event427) {
-				}, onpointerenter : function(event428) {
-				}, onpointerleave : function(event429) {
-				}, onpointerlockchange : function(event430) {
-				}, onpointerlockerror : function(event431) {
-				}, onpointermove : function(event432) {
-				}, onpointerout : function(event433) {
-				}, onpointerover : function(event434) {
-				}, onpointerup : function(event435) {
-				}, onprogress : function(event436) {
-				}, onratechange : function(event437) {
-				}, onreset : function(event438) {
-				}, onresize : function(event439) {
-				}, onscroll : function(event440) {
-				}, onseeked : function(event441) {
-				}, onseeking : function(event442) {
-				}, onselect : function(event443) {
-				}, onshow : function(event444) {
-				}, onstalled : function(event445) {
-				}, onsubmit : function(event446) {
-				}, onsuspend : function(event447) {
-				}, ontimeupdate : function(event448) {
-				}, ontouchcancel : function(event449) {
-				}, ontouchend : function(event450) {
-				}, ontouchmove : function(event451) {
-				}, ontouchstart : function(event452) {
-				}, onvolumechange : function(event453) {
-				}, onwaiting : function(event454) {
-				}, onwheel : function(event455) {
-				}, spellcheck : __v_05.spellcheck, style : __v_05.style, tabIndex : __v_05.tabIndex, title : __v_05.title},[children10])]);
+				children8 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr53,vdom__$Attr_ClassName_$Impl_$.ofMap(_g21)), accessKey : __v_021.accessKey, accessKeyLabel : __v_021.accessKeyLabel, attributes : __v_021.attributes, contentEditable : __v_021.contentEditable, dir : __v_021.dir, draggable : __v_021.draggable, hidden : __v_021.hidden, id : __v_021.id, key : __v_021.key, lang : __v_021.lang, onabort : function(event1521) {
+				}, onblur : function(event1531) {
+				}, oncanplay : function(event1541) {
+				}, oncanplaythrough : function(event1551) {
+				}, onchange : function(event1561) {
+				}, onclick : function(event1571) {
+				}, oncontextmenu : function(event1581) {
+				}, oncopy : function(event1591) {
+				}, oncut : function(event1601) {
+				}, ondblclick : function(event1611) {
+				}, ondrag : function(event1621) {
+				}, ondragend : function(event1631) {
+				}, ondragenter : function(event1641) {
+				}, ondragleave : function(event1651) {
+				}, ondragover : function(event1661) {
+				}, ondragstart : function(event1671) {
+				}, ondrop : function(event1681) {
+				}, ondurationchange : function(event1691) {
+				}, onemptied : function(event1701) {
+				}, onended : function(event1711) {
+				}, onerror : function(event1721) {
+				}, onfocus : function(event1731) {
+				}, onfullscreenchange : function(event1741) {
+				}, onfullscreenerror : function(event1751) {
+				}, ongotpointercapture : function(event1761) {
+				}, oninput : function(event1771) {
+				}, oninvalid : function(event1781) {
+				}, onkeydown : function(event1791) {
+				}, onkeypress : function(event1801) {
+				}, onkeyup : function(event1811) {
+				}, onload : function(event1821) {
+				}, onloadeddata : function(event1831) {
+				}, onloadedmetadata : function(event1841) {
+				}, onloadstart : function(event1851) {
+				}, onlostpointercapture : function(event1861) {
+				}, onmousedown : function(event1871) {
+				}, onmouseenter : function(event1881) {
+				}, onmouseleave : function(event1891) {
+				}, onmousemove : function(event1901) {
+				}, onmouseout : function(event1911) {
+				}, onmouseover : function(event1921) {
+				}, onmouseup : function(event1931) {
+				}, onpaste : function(event1941) {
+				}, onpause : function(event1951) {
+				}, onplay : function(event1961) {
+				}, onplaying : function(event1971) {
+				}, onpointercancel : function(event1981) {
+				}, onpointerdown : function(event1991) {
+				}, onpointerenter : function(event2001) {
+				}, onpointerleave : function(event2011) {
+				}, onpointerlockchange : function(event2021) {
+				}, onpointerlockerror : function(event2031) {
+				}, onpointermove : function(event2041) {
+				}, onpointerout : function(event2051) {
+				}, onpointerover : function(event2061) {
+				}, onpointerup : function(event2071) {
+				}, onprogress : function(event2081) {
+				}, onratechange : function(event2091) {
+				}, onreset : function(event2101) {
+				}, onresize : function(event2111) {
+				}, onscroll : function(event2121) {
+				}, onseeked : function(event2131) {
+				}, onseeking : function(event2141) {
+				}, onselect : function(event2151) {
+				}, onshow : function(event2161) {
+				}, onstalled : function(event2171) {
+				}, onsubmit : function(event2181) {
+				}, onsuspend : function(event2191) {
+				}, ontimeupdate : function(event2201) {
+				}, ontouchcancel : function(event2211) {
+				}, ontouchend : function(event2221) {
+				}, ontouchmove : function(event2231) {
+				}, ontouchstart : function(event2241) {
+				}, onvolumechange : function(event2251) {
+				}, onwaiting : function(event2261) {
+				}, onwheel : function(event2271) {
+				}, spellcheck : __v_021.spellcheck, style : __v_021.style, tabIndex : __v_021.tabIndex, title : __v_021.title},[children41])]);
 			} else {
-				children9 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children8 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children11 = vdom_VDom.h("a",attr12,[children7,children9,children6]);
-			var attr17 = { key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_keyte3())};
-			var children12 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
-			var __v_06 = attr17;
-			var attr18 = attr17.className;
-			var _g6 = new haxe_ds_StringMap();
+			var children9 = vdom_VDom.h("a",attr22,[children7,children8,children6]);
+			var attr8 = { key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_keyte3())};
+			var children10 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
+			var __v_04 = attr8;
+			var attr9 = attr8.className;
+			var _g4 = new haxe_ds_StringMap();
 			if(__map_reserved["mdc-tab"] != null) {
-				_g6.setReserved("mdc-tab",true);
+				_g4.setReserved("mdc-tab",true);
 			} else {
-				_g6.h["mdc-tab"] = true;
+				_g4.h["mdc-tab"] = true;
 			}
-			var value2 = attr17.active;
+			var value2 = attr8.active;
 			if(__map_reserved["mdc-tab--active"] != null) {
-				_g6.setReserved("mdc-tab--active",value2);
+				_g4.setReserved("mdc-tab--active",value2);
 			} else {
-				_g6.h["mdc-tab--active"] = value2;
+				_g4.h["mdc-tab--active"] = value2;
 			}
-			var attr19 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr18,vdom__$Attr_ClassName_$Impl_$.ofMap(_g6)), accessKey : __v_06.accessKey, accessKeyLabel : __v_06.accessKeyLabel, attributes : __v_06.attributes, contentEditable : __v_06.contentEditable, dir : __v_06.dir, draggable : __v_06.draggable, hidden : __v_06.hidden, href : __v_06.href, id : __v_06.id, key : __v_06.key, lang : __v_06.lang, onabort : function(event456) {
-			}, onblur : function(event457) {
-			}, oncanplay : function(event458) {
-			}, oncanplaythrough : function(event459) {
-			}, onchange : function(event460) {
-			}, onclick : function(event461) {
-			}, oncontextmenu : function(event462) {
-			}, oncopy : function(event463) {
-			}, oncut : function(event464) {
-			}, ondblclick : function(event465) {
-			}, ondrag : function(event466) {
-			}, ondragend : function(event467) {
-			}, ondragenter : function(event468) {
-			}, ondragleave : function(event469) {
-			}, ondragover : function(event470) {
-			}, ondragstart : function(event471) {
-			}, ondrop : function(event472) {
-			}, ondurationchange : function(event473) {
-			}, onemptied : function(event474) {
-			}, onended : function(event475) {
-			}, onerror : function(event476) {
-			}, onfocus : function(event477) {
-			}, onfullscreenchange : function(event478) {
-			}, onfullscreenerror : function(event479) {
-			}, ongotpointercapture : function(event480) {
-			}, oninput : function(event481) {
-			}, oninvalid : function(event482) {
-			}, onkeydown : function(event483) {
-			}, onkeypress : function(event484) {
-			}, onkeyup : function(event485) {
-			}, onload : function(event486) {
-			}, onloadeddata : function(event487) {
-			}, onloadedmetadata : function(event488) {
-			}, onloadstart : function(event489) {
-			}, onlostpointercapture : function(event490) {
-			}, onmousedown : function(event491) {
-			}, onmouseenter : function(event492) {
-			}, onmouseleave : function(event493) {
-			}, onmousemove : function(event494) {
-			}, onmouseout : function(event495) {
-			}, onmouseover : function(event496) {
-			}, onmouseup : function(event497) {
-			}, onpaste : function(event498) {
-			}, onpause : function(event499) {
-			}, onplay : function(event500) {
-			}, onplaying : function(event501) {
-			}, onpointercancel : function(event502) {
-			}, onpointerdown : function(event503) {
-			}, onpointerenter : function(event504) {
-			}, onpointerleave : function(event505) {
-			}, onpointerlockchange : function(event506) {
-			}, onpointerlockerror : function(event507) {
-			}, onpointermove : function(event508) {
-			}, onpointerout : function(event509) {
-			}, onpointerover : function(event510) {
-			}, onpointerup : function(event511) {
-			}, onprogress : function(event512) {
-			}, onratechange : function(event513) {
-			}, onreset : function(event514) {
-			}, onresize : function(event515) {
-			}, onscroll : function(event516) {
-			}, onseeked : function(event517) {
-			}, onseeking : function(event518) {
-			}, onselect : function(event519) {
-			}, onshow : function(event520) {
-			}, onstalled : function(event521) {
-			}, onsubmit : function(event522) {
-			}, onsuspend : function(event523) {
-			}, ontimeupdate : function(event524) {
-			}, ontouchcancel : function(event525) {
-			}, ontouchend : function(event526) {
-			}, ontouchmove : function(event527) {
-			}, ontouchstart : function(event528) {
-			}, onvolumechange : function(event529) {
-			}, onwaiting : function(event530) {
-			}, onwheel : function(event531) {
-			}, spellcheck : __v_06.spellcheck, style : __v_06.style, tabIndex : __v_06.tabIndex, target : __v_06.target, title : __v_06.title, type : __v_06.type};
-			var children13;
-			if(attr17.icon != null) {
-				var attr20 = { };
-				var children14 = vdom__$VNode_VNode_$Impl_$.flatten([attr17.icon]);
-				var __v_07 = attr20;
-				var attr21 = attr20.className;
-				var _g7 = new haxe_ds_StringMap();
+			var attr23 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr9,vdom__$Attr_ClassName_$Impl_$.ofMap(_g4)), accessKey : __v_04.accessKey, accessKeyLabel : __v_04.accessKeyLabel, attributes : __v_04.attributes, contentEditable : __v_04.contentEditable, dir : __v_04.dir, draggable : __v_04.draggable, hidden : __v_04.hidden, href : __v_04.href, id : __v_04.id, key : __v_04.key, lang : __v_04.lang, onabort : function(event230) {
+			}, onblur : function(event1102) {
+			}, oncanplay : function(event232) {
+			}, oncanplaythrough : function(event312) {
+			}, onchange : function(event412) {
+			}, onclick : function(event512) {
+			}, oncontextmenu : function(event612) {
+			}, oncopy : function(event712) {
+			}, oncut : function(event812) {
+			}, ondblclick : function(event912) {
+			}, ondrag : function(event1012) {
+			}, ondragend : function(event1112) {
+			}, ondragenter : function(event1212) {
+			}, ondragleave : function(event1312) {
+			}, ondragover : function(event1412) {
+			}, ondragstart : function(event1512) {
+			}, ondrop : function(event1612) {
+			}, ondurationchange : function(event1712) {
+			}, onemptied : function(event1812) {
+			}, onended : function(event1912) {
+			}, onerror : function(event2012) {
+			}, onfocus : function(event2112) {
+			}, onfullscreenchange : function(event2212) {
+			}, onfullscreenerror : function(event233) {
+			}, ongotpointercapture : function(event242) {
+			}, oninput : function(event252) {
+			}, oninvalid : function(event262) {
+			}, onkeydown : function(event272) {
+			}, onkeypress : function(event282) {
+			}, onkeyup : function(event292) {
+			}, onload : function(event302) {
+			}, onloadeddata : function(event313) {
+			}, onloadedmetadata : function(event322) {
+			}, onloadstart : function(event332) {
+			}, onlostpointercapture : function(event342) {
+			}, onmousedown : function(event352) {
+			}, onmouseenter : function(event362) {
+			}, onmouseleave : function(event372) {
+			}, onmousemove : function(event382) {
+			}, onmouseout : function(event392) {
+			}, onmouseover : function(event402) {
+			}, onmouseup : function(event413) {
+			}, onpaste : function(event422) {
+			}, onpause : function(event432) {
+			}, onplay : function(event442) {
+			}, onplaying : function(event452) {
+			}, onpointercancel : function(event462) {
+			}, onpointerdown : function(event472) {
+			}, onpointerenter : function(event482) {
+			}, onpointerleave : function(event492) {
+			}, onpointerlockchange : function(event502) {
+			}, onpointerlockerror : function(event513) {
+			}, onpointermove : function(event522) {
+			}, onpointerout : function(event532) {
+			}, onpointerover : function(event542) {
+			}, onpointerup : function(event552) {
+			}, onprogress : function(event562) {
+			}, onratechange : function(event572) {
+			}, onreset : function(event582) {
+			}, onresize : function(event592) {
+			}, onscroll : function(event602) {
+			}, onseeked : function(event613) {
+			}, onseeking : function(event622) {
+			}, onselect : function(event632) {
+			}, onshow : function(event642) {
+			}, onstalled : function(event652) {
+			}, onsubmit : function(event662) {
+			}, onsuspend : function(event672) {
+			}, ontimeupdate : function(event682) {
+			}, ontouchcancel : function(event692) {
+			}, ontouchend : function(event702) {
+			}, ontouchmove : function(event713) {
+			}, ontouchstart : function(event722) {
+			}, onvolumechange : function(event732) {
+			}, onwaiting : function(event742) {
+			}, onwheel : function(event752) {
+			}, spellcheck : __v_04.spellcheck, style : __v_04.style, tabIndex : __v_04.tabIndex, target : __v_04.target, title : __v_04.title, type : __v_04.type};
+			var children11;
+			if(attr8.icon != null) {
+				var attr35 = { };
+				var children22 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.icon]);
+				var __v_012 = attr35;
+				var attr36 = attr35.className;
+				var _g12 = new haxe_ds_StringMap();
 				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g7.setReserved("mdc-tab__icon",true);
+					_g12.setReserved("mdc-tab__icon",true);
 				} else {
-					_g7.h["mdc-tab__icon"] = true;
+					_g12.h["mdc-tab__icon"] = true;
 				}
 				if(__map_reserved["material-icons"] != null) {
-					_g7.setReserved("material-icons",true);
+					_g12.setReserved("material-icons",true);
 				} else {
-					_g7.h["material-icons"] = true;
+					_g12.h["material-icons"] = true;
 				}
-				children13 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr21,vdom__$Attr_ClassName_$Impl_$.ofMap(_g7)), accessKey : __v_07.accessKey, accessKeyLabel : __v_07.accessKeyLabel, attributes : __v_07.attributes, contentEditable : __v_07.contentEditable, dir : __v_07.dir, draggable : __v_07.draggable, hidden : __v_07.hidden, id : __v_07.id, key : __v_07.key, lang : __v_07.lang, onabort : function(event532) {
-				}, onblur : function(event533) {
-				}, oncanplay : function(event534) {
-				}, oncanplaythrough : function(event535) {
-				}, onchange : function(event536) {
-				}, onclick : function(event537) {
-				}, oncontextmenu : function(event538) {
-				}, oncopy : function(event539) {
-				}, oncut : function(event540) {
-				}, ondblclick : function(event541) {
-				}, ondrag : function(event542) {
-				}, ondragend : function(event543) {
-				}, ondragenter : function(event544) {
-				}, ondragleave : function(event545) {
-				}, ondragover : function(event546) {
-				}, ondragstart : function(event547) {
-				}, ondrop : function(event548) {
-				}, ondurationchange : function(event549) {
-				}, onemptied : function(event550) {
-				}, onended : function(event551) {
-				}, onerror : function(event552) {
-				}, onfocus : function(event553) {
-				}, onfullscreenchange : function(event554) {
-				}, onfullscreenerror : function(event555) {
-				}, ongotpointercapture : function(event556) {
-				}, oninput : function(event557) {
-				}, oninvalid : function(event558) {
-				}, onkeydown : function(event559) {
-				}, onkeypress : function(event560) {
-				}, onkeyup : function(event561) {
-				}, onload : function(event562) {
-				}, onloadeddata : function(event563) {
-				}, onloadedmetadata : function(event564) {
-				}, onloadstart : function(event565) {
-				}, onlostpointercapture : function(event566) {
-				}, onmousedown : function(event567) {
-				}, onmouseenter : function(event568) {
-				}, onmouseleave : function(event569) {
-				}, onmousemove : function(event570) {
-				}, onmouseout : function(event571) {
-				}, onmouseover : function(event572) {
-				}, onmouseup : function(event573) {
-				}, onpaste : function(event574) {
-				}, onpause : function(event575) {
-				}, onplay : function(event576) {
-				}, onplaying : function(event577) {
-				}, onpointercancel : function(event578) {
-				}, onpointerdown : function(event579) {
-				}, onpointerenter : function(event580) {
-				}, onpointerleave : function(event581) {
-				}, onpointerlockchange : function(event582) {
-				}, onpointerlockerror : function(event583) {
-				}, onpointermove : function(event584) {
-				}, onpointerout : function(event585) {
-				}, onpointerover : function(event586) {
-				}, onpointerup : function(event587) {
-				}, onprogress : function(event588) {
-				}, onratechange : function(event589) {
-				}, onreset : function(event590) {
-				}, onresize : function(event591) {
-				}, onscroll : function(event592) {
-				}, onseeked : function(event593) {
-				}, onseeking : function(event594) {
-				}, onselect : function(event595) {
-				}, onshow : function(event596) {
-				}, onstalled : function(event597) {
-				}, onsubmit : function(event598) {
-				}, onsuspend : function(event599) {
-				}, ontimeupdate : function(event600) {
-				}, ontouchcancel : function(event601) {
-				}, ontouchend : function(event602) {
-				}, ontouchmove : function(event603) {
-				}, ontouchstart : function(event604) {
-				}, onvolumechange : function(event605) {
-				}, onwaiting : function(event606) {
-				}, onwheel : function(event607) {
-				}, spellcheck : __v_07.spellcheck, style : __v_07.style, tabIndex : __v_07.tabIndex, title : __v_07.title},[children14])]);
+				children11 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr36,vdom__$Attr_ClassName_$Impl_$.ofMap(_g12)), accessKey : __v_012.accessKey, accessKeyLabel : __v_012.accessKeyLabel, attributes : __v_012.attributes, contentEditable : __v_012.contentEditable, dir : __v_012.dir, draggable : __v_012.draggable, hidden : __v_012.hidden, id : __v_012.id, key : __v_012.key, lang : __v_012.lang, onabort : function(event762) {
+				}, onblur : function(event772) {
+				}, oncanplay : function(event782) {
+				}, oncanplaythrough : function(event792) {
+				}, onchange : function(event802) {
+				}, onclick : function(event813) {
+				}, oncontextmenu : function(event822) {
+				}, oncopy : function(event832) {
+				}, oncut : function(event842) {
+				}, ondblclick : function(event852) {
+				}, ondrag : function(event862) {
+				}, ondragend : function(event872) {
+				}, ondragenter : function(event882) {
+				}, ondragleave : function(event892) {
+				}, ondragover : function(event902) {
+				}, ondragstart : function(event913) {
+				}, ondrop : function(event922) {
+				}, ondurationchange : function(event932) {
+				}, onemptied : function(event942) {
+				}, onended : function(event952) {
+				}, onerror : function(event962) {
+				}, onfocus : function(event972) {
+				}, onfullscreenchange : function(event982) {
+				}, onfullscreenerror : function(event992) {
+				}, ongotpointercapture : function(event1002) {
+				}, oninput : function(event1013) {
+				}, oninvalid : function(event1022) {
+				}, onkeydown : function(event1032) {
+				}, onkeypress : function(event1042) {
+				}, onkeyup : function(event1052) {
+				}, onload : function(event1062) {
+				}, onloadeddata : function(event1072) {
+				}, onloadedmetadata : function(event1082) {
+				}, onloadstart : function(event1092) {
+				}, onlostpointercapture : function(event1103) {
+				}, onmousedown : function(event1113) {
+				}, onmouseenter : function(event1122) {
+				}, onmouseleave : function(event1132) {
+				}, onmousemove : function(event1142) {
+				}, onmouseout : function(event1152) {
+				}, onmouseover : function(event1162) {
+				}, onmouseup : function(event1172) {
+				}, onpaste : function(event1182) {
+				}, onpause : function(event1192) {
+				}, onplay : function(event1202) {
+				}, onplaying : function(event1213) {
+				}, onpointercancel : function(event1222) {
+				}, onpointerdown : function(event1232) {
+				}, onpointerenter : function(event1242) {
+				}, onpointerleave : function(event1252) {
+				}, onpointerlockchange : function(event1262) {
+				}, onpointerlockerror : function(event1272) {
+				}, onpointermove : function(event1282) {
+				}, onpointerout : function(event1292) {
+				}, onpointerover : function(event1302) {
+				}, onpointerup : function(event1313) {
+				}, onprogress : function(event1322) {
+				}, onratechange : function(event1332) {
+				}, onreset : function(event1342) {
+				}, onresize : function(event1352) {
+				}, onscroll : function(event1362) {
+				}, onseeked : function(event1372) {
+				}, onseeking : function(event1382) {
+				}, onselect : function(event1392) {
+				}, onshow : function(event1402) {
+				}, onstalled : function(event1413) {
+				}, onsubmit : function(event1422) {
+				}, onsuspend : function(event1432) {
+				}, ontimeupdate : function(event1442) {
+				}, ontouchcancel : function(event1452) {
+				}, ontouchend : function(event1462) {
+				}, ontouchmove : function(event1472) {
+				}, ontouchstart : function(event1482) {
+				}, onvolumechange : function(event1492) {
+				}, onwaiting : function(event1502) {
+				}, onwheel : function(event1513) {
+				}, spellcheck : __v_012.spellcheck, style : __v_012.style, tabIndex : __v_012.tabIndex, title : __v_012.title},[children22])]);
 			} else {
-				children13 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children11 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children15;
-			if(attr17.text != null) {
-				var attr22 = { };
-				var children16 = vdom__$VNode_VNode_$Impl_$.flatten([attr17.text]);
-				var __v_08 = attr22;
-				var attr23 = attr22.className;
-				var _g8 = new haxe_ds_StringMap();
+			var children12;
+			if(attr8.text != null) {
+				var attr54 = { };
+				var children42 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.text]);
+				var __v_022 = attr54;
+				var attr55 = attr54.className;
+				var _g22 = new haxe_ds_StringMap();
 				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g8.setReserved("mdc-tab__icon-text",true);
+					_g22.setReserved("mdc-tab__icon-text",true);
 				} else {
-					_g8.h["mdc-tab__icon-text"] = true;
+					_g22.h["mdc-tab__icon-text"] = true;
 				}
-				children15 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr23,vdom__$Attr_ClassName_$Impl_$.ofMap(_g8)), accessKey : __v_08.accessKey, accessKeyLabel : __v_08.accessKeyLabel, attributes : __v_08.attributes, contentEditable : __v_08.contentEditable, dir : __v_08.dir, draggable : __v_08.draggable, hidden : __v_08.hidden, id : __v_08.id, key : __v_08.key, lang : __v_08.lang, onabort : function(event608) {
-				}, onblur : function(event609) {
-				}, oncanplay : function(event610) {
-				}, oncanplaythrough : function(event611) {
-				}, onchange : function(event612) {
-				}, onclick : function(event613) {
-				}, oncontextmenu : function(event614) {
-				}, oncopy : function(event615) {
-				}, oncut : function(event616) {
-				}, ondblclick : function(event617) {
-				}, ondrag : function(event618) {
-				}, ondragend : function(event619) {
-				}, ondragenter : function(event620) {
-				}, ondragleave : function(event621) {
-				}, ondragover : function(event622) {
-				}, ondragstart : function(event623) {
-				}, ondrop : function(event624) {
-				}, ondurationchange : function(event625) {
-				}, onemptied : function(event626) {
-				}, onended : function(event627) {
-				}, onerror : function(event628) {
-				}, onfocus : function(event629) {
-				}, onfullscreenchange : function(event630) {
-				}, onfullscreenerror : function(event631) {
-				}, ongotpointercapture : function(event632) {
-				}, oninput : function(event633) {
-				}, oninvalid : function(event634) {
-				}, onkeydown : function(event635) {
-				}, onkeypress : function(event636) {
-				}, onkeyup : function(event637) {
-				}, onload : function(event638) {
-				}, onloadeddata : function(event639) {
-				}, onloadedmetadata : function(event640) {
-				}, onloadstart : function(event641) {
-				}, onlostpointercapture : function(event642) {
-				}, onmousedown : function(event643) {
-				}, onmouseenter : function(event644) {
-				}, onmouseleave : function(event645) {
-				}, onmousemove : function(event646) {
-				}, onmouseout : function(event647) {
-				}, onmouseover : function(event648) {
-				}, onmouseup : function(event649) {
-				}, onpaste : function(event650) {
-				}, onpause : function(event651) {
-				}, onplay : function(event652) {
-				}, onplaying : function(event653) {
-				}, onpointercancel : function(event654) {
-				}, onpointerdown : function(event655) {
-				}, onpointerenter : function(event656) {
-				}, onpointerleave : function(event657) {
-				}, onpointerlockchange : function(event658) {
-				}, onpointerlockerror : function(event659) {
-				}, onpointermove : function(event660) {
-				}, onpointerout : function(event661) {
-				}, onpointerover : function(event662) {
-				}, onpointerup : function(event663) {
-				}, onprogress : function(event664) {
-				}, onratechange : function(event665) {
-				}, onreset : function(event666) {
-				}, onresize : function(event667) {
-				}, onscroll : function(event668) {
-				}, onseeked : function(event669) {
-				}, onseeking : function(event670) {
-				}, onselect : function(event671) {
-				}, onshow : function(event672) {
-				}, onstalled : function(event673) {
-				}, onsubmit : function(event674) {
-				}, onsuspend : function(event675) {
-				}, ontimeupdate : function(event676) {
-				}, ontouchcancel : function(event677) {
-				}, ontouchend : function(event678) {
-				}, ontouchmove : function(event679) {
-				}, ontouchstart : function(event680) {
-				}, onvolumechange : function(event681) {
-				}, onwaiting : function(event682) {
-				}, onwheel : function(event683) {
-				}, spellcheck : __v_08.spellcheck, style : __v_08.style, tabIndex : __v_08.tabIndex, title : __v_08.title},[children16])]);
+				children12 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr55,vdom__$Attr_ClassName_$Impl_$.ofMap(_g22)), accessKey : __v_022.accessKey, accessKeyLabel : __v_022.accessKeyLabel, attributes : __v_022.attributes, contentEditable : __v_022.contentEditable, dir : __v_022.dir, draggable : __v_022.draggable, hidden : __v_022.hidden, id : __v_022.id, key : __v_022.key, lang : __v_022.lang, onabort : function(event1522) {
+				}, onblur : function(event1532) {
+				}, oncanplay : function(event1542) {
+				}, oncanplaythrough : function(event1552) {
+				}, onchange : function(event1562) {
+				}, onclick : function(event1572) {
+				}, oncontextmenu : function(event1582) {
+				}, oncopy : function(event1592) {
+				}, oncut : function(event1602) {
+				}, ondblclick : function(event1613) {
+				}, ondrag : function(event1622) {
+				}, ondragend : function(event1632) {
+				}, ondragenter : function(event1642) {
+				}, ondragleave : function(event1652) {
+				}, ondragover : function(event1662) {
+				}, ondragstart : function(event1672) {
+				}, ondrop : function(event1682) {
+				}, ondurationchange : function(event1692) {
+				}, onemptied : function(event1702) {
+				}, onended : function(event1713) {
+				}, onerror : function(event1722) {
+				}, onfocus : function(event1732) {
+				}, onfullscreenchange : function(event1742) {
+				}, onfullscreenerror : function(event1752) {
+				}, ongotpointercapture : function(event1762) {
+				}, oninput : function(event1772) {
+				}, oninvalid : function(event1782) {
+				}, onkeydown : function(event1792) {
+				}, onkeypress : function(event1802) {
+				}, onkeyup : function(event1813) {
+				}, onload : function(event1822) {
+				}, onloadeddata : function(event1832) {
+				}, onloadedmetadata : function(event1842) {
+				}, onloadstart : function(event1852) {
+				}, onlostpointercapture : function(event1862) {
+				}, onmousedown : function(event1872) {
+				}, onmouseenter : function(event1882) {
+				}, onmouseleave : function(event1892) {
+				}, onmousemove : function(event1902) {
+				}, onmouseout : function(event1913) {
+				}, onmouseover : function(event1922) {
+				}, onmouseup : function(event1932) {
+				}, onpaste : function(event1942) {
+				}, onpause : function(event1952) {
+				}, onplay : function(event1962) {
+				}, onplaying : function(event1972) {
+				}, onpointercancel : function(event1982) {
+				}, onpointerdown : function(event1992) {
+				}, onpointerenter : function(event2002) {
+				}, onpointerleave : function(event2013) {
+				}, onpointerlockchange : function(event2022) {
+				}, onpointerlockerror : function(event2032) {
+				}, onpointermove : function(event2042) {
+				}, onpointerout : function(event2052) {
+				}, onpointerover : function(event2062) {
+				}, onpointerup : function(event2072) {
+				}, onprogress : function(event2082) {
+				}, onratechange : function(event2092) {
+				}, onreset : function(event2102) {
+				}, onresize : function(event2113) {
+				}, onscroll : function(event2122) {
+				}, onseeked : function(event2132) {
+				}, onseeking : function(event2142) {
+				}, onselect : function(event2152) {
+				}, onshow : function(event2162) {
+				}, onstalled : function(event2172) {
+				}, onsubmit : function(event2182) {
+				}, onsuspend : function(event2192) {
+				}, ontimeupdate : function(event2202) {
+				}, ontouchcancel : function(event2213) {
+				}, ontouchend : function(event2222) {
+				}, ontouchmove : function(event2232) {
+				}, ontouchstart : function(event2242) {
+				}, onvolumechange : function(event2252) {
+				}, onwaiting : function(event2262) {
+				}, onwheel : function(event2272) {
+				}, spellcheck : __v_022.spellcheck, style : __v_022.style, tabIndex : __v_022.tabIndex, title : __v_022.title},[children42])]);
 			} else {
-				children15 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children12 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
 			return { ontabchange : function(index) {
 				model.set_activeTabIndex(index);
-			}, tabs : vdom__$VNode_VNode_$Impl_$.flatten([children5,children11,vdom_VDom.h("a",attr19,[children13,children15,children12])])};
+			}, tabs : vdom__$VNode_VNode_$Impl_$.flatten([children5,children9,vdom_VDom.h("a",attr23,[children11,children12,children10])])};
 		});
 		tink_state__$Observable_Observable_$Impl_$.stack.pop();
 		return vdom_VDom.h("div",attr,[vdom_VDom.h("div",attr1,[vdom_VDom.h("div",attr2,[__f.make(__s.b)])]),vdom_VDom.h("div",{ key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_key0())},[vdom_VDom.h("div",{ key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_key1()), style : vdom__$Style_Style_$Impl_$.ofString("border: 1px solid black; display:" + (model.get_activeTabIndex() == 0 ? "block" : "none"))},["Tab content 1..."]),vdom_VDom.h("div",{ key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_key2()), style : vdom__$Style_Style_$Impl_$.ofString("border: 1px solid black; display:" + (model.get_activeTabIndex() == 1 ? "block" : "none"))},["Tab content 2..."]),vdom_VDom.h("div",{ key : vdom__$Attr_Key_$Impl_$.ofObj(model.get_key3()), style : vdom__$Style_Style_$Impl_$.ofString("border: 1px solid black; display:" + (model.get_activeTabIndex() == 2 ? "block" : "none"))},["Tab content 3..."])])]);
 	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
 	,__class__: TestView
+	,__properties__: {get_data:"get_data"}
 });
 var Reflect = function() { };
 $hxClasses["Reflect"] = Reflect;
@@ -2044,6 +2072,7 @@ var coconut_data_Model = function() { };
 $hxClasses["coconut.data.Model"] = coconut_data_Model;
 coconut_data_Model.__name__ = ["coconut","data","Model"];
 var TestModel = function(initial) {
+	var _gthis = this;
 	if(initial == null) {
 		initial = { };
 	}
@@ -2057,6 +2086,7 @@ var TestModel = function(initial) {
 	this.keyte1 = { };
 	this.keyte2 = { };
 	this.keyte3 = { };
+	this.keyc1 = { };
 	var _g = initial.activeTabIndex;
 	var tmp;
 	if(_g == null) {
@@ -2066,11 +2096,31 @@ var TestModel = function(initial) {
 		tmp = tink_state__$State_State_$Impl_$.ofConstant(v);
 	}
 	this.__coco_activeTabIndex = tmp;
+	var _g1 = initial.notificationList;
+	var tmp1;
+	if(_g1 == null) {
+		tmp1 = tink_state__$State_State_$Impl_$.ofConstant(tink_pure__$List_List_$Impl_$.fromArray([]));
+	} else {
+		var v1 = _g1;
+		tmp1 = tink_state__$State_State_$Impl_$.ofConstant(v1);
+	}
+	this.__coco_notificationList = tmp1;
+	this.__coco_notificationCount = tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+		var ret = 0;
+		var _g2 = new tink_pure_NodeIterator(_gthis.get_notificationList());
+		while(_g2.list.length > 0) {
+			var x = _g2.next();
+			if(x.unread) {
+				++ret;
+			}
+		}
+		return ret;
+	}));
 	var this1 = new tink_state__$State_StateObject(0);
 	this.__coco_transitionCount = this1;
 	this.errorTrigger = tink_core__$Signal_Signal_$Impl_$.trigger();
 	this.transitionErrors = this.errorTrigger;
-	this.observables = { key0 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key0()), key1 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key1()), key2 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key2()), key3 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key3()), key4 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key4()), keyt1 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyt1()), keyt2 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyt2()), keyte1 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyte1()), keyte2 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyte2()), keyte3 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyte3()), activeTabIndex : this.__coco_activeTabIndex, isInTransition : tink_state__$Observable_Observable_$Impl_$.map(this.__coco_transitionCount,tink_state__$Observable_Transform_$Impl_$.plain(function(c) {
+	this.observables = { key0 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key0()), key1 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key1()), key2 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key2()), key3 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key3()), key4 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_key4()), keyt1 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyt1()), keyt2 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyt2()), keyte1 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyte1()), keyte2 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyte2()), keyte3 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyte3()), keyc1 : tink_state__$Observable_Observable_$Impl_$["const"](this.get_keyc1()), activeTabIndex : this.__coco_activeTabIndex, notificationList : this.__coco_notificationList, notificationCount : this.__coco_notificationCount, isInTransition : tink_state__$Observable_Observable_$Impl_$.map(this.__coco_transitionCount,tink_state__$Observable_Transform_$Impl_$.plain(function(c) {
 		return c > 0;
 	}))};
 };
@@ -2088,7 +2138,40 @@ TestModel.prototype = {
 	,keyte1: null
 	,keyte2: null
 	,keyte3: null
+	,keyc1: null
 	,activeTabIndex: null
+	,notificationList: null
+	,notificationCount: null
+	,addNotification: function(notification) {
+		var _gthis = this;
+		var ret = tink_core__$Promise_Promise_$Impl_$.ofOutcome(tink_core_Outcome.Success({ notificationList : tink_pure__$List_List_$Impl_$.prepend(_gthis.get_notificationList(),notification)}));
+		var sync = true;
+		var done = false;
+		ret.handle(function(o) {
+			done = true;
+			if(!sync) {
+				var tmp = tink_state__$State_State_$Impl_$.get_value(_gthis.__coco_transitionCount) - 1;
+				_gthis.__coco_transitionCount.set(tmp);
+			}
+			switch(o[1]) {
+			case 0:
+				var v = o[2];
+				_gthis.__cocoupdate(v);
+				break;
+			case 1:
+				var e = o[2];
+				tink_core__$Callback_CallbackList_$Impl_$.invoke(_gthis.errorTrigger.handlers,e);
+				break;
+			}
+		});
+		if(!done) {
+			sync = false;
+		}
+		if(!sync) {
+			this.__coco_transitionCount.set(tink_state__$State_State_$Impl_$.get_value(this.__coco_transitionCount) + 1);
+		}
+		return ret;
+	}
 	,get_key0: function() {
 		return this.key0;
 	}
@@ -2119,6 +2202,9 @@ TestModel.prototype = {
 	,get_keyte3: function() {
 		return this.keyte3;
 	}
+	,get_keyc1: function() {
+		return this.keyc1;
+	}
 	,get_activeTabIndex: function() {
 		return tink_state__$State_State_$Impl_$.get_value(this.__coco_activeTabIndex);
 	}
@@ -2127,6 +2213,14 @@ TestModel.prototype = {
 		return param;
 	}
 	,__coco_activeTabIndex: null
+	,get_notificationList: function() {
+		return tink_state__$State_State_$Impl_$.get_value(this.__coco_notificationList);
+	}
+	,__coco_notificationList: null
+	,__coco_notificationCount: null
+	,get_notificationCount: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__coco_notificationCount);
+	}
 	,__cocoupdate: function(delta) {
 		var this1 = { };
 		var sparse = this1;
@@ -2144,6 +2238,9 @@ TestModel.prototype = {
 			sparse[k] = ret;
 		}
 		var delta2 = sparse;
+		if(delta2.notificationList != null) {
+			this.__coco_notificationList.set(delta2.notificationList[0]);
+		}
 	}
 	,observables: null
 	,transitionErrors: null
@@ -2154,7 +2251,7 @@ TestModel.prototype = {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.observables.isInTransition);
 	}
 	,__class__: TestModel
-	,__properties__: {get_isInTransition:"get_isInTransition",set_activeTabIndex:"set_activeTabIndex",get_activeTabIndex:"get_activeTabIndex",get_keyte3:"get_keyte3",get_keyte2:"get_keyte2",get_keyte1:"get_keyte1",get_keyt2:"get_keyt2",get_keyt1:"get_keyt1",get_key4:"get_key4",get_key3:"get_key3",get_key2:"get_key2",get_key1:"get_key1",get_key0:"get_key0"}
+	,__properties__: {get_isInTransition:"get_isInTransition",get_notificationCount:"get_notificationCount",get_notificationList:"get_notificationList",set_activeTabIndex:"set_activeTabIndex",get_activeTabIndex:"get_activeTabIndex",get_keyc1:"get_keyc1",get_keyte3:"get_keyte3",get_keyte2:"get_keyte2",get_keyte1:"get_keyte1",get_keyt2:"get_keyt2",get_keyt1:"get_keyt1",get_key4:"get_key4",get_key3:"get_key3",get_key2:"get_key2",get_key1:"get_key1",get_key0:"get_key0"}
 };
 var ValueType = $hxClasses["ValueType"] = { __ename__ : ["ValueType"], __constructs__ : ["TNull","TInt","TFloat","TBool","TObject","TFunction","TClass","TEnum","TUnknown"] };
 ValueType.TNull = ["TNull",0];
@@ -2532,6 +2629,9 @@ _$UInt_UInt_$Impl_$.toFloat = function(this1) {
 		return $int + 0.0;
 	}
 };
+var coconut_data_macros_Models = function() { };
+$hxClasses["coconut.data.macros.Models"] = coconut_data_macros_Models;
+coconut_data_macros_Models.__name__ = ["coconut","data","macros","Models"];
 var coconut_ui_macros_HXX = function() { };
 $hxClasses["coconut.ui.macros.HXX"] = coconut_ui_macros_HXX;
 coconut_ui_macros_HXX.__name__ = ["coconut","ui","macros","HXX"];
@@ -2751,19 +2851,39 @@ var coconut_ui_tools_ViewCache = function() {
 };
 $hxClasses["coconut.ui.tools.ViewCache"] = coconut_ui_tools_ViewCache;
 coconut_ui_tools_ViewCache.__name__ = ["coconut","ui","tools","ViewCache"];
-coconut_ui_tools_ViewCache.__properties__ = {get_current:"get_current"};
-coconut_ui_tools_ViewCache.get_current = function() {
-	return coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
+coconut_ui_tools_ViewCache.get = function() {
+	var _g = coconut_ui_tools_ViewCache.stack;
+	if(_g.length == 0) {
+		return new coconut_ui_tools_ViewCache();
+	} else {
+		var v = _g;
+		return v[v.length - 1][0];
+	}
 };
 coconut_ui_tools_ViewCache.prototype = {
 	__cache: null
 	,cached: function(f) {
-		var o = { cache : this};
-		coconut_ui_tools_ViewCache.stack.push(o);
-		var ret = f();
-		HxOverrides.remove(coconut_ui_tools_ViewCache.stack,o);
+		if(coconut_ui_tools_ViewCache.stack.length > 0 && coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1][0] == this) {
+			return f();
+		}
+		var this1;
+		var this2 = new Array(1);
+		this1 = this2;
+		var ret = this1;
+		ret[0] = this;
+		var entry = ret;
+		coconut_ui_tools_ViewCache.stack.push(entry);
+		var ret1;
+		try {
+			ret1 = tink_core_Outcome.Success(f());
+		} catch( e ) {
+			haxe_CallStack.lastException = e;
+			if (e instanceof js__$Boot_HaxeError) e = e.val;
+			ret1 = tink_core_Outcome.Failure(e);
+		}
+		HxOverrides.remove(coconut_ui_tools_ViewCache.stack,entry);
 		this.purge();
-		return ret;
+		return tink_core_OutcomeTools.sure(ret1);
 	}
 	,purge: function() {
 		var _this = this.__cache;
@@ -5312,6 +5432,7 @@ var mdc_List = function(data) {
 		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
 		return _gthis.render(tmp);
 	});
+	this.__cocodata = data;
 };
 $hxClasses["mdc.List"] = mdc_List;
 mdc_List.__name__ = ["mdc","List"];
@@ -6432,7 +6553,13 @@ mdc_List.prototype = $extend(coconut_ui_View.prototype,{
 			}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[attr.items]);
 		}
 	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
 	,__class__: mdc_List
+	,__properties__: {get_data:"get_data"}
 });
 var mdc_MDC = function() { };
 $hxClasses["mdc.MDC"] = mdc_MDC;
@@ -6497,6 +6624,7 @@ var mdc_TabBar = function(data) {
 		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
 		return _gthis.render(tmp);
 	});
+	this.__cocodata = data;
 };
 $hxClasses["mdc.TabBar"] = mdc_TabBar;
 mdc_TabBar.__name__ = ["mdc","TabBar"];
@@ -7076,7 +7204,13 @@ mdc_TabBar.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcTabBar.destroy();
 		}
 	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
 	,__class__: mdc_TabBar
+	,__properties__: {get_data:"get_data"}
 });
 var tink_core_Annex = function(target) {
 	this.target = target;
@@ -9670,6 +9804,35 @@ Bool.__ename__ = ["Bool"];
 var Class = $hxClasses["Class"] = { __name__ : ["Class"]};
 var Enum = { };
 var Void = $hxClasses["Void"] = { __ename__ : ["Void"]};
+if(typeof WeakMap == "undefined") {
+	var counter = 0;
+	var cls = function() {
+	};
+	cls.prototype = { get : function(k) {
+		var tmp;
+		if(k == null) {
+			tmp = 0;
+		} else if(k.__hx_key__ == null) {
+			counter += 1;
+			tmp = k.__hx_key__ = counter;
+		} else {
+			tmp = k.__hx_key__;
+		}
+		return this[tmp];
+	}, set : function(k1,v) {
+		var tmp1;
+		if(k1 == null) {
+			tmp1 = 0;
+		} else if(k1.__hx_key__ == null) {
+			counter += 1;
+			tmp1 = k1.__hx_key__ = counter;
+		} else {
+			tmp1 = k1.__hx_key__;
+		}
+		this[tmp1] = v;
+	}};
+	window.WeakMap = cls;
+}
 var __map_reserved = {};
 var ArrayBuffer = $global.ArrayBuffer || js_html_compat_ArrayBuffer;
 if(ArrayBuffer.prototype.slice == null) {

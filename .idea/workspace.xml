@@ -3,13 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="14356a14-4eff-4d9a-9bbd-c041524f6617" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/playground/index.html" afterPath="$PROJECT_DIR$/bin/playground/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/playground/index.js" afterPath="$PROJECT_DIR$/bin/playground/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/coconut.mdc/mdc/List.hx" afterPath="$PROJECT_DIR$/out/production/coconut.mdc/mdc/List.hx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/coconut.mdc/mdc/MDC.hx" afterPath="$PROJECT_DIR$/out/production/coconut.mdc/mdc/MDC.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/haxe_libraries/coconut.data.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.data.hxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/haxe_libraries/coconut.ui.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.ui.hxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/haxe_libraries/coconut.vdom.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.vdom.hxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/coconut.mdc/Playground.hx" afterPath="$PROJECT_DIR$/out/test/coconut.mdc/Playground.hx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mdc/TabBar.hx" afterPath="$PROJECT_DIR$/src/mdc/TabBar.hx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/Playground.hx" afterPath="$PROJECT_DIR$/test/Playground.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/TestModel.hx" afterPath="$PROJECT_DIR$/test/TestModel.hx" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/Playground.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="55" column="42" lean-forward="false" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
+            <state relative-caret-position="462">
+              <caret line="53" column="75" lean-forward="false" selection-start-line="53" selection-start-column="75" selection-end-line="53" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -44,8 +44,8 @@
       <file leaf-file-name="TestModel.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/TestModel.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+            <state relative-caret-position="462">
+              <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -64,18 +64,18 @@
       <file leaf-file-name="Toolbar.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mdc/Toolbar.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
+            <state relative-caret-position="147">
               <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TabBar.hx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TabBar.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="49" column="58" lean-forward="false" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+            <state relative-caret-position="553">
+              <caret line="60" column="11" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="60" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -96,16 +96,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="945">
               <caret line="45" column="26" lean-forward="false" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InputElement.hx" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Programs/Haxe/haxe/std/js/html/InputElement.hx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -132,8 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>editabl</find>
-      <find>norippl</find>
       <find>ButtonIconPos</find>
       <find>some</find>
       <find>rippleattr</find>
@@ -161,7 +149,9 @@
       <find>media</find>
       <find>displ</find>
       <find>activetabinde</find>
+      <find>keyt1</find>
       <find>n tab</find>
+      <find>cont</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,9 +173,9 @@
         <option value="$PROJECT_DIR$/src/mdc/ToolBar.hx" />
         <option value="$PROJECT_DIR$/src/mdc/Toolbar.hx" />
         <option value="$PROJECT_DIR$/bin/playground/index.html" />
+        <option value="$PROJECT_DIR$/src/mdc/TabBar.hx" />
         <option value="$PROJECT_DIR$/test/TestModel.hx" />
         <option value="$PROJECT_DIR$/test/Playground.hx" />
-        <option value="$PROJECT_DIR$/src/mdc/TabBar.hx" />
       </list>
     </option>
   </component>
@@ -218,8 +208,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -259,6 +247,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -383,12 +373,13 @@
       <workItem from="1511977114987" duration="1535000" />
       <workItem from="1511980402721" duration="363000" />
       <workItem from="1511980782482" duration="7398000" />
-      <workItem from="1512908026008" duration="2797000" />
+      <workItem from="1512908026008" duration="6206000" />
+      <workItem from="1512987440563" duration="1914000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25517000" />
+    <option name="totallyTimeSpent" value="30840000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -407,7 +398,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23899034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24221267" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -431,11 +422,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/HaxeToolkit/haxe/std/flash/text/TextInteractionMode.hx" />
     <entry file="file://$PROJECT_DIR$/src/mdc/TextField.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -699,7 +691,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="7214" column="34" lean-forward="false" selection-start-line="7214" selection-start-column="34" selection-end-line="7214" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -738,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -790,34 +780,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/tink_pure/0.3.2/haxelib/src/tink/pure/List.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="113" column="54" lean-forward="false" selection-start-line="113" selection-start-column="54" selection-end-line="113" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdc/Toolbar.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
+        <state relative-caret-position="147">
           <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/TestModel.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Playground.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="55" column="42" lean-forward="false" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="49" column="58" lean-forward="false" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+        <state relative-caret-position="553">
+          <caret line="60" column="11" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="60" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/TestModel.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Playground.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="53" column="75" lean-forward="false" selection-start-line="53" selection-start-column="75" selection-end-line="53" selection-end-column="75" />
           <folding />
         </state>
       </provider>
