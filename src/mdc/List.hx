@@ -9,6 +9,7 @@ import vdom.VDom.AnchorAttr;
 import vdom.Attr;
 import vdom.VNode;
 import vdom.VDom.*;
+import coconut.Ui.hxx;
 import vdom.VDom.ImgAttr;
 import coconut.ui.View;
 
