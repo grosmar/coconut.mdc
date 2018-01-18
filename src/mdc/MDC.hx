@@ -9,11 +9,6 @@ class MDC
 {
 	public static inline var DEFAULT_RIPPLE = true;
 
-	static public function getTabBar( elem:View<Dynamic>):MDCTabBar
-	{
-		return cast(Reflect.getProperty(elem.toElement(),"MDCTabBar"), MDCTabBar);
-	}
-
 	static function __init__()
 	{
 		// TODO: remove

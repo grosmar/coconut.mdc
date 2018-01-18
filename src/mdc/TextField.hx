@@ -8,35 +8,36 @@ import vdom.VDom.*;
 import coconut.ui.View;
 //import coconut.Ui.hxx;
 
-class TextField extends View<TextFieldAttr>
+class TextField extends View
 {
+    var attributes:TextFieldAttr;
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
 
     var mdcTextField:MDCTextField;
 
 
-    function render(attr:TextFieldAttr)
+    function render()
     {
         return @hxx '<div class=${attr.className.add(["mdc-text-field" => true,
-                                                      "mdc-text-field--disabled" => attr.disabled,
-                                                      "mdc-text-field--with-leading-icon" => attr.icon != null,
-                                                      "mdc-text-field--box" => attr.box,
-                                                      "mdc-text-field--textarea" => attr.textArea,
-                                                      "mdc-text-field--fullwidth" => attr.fullWidth])} {...attr}>
-                        <if ${attr.icon != null && attr.iconPos != TextFieldIconPos.Right}>
-                            <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
+                                                      "mdc-text-field--disabled" => disabled,
+                                                      "mdc-text-field--with-leading-icon" => icon != null,
+                                                      "mdc-text-field--box" => box,
+                                                      "mdc-text-field--textarea" => textArea,
+                                                      "mdc-text-field--fullwidth" => fullWidth])} {...attr}>
+                        <if ${icon != null && iconPos != TextFieldIconPos.Right}>
+                            <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
-                        <if ${attr.textArea}>
-                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}>${attr.value}</textarea>
+                        <if ${textArea}>
+                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}>${value}</textarea>
                         <else>
-                            <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
+                            <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${value}/>
                         </if>
-                        <if ${attr.label != null}>
-                            <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
+                        <if ${label != null}>
+                            <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${label}</label>
                         </if>
-                        <if ${attr.icon != null && attr.iconPos == TextFieldIconPos.Right}>
-                            <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
+                        <if ${icon != null && iconPos == TextFieldIconPos.Right}>
+                            <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
                         <div class="mdc-text-field__bottom-line"></div>
                     </div>';

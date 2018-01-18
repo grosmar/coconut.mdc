@@ -7,24 +7,35 @@ import vdom.VDom.*;
 import coconut.ui.View;
 //import coconut.Ui.hxx;
 
-class Button extends View<ButtonAttr>
+class Button extends View
 {
-    var mdcRipple:MDCRipple;
+    var attributes:InputAttr;
+    @:attribute var label:String = null;
+    @:attribute var disabled:Bool = null;
+    @:attribute var icon:String = null;
+    @:attribute var raised:Bool = null;
+    @:attribute var unelevated:Bool = null;
+    @:attribute var stroked:Bool = null;
+    @:attribute var dense:Bool = null;
+    @:attribute var compact:Bool = null;
+    @:attribute var ripple:Bool = null;
+    var mdcRipple:MDCRipple = null;
 
-    function render(attr:ButtonAttr)
+    //TODO: add back attributes  "mdc-button--compact" => compact])} {...attributes}
+    function render()
     {
-        return @hxx '<button class=${attr.className.add(["mdc-button" => true,
-                                                         "mdc-ripple-surface" => (attr.ripple != null ? attr.ripple : true),
-                                                         "mdc-button--raised" => attr.raised,
-                                                         "mdc-button--unelevated" => attr.unelevated,
-                                                         "mdc-button--stroked" => attr.stroked,
-                                                         "mdc-button--dense" => attr.dense,
-                                                         "mdc-button--compact" => attr.compact])} {...attr}
-                             onclick=${attr.onclick}>
-            <if ${attr.icon != null}>
-                <i class="mdc-button__icon material-icons">${attr.icon}</i>
+        return @hxx '<button class=${className.add(["mdc-button" => true,
+                                                         "mdc-ripple-surface" => (ripple != null ? ripple : true),
+                                                         "mdc-button--raised" => raised,
+                                                         "mdc-button--unelevated" => unelevated,
+                                                         "mdc-button--stroked" => stroked,
+                                                         "mdc-button--dense" => dense,
+                                                         "mdc-button--compact" => compact])}
+                             onclick=${onclick}>
+            <if ${icon != null}>
+                <i class="mdc-button__icon material-icons">${icon}</i>
             </if>
-            ${attr.label}
+            ${label}
         </button>';
     }
 
@@ -41,13 +52,13 @@ class Button extends View<ButtonAttr>
 }
 
 typedef ButtonAttr = {>InputAttr,
-    @:optional var label(default,never):String;
-    @:optional var disabled(default,never):Bool;
-    @:optional var icon(default,never):String;
-    @:optional var raised(default,never):Bool;
-    @:optional var unelevated(default,never):Bool;
-    @:optional var stroked(default,never):Bool;
-    @:optional var dense(default,never):Bool;
-    @:optional var compact(default,never):Bool;
-    @:optional var ripple(default,never):Bool;
+    var label:String;
+    var disabled:Bool;
+    var icon:String;
+    var raised:Bool;
+    var unelevated:Bool;
+    var stroked:Bool;
+    var dense:Bool;
+    var compact:Bool;
+    var ripple:Bool;
 }

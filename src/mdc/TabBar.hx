@@ -9,12 +9,15 @@ import coconut.Ui.hxx;
 import coconut.ui.View;
 //import coconut.Ui.hxx;
 
-class TabBar extends View<{>Attr,
-                            var tabs:VNode;
-                            @:optional var type:TabBarType;
-                            @:optional var selectedTabIndex:Int;
-                            @:optional function ontabchange(index:UInt):Void;}>
+class TabBar extends View
 {
+    var attributes:Attr;
+    var tabs:VNode;
+    @:attribute var mode:TabBarMode = null;
+    @:attribute var selectedTabIndex:Int = null;
+    @:attribute var ontabchange:UInt->Void = null;
+
+    var mdcTabBar:MDCTabBar;
 
     static public inline function tab(attr:{>AnchorAttr, ?active:Bool, ?icon:String, ?text:String}, ?children:VNode):VNode
         return @hxx '<a class=${attr.className.add(["mdc-tab" => true,
@@ -34,31 +37,26 @@ class TabBar extends View<{>Attr,
     static public inline function tabText(attr:Attr, children:VNode):VNode
         return @hxx '<span class=${attr.className.add(["mdc-tab__icon-text" => true])} {...attr} >${children}</span>';
 
-    var mdcTabBar:MDCTabBar;
 
-    var ontabchangeCB:Int->Void;
-    var selectedTabIndex:Int;
 
-    function render(attr)
+    function render()
     {
-        //js.Browser.console.log("rend", ind);
-        ontabchangeCB = attr.ontabchange;
-        selectedTabIndex = attr.selectedTabIndex;
 
-        var type:String = attr.type != null ? attr.type : TabBarType.Text;
-        return @hxx '<nav class=${attr.className.add(["mdc-tab-bar" => true, type => true])} {...attr}>
-            ${attr.tabs}
+        var type:String = style != null ? style : TabBarType.Text;
+        return @hxx '<nav class=${className.add(["mdc-tab-bar" => true, style => true])} {...data}>
+            ${tabs}
             <span class="mdc-tab-bar__indicator" ></span>
         </nav>';
     }
 
     override function afterInit(elem)
     {
+        trace("afterInit");
         this.mdcTabBar = new MDCTabBar(elem);
         mdcTabBar.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
 
-            if (ontabchangeCB != null )
-                ontabchangeCB(mdcTabBar.activeTabIndex);
+            if (ontabchange != null )
+                ontabchange(mdcTabBar.activeTabIndex);
         });
     }
 
@@ -69,7 +67,7 @@ class TabBar extends View<{>Attr,
     }
 }
 
-@:enum abstract TabBarType(String) to String {
+@:enum abstract TabBarMode(String) to String {
     var Text = "";
     var Icon = "mdc-tab-bar--icon-tab-bar";
     var IconWithText = "mdc-tab-bar--icons-with-text";

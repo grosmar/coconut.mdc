@@ -75,9 +75,9 @@ class List extends View<ListAttr>
 						  data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr} />';
 
 	static public function listEndDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
-		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
+		return @hxx '<span class=${attr.className.add(["mdc-list-item__end-detail" => true,
 													"mdc-ripple-surface" => attr.ripple])}
-						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
+						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</span>';
 
 	static public function listText(attr:Attr, ?children:VNode):VNode
 		return @hxx '<span class=${attr.className.add(["mdc-list-item__text" => true])} {...attr}>{children}</span>';
