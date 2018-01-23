@@ -26,7 +26,9 @@ class Checkbox extends View<CheckboxAttr>
                                    checked=${attr.checked}
                                    class="mdc-checkbox__native-control"/>
                               <div class="mdc-checkbox__background">
-                                  <div style={checkSvg} class="mdc-checkbox__checkmark" />
+                                  <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                      <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                                  </svg>'} />
                             <div class="mdc-checkbox__mixedmark"></div>
                               </div>
                           </div>
@@ -41,7 +43,9 @@ class Checkbox extends View<CheckboxAttr>
                              onchange=${attr.onchecked(event.target.checked)}
                              class="mdc-checkbox__native-control"/>
                       <div class="mdc-checkbox__background">
-                        <div style={checkSvg} class="mdc-checkbox__checkmark" />
+                        <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                      <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                                  </svg>'} />
                         <div class="mdc-checkbox__mixedmark"></div>
                       </div>
                     </div>';
