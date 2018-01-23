@@ -30,7 +30,7 @@ class TextField extends View<TextFieldAttr>
                         <if ${attr.textArea}>
                             <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}>${attr.value}</textarea>
                         <else>
-                            <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
+                            <input type=${attr.type != null ? "text" : attr.type} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
                         </if>
                         <if ${attr.label != null}>
                             <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
@@ -63,6 +63,7 @@ typedef TextFieldAttr = {>Attr,
     @:optional var box(default,never):Bool;
     @:optional var fullWidth(default,never):Bool;
     @:optional var textArea(default,never):Bool;
+    @:optional var type(default,never):String;
 }
 
 @:enum abstract TextFieldType(String) from String to String {

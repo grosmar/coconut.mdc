@@ -180,6 +180,7 @@ class TestView extends View<{}>
     <div>
         <TextField label="Text input" />
         <TextField label="Boxed input" box />
+        <TextField label="Password input" type="password" />
         <TextField label="Icon input" box icon="list" />
         <TextField label="TextArea" textArea  />
         <br/>
