@@ -67,9 +67,9 @@ typedef TextFieldAttr = {
     @:optional var textArea(default,never):Bool;
     @:optional var type(default,never):String;
 
-	@:optional var id(default, never):String;
-	@:optional var className(default, never):ClassName;
-	@:optional var onchange(default, never):Callback<String>;
+    @:optional var id(default, never):String;
+    @:optional var className(default, never):ClassName;
+    @:optional var onchange(default, never):Callback<String>;
 }
 
 @:enum abstract TextFieldType(String) from String to String {
