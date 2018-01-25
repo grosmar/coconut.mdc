@@ -31,7 +31,7 @@ class TextField extends View<TextFieldAttr>
                         <if ${attr.textArea}>
                             <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} onchange={attr.onchange.invoke(event.target.value)}>${attr.value}</textarea>
                         <else>
-                            <input type=${attr.type == null ? "text" : attr.type} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value} onchange={attr.onchange.invoke(event.target.value)}/>
+                            <input type=${attr.type != null ? attr.type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value} onchange={attr.onchange.invoke(event.target.value)}/>
                         </if>
                         <if ${attr.label != null}>
                             <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
