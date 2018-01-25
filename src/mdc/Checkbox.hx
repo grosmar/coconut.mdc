@@ -24,7 +24,9 @@ class Checkbox extends View<CheckboxAttr>
                                    onchange=${attr.onchecked(event.target.checked)}
                                    value=${attr.value}
                                    checked=${attr.checked}
-                                   class="mdc-checkbox__native-control"/>
+                                   class="mdc-checkbox__native-control"
+                                   id=${"ch_" + attr.id}
+                                   />
                               <div class="mdc-checkbox__background">
                                   <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                                       <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
@@ -33,7 +35,7 @@ class Checkbox extends View<CheckboxAttr>
                               </div>
                           </div>
 
-                          <label htmlFor="my-checkbox">${attr.label}</label>
+                          <label htmlFor=${"ch_" + attr.id}>${attr.label}</label>
                     </div>';
             else
                 @hxx '<div class="mdc-checkbox" {...attr}>

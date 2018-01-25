@@ -2,6 +2,7 @@ package mdc;
 
 import js.html.DOMElement;
 import mdc.MDC.MDCTextField;
+import tink.core.Callback;
 import vdom.VNode;
 import vdom.Attr;
 import vdom.VDom.*;
@@ -28,9 +29,9 @@ class TextField extends View<TextFieldAttr>
                             <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
                         </if>
                         <if ${attr.textArea}>
-                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}>${attr.value}</textarea>
+                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} onchange={attr.onchange.invoke(event.target.value)}>${attr.value}</textarea>
                         <else>
-                            <input type=${attr.type != null ? "text" : attr.type} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
+                            <input type=${attr.type == null ? "text" : attr.type} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value} onchange={attr.onchange.invoke(event.target.value)}/>
                         </if>
                         <if ${attr.label != null}>
                             <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
@@ -41,6 +42,7 @@ class TextField extends View<TextFieldAttr>
                         <div class="mdc-text-field__bottom-line"></div>
                     </div>';
     }
+
 
     override function afterInit(elem:DOMElement)
     {
@@ -54,7 +56,7 @@ class TextField extends View<TextFieldAttr>
     }
 }
 
-typedef TextFieldAttr = {>Attr,
+typedef TextFieldAttr = {
     @:optional var label(default,never):String;
     @:optional var value(default,never):String;
     @:optional var disabled(default,never):Bool;
@@ -64,6 +66,10 @@ typedef TextFieldAttr = {>Attr,
     @:optional var fullWidth(default,never):Bool;
     @:optional var textArea(default,never):Bool;
     @:optional var type(default,never):String;
+
+	@:optional var id(default, never):String;
+	@:optional var className(default, never):ClassName;
+	@:optional var onchange(default, never):Callback<String>;
 }
 
 @:enum abstract TextFieldType(String) from String to String {
