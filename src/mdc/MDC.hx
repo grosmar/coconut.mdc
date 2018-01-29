@@ -107,7 +107,10 @@ class MDC
 extern class MDCRipple extends MDCComponent { }
 
 @:native("mdc.textField.MDCTextField")
-extern class MDCTextField extends MDCComponent { }
+extern class MDCTextField extends MDCComponent
+{
+	var valid:Bool;
+}
 
 @:native("window.mdc.checkbox.MDCCheckbox")
 extern class MDCCheckbox extends MDCComponent

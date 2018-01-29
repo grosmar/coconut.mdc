@@ -18,7 +18,7 @@ class Checkbox extends View<CheckboxAttr>
     {
         return
             if ( attr.label != null )
-                @hxx '<div class="mdc-form-field" {...attr}>
+                @hxx '<div class=${attr.className.add(["mdc-form-field" => true])} {...attr}>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
                                    onchange=${attr.onchecked(event.target.checked)}
