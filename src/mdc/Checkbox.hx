@@ -7,23 +7,24 @@ import vdom.VDom.*;
 import coconut.ui.View;
 //import coconut.Ui.hxx;
 
-class Checkbox extends View<CheckboxAttr>
+class Checkbox extends View
 {
+    var attributes:CheckboxAttr;
     var mdcCheckbox:MDCCheckbox;
 
     static inline var checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
 
     //TODO: fix svg support
-    function render(attr:CheckboxAttr)
+    function render()
     {
         return
-            if ( attr.label != null )
-                @hxx '<div class="mdc-form-field" {...attr}>
+            if ( label != null )
+                @hxx '<div class="mdc-form-field" {...this}>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
-                                   onchange=${attr.onchecked(event.target.checked)}
-                                   value=${attr.value}
-                                   checked=${attr.checked}
+                                   onchange=${onchecked(event.target.checked)}
+                                   value=${value}
+                                   checked=${checked}
                                    class="mdc-checkbox__native-control"/>
                               <div class="mdc-checkbox__background">
                                   <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -33,14 +34,14 @@ class Checkbox extends View<CheckboxAttr>
                               </div>
                           </div>
 
-                          <label htmlFor="my-checkbox">${attr.label}</label>
+                          <vdom.VDom.label htmlFor="my-checkbox">${label}</vdom.VDom.label>
                     </div>';
             else
-                @hxx '<div class="mdc-checkbox" {...attr}>
+                @hxx '<div class="mdc-checkbox" {...this}>
                       <input type="checkbox"
-                             value=${attr.value}
-                             checked=${attr.checked}
-                             onchange=${attr.onchecked(event.target.checked)}
+                             value=${value}
+                             checked=${checked}
+                             onchange=${onchecked(event.target.checked)}
                              class="mdc-checkbox__native-control"/>
                       <div class="mdc-checkbox__background">
                         <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">

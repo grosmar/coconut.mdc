@@ -1,9 +1,6 @@
 package mdc;
-import coconut.ui.View;
-import js.html.DOMElement;
-import js.html.Node;
-import js.html.MutationRecord;
-import js.html.MutationObserver;
+
+import js.html.*;
 
 class MDC
 {
@@ -49,7 +46,7 @@ class MDC
 
 	static inline function registerAll<T>(node:Node, className:String, handler:Class<T>, ref:String)
 	{
-		var el = cast(node, DOMElement);
+		var el:Element = cast node;
 
 		if ( el.classList.contains(className) )
 			register(el, className, handler, ref);
@@ -73,7 +70,7 @@ class MDC
 
 	static inline function unregisterAll<T>(node:Node, className:String, ref:String)
 	{
-		var el = cast(node, DOMElement);
+		var el:Element = cast node;
 
 		if ( el.classList.contains(className) )
 			unregister(el, className, ref);

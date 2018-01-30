@@ -1,5 +1,5 @@
-# @install: lix --silent download "haxelib:tink_state#0.5.3" into tink_state/0.5.3/haxelib
+# @install: lix --silent download "https://github.com/haxetink/tink_state/archive/e8e9879fd55abf2ab1670195a7b5b69ee91bfb4b.tar.gz" into tink_state/0.5.3/github/e8e9879fd55abf2ab1670195a7b5b69ee91bfb4b
 -D tink_state=0.5.3
--cp ${HAXESHIM_LIBCACHE}/tink_state/0.5.3/haxelib/src
+-cp ${HAXESHIM_LIBCACHE}/tink_state/0.5.3/github/e8e9879fd55abf2ab1670195a7b5b69ee91bfb4b/src
 
 -lib tink_core

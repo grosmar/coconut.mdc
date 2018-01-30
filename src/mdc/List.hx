@@ -12,25 +12,32 @@ import vdom.VDom.*;
 import coconut.Ui.hxx;
 import vdom.VDom.ImgAttr;
 import coconut.ui.View;
+import coconut.ui.Children;
 
 //TODO: add list group support
 //TODO: make list items individual Views to have standalone ripple effect
-class List extends View<ListAttr>
+class List extends View
 {
-
-	function render(attr)
+	var attributes:Attr;
+	@:attribute var dense:Bool = false;
+	@:attribute var twoLine:Bool = false;
+	@:attribute var avatarList:Bool = false;
+	@:attribute var interactive:Bool = false;
+	@:attribute var children:coconut.ui.Children;
+	
+	function render()
 	{
-		var className = attr.className.add(["mdc-list" => true,
-											"mdc-list--two-line" => attr.twoLine,
-											"mdc-list--avatar-list" => attr.avatarList,
-											"mdc-list--dense" => attr.dense ]);
+		var className = className.add(["mdc-list" => true,
+											"mdc-list--two-line" => twoLine,
+											"mdc-list--avatar-list" => avatarList,
+											"mdc-list--dense" => dense ]);
 
-		return attr.interactive
-			   ? @hxx '<nav className=${className} {...attr}>${attr.items}</nav>'
-			   : @hxx '<ul className=${className} {...attr}>${attr.items}</ul>';
+		return interactive
+			   ? @hxx '<nav className=${className} {...this}>${...children}</nav>'
+			   : @hxx '<ul className=${className} {...this}>${...children}</ul>';
 	}
 
-	/*static public function list(attr:ListAttr, children:VNode):VNode
+	/*static public function list(attr:ListAttr, children:Children):VNode
 		return attr.interactive
 		   ? @hxx '<nav class=${attr.className.add(["mdc-list" => true,
 													"mdc-list--two-line" => attr.twoLine,
@@ -40,62 +47,51 @@ class List extends View<ListAttr>
 		 										   "mdc-list--two-line" => attr.twoLine,
 											 	   "mdc-list--avatar-list" => attr.avatarList ])} {...attr}>{children}</ul>';*/
 
-	static public function listItem(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
+	static public function listItem(attr:{>Attr, >RippleAttr, }, ?children:Children):VNode
 		return @hxx '<li class=${attr.className.add(["mdc-list-item" => true,
 													 "mdc-ripple-surface" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
-						 data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>${children}</li>';
+						 data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>${...children}</li>';
 
-	static public function listLinkItem(attr:{>AnchorAttr, >RippleAttr, }, ?children:VNode):VNode
+	static public function listLinkItem(attr:{>AnchorAttr, >RippleAttr, }, ?children:Children):VNode
 		return @hxx '<a href=${attr.href != null ? attr.href : "#"}
 						class=${attr.className.add(["mdc-list-item" => true,
 													"mdc-ripple-surface" => attr.ripple])}
 						onclick=${attr.onclick}
-						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</a>';
+						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{...children}</a>';
 
-	static public function listStartDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
+	static public function listStartDetail(attr:{>Attr, >RippleAttr, }, ?children:Children):VNode
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__start-detail" => true,
 													"mdc-ripple-surface" => attr.ripple])}
-													data-mdc-ripple-is-unbounded={attr.unboundedRipple} {...attr}>{children}</i>';
+													data-mdc-ripple-is-unbounded={attr.unboundedRipple} {...attr}>{...children}</i>';
 
-	static public function listStartIcon(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
+	static public function listStartIcon(attr:{>Attr, >RippleAttr, }, ?children:Children):VNode
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__start-detail" => true,
 													"material-icons" => true,
 													"mdc-ripple-surface" => attr.ripple])}
-						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
+						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{...children}</i>';
 
-	static public function listEndIcon(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
+	static public function listEndIcon(attr:{>Attr, >RippleAttr, }, ?children:Children):VNode
 		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
 													"material-icons" => true,
 													"mdc-ripple-surface" => attr.ripple])}
-						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
+						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{...children}</i>';
 
-	static public function listStartImage(attr:{>ImgAttr, >RippleAttr, }, ?children:VNode):VNode
+	static public function listStartImage(attr:{>ImgAttr, >RippleAttr, }, ?children:Children):VNode
 		return @hxx '<img class=${attr.className.add(["mdc-list-item__start-detail" => true,
 													  "mdc-ripple-surface" => attr.ripple])}
 						  data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr} />';
 
-	static public function listEndDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
+	static public function listEndDetail(attr:{>Attr, >RippleAttr, }, ?children:Children):VNode
 		return @hxx '<span class=${attr.className.add(["mdc-list-item__end-detail" => true,
 													"mdc-ripple-surface" => attr.ripple])}
-						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</span>';
+						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{...children}</span>';
 
-	static public function listText(attr:Attr, ?children:VNode):VNode
-		return @hxx '<span class=${attr.className.add(["mdc-list-item__text" => true])} {...attr}>{children}</span>';
+	static public function listText(attr:Attr, ?children:Children):VNode
+		return @hxx '<span class=${attr.className.add(["mdc-list-item__text" => true])} {...attr}>{...children}</span>';
 
-	static public function listTextSecondary(attr:Attr, ?children:VNode):VNode
-		return @hxx '<span class=${attr.className.add(["mdc-list-item__text__secondary" => true])} {...attr}>{children}</span>';
+	static public function listTextSecondary(attr:Attr, ?children:Children):VNode
+		return @hxx '<span class=${attr.className.add(["mdc-list-item__text__secondary" => true])} {...attr}>{...children}</span>';
 
-	static public function listDivider(attr:{>Attr, ?inset:Bool}, ?children:VNode):VNode
-		return @hxx '<li class=${attr.className.add(["mdc-list-divider" => true, "mdc-list-divider--inset" => attr.inset])} {...attr}>{children}</li>';
+	static public function listDivider(attr:{>Attr, ?inset:Bool}, ?children:Children):VNode
+		return @hxx '<li class=${attr.className.add(["mdc-list-divider" => true, "mdc-list-divider--inset" => attr.inset])} {...attr}>{...children}</li>';
 }
-
-@:pure
-typedef ListAttr = {>Attr,
-	@:optional var dense(default,never):Bool;
-	@:optional var twoLine(default,never):Bool;
-	@:optional var avatarList(default,never):Bool;
-	@:optional var interactive(default,never):Bool;
-
-	@:optional var items(default,never):VNode;
-}
-
