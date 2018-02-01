@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="14356a14-4eff-4d9a-9bbd-c041524f6617" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/bin/playground/index.js" afterPath="$PROJECT_DIR$/bin/playground/index.js" />
-      <change beforePath="$PROJECT_DIR$/out/test/coconut.mdc/Playground.hx" afterPath="$PROJECT_DIR$/out/test/coconut.mdc/Playground.hx" />
-      <change beforePath="$PROJECT_DIR$/src/mdc/LinearProgress.hx" afterPath="$PROJECT_DIR$/src/mdc/LinearProgress.hx" />
-      <change beforePath="$PROJECT_DIR$/test/Playground.hx" afterPath="$PROJECT_DIR$/test/Playground.hx" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/Playground.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="95" column="52" lean-forward="false" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
+            <state relative-caret-position="444">
+              <caret line="108" column="18" lean-forward="true" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -44,6 +41,19 @@
             <state relative-caret-position="289">
               <caret line="39" column="32" lean-forward="false" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="32" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="357">
+                <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -109,12 +119,12 @@
         <option value="$PROJECT_DIR$/src/mdc/Toolbar.hx" />
         <option value="$PROJECT_DIR$/src/mdc/TabBar.hx" />
         <option value="$PROJECT_DIR$/playground.hxml" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/mdc/MDC.hx" />
         <option value="$PROJECT_DIR$/src/mdc/Checkbox.hx" />
         <option value="$PROJECT_DIR$/bin/playground/index.html" />
         <option value="$PROJECT_DIR$/src/mdc/LinearProgress.hx" />
         <option value="$PROJECT_DIR$/test/Playground.hx" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -346,7 +356,7 @@
       <workItem from="1516718451212" duration="597000" />
       <workItem from="1516735554427" duration="1014000" />
       <workItem from="1517472749733" duration="2811000" />
-      <workItem from="1517479691849" duration="661000" />
+      <workItem from="1517479691849" duration="1252000" />
     </task>
     <task id="LOCAL-00001" summary="added password example">
       <created>1516718089830</created>
@@ -383,11 +393,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517475211962</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added linear progress examples">
+      <created>1517480367938</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1517480367938</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28647000" />
+    <option name="totallyTimeSpent" value="29238000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -437,7 +454,8 @@
     <MESSAGE value="fixed checkbox&#10;added linear progress" />
     <MESSAGE value="switched to gen2" />
     <MESSAGE value="fixed design" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed design" />
+    <MESSAGE value="added linear progress examples" />
+    <option name="LAST_COMMIT_MESSAGE" value="added linear progress examples" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -689,17 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="420">
-            <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/coconut.ui/0.6.1/github/55fb1a698cb9fd99e520c856cc491584a3925ae7/src/coconut/ui/macros/Generator.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -793,9 +800,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/Playground.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="95" column="52" lean-forward="false" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
+        <state relative-caret-position="444">
+          <caret line="108" column="18" lean-forward="true" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="357">
+            <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

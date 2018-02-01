@@ -5,6 +5,8 @@ For details check: https://github.com/material-components/material-components-we
 # Dependencies
 [coconut.ui](https://github.com/MVCoconut/coconut.ui)
 
+[material-components-web](https://github.com/material-components/material-components-web)
+
 # Usage
 Check test/Playground.hx for usage examples.
 
