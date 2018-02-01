@@ -88,6 +88,19 @@ class TestView extends View<{}>
         </div>
     </div>
 
+    <h1>LinearProgress</h1>
+    <div class="flex-container">
+        <h2>Progress</h2>
+        <LinearProgress progress=${0.7} open />
+        <h2>Buffer</h2>
+        <LinearProgress progress=${0.3} buffer=${0.4} open />
+        <h2>Indeterminate</h2>
+        <LinearProgress indeterminate open />
+        <h2>Reverse</h2>
+        <LinearProgress progress=${0.7} reverse open />
+        <h2>Reverse indeterminate</h2>
+        <LinearProgress indeterminate reverse open />
+    </div>
 
     <h1>List</h1>
     <div class="flex-container">

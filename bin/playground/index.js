@@ -3416,89 +3416,111 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}
 			return { type : "mdc-tab-bar--icons-with-text", tabs : vdom__$VNode_VNode_$Impl_$.flatten([children47,children53,vdom_VDom.h("a",attr59,[children55,children57,children54])])};
 		})))])]);
-		var children59 = vdom_VDom.h("h1",{ },["List"]);
-		var children60 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Simple list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data19) {
-			return new mdc_List(data19);
+		var children59 = vdom_VDom.h("h1",{ },["LinearProgress"]);
+		var children60 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("h2",{ },["Progress"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data19) {
+			return new mdc_LinearProgress(data19);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { progress : 0.7, open : true};
+		}))),vdom_VDom.h("h2",{ },["Buffer"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data20) {
+			return new mdc_LinearProgress(data20);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { progress : 0.3, buffer : 0.4, open : true};
+		}))),vdom_VDom.h("h2",{ },["Indeterminate"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data21) {
+			return new mdc_LinearProgress(data21);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { indeterminate : true, open : true};
+		}))),vdom_VDom.h("h2",{ },["Reverse"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data22) {
+			return new mdc_LinearProgress(data22);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { progress : 0.7, reverse : true, open : true};
+		}))),vdom_VDom.h("h2",{ },["Reverse indeterminate"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data23) {
+			return new mdc_LinearProgress(data23);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { indeterminate : true, reverse : true, open : true};
+		})))]);
+		var children61 = vdom_VDom.h("h1",{ },["List"]);
+		var children62 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Simple list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data24) {
+			return new mdc_List(data24);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			var __coco_cache3 = coconut_ui_tools_ViewCache.get();
 			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Dense list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data20) {
-			return new mdc_List(data20);
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Dense list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data25) {
+			return new mdc_List(data25);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			var __coco_cache4 = coconut_ui_tools_ViewCache.get();
 			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Interactive list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data21) {
-			return new mdc_List(data21);
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Interactive list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data26) {
+			return new mdc_List(data26);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			var __coco_cache5 = coconut_ui_tools_ViewCache.get();
 			return { interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 1"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 2"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Avatar list (+divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data22) {
-			return new mdc_List(data22);
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Avatar list (+divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data27) {
+			return new mdc_List(data27);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			var __coco_cache6 = coconut_ui_tools_ViewCache.get();
 			return { avatarList : true, interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 2"])),mdc_List.listDivider({ }),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Two line list (+inset divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data23) {
-			return new mdc_List(data23);
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Two line list (+inset divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data28) {
+			return new mdc_List(data28);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			var __coco_cache7 = coconut_ui_tools_ViewCache.get();
-			var children61 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children62 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 1",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 1"]))]));
-			var children63 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children61,children62,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
-			var children64 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children65 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 2",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 2"]))]));
-			var children66 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children64,children65,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
-			var children67 = mdc_List.listDivider({ inset : true});
-			var children68 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children69 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 3",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 3"]))]));
-			return { avatarList : true, interactive : true, twoLine : true, items : vdom__$VNode_VNode_$Impl_$.flatten([children63,children66,children67,mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children68,children69,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]))])};
+			var children63 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
+			var children64 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 1",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 1"]))]));
+			var children65 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children63,children64,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
+			var children66 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
+			var children67 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 2",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 2"]))]));
+			var children68 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children66,children67,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
+			var children69 = mdc_List.listDivider({ inset : true});
+			var children70 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
+			var children71 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 3",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 3"]))]));
+			return { avatarList : true, interactive : true, twoLine : true, items : vdom__$VNode_VNode_$Impl_$.flatten([children65,children68,children69,mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children70,children71,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]))])};
 		})))])]);
-		var children70 = vdom_VDom.h("h1",{ },["TextField"]);
-		var children71 = [coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data24) {
-			return new mdc_TextField(data24);
+		var children72 = vdom_VDom.h("h1",{ },["TextField"]);
+		var children73 = [coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data29) {
+			return new mdc_TextField(data29);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Text input"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data25) {
-			return new mdc_TextField(data25);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Boxed input", box : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data26) {
-			return new mdc_TextField(data26);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Password input", type : "password"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data27) {
-			return new mdc_TextField(data27);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Icon input", box : true, icon : "list"};
-		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data28) {
-			return new mdc_TextField(data28);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Input with helper"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data29) {
-			return new mdc_TextFieldHelperText(data29);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Helper for above"};
 		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data30) {
 			return new mdc_TextField(data30);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Input with validation", invalid : true, required : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data31) {
-			return new mdc_TextFieldHelperText(data31);
+			return { label : "Boxed input", box : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data31) {
+			return new mdc_TextField(data31);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Error message", validation : true};
+			return { label : "Password input", type : "password"};
 		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data32) {
 			return new mdc_TextField(data32);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "TextArea", textArea : true};
+			return { label : "Icon input", box : true, icon : "list"};
 		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data33) {
 			return new mdc_TextField(data33);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Input with helper"};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data34) {
+			return new mdc_TextFieldHelperText(data34);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Helper for above"};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data35) {
+			return new mdc_TextField(data35);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Input with validation", invalid : true, required : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data36) {
+			return new mdc_TextFieldHelperText(data36);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Error message", validation : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data37) {
+			return new mdc_TextField(data37);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "TextArea", textArea : true};
+		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data38) {
+			return new mdc_TextField(data38);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Text input fullWidth", fullWidth : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data34) {
-			return new mdc_TextField(data34);
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data39) {
+			return new mdc_TextField(data39);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "TextArea fullWidth", textArea : true, fullWidth : true};
 		})))];
-		return vdom_VDom.h("div",attr,[children,children2,children3,children5,children6,children8,children9,children10,children59,children60,children70,vdom_VDom.h("div",{ },children71)]);
+		return vdom_VDom.h("div",attr,[children,children2,children3,children5,children6,children8,children9,children10,children59,children60,children61,children62,children72,vdom_VDom.h("div",{ },children73)]);
 	}
 	,__cocodata: null
 	,data: null
@@ -7302,6 +7324,228 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
 	}
 	,__class__: mdc_Checkbox
+	,__properties__: {get_data:"get_data"}
+});
+var mdc_LinearProgress = function(data) {
+	var _gthis = this;
+	coconut_ui_View.call(this,data,function(data1) {
+		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
+		return _gthis.render(tmp);
+	});
+	this.__cocodata = data;
+};
+$hxClasses["mdc.LinearProgress"] = mdc_LinearProgress;
+mdc_LinearProgress.__name__ = ["mdc","LinearProgress"];
+mdc_LinearProgress.__super__ = coconut_ui_View;
+mdc_LinearProgress.prototype = $extend(coconut_ui_View.prototype,{
+	mdcLinearProgress: null
+	,render: function(__data__) {
+		var title = __data__.title;
+		var tabIndex = __data__.tabIndex;
+		var style = __data__.style;
+		var spellcheck = __data__.spellcheck;
+		var reverse = __data__.reverse;
+		var progress = __data__.progress;
+		var open = __data__.open;
+		var onwheel = __data__.onwheel;
+		var onwaiting = __data__.onwaiting;
+		var onvolumechange = __data__.onvolumechange;
+		var ontouchstart = __data__.ontouchstart;
+		var ontouchmove = __data__.ontouchmove;
+		var ontouchend = __data__.ontouchend;
+		var ontouchcancel = __data__.ontouchcancel;
+		var ontimeupdate = __data__.ontimeupdate;
+		var onsuspend = __data__.onsuspend;
+		var onsubmit = __data__.onsubmit;
+		var onstalled = __data__.onstalled;
+		var onshow = __data__.onshow;
+		var onselect = __data__.onselect;
+		var onseeking = __data__.onseeking;
+		var onseeked = __data__.onseeked;
+		var onscroll = __data__.onscroll;
+		var onresize = __data__.onresize;
+		var onreset = __data__.onreset;
+		var onratechange = __data__.onratechange;
+		var onprogress = __data__.onprogress;
+		var onpointerup = __data__.onpointerup;
+		var onpointerover = __data__.onpointerover;
+		var onpointerout = __data__.onpointerout;
+		var onpointermove = __data__.onpointermove;
+		var onpointerlockerror = __data__.onpointerlockerror;
+		var onpointerlockchange = __data__.onpointerlockchange;
+		var onpointerleave = __data__.onpointerleave;
+		var onpointerenter = __data__.onpointerenter;
+		var onpointerdown = __data__.onpointerdown;
+		var onpointercancel = __data__.onpointercancel;
+		var onplaying = __data__.onplaying;
+		var onplay = __data__.onplay;
+		var onpause = __data__.onpause;
+		var onpaste = __data__.onpaste;
+		var onmouseup = __data__.onmouseup;
+		var onmouseover = __data__.onmouseover;
+		var onmouseout = __data__.onmouseout;
+		var onmousemove = __data__.onmousemove;
+		var onmouseleave = __data__.onmouseleave;
+		var onmouseenter = __data__.onmouseenter;
+		var onmousedown = __data__.onmousedown;
+		var onlostpointercapture = __data__.onlostpointercapture;
+		var onloadstart = __data__.onloadstart;
+		var onloadedmetadata = __data__.onloadedmetadata;
+		var onloadeddata = __data__.onloadeddata;
+		var onload = __data__.onload;
+		var onkeyup = __data__.onkeyup;
+		var onkeypress = __data__.onkeypress;
+		var onkeydown = __data__.onkeydown;
+		var oninvalid = __data__.oninvalid;
+		var oninput = __data__.oninput;
+		var ongotpointercapture = __data__.ongotpointercapture;
+		var onfullscreenerror = __data__.onfullscreenerror;
+		var onfullscreenchange = __data__.onfullscreenchange;
+		var onfocus = __data__.onfocus;
+		var onerror = __data__.onerror;
+		var onended = __data__.onended;
+		var onemptied = __data__.onemptied;
+		var ondurationchange = __data__.ondurationchange;
+		var ondrop = __data__.ondrop;
+		var ondragstart = __data__.ondragstart;
+		var ondragover = __data__.ondragover;
+		var ondragleave = __data__.ondragleave;
+		var ondragenter = __data__.ondragenter;
+		var ondragend = __data__.ondragend;
+		var ondrag = __data__.ondrag;
+		var ondblclick = __data__.ondblclick;
+		var oncut = __data__.oncut;
+		var oncopy = __data__.oncopy;
+		var oncontextmenu = __data__.oncontextmenu;
+		var onclick = __data__.onclick;
+		var onchange = __data__.onchange;
+		var oncanplaythrough = __data__.oncanplaythrough;
+		var oncanplay = __data__.oncanplay;
+		var onblur = __data__.onblur;
+		var onabort = __data__.onabort;
+		var lang = __data__.lang;
+		var key = __data__.key;
+		var indeterminate = __data__.indeterminate;
+		var id = __data__.id;
+		var hidden = __data__.hidden;
+		var draggable = __data__.draggable;
+		var dir = __data__.dir;
+		var contentEditable = __data__.contentEditable;
+		var className = __data__.className;
+		var buffer = __data__.buffer;
+		var attributes = __data__.attributes;
+		var accessKeyLabel = __data__.accessKeyLabel;
+		var accessKey = __data__.accessKey;
+		var __v_0 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+		var attr = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).className;
+		var _g = new haxe_ds_StringMap();
+		if(__map_reserved["mdc-linear-progress"] != null) {
+			_g.setReserved("mdc-linear-progress",true);
+		} else {
+			_g.h["mdc-linear-progress"] = true;
+		}
+		return vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
+		}, onblur : function(event1) {
+		}, oncanplay : function(event2) {
+		}, oncanplaythrough : function(event3) {
+		}, onchange : function(event4) {
+		}, onclick : function(event5) {
+		}, oncontextmenu : function(event6) {
+		}, oncopy : function(event7) {
+		}, oncut : function(event8) {
+		}, ondblclick : function(event9) {
+		}, ondrag : function(event10) {
+		}, ondragend : function(event11) {
+		}, ondragenter : function(event12) {
+		}, ondragleave : function(event13) {
+		}, ondragover : function(event14) {
+		}, ondragstart : function(event15) {
+		}, ondrop : function(event16) {
+		}, ondurationchange : function(event17) {
+		}, onemptied : function(event18) {
+		}, onended : function(event19) {
+		}, onerror : function(event20) {
+		}, onfocus : function(event21) {
+		}, onfullscreenchange : function(event22) {
+		}, onfullscreenerror : function(event23) {
+		}, ongotpointercapture : function(event24) {
+		}, oninput : function(event25) {
+		}, oninvalid : function(event26) {
+		}, onkeydown : function(event27) {
+		}, onkeypress : function(event28) {
+		}, onkeyup : function(event29) {
+		}, onload : function(event30) {
+		}, onloadeddata : function(event31) {
+		}, onloadedmetadata : function(event32) {
+		}, onloadstart : function(event33) {
+		}, onlostpointercapture : function(event34) {
+		}, onmousedown : function(event35) {
+		}, onmouseenter : function(event36) {
+		}, onmouseleave : function(event37) {
+		}, onmousemove : function(event38) {
+		}, onmouseout : function(event39) {
+		}, onmouseover : function(event40) {
+		}, onmouseup : function(event41) {
+		}, onpaste : function(event42) {
+		}, onpause : function(event43) {
+		}, onplay : function(event44) {
+		}, onplaying : function(event45) {
+		}, onpointercancel : function(event46) {
+		}, onpointerdown : function(event47) {
+		}, onpointerenter : function(event48) {
+		}, onpointerleave : function(event49) {
+		}, onpointerlockchange : function(event50) {
+		}, onpointerlockerror : function(event51) {
+		}, onpointermove : function(event52) {
+		}, onpointerout : function(event53) {
+		}, onpointerover : function(event54) {
+		}, onpointerup : function(event55) {
+		}, onprogress : function(event56) {
+		}, onratechange : function(event57) {
+		}, onreset : function(event58) {
+		}, onresize : function(event59) {
+		}, onscroll : function(event60) {
+		}, onseeked : function(event61) {
+		}, onseeking : function(event62) {
+		}, onselect : function(event63) {
+		}, onshow : function(event64) {
+		}, onstalled : function(event65) {
+		}, onsubmit : function(event66) {
+		}, onsuspend : function(event67) {
+		}, ontimeupdate : function(event68) {
+		}, ontouchcancel : function(event69) {
+		}, ontouchend : function(event70) {
+		}, ontouchmove : function(event71) {
+		}, ontouchstart : function(event72) {
+		}, onvolumechange : function(event73) {
+		}, onwaiting : function(event74) {
+		}, onwheel : function(event75) {
+		}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffering-dots")},null),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffer")},null),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__primary-bar")},[vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")},null)]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__secondary-bar")},[vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")},null)])]);
+	}
+	,afterInit: function(elem) {
+		this.mdcLinearProgress = new window.mdc.linearProgress.MDCLinearProgress(elem);
+		this.setLinearProgress();
+	}
+	,afterPatching: function(elem) {
+		this.setLinearProgress();
+	}
+	,setLinearProgress: function() {
+		this.mdcLinearProgress.determinate = !tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).indeterminate;
+		this.mdcLinearProgress.progress = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).progress;
+		this.mdcLinearProgress.buffer = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).buffer;
+		this.mdcLinearProgress.reverse = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).reverse;
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).open == true) {
+			this.mdcLinearProgress.open();
+		} else {
+			this.mdcLinearProgress.close();
+		}
+	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
+	,__class__: mdc_LinearProgress
 	,__properties__: {get_data:"get_data"}
 });
 var mdc_List = function(data) {

@@ -9,7 +9,7 @@ class LinearProgress extends View<LinearProgressAttr>
 
     function render()
     '
-        <div class=${data.className.add(["mdc-linear-progress mdc-linear-progress--indeterminate"=>true])} {...data}>
+        <div class=${data.className.add(["mdc-linear-progress"=>true])} {...data}>
             <div class="mdc-linear-progress__buffering-dots"></div>
             <div class="mdc-linear-progress__buffer"></div>
             <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
@@ -35,7 +35,7 @@ class LinearProgress extends View<LinearProgressAttr>
 
     function setLinearProgress()
     {
-        mdcLinearProgress.determinate = data.determinate;
+        mdcLinearProgress.determinate = !data.indeterminate;
         mdcLinearProgress.progress = data.progress;
         mdcLinearProgress.buffer = data.buffer;
         mdcLinearProgress.reverse = data.reverse;
@@ -52,7 +52,7 @@ class LinearProgress extends View<LinearProgressAttr>
 }
 
 typedef LinearProgressAttr = {>Attr,
-    @:optional var determinate(default,never):Bool;
+    @:optional var indeterminate(default,never):Bool;
     @:optional var progress(default,never):Float;
     @:optional var buffer(default,never):Float;
     @:optional var reverse(default,never):Bool;

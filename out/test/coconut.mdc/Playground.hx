@@ -5,6 +5,7 @@ import vdom.VNode;
 import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
+import mdc.TextField.TextFieldHelperText;
 import mdc.List.*;
 import mdc.TabBar.*;
 import mdc.TabBar.TabBarType;
@@ -87,6 +88,19 @@ class TestView extends View<{}>
         </div>
     </div>
 
+    <h1>LinearProgress</h1>
+    <div class="flex-container">
+        <h2>Progress</h2>
+        <LinearProgress progress=${0.7} open />
+        <h2>Buffer</h2>
+        <LinearProgress progress=${0.3} buffer=${0.4} open />
+        <h2>Indeterminate</h2>
+        <LinearProgress indeterminate open />
+        <h2>Reverse</h2>
+        <LinearProgress progress=${0.7} reverse open />
+        <h2>Reverse indeterminate</h2>
+        <LinearProgress indeterminate reverse open />
+    </div>
 
     <h1>List</h1>
     <div class="flex-container">
@@ -190,6 +204,11 @@ class TestView extends View<{}>
         <TextField label="Boxed input" box />
         <TextField label="Password input" type="password" />
         <TextField label="Icon input" box icon="list" />
+        <br/>
+        <TextField label="Input with helper" />
+        <TextFieldHelperText label="Helper for above" />
+        <TextField label="Input with validation" invalid required />
+        <TextFieldHelperText label="Error message" validation />
         <TextField label="TextArea" textArea  />
         <br/>
         <TextField label="Text input fullWidth" fullWidth />
