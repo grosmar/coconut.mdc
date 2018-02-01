@@ -107,7 +107,10 @@ class MDC
 extern class MDCRipple extends MDCComponent { }
 
 @:native("mdc.textField.MDCTextField")
-extern class MDCTextField extends MDCComponent { }
+extern class MDCTextField extends MDCComponent
+{
+	var valid:Bool;
+}
 
 @:native("window.mdc.checkbox.MDCCheckbox")
 extern class MDCCheckbox extends MDCComponent
@@ -115,7 +118,7 @@ extern class MDCCheckbox extends MDCComponent
 	var checked:Bool;
 	var indeterminate:Bool;
 	var disabled:Bool;
-	var value:Bool;
+	var value:String;
 }
 
 @:native("window.mdc.radio.MDCRadio")
@@ -130,6 +133,17 @@ extern class MDCTabBar extends MDCComponent
 
 	function layout():Void;
 	function initialize():Void;
+}
+
+@:native("window.mdc.linearProgress.MDCLinearProgress")
+extern class MDCLinearProgress extends MDCComponent
+{
+	var determinate:Bool;
+	var progress:Float;
+	var buffer:Float;
+	var reverse:Bool;
+	function open():Void;
+	function close():Void;
 }
 
 extern class MDCComponent
