@@ -783,7 +783,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			return new mdc_Button(data);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Simple", onclick : function(event) {
-				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 31, className : "TestView", methodName : "render"});
+				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 32, className : "TestView", methodName : "render"});
 			}};
 		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data1) {
 			return new mdc_Button(data1);
@@ -812,7 +812,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			return new mdc_Button(data6);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Simple", raised : true, onclick : function(event1) {
-				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 41, className : "TestView", methodName : "render"});
+				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 42, className : "TestView", methodName : "render"});
 			}};
 		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data7) {
 			return new mdc_Button(data7);
@@ -841,7 +841,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			return new mdc_Checkbox(data12);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Simple", value : "simple", onchecked : function(checked) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 51, className : "TestView", methodName : "render", customParams : [checked]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 52, className : "TestView", methodName : "render", customParams : [checked]});
 				return;
 			}};
 		}))),coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data13) {
@@ -3469,16 +3469,32 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			return new mdc_TextField(data27);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Icon input", box : true, icon : "list"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data28) {
+		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data28) {
 			return new mdc_TextField(data28);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "TextArea", textArea : true};
-		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data29) {
-			return new mdc_TextField(data29);
+			return { label : "Input with helper"};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data29) {
+			return new mdc_TextFieldHelperText(data29);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Text input fullWidth", fullWidth : true};
+			return { label : "Helper for above"};
 		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data30) {
 			return new mdc_TextField(data30);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Input with validation", invalid : true, required : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data31) {
+			return new mdc_TextFieldHelperText(data31);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Error message", validation : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data32) {
+			return new mdc_TextField(data32);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "TextArea", textArea : true};
+		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data33) {
+			return new mdc_TextField(data33);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Text input fullWidth", fullWidth : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data34) {
+			return new mdc_TextField(data34);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "TextArea fullWidth", textArea : true, fullWidth : true};
 		})))];

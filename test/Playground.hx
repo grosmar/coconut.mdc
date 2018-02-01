@@ -5,6 +5,7 @@ import vdom.VNode;
 import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
+import mdc.TextField.TextFieldHelperText;
 import mdc.List.*;
 import mdc.TabBar.*;
 import mdc.TabBar.TabBarType;
@@ -190,6 +191,11 @@ class TestView extends View<{}>
         <TextField label="Boxed input" box />
         <TextField label="Password input" type="password" />
         <TextField label="Icon input" box icon="list" />
+        <br/>
+        <TextField label="Input with helper" />
+        <TextFieldHelperText label="Helper for above" />
+        <TextField label="Input with validation" invalid required />
+        <TextFieldHelperText label="Error message" validation />
         <TextField label="TextArea" textArea  />
         <br/>
         <TextField label="Text input fullWidth" fullWidth />
