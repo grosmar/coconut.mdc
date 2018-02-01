@@ -3,7 +3,7 @@
     "displayName": "coconut.mdc",
     "version": "0.1.0",
     "description": "Coconut wrapper for Material Design Components",
-    "main": "index.js",
+    "main": "bin/playground/index.js",
     "scripts": {
         "install": "npm i haxeshim -g && npm i switchx -g && switchx install && npm i lix.pm -g && lix download",
         "playground": "haxe playground.hxml"
@@ -11,6 +11,6 @@
     "author": "grosmar",
     "license": "",
     "dependencies": {
-
+        "material-components-web": "^0.28.0"
     }
 }

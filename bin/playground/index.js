@@ -7748,10 +7748,10 @@ mdc_List.listStartDetail = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
-	if(__map_reserved["mdc-list-item__start-detail"] != null) {
-		_g.setReserved("mdc-list-item__start-detail",true);
+	if(__map_reserved["mdc-list-item__graphic"] != null) {
+		_g.setReserved("mdc-list-item__graphic",true);
 	} else {
-		_g.h["mdc-list-item__start-detail"] = true;
+		_g.h["mdc-list-item__graphic"] = true;
 	}
 	var value = attr.ripple;
 	if(__map_reserved["mdc-ripple-surface"] != null) {
@@ -7841,10 +7841,10 @@ mdc_List.listStartIcon = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
-	if(__map_reserved["mdc-list-item__start-detail"] != null) {
-		_g.setReserved("mdc-list-item__start-detail",true);
+	if(__map_reserved["mdc-list-item__graphic"] != null) {
+		_g.setReserved("mdc-list-item__graphic",true);
 	} else {
-		_g.h["mdc-list-item__start-detail"] = true;
+		_g.h["mdc-list-item__graphic"] = true;
 	}
 	if(__map_reserved["material-icons"] != null) {
 		_g.setReserved("material-icons",true);
@@ -7939,10 +7939,10 @@ mdc_List.listEndIcon = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
-	if(__map_reserved["mdc-list-item__end-detail"] != null) {
-		_g.setReserved("mdc-list-item__end-detail",true);
+	if(__map_reserved["mdc-list-item__meta"] != null) {
+		_g.setReserved("mdc-list-item__meta",true);
 	} else {
-		_g.h["mdc-list-item__end-detail"] = true;
+		_g.h["mdc-list-item__meta"] = true;
 	}
 	if(__map_reserved["material-icons"] != null) {
 		_g.setReserved("material-icons",true);
@@ -8037,10 +8037,10 @@ mdc_List.listStartImage = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
-	if(__map_reserved["mdc-list-item__start-detail"] != null) {
-		_g.setReserved("mdc-list-item__start-detail",true);
+	if(__map_reserved["mdc-list-item__graphic"] != null) {
+		_g.setReserved("mdc-list-item__graphic",true);
 	} else {
-		_g.h["mdc-list-item__start-detail"] = true;
+		_g.h["mdc-list-item__graphic"] = true;
 	}
 	var value = attr.ripple;
 	if(__map_reserved["mdc-ripple-surface"] != null) {
@@ -8130,10 +8130,10 @@ mdc_List.listEndDetail = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
-	if(__map_reserved["mdc-list-item__end-detail"] != null) {
-		_g.setReserved("mdc-list-item__end-detail",true);
+	if(__map_reserved["mdc-list-item__meta"] != null) {
+		_g.setReserved("mdc-list-item__meta",true);
 	} else {
-		_g.h["mdc-list-item__end-detail"] = true;
+		_g.h["mdc-list-item__meta"] = true;
 	}
 	var value = attr.ripple;
 	if(__map_reserved["mdc-ripple-surface"] != null) {
@@ -8310,10 +8310,10 @@ mdc_List.listTextSecondary = function(attr,children) {
 	var __v_0 = attr;
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
-	if(__map_reserved["mdc-list-item__text__secondary"] != null) {
-		_g.setReserved("mdc-list-item__text__secondary",true);
+	if(__map_reserved["mdc-list-item__secondary-text"] != null) {
+		_g.setReserved("mdc-list-item__secondary-text",true);
 	} else {
-		_g.h["mdc-list-item__text__secondary"] = true;
+		_g.h["mdc-list-item__secondary-text"] = true;
 	}
 	return vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
 	}, onblur : function(event1) {
