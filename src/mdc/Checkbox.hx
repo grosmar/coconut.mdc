@@ -22,8 +22,6 @@ class Checkbox extends View<CheckboxAttr>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
                                    onchange=${attr.onchecked(event.target.checked)}
-                                   value=${attr.value}
-                                   checked=${attr.checked}
                                    class="mdc-checkbox__native-control"/>
                               <div class="mdc-checkbox__background">
                                   <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -38,8 +36,6 @@ class Checkbox extends View<CheckboxAttr>
             else
                 @hxx '<div class="mdc-checkbox" {...attr}>
                       <input type="checkbox"
-                             value=${attr.value}
-                             checked=${attr.checked}
                              onchange=${attr.onchecked(event.target.checked)}
                              class="mdc-checkbox__native-control"/>
                       <div class="mdc-checkbox__background">
@@ -59,6 +55,20 @@ class Checkbox extends View<CheckboxAttr>
     override function afterInit(elem)
     {
         this.mdcCheckbox = new MDCCheckbox(elem);
+        setCheckboxProperties();
+    }
+
+    override function afterPatching(elem)
+    {
+        setCheckboxProperties();
+    }
+
+    function setCheckboxProperties()
+    {
+        mdcCheckbox.checked = data.checked;
+        mdcCheckbox.indeterminate = data.indeterminate;
+        mdcCheckbox.disabled = data.disabled;
+        mdcCheckbox.value = data.value;
     }
 
     override function destroy()

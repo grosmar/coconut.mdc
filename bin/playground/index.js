@@ -770,6 +770,7 @@ var TestView = function(data) {
 		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
 		return _gthis.render(tmp);
 	});
+	this.__cocodata = data;
 };
 $hxClasses["TestView"] = TestView;
 TestView.__name__ = ["TestView"];
@@ -778,70 +779,92 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 	render: function(__data__) {
 		var attr = { className : vdom__$Attr_ClassName_$Impl_$.ofString("demo")};
 		var children = vdom_VDom.h("h1",{ },["Normal Buttons"]);
-		var children1 = [this.__coco__cache.getFactory("Button",function(data) {
+		var children1 = [coconut_ui_tools_ViewCache.get().getFactory("Button",function(data) {
 			return new mdc_Button(data);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Simple", onclick : function(event) {
 				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 31, className : "TestView", methodName : "render"});
 			}};
-		}))),this.__coco__cache.getFactory("Button",function(data1) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data1) {
 			return new mdc_Button(data1);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Dense", dense : true};
-		}))),this.__coco__cache.getFactory("Button",function(data2) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data2) {
 			return new mdc_Button(data2);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Compact", compact : true};
-		}))),this.__coco__cache.getFactory("Button",function(data3) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data3) {
 			return new mdc_Button(data3);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Disabled", disabled : true};
-		}))),this.__coco__cache.getFactory("Button",function(data4) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data4) {
 			return new mdc_Button(data4);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Unelevated", unelevated : true};
-		}))),this.__coco__cache.getFactory("Button",function(data5) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data5) {
 			return new mdc_Button(data5);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Icon", icon : "favorite"};
 		})))];
 		var children2 = vdom_VDom.h("div",{ },children1);
 		var children3 = vdom_VDom.h("h1",{ },["Raised Buttons"]);
-		var children4 = [this.__coco__cache.getFactory("Button",function(data6) {
+		var children4 = [coconut_ui_tools_ViewCache.get().getFactory("Button",function(data6) {
 			return new mdc_Button(data6);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Simple", raised : true, onclick : function(event1) {
 				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 41, className : "TestView", methodName : "render"});
 			}};
-		}))),this.__coco__cache.getFactory("Button",function(data7) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data7) {
 			return new mdc_Button(data7);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Dense", raised : true, dense : true};
-		}))),this.__coco__cache.getFactory("Button",function(data8) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data8) {
 			return new mdc_Button(data8);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Compact", raised : true, compact : true};
-		}))),this.__coco__cache.getFactory("Button",function(data9) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data9) {
 			return new mdc_Button(data9);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Disabled", raised : true, disabled : true};
-		}))),this.__coco__cache.getFactory("Button",function(data10) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data10) {
 			return new mdc_Button(data10);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Unelevated", raised : true, unelevated : true};
-		}))),this.__coco__cache.getFactory("Button",function(data11) {
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data11) {
 			return new mdc_Button(data11);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "Icon", raised : true, icon : "favorite"};
 		})))];
 		var children5 = vdom_VDom.h("div",{ },children4);
-		var children6 = vdom_VDom.h("h1",{ },["TabBar"]);
-		var children7 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[this.__coco__cache.getFactory("TabBar",function(data12) {
-			return new mdc_TabBar(data12);
+		var children6 = vdom_VDom.h("h1",{ },["Checkbox"]);
+		var children7 = [coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data12) {
+			return new mdc_Checkbox(data12);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
+			return { label : "Simple", value : "simple", onchecked : function(checked) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 51, className : "TestView", methodName : "render", customParams : [checked]});
+				return;
+			}};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data13) {
+			return new mdc_Checkbox(data13);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Checked", checked : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data14) {
+			return new mdc_Checkbox(data14);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Indeterminate", indeterminate : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data15) {
+			return new mdc_Checkbox(data15);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Disabled", disabled : true};
+		})))];
+		var children8 = vdom_VDom.h("div",{ },children7);
+		var children9 = vdom_VDom.h("h1",{ },["TabBar"]);
+		var children10 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[coconut_ui_tools_ViewCache.get().getFactory("TabBar",function(data16) {
+			return new mdc_TabBar(data16);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			var __coco_cache = coconut_ui_tools_ViewCache.get();
 			var attr1 = { active : true};
-			var children8 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab1"]);
+			var children11 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab1"]);
 			var __v_0 = attr1;
 			var attr2 = attr1.className;
 			var _g = new haxe_ds_StringMap();
@@ -933,10 +956,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event76) {
 			}, onwheel : function(event77) {
 			}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, target : __v_0.target, title : __v_0.title, type : __v_0.type};
-			var children9;
+			var children12;
 			if(attr1.icon != null) {
 				var attr4 = { };
-				var children10 = vdom__$VNode_VNode_$Impl_$.flatten([attr1.icon]);
+				var children13 = vdom__$VNode_VNode_$Impl_$.flatten([attr1.icon]);
 				var __v_01 = attr4;
 				var attr5 = attr4.className;
 				var _g1 = new haxe_ds_StringMap();
@@ -950,7 +973,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g1.h["material-icons"] = true;
 				}
-				children9 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr5,vdom__$Attr_ClassName_$Impl_$.ofMap(_g1)), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event78) {
+				children12 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr5,vdom__$Attr_ClassName_$Impl_$.ofMap(_g1)), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event78) {
 				}, onblur : function(event79) {
 				}, oncanplay : function(event80) {
 				}, oncanplaythrough : function(event81) {
@@ -1026,14 +1049,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event151) {
 				}, onwaiting : function(event152) {
 				}, onwheel : function(event153) {
-				}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[children10])]);
+				}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[children13])]);
 			} else {
-				children9 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children12 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children11;
+			var children14;
 			if(attr1.text != null) {
 				var attr6 = { };
-				var children12 = vdom__$VNode_VNode_$Impl_$.flatten([attr1.text]);
+				var children15 = vdom__$VNode_VNode_$Impl_$.flatten([attr1.text]);
 				var __v_02 = attr6;
 				var attr7 = attr6.className;
 				var _g2 = new haxe_ds_StringMap();
@@ -1042,7 +1065,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g2.h["mdc-tab__icon-text"] = true;
 				}
-				children11 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr7,vdom__$Attr_ClassName_$Impl_$.ofMap(_g2)), accessKey : __v_02.accessKey, accessKeyLabel : __v_02.accessKeyLabel, attributes : __v_02.attributes, contentEditable : __v_02.contentEditable, dir : __v_02.dir, draggable : __v_02.draggable, hidden : __v_02.hidden, id : __v_02.id, key : __v_02.key, lang : __v_02.lang, onabort : function(event154) {
+				children14 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr7,vdom__$Attr_ClassName_$Impl_$.ofMap(_g2)), accessKey : __v_02.accessKey, accessKeyLabel : __v_02.accessKeyLabel, attributes : __v_02.attributes, contentEditable : __v_02.contentEditable, dir : __v_02.dir, draggable : __v_02.draggable, hidden : __v_02.hidden, id : __v_02.id, key : __v_02.key, lang : __v_02.lang, onabort : function(event154) {
 				}, onblur : function(event155) {
 				}, oncanplay : function(event156) {
 				}, oncanplaythrough : function(event157) {
@@ -1118,13 +1141,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event227) {
 				}, onwaiting : function(event228) {
 				}, onwheel : function(event229) {
-				}, spellcheck : __v_02.spellcheck, style : __v_02.style, tabIndex : __v_02.tabIndex, title : __v_02.title},[children12])]);
+				}, spellcheck : __v_02.spellcheck, style : __v_02.style, tabIndex : __v_02.tabIndex, title : __v_02.title},[children15])]);
 			} else {
-				children11 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children14 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children13 = vdom_VDom.h("a",attr3,[children9,children11,children8]);
+			var children16 = vdom_VDom.h("a",attr3,[children12,children14,children11]);
 			var attr8 = { };
-			var children14 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab2"]);
+			var children17 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab2"]);
 			var __v_03 = attr8;
 			var attr9 = attr8.className;
 			var _g3 = new haxe_ds_StringMap();
@@ -1216,10 +1239,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event304) {
 			}, onwheel : function(event305) {
 			}, spellcheck : __v_03.spellcheck, style : __v_03.style, tabIndex : __v_03.tabIndex, target : __v_03.target, title : __v_03.title, type : __v_03.type};
-			var children15;
+			var children18;
 			if(attr8.icon != null) {
 				var attr11 = { };
-				var children16 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.icon]);
+				var children19 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.icon]);
 				var __v_04 = attr11;
 				var attr12 = attr11.className;
 				var _g4 = new haxe_ds_StringMap();
@@ -1233,7 +1256,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g4.h["material-icons"] = true;
 				}
-				children15 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr12,vdom__$Attr_ClassName_$Impl_$.ofMap(_g4)), accessKey : __v_04.accessKey, accessKeyLabel : __v_04.accessKeyLabel, attributes : __v_04.attributes, contentEditable : __v_04.contentEditable, dir : __v_04.dir, draggable : __v_04.draggable, hidden : __v_04.hidden, id : __v_04.id, key : __v_04.key, lang : __v_04.lang, onabort : function(event306) {
+				children18 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr12,vdom__$Attr_ClassName_$Impl_$.ofMap(_g4)), accessKey : __v_04.accessKey, accessKeyLabel : __v_04.accessKeyLabel, attributes : __v_04.attributes, contentEditable : __v_04.contentEditable, dir : __v_04.dir, draggable : __v_04.draggable, hidden : __v_04.hidden, id : __v_04.id, key : __v_04.key, lang : __v_04.lang, onabort : function(event306) {
 				}, onblur : function(event307) {
 				}, oncanplay : function(event308) {
 				}, oncanplaythrough : function(event309) {
@@ -1309,14 +1332,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event379) {
 				}, onwaiting : function(event380) {
 				}, onwheel : function(event381) {
-				}, spellcheck : __v_04.spellcheck, style : __v_04.style, tabIndex : __v_04.tabIndex, title : __v_04.title},[children16])]);
+				}, spellcheck : __v_04.spellcheck, style : __v_04.style, tabIndex : __v_04.tabIndex, title : __v_04.title},[children19])]);
 			} else {
-				children15 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children18 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children17;
+			var children20;
 			if(attr8.text != null) {
 				var attr13 = { };
-				var children18 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.text]);
+				var children21 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.text]);
 				var __v_05 = attr13;
 				var attr14 = attr13.className;
 				var _g5 = new haxe_ds_StringMap();
@@ -1325,7 +1348,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g5.h["mdc-tab__icon-text"] = true;
 				}
-				children17 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr14,vdom__$Attr_ClassName_$Impl_$.ofMap(_g5)), accessKey : __v_05.accessKey, accessKeyLabel : __v_05.accessKeyLabel, attributes : __v_05.attributes, contentEditable : __v_05.contentEditable, dir : __v_05.dir, draggable : __v_05.draggable, hidden : __v_05.hidden, id : __v_05.id, key : __v_05.key, lang : __v_05.lang, onabort : function(event382) {
+				children20 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr14,vdom__$Attr_ClassName_$Impl_$.ofMap(_g5)), accessKey : __v_05.accessKey, accessKeyLabel : __v_05.accessKeyLabel, attributes : __v_05.attributes, contentEditable : __v_05.contentEditable, dir : __v_05.dir, draggable : __v_05.draggable, hidden : __v_05.hidden, id : __v_05.id, key : __v_05.key, lang : __v_05.lang, onabort : function(event382) {
 				}, onblur : function(event383) {
 				}, oncanplay : function(event384) {
 				}, oncanplaythrough : function(event385) {
@@ -1401,13 +1424,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event455) {
 				}, onwaiting : function(event456) {
 				}, onwheel : function(event457) {
-				}, spellcheck : __v_05.spellcheck, style : __v_05.style, tabIndex : __v_05.tabIndex, title : __v_05.title},[children18])]);
+				}, spellcheck : __v_05.spellcheck, style : __v_05.style, tabIndex : __v_05.tabIndex, title : __v_05.title},[children21])]);
 			} else {
-				children17 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children20 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children19 = vdom_VDom.h("a",attr10,[children15,children17,children14]);
+			var children22 = vdom_VDom.h("a",attr10,[children18,children20,children17]);
 			var attr15 = { };
-			var children20 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
+			var children23 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
 			var __v_06 = attr15;
 			var attr16 = attr15.className;
 			var _g6 = new haxe_ds_StringMap();
@@ -1499,10 +1522,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event532) {
 			}, onwheel : function(event533) {
 			}, spellcheck : __v_06.spellcheck, style : __v_06.style, tabIndex : __v_06.tabIndex, target : __v_06.target, title : __v_06.title, type : __v_06.type};
-			var children21;
+			var children24;
 			if(attr15.icon != null) {
 				var attr18 = { };
-				var children22 = vdom__$VNode_VNode_$Impl_$.flatten([attr15.icon]);
+				var children25 = vdom__$VNode_VNode_$Impl_$.flatten([attr15.icon]);
 				var __v_07 = attr18;
 				var attr19 = attr18.className;
 				var _g7 = new haxe_ds_StringMap();
@@ -1516,7 +1539,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g7.h["material-icons"] = true;
 				}
-				children21 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr19,vdom__$Attr_ClassName_$Impl_$.ofMap(_g7)), accessKey : __v_07.accessKey, accessKeyLabel : __v_07.accessKeyLabel, attributes : __v_07.attributes, contentEditable : __v_07.contentEditable, dir : __v_07.dir, draggable : __v_07.draggable, hidden : __v_07.hidden, id : __v_07.id, key : __v_07.key, lang : __v_07.lang, onabort : function(event534) {
+				children24 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr19,vdom__$Attr_ClassName_$Impl_$.ofMap(_g7)), accessKey : __v_07.accessKey, accessKeyLabel : __v_07.accessKeyLabel, attributes : __v_07.attributes, contentEditable : __v_07.contentEditable, dir : __v_07.dir, draggable : __v_07.draggable, hidden : __v_07.hidden, id : __v_07.id, key : __v_07.key, lang : __v_07.lang, onabort : function(event534) {
 				}, onblur : function(event535) {
 				}, oncanplay : function(event536) {
 				}, oncanplaythrough : function(event537) {
@@ -1592,14 +1615,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event607) {
 				}, onwaiting : function(event608) {
 				}, onwheel : function(event609) {
-				}, spellcheck : __v_07.spellcheck, style : __v_07.style, tabIndex : __v_07.tabIndex, title : __v_07.title},[children22])]);
+				}, spellcheck : __v_07.spellcheck, style : __v_07.style, tabIndex : __v_07.tabIndex, title : __v_07.title},[children25])]);
 			} else {
-				children21 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children24 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children23;
+			var children26;
 			if(attr15.text != null) {
 				var attr20 = { };
-				var children24 = vdom__$VNode_VNode_$Impl_$.flatten([attr15.text]);
+				var children27 = vdom__$VNode_VNode_$Impl_$.flatten([attr15.text]);
 				var __v_08 = attr20;
 				var attr21 = attr20.className;
 				var _g8 = new haxe_ds_StringMap();
@@ -1608,7 +1631,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g8.h["mdc-tab__icon-text"] = true;
 				}
-				children23 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr21,vdom__$Attr_ClassName_$Impl_$.ofMap(_g8)), accessKey : __v_08.accessKey, accessKeyLabel : __v_08.accessKeyLabel, attributes : __v_08.attributes, contentEditable : __v_08.contentEditable, dir : __v_08.dir, draggable : __v_08.draggable, hidden : __v_08.hidden, id : __v_08.id, key : __v_08.key, lang : __v_08.lang, onabort : function(event610) {
+				children26 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr21,vdom__$Attr_ClassName_$Impl_$.ofMap(_g8)), accessKey : __v_08.accessKey, accessKeyLabel : __v_08.accessKeyLabel, attributes : __v_08.attributes, contentEditable : __v_08.contentEditable, dir : __v_08.dir, draggable : __v_08.draggable, hidden : __v_08.hidden, id : __v_08.id, key : __v_08.key, lang : __v_08.lang, onabort : function(event610) {
 				}, onblur : function(event611) {
 				}, oncanplay : function(event612) {
 				}, oncanplaythrough : function(event613) {
@@ -1684,15 +1707,15 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event683) {
 				}, onwaiting : function(event684) {
 				}, onwheel : function(event685) {
-				}, spellcheck : __v_08.spellcheck, style : __v_08.style, tabIndex : __v_08.tabIndex, title : __v_08.title},[children24])]);
+				}, spellcheck : __v_08.spellcheck, style : __v_08.style, tabIndex : __v_08.tabIndex, title : __v_08.title},[children27])]);
 			} else {
-				children23 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children26 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			return { tabs : vdom__$VNode_VNode_$Impl_$.flatten([children13,children19,vdom_VDom.h("a",attr17,[children21,children23,children20])])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[this.__coco__cache.getFactory("TabBar",function(data13) {
-			return new mdc_TabBar(data13);
+			return { tabs : vdom__$VNode_VNode_$Impl_$.flatten([children16,children22,vdom_VDom.h("a",attr17,[children24,children26,children23])])};
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[coconut_ui_tools_ViewCache.get().getFactory("TabBar",function(data17) {
+			return new mdc_TabBar(data17);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache1 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
+			var __coco_cache1 = coconut_ui_tools_ViewCache.get();
 			var attr22 = { icon : "camera", active : true};
 			var __v_09 = attr22;
 			var attr23 = attr22.className;
@@ -1785,10 +1808,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event760) {
 			}, onwheel : function(event761) {
 			}, spellcheck : __v_09.spellcheck, style : __v_09.style, tabIndex : __v_09.tabIndex, target : __v_09.target, title : __v_09.title, type : __v_09.type};
-			var children25;
+			var children28;
 			if(attr22.icon != null) {
 				var attr25 = { };
-				var children26 = vdom__$VNode_VNode_$Impl_$.flatten([attr22.icon]);
+				var children29 = vdom__$VNode_VNode_$Impl_$.flatten([attr22.icon]);
 				var __v_010 = attr25;
 				var attr26 = attr25.className;
 				var _g10 = new haxe_ds_StringMap();
@@ -1802,7 +1825,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g10.h["material-icons"] = true;
 				}
-				children25 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr26,vdom__$Attr_ClassName_$Impl_$.ofMap(_g10)), accessKey : __v_010.accessKey, accessKeyLabel : __v_010.accessKeyLabel, attributes : __v_010.attributes, contentEditable : __v_010.contentEditable, dir : __v_010.dir, draggable : __v_010.draggable, hidden : __v_010.hidden, id : __v_010.id, key : __v_010.key, lang : __v_010.lang, onabort : function(event762) {
+				children28 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr26,vdom__$Attr_ClassName_$Impl_$.ofMap(_g10)), accessKey : __v_010.accessKey, accessKeyLabel : __v_010.accessKeyLabel, attributes : __v_010.attributes, contentEditable : __v_010.contentEditable, dir : __v_010.dir, draggable : __v_010.draggable, hidden : __v_010.hidden, id : __v_010.id, key : __v_010.key, lang : __v_010.lang, onabort : function(event762) {
 				}, onblur : function(event763) {
 				}, oncanplay : function(event764) {
 				}, oncanplaythrough : function(event765) {
@@ -1878,14 +1901,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event835) {
 				}, onwaiting : function(event836) {
 				}, onwheel : function(event837) {
-				}, spellcheck : __v_010.spellcheck, style : __v_010.style, tabIndex : __v_010.tabIndex, title : __v_010.title},[children26])]);
+				}, spellcheck : __v_010.spellcheck, style : __v_010.style, tabIndex : __v_010.tabIndex, title : __v_010.title},[children29])]);
 			} else {
-				children25 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children28 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children27;
+			var children30;
 			if(attr22.text != null) {
 				var attr27 = { };
-				var children28 = vdom__$VNode_VNode_$Impl_$.flatten([attr22.text]);
+				var children31 = vdom__$VNode_VNode_$Impl_$.flatten([attr22.text]);
 				var __v_011 = attr27;
 				var attr28 = attr27.className;
 				var _g11 = new haxe_ds_StringMap();
@@ -1894,7 +1917,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g11.h["mdc-tab__icon-text"] = true;
 				}
-				children27 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr28,vdom__$Attr_ClassName_$Impl_$.ofMap(_g11)), accessKey : __v_011.accessKey, accessKeyLabel : __v_011.accessKeyLabel, attributes : __v_011.attributes, contentEditable : __v_011.contentEditable, dir : __v_011.dir, draggable : __v_011.draggable, hidden : __v_011.hidden, id : __v_011.id, key : __v_011.key, lang : __v_011.lang, onabort : function(event838) {
+				children30 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr28,vdom__$Attr_ClassName_$Impl_$.ofMap(_g11)), accessKey : __v_011.accessKey, accessKeyLabel : __v_011.accessKeyLabel, attributes : __v_011.attributes, contentEditable : __v_011.contentEditable, dir : __v_011.dir, draggable : __v_011.draggable, hidden : __v_011.hidden, id : __v_011.id, key : __v_011.key, lang : __v_011.lang, onabort : function(event838) {
 				}, onblur : function(event839) {
 				}, oncanplay : function(event840) {
 				}, oncanplaythrough : function(event841) {
@@ -1970,11 +1993,11 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event911) {
 				}, onwaiting : function(event912) {
 				}, onwheel : function(event913) {
-				}, spellcheck : __v_011.spellcheck, style : __v_011.style, tabIndex : __v_011.tabIndex, title : __v_011.title},[children28])]);
+				}, spellcheck : __v_011.spellcheck, style : __v_011.style, tabIndex : __v_011.tabIndex, title : __v_011.title},[children31])]);
 			} else {
-				children27 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children30 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children29 = vdom_VDom.h("a",attr24,[children25,children27,null]);
+			var children32 = vdom_VDom.h("a",attr24,[children28,children30,null]);
 			var attr29 = { icon : "colorize"};
 			var __v_012 = attr29;
 			var attr30 = attr29.className;
@@ -2067,10 +2090,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event988) {
 			}, onwheel : function(event989) {
 			}, spellcheck : __v_012.spellcheck, style : __v_012.style, tabIndex : __v_012.tabIndex, target : __v_012.target, title : __v_012.title, type : __v_012.type};
-			var children30;
+			var children33;
 			if(attr29.icon != null) {
 				var attr32 = { };
-				var children31 = vdom__$VNode_VNode_$Impl_$.flatten([attr29.icon]);
+				var children34 = vdom__$VNode_VNode_$Impl_$.flatten([attr29.icon]);
 				var __v_013 = attr32;
 				var attr33 = attr32.className;
 				var _g13 = new haxe_ds_StringMap();
@@ -2084,7 +2107,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g13.h["material-icons"] = true;
 				}
-				children30 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr33,vdom__$Attr_ClassName_$Impl_$.ofMap(_g13)), accessKey : __v_013.accessKey, accessKeyLabel : __v_013.accessKeyLabel, attributes : __v_013.attributes, contentEditable : __v_013.contentEditable, dir : __v_013.dir, draggable : __v_013.draggable, hidden : __v_013.hidden, id : __v_013.id, key : __v_013.key, lang : __v_013.lang, onabort : function(event990) {
+				children33 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr33,vdom__$Attr_ClassName_$Impl_$.ofMap(_g13)), accessKey : __v_013.accessKey, accessKeyLabel : __v_013.accessKeyLabel, attributes : __v_013.attributes, contentEditable : __v_013.contentEditable, dir : __v_013.dir, draggable : __v_013.draggable, hidden : __v_013.hidden, id : __v_013.id, key : __v_013.key, lang : __v_013.lang, onabort : function(event990) {
 				}, onblur : function(event991) {
 				}, oncanplay : function(event992) {
 				}, oncanplaythrough : function(event993) {
@@ -2160,14 +2183,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1063) {
 				}, onwaiting : function(event1064) {
 				}, onwheel : function(event1065) {
-				}, spellcheck : __v_013.spellcheck, style : __v_013.style, tabIndex : __v_013.tabIndex, title : __v_013.title},[children31])]);
+				}, spellcheck : __v_013.spellcheck, style : __v_013.style, tabIndex : __v_013.tabIndex, title : __v_013.title},[children34])]);
 			} else {
-				children30 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children33 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children32;
+			var children35;
 			if(attr29.text != null) {
 				var attr34 = { };
-				var children33 = vdom__$VNode_VNode_$Impl_$.flatten([attr29.text]);
+				var children36 = vdom__$VNode_VNode_$Impl_$.flatten([attr29.text]);
 				var __v_014 = attr34;
 				var attr35 = attr34.className;
 				var _g14 = new haxe_ds_StringMap();
@@ -2176,7 +2199,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g14.h["mdc-tab__icon-text"] = true;
 				}
-				children32 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr35,vdom__$Attr_ClassName_$Impl_$.ofMap(_g14)), accessKey : __v_014.accessKey, accessKeyLabel : __v_014.accessKeyLabel, attributes : __v_014.attributes, contentEditable : __v_014.contentEditable, dir : __v_014.dir, draggable : __v_014.draggable, hidden : __v_014.hidden, id : __v_014.id, key : __v_014.key, lang : __v_014.lang, onabort : function(event1066) {
+				children35 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr35,vdom__$Attr_ClassName_$Impl_$.ofMap(_g14)), accessKey : __v_014.accessKey, accessKeyLabel : __v_014.accessKeyLabel, attributes : __v_014.attributes, contentEditable : __v_014.contentEditable, dir : __v_014.dir, draggable : __v_014.draggable, hidden : __v_014.hidden, id : __v_014.id, key : __v_014.key, lang : __v_014.lang, onabort : function(event1066) {
 				}, onblur : function(event1067) {
 				}, oncanplay : function(event1068) {
 				}, oncanplaythrough : function(event1069) {
@@ -2252,11 +2275,11 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1139) {
 				}, onwaiting : function(event1140) {
 				}, onwheel : function(event1141) {
-				}, spellcheck : __v_014.spellcheck, style : __v_014.style, tabIndex : __v_014.tabIndex, title : __v_014.title},[children33])]);
+				}, spellcheck : __v_014.spellcheck, style : __v_014.style, tabIndex : __v_014.tabIndex, title : __v_014.title},[children36])]);
 			} else {
-				children32 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children35 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children34 = vdom_VDom.h("a",attr31,[children30,children32,null]);
+			var children37 = vdom_VDom.h("a",attr31,[children33,children35,null]);
 			var attr36 = { icon : "edit"};
 			var __v_015 = attr36;
 			var attr37 = attr36.className;
@@ -2349,10 +2372,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event1216) {
 			}, onwheel : function(event1217) {
 			}, spellcheck : __v_015.spellcheck, style : __v_015.style, tabIndex : __v_015.tabIndex, target : __v_015.target, title : __v_015.title, type : __v_015.type};
-			var children35;
+			var children38;
 			if(attr36.icon != null) {
 				var attr39 = { };
-				var children36 = vdom__$VNode_VNode_$Impl_$.flatten([attr36.icon]);
+				var children39 = vdom__$VNode_VNode_$Impl_$.flatten([attr36.icon]);
 				var __v_016 = attr39;
 				var attr40 = attr39.className;
 				var _g16 = new haxe_ds_StringMap();
@@ -2366,7 +2389,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g16.h["material-icons"] = true;
 				}
-				children35 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr40,vdom__$Attr_ClassName_$Impl_$.ofMap(_g16)), accessKey : __v_016.accessKey, accessKeyLabel : __v_016.accessKeyLabel, attributes : __v_016.attributes, contentEditable : __v_016.contentEditable, dir : __v_016.dir, draggable : __v_016.draggable, hidden : __v_016.hidden, id : __v_016.id, key : __v_016.key, lang : __v_016.lang, onabort : function(event1218) {
+				children38 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr40,vdom__$Attr_ClassName_$Impl_$.ofMap(_g16)), accessKey : __v_016.accessKey, accessKeyLabel : __v_016.accessKeyLabel, attributes : __v_016.attributes, contentEditable : __v_016.contentEditable, dir : __v_016.dir, draggable : __v_016.draggable, hidden : __v_016.hidden, id : __v_016.id, key : __v_016.key, lang : __v_016.lang, onabort : function(event1218) {
 				}, onblur : function(event1219) {
 				}, oncanplay : function(event1220) {
 				}, oncanplaythrough : function(event1221) {
@@ -2442,14 +2465,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1291) {
 				}, onwaiting : function(event1292) {
 				}, onwheel : function(event1293) {
-				}, spellcheck : __v_016.spellcheck, style : __v_016.style, tabIndex : __v_016.tabIndex, title : __v_016.title},[children36])]);
+				}, spellcheck : __v_016.spellcheck, style : __v_016.style, tabIndex : __v_016.tabIndex, title : __v_016.title},[children39])]);
 			} else {
-				children35 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children38 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children37;
+			var children40;
 			if(attr36.text != null) {
 				var attr41 = { };
-				var children38 = vdom__$VNode_VNode_$Impl_$.flatten([attr36.text]);
+				var children41 = vdom__$VNode_VNode_$Impl_$.flatten([attr36.text]);
 				var __v_017 = attr41;
 				var attr42 = attr41.className;
 				var _g17 = new haxe_ds_StringMap();
@@ -2458,7 +2481,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g17.h["mdc-tab__icon-text"] = true;
 				}
-				children37 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr42,vdom__$Attr_ClassName_$Impl_$.ofMap(_g17)), accessKey : __v_017.accessKey, accessKeyLabel : __v_017.accessKeyLabel, attributes : __v_017.attributes, contentEditable : __v_017.contentEditable, dir : __v_017.dir, draggable : __v_017.draggable, hidden : __v_017.hidden, id : __v_017.id, key : __v_017.key, lang : __v_017.lang, onabort : function(event1294) {
+				children40 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr42,vdom__$Attr_ClassName_$Impl_$.ofMap(_g17)), accessKey : __v_017.accessKey, accessKeyLabel : __v_017.accessKeyLabel, attributes : __v_017.attributes, contentEditable : __v_017.contentEditable, dir : __v_017.dir, draggable : __v_017.draggable, hidden : __v_017.hidden, id : __v_017.id, key : __v_017.key, lang : __v_017.lang, onabort : function(event1294) {
 				}, onblur : function(event1295) {
 				}, oncanplay : function(event1296) {
 				}, oncanplaythrough : function(event1297) {
@@ -2534,17 +2557,17 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1367) {
 				}, onwaiting : function(event1368) {
 				}, onwheel : function(event1369) {
-				}, spellcheck : __v_017.spellcheck, style : __v_017.style, tabIndex : __v_017.tabIndex, title : __v_017.title},[children38])]);
+				}, spellcheck : __v_017.spellcheck, style : __v_017.style, tabIndex : __v_017.tabIndex, title : __v_017.title},[children41])]);
 			} else {
-				children37 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children40 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			return { type : "mdc-tab-bar--icon-tab-bar", tabs : vdom__$VNode_VNode_$Impl_$.flatten([children29,children34,vdom_VDom.h("a",attr38,[children35,children37,null])])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[this.__coco__cache.getFactory("TabBar",function(data14) {
-			return new mdc_TabBar(data14);
+			return { type : "mdc-tab-bar--icon-tab-bar", tabs : vdom__$VNode_VNode_$Impl_$.flatten([children32,children37,vdom_VDom.h("a",attr38,[children38,children40,null])])};
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[coconut_ui_tools_ViewCache.get().getFactory("TabBar",function(data18) {
+			return new mdc_TabBar(data18);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache2 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
+			var __coco_cache2 = coconut_ui_tools_ViewCache.get();
 			var attr43 = { icon : "camera", active : true};
-			var children39 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab1"]);
+			var children42 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab1"]);
 			var __v_018 = attr43;
 			var attr44 = attr43.className;
 			var _g18 = new haxe_ds_StringMap();
@@ -2636,10 +2659,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event1444) {
 			}, onwheel : function(event1445) {
 			}, spellcheck : __v_018.spellcheck, style : __v_018.style, tabIndex : __v_018.tabIndex, target : __v_018.target, title : __v_018.title, type : __v_018.type};
-			var children40;
+			var children43;
 			if(attr43.icon != null) {
 				var attr46 = { };
-				var children41 = vdom__$VNode_VNode_$Impl_$.flatten([attr43.icon]);
+				var children44 = vdom__$VNode_VNode_$Impl_$.flatten([attr43.icon]);
 				var __v_019 = attr46;
 				var attr47 = attr46.className;
 				var _g19 = new haxe_ds_StringMap();
@@ -2653,7 +2676,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g19.h["material-icons"] = true;
 				}
-				children40 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr47,vdom__$Attr_ClassName_$Impl_$.ofMap(_g19)), accessKey : __v_019.accessKey, accessKeyLabel : __v_019.accessKeyLabel, attributes : __v_019.attributes, contentEditable : __v_019.contentEditable, dir : __v_019.dir, draggable : __v_019.draggable, hidden : __v_019.hidden, id : __v_019.id, key : __v_019.key, lang : __v_019.lang, onabort : function(event1446) {
+				children43 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr47,vdom__$Attr_ClassName_$Impl_$.ofMap(_g19)), accessKey : __v_019.accessKey, accessKeyLabel : __v_019.accessKeyLabel, attributes : __v_019.attributes, contentEditable : __v_019.contentEditable, dir : __v_019.dir, draggable : __v_019.draggable, hidden : __v_019.hidden, id : __v_019.id, key : __v_019.key, lang : __v_019.lang, onabort : function(event1446) {
 				}, onblur : function(event1447) {
 				}, oncanplay : function(event1448) {
 				}, oncanplaythrough : function(event1449) {
@@ -2729,14 +2752,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1519) {
 				}, onwaiting : function(event1520) {
 				}, onwheel : function(event1521) {
-				}, spellcheck : __v_019.spellcheck, style : __v_019.style, tabIndex : __v_019.tabIndex, title : __v_019.title},[children41])]);
+				}, spellcheck : __v_019.spellcheck, style : __v_019.style, tabIndex : __v_019.tabIndex, title : __v_019.title},[children44])]);
 			} else {
-				children40 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children43 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children42;
+			var children45;
 			if(attr43.text != null) {
 				var attr48 = { };
-				var children43 = vdom__$VNode_VNode_$Impl_$.flatten([attr43.text]);
+				var children46 = vdom__$VNode_VNode_$Impl_$.flatten([attr43.text]);
 				var __v_020 = attr48;
 				var attr49 = attr48.className;
 				var _g20 = new haxe_ds_StringMap();
@@ -2745,7 +2768,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g20.h["mdc-tab__icon-text"] = true;
 				}
-				children42 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr49,vdom__$Attr_ClassName_$Impl_$.ofMap(_g20)), accessKey : __v_020.accessKey, accessKeyLabel : __v_020.accessKeyLabel, attributes : __v_020.attributes, contentEditable : __v_020.contentEditable, dir : __v_020.dir, draggable : __v_020.draggable, hidden : __v_020.hidden, id : __v_020.id, key : __v_020.key, lang : __v_020.lang, onabort : function(event1522) {
+				children45 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr49,vdom__$Attr_ClassName_$Impl_$.ofMap(_g20)), accessKey : __v_020.accessKey, accessKeyLabel : __v_020.accessKeyLabel, attributes : __v_020.attributes, contentEditable : __v_020.contentEditable, dir : __v_020.dir, draggable : __v_020.draggable, hidden : __v_020.hidden, id : __v_020.id, key : __v_020.key, lang : __v_020.lang, onabort : function(event1522) {
 				}, onblur : function(event1523) {
 				}, oncanplay : function(event1524) {
 				}, oncanplaythrough : function(event1525) {
@@ -2821,13 +2844,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1595) {
 				}, onwaiting : function(event1596) {
 				}, onwheel : function(event1597) {
-				}, spellcheck : __v_020.spellcheck, style : __v_020.style, tabIndex : __v_020.tabIndex, title : __v_020.title},[children43])]);
+				}, spellcheck : __v_020.spellcheck, style : __v_020.style, tabIndex : __v_020.tabIndex, title : __v_020.title},[children46])]);
 			} else {
-				children42 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children45 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children44 = vdom_VDom.h("a",attr45,[children40,children42,children39]);
+			var children47 = vdom_VDom.h("a",attr45,[children43,children45,children42]);
 			var attr50 = { icon : "colorize"};
-			var children45 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab2"]);
+			var children48 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab2"]);
 			var __v_021 = attr50;
 			var attr51 = attr50.className;
 			var _g21 = new haxe_ds_StringMap();
@@ -2919,10 +2942,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event1672) {
 			}, onwheel : function(event1673) {
 			}, spellcheck : __v_021.spellcheck, style : __v_021.style, tabIndex : __v_021.tabIndex, target : __v_021.target, title : __v_021.title, type : __v_021.type};
-			var children46;
+			var children49;
 			if(attr50.icon != null) {
 				var attr53 = { };
-				var children47 = vdom__$VNode_VNode_$Impl_$.flatten([attr50.icon]);
+				var children50 = vdom__$VNode_VNode_$Impl_$.flatten([attr50.icon]);
 				var __v_022 = attr53;
 				var attr54 = attr53.className;
 				var _g22 = new haxe_ds_StringMap();
@@ -2936,7 +2959,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g22.h["material-icons"] = true;
 				}
-				children46 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr54,vdom__$Attr_ClassName_$Impl_$.ofMap(_g22)), accessKey : __v_022.accessKey, accessKeyLabel : __v_022.accessKeyLabel, attributes : __v_022.attributes, contentEditable : __v_022.contentEditable, dir : __v_022.dir, draggable : __v_022.draggable, hidden : __v_022.hidden, id : __v_022.id, key : __v_022.key, lang : __v_022.lang, onabort : function(event1674) {
+				children49 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr54,vdom__$Attr_ClassName_$Impl_$.ofMap(_g22)), accessKey : __v_022.accessKey, accessKeyLabel : __v_022.accessKeyLabel, attributes : __v_022.attributes, contentEditable : __v_022.contentEditable, dir : __v_022.dir, draggable : __v_022.draggable, hidden : __v_022.hidden, id : __v_022.id, key : __v_022.key, lang : __v_022.lang, onabort : function(event1674) {
 				}, onblur : function(event1675) {
 				}, oncanplay : function(event1676) {
 				}, oncanplaythrough : function(event1677) {
@@ -3012,14 +3035,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1747) {
 				}, onwaiting : function(event1748) {
 				}, onwheel : function(event1749) {
-				}, spellcheck : __v_022.spellcheck, style : __v_022.style, tabIndex : __v_022.tabIndex, title : __v_022.title},[children47])]);
+				}, spellcheck : __v_022.spellcheck, style : __v_022.style, tabIndex : __v_022.tabIndex, title : __v_022.title},[children50])]);
 			} else {
-				children46 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children49 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children48;
+			var children51;
 			if(attr50.text != null) {
 				var attr55 = { };
-				var children49 = vdom__$VNode_VNode_$Impl_$.flatten([attr50.text]);
+				var children52 = vdom__$VNode_VNode_$Impl_$.flatten([attr50.text]);
 				var __v_023 = attr55;
 				var attr56 = attr55.className;
 				var _g23 = new haxe_ds_StringMap();
@@ -3028,7 +3051,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g23.h["mdc-tab__icon-text"] = true;
 				}
-				children48 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr56,vdom__$Attr_ClassName_$Impl_$.ofMap(_g23)), accessKey : __v_023.accessKey, accessKeyLabel : __v_023.accessKeyLabel, attributes : __v_023.attributes, contentEditable : __v_023.contentEditable, dir : __v_023.dir, draggable : __v_023.draggable, hidden : __v_023.hidden, id : __v_023.id, key : __v_023.key, lang : __v_023.lang, onabort : function(event1750) {
+				children51 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr56,vdom__$Attr_ClassName_$Impl_$.ofMap(_g23)), accessKey : __v_023.accessKey, accessKeyLabel : __v_023.accessKeyLabel, attributes : __v_023.attributes, contentEditable : __v_023.contentEditable, dir : __v_023.dir, draggable : __v_023.draggable, hidden : __v_023.hidden, id : __v_023.id, key : __v_023.key, lang : __v_023.lang, onabort : function(event1750) {
 				}, onblur : function(event1751) {
 				}, oncanplay : function(event1752) {
 				}, oncanplaythrough : function(event1753) {
@@ -3104,13 +3127,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1823) {
 				}, onwaiting : function(event1824) {
 				}, onwheel : function(event1825) {
-				}, spellcheck : __v_023.spellcheck, style : __v_023.style, tabIndex : __v_023.tabIndex, title : __v_023.title},[children49])]);
+				}, spellcheck : __v_023.spellcheck, style : __v_023.style, tabIndex : __v_023.tabIndex, title : __v_023.title},[children52])]);
 			} else {
-				children48 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children51 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children50 = vdom_VDom.h("a",attr52,[children46,children48,children45]);
+			var children53 = vdom_VDom.h("a",attr52,[children49,children51,children48]);
 			var attr57 = { icon : "edit"};
-			var children51 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
+			var children54 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
 			var __v_024 = attr57;
 			var attr58 = attr57.className;
 			var _g24 = new haxe_ds_StringMap();
@@ -3202,10 +3225,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			}, onwaiting : function(event1900) {
 			}, onwheel : function(event1901) {
 			}, spellcheck : __v_024.spellcheck, style : __v_024.style, tabIndex : __v_024.tabIndex, target : __v_024.target, title : __v_024.title, type : __v_024.type};
-			var children52;
+			var children55;
 			if(attr57.icon != null) {
 				var attr60 = { };
-				var children53 = vdom__$VNode_VNode_$Impl_$.flatten([attr57.icon]);
+				var children56 = vdom__$VNode_VNode_$Impl_$.flatten([attr57.icon]);
 				var __v_025 = attr60;
 				var attr61 = attr60.className;
 				var _g25 = new haxe_ds_StringMap();
@@ -3219,7 +3242,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g25.h["material-icons"] = true;
 				}
-				children52 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr61,vdom__$Attr_ClassName_$Impl_$.ofMap(_g25)), accessKey : __v_025.accessKey, accessKeyLabel : __v_025.accessKeyLabel, attributes : __v_025.attributes, contentEditable : __v_025.contentEditable, dir : __v_025.dir, draggable : __v_025.draggable, hidden : __v_025.hidden, id : __v_025.id, key : __v_025.key, lang : __v_025.lang, onabort : function(event1902) {
+				children55 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr61,vdom__$Attr_ClassName_$Impl_$.ofMap(_g25)), accessKey : __v_025.accessKey, accessKeyLabel : __v_025.accessKeyLabel, attributes : __v_025.attributes, contentEditable : __v_025.contentEditable, dir : __v_025.dir, draggable : __v_025.draggable, hidden : __v_025.hidden, id : __v_025.id, key : __v_025.key, lang : __v_025.lang, onabort : function(event1902) {
 				}, onblur : function(event1903) {
 				}, oncanplay : function(event1904) {
 				}, oncanplaythrough : function(event1905) {
@@ -3295,14 +3318,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event1975) {
 				}, onwaiting : function(event1976) {
 				}, onwheel : function(event1977) {
-				}, spellcheck : __v_025.spellcheck, style : __v_025.style, tabIndex : __v_025.tabIndex, title : __v_025.title},[children53])]);
+				}, spellcheck : __v_025.spellcheck, style : __v_025.style, tabIndex : __v_025.tabIndex, title : __v_025.title},[children56])]);
 			} else {
-				children52 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children55 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			var children54;
+			var children57;
 			if(attr57.text != null) {
 				var attr62 = { };
-				var children55 = vdom__$VNode_VNode_$Impl_$.flatten([attr57.text]);
+				var children58 = vdom__$VNode_VNode_$Impl_$.flatten([attr57.text]);
 				var __v_026 = attr62;
 				var attr63 = attr62.className;
 				var _g26 = new haxe_ds_StringMap();
@@ -3311,7 +3334,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				} else {
 					_g26.h["mdc-tab__icon-text"] = true;
 				}
-				children54 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr63,vdom__$Attr_ClassName_$Impl_$.ofMap(_g26)), accessKey : __v_026.accessKey, accessKeyLabel : __v_026.accessKeyLabel, attributes : __v_026.attributes, contentEditable : __v_026.contentEditable, dir : __v_026.dir, draggable : __v_026.draggable, hidden : __v_026.hidden, id : __v_026.id, key : __v_026.key, lang : __v_026.lang, onabort : function(event1978) {
+				children57 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr63,vdom__$Attr_ClassName_$Impl_$.ofMap(_g26)), accessKey : __v_026.accessKey, accessKeyLabel : __v_026.accessKeyLabel, attributes : __v_026.attributes, contentEditable : __v_026.contentEditable, dir : __v_026.dir, draggable : __v_026.draggable, hidden : __v_026.hidden, id : __v_026.id, key : __v_026.key, lang : __v_026.lang, onabort : function(event1978) {
 				}, onblur : function(event1979) {
 				}, oncanplay : function(event1980) {
 				}, oncanplaythrough : function(event1981) {
@@ -3387,81 +3410,87 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 				}, onvolumechange : function(event2051) {
 				}, onwaiting : function(event2052) {
 				}, onwheel : function(event2053) {
-				}, spellcheck : __v_026.spellcheck, style : __v_026.style, tabIndex : __v_026.tabIndex, title : __v_026.title},[children55])]);
+				}, spellcheck : __v_026.spellcheck, style : __v_026.style, tabIndex : __v_026.tabIndex, title : __v_026.title},[children58])]);
 			} else {
-				children54 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+				children57 = vdom__$VNode_VNode_$Impl_$.flatten([]);
 			}
-			return { type : "mdc-tab-bar--icons-with-text", tabs : vdom__$VNode_VNode_$Impl_$.flatten([children44,children50,vdom_VDom.h("a",attr59,[children52,children54,children51])])};
+			return { type : "mdc-tab-bar--icons-with-text", tabs : vdom__$VNode_VNode_$Impl_$.flatten([children47,children53,vdom_VDom.h("a",attr59,[children55,children57,children54])])};
 		})))])]);
-		var children56 = vdom_VDom.h("h1",{ },["List"]);
-		var children57 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Simple list"]),this.__coco__cache.getFactory("List",function(data15) {
-			return new mdc_List(data15);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache3 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
-			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Dense list"]),this.__coco__cache.getFactory("List",function(data16) {
-			return new mdc_List(data16);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache4 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
-			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Interactive list"]),this.__coco__cache.getFactory("List",function(data17) {
-			return new mdc_List(data17);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache5 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
-			return { interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 1"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 2"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Avatar list (+divider)"]),this.__coco__cache.getFactory("List",function(data18) {
-			return new mdc_List(data18);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache6 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
-			return { avatarList : true, interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 2"])),mdc_List.listDivider({ }),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Two line list (+inset divider)"]),this.__coco__cache.getFactory("List",function(data19) {
+		var children59 = vdom_VDom.h("h1",{ },["List"]);
+		var children60 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Simple list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data19) {
 			return new mdc_List(data19);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache7 = coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
-			var children58 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children59 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 1",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 1"]))]));
-			var children60 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children58,children59,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
-			var children61 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children62 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 2",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 2"]))]));
+			var __coco_cache3 = coconut_ui_tools_ViewCache.get();
+			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 3"]))])};
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Dense list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data20) {
+			return new mdc_List(data20);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			var __coco_cache4 = coconut_ui_tools_ViewCache.get();
+			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 3"]))])};
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Interactive list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data21) {
+			return new mdc_List(data21);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			var __coco_cache5 = coconut_ui_tools_ViewCache.get();
+			return { interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 1"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 2"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 3"]))])};
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Avatar list (+divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data22) {
+			return new mdc_List(data22);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			var __coco_cache6 = coconut_ui_tools_ViewCache.get();
+			return { avatarList : true, interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 2"])),mdc_List.listDivider({ }),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 3"]))])};
+		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Two line list (+inset divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data23) {
+			return new mdc_List(data23);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			var __coco_cache7 = coconut_ui_tools_ViewCache.get();
+			var children61 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
+			var children62 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 1",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 1"]))]));
 			var children63 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children61,children62,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
-			var children64 = mdc_List.listDivider({ inset : true});
-			var children65 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children66 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 3",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 3"]))]));
-			return { avatarList : true, interactive : true, twoLine : true, items : vdom__$VNode_VNode_$Impl_$.flatten([children60,children63,children64,mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children65,children66,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]))])};
+			var children64 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
+			var children65 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 2",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 2"]))]));
+			var children66 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children64,children65,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
+			var children67 = mdc_List.listDivider({ inset : true});
+			var children68 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
+			var children69 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 3",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 3"]))]));
+			return { avatarList : true, interactive : true, twoLine : true, items : vdom__$VNode_VNode_$Impl_$.flatten([children63,children66,children67,mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children68,children69,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]))])};
 		})))])]);
-		var children67 = vdom_VDom.h("h1",{ },["TextField"]);
-		var children68 = [this.__coco__cache.getFactory("TextField",function(data20) {
-			return new mdc_TextField(data20);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Text input"};
-		}))),this.__coco__cache.getFactory("TextField",function(data21) {
-			return new mdc_TextField(data21);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Boxed input", box : true};
-		}))),this.__coco__cache.getFactory("TextField",function(data22) {
-			return new mdc_TextField(data22);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Password input", type : "password"};
-		}))),this.__coco__cache.getFactory("TextField",function(data23) {
-			return new mdc_TextField(data23);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Icon input", box : true, icon : "list"};
-		}))),this.__coco__cache.getFactory("TextField",function(data24) {
+		var children70 = vdom_VDom.h("h1",{ },["TextField"]);
+		var children71 = [coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data24) {
 			return new mdc_TextField(data24);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "TextArea", textArea : true};
-		}))),vdom_VDom.h("br",{ }),this.__coco__cache.getFactory("TextField",function(data25) {
+			return { label : "Text input"};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data25) {
 			return new mdc_TextField(data25);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Text input fullWidth", fullWidth : true};
-		}))),this.__coco__cache.getFactory("TextField",function(data26) {
+			return { label : "Boxed input", box : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data26) {
 			return new mdc_TextField(data26);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Password input", type : "password"};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data27) {
+			return new mdc_TextField(data27);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Icon input", box : true, icon : "list"};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data28) {
+			return new mdc_TextField(data28);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "TextArea", textArea : true};
+		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data29) {
+			return new mdc_TextField(data29);
+		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
+			return { label : "Text input fullWidth", fullWidth : true};
+		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data30) {
+			return new mdc_TextField(data30);
 		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
 			return { label : "TextArea fullWidth", textArea : true, fullWidth : true};
 		})))];
-		return vdom_VDom.h("div",attr,[children,children2,children3,children5,children6,children7,children56,children57,children67,vdom_VDom.h("div",{ },children68)]);
+		return vdom_VDom.h("div",attr,[children,children2,children3,children5,children6,children8,children9,children10,children59,children60,children70,vdom_VDom.h("div",{ },children71)]);
+	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
 	}
 	,__class__: TestView
+	,__properties__: {get_data:"get_data"}
 });
 var Reflect = function() { };
 $hxClasses["Reflect"] = Reflect;
@@ -4316,19 +4345,39 @@ var coconut_ui_tools_ViewCache = function() {
 };
 $hxClasses["coconut.ui.tools.ViewCache"] = coconut_ui_tools_ViewCache;
 coconut_ui_tools_ViewCache.__name__ = ["coconut","ui","tools","ViewCache"];
-coconut_ui_tools_ViewCache.__properties__ = {get_current:"get_current"};
-coconut_ui_tools_ViewCache.get_current = function() {
-	return coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1].cache;
+coconut_ui_tools_ViewCache.get = function() {
+	var _g = coconut_ui_tools_ViewCache.stack;
+	if(_g.length == 0) {
+		return new coconut_ui_tools_ViewCache();
+	} else {
+		var v = _g;
+		return v[v.length - 1][0];
+	}
 };
 coconut_ui_tools_ViewCache.prototype = {
 	__cache: null
 	,cached: function(f) {
-		var o = { cache : this};
-		coconut_ui_tools_ViewCache.stack.push(o);
-		var ret = f();
-		HxOverrides.remove(coconut_ui_tools_ViewCache.stack,o);
+		if(coconut_ui_tools_ViewCache.stack.length > 0 && coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1][0] == this) {
+			return f();
+		}
+		var this1;
+		var this2 = new Array(1);
+		this1 = this2;
+		var ret = this1;
+		ret[0] = this;
+		var entry = ret;
+		coconut_ui_tools_ViewCache.stack.push(entry);
+		var ret1;
+		try {
+			ret1 = tink_core_Outcome.Success(f());
+		} catch( e ) {
+			haxe_CallStack.lastException = e;
+			if (e instanceof js__$Boot_HaxeError) e = e.val;
+			ret1 = tink_core_Outcome.Failure(e);
+		}
+		HxOverrides.remove(coconut_ui_tools_ViewCache.stack,entry);
 		this.purge();
-		return ret;
+		return tink_core_OutcomeTools.sure(ret1);
 	}
 	,purge: function() {
 		var _this = this.__cache;
@@ -6877,6 +6926,7 @@ var mdc_Button = function(data) {
 		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
 		return _gthis.render(tmp);
 	});
+	this.__cocodata = data;
 };
 $hxClasses["mdc.Button"] = mdc_Button;
 mdc_Button.__name__ = ["mdc","Button"];
@@ -7003,7 +7053,7 @@ mdc_Button.prototype = $extend(coconut_ui_View.prototype,{
 		}, onvolumechange : function(event72) {
 		}, onwaiting : function(event73) {
 		}, onwheel : function(event74) {
-		}, placeholder : __v_0.placeholder, required : __v_0.required, spellcheck : __v_0.spellcheck, step : __v_0.step, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title, type : __v_0.type, value : __v_0.value},[attr.icon != null ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-button__icon material-icons")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.label]);
+		}, pattern : __v_0.pattern, placeholder : __v_0.placeholder, required : __v_0.required, spellcheck : __v_0.spellcheck, step : __v_0.step, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title, type : __v_0.type, value : __v_0.value},[attr.icon != null ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-button__icon material-icons")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.label]);
 	}
 	,afterInit: function(elem) {
 		this.mdcRipple = new window.mdc.ripple.MDCRipple(elem);
@@ -7013,7 +7063,230 @@ mdc_Button.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcRipple.destroy();
 		}
 	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
 	,__class__: mdc_Button
+	,__properties__: {get_data:"get_data"}
+});
+var mdc_Checkbox = function(data) {
+	var _gthis = this;
+	coconut_ui_View.call(this,data,function(data1) {
+		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
+		return _gthis.render(tmp);
+	});
+	this.__cocodata = data;
+};
+$hxClasses["mdc.Checkbox"] = mdc_Checkbox;
+mdc_Checkbox.__name__ = ["mdc","Checkbox"];
+mdc_Checkbox.svg = function(attr,children) {
+	return vdom_VDom.h("svg",attr,children);
+};
+mdc_Checkbox.path = function(attr,children) {
+	return vdom_VDom.h("path",attr,children);
+};
+mdc_Checkbox.__super__ = coconut_ui_View;
+mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
+	mdcCheckbox: null
+	,render: function(attr) {
+		if(attr.label != null) {
+			var __v_0 = attr;
+			var attr1 = attr.className;
+			var _g = new haxe_ds_StringMap();
+			if(__map_reserved["mdc-form-field"] != null) {
+				_g.setReserved("mdc-form-field",true);
+			} else {
+				_g.h["mdc-form-field"] = true;
+			}
+			return vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
+			}, onblur : function(event1) {
+			}, oncanplay : function(event2) {
+			}, oncanplaythrough : function(event3) {
+			}, onchange : function(event4) {
+			}, onclick : function(event5) {
+			}, oncontextmenu : function(event6) {
+			}, oncopy : function(event7) {
+			}, oncut : function(event8) {
+			}, ondblclick : function(event9) {
+			}, ondrag : function(event10) {
+			}, ondragend : function(event11) {
+			}, ondragenter : function(event12) {
+			}, ondragleave : function(event13) {
+			}, ondragover : function(event14) {
+			}, ondragstart : function(event15) {
+			}, ondrop : function(event16) {
+			}, ondurationchange : function(event17) {
+			}, onemptied : function(event18) {
+			}, onended : function(event19) {
+			}, onerror : function(event20) {
+			}, onfocus : function(event21) {
+			}, onfullscreenchange : function(event22) {
+			}, onfullscreenerror : function(event23) {
+			}, ongotpointercapture : function(event24) {
+			}, oninput : function(event25) {
+			}, oninvalid : function(event26) {
+			}, onkeydown : function(event27) {
+			}, onkeypress : function(event28) {
+			}, onkeyup : function(event29) {
+			}, onload : function(event30) {
+			}, onloadeddata : function(event31) {
+			}, onloadedmetadata : function(event32) {
+			}, onloadstart : function(event33) {
+			}, onlostpointercapture : function(event34) {
+			}, onmousedown : function(event35) {
+			}, onmouseenter : function(event36) {
+			}, onmouseleave : function(event37) {
+			}, onmousemove : function(event38) {
+			}, onmouseout : function(event39) {
+			}, onmouseover : function(event40) {
+			}, onmouseup : function(event41) {
+			}, onpaste : function(event42) {
+			}, onpause : function(event43) {
+			}, onplay : function(event44) {
+			}, onplaying : function(event45) {
+			}, onpointercancel : function(event46) {
+			}, onpointerdown : function(event47) {
+			}, onpointerenter : function(event48) {
+			}, onpointerleave : function(event49) {
+			}, onpointerlockchange : function(event50) {
+			}, onpointerlockerror : function(event51) {
+			}, onpointermove : function(event52) {
+			}, onpointerout : function(event53) {
+			}, onpointerover : function(event54) {
+			}, onpointerup : function(event55) {
+			}, onprogress : function(event56) {
+			}, onratechange : function(event57) {
+			}, onreset : function(event58) {
+			}, onresize : function(event59) {
+			}, onscroll : function(event60) {
+			}, onseeked : function(event61) {
+			}, onseeking : function(event62) {
+			}, onselect : function(event63) {
+			}, onshow : function(event64) {
+			}, onstalled : function(event65) {
+			}, onsubmit : function(event66) {
+			}, onsuspend : function(event67) {
+			}, ontimeupdate : function(event68) {
+			}, ontouchcancel : function(event69) {
+			}, ontouchend : function(event70) {
+			}, ontouchmove : function(event71) {
+			}, ontouchstart : function(event72) {
+			}, onvolumechange : function(event73) {
+			}, onwaiting : function(event74) {
+			}, onwheel : function(event75) {
+			}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox")},[vdom_VDom.h("input",{ type : "checkbox", onchange : function(event76) {
+				attr.onchecked(event76.target.checked);
+			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control")}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")},[vdom_HtmlFragment.create({ content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")},null)])]),vdom_VDom.h("label",{ htmlFor : "my-checkbox"},[attr.label])]);
+		} else {
+			var __v_01 = attr;
+			return vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox"), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event77) {
+			}, onblur : function(event78) {
+			}, oncanplay : function(event79) {
+			}, oncanplaythrough : function(event80) {
+			}, onchange : function(event81) {
+			}, onclick : function(event82) {
+			}, oncontextmenu : function(event83) {
+			}, oncopy : function(event84) {
+			}, oncut : function(event85) {
+			}, ondblclick : function(event86) {
+			}, ondrag : function(event87) {
+			}, ondragend : function(event88) {
+			}, ondragenter : function(event89) {
+			}, ondragleave : function(event90) {
+			}, ondragover : function(event91) {
+			}, ondragstart : function(event92) {
+			}, ondrop : function(event93) {
+			}, ondurationchange : function(event94) {
+			}, onemptied : function(event95) {
+			}, onended : function(event96) {
+			}, onerror : function(event97) {
+			}, onfocus : function(event98) {
+			}, onfullscreenchange : function(event99) {
+			}, onfullscreenerror : function(event100) {
+			}, ongotpointercapture : function(event101) {
+			}, oninput : function(event102) {
+			}, oninvalid : function(event103) {
+			}, onkeydown : function(event104) {
+			}, onkeypress : function(event105) {
+			}, onkeyup : function(event106) {
+			}, onload : function(event107) {
+			}, onloadeddata : function(event108) {
+			}, onloadedmetadata : function(event109) {
+			}, onloadstart : function(event110) {
+			}, onlostpointercapture : function(event111) {
+			}, onmousedown : function(event112) {
+			}, onmouseenter : function(event113) {
+			}, onmouseleave : function(event114) {
+			}, onmousemove : function(event115) {
+			}, onmouseout : function(event116) {
+			}, onmouseover : function(event117) {
+			}, onmouseup : function(event118) {
+			}, onpaste : function(event119) {
+			}, onpause : function(event120) {
+			}, onplay : function(event121) {
+			}, onplaying : function(event122) {
+			}, onpointercancel : function(event123) {
+			}, onpointerdown : function(event124) {
+			}, onpointerenter : function(event125) {
+			}, onpointerleave : function(event126) {
+			}, onpointerlockchange : function(event127) {
+			}, onpointerlockerror : function(event128) {
+			}, onpointermove : function(event129) {
+			}, onpointerout : function(event130) {
+			}, onpointerover : function(event131) {
+			}, onpointerup : function(event132) {
+			}, onprogress : function(event133) {
+			}, onratechange : function(event134) {
+			}, onreset : function(event135) {
+			}, onresize : function(event136) {
+			}, onscroll : function(event137) {
+			}, onseeked : function(event138) {
+			}, onseeking : function(event139) {
+			}, onselect : function(event140) {
+			}, onshow : function(event141) {
+			}, onstalled : function(event142) {
+			}, onsubmit : function(event143) {
+			}, onsuspend : function(event144) {
+			}, ontimeupdate : function(event145) {
+			}, ontouchcancel : function(event146) {
+			}, ontouchend : function(event147) {
+			}, ontouchmove : function(event148) {
+			}, ontouchstart : function(event149) {
+			}, onvolumechange : function(event150) {
+			}, onwaiting : function(event151) {
+			}, onwheel : function(event152) {
+			}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[vdom_VDom.h("input",{ type : "checkbox", onchange : function(event153) {
+				attr.onchecked(event153.target.checked);
+			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control")}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")},[vdom_HtmlFragment.create({ content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")},null)])]);
+		}
+	}
+	,afterInit: function(elem) {
+		this.mdcCheckbox = new window.mdc.checkbox.MDCCheckbox(elem);
+		this.setCheckboxProperties();
+	}
+	,afterPatching: function(elem) {
+		this.setCheckboxProperties();
+	}
+	,setCheckboxProperties: function() {
+		this.mdcCheckbox.checked = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).checked;
+		this.mdcCheckbox.indeterminate = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).indeterminate;
+		this.mdcCheckbox.disabled = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).disabled;
+		this.mdcCheckbox.value = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).value;
+	}
+	,destroy: function() {
+		if(this.mdcCheckbox != null) {
+			this.mdcCheckbox.destroy();
+		}
+	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
+	,__class__: mdc_Checkbox
+	,__properties__: {get_data:"get_data"}
 });
 var mdc_List = function(data) {
 	var _gthis = this;
@@ -7021,6 +7294,7 @@ var mdc_List = function(data) {
 		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
 		return _gthis.render(tmp);
 	});
+	this.__cocodata = data;
 };
 $hxClasses["mdc.List"] = mdc_List;
 mdc_List.__name__ = ["mdc","List"];
@@ -8141,7 +8415,13 @@ mdc_List.prototype = $extend(coconut_ui_View.prototype,{
 			}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[attr.items]);
 		}
 	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
 	,__class__: mdc_List
+	,__properties__: {get_data:"get_data"}
 });
 var mdc_MDC = function() { };
 $hxClasses["mdc.MDC"] = mdc_MDC;
@@ -8206,6 +8486,7 @@ var mdc_TabBar = function(data) {
 		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
 		return _gthis.render(tmp);
 	});
+	this.__cocodata = data;
 };
 $hxClasses["mdc.TabBar"] = mdc_TabBar;
 mdc_TabBar.__name__ = ["mdc","TabBar"];
@@ -8785,7 +9066,13 @@ mdc_TabBar.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcTabBar.destroy();
 		}
 	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
 	,__class__: mdc_TabBar
+	,__properties__: {get_data:"get_data"}
 });
 var mdc_TextField = function(data) {
 	var _gthis = this;
@@ -8794,6 +9081,7 @@ var mdc_TextField = function(data) {
 		return _gthis.render(tmp);
 	});
 	this.textFieldId = mdc_TextField.textFieldIdIndex++;
+	this.__cocodata = data;
 };
 $hxClasses["mdc.TextField"] = mdc_TextField;
 mdc_TextField.__name__ = ["mdc","TextField"];
@@ -8916,7 +9204,10 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 		}, onvolumechange : function(event73) {
 		}, onwaiting : function(event74) {
 		}, onwheel : function(event75) {
-		}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[attr.icon != null && attr.iconPos != "right" ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.textArea ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("textarea",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId))},[attr.value])]) : vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("input",{ type : attr.type != null ? "text" : attr.type, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId)), value : attr.value})]),attr.label != null ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("label",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__label"), htmlFor : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId))},[attr.label])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.icon != null && attr.iconPos == "right" ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__bottom-line")},null)]);
+		}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[attr.icon != null && attr.iconPos != "right" ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.textArea ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("textarea",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId)), required : attr.required},[attr.value])]) : vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("input",{ type : attr.type != null ? attr.type : "text", pattern : attr.pattern, required : attr.required, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId)), value : attr.value})]),attr.label != null ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("label",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__label"), htmlFor : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId))},[attr.label])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.icon != null && attr.iconPos == "right" ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__bottom-line")},null)]);
+	}
+	,afterPatching: function(elem) {
+		this.mdcTextField.valid = !tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).invalid;
 	}
 	,afterInit: function(elem) {
 		this.mdcTextField = new mdc.textField.MDCTextField(elem);
@@ -8926,7 +9217,59 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcTextField.destroy();
 		}
 	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
 	,__class__: mdc_TextField
+	,__properties__: {get_data:"get_data"}
+});
+var mdc_TextFieldHelperText = function(data) {
+	var _gthis = this;
+	coconut_ui_View.call(this,data,function(data1) {
+		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
+		return _gthis.render(tmp);
+	});
+	this.__cocodata = data;
+};
+$hxClasses["mdc.TextFieldHelperText"] = mdc_TextFieldHelperText;
+mdc_TextFieldHelperText.__name__ = ["mdc","TextFieldHelperText"];
+mdc_TextFieldHelperText.__super__ = coconut_ui_View;
+mdc_TextFieldHelperText.prototype = $extend(coconut_ui_View.prototype,{
+	render: function(__data__) {
+		var validation = __data__.validation;
+		var persistent = __data__.persistent;
+		var label = __data__.label;
+		var className = __data__.className;
+		var attr = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).className;
+		var _g = new haxe_ds_StringMap();
+		if(__map_reserved["mdc-text-field-helper-text"] != null) {
+			_g.setReserved("mdc-text-field-helper-text",true);
+		} else {
+			_g.h["mdc-text-field-helper-text"] = true;
+		}
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).persistent;
+		if(__map_reserved["mdc-text-field-helper-text--persistent"] != null) {
+			_g.setReserved("mdc-text-field-helper-text--persistent",value);
+		} else {
+			_g.h["mdc-text-field-helper-text--persistent"] = value;
+		}
+		var value1 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).validation;
+		if(__map_reserved["mdc-text-field-helper-text--validation-msg"] != null) {
+			_g.setReserved("mdc-text-field-helper-text--validation-msg",value1);
+		} else {
+			_g.h["mdc-text-field-helper-text--validation-msg"] = value1;
+		}
+		return vdom_VDom.h("p",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}},[tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).label]);
+	}
+	,__cocodata: null
+	,data: null
+	,get_data: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	}
+	,__class__: mdc_TextFieldHelperText
+	,__properties__: {get_data:"get_data"}
 });
 var tink_core_Annex = function(target) {
 	this.target = target;
@@ -9008,6 +9351,11 @@ tink_core__$Callback_CallbackLink_$Impl_$.__name__ = ["tink","core","_Callback",
 tink_core__$Callback_CallbackLink_$Impl_$._new = function(link) {
 	var this1 = new tink_core__$Callback_SimpleLink(link);
 	return this1;
+};
+tink_core__$Callback_CallbackLink_$Impl_$.cancel = function(this1) {
+	if(this1 != null) {
+		this1.dissolve();
+	}
 };
 tink_core__$Callback_CallbackLink_$Impl_$.dissolve = function(this1) {
 	if(this1 != null) {
@@ -9173,13 +9521,32 @@ tink_core_TypedError.typed = function(code,message,data,pos) {
 tink_core_TypedError.ofJsError = function(e,pos) {
 	return tink_core_TypedError.withData(500,e.message,e,pos);
 };
+tink_core_TypedError.asError = function(v) {
+	if(v != null && v.isTinkError) {
+		return v;
+	} else {
+		return null;
+	}
+};
 tink_core_TypedError.catchExceptions = function(f,report,pos) {
 	try {
 		return tink_core_Outcome.Success(f());
 	} catch( e ) {
 		haxe_CallStack.lastException = e;
 		if (e instanceof js__$Boot_HaxeError) e = e.val;
-		return tink_core_Outcome.Failure(e.isTinkError ? e : report == null ? tink_core_TypedError.withData(null,"Unexpected Error",e,pos) : report(e));
+		var _g = tink_core_TypedError.asError(e);
+		var tmp;
+		if(_g == null) {
+			if(report == null) {
+				tmp = tink_core_TypedError.withData(null,"Unexpected Error",e,pos);
+			} else {
+				tmp = report(e);
+			}
+		} else {
+			var e1 = _g;
+			tmp = e1;
+		}
+		return tink_core_Outcome.Failure(tmp);
 	}
 };
 tink_core_TypedError.reporter = function(code,message,pos) {
@@ -9189,6 +9556,10 @@ tink_core_TypedError.reporter = function(code,message,pos) {
 };
 tink_core_TypedError.rethrow = function(any) {
 	throw js__$Boot_HaxeError.wrap(any);
+};
+tink_core_TypedError.tryFinally = function(f,cleanup) {
+	try { return f(); } finally { cleanup(); }
+	return null;
 };
 tink_core_TypedError.prototype = {
 	message: null
@@ -9217,7 +9588,7 @@ var tink_core__$Error_Stack_$Impl_$ = {};
 $hxClasses["tink.core._Error.Stack_Impl_"] = tink_core__$Error_Stack_$Impl_$;
 tink_core__$Error_Stack_$Impl_$.__name__ = ["tink","core","_Error","Stack_Impl_"];
 tink_core__$Error_Stack_$Impl_$.toString = function(this1) {
-	return haxe_CallStack.toString(this1);
+	return "Error stack not available. Compile with -D error_stack.";
 };
 var tink_core__$Future_FutureObject = function() { };
 $hxClasses["tink.core._Future.FutureObject"] = tink_core__$Future_FutureObject;
@@ -9392,7 +9763,7 @@ tink_core__$Future_Future_$Impl_$.ofJsPromise = function(promise) {
 		promise.then(function(a) {
 			cb(tink_core_Outcome.Success(a));
 		})["catch"](function(e) {
-			var tmp = tink_core_Outcome.Failure(tink_core_TypedError.withData(null,e.message,e,{ fileName : "Future.hx", lineNumber : 77, className : "tink.core._Future.Future_Impl_", methodName : "ofJsPromise"}));
+			var tmp = tink_core_Outcome.Failure(tink_core_TypedError.withData(null,e.message,e,{ fileName : "Future.hx", lineNumber : 78, className : "tink.core._Future.Future_Impl_", methodName : "ofJsPromise"}));
 			cb(tmp);
 		});
 	});
@@ -9679,19 +10050,8 @@ tink_core_FutureTrigger.prototype = {
 			var list = this.list;
 			this.list = null;
 			this.result = result;
-			if(tink_core_FutureTrigger.depth >= 1000) {
-				tink_core__$Callback_Callback_$Impl_$.defer(function() {
-					tink_core_FutureTrigger.depth++;
-					tink_core__$Callback_CallbackList_$Impl_$.invoke(list,result);
-					tink_core__$Callback_CallbackList_$Impl_$.clear(list);
-					tink_core_FutureTrigger.depth--;
-				});
-			} else {
-				tink_core_FutureTrigger.depth++;
-				tink_core__$Callback_CallbackList_$Impl_$.invoke(list,result);
-				tink_core__$Callback_CallbackList_$Impl_$.clear(list);
-				tink_core_FutureTrigger.depth--;
-			}
+			tink_core__$Callback_CallbackList_$Impl_$.invoke(list,result);
+			tink_core__$Callback_CallbackList_$Impl_$.clear(list);
 			return true;
 		}
 	}
@@ -9934,10 +10294,12 @@ tink_core_OutcomeTools.sure = function(outcome) {
 		return data;
 	case 1:
 		var failure = outcome[2];
-		if(js_Boot.__instanceof(failure,tink_core_TypedError)) {
-			return failure.throwSelf();
-		} else {
+		var _g = tink_core_TypedError.asError(failure);
+		if(_g == null) {
 			throw new js__$Boot_HaxeError(failure);
+		} else {
+			var e = _g;
+			return e.throwSelf();
 		}
 		break;
 	}
@@ -10479,6 +10841,30 @@ tink_core__$Signal_Signal_$Impl_$.filter = function(this1,f,gather) {
 		return ret;
 	}
 };
+tink_core__$Signal_Signal_$Impl_$.select = function(this1,selector,gather) {
+	if(gather == null) {
+		gather = true;
+	}
+	var this2 = new tink_core__$Signal_SimpleSignal(function(cb) {
+		return this1.handle(function(result) {
+			var _g = selector(result);
+			switch(_g[1]) {
+			case 0:
+				var v = _g[2];
+				tink_core__$Callback_Callback_$Impl_$.invoke(cb,v);
+				break;
+			case 1:
+				break;
+			}
+		});
+	});
+	var ret = this2;
+	if(gather) {
+		return tink_core__$Signal_Signal_$Impl_$.gather(ret);
+	} else {
+		return ret;
+	}
+};
 tink_core__$Signal_Signal_$Impl_$.join = function(this1,other,gather) {
 	if(gather == null) {
 		gather = true;
@@ -10493,16 +10879,18 @@ tink_core__$Signal_Signal_$Impl_$.join = function(this1,other,gather) {
 		return ret;
 	}
 };
-tink_core__$Signal_Signal_$Impl_$.next = function(this1) {
+tink_core__$Signal_Signal_$Impl_$.nextTime = function(this1,condition) {
 	var ret = new tink_core_FutureTrigger();
 	var link = null;
 	var immediate = false;
 	link = this1.handle(function(v) {
-		ret.trigger(v);
-		if(link == null) {
-			immediate = true;
-		} else if(link != null) {
-			link.dissolve();
+		if(condition == null || condition(v)) {
+			ret.trigger(v);
+			if(link == null) {
+				immediate = true;
+			} else if(link != null) {
+				link.dissolve();
+			}
 		}
 	});
 	if(immediate) {
@@ -10511,6 +10899,9 @@ tink_core__$Signal_Signal_$Impl_$.next = function(this1) {
 		}
 	}
 	return ret;
+};
+tink_core__$Signal_Signal_$Impl_$.next = function(this1,condition) {
+	return tink_core__$Signal_Signal_$Impl_$.nextTime(this1,condition);
 };
 tink_core__$Signal_Signal_$Impl_$.noise = function(this1) {
 	return tink_core__$Signal_Signal_$Impl_$.map(this1,function(_) {
@@ -10631,7 +11022,7 @@ tink_state__$Observable_Observable_$Impl_$.get_value = function(this1) {
 tink_state__$Observable_Observable_$Impl_$._new = function(get,changed) {
 	var this1 = tink_state__$Observable_Observable_$Impl_$.create(function() {
 		var this2;
-		var this3 = new tink_core_MPair(get(),tink_core__$Signal_Signal_$Impl_$.next(changed));
+		var this3 = new tink_core_MPair(get(),tink_core__$Signal_Signal_$Impl_$.nextTime(changed,null));
 		this2 = this3;
 		return this2;
 	},{ fileName : "Observable.hx", lineNumber : 17, className : "tink.state._Observable.Observable_Impl_", methodName : "_new"});
@@ -11360,6 +11751,35 @@ Bool.__ename__ = ["Bool"];
 var Class = $hxClasses["Class"] = { __name__ : ["Class"]};
 var Enum = { };
 var Void = $hxClasses["Void"] = { __ename__ : ["Void"]};
+if(typeof WeakMap == "undefined") {
+	var counter = 0;
+	var cls = function() {
+	};
+	cls.prototype = { get : function(k) {
+		var tmp;
+		if(k == null) {
+			tmp = 0;
+		} else if(k.__hx_key__ == null) {
+			counter += 1;
+			tmp = k.__hx_key__ = counter;
+		} else {
+			tmp = k.__hx_key__;
+		}
+		return this[tmp];
+	}, set : function(k1,v) {
+		var tmp1;
+		if(k1 == null) {
+			tmp1 = 0;
+		} else if(k1.__hx_key__ == null) {
+			counter += 1;
+			tmp1 = k1.__hx_key__ = counter;
+		} else {
+			tmp1 = k1.__hx_key__;
+		}
+		this[tmp1] = v;
+	}};
+	window.WeakMap = cls;
+}
 var __map_reserved = {};
 var ArrayBuffer = $global.ArrayBuffer || js_html_compat_ArrayBuffer;
 if(ArrayBuffer.prototype.slice == null) {
@@ -13115,14 +13535,16 @@ haxe_io_FPHelper.LN2 = 0.6931471805599453;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Float32Array.BYTES_PER_ELEMENT = 4;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
+mdc_Checkbox.checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
 mdc_MDC.DEFAULT_RIPPLE = true;
 mdc_TextField.textFieldIdIndex = 0;
 tink_core__$Callback_Callback_$Impl_$.depth = 0;
 tink_core__$Callback_Callback_$Impl_$.MAX_DEPTH = 1000;
 tink_core__$Future_NeverFuture.inst = new tink_core__$Future_NeverFuture();
+tink_core__$Future_Future_$Impl_$.NULL = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(null));
 tink_core__$Future_Future_$Impl_$.NOISE = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core_Noise.Noise));
 tink_core__$Future_Future_$Impl_$.NEVER = tink_core__$Future_NeverFuture.inst;
-tink_core_FutureTrigger.depth = 0;
+tink_core__$Promise_Promise_$Impl_$.NULL = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core_Outcome.Success(null)));
 tink_core__$Promise_Promise_$Impl_$.NOISE = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core_Outcome.Success(tink_core_Noise.Noise)));
 tink_core__$Promise_Promise_$Impl_$.NEVER = (function($this) {
 	var $r;

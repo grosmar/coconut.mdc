@@ -28,7 +28,7 @@ class TestView extends View<{}>
 <div class="demo">
     <h1>Normal Buttons</h1>
     <div>
-        <Button label="Simple" onclick={trace("clicked")} />
+        <Button label="Simple" onclick=${trace("clicked")} />
         <Button label="Dense" dense/>
         <Button label="Compact" compact />
         <Button label="Disabled" disabled />
@@ -38,12 +38,20 @@ class TestView extends View<{}>
 
     <h1>Raised Buttons</h1>
     <div>
-        <Button label="Simple" raised onclick={trace("clicked")} />
+        <Button label="Simple" raised onclick=${trace("clicked")} />
         <Button label="Dense" raised dense/>
         <Button label="Compact" raised compact />
         <Button label="Disabled" raised disabled />
         <Button label="Unelevated" raised unelevated />
         <Button label="Icon" raised icon="favorite" />
+    </div>
+
+    <h1>Checkbox</h1>
+    <div>
+        <Checkbox label="Simple" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        <Checkbox label="Checked" checked />
+        <Checkbox label="Indeterminate" indeterminate />
+        <Checkbox label="Disabled" disabled />
     </div>
 
     <h1>TabBar</h1>
