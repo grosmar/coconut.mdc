@@ -18,7 +18,7 @@ class Checkbox extends View<CheckboxAttr>
     {
         return
             if ( attr.label != null )
-                @hxx '<div class="mdc-form-field" {...attr}>
+                @hxx '<div class=${attr.className.add(["mdc-form-field" => true])} {...attr}>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
                                    onchange=${attr.onchecked(event.target.checked)}
@@ -40,8 +40,6 @@ class Checkbox extends View<CheckboxAttr>
             else
                 @hxx '<div class="mdc-checkbox" {...attr}>
                       <input type="checkbox"
-                             value=${attr.value}
-                             checked=${attr.checked}
                              onchange=${attr.onchecked(event.target.checked)}
                              class="mdc-checkbox__native-control"/>
                       <div class="mdc-checkbox__background">
@@ -61,6 +59,20 @@ class Checkbox extends View<CheckboxAttr>
     override function afterInit(elem)
     {
         this.mdcCheckbox = new MDCCheckbox(elem);
+        setCheckboxProperties();
+    }
+
+    override function afterPatching(elem)
+    {
+        setCheckboxProperties();
+    }
+
+    function setCheckboxProperties()
+    {
+        mdcCheckbox.checked = data.checked;
+        mdcCheckbox.indeterminate = data.indeterminate;
+        mdcCheckbox.disabled = data.disabled;
+        mdcCheckbox.value = data.value;
     }
 
     override function destroy()

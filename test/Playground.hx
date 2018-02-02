@@ -5,6 +5,7 @@ import vdom.VNode;
 import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
+import mdc.TextField.TextFieldHelperText;
 import mdc.List.*;
 import mdc.TabBar.*;
 import mdc.TabBar.TabBarType;
@@ -28,7 +29,7 @@ class TestView extends View<{}>
 <div class="demo">
     <h1>Normal Buttons</h1>
     <div>
-        <Button label="Simple" onclick={trace("clicked")} />
+        <Button label="Simple" onclick=${trace("clicked")} />
         <Button label="Dense" dense/>
         <Button label="Compact" compact />
         <Button label="Disabled" disabled />
@@ -38,12 +39,20 @@ class TestView extends View<{}>
 
     <h1>Raised Buttons</h1>
     <div>
-        <Button label="Simple" raised onclick={trace("clicked")} />
+        <Button label="Simple" raised onclick=${trace("clicked")} />
         <Button label="Dense" raised dense/>
         <Button label="Compact" raised compact />
         <Button label="Disabled" raised disabled />
         <Button label="Unelevated" raised unelevated />
         <Button label="Icon" raised icon="favorite" />
+    </div>
+
+    <h1>Checkbox</h1>
+    <div>
+        <Checkbox label="Simple" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        <Checkbox label="Checked" checked />
+        <Checkbox label="Indeterminate" indeterminate />
+        <Checkbox label="Disabled" disabled />
     </div>
 
     <h1>TabBar</h1>
@@ -79,6 +88,19 @@ class TestView extends View<{}>
         </div>
     </div>
 
+    <h1>LinearProgress</h1>
+    <div class="flex-container">
+        <h2>Progress</h2>
+        <LinearProgress progress=${0.7} open />
+        <h2>Buffer</h2>
+        <LinearProgress progress=${0.3} buffer=${0.4} open />
+        <h2>Indeterminate</h2>
+        <LinearProgress indeterminate open />
+        <h2>Reverse</h2>
+        <LinearProgress progress=${0.7} reverse open />
+        <h2>Reverse indeterminate</h2>
+        <LinearProgress indeterminate reverse open />
+    </div>
 
     <h1>List</h1>
     <div class="flex-container">
@@ -182,6 +204,11 @@ class TestView extends View<{}>
         <TextField label="Boxed input" box />
         <TextField label="Password input" type="password" />
         <TextField label="Icon input" box icon="list" />
+        <br/>
+        <TextField label="Input with helper" />
+        <TextFieldHelperText label="Helper for above" />
+        <TextField label="Input with validation" invalid required />
+        <TextFieldHelperText label="Error message" validation />
         <TextField label="TextArea" textArea  />
         <br/>
         <TextField label="Text input fullWidth" fullWidth />

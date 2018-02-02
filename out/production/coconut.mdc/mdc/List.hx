@@ -30,16 +30,6 @@ class List extends View<ListAttr>
 			   : @hxx '<ul className=${className} {...attr}>${attr.items}</ul>';
 	}
 
-	/*static public function list(attr:ListAttr, children:VNode):VNode
-		return attr.interactive
-		   ? @hxx '<nav class=${attr.className.add(["mdc-list" => true,
-													"mdc-list--two-line" => attr.twoLine,
-													"mdc-list--avatar-list" => attr.avatarList,
-												    "mdc-list--dense" => attr.dense ])} {...attr}>${children}</nav>'
-		   : @hxx '<ul class=${attr.className.add(["mdc-list" => true,
-		 										   "mdc-list--two-line" => attr.twoLine,
-											 	   "mdc-list--avatar-list" => attr.avatarList ])} {...attr}>{children}</ul>';*/
-
 	static public function listItem(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
 		return @hxx '<li class=${attr.className.add(["mdc-list-item" => true,
 													 "mdc-ripple-surface" => (attr.ripple == null ? MDC.DEFAULT_RIPPLE : attr.ripple)])}
@@ -53,29 +43,29 @@ class List extends View<ListAttr>
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</a>';
 
 	static public function listStartDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
-		return @hxx '<i class=${attr.className.add(["mdc-list-item__start-detail" => true,
+		return @hxx '<i class=${attr.className.add(["mdc-list-item__graphic" => true,
 													"mdc-ripple-surface" => attr.ripple])}
 													data-mdc-ripple-is-unbounded={attr.unboundedRipple} {...attr}>{children}</i>';
 
 	static public function listStartIcon(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
-		return @hxx '<i class=${attr.className.add(["mdc-list-item__start-detail" => true,
+		return @hxx '<i class=${attr.className.add(["mdc-list-item__graphic" => true,
 													"material-icons" => true,
 													"mdc-ripple-surface" => attr.ripple])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
 	static public function listEndIcon(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
-		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
+		return @hxx '<i class=${attr.className.add(["mdc-list-item__meta" => true,
 													"material-icons" => true,
 													"mdc-ripple-surface" => attr.ripple])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
 	static public function listStartImage(attr:{>ImgAttr, >RippleAttr, }, ?children:VNode):VNode
-		return @hxx '<img class=${attr.className.add(["mdc-list-item__start-detail" => true,
+		return @hxx '<img class=${attr.className.add(["mdc-list-item__graphic" => true,
 													  "mdc-ripple-surface" => attr.ripple])}
 						  data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr} />';
 
 	static public function listEndDetail(attr:{>Attr, >RippleAttr, }, ?children:VNode):VNode
-		return @hxx '<i class=${attr.className.add(["mdc-list-item__end-detail" => true,
+		return @hxx '<i class=${attr.className.add(["mdc-list-item__meta" => true,
 													"mdc-ripple-surface" => attr.ripple])}
 						data-mdc-ripple-is-unbounded=${attr.unboundedRipple} {...attr}>{children}</i>';
 
@@ -83,7 +73,7 @@ class List extends View<ListAttr>
 		return @hxx '<span class=${attr.className.add(["mdc-list-item__text" => true])} {...attr}>{children}</span>';
 
 	static public function listTextSecondary(attr:Attr, ?children:VNode):VNode
-		return @hxx '<span class=${attr.className.add(["mdc-list-item__text__secondary" => true])} {...attr}>{children}</span>';
+		return @hxx '<span class=${attr.className.add(["mdc-list-item__secondary-text" => true])} {...attr}>{children}</span>';
 
 	static public function listDivider(attr:{>Attr, ?inset:Bool}, ?children:VNode):VNode
 		return @hxx '<li class=${attr.className.add(["mdc-list-divider" => true, "mdc-list-divider--inset" => attr.inset])} {...attr}>{children}</li>';
