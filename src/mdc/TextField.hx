@@ -39,7 +39,7 @@ class TextField extends View<TextFieldAttr>
                         <if ${attr.icon != null && attr.iconPos == TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
                         </if>
-                        <div class="mdc-text-field__bottom-line"></div>
+                        <div class="mdc-line-ripple"></div>
                     </div>';
     }
 
