@@ -9,10 +9,14 @@ import coconut.ui.View;
 
 class Radio extends View<RadioAttr>
 {
+
+    static var radioIndex = 0;
+    var radioId:UInt = radioIndex++;
     var mdcRadio:MDCRadio;
 
     function render(attr:RadioAttr)
     {
+        var id = attr.id == null ? radioId : attr.id;
         return
             if ( attr.label != null )
                 @hxx '<div class="mdc-form-field" {...attr}>
@@ -22,7 +26,7 @@ class Radio extends View<RadioAttr>
                                    value=${attr.value}
                                    checked=${attr.checked}
                                    class="mdc-radio__native-control"
-                                   id=${"r_" + attr.id}
+                                   id=${"r_" + id}
                                    name=${attr.name}
                               />
                               <div class="mdc-radio__background">
@@ -30,7 +34,7 @@ class Radio extends View<RadioAttr>
                                 <div class="mdc-radio__inner-circle"></div>
                               </div>
                           </div>
-                          <label htmlFor=${"r_" + attr.id}>${attr.label}</label>
+                          <label htmlFor=${"r_" + id}>${attr.label}</label>
                     </div>';
             else
                 @hxx '<div class="mdc-radio">
