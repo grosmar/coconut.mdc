@@ -21,6 +21,8 @@ class MDC
 					if ( node.nodeType ==  Node.ELEMENT_NODE )
 					{
 						registerAll(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
+
+
 						//registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");
 						/*registerAll(node, "mdc-tab-bar", MDCTabBar, "MDCTabBar");
 						registerAll(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
@@ -33,8 +35,11 @@ class MDC
 				{
 					if ( node.nodeType ==  Node.ELEMENT_NODE )
 					{
-						//unregisterAll(node, "mdc-tab-bar", "MDCTabBar");
 						unregisterAll(node, "mdc-ripple-surface", "MDCRipple");
+
+
+						//unregisterAll(node, "mdc-tab-bar", "MDCTabBar");
+
 						//unregisterAll(node, "mdc-radio", "MDCRadio");
 					}
 				}
@@ -120,11 +125,18 @@ extern class MDCRadio extends MDCComponent { }
 extern class MDCTabBar extends MDCComponent
 {
 	var activeTabIndex(default,default):Int;
+	var tabs(default,default):Array<MDCTab>;
 
 	function listen(event:String, callback:{detail:MDCTabBar}->Void):Void;
+	function unlisten(event:String, callback:{detail:MDCTabBar}->Void):Void;
 
 	function layout():Void;
-	function initialize():Void;
+}
+
+@:native("window.mdc.tabs.MDCTab")
+extern class MDCTab extends MDCComponent
+{
+	var isActive:Bool;
 }
 
 @:native("window.mdc.linearProgress.MDCLinearProgress")
@@ -142,6 +154,7 @@ extern class MDCComponent
 {
 	function new(element:DOMElement);
 
+	function initialize():Void;
 	function destroy():Void;
 }
 

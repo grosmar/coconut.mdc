@@ -1,5 +1,6 @@
 package mdc;
 
+import js.html.DOMElement;
 import vdom.VDom.AnchorAttr;
 import mdc.MDC.MDCTabBar;
 import vdom.VNode;
@@ -15,13 +16,15 @@ class TabBar extends View
     var attributes:Attr;
     @:attribute var children:Children;
     @:attribute var type:TabBarMode = Text;
+    @:attribute var activeTabIndex:Int = 0;
     @:attribute function ontabchange(index:UInt):Void {}
 
     var mdcTabBar:MDCTabBar;
+    static var tabIdIndex = 0;
 
     static public function tab(attr:{>AnchorAttr, ?active:Bool, ?icon:String, ?text:String}, ?children:Children):VNode
     {
-        return @hxx '<a class=${attr.className.add(["mdc-tab" => true,
+        return @hxx '<a id=${attr.id != null ? attr.id : "tab_" + tabIdIndex++ } class=${attr.className.add(["mdc-tab" => true,
                                                     "mdc-tab--active" => attr.active])} {...attr} >
             <if ${attr.icon != null}>
                 <tabIcon>${attr.icon}</tabIcon>
@@ -43,55 +46,66 @@ class TabBar extends View
 
     function render()
     {
-        trace("TABBARRENDER");
         return @hxx '<nav class=${className.add(["mdc-tab-bar" => true, type => true])} {...this}>
             ${...children}
             <span class="mdc-tab-bar__indicator" ></span>
         </nav>';
     }
 
-    override function afterInit(elem)
+    override function afterInit(elem:DOMElement)
     {
+        js.Browser.console.log(elem.children);
         this.mdcTabBar = new MDCTabBar(elem);
-        mdcTabBar.listen('MDCTabBar:change', function (data:{detail:MDCTabBar})
-        {
-            ontabchange(mdcTabBar.activeTabIndex);
-        });
+        mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
+        mdcTabBar.activeTabIndex = activeTabIndex;
+        mdcTabBar.tabs[activeTabIndex].isActive = true;
+        prevLength = elem.children.length;
     }
 
-    var lastChildren:Children;
-    var lastElem:js.html.Element;
+    var prevLength:Int;
+    var prevTabIndex:Int = 0;
 
-    override function afterPatching(elem)
+    override function afterPatching(elem:DOMElement)
     {
-       /* if ( lastChildren == children )
+        if ( prevLength == elem.children.length )
+        {
+            mdcTabBar.activeTabIndex = activeTabIndex;
             return;
+        }
 
-        lastChildren = children;
-
-        trace("SSS", lastElem == elem);
+        prevLength = elem.children.length;
 
         if ( this.mdcTabBar != null )
         {
+            prevTabIndex = children.length -1 < prevTabIndex ? activeTabIndex : prevTabIndex;
+            mdcTabBar.unlisten('MDCTabBar:change', tabChangeHandler);
+            for ( tab in this.mdcTabBar.tabs )
+                tab.destroy();
             this.mdcTabBar.destroy();
         }
 
-        //TODO: TEMPORARY HACK fix somehow rerender
-        haxe.Timer.delay(function()
-                    {
-                        this.mdcTabBar = new MDCTabBar(elem);
-                        mdcTabBar.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
-                            trace("Change", data);
-                            ontabchange(mdcTabBar.activeTabIndex);
-                        });
-                    }, 200);*/
+        mdcTabBar = new MDCTabBar(elem);
+        mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
+        mdcTabBar.tabs[prevTabIndex].isActive = true;
 
+        js.Browser.window.requestAnimationFrame(function(_) mdcTabBar.activeTabIndex = activeTabIndex);
+
+    }
+
+    function tabChangeHandler(data:{detail:MDCTabBar})
+    {
+        ontabchange(mdcTabBar.activeTabIndex);
     }
 
     override function destroy()
     {
         if ( this.mdcTabBar != null )
-            this.mdcTabBar.destroy();
+        {
+            mdcTabBar.unlisten('MDCTabBar:change', tabChangeHandler);
+            for ( tab in this.mdcTabBar.tabs )
+                tab.destroy();
+            mdcTabBar.destroy();
+        }
     }
 }
 
