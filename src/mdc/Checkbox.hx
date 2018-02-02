@@ -9,6 +9,9 @@ import coconut.ui.View;
 
 class Checkbox extends View<CheckboxAttr>
 {
+
+    static var checkboxIndex = 0;
+    var checkboxId:UInt = checkboxIndex++;
     var mdcCheckbox:MDCCheckbox;
 
     static inline var checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
@@ -16,13 +19,18 @@ class Checkbox extends View<CheckboxAttr>
     //TODO: fix svg support
     function render(attr:CheckboxAttr)
     {
+        var id = attr.id == null ? checkboxId : attr.id;
         return
             if ( attr.label != null )
                 @hxx '<div class=${attr.className.add(["mdc-form-field" => true])} {...attr}>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
                                    onchange=${attr.onchecked(event.target.checked)}
-                                   class="mdc-checkbox__native-control"/>
+                                   value=${attr.value}
+                                   checked=${attr.checked}
+                                   class="mdc-checkbox__native-control"
+                                   id=${"ch_" + id}
+                                   />
                               <div class="mdc-checkbox__background">
                                   <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                                       <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
@@ -31,7 +39,7 @@ class Checkbox extends View<CheckboxAttr>
                               </div>
                           </div>
 
-                          <label htmlFor="my-checkbox">${attr.label}</label>
+                          <label htmlFor=${"ch_" + id}>${attr.label}</label>
                     </div>';
             else
                 @hxx '<div class="mdc-checkbox" {...attr}>

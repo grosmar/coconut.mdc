@@ -3,6 +3,7 @@ package mdc;
 import vdom.VDom.InputAttr;
 import js.html.DOMElement;
 import mdc.MDC.MDCTextField;
+import tink.core.Callback;
 import vdom.VNode;
 import vdom.Attr;
 import vdom.VDom.*;
@@ -29,9 +30,9 @@ class TextField extends View<TextFieldAttr>
                             <i class="material-icons mdc-text-field__icon">${attr.icon}</i>
                         </if>
                         <if ${attr.textArea}>
-                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${attr.required} >${attr.value}</textarea>
+                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}  required=${attr.required} onchange={attr.onedit.invoke(event.target.value)}>${attr.value}</textarea>
                         <else>
-                            <input type=${attr.type != null ? attr.type : "text"} pattern=${attr.pattern} required=${attr.required} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value}/>
+                            <input type=${attr.type != null ? attr.type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${attr.value} pattern=${attr.pattern} required=${attr.required} onchange={attr.onedit.invoke(event.target.value)}/>
                         </if>
                         <if ${attr.label != null}>
                             <label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${attr.label}</label>
@@ -70,6 +71,7 @@ typedef TextFieldAttr = {>InputAttr,
     @:optional var fullWidth(default,never):Bool;
     @:optional var textArea(default,never):Bool;
     @:optional var type(default,never):String;
+    @:optional var onedit(default, never):Callback<String>;
     @:optional var invalid(default,never):Bool;
 }
 
