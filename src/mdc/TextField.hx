@@ -1,7 +1,9 @@
 package mdc;
 
+import vdom.VDom.InputAttr;
 import js.html.DOMElement;
 import mdc.MDC.MDCTextField;
+import tink.core.Callback;
 import vdom.VNode;
 import vdom.Attr;
 import vdom.VDom.*;
@@ -29,9 +31,9 @@ class TextField extends View
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
                         <if ${textArea}>
-                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}>${value}</textarea>
+                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}  required=${required} onchange=${onedit.invoke(event.target.value)}>${value}</textarea>
                         <else>
-                            <input type="text" class="mdc-text-field__input" id=${"tf" + textFieldId} value=${value}/>
+                            <input type=${type != null ? type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${value} pattern=${pattern} required=${required} onchange={attr.onedit.invoke(event.target.value)}/>
                         </if>
                         <if ${label != null}>
                             <vdom.VDom.label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
@@ -39,8 +41,13 @@ class TextField extends View
                         <if ${icon != null && iconPos == TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
-                        <div class="mdc-text-field__bottom-line"></div>
+                        <div class="mdc-line-ripple"></div>
                     </div>';
+    }
+
+    override function afterPatching(elem)
+    {
+        mdcTextField.valid = !data.invalid;
     }
 
     override function afterInit(elem:DOMElement)
@@ -55,7 +62,7 @@ class TextField extends View
     }
 }
 
-typedef TextFieldAttr = {>Attr,
+typedef TextFieldAttr = {>InputAttr,
     @:optional var label(default,never):String;
     @:optional var value(default,never):String;
     @:optional var disabled(default,never):Bool;
@@ -64,6 +71,9 @@ typedef TextFieldAttr = {>Attr,
     @:optional var box(default,never):Bool;
     @:optional var fullWidth(default,never):Bool;
     @:optional var textArea(default,never):Bool;
+    @:optional var type(default,never):String;
+    @:optional var onedit(default, never):Callback<String>;
+    @:optional var invalid(default,never):Bool;
 }
 
 @:enum abstract TextFieldType(String) from String to String {
@@ -75,4 +85,23 @@ typedef TextFieldAttr = {>Attr,
 @:enum abstract TextFieldIconPos(String) from String to String {
     var Left = "left";
     var Right = "right";
+}
+
+class TextFieldHelperText extends View<TextFieldHelperTextAttr>
+{
+    function render()
+    '
+        <p class=${data.className.add(["mdc-text-field-helper-text" => true,
+                                       "mdc-text-field-helper-text--persistent" => data.persistent,
+                                       "mdc-text-field-helper-text--validation-msg" => data.validation])} aria-hidden="true" >
+            ${data.label}
+        </p>
+    ';
+}
+
+typedef TextFieldHelperTextAttr = {
+    var label(default, never):String;
+    @:optional var persistent(default, never):Bool;
+    @:optional var validation(default, never):Bool;
+    @:optional var className(default, never):ClassName;
 }
