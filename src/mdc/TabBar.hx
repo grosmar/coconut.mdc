@@ -52,13 +52,11 @@ class TabBar extends View
 
     override function afterInit(elem)
     {
-        trace("TABBARINIT");
-
-        /*this.mdcTabBar = new MDCTabBar(elem);
-        mdcTabBar.listen('MDCTabBar:change', function (data:{detail:MDCTabBar}) {
-            trace("Change", data);
+        this.mdcTabBar = new MDCTabBar(elem);
+        mdcTabBar.listen('MDCTabBar:change', function (data:{detail:MDCTabBar})
+        {
             ontabchange(mdcTabBar.activeTabIndex);
-        });*/
+        });
     }
 
     var lastChildren:Children;
@@ -66,7 +64,7 @@ class TabBar extends View
 
     override function afterPatching(elem)
     {
-        if ( lastChildren == children )
+       /* if ( lastChildren == children )
             return;
 
         lastChildren = children;
@@ -86,13 +84,12 @@ class TabBar extends View
                             trace("Change", data);
                             ontabchange(mdcTabBar.activeTabIndex);
                         });
-                    }, 200);
+                    }, 200);*/
 
     }
 
     override function destroy()
     {
-        trace("TABBAR___DESTROY");
         if ( this.mdcTabBar != null )
             this.mdcTabBar.destroy();
     }

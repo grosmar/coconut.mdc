@@ -447,7 +447,10 @@ var Playground = function() { };
 $hxClasses["Playground"] = Playground;
 Playground.__name__ = ["Playground"];
 Playground.main = function() {
-	var view = new TestView(tink_state__$Observable_Observable_$Impl_$["const"]({ }));
+	var __r = [];
+	var __ret = { };
+	__r.push(coconut_ui_tools_ViewCache.mk("TestView",null,TestView.__init,__ret));
+	var view = __r[0];
 	window.document.getElementById("app").appendChild(view.toElement());
 };
 var vdom_Widget = function() {
@@ -467,13 +470,10 @@ vdom_Widget.prototype = {
 	}
 	,__class__: vdom_Widget
 };
-var coconut_vdom_Renderable = function(rendered,key) {
+var coconut_vdom_Renderable = function(rendered) {
+	this.key = coconut_vdom_Renderable.keygen++;
 	vdom_Widget.call(this);
 	this.__rendered = rendered;
-	if(key == null) {
-		key = vdom__$Attr_Key_$Impl_$.ofObj(this.__rendered);
-	}
-	this.key = key;
 };
 $hxClasses["coconut.vdom.Renderable"] = coconut_vdom_Renderable;
 coconut_vdom_Renderable.__name__ = ["coconut","vdom","Renderable"];
@@ -573,2962 +573,512 @@ coconut_vdom_Renderable.prototype = $extend(vdom_Widget.prototype,{
 		_destroy1(this.__lastRender);
 		this.afterDestroy(this.__dom);
 	}
-	,iframe: function(attr,children) {
-		return vdom_VDom.h("iframe",attr,children);
-	}
-	,object: function(attr,children) {
-		return vdom_VDom.h("object",attr,children);
-	}
-	,param: function(attr) {
-		return vdom_VDom.h("param",attr);
-	}
-	,div: function(attr,children) {
-		return vdom_VDom.h("div",attr,children);
-	}
-	,aside: function(attr,children) {
-		return vdom_VDom.h("aside",attr,children);
-	}
-	,section: function(attr,children) {
-		return vdom_VDom.h("section",attr,children);
-	}
-	,header: function(attr,children) {
-		return vdom_VDom.h("header",attr,children);
-	}
-	,footer: function(attr,children) {
-		return vdom_VDom.h("footer",attr,children);
-	}
-	,main: function(attr,children) {
-		return vdom_VDom.h("main",attr,children);
-	}
-	,nav: function(attr,children) {
-		return vdom_VDom.h("nav",attr,children);
-	}
-	,table: function(attr,children) {
-		return vdom_VDom.h("table",attr,children);
-	}
-	,thead: function(attr,children) {
-		return vdom_VDom.h("thead",attr,children);
-	}
-	,tbody: function(attr,children) {
-		return vdom_VDom.h("tbody",attr,children);
-	}
-	,tfoot: function(attr,children) {
-		return vdom_VDom.h("tfoot",attr,children);
-	}
-	,tr: function(attr,children) {
-		return vdom_VDom.h("tr",attr,children);
-	}
-	,td: function(attr,children) {
-		return vdom_VDom.h("td",attr,children);
-	}
-	,th: function(attr,children) {
-		return vdom_VDom.h("th",attr,children);
-	}
-	,h1: function(attr,children) {
-		return vdom_VDom.h("h1",attr,children);
-	}
-	,h2: function(attr,children) {
-		return vdom_VDom.h("h2",attr,children);
-	}
-	,h3: function(attr,children) {
-		return vdom_VDom.h("h3",attr,children);
-	}
-	,h4: function(attr,children) {
-		return vdom_VDom.h("h4",attr,children);
-	}
-	,h5: function(attr,children) {
-		return vdom_VDom.h("h5",attr,children);
-	}
-	,strong: function(attr,children) {
-		return vdom_VDom.h("strong",attr,children);
-	}
-	,em: function(attr,children) {
-		return vdom_VDom.h("em",attr,children);
-	}
-	,span: function(attr,children) {
-		return vdom_VDom.h("span",attr,children);
-	}
-	,a: function(attr,children) {
-		return vdom_VDom.h("a",attr,children);
-	}
-	,p: function(attr,children) {
-		return vdom_VDom.h("p",attr,children);
-	}
-	,i: function(attr,children) {
-		return vdom_VDom.h("i",attr,children);
-	}
-	,b: function(attr,children) {
-		return vdom_VDom.h("b",attr,children);
-	}
-	,small: function(attr,children) {
-		return vdom_VDom.h("small",attr,children);
-	}
-	,menu: function(attr,children) {
-		return vdom_VDom.h("menu",attr,children);
-	}
-	,ul: function(attr,children) {
-		return vdom_VDom.h("ul",attr,children);
-	}
-	,ol: function(attr,children) {
-		return vdom_VDom.h("ol",attr,children);
-	}
-	,li: function(attr,children) {
-		return vdom_VDom.h("li",attr,children);
-	}
-	,label: function(attr,children) {
-		return vdom_VDom.h("label",attr,children);
-	}
-	,button: function(attr,children) {
-		return vdom_VDom.h("button",attr,children);
-	}
-	,textarea: function(attr,children) {
-		return vdom_VDom.h("textarea",attr,children);
-	}
-	,pre: function(attr,children) {
-		return vdom_VDom.h("pre",attr,children);
-	}
-	,hr: function(attr) {
-		return vdom_VDom.h("hr",attr);
-	}
-	,br: function(attr) {
-		return vdom_VDom.h("br",attr);
-	}
-	,wbr: function(attr) {
-		return vdom_VDom.h("wbr",attr);
-	}
-	,canvas: function(attr) {
-		return vdom_VDom.h("canvas",attr);
-	}
-	,img: function(attr) {
-		return vdom_VDom.h("img",attr);
-	}
-	,audio: function(attr,children) {
-		return vdom_VDom.h("audio",attr,children);
-	}
-	,video: function(attr,children) {
-		return vdom_VDom.h("video",attr,children);
-	}
-	,source: function(attr) {
-		return vdom_VDom.h("source",attr);
-	}
-	,input: function(attr) {
-		return vdom_VDom.h("input",attr);
-	}
-	,form: function(attr,children) {
-		return vdom_VDom.h("form",attr,children);
-	}
-	,select: function(attr,children) {
-		return vdom_VDom.h("select",attr,children);
-	}
-	,option: function(attr,children) {
-		return vdom_VDom.h("option",attr,children);
-	}
-	,splat: function(nodes) {
-		return nodes;
-	}
-	,raw: function(attr) {
-		return vdom_HtmlFragment.create(attr);
-	}
 	,__class__: coconut_vdom_Renderable
 });
-var coconut_ui_BaseView = function(data,render) {
-	this.id = coconut_ui_BaseView.idCounter++;
+var coconut_ui_Renderable = function() { };
+$hxClasses["coconut.ui.Renderable"] = coconut_ui_Renderable;
+coconut_ui_Renderable.__name__ = ["coconut","ui","Renderable"];
+coconut_ui_Renderable.prototype = {
+	getRenderResult: null
+	,__class__: coconut_ui_Renderable
+};
+var coconut_ui_View = function(render,pos) {
+	this.viewId = coconut_ui_View.idCounter++;
 	this.__coco__cache = new coconut_ui_tools_ViewCache();
 	var _gthis = this;
-	coconut_vdom_Renderable.call(this,tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-		var f = render;
-		var a1 = data;
-		var tmp = function() {
-			return f(a1);
-		};
-		return _gthis.__coco__cache.cached(tmp);
-	})));
-};
-$hxClasses["coconut.ui.BaseView"] = coconut_ui_BaseView;
-coconut_ui_BaseView.__name__ = ["coconut","ui","BaseView"];
-coconut_ui_BaseView.__super__ = coconut_vdom_Renderable;
-coconut_ui_BaseView.prototype = $extend(coconut_vdom_Renderable.prototype,{
-	__coco__cache: null
-	,id: null
-	,__class__: coconut_ui_BaseView
-});
-var coconut_ui_View = function(data,render) {
-	coconut_ui_BaseView.call(this,data,render);
+	var last = haxe_ds_Option.None;
+	var this1 = { f : function() {
+		if(!_gthis.shouldViewUpdate() && last != haxe_ds_Option.None) {
+			haxe_Log.trace("skip " + Std.string(_gthis),{ fileName : "View.hx", lineNumber : 19, className : "coconut.ui.View", methodName : "new"});
+			var this2;
+			if(last[1] == 0) {
+				var v = last[2];
+				this2 = v;
+			} else {
+				throw new js__$Boot_HaxeError(new tink_core_TypedError(404,"Some value expected but none found",{ fileName : "View.hx", lineNumber : 20, className : "coconut.ui.View", methodName : "new"}));
+			}
+			return this2;
+		} else {
+			var res = _gthis.__coco__cache.cached(render);
+			last = haxe_ds_Option.Some(res);
+			return res;
+		}
+	}};
+	coconut_vdom_Renderable.call(this,tink_state__$Observable_Observable_$Impl_$.auto(this1));
 };
 $hxClasses["coconut.ui.View"] = coconut_ui_View;
 coconut_ui_View.__name__ = ["coconut","ui","View"];
-coconut_ui_View.__super__ = coconut_ui_BaseView;
-coconut_ui_View.prototype = $extend(coconut_ui_BaseView.prototype,{
-	render: function(data) {
-		throw new js__$Boot_HaxeError("abstract");
+coconut_ui_View.__interfaces__ = [coconut_ui_Renderable];
+coconut_ui_View.__super__ = coconut_vdom_Renderable;
+coconut_ui_View.prototype = $extend(coconut_vdom_Renderable.prototype,{
+	__coco__cache: null
+	,viewId: null
+	,shouldViewUpdate: function() {
+		return true;
+	}
+	,getRenderResult: function() {
+		return this;
 	}
 	,__class__: coconut_ui_View
 });
 var TestView = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
-	this.__cocodata = data;
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Playground.hx", lineNumber : 26, className : "TestView", methodName : "new"});
+	this.__tink_defaults17 = { };
+	this.__slots = { };
 };
 $hxClasses["TestView"] = TestView;
 TestView.__name__ = ["TestView"];
+TestView.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new TestView(attributes);
+	}
+	inst.__tink_init18(attributes);
+	return inst;
+};
 TestView.__super__ = coconut_ui_View;
 TestView.prototype = $extend(coconut_ui_View.prototype,{
-	render: function(__data__) {
-		var attr = { className : vdom__$Attr_ClassName_$Impl_$.ofString("demo")};
-		var children = vdom_VDom.h("h1",{ },["Normal Buttons"]);
-		var children1 = [coconut_ui_tools_ViewCache.get().getFactory("Button",function(data) {
-			return new mdc_Button(data);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Simple", onclick : function(event) {
+	render: function() {
+		var __r = [];
+		var __ret = { className : vdom__$Attr_ClassName_$Impl_$.ofString("demo")};
+		var __r1 = [];
+		var __r2 = [];
+		__r2.push("Normal Buttons");
+		var __ret1 = { };
+		__r1.push(vdom_VDom.h("h1",__ret1,__r2));
+		var __r3 = [];
+		var __ret2 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		var this1 = { f : function() {
+			return function(event) {
 				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 32, className : "TestView", methodName : "render"});
-			}};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data1) {
-			return new mdc_Button(data1);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Dense", dense : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data2) {
-			return new mdc_Button(data2);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Compact", compact : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data3) {
-			return new mdc_Button(data3);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Disabled", disabled : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data4) {
-			return new mdc_Button(data4);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Unelevated", unelevated : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data5) {
-			return new mdc_Button(data5);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Icon", icon : "favorite"};
-		})))];
-		var children2 = vdom_VDom.h("div",{ },children1);
-		var children3 = vdom_VDom.h("h1",{ },["Raised Buttons"]);
-		var children4 = [coconut_ui_tools_ViewCache.get().getFactory("Button",function(data6) {
-			return new mdc_Button(data6);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Simple", raised : true, onclick : function(event1) {
-				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 42, className : "TestView", methodName : "render"});
-			}};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data7) {
-			return new mdc_Button(data7);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Dense", raised : true, dense : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data8) {
-			return new mdc_Button(data8);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Compact", raised : true, compact : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data9) {
-			return new mdc_Button(data9);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Disabled", raised : true, disabled : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data10) {
-			return new mdc_Button(data10);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Unelevated", raised : true, unelevated : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Button",function(data11) {
-			return new mdc_Button(data11);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Icon", raised : true, icon : "favorite"};
-		})))];
-		var children5 = vdom_VDom.h("div",{ },children4);
-		var children6 = vdom_VDom.h("h1",{ },["Checkbox"]);
-		var children7 = [coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data12) {
-			return new mdc_Checkbox(data12);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Simple", value : "simple", onchecked : function(checked) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 52, className : "TestView", methodName : "render", customParams : [checked]});
+			};
+		}};
+		var __ret3 = { label : __ret2, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this1)};
+		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret3));
+		var __ret4 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret4));
+		var __ret5 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Compact"), compact : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret5));
+		var __ret6 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret6));
+		var __ret7 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Unelevated"), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret7));
+		var __ret8 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon"), icon : tink_state__$Observable_Observable_$Impl_$["const"]("favorite")};
+		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret8));
+		var __ret9 = { };
+		__r1.push(vdom_VDom.h("div",__ret9,__r3));
+		var __r4 = [];
+		__r4.push("Raised Buttons");
+		var __ret10 = { };
+		__r1.push(vdom_VDom.h("h1",__ret10,__r4));
+		var __r5 = [];
+		var __ret11 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		var __ret12 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var this2 = { f : function() {
+			return function(event1) {
+				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 41, className : "TestView", methodName : "render"});
+			};
+		}};
+		var __ret13 = { label : __ret11, raised : __ret12, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this2)};
+		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret13));
+		var __ret14 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret14));
+		var __ret15 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Compact"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), compact : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret15));
+		var __ret16 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret16));
+		var __ret17 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Unelevated"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret17));
+		var __ret18 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("favorite")};
+		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret18));
+		var __ret19 = { };
+		__r1.push(vdom_VDom.h("div",__ret19,__r5));
+		var __r6 = [];
+		__r6.push("Checkbox");
+		var __ret20 = { };
+		__r1.push(vdom_VDom.h("h1",__ret20,__r6));
+		var __r7 = [];
+		var __ret21 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		var __ret22 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this3 = { f : function() {
+			return function(checked) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 51, className : "TestView", methodName : "render", customParams : [checked]});
 				return;
-			}};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data13) {
-			return new mdc_Checkbox(data13);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Checked", checked : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data14) {
-			return new mdc_Checkbox(data14);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Indeterminate", indeterminate : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("Checkbox",function(data15) {
-			return new mdc_Checkbox(data15);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Disabled", disabled : true};
-		})))];
-		var children8 = vdom_VDom.h("div",{ },children7);
-		var children9 = vdom_VDom.h("h1",{ },["TabBar"]);
-		var children10 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[coconut_ui_tools_ViewCache.get().getFactory("TabBar",function(data16) {
-			return new mdc_TabBar(data16);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache = coconut_ui_tools_ViewCache.get();
-			var attr1 = { active : true};
-			var children11 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab1"]);
-			var __v_0 = attr1;
-			var attr2 = attr1.className;
-			var _g = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g.setReserved("mdc-tab",true);
-			} else {
-				_g.h["mdc-tab"] = true;
-			}
-			var value = attr1.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g.setReserved("mdc-tab--active",value);
-			} else {
-				_g.h["mdc-tab--active"] = value;
-			}
-			var attr3 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr2,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, href : __v_0.href, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event2) {
-			}, onblur : function(event3) {
-			}, oncanplay : function(event4) {
-			}, oncanplaythrough : function(event5) {
-			}, onchange : function(event6) {
-			}, onclick : function(event7) {
-			}, oncontextmenu : function(event8) {
-			}, oncopy : function(event9) {
-			}, oncut : function(event10) {
-			}, ondblclick : function(event11) {
-			}, ondrag : function(event12) {
-			}, ondragend : function(event13) {
-			}, ondragenter : function(event14) {
-			}, ondragleave : function(event15) {
-			}, ondragover : function(event16) {
-			}, ondragstart : function(event17) {
-			}, ondrop : function(event18) {
-			}, ondurationchange : function(event19) {
-			}, onemptied : function(event20) {
-			}, onended : function(event21) {
-			}, onerror : function(event22) {
-			}, onfocus : function(event23) {
-			}, onfullscreenchange : function(event24) {
-			}, onfullscreenerror : function(event25) {
-			}, ongotpointercapture : function(event26) {
-			}, oninput : function(event27) {
-			}, oninvalid : function(event28) {
-			}, onkeydown : function(event29) {
-			}, onkeypress : function(event30) {
-			}, onkeyup : function(event31) {
-			}, onload : function(event32) {
-			}, onloadeddata : function(event33) {
-			}, onloadedmetadata : function(event34) {
-			}, onloadstart : function(event35) {
-			}, onlostpointercapture : function(event36) {
-			}, onmousedown : function(event37) {
-			}, onmouseenter : function(event38) {
-			}, onmouseleave : function(event39) {
-			}, onmousemove : function(event40) {
-			}, onmouseout : function(event41) {
-			}, onmouseover : function(event42) {
-			}, onmouseup : function(event43) {
-			}, onpaste : function(event44) {
-			}, onpause : function(event45) {
-			}, onplay : function(event46) {
-			}, onplaying : function(event47) {
-			}, onpointercancel : function(event48) {
-			}, onpointerdown : function(event49) {
-			}, onpointerenter : function(event50) {
-			}, onpointerleave : function(event51) {
-			}, onpointerlockchange : function(event52) {
-			}, onpointerlockerror : function(event53) {
-			}, onpointermove : function(event54) {
-			}, onpointerout : function(event55) {
-			}, onpointerover : function(event56) {
-			}, onpointerup : function(event57) {
-			}, onprogress : function(event58) {
-			}, onratechange : function(event59) {
-			}, onreset : function(event60) {
-			}, onresize : function(event61) {
-			}, onscroll : function(event62) {
-			}, onseeked : function(event63) {
-			}, onseeking : function(event64) {
-			}, onselect : function(event65) {
-			}, onshow : function(event66) {
-			}, onstalled : function(event67) {
-			}, onsubmit : function(event68) {
-			}, onsuspend : function(event69) {
-			}, ontimeupdate : function(event70) {
-			}, ontouchcancel : function(event71) {
-			}, ontouchend : function(event72) {
-			}, ontouchmove : function(event73) {
-			}, ontouchstart : function(event74) {
-			}, onvolumechange : function(event75) {
-			}, onwaiting : function(event76) {
-			}, onwheel : function(event77) {
-			}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, target : __v_0.target, title : __v_0.title, type : __v_0.type};
-			var children12;
-			if(attr1.icon != null) {
-				var attr4 = { };
-				var children13 = vdom__$VNode_VNode_$Impl_$.flatten([attr1.icon]);
-				var __v_01 = attr4;
-				var attr5 = attr4.className;
-				var _g1 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g1.setReserved("mdc-tab__icon",true);
-				} else {
-					_g1.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g1.setReserved("material-icons",true);
-				} else {
-					_g1.h["material-icons"] = true;
-				}
-				children12 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr5,vdom__$Attr_ClassName_$Impl_$.ofMap(_g1)), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event78) {
-				}, onblur : function(event79) {
-				}, oncanplay : function(event80) {
-				}, oncanplaythrough : function(event81) {
-				}, onchange : function(event82) {
-				}, onclick : function(event83) {
-				}, oncontextmenu : function(event84) {
-				}, oncopy : function(event85) {
-				}, oncut : function(event86) {
-				}, ondblclick : function(event87) {
-				}, ondrag : function(event88) {
-				}, ondragend : function(event89) {
-				}, ondragenter : function(event90) {
-				}, ondragleave : function(event91) {
-				}, ondragover : function(event92) {
-				}, ondragstart : function(event93) {
-				}, ondrop : function(event94) {
-				}, ondurationchange : function(event95) {
-				}, onemptied : function(event96) {
-				}, onended : function(event97) {
-				}, onerror : function(event98) {
-				}, onfocus : function(event99) {
-				}, onfullscreenchange : function(event100) {
-				}, onfullscreenerror : function(event101) {
-				}, ongotpointercapture : function(event102) {
-				}, oninput : function(event103) {
-				}, oninvalid : function(event104) {
-				}, onkeydown : function(event105) {
-				}, onkeypress : function(event106) {
-				}, onkeyup : function(event107) {
-				}, onload : function(event108) {
-				}, onloadeddata : function(event109) {
-				}, onloadedmetadata : function(event110) {
-				}, onloadstart : function(event111) {
-				}, onlostpointercapture : function(event112) {
-				}, onmousedown : function(event113) {
-				}, onmouseenter : function(event114) {
-				}, onmouseleave : function(event115) {
-				}, onmousemove : function(event116) {
-				}, onmouseout : function(event117) {
-				}, onmouseover : function(event118) {
-				}, onmouseup : function(event119) {
-				}, onpaste : function(event120) {
-				}, onpause : function(event121) {
-				}, onplay : function(event122) {
-				}, onplaying : function(event123) {
-				}, onpointercancel : function(event124) {
-				}, onpointerdown : function(event125) {
-				}, onpointerenter : function(event126) {
-				}, onpointerleave : function(event127) {
-				}, onpointerlockchange : function(event128) {
-				}, onpointerlockerror : function(event129) {
-				}, onpointermove : function(event130) {
-				}, onpointerout : function(event131) {
-				}, onpointerover : function(event132) {
-				}, onpointerup : function(event133) {
-				}, onprogress : function(event134) {
-				}, onratechange : function(event135) {
-				}, onreset : function(event136) {
-				}, onresize : function(event137) {
-				}, onscroll : function(event138) {
-				}, onseeked : function(event139) {
-				}, onseeking : function(event140) {
-				}, onselect : function(event141) {
-				}, onshow : function(event142) {
-				}, onstalled : function(event143) {
-				}, onsubmit : function(event144) {
-				}, onsuspend : function(event145) {
-				}, ontimeupdate : function(event146) {
-				}, ontouchcancel : function(event147) {
-				}, ontouchend : function(event148) {
-				}, ontouchmove : function(event149) {
-				}, ontouchstart : function(event150) {
-				}, onvolumechange : function(event151) {
-				}, onwaiting : function(event152) {
-				}, onwheel : function(event153) {
-				}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[children13])]);
-			} else {
-				children12 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children14;
-			if(attr1.text != null) {
-				var attr6 = { };
-				var children15 = vdom__$VNode_VNode_$Impl_$.flatten([attr1.text]);
-				var __v_02 = attr6;
-				var attr7 = attr6.className;
-				var _g2 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g2.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g2.h["mdc-tab__icon-text"] = true;
-				}
-				children14 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr7,vdom__$Attr_ClassName_$Impl_$.ofMap(_g2)), accessKey : __v_02.accessKey, accessKeyLabel : __v_02.accessKeyLabel, attributes : __v_02.attributes, contentEditable : __v_02.contentEditable, dir : __v_02.dir, draggable : __v_02.draggable, hidden : __v_02.hidden, id : __v_02.id, key : __v_02.key, lang : __v_02.lang, onabort : function(event154) {
-				}, onblur : function(event155) {
-				}, oncanplay : function(event156) {
-				}, oncanplaythrough : function(event157) {
-				}, onchange : function(event158) {
-				}, onclick : function(event159) {
-				}, oncontextmenu : function(event160) {
-				}, oncopy : function(event161) {
-				}, oncut : function(event162) {
-				}, ondblclick : function(event163) {
-				}, ondrag : function(event164) {
-				}, ondragend : function(event165) {
-				}, ondragenter : function(event166) {
-				}, ondragleave : function(event167) {
-				}, ondragover : function(event168) {
-				}, ondragstart : function(event169) {
-				}, ondrop : function(event170) {
-				}, ondurationchange : function(event171) {
-				}, onemptied : function(event172) {
-				}, onended : function(event173) {
-				}, onerror : function(event174) {
-				}, onfocus : function(event175) {
-				}, onfullscreenchange : function(event176) {
-				}, onfullscreenerror : function(event177) {
-				}, ongotpointercapture : function(event178) {
-				}, oninput : function(event179) {
-				}, oninvalid : function(event180) {
-				}, onkeydown : function(event181) {
-				}, onkeypress : function(event182) {
-				}, onkeyup : function(event183) {
-				}, onload : function(event184) {
-				}, onloadeddata : function(event185) {
-				}, onloadedmetadata : function(event186) {
-				}, onloadstart : function(event187) {
-				}, onlostpointercapture : function(event188) {
-				}, onmousedown : function(event189) {
-				}, onmouseenter : function(event190) {
-				}, onmouseleave : function(event191) {
-				}, onmousemove : function(event192) {
-				}, onmouseout : function(event193) {
-				}, onmouseover : function(event194) {
-				}, onmouseup : function(event195) {
-				}, onpaste : function(event196) {
-				}, onpause : function(event197) {
-				}, onplay : function(event198) {
-				}, onplaying : function(event199) {
-				}, onpointercancel : function(event200) {
-				}, onpointerdown : function(event201) {
-				}, onpointerenter : function(event202) {
-				}, onpointerleave : function(event203) {
-				}, onpointerlockchange : function(event204) {
-				}, onpointerlockerror : function(event205) {
-				}, onpointermove : function(event206) {
-				}, onpointerout : function(event207) {
-				}, onpointerover : function(event208) {
-				}, onpointerup : function(event209) {
-				}, onprogress : function(event210) {
-				}, onratechange : function(event211) {
-				}, onreset : function(event212) {
-				}, onresize : function(event213) {
-				}, onscroll : function(event214) {
-				}, onseeked : function(event215) {
-				}, onseeking : function(event216) {
-				}, onselect : function(event217) {
-				}, onshow : function(event218) {
-				}, onstalled : function(event219) {
-				}, onsubmit : function(event220) {
-				}, onsuspend : function(event221) {
-				}, ontimeupdate : function(event222) {
-				}, ontouchcancel : function(event223) {
-				}, ontouchend : function(event224) {
-				}, ontouchmove : function(event225) {
-				}, ontouchstart : function(event226) {
-				}, onvolumechange : function(event227) {
-				}, onwaiting : function(event228) {
-				}, onwheel : function(event229) {
-				}, spellcheck : __v_02.spellcheck, style : __v_02.style, tabIndex : __v_02.tabIndex, title : __v_02.title},[children15])]);
-			} else {
-				children14 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children16 = vdom_VDom.h("a",attr3,[children12,children14,children11]);
-			var attr8 = { };
-			var children17 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab2"]);
-			var __v_03 = attr8;
-			var attr9 = attr8.className;
-			var _g3 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g3.setReserved("mdc-tab",true);
-			} else {
-				_g3.h["mdc-tab"] = true;
-			}
-			var value1 = attr8.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g3.setReserved("mdc-tab--active",value1);
-			} else {
-				_g3.h["mdc-tab--active"] = value1;
-			}
-			var attr10 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr9,vdom__$Attr_ClassName_$Impl_$.ofMap(_g3)), accessKey : __v_03.accessKey, accessKeyLabel : __v_03.accessKeyLabel, attributes : __v_03.attributes, contentEditable : __v_03.contentEditable, dir : __v_03.dir, draggable : __v_03.draggable, hidden : __v_03.hidden, href : __v_03.href, id : __v_03.id, key : __v_03.key, lang : __v_03.lang, onabort : function(event230) {
-			}, onblur : function(event231) {
-			}, oncanplay : function(event232) {
-			}, oncanplaythrough : function(event233) {
-			}, onchange : function(event234) {
-			}, onclick : function(event235) {
-			}, oncontextmenu : function(event236) {
-			}, oncopy : function(event237) {
-			}, oncut : function(event238) {
-			}, ondblclick : function(event239) {
-			}, ondrag : function(event240) {
-			}, ondragend : function(event241) {
-			}, ondragenter : function(event242) {
-			}, ondragleave : function(event243) {
-			}, ondragover : function(event244) {
-			}, ondragstart : function(event245) {
-			}, ondrop : function(event246) {
-			}, ondurationchange : function(event247) {
-			}, onemptied : function(event248) {
-			}, onended : function(event249) {
-			}, onerror : function(event250) {
-			}, onfocus : function(event251) {
-			}, onfullscreenchange : function(event252) {
-			}, onfullscreenerror : function(event253) {
-			}, ongotpointercapture : function(event254) {
-			}, oninput : function(event255) {
-			}, oninvalid : function(event256) {
-			}, onkeydown : function(event257) {
-			}, onkeypress : function(event258) {
-			}, onkeyup : function(event259) {
-			}, onload : function(event260) {
-			}, onloadeddata : function(event261) {
-			}, onloadedmetadata : function(event262) {
-			}, onloadstart : function(event263) {
-			}, onlostpointercapture : function(event264) {
-			}, onmousedown : function(event265) {
-			}, onmouseenter : function(event266) {
-			}, onmouseleave : function(event267) {
-			}, onmousemove : function(event268) {
-			}, onmouseout : function(event269) {
-			}, onmouseover : function(event270) {
-			}, onmouseup : function(event271) {
-			}, onpaste : function(event272) {
-			}, onpause : function(event273) {
-			}, onplay : function(event274) {
-			}, onplaying : function(event275) {
-			}, onpointercancel : function(event276) {
-			}, onpointerdown : function(event277) {
-			}, onpointerenter : function(event278) {
-			}, onpointerleave : function(event279) {
-			}, onpointerlockchange : function(event280) {
-			}, onpointerlockerror : function(event281) {
-			}, onpointermove : function(event282) {
-			}, onpointerout : function(event283) {
-			}, onpointerover : function(event284) {
-			}, onpointerup : function(event285) {
-			}, onprogress : function(event286) {
-			}, onratechange : function(event287) {
-			}, onreset : function(event288) {
-			}, onresize : function(event289) {
-			}, onscroll : function(event290) {
-			}, onseeked : function(event291) {
-			}, onseeking : function(event292) {
-			}, onselect : function(event293) {
-			}, onshow : function(event294) {
-			}, onstalled : function(event295) {
-			}, onsubmit : function(event296) {
-			}, onsuspend : function(event297) {
-			}, ontimeupdate : function(event298) {
-			}, ontouchcancel : function(event299) {
-			}, ontouchend : function(event300) {
-			}, ontouchmove : function(event301) {
-			}, ontouchstart : function(event302) {
-			}, onvolumechange : function(event303) {
-			}, onwaiting : function(event304) {
-			}, onwheel : function(event305) {
-			}, spellcheck : __v_03.spellcheck, style : __v_03.style, tabIndex : __v_03.tabIndex, target : __v_03.target, title : __v_03.title, type : __v_03.type};
-			var children18;
-			if(attr8.icon != null) {
-				var attr11 = { };
-				var children19 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.icon]);
-				var __v_04 = attr11;
-				var attr12 = attr11.className;
-				var _g4 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g4.setReserved("mdc-tab__icon",true);
-				} else {
-					_g4.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g4.setReserved("material-icons",true);
-				} else {
-					_g4.h["material-icons"] = true;
-				}
-				children18 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr12,vdom__$Attr_ClassName_$Impl_$.ofMap(_g4)), accessKey : __v_04.accessKey, accessKeyLabel : __v_04.accessKeyLabel, attributes : __v_04.attributes, contentEditable : __v_04.contentEditable, dir : __v_04.dir, draggable : __v_04.draggable, hidden : __v_04.hidden, id : __v_04.id, key : __v_04.key, lang : __v_04.lang, onabort : function(event306) {
-				}, onblur : function(event307) {
-				}, oncanplay : function(event308) {
-				}, oncanplaythrough : function(event309) {
-				}, onchange : function(event310) {
-				}, onclick : function(event311) {
-				}, oncontextmenu : function(event312) {
-				}, oncopy : function(event313) {
-				}, oncut : function(event314) {
-				}, ondblclick : function(event315) {
-				}, ondrag : function(event316) {
-				}, ondragend : function(event317) {
-				}, ondragenter : function(event318) {
-				}, ondragleave : function(event319) {
-				}, ondragover : function(event320) {
-				}, ondragstart : function(event321) {
-				}, ondrop : function(event322) {
-				}, ondurationchange : function(event323) {
-				}, onemptied : function(event324) {
-				}, onended : function(event325) {
-				}, onerror : function(event326) {
-				}, onfocus : function(event327) {
-				}, onfullscreenchange : function(event328) {
-				}, onfullscreenerror : function(event329) {
-				}, ongotpointercapture : function(event330) {
-				}, oninput : function(event331) {
-				}, oninvalid : function(event332) {
-				}, onkeydown : function(event333) {
-				}, onkeypress : function(event334) {
-				}, onkeyup : function(event335) {
-				}, onload : function(event336) {
-				}, onloadeddata : function(event337) {
-				}, onloadedmetadata : function(event338) {
-				}, onloadstart : function(event339) {
-				}, onlostpointercapture : function(event340) {
-				}, onmousedown : function(event341) {
-				}, onmouseenter : function(event342) {
-				}, onmouseleave : function(event343) {
-				}, onmousemove : function(event344) {
-				}, onmouseout : function(event345) {
-				}, onmouseover : function(event346) {
-				}, onmouseup : function(event347) {
-				}, onpaste : function(event348) {
-				}, onpause : function(event349) {
-				}, onplay : function(event350) {
-				}, onplaying : function(event351) {
-				}, onpointercancel : function(event352) {
-				}, onpointerdown : function(event353) {
-				}, onpointerenter : function(event354) {
-				}, onpointerleave : function(event355) {
-				}, onpointerlockchange : function(event356) {
-				}, onpointerlockerror : function(event357) {
-				}, onpointermove : function(event358) {
-				}, onpointerout : function(event359) {
-				}, onpointerover : function(event360) {
-				}, onpointerup : function(event361) {
-				}, onprogress : function(event362) {
-				}, onratechange : function(event363) {
-				}, onreset : function(event364) {
-				}, onresize : function(event365) {
-				}, onscroll : function(event366) {
-				}, onseeked : function(event367) {
-				}, onseeking : function(event368) {
-				}, onselect : function(event369) {
-				}, onshow : function(event370) {
-				}, onstalled : function(event371) {
-				}, onsubmit : function(event372) {
-				}, onsuspend : function(event373) {
-				}, ontimeupdate : function(event374) {
-				}, ontouchcancel : function(event375) {
-				}, ontouchend : function(event376) {
-				}, ontouchmove : function(event377) {
-				}, ontouchstart : function(event378) {
-				}, onvolumechange : function(event379) {
-				}, onwaiting : function(event380) {
-				}, onwheel : function(event381) {
-				}, spellcheck : __v_04.spellcheck, style : __v_04.style, tabIndex : __v_04.tabIndex, title : __v_04.title},[children19])]);
-			} else {
-				children18 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children20;
-			if(attr8.text != null) {
-				var attr13 = { };
-				var children21 = vdom__$VNode_VNode_$Impl_$.flatten([attr8.text]);
-				var __v_05 = attr13;
-				var attr14 = attr13.className;
-				var _g5 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g5.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g5.h["mdc-tab__icon-text"] = true;
-				}
-				children20 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr14,vdom__$Attr_ClassName_$Impl_$.ofMap(_g5)), accessKey : __v_05.accessKey, accessKeyLabel : __v_05.accessKeyLabel, attributes : __v_05.attributes, contentEditable : __v_05.contentEditable, dir : __v_05.dir, draggable : __v_05.draggable, hidden : __v_05.hidden, id : __v_05.id, key : __v_05.key, lang : __v_05.lang, onabort : function(event382) {
-				}, onblur : function(event383) {
-				}, oncanplay : function(event384) {
-				}, oncanplaythrough : function(event385) {
-				}, onchange : function(event386) {
-				}, onclick : function(event387) {
-				}, oncontextmenu : function(event388) {
-				}, oncopy : function(event389) {
-				}, oncut : function(event390) {
-				}, ondblclick : function(event391) {
-				}, ondrag : function(event392) {
-				}, ondragend : function(event393) {
-				}, ondragenter : function(event394) {
-				}, ondragleave : function(event395) {
-				}, ondragover : function(event396) {
-				}, ondragstart : function(event397) {
-				}, ondrop : function(event398) {
-				}, ondurationchange : function(event399) {
-				}, onemptied : function(event400) {
-				}, onended : function(event401) {
-				}, onerror : function(event402) {
-				}, onfocus : function(event403) {
-				}, onfullscreenchange : function(event404) {
-				}, onfullscreenerror : function(event405) {
-				}, ongotpointercapture : function(event406) {
-				}, oninput : function(event407) {
-				}, oninvalid : function(event408) {
-				}, onkeydown : function(event409) {
-				}, onkeypress : function(event410) {
-				}, onkeyup : function(event411) {
-				}, onload : function(event412) {
-				}, onloadeddata : function(event413) {
-				}, onloadedmetadata : function(event414) {
-				}, onloadstart : function(event415) {
-				}, onlostpointercapture : function(event416) {
-				}, onmousedown : function(event417) {
-				}, onmouseenter : function(event418) {
-				}, onmouseleave : function(event419) {
-				}, onmousemove : function(event420) {
-				}, onmouseout : function(event421) {
-				}, onmouseover : function(event422) {
-				}, onmouseup : function(event423) {
-				}, onpaste : function(event424) {
-				}, onpause : function(event425) {
-				}, onplay : function(event426) {
-				}, onplaying : function(event427) {
-				}, onpointercancel : function(event428) {
-				}, onpointerdown : function(event429) {
-				}, onpointerenter : function(event430) {
-				}, onpointerleave : function(event431) {
-				}, onpointerlockchange : function(event432) {
-				}, onpointerlockerror : function(event433) {
-				}, onpointermove : function(event434) {
-				}, onpointerout : function(event435) {
-				}, onpointerover : function(event436) {
-				}, onpointerup : function(event437) {
-				}, onprogress : function(event438) {
-				}, onratechange : function(event439) {
-				}, onreset : function(event440) {
-				}, onresize : function(event441) {
-				}, onscroll : function(event442) {
-				}, onseeked : function(event443) {
-				}, onseeking : function(event444) {
-				}, onselect : function(event445) {
-				}, onshow : function(event446) {
-				}, onstalled : function(event447) {
-				}, onsubmit : function(event448) {
-				}, onsuspend : function(event449) {
-				}, ontimeupdate : function(event450) {
-				}, ontouchcancel : function(event451) {
-				}, ontouchend : function(event452) {
-				}, ontouchmove : function(event453) {
-				}, ontouchstart : function(event454) {
-				}, onvolumechange : function(event455) {
-				}, onwaiting : function(event456) {
-				}, onwheel : function(event457) {
-				}, spellcheck : __v_05.spellcheck, style : __v_05.style, tabIndex : __v_05.tabIndex, title : __v_05.title},[children21])]);
-			} else {
-				children20 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children22 = vdom_VDom.h("a",attr10,[children18,children20,children17]);
-			var attr15 = { };
-			var children23 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
-			var __v_06 = attr15;
-			var attr16 = attr15.className;
-			var _g6 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g6.setReserved("mdc-tab",true);
-			} else {
-				_g6.h["mdc-tab"] = true;
-			}
-			var value2 = attr15.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g6.setReserved("mdc-tab--active",value2);
-			} else {
-				_g6.h["mdc-tab--active"] = value2;
-			}
-			var attr17 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr16,vdom__$Attr_ClassName_$Impl_$.ofMap(_g6)), accessKey : __v_06.accessKey, accessKeyLabel : __v_06.accessKeyLabel, attributes : __v_06.attributes, contentEditable : __v_06.contentEditable, dir : __v_06.dir, draggable : __v_06.draggable, hidden : __v_06.hidden, href : __v_06.href, id : __v_06.id, key : __v_06.key, lang : __v_06.lang, onabort : function(event458) {
-			}, onblur : function(event459) {
-			}, oncanplay : function(event460) {
-			}, oncanplaythrough : function(event461) {
-			}, onchange : function(event462) {
-			}, onclick : function(event463) {
-			}, oncontextmenu : function(event464) {
-			}, oncopy : function(event465) {
-			}, oncut : function(event466) {
-			}, ondblclick : function(event467) {
-			}, ondrag : function(event468) {
-			}, ondragend : function(event469) {
-			}, ondragenter : function(event470) {
-			}, ondragleave : function(event471) {
-			}, ondragover : function(event472) {
-			}, ondragstart : function(event473) {
-			}, ondrop : function(event474) {
-			}, ondurationchange : function(event475) {
-			}, onemptied : function(event476) {
-			}, onended : function(event477) {
-			}, onerror : function(event478) {
-			}, onfocus : function(event479) {
-			}, onfullscreenchange : function(event480) {
-			}, onfullscreenerror : function(event481) {
-			}, ongotpointercapture : function(event482) {
-			}, oninput : function(event483) {
-			}, oninvalid : function(event484) {
-			}, onkeydown : function(event485) {
-			}, onkeypress : function(event486) {
-			}, onkeyup : function(event487) {
-			}, onload : function(event488) {
-			}, onloadeddata : function(event489) {
-			}, onloadedmetadata : function(event490) {
-			}, onloadstart : function(event491) {
-			}, onlostpointercapture : function(event492) {
-			}, onmousedown : function(event493) {
-			}, onmouseenter : function(event494) {
-			}, onmouseleave : function(event495) {
-			}, onmousemove : function(event496) {
-			}, onmouseout : function(event497) {
-			}, onmouseover : function(event498) {
-			}, onmouseup : function(event499) {
-			}, onpaste : function(event500) {
-			}, onpause : function(event501) {
-			}, onplay : function(event502) {
-			}, onplaying : function(event503) {
-			}, onpointercancel : function(event504) {
-			}, onpointerdown : function(event505) {
-			}, onpointerenter : function(event506) {
-			}, onpointerleave : function(event507) {
-			}, onpointerlockchange : function(event508) {
-			}, onpointerlockerror : function(event509) {
-			}, onpointermove : function(event510) {
-			}, onpointerout : function(event511) {
-			}, onpointerover : function(event512) {
-			}, onpointerup : function(event513) {
-			}, onprogress : function(event514) {
-			}, onratechange : function(event515) {
-			}, onreset : function(event516) {
-			}, onresize : function(event517) {
-			}, onscroll : function(event518) {
-			}, onseeked : function(event519) {
-			}, onseeking : function(event520) {
-			}, onselect : function(event521) {
-			}, onshow : function(event522) {
-			}, onstalled : function(event523) {
-			}, onsubmit : function(event524) {
-			}, onsuspend : function(event525) {
-			}, ontimeupdate : function(event526) {
-			}, ontouchcancel : function(event527) {
-			}, ontouchend : function(event528) {
-			}, ontouchmove : function(event529) {
-			}, ontouchstart : function(event530) {
-			}, onvolumechange : function(event531) {
-			}, onwaiting : function(event532) {
-			}, onwheel : function(event533) {
-			}, spellcheck : __v_06.spellcheck, style : __v_06.style, tabIndex : __v_06.tabIndex, target : __v_06.target, title : __v_06.title, type : __v_06.type};
-			var children24;
-			if(attr15.icon != null) {
-				var attr18 = { };
-				var children25 = vdom__$VNode_VNode_$Impl_$.flatten([attr15.icon]);
-				var __v_07 = attr18;
-				var attr19 = attr18.className;
-				var _g7 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g7.setReserved("mdc-tab__icon",true);
-				} else {
-					_g7.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g7.setReserved("material-icons",true);
-				} else {
-					_g7.h["material-icons"] = true;
-				}
-				children24 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr19,vdom__$Attr_ClassName_$Impl_$.ofMap(_g7)), accessKey : __v_07.accessKey, accessKeyLabel : __v_07.accessKeyLabel, attributes : __v_07.attributes, contentEditable : __v_07.contentEditable, dir : __v_07.dir, draggable : __v_07.draggable, hidden : __v_07.hidden, id : __v_07.id, key : __v_07.key, lang : __v_07.lang, onabort : function(event534) {
-				}, onblur : function(event535) {
-				}, oncanplay : function(event536) {
-				}, oncanplaythrough : function(event537) {
-				}, onchange : function(event538) {
-				}, onclick : function(event539) {
-				}, oncontextmenu : function(event540) {
-				}, oncopy : function(event541) {
-				}, oncut : function(event542) {
-				}, ondblclick : function(event543) {
-				}, ondrag : function(event544) {
-				}, ondragend : function(event545) {
-				}, ondragenter : function(event546) {
-				}, ondragleave : function(event547) {
-				}, ondragover : function(event548) {
-				}, ondragstart : function(event549) {
-				}, ondrop : function(event550) {
-				}, ondurationchange : function(event551) {
-				}, onemptied : function(event552) {
-				}, onended : function(event553) {
-				}, onerror : function(event554) {
-				}, onfocus : function(event555) {
-				}, onfullscreenchange : function(event556) {
-				}, onfullscreenerror : function(event557) {
-				}, ongotpointercapture : function(event558) {
-				}, oninput : function(event559) {
-				}, oninvalid : function(event560) {
-				}, onkeydown : function(event561) {
-				}, onkeypress : function(event562) {
-				}, onkeyup : function(event563) {
-				}, onload : function(event564) {
-				}, onloadeddata : function(event565) {
-				}, onloadedmetadata : function(event566) {
-				}, onloadstart : function(event567) {
-				}, onlostpointercapture : function(event568) {
-				}, onmousedown : function(event569) {
-				}, onmouseenter : function(event570) {
-				}, onmouseleave : function(event571) {
-				}, onmousemove : function(event572) {
-				}, onmouseout : function(event573) {
-				}, onmouseover : function(event574) {
-				}, onmouseup : function(event575) {
-				}, onpaste : function(event576) {
-				}, onpause : function(event577) {
-				}, onplay : function(event578) {
-				}, onplaying : function(event579) {
-				}, onpointercancel : function(event580) {
-				}, onpointerdown : function(event581) {
-				}, onpointerenter : function(event582) {
-				}, onpointerleave : function(event583) {
-				}, onpointerlockchange : function(event584) {
-				}, onpointerlockerror : function(event585) {
-				}, onpointermove : function(event586) {
-				}, onpointerout : function(event587) {
-				}, onpointerover : function(event588) {
-				}, onpointerup : function(event589) {
-				}, onprogress : function(event590) {
-				}, onratechange : function(event591) {
-				}, onreset : function(event592) {
-				}, onresize : function(event593) {
-				}, onscroll : function(event594) {
-				}, onseeked : function(event595) {
-				}, onseeking : function(event596) {
-				}, onselect : function(event597) {
-				}, onshow : function(event598) {
-				}, onstalled : function(event599) {
-				}, onsubmit : function(event600) {
-				}, onsuspend : function(event601) {
-				}, ontimeupdate : function(event602) {
-				}, ontouchcancel : function(event603) {
-				}, ontouchend : function(event604) {
-				}, ontouchmove : function(event605) {
-				}, ontouchstart : function(event606) {
-				}, onvolumechange : function(event607) {
-				}, onwaiting : function(event608) {
-				}, onwheel : function(event609) {
-				}, spellcheck : __v_07.spellcheck, style : __v_07.style, tabIndex : __v_07.tabIndex, title : __v_07.title},[children25])]);
-			} else {
-				children24 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children26;
-			if(attr15.text != null) {
-				var attr20 = { };
-				var children27 = vdom__$VNode_VNode_$Impl_$.flatten([attr15.text]);
-				var __v_08 = attr20;
-				var attr21 = attr20.className;
-				var _g8 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g8.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g8.h["mdc-tab__icon-text"] = true;
-				}
-				children26 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr21,vdom__$Attr_ClassName_$Impl_$.ofMap(_g8)), accessKey : __v_08.accessKey, accessKeyLabel : __v_08.accessKeyLabel, attributes : __v_08.attributes, contentEditable : __v_08.contentEditable, dir : __v_08.dir, draggable : __v_08.draggable, hidden : __v_08.hidden, id : __v_08.id, key : __v_08.key, lang : __v_08.lang, onabort : function(event610) {
-				}, onblur : function(event611) {
-				}, oncanplay : function(event612) {
-				}, oncanplaythrough : function(event613) {
-				}, onchange : function(event614) {
-				}, onclick : function(event615) {
-				}, oncontextmenu : function(event616) {
-				}, oncopy : function(event617) {
-				}, oncut : function(event618) {
-				}, ondblclick : function(event619) {
-				}, ondrag : function(event620) {
-				}, ondragend : function(event621) {
-				}, ondragenter : function(event622) {
-				}, ondragleave : function(event623) {
-				}, ondragover : function(event624) {
-				}, ondragstart : function(event625) {
-				}, ondrop : function(event626) {
-				}, ondurationchange : function(event627) {
-				}, onemptied : function(event628) {
-				}, onended : function(event629) {
-				}, onerror : function(event630) {
-				}, onfocus : function(event631) {
-				}, onfullscreenchange : function(event632) {
-				}, onfullscreenerror : function(event633) {
-				}, ongotpointercapture : function(event634) {
-				}, oninput : function(event635) {
-				}, oninvalid : function(event636) {
-				}, onkeydown : function(event637) {
-				}, onkeypress : function(event638) {
-				}, onkeyup : function(event639) {
-				}, onload : function(event640) {
-				}, onloadeddata : function(event641) {
-				}, onloadedmetadata : function(event642) {
-				}, onloadstart : function(event643) {
-				}, onlostpointercapture : function(event644) {
-				}, onmousedown : function(event645) {
-				}, onmouseenter : function(event646) {
-				}, onmouseleave : function(event647) {
-				}, onmousemove : function(event648) {
-				}, onmouseout : function(event649) {
-				}, onmouseover : function(event650) {
-				}, onmouseup : function(event651) {
-				}, onpaste : function(event652) {
-				}, onpause : function(event653) {
-				}, onplay : function(event654) {
-				}, onplaying : function(event655) {
-				}, onpointercancel : function(event656) {
-				}, onpointerdown : function(event657) {
-				}, onpointerenter : function(event658) {
-				}, onpointerleave : function(event659) {
-				}, onpointerlockchange : function(event660) {
-				}, onpointerlockerror : function(event661) {
-				}, onpointermove : function(event662) {
-				}, onpointerout : function(event663) {
-				}, onpointerover : function(event664) {
-				}, onpointerup : function(event665) {
-				}, onprogress : function(event666) {
-				}, onratechange : function(event667) {
-				}, onreset : function(event668) {
-				}, onresize : function(event669) {
-				}, onscroll : function(event670) {
-				}, onseeked : function(event671) {
-				}, onseeking : function(event672) {
-				}, onselect : function(event673) {
-				}, onshow : function(event674) {
-				}, onstalled : function(event675) {
-				}, onsubmit : function(event676) {
-				}, onsuspend : function(event677) {
-				}, ontimeupdate : function(event678) {
-				}, ontouchcancel : function(event679) {
-				}, ontouchend : function(event680) {
-				}, ontouchmove : function(event681) {
-				}, ontouchstart : function(event682) {
-				}, onvolumechange : function(event683) {
-				}, onwaiting : function(event684) {
-				}, onwheel : function(event685) {
-				}, spellcheck : __v_08.spellcheck, style : __v_08.style, tabIndex : __v_08.tabIndex, title : __v_08.title},[children27])]);
-			} else {
-				children26 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			return { tabs : vdom__$VNode_VNode_$Impl_$.flatten([children16,children22,vdom_VDom.h("a",attr17,[children24,children26,children23])])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[coconut_ui_tools_ViewCache.get().getFactory("TabBar",function(data17) {
-			return new mdc_TabBar(data17);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache1 = coconut_ui_tools_ViewCache.get();
-			var attr22 = { icon : "camera", active : true};
-			var __v_09 = attr22;
-			var attr23 = attr22.className;
-			var _g9 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g9.setReserved("mdc-tab",true);
-			} else {
-				_g9.h["mdc-tab"] = true;
-			}
-			var value3 = attr22.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g9.setReserved("mdc-tab--active",value3);
-			} else {
-				_g9.h["mdc-tab--active"] = value3;
-			}
-			var attr24 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr23,vdom__$Attr_ClassName_$Impl_$.ofMap(_g9)), accessKey : __v_09.accessKey, accessKeyLabel : __v_09.accessKeyLabel, attributes : __v_09.attributes, contentEditable : __v_09.contentEditable, dir : __v_09.dir, draggable : __v_09.draggable, hidden : __v_09.hidden, href : __v_09.href, id : __v_09.id, key : __v_09.key, lang : __v_09.lang, onabort : function(event686) {
-			}, onblur : function(event687) {
-			}, oncanplay : function(event688) {
-			}, oncanplaythrough : function(event689) {
-			}, onchange : function(event690) {
-			}, onclick : function(event691) {
-			}, oncontextmenu : function(event692) {
-			}, oncopy : function(event693) {
-			}, oncut : function(event694) {
-			}, ondblclick : function(event695) {
-			}, ondrag : function(event696) {
-			}, ondragend : function(event697) {
-			}, ondragenter : function(event698) {
-			}, ondragleave : function(event699) {
-			}, ondragover : function(event700) {
-			}, ondragstart : function(event701) {
-			}, ondrop : function(event702) {
-			}, ondurationchange : function(event703) {
-			}, onemptied : function(event704) {
-			}, onended : function(event705) {
-			}, onerror : function(event706) {
-			}, onfocus : function(event707) {
-			}, onfullscreenchange : function(event708) {
-			}, onfullscreenerror : function(event709) {
-			}, ongotpointercapture : function(event710) {
-			}, oninput : function(event711) {
-			}, oninvalid : function(event712) {
-			}, onkeydown : function(event713) {
-			}, onkeypress : function(event714) {
-			}, onkeyup : function(event715) {
-			}, onload : function(event716) {
-			}, onloadeddata : function(event717) {
-			}, onloadedmetadata : function(event718) {
-			}, onloadstart : function(event719) {
-			}, onlostpointercapture : function(event720) {
-			}, onmousedown : function(event721) {
-			}, onmouseenter : function(event722) {
-			}, onmouseleave : function(event723) {
-			}, onmousemove : function(event724) {
-			}, onmouseout : function(event725) {
-			}, onmouseover : function(event726) {
-			}, onmouseup : function(event727) {
-			}, onpaste : function(event728) {
-			}, onpause : function(event729) {
-			}, onplay : function(event730) {
-			}, onplaying : function(event731) {
-			}, onpointercancel : function(event732) {
-			}, onpointerdown : function(event733) {
-			}, onpointerenter : function(event734) {
-			}, onpointerleave : function(event735) {
-			}, onpointerlockchange : function(event736) {
-			}, onpointerlockerror : function(event737) {
-			}, onpointermove : function(event738) {
-			}, onpointerout : function(event739) {
-			}, onpointerover : function(event740) {
-			}, onpointerup : function(event741) {
-			}, onprogress : function(event742) {
-			}, onratechange : function(event743) {
-			}, onreset : function(event744) {
-			}, onresize : function(event745) {
-			}, onscroll : function(event746) {
-			}, onseeked : function(event747) {
-			}, onseeking : function(event748) {
-			}, onselect : function(event749) {
-			}, onshow : function(event750) {
-			}, onstalled : function(event751) {
-			}, onsubmit : function(event752) {
-			}, onsuspend : function(event753) {
-			}, ontimeupdate : function(event754) {
-			}, ontouchcancel : function(event755) {
-			}, ontouchend : function(event756) {
-			}, ontouchmove : function(event757) {
-			}, ontouchstart : function(event758) {
-			}, onvolumechange : function(event759) {
-			}, onwaiting : function(event760) {
-			}, onwheel : function(event761) {
-			}, spellcheck : __v_09.spellcheck, style : __v_09.style, tabIndex : __v_09.tabIndex, target : __v_09.target, title : __v_09.title, type : __v_09.type};
-			var children28;
-			if(attr22.icon != null) {
-				var attr25 = { };
-				var children29 = vdom__$VNode_VNode_$Impl_$.flatten([attr22.icon]);
-				var __v_010 = attr25;
-				var attr26 = attr25.className;
-				var _g10 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g10.setReserved("mdc-tab__icon",true);
-				} else {
-					_g10.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g10.setReserved("material-icons",true);
-				} else {
-					_g10.h["material-icons"] = true;
-				}
-				children28 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr26,vdom__$Attr_ClassName_$Impl_$.ofMap(_g10)), accessKey : __v_010.accessKey, accessKeyLabel : __v_010.accessKeyLabel, attributes : __v_010.attributes, contentEditable : __v_010.contentEditable, dir : __v_010.dir, draggable : __v_010.draggable, hidden : __v_010.hidden, id : __v_010.id, key : __v_010.key, lang : __v_010.lang, onabort : function(event762) {
-				}, onblur : function(event763) {
-				}, oncanplay : function(event764) {
-				}, oncanplaythrough : function(event765) {
-				}, onchange : function(event766) {
-				}, onclick : function(event767) {
-				}, oncontextmenu : function(event768) {
-				}, oncopy : function(event769) {
-				}, oncut : function(event770) {
-				}, ondblclick : function(event771) {
-				}, ondrag : function(event772) {
-				}, ondragend : function(event773) {
-				}, ondragenter : function(event774) {
-				}, ondragleave : function(event775) {
-				}, ondragover : function(event776) {
-				}, ondragstart : function(event777) {
-				}, ondrop : function(event778) {
-				}, ondurationchange : function(event779) {
-				}, onemptied : function(event780) {
-				}, onended : function(event781) {
-				}, onerror : function(event782) {
-				}, onfocus : function(event783) {
-				}, onfullscreenchange : function(event784) {
-				}, onfullscreenerror : function(event785) {
-				}, ongotpointercapture : function(event786) {
-				}, oninput : function(event787) {
-				}, oninvalid : function(event788) {
-				}, onkeydown : function(event789) {
-				}, onkeypress : function(event790) {
-				}, onkeyup : function(event791) {
-				}, onload : function(event792) {
-				}, onloadeddata : function(event793) {
-				}, onloadedmetadata : function(event794) {
-				}, onloadstart : function(event795) {
-				}, onlostpointercapture : function(event796) {
-				}, onmousedown : function(event797) {
-				}, onmouseenter : function(event798) {
-				}, onmouseleave : function(event799) {
-				}, onmousemove : function(event800) {
-				}, onmouseout : function(event801) {
-				}, onmouseover : function(event802) {
-				}, onmouseup : function(event803) {
-				}, onpaste : function(event804) {
-				}, onpause : function(event805) {
-				}, onplay : function(event806) {
-				}, onplaying : function(event807) {
-				}, onpointercancel : function(event808) {
-				}, onpointerdown : function(event809) {
-				}, onpointerenter : function(event810) {
-				}, onpointerleave : function(event811) {
-				}, onpointerlockchange : function(event812) {
-				}, onpointerlockerror : function(event813) {
-				}, onpointermove : function(event814) {
-				}, onpointerout : function(event815) {
-				}, onpointerover : function(event816) {
-				}, onpointerup : function(event817) {
-				}, onprogress : function(event818) {
-				}, onratechange : function(event819) {
-				}, onreset : function(event820) {
-				}, onresize : function(event821) {
-				}, onscroll : function(event822) {
-				}, onseeked : function(event823) {
-				}, onseeking : function(event824) {
-				}, onselect : function(event825) {
-				}, onshow : function(event826) {
-				}, onstalled : function(event827) {
-				}, onsubmit : function(event828) {
-				}, onsuspend : function(event829) {
-				}, ontimeupdate : function(event830) {
-				}, ontouchcancel : function(event831) {
-				}, ontouchend : function(event832) {
-				}, ontouchmove : function(event833) {
-				}, ontouchstart : function(event834) {
-				}, onvolumechange : function(event835) {
-				}, onwaiting : function(event836) {
-				}, onwheel : function(event837) {
-				}, spellcheck : __v_010.spellcheck, style : __v_010.style, tabIndex : __v_010.tabIndex, title : __v_010.title},[children29])]);
-			} else {
-				children28 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children30;
-			if(attr22.text != null) {
-				var attr27 = { };
-				var children31 = vdom__$VNode_VNode_$Impl_$.flatten([attr22.text]);
-				var __v_011 = attr27;
-				var attr28 = attr27.className;
-				var _g11 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g11.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g11.h["mdc-tab__icon-text"] = true;
-				}
-				children30 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr28,vdom__$Attr_ClassName_$Impl_$.ofMap(_g11)), accessKey : __v_011.accessKey, accessKeyLabel : __v_011.accessKeyLabel, attributes : __v_011.attributes, contentEditable : __v_011.contentEditable, dir : __v_011.dir, draggable : __v_011.draggable, hidden : __v_011.hidden, id : __v_011.id, key : __v_011.key, lang : __v_011.lang, onabort : function(event838) {
-				}, onblur : function(event839) {
-				}, oncanplay : function(event840) {
-				}, oncanplaythrough : function(event841) {
-				}, onchange : function(event842) {
-				}, onclick : function(event843) {
-				}, oncontextmenu : function(event844) {
-				}, oncopy : function(event845) {
-				}, oncut : function(event846) {
-				}, ondblclick : function(event847) {
-				}, ondrag : function(event848) {
-				}, ondragend : function(event849) {
-				}, ondragenter : function(event850) {
-				}, ondragleave : function(event851) {
-				}, ondragover : function(event852) {
-				}, ondragstart : function(event853) {
-				}, ondrop : function(event854) {
-				}, ondurationchange : function(event855) {
-				}, onemptied : function(event856) {
-				}, onended : function(event857) {
-				}, onerror : function(event858) {
-				}, onfocus : function(event859) {
-				}, onfullscreenchange : function(event860) {
-				}, onfullscreenerror : function(event861) {
-				}, ongotpointercapture : function(event862) {
-				}, oninput : function(event863) {
-				}, oninvalid : function(event864) {
-				}, onkeydown : function(event865) {
-				}, onkeypress : function(event866) {
-				}, onkeyup : function(event867) {
-				}, onload : function(event868) {
-				}, onloadeddata : function(event869) {
-				}, onloadedmetadata : function(event870) {
-				}, onloadstart : function(event871) {
-				}, onlostpointercapture : function(event872) {
-				}, onmousedown : function(event873) {
-				}, onmouseenter : function(event874) {
-				}, onmouseleave : function(event875) {
-				}, onmousemove : function(event876) {
-				}, onmouseout : function(event877) {
-				}, onmouseover : function(event878) {
-				}, onmouseup : function(event879) {
-				}, onpaste : function(event880) {
-				}, onpause : function(event881) {
-				}, onplay : function(event882) {
-				}, onplaying : function(event883) {
-				}, onpointercancel : function(event884) {
-				}, onpointerdown : function(event885) {
-				}, onpointerenter : function(event886) {
-				}, onpointerleave : function(event887) {
-				}, onpointerlockchange : function(event888) {
-				}, onpointerlockerror : function(event889) {
-				}, onpointermove : function(event890) {
-				}, onpointerout : function(event891) {
-				}, onpointerover : function(event892) {
-				}, onpointerup : function(event893) {
-				}, onprogress : function(event894) {
-				}, onratechange : function(event895) {
-				}, onreset : function(event896) {
-				}, onresize : function(event897) {
-				}, onscroll : function(event898) {
-				}, onseeked : function(event899) {
-				}, onseeking : function(event900) {
-				}, onselect : function(event901) {
-				}, onshow : function(event902) {
-				}, onstalled : function(event903) {
-				}, onsubmit : function(event904) {
-				}, onsuspend : function(event905) {
-				}, ontimeupdate : function(event906) {
-				}, ontouchcancel : function(event907) {
-				}, ontouchend : function(event908) {
-				}, ontouchmove : function(event909) {
-				}, ontouchstart : function(event910) {
-				}, onvolumechange : function(event911) {
-				}, onwaiting : function(event912) {
-				}, onwheel : function(event913) {
-				}, spellcheck : __v_011.spellcheck, style : __v_011.style, tabIndex : __v_011.tabIndex, title : __v_011.title},[children31])]);
-			} else {
-				children30 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children32 = vdom_VDom.h("a",attr24,[children28,children30,null]);
-			var attr29 = { icon : "colorize"};
-			var __v_012 = attr29;
-			var attr30 = attr29.className;
-			var _g12 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g12.setReserved("mdc-tab",true);
-			} else {
-				_g12.h["mdc-tab"] = true;
-			}
-			var value4 = attr29.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g12.setReserved("mdc-tab--active",value4);
-			} else {
-				_g12.h["mdc-tab--active"] = value4;
-			}
-			var attr31 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr30,vdom__$Attr_ClassName_$Impl_$.ofMap(_g12)), accessKey : __v_012.accessKey, accessKeyLabel : __v_012.accessKeyLabel, attributes : __v_012.attributes, contentEditable : __v_012.contentEditable, dir : __v_012.dir, draggable : __v_012.draggable, hidden : __v_012.hidden, href : __v_012.href, id : __v_012.id, key : __v_012.key, lang : __v_012.lang, onabort : function(event914) {
-			}, onblur : function(event915) {
-			}, oncanplay : function(event916) {
-			}, oncanplaythrough : function(event917) {
-			}, onchange : function(event918) {
-			}, onclick : function(event919) {
-			}, oncontextmenu : function(event920) {
-			}, oncopy : function(event921) {
-			}, oncut : function(event922) {
-			}, ondblclick : function(event923) {
-			}, ondrag : function(event924) {
-			}, ondragend : function(event925) {
-			}, ondragenter : function(event926) {
-			}, ondragleave : function(event927) {
-			}, ondragover : function(event928) {
-			}, ondragstart : function(event929) {
-			}, ondrop : function(event930) {
-			}, ondurationchange : function(event931) {
-			}, onemptied : function(event932) {
-			}, onended : function(event933) {
-			}, onerror : function(event934) {
-			}, onfocus : function(event935) {
-			}, onfullscreenchange : function(event936) {
-			}, onfullscreenerror : function(event937) {
-			}, ongotpointercapture : function(event938) {
-			}, oninput : function(event939) {
-			}, oninvalid : function(event940) {
-			}, onkeydown : function(event941) {
-			}, onkeypress : function(event942) {
-			}, onkeyup : function(event943) {
-			}, onload : function(event944) {
-			}, onloadeddata : function(event945) {
-			}, onloadedmetadata : function(event946) {
-			}, onloadstart : function(event947) {
-			}, onlostpointercapture : function(event948) {
-			}, onmousedown : function(event949) {
-			}, onmouseenter : function(event950) {
-			}, onmouseleave : function(event951) {
-			}, onmousemove : function(event952) {
-			}, onmouseout : function(event953) {
-			}, onmouseover : function(event954) {
-			}, onmouseup : function(event955) {
-			}, onpaste : function(event956) {
-			}, onpause : function(event957) {
-			}, onplay : function(event958) {
-			}, onplaying : function(event959) {
-			}, onpointercancel : function(event960) {
-			}, onpointerdown : function(event961) {
-			}, onpointerenter : function(event962) {
-			}, onpointerleave : function(event963) {
-			}, onpointerlockchange : function(event964) {
-			}, onpointerlockerror : function(event965) {
-			}, onpointermove : function(event966) {
-			}, onpointerout : function(event967) {
-			}, onpointerover : function(event968) {
-			}, onpointerup : function(event969) {
-			}, onprogress : function(event970) {
-			}, onratechange : function(event971) {
-			}, onreset : function(event972) {
-			}, onresize : function(event973) {
-			}, onscroll : function(event974) {
-			}, onseeked : function(event975) {
-			}, onseeking : function(event976) {
-			}, onselect : function(event977) {
-			}, onshow : function(event978) {
-			}, onstalled : function(event979) {
-			}, onsubmit : function(event980) {
-			}, onsuspend : function(event981) {
-			}, ontimeupdate : function(event982) {
-			}, ontouchcancel : function(event983) {
-			}, ontouchend : function(event984) {
-			}, ontouchmove : function(event985) {
-			}, ontouchstart : function(event986) {
-			}, onvolumechange : function(event987) {
-			}, onwaiting : function(event988) {
-			}, onwheel : function(event989) {
-			}, spellcheck : __v_012.spellcheck, style : __v_012.style, tabIndex : __v_012.tabIndex, target : __v_012.target, title : __v_012.title, type : __v_012.type};
-			var children33;
-			if(attr29.icon != null) {
-				var attr32 = { };
-				var children34 = vdom__$VNode_VNode_$Impl_$.flatten([attr29.icon]);
-				var __v_013 = attr32;
-				var attr33 = attr32.className;
-				var _g13 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g13.setReserved("mdc-tab__icon",true);
-				} else {
-					_g13.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g13.setReserved("material-icons",true);
-				} else {
-					_g13.h["material-icons"] = true;
-				}
-				children33 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr33,vdom__$Attr_ClassName_$Impl_$.ofMap(_g13)), accessKey : __v_013.accessKey, accessKeyLabel : __v_013.accessKeyLabel, attributes : __v_013.attributes, contentEditable : __v_013.contentEditable, dir : __v_013.dir, draggable : __v_013.draggable, hidden : __v_013.hidden, id : __v_013.id, key : __v_013.key, lang : __v_013.lang, onabort : function(event990) {
-				}, onblur : function(event991) {
-				}, oncanplay : function(event992) {
-				}, oncanplaythrough : function(event993) {
-				}, onchange : function(event994) {
-				}, onclick : function(event995) {
-				}, oncontextmenu : function(event996) {
-				}, oncopy : function(event997) {
-				}, oncut : function(event998) {
-				}, ondblclick : function(event999) {
-				}, ondrag : function(event1000) {
-				}, ondragend : function(event1001) {
-				}, ondragenter : function(event1002) {
-				}, ondragleave : function(event1003) {
-				}, ondragover : function(event1004) {
-				}, ondragstart : function(event1005) {
-				}, ondrop : function(event1006) {
-				}, ondurationchange : function(event1007) {
-				}, onemptied : function(event1008) {
-				}, onended : function(event1009) {
-				}, onerror : function(event1010) {
-				}, onfocus : function(event1011) {
-				}, onfullscreenchange : function(event1012) {
-				}, onfullscreenerror : function(event1013) {
-				}, ongotpointercapture : function(event1014) {
-				}, oninput : function(event1015) {
-				}, oninvalid : function(event1016) {
-				}, onkeydown : function(event1017) {
-				}, onkeypress : function(event1018) {
-				}, onkeyup : function(event1019) {
-				}, onload : function(event1020) {
-				}, onloadeddata : function(event1021) {
-				}, onloadedmetadata : function(event1022) {
-				}, onloadstart : function(event1023) {
-				}, onlostpointercapture : function(event1024) {
-				}, onmousedown : function(event1025) {
-				}, onmouseenter : function(event1026) {
-				}, onmouseleave : function(event1027) {
-				}, onmousemove : function(event1028) {
-				}, onmouseout : function(event1029) {
-				}, onmouseover : function(event1030) {
-				}, onmouseup : function(event1031) {
-				}, onpaste : function(event1032) {
-				}, onpause : function(event1033) {
-				}, onplay : function(event1034) {
-				}, onplaying : function(event1035) {
-				}, onpointercancel : function(event1036) {
-				}, onpointerdown : function(event1037) {
-				}, onpointerenter : function(event1038) {
-				}, onpointerleave : function(event1039) {
-				}, onpointerlockchange : function(event1040) {
-				}, onpointerlockerror : function(event1041) {
-				}, onpointermove : function(event1042) {
-				}, onpointerout : function(event1043) {
-				}, onpointerover : function(event1044) {
-				}, onpointerup : function(event1045) {
-				}, onprogress : function(event1046) {
-				}, onratechange : function(event1047) {
-				}, onreset : function(event1048) {
-				}, onresize : function(event1049) {
-				}, onscroll : function(event1050) {
-				}, onseeked : function(event1051) {
-				}, onseeking : function(event1052) {
-				}, onselect : function(event1053) {
-				}, onshow : function(event1054) {
-				}, onstalled : function(event1055) {
-				}, onsubmit : function(event1056) {
-				}, onsuspend : function(event1057) {
-				}, ontimeupdate : function(event1058) {
-				}, ontouchcancel : function(event1059) {
-				}, ontouchend : function(event1060) {
-				}, ontouchmove : function(event1061) {
-				}, ontouchstart : function(event1062) {
-				}, onvolumechange : function(event1063) {
-				}, onwaiting : function(event1064) {
-				}, onwheel : function(event1065) {
-				}, spellcheck : __v_013.spellcheck, style : __v_013.style, tabIndex : __v_013.tabIndex, title : __v_013.title},[children34])]);
-			} else {
-				children33 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children35;
-			if(attr29.text != null) {
-				var attr34 = { };
-				var children36 = vdom__$VNode_VNode_$Impl_$.flatten([attr29.text]);
-				var __v_014 = attr34;
-				var attr35 = attr34.className;
-				var _g14 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g14.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g14.h["mdc-tab__icon-text"] = true;
-				}
-				children35 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr35,vdom__$Attr_ClassName_$Impl_$.ofMap(_g14)), accessKey : __v_014.accessKey, accessKeyLabel : __v_014.accessKeyLabel, attributes : __v_014.attributes, contentEditable : __v_014.contentEditable, dir : __v_014.dir, draggable : __v_014.draggable, hidden : __v_014.hidden, id : __v_014.id, key : __v_014.key, lang : __v_014.lang, onabort : function(event1066) {
-				}, onblur : function(event1067) {
-				}, oncanplay : function(event1068) {
-				}, oncanplaythrough : function(event1069) {
-				}, onchange : function(event1070) {
-				}, onclick : function(event1071) {
-				}, oncontextmenu : function(event1072) {
-				}, oncopy : function(event1073) {
-				}, oncut : function(event1074) {
-				}, ondblclick : function(event1075) {
-				}, ondrag : function(event1076) {
-				}, ondragend : function(event1077) {
-				}, ondragenter : function(event1078) {
-				}, ondragleave : function(event1079) {
-				}, ondragover : function(event1080) {
-				}, ondragstart : function(event1081) {
-				}, ondrop : function(event1082) {
-				}, ondurationchange : function(event1083) {
-				}, onemptied : function(event1084) {
-				}, onended : function(event1085) {
-				}, onerror : function(event1086) {
-				}, onfocus : function(event1087) {
-				}, onfullscreenchange : function(event1088) {
-				}, onfullscreenerror : function(event1089) {
-				}, ongotpointercapture : function(event1090) {
-				}, oninput : function(event1091) {
-				}, oninvalid : function(event1092) {
-				}, onkeydown : function(event1093) {
-				}, onkeypress : function(event1094) {
-				}, onkeyup : function(event1095) {
-				}, onload : function(event1096) {
-				}, onloadeddata : function(event1097) {
-				}, onloadedmetadata : function(event1098) {
-				}, onloadstart : function(event1099) {
-				}, onlostpointercapture : function(event1100) {
-				}, onmousedown : function(event1101) {
-				}, onmouseenter : function(event1102) {
-				}, onmouseleave : function(event1103) {
-				}, onmousemove : function(event1104) {
-				}, onmouseout : function(event1105) {
-				}, onmouseover : function(event1106) {
-				}, onmouseup : function(event1107) {
-				}, onpaste : function(event1108) {
-				}, onpause : function(event1109) {
-				}, onplay : function(event1110) {
-				}, onplaying : function(event1111) {
-				}, onpointercancel : function(event1112) {
-				}, onpointerdown : function(event1113) {
-				}, onpointerenter : function(event1114) {
-				}, onpointerleave : function(event1115) {
-				}, onpointerlockchange : function(event1116) {
-				}, onpointerlockerror : function(event1117) {
-				}, onpointermove : function(event1118) {
-				}, onpointerout : function(event1119) {
-				}, onpointerover : function(event1120) {
-				}, onpointerup : function(event1121) {
-				}, onprogress : function(event1122) {
-				}, onratechange : function(event1123) {
-				}, onreset : function(event1124) {
-				}, onresize : function(event1125) {
-				}, onscroll : function(event1126) {
-				}, onseeked : function(event1127) {
-				}, onseeking : function(event1128) {
-				}, onselect : function(event1129) {
-				}, onshow : function(event1130) {
-				}, onstalled : function(event1131) {
-				}, onsubmit : function(event1132) {
-				}, onsuspend : function(event1133) {
-				}, ontimeupdate : function(event1134) {
-				}, ontouchcancel : function(event1135) {
-				}, ontouchend : function(event1136) {
-				}, ontouchmove : function(event1137) {
-				}, ontouchstart : function(event1138) {
-				}, onvolumechange : function(event1139) {
-				}, onwaiting : function(event1140) {
-				}, onwheel : function(event1141) {
-				}, spellcheck : __v_014.spellcheck, style : __v_014.style, tabIndex : __v_014.tabIndex, title : __v_014.title},[children36])]);
-			} else {
-				children35 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children37 = vdom_VDom.h("a",attr31,[children33,children35,null]);
-			var attr36 = { icon : "edit"};
-			var __v_015 = attr36;
-			var attr37 = attr36.className;
-			var _g15 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g15.setReserved("mdc-tab",true);
-			} else {
-				_g15.h["mdc-tab"] = true;
-			}
-			var value5 = attr36.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g15.setReserved("mdc-tab--active",value5);
-			} else {
-				_g15.h["mdc-tab--active"] = value5;
-			}
-			var attr38 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr37,vdom__$Attr_ClassName_$Impl_$.ofMap(_g15)), accessKey : __v_015.accessKey, accessKeyLabel : __v_015.accessKeyLabel, attributes : __v_015.attributes, contentEditable : __v_015.contentEditable, dir : __v_015.dir, draggable : __v_015.draggable, hidden : __v_015.hidden, href : __v_015.href, id : __v_015.id, key : __v_015.key, lang : __v_015.lang, onabort : function(event1142) {
-			}, onblur : function(event1143) {
-			}, oncanplay : function(event1144) {
-			}, oncanplaythrough : function(event1145) {
-			}, onchange : function(event1146) {
-			}, onclick : function(event1147) {
-			}, oncontextmenu : function(event1148) {
-			}, oncopy : function(event1149) {
-			}, oncut : function(event1150) {
-			}, ondblclick : function(event1151) {
-			}, ondrag : function(event1152) {
-			}, ondragend : function(event1153) {
-			}, ondragenter : function(event1154) {
-			}, ondragleave : function(event1155) {
-			}, ondragover : function(event1156) {
-			}, ondragstart : function(event1157) {
-			}, ondrop : function(event1158) {
-			}, ondurationchange : function(event1159) {
-			}, onemptied : function(event1160) {
-			}, onended : function(event1161) {
-			}, onerror : function(event1162) {
-			}, onfocus : function(event1163) {
-			}, onfullscreenchange : function(event1164) {
-			}, onfullscreenerror : function(event1165) {
-			}, ongotpointercapture : function(event1166) {
-			}, oninput : function(event1167) {
-			}, oninvalid : function(event1168) {
-			}, onkeydown : function(event1169) {
-			}, onkeypress : function(event1170) {
-			}, onkeyup : function(event1171) {
-			}, onload : function(event1172) {
-			}, onloadeddata : function(event1173) {
-			}, onloadedmetadata : function(event1174) {
-			}, onloadstart : function(event1175) {
-			}, onlostpointercapture : function(event1176) {
-			}, onmousedown : function(event1177) {
-			}, onmouseenter : function(event1178) {
-			}, onmouseleave : function(event1179) {
-			}, onmousemove : function(event1180) {
-			}, onmouseout : function(event1181) {
-			}, onmouseover : function(event1182) {
-			}, onmouseup : function(event1183) {
-			}, onpaste : function(event1184) {
-			}, onpause : function(event1185) {
-			}, onplay : function(event1186) {
-			}, onplaying : function(event1187) {
-			}, onpointercancel : function(event1188) {
-			}, onpointerdown : function(event1189) {
-			}, onpointerenter : function(event1190) {
-			}, onpointerleave : function(event1191) {
-			}, onpointerlockchange : function(event1192) {
-			}, onpointerlockerror : function(event1193) {
-			}, onpointermove : function(event1194) {
-			}, onpointerout : function(event1195) {
-			}, onpointerover : function(event1196) {
-			}, onpointerup : function(event1197) {
-			}, onprogress : function(event1198) {
-			}, onratechange : function(event1199) {
-			}, onreset : function(event1200) {
-			}, onresize : function(event1201) {
-			}, onscroll : function(event1202) {
-			}, onseeked : function(event1203) {
-			}, onseeking : function(event1204) {
-			}, onselect : function(event1205) {
-			}, onshow : function(event1206) {
-			}, onstalled : function(event1207) {
-			}, onsubmit : function(event1208) {
-			}, onsuspend : function(event1209) {
-			}, ontimeupdate : function(event1210) {
-			}, ontouchcancel : function(event1211) {
-			}, ontouchend : function(event1212) {
-			}, ontouchmove : function(event1213) {
-			}, ontouchstart : function(event1214) {
-			}, onvolumechange : function(event1215) {
-			}, onwaiting : function(event1216) {
-			}, onwheel : function(event1217) {
-			}, spellcheck : __v_015.spellcheck, style : __v_015.style, tabIndex : __v_015.tabIndex, target : __v_015.target, title : __v_015.title, type : __v_015.type};
-			var children38;
-			if(attr36.icon != null) {
-				var attr39 = { };
-				var children39 = vdom__$VNode_VNode_$Impl_$.flatten([attr36.icon]);
-				var __v_016 = attr39;
-				var attr40 = attr39.className;
-				var _g16 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g16.setReserved("mdc-tab__icon",true);
-				} else {
-					_g16.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g16.setReserved("material-icons",true);
-				} else {
-					_g16.h["material-icons"] = true;
-				}
-				children38 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr40,vdom__$Attr_ClassName_$Impl_$.ofMap(_g16)), accessKey : __v_016.accessKey, accessKeyLabel : __v_016.accessKeyLabel, attributes : __v_016.attributes, contentEditable : __v_016.contentEditable, dir : __v_016.dir, draggable : __v_016.draggable, hidden : __v_016.hidden, id : __v_016.id, key : __v_016.key, lang : __v_016.lang, onabort : function(event1218) {
-				}, onblur : function(event1219) {
-				}, oncanplay : function(event1220) {
-				}, oncanplaythrough : function(event1221) {
-				}, onchange : function(event1222) {
-				}, onclick : function(event1223) {
-				}, oncontextmenu : function(event1224) {
-				}, oncopy : function(event1225) {
-				}, oncut : function(event1226) {
-				}, ondblclick : function(event1227) {
-				}, ondrag : function(event1228) {
-				}, ondragend : function(event1229) {
-				}, ondragenter : function(event1230) {
-				}, ondragleave : function(event1231) {
-				}, ondragover : function(event1232) {
-				}, ondragstart : function(event1233) {
-				}, ondrop : function(event1234) {
-				}, ondurationchange : function(event1235) {
-				}, onemptied : function(event1236) {
-				}, onended : function(event1237) {
-				}, onerror : function(event1238) {
-				}, onfocus : function(event1239) {
-				}, onfullscreenchange : function(event1240) {
-				}, onfullscreenerror : function(event1241) {
-				}, ongotpointercapture : function(event1242) {
-				}, oninput : function(event1243) {
-				}, oninvalid : function(event1244) {
-				}, onkeydown : function(event1245) {
-				}, onkeypress : function(event1246) {
-				}, onkeyup : function(event1247) {
-				}, onload : function(event1248) {
-				}, onloadeddata : function(event1249) {
-				}, onloadedmetadata : function(event1250) {
-				}, onloadstart : function(event1251) {
-				}, onlostpointercapture : function(event1252) {
-				}, onmousedown : function(event1253) {
-				}, onmouseenter : function(event1254) {
-				}, onmouseleave : function(event1255) {
-				}, onmousemove : function(event1256) {
-				}, onmouseout : function(event1257) {
-				}, onmouseover : function(event1258) {
-				}, onmouseup : function(event1259) {
-				}, onpaste : function(event1260) {
-				}, onpause : function(event1261) {
-				}, onplay : function(event1262) {
-				}, onplaying : function(event1263) {
-				}, onpointercancel : function(event1264) {
-				}, onpointerdown : function(event1265) {
-				}, onpointerenter : function(event1266) {
-				}, onpointerleave : function(event1267) {
-				}, onpointerlockchange : function(event1268) {
-				}, onpointerlockerror : function(event1269) {
-				}, onpointermove : function(event1270) {
-				}, onpointerout : function(event1271) {
-				}, onpointerover : function(event1272) {
-				}, onpointerup : function(event1273) {
-				}, onprogress : function(event1274) {
-				}, onratechange : function(event1275) {
-				}, onreset : function(event1276) {
-				}, onresize : function(event1277) {
-				}, onscroll : function(event1278) {
-				}, onseeked : function(event1279) {
-				}, onseeking : function(event1280) {
-				}, onselect : function(event1281) {
-				}, onshow : function(event1282) {
-				}, onstalled : function(event1283) {
-				}, onsubmit : function(event1284) {
-				}, onsuspend : function(event1285) {
-				}, ontimeupdate : function(event1286) {
-				}, ontouchcancel : function(event1287) {
-				}, ontouchend : function(event1288) {
-				}, ontouchmove : function(event1289) {
-				}, ontouchstart : function(event1290) {
-				}, onvolumechange : function(event1291) {
-				}, onwaiting : function(event1292) {
-				}, onwheel : function(event1293) {
-				}, spellcheck : __v_016.spellcheck, style : __v_016.style, tabIndex : __v_016.tabIndex, title : __v_016.title},[children39])]);
-			} else {
-				children38 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children40;
-			if(attr36.text != null) {
-				var attr41 = { };
-				var children41 = vdom__$VNode_VNode_$Impl_$.flatten([attr36.text]);
-				var __v_017 = attr41;
-				var attr42 = attr41.className;
-				var _g17 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g17.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g17.h["mdc-tab__icon-text"] = true;
-				}
-				children40 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr42,vdom__$Attr_ClassName_$Impl_$.ofMap(_g17)), accessKey : __v_017.accessKey, accessKeyLabel : __v_017.accessKeyLabel, attributes : __v_017.attributes, contentEditable : __v_017.contentEditable, dir : __v_017.dir, draggable : __v_017.draggable, hidden : __v_017.hidden, id : __v_017.id, key : __v_017.key, lang : __v_017.lang, onabort : function(event1294) {
-				}, onblur : function(event1295) {
-				}, oncanplay : function(event1296) {
-				}, oncanplaythrough : function(event1297) {
-				}, onchange : function(event1298) {
-				}, onclick : function(event1299) {
-				}, oncontextmenu : function(event1300) {
-				}, oncopy : function(event1301) {
-				}, oncut : function(event1302) {
-				}, ondblclick : function(event1303) {
-				}, ondrag : function(event1304) {
-				}, ondragend : function(event1305) {
-				}, ondragenter : function(event1306) {
-				}, ondragleave : function(event1307) {
-				}, ondragover : function(event1308) {
-				}, ondragstart : function(event1309) {
-				}, ondrop : function(event1310) {
-				}, ondurationchange : function(event1311) {
-				}, onemptied : function(event1312) {
-				}, onended : function(event1313) {
-				}, onerror : function(event1314) {
-				}, onfocus : function(event1315) {
-				}, onfullscreenchange : function(event1316) {
-				}, onfullscreenerror : function(event1317) {
-				}, ongotpointercapture : function(event1318) {
-				}, oninput : function(event1319) {
-				}, oninvalid : function(event1320) {
-				}, onkeydown : function(event1321) {
-				}, onkeypress : function(event1322) {
-				}, onkeyup : function(event1323) {
-				}, onload : function(event1324) {
-				}, onloadeddata : function(event1325) {
-				}, onloadedmetadata : function(event1326) {
-				}, onloadstart : function(event1327) {
-				}, onlostpointercapture : function(event1328) {
-				}, onmousedown : function(event1329) {
-				}, onmouseenter : function(event1330) {
-				}, onmouseleave : function(event1331) {
-				}, onmousemove : function(event1332) {
-				}, onmouseout : function(event1333) {
-				}, onmouseover : function(event1334) {
-				}, onmouseup : function(event1335) {
-				}, onpaste : function(event1336) {
-				}, onpause : function(event1337) {
-				}, onplay : function(event1338) {
-				}, onplaying : function(event1339) {
-				}, onpointercancel : function(event1340) {
-				}, onpointerdown : function(event1341) {
-				}, onpointerenter : function(event1342) {
-				}, onpointerleave : function(event1343) {
-				}, onpointerlockchange : function(event1344) {
-				}, onpointerlockerror : function(event1345) {
-				}, onpointermove : function(event1346) {
-				}, onpointerout : function(event1347) {
-				}, onpointerover : function(event1348) {
-				}, onpointerup : function(event1349) {
-				}, onprogress : function(event1350) {
-				}, onratechange : function(event1351) {
-				}, onreset : function(event1352) {
-				}, onresize : function(event1353) {
-				}, onscroll : function(event1354) {
-				}, onseeked : function(event1355) {
-				}, onseeking : function(event1356) {
-				}, onselect : function(event1357) {
-				}, onshow : function(event1358) {
-				}, onstalled : function(event1359) {
-				}, onsubmit : function(event1360) {
-				}, onsuspend : function(event1361) {
-				}, ontimeupdate : function(event1362) {
-				}, ontouchcancel : function(event1363) {
-				}, ontouchend : function(event1364) {
-				}, ontouchmove : function(event1365) {
-				}, ontouchstart : function(event1366) {
-				}, onvolumechange : function(event1367) {
-				}, onwaiting : function(event1368) {
-				}, onwheel : function(event1369) {
-				}, spellcheck : __v_017.spellcheck, style : __v_017.style, tabIndex : __v_017.tabIndex, title : __v_017.title},[children41])]);
-			} else {
-				children40 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			return { type : "mdc-tab-bar--icon-tab-bar", tabs : vdom__$VNode_VNode_$Impl_$.flatten([children32,children37,vdom_VDom.h("a",attr38,[children38,children40,null])])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[coconut_ui_tools_ViewCache.get().getFactory("TabBar",function(data18) {
-			return new mdc_TabBar(data18);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache2 = coconut_ui_tools_ViewCache.get();
-			var attr43 = { icon : "camera", active : true};
-			var children42 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab1"]);
-			var __v_018 = attr43;
-			var attr44 = attr43.className;
-			var _g18 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g18.setReserved("mdc-tab",true);
-			} else {
-				_g18.h["mdc-tab"] = true;
-			}
-			var value6 = attr43.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g18.setReserved("mdc-tab--active",value6);
-			} else {
-				_g18.h["mdc-tab--active"] = value6;
-			}
-			var attr45 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr44,vdom__$Attr_ClassName_$Impl_$.ofMap(_g18)), accessKey : __v_018.accessKey, accessKeyLabel : __v_018.accessKeyLabel, attributes : __v_018.attributes, contentEditable : __v_018.contentEditable, dir : __v_018.dir, draggable : __v_018.draggable, hidden : __v_018.hidden, href : __v_018.href, id : __v_018.id, key : __v_018.key, lang : __v_018.lang, onabort : function(event1370) {
-			}, onblur : function(event1371) {
-			}, oncanplay : function(event1372) {
-			}, oncanplaythrough : function(event1373) {
-			}, onchange : function(event1374) {
-			}, onclick : function(event1375) {
-			}, oncontextmenu : function(event1376) {
-			}, oncopy : function(event1377) {
-			}, oncut : function(event1378) {
-			}, ondblclick : function(event1379) {
-			}, ondrag : function(event1380) {
-			}, ondragend : function(event1381) {
-			}, ondragenter : function(event1382) {
-			}, ondragleave : function(event1383) {
-			}, ondragover : function(event1384) {
-			}, ondragstart : function(event1385) {
-			}, ondrop : function(event1386) {
-			}, ondurationchange : function(event1387) {
-			}, onemptied : function(event1388) {
-			}, onended : function(event1389) {
-			}, onerror : function(event1390) {
-			}, onfocus : function(event1391) {
-			}, onfullscreenchange : function(event1392) {
-			}, onfullscreenerror : function(event1393) {
-			}, ongotpointercapture : function(event1394) {
-			}, oninput : function(event1395) {
-			}, oninvalid : function(event1396) {
-			}, onkeydown : function(event1397) {
-			}, onkeypress : function(event1398) {
-			}, onkeyup : function(event1399) {
-			}, onload : function(event1400) {
-			}, onloadeddata : function(event1401) {
-			}, onloadedmetadata : function(event1402) {
-			}, onloadstart : function(event1403) {
-			}, onlostpointercapture : function(event1404) {
-			}, onmousedown : function(event1405) {
-			}, onmouseenter : function(event1406) {
-			}, onmouseleave : function(event1407) {
-			}, onmousemove : function(event1408) {
-			}, onmouseout : function(event1409) {
-			}, onmouseover : function(event1410) {
-			}, onmouseup : function(event1411) {
-			}, onpaste : function(event1412) {
-			}, onpause : function(event1413) {
-			}, onplay : function(event1414) {
-			}, onplaying : function(event1415) {
-			}, onpointercancel : function(event1416) {
-			}, onpointerdown : function(event1417) {
-			}, onpointerenter : function(event1418) {
-			}, onpointerleave : function(event1419) {
-			}, onpointerlockchange : function(event1420) {
-			}, onpointerlockerror : function(event1421) {
-			}, onpointermove : function(event1422) {
-			}, onpointerout : function(event1423) {
-			}, onpointerover : function(event1424) {
-			}, onpointerup : function(event1425) {
-			}, onprogress : function(event1426) {
-			}, onratechange : function(event1427) {
-			}, onreset : function(event1428) {
-			}, onresize : function(event1429) {
-			}, onscroll : function(event1430) {
-			}, onseeked : function(event1431) {
-			}, onseeking : function(event1432) {
-			}, onselect : function(event1433) {
-			}, onshow : function(event1434) {
-			}, onstalled : function(event1435) {
-			}, onsubmit : function(event1436) {
-			}, onsuspend : function(event1437) {
-			}, ontimeupdate : function(event1438) {
-			}, ontouchcancel : function(event1439) {
-			}, ontouchend : function(event1440) {
-			}, ontouchmove : function(event1441) {
-			}, ontouchstart : function(event1442) {
-			}, onvolumechange : function(event1443) {
-			}, onwaiting : function(event1444) {
-			}, onwheel : function(event1445) {
-			}, spellcheck : __v_018.spellcheck, style : __v_018.style, tabIndex : __v_018.tabIndex, target : __v_018.target, title : __v_018.title, type : __v_018.type};
-			var children43;
-			if(attr43.icon != null) {
-				var attr46 = { };
-				var children44 = vdom__$VNode_VNode_$Impl_$.flatten([attr43.icon]);
-				var __v_019 = attr46;
-				var attr47 = attr46.className;
-				var _g19 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g19.setReserved("mdc-tab__icon",true);
-				} else {
-					_g19.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g19.setReserved("material-icons",true);
-				} else {
-					_g19.h["material-icons"] = true;
-				}
-				children43 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr47,vdom__$Attr_ClassName_$Impl_$.ofMap(_g19)), accessKey : __v_019.accessKey, accessKeyLabel : __v_019.accessKeyLabel, attributes : __v_019.attributes, contentEditable : __v_019.contentEditable, dir : __v_019.dir, draggable : __v_019.draggable, hidden : __v_019.hidden, id : __v_019.id, key : __v_019.key, lang : __v_019.lang, onabort : function(event1446) {
-				}, onblur : function(event1447) {
-				}, oncanplay : function(event1448) {
-				}, oncanplaythrough : function(event1449) {
-				}, onchange : function(event1450) {
-				}, onclick : function(event1451) {
-				}, oncontextmenu : function(event1452) {
-				}, oncopy : function(event1453) {
-				}, oncut : function(event1454) {
-				}, ondblclick : function(event1455) {
-				}, ondrag : function(event1456) {
-				}, ondragend : function(event1457) {
-				}, ondragenter : function(event1458) {
-				}, ondragleave : function(event1459) {
-				}, ondragover : function(event1460) {
-				}, ondragstart : function(event1461) {
-				}, ondrop : function(event1462) {
-				}, ondurationchange : function(event1463) {
-				}, onemptied : function(event1464) {
-				}, onended : function(event1465) {
-				}, onerror : function(event1466) {
-				}, onfocus : function(event1467) {
-				}, onfullscreenchange : function(event1468) {
-				}, onfullscreenerror : function(event1469) {
-				}, ongotpointercapture : function(event1470) {
-				}, oninput : function(event1471) {
-				}, oninvalid : function(event1472) {
-				}, onkeydown : function(event1473) {
-				}, onkeypress : function(event1474) {
-				}, onkeyup : function(event1475) {
-				}, onload : function(event1476) {
-				}, onloadeddata : function(event1477) {
-				}, onloadedmetadata : function(event1478) {
-				}, onloadstart : function(event1479) {
-				}, onlostpointercapture : function(event1480) {
-				}, onmousedown : function(event1481) {
-				}, onmouseenter : function(event1482) {
-				}, onmouseleave : function(event1483) {
-				}, onmousemove : function(event1484) {
-				}, onmouseout : function(event1485) {
-				}, onmouseover : function(event1486) {
-				}, onmouseup : function(event1487) {
-				}, onpaste : function(event1488) {
-				}, onpause : function(event1489) {
-				}, onplay : function(event1490) {
-				}, onplaying : function(event1491) {
-				}, onpointercancel : function(event1492) {
-				}, onpointerdown : function(event1493) {
-				}, onpointerenter : function(event1494) {
-				}, onpointerleave : function(event1495) {
-				}, onpointerlockchange : function(event1496) {
-				}, onpointerlockerror : function(event1497) {
-				}, onpointermove : function(event1498) {
-				}, onpointerout : function(event1499) {
-				}, onpointerover : function(event1500) {
-				}, onpointerup : function(event1501) {
-				}, onprogress : function(event1502) {
-				}, onratechange : function(event1503) {
-				}, onreset : function(event1504) {
-				}, onresize : function(event1505) {
-				}, onscroll : function(event1506) {
-				}, onseeked : function(event1507) {
-				}, onseeking : function(event1508) {
-				}, onselect : function(event1509) {
-				}, onshow : function(event1510) {
-				}, onstalled : function(event1511) {
-				}, onsubmit : function(event1512) {
-				}, onsuspend : function(event1513) {
-				}, ontimeupdate : function(event1514) {
-				}, ontouchcancel : function(event1515) {
-				}, ontouchend : function(event1516) {
-				}, ontouchmove : function(event1517) {
-				}, ontouchstart : function(event1518) {
-				}, onvolumechange : function(event1519) {
-				}, onwaiting : function(event1520) {
-				}, onwheel : function(event1521) {
-				}, spellcheck : __v_019.spellcheck, style : __v_019.style, tabIndex : __v_019.tabIndex, title : __v_019.title},[children44])]);
-			} else {
-				children43 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children45;
-			if(attr43.text != null) {
-				var attr48 = { };
-				var children46 = vdom__$VNode_VNode_$Impl_$.flatten([attr43.text]);
-				var __v_020 = attr48;
-				var attr49 = attr48.className;
-				var _g20 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g20.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g20.h["mdc-tab__icon-text"] = true;
-				}
-				children45 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr49,vdom__$Attr_ClassName_$Impl_$.ofMap(_g20)), accessKey : __v_020.accessKey, accessKeyLabel : __v_020.accessKeyLabel, attributes : __v_020.attributes, contentEditable : __v_020.contentEditable, dir : __v_020.dir, draggable : __v_020.draggable, hidden : __v_020.hidden, id : __v_020.id, key : __v_020.key, lang : __v_020.lang, onabort : function(event1522) {
-				}, onblur : function(event1523) {
-				}, oncanplay : function(event1524) {
-				}, oncanplaythrough : function(event1525) {
-				}, onchange : function(event1526) {
-				}, onclick : function(event1527) {
-				}, oncontextmenu : function(event1528) {
-				}, oncopy : function(event1529) {
-				}, oncut : function(event1530) {
-				}, ondblclick : function(event1531) {
-				}, ondrag : function(event1532) {
-				}, ondragend : function(event1533) {
-				}, ondragenter : function(event1534) {
-				}, ondragleave : function(event1535) {
-				}, ondragover : function(event1536) {
-				}, ondragstart : function(event1537) {
-				}, ondrop : function(event1538) {
-				}, ondurationchange : function(event1539) {
-				}, onemptied : function(event1540) {
-				}, onended : function(event1541) {
-				}, onerror : function(event1542) {
-				}, onfocus : function(event1543) {
-				}, onfullscreenchange : function(event1544) {
-				}, onfullscreenerror : function(event1545) {
-				}, ongotpointercapture : function(event1546) {
-				}, oninput : function(event1547) {
-				}, oninvalid : function(event1548) {
-				}, onkeydown : function(event1549) {
-				}, onkeypress : function(event1550) {
-				}, onkeyup : function(event1551) {
-				}, onload : function(event1552) {
-				}, onloadeddata : function(event1553) {
-				}, onloadedmetadata : function(event1554) {
-				}, onloadstart : function(event1555) {
-				}, onlostpointercapture : function(event1556) {
-				}, onmousedown : function(event1557) {
-				}, onmouseenter : function(event1558) {
-				}, onmouseleave : function(event1559) {
-				}, onmousemove : function(event1560) {
-				}, onmouseout : function(event1561) {
-				}, onmouseover : function(event1562) {
-				}, onmouseup : function(event1563) {
-				}, onpaste : function(event1564) {
-				}, onpause : function(event1565) {
-				}, onplay : function(event1566) {
-				}, onplaying : function(event1567) {
-				}, onpointercancel : function(event1568) {
-				}, onpointerdown : function(event1569) {
-				}, onpointerenter : function(event1570) {
-				}, onpointerleave : function(event1571) {
-				}, onpointerlockchange : function(event1572) {
-				}, onpointerlockerror : function(event1573) {
-				}, onpointermove : function(event1574) {
-				}, onpointerout : function(event1575) {
-				}, onpointerover : function(event1576) {
-				}, onpointerup : function(event1577) {
-				}, onprogress : function(event1578) {
-				}, onratechange : function(event1579) {
-				}, onreset : function(event1580) {
-				}, onresize : function(event1581) {
-				}, onscroll : function(event1582) {
-				}, onseeked : function(event1583) {
-				}, onseeking : function(event1584) {
-				}, onselect : function(event1585) {
-				}, onshow : function(event1586) {
-				}, onstalled : function(event1587) {
-				}, onsubmit : function(event1588) {
-				}, onsuspend : function(event1589) {
-				}, ontimeupdate : function(event1590) {
-				}, ontouchcancel : function(event1591) {
-				}, ontouchend : function(event1592) {
-				}, ontouchmove : function(event1593) {
-				}, ontouchstart : function(event1594) {
-				}, onvolumechange : function(event1595) {
-				}, onwaiting : function(event1596) {
-				}, onwheel : function(event1597) {
-				}, spellcheck : __v_020.spellcheck, style : __v_020.style, tabIndex : __v_020.tabIndex, title : __v_020.title},[children46])]);
-			} else {
-				children45 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children47 = vdom_VDom.h("a",attr45,[children43,children45,children42]);
-			var attr50 = { icon : "colorize"};
-			var children48 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab2"]);
-			var __v_021 = attr50;
-			var attr51 = attr50.className;
-			var _g21 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g21.setReserved("mdc-tab",true);
-			} else {
-				_g21.h["mdc-tab"] = true;
-			}
-			var value7 = attr50.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g21.setReserved("mdc-tab--active",value7);
-			} else {
-				_g21.h["mdc-tab--active"] = value7;
-			}
-			var attr52 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr51,vdom__$Attr_ClassName_$Impl_$.ofMap(_g21)), accessKey : __v_021.accessKey, accessKeyLabel : __v_021.accessKeyLabel, attributes : __v_021.attributes, contentEditable : __v_021.contentEditable, dir : __v_021.dir, draggable : __v_021.draggable, hidden : __v_021.hidden, href : __v_021.href, id : __v_021.id, key : __v_021.key, lang : __v_021.lang, onabort : function(event1598) {
-			}, onblur : function(event1599) {
-			}, oncanplay : function(event1600) {
-			}, oncanplaythrough : function(event1601) {
-			}, onchange : function(event1602) {
-			}, onclick : function(event1603) {
-			}, oncontextmenu : function(event1604) {
-			}, oncopy : function(event1605) {
-			}, oncut : function(event1606) {
-			}, ondblclick : function(event1607) {
-			}, ondrag : function(event1608) {
-			}, ondragend : function(event1609) {
-			}, ondragenter : function(event1610) {
-			}, ondragleave : function(event1611) {
-			}, ondragover : function(event1612) {
-			}, ondragstart : function(event1613) {
-			}, ondrop : function(event1614) {
-			}, ondurationchange : function(event1615) {
-			}, onemptied : function(event1616) {
-			}, onended : function(event1617) {
-			}, onerror : function(event1618) {
-			}, onfocus : function(event1619) {
-			}, onfullscreenchange : function(event1620) {
-			}, onfullscreenerror : function(event1621) {
-			}, ongotpointercapture : function(event1622) {
-			}, oninput : function(event1623) {
-			}, oninvalid : function(event1624) {
-			}, onkeydown : function(event1625) {
-			}, onkeypress : function(event1626) {
-			}, onkeyup : function(event1627) {
-			}, onload : function(event1628) {
-			}, onloadeddata : function(event1629) {
-			}, onloadedmetadata : function(event1630) {
-			}, onloadstart : function(event1631) {
-			}, onlostpointercapture : function(event1632) {
-			}, onmousedown : function(event1633) {
-			}, onmouseenter : function(event1634) {
-			}, onmouseleave : function(event1635) {
-			}, onmousemove : function(event1636) {
-			}, onmouseout : function(event1637) {
-			}, onmouseover : function(event1638) {
-			}, onmouseup : function(event1639) {
-			}, onpaste : function(event1640) {
-			}, onpause : function(event1641) {
-			}, onplay : function(event1642) {
-			}, onplaying : function(event1643) {
-			}, onpointercancel : function(event1644) {
-			}, onpointerdown : function(event1645) {
-			}, onpointerenter : function(event1646) {
-			}, onpointerleave : function(event1647) {
-			}, onpointerlockchange : function(event1648) {
-			}, onpointerlockerror : function(event1649) {
-			}, onpointermove : function(event1650) {
-			}, onpointerout : function(event1651) {
-			}, onpointerover : function(event1652) {
-			}, onpointerup : function(event1653) {
-			}, onprogress : function(event1654) {
-			}, onratechange : function(event1655) {
-			}, onreset : function(event1656) {
-			}, onresize : function(event1657) {
-			}, onscroll : function(event1658) {
-			}, onseeked : function(event1659) {
-			}, onseeking : function(event1660) {
-			}, onselect : function(event1661) {
-			}, onshow : function(event1662) {
-			}, onstalled : function(event1663) {
-			}, onsubmit : function(event1664) {
-			}, onsuspend : function(event1665) {
-			}, ontimeupdate : function(event1666) {
-			}, ontouchcancel : function(event1667) {
-			}, ontouchend : function(event1668) {
-			}, ontouchmove : function(event1669) {
-			}, ontouchstart : function(event1670) {
-			}, onvolumechange : function(event1671) {
-			}, onwaiting : function(event1672) {
-			}, onwheel : function(event1673) {
-			}, spellcheck : __v_021.spellcheck, style : __v_021.style, tabIndex : __v_021.tabIndex, target : __v_021.target, title : __v_021.title, type : __v_021.type};
-			var children49;
-			if(attr50.icon != null) {
-				var attr53 = { };
-				var children50 = vdom__$VNode_VNode_$Impl_$.flatten([attr50.icon]);
-				var __v_022 = attr53;
-				var attr54 = attr53.className;
-				var _g22 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g22.setReserved("mdc-tab__icon",true);
-				} else {
-					_g22.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g22.setReserved("material-icons",true);
-				} else {
-					_g22.h["material-icons"] = true;
-				}
-				children49 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr54,vdom__$Attr_ClassName_$Impl_$.ofMap(_g22)), accessKey : __v_022.accessKey, accessKeyLabel : __v_022.accessKeyLabel, attributes : __v_022.attributes, contentEditable : __v_022.contentEditable, dir : __v_022.dir, draggable : __v_022.draggable, hidden : __v_022.hidden, id : __v_022.id, key : __v_022.key, lang : __v_022.lang, onabort : function(event1674) {
-				}, onblur : function(event1675) {
-				}, oncanplay : function(event1676) {
-				}, oncanplaythrough : function(event1677) {
-				}, onchange : function(event1678) {
-				}, onclick : function(event1679) {
-				}, oncontextmenu : function(event1680) {
-				}, oncopy : function(event1681) {
-				}, oncut : function(event1682) {
-				}, ondblclick : function(event1683) {
-				}, ondrag : function(event1684) {
-				}, ondragend : function(event1685) {
-				}, ondragenter : function(event1686) {
-				}, ondragleave : function(event1687) {
-				}, ondragover : function(event1688) {
-				}, ondragstart : function(event1689) {
-				}, ondrop : function(event1690) {
-				}, ondurationchange : function(event1691) {
-				}, onemptied : function(event1692) {
-				}, onended : function(event1693) {
-				}, onerror : function(event1694) {
-				}, onfocus : function(event1695) {
-				}, onfullscreenchange : function(event1696) {
-				}, onfullscreenerror : function(event1697) {
-				}, ongotpointercapture : function(event1698) {
-				}, oninput : function(event1699) {
-				}, oninvalid : function(event1700) {
-				}, onkeydown : function(event1701) {
-				}, onkeypress : function(event1702) {
-				}, onkeyup : function(event1703) {
-				}, onload : function(event1704) {
-				}, onloadeddata : function(event1705) {
-				}, onloadedmetadata : function(event1706) {
-				}, onloadstart : function(event1707) {
-				}, onlostpointercapture : function(event1708) {
-				}, onmousedown : function(event1709) {
-				}, onmouseenter : function(event1710) {
-				}, onmouseleave : function(event1711) {
-				}, onmousemove : function(event1712) {
-				}, onmouseout : function(event1713) {
-				}, onmouseover : function(event1714) {
-				}, onmouseup : function(event1715) {
-				}, onpaste : function(event1716) {
-				}, onpause : function(event1717) {
-				}, onplay : function(event1718) {
-				}, onplaying : function(event1719) {
-				}, onpointercancel : function(event1720) {
-				}, onpointerdown : function(event1721) {
-				}, onpointerenter : function(event1722) {
-				}, onpointerleave : function(event1723) {
-				}, onpointerlockchange : function(event1724) {
-				}, onpointerlockerror : function(event1725) {
-				}, onpointermove : function(event1726) {
-				}, onpointerout : function(event1727) {
-				}, onpointerover : function(event1728) {
-				}, onpointerup : function(event1729) {
-				}, onprogress : function(event1730) {
-				}, onratechange : function(event1731) {
-				}, onreset : function(event1732) {
-				}, onresize : function(event1733) {
-				}, onscroll : function(event1734) {
-				}, onseeked : function(event1735) {
-				}, onseeking : function(event1736) {
-				}, onselect : function(event1737) {
-				}, onshow : function(event1738) {
-				}, onstalled : function(event1739) {
-				}, onsubmit : function(event1740) {
-				}, onsuspend : function(event1741) {
-				}, ontimeupdate : function(event1742) {
-				}, ontouchcancel : function(event1743) {
-				}, ontouchend : function(event1744) {
-				}, ontouchmove : function(event1745) {
-				}, ontouchstart : function(event1746) {
-				}, onvolumechange : function(event1747) {
-				}, onwaiting : function(event1748) {
-				}, onwheel : function(event1749) {
-				}, spellcheck : __v_022.spellcheck, style : __v_022.style, tabIndex : __v_022.tabIndex, title : __v_022.title},[children50])]);
-			} else {
-				children49 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children51;
-			if(attr50.text != null) {
-				var attr55 = { };
-				var children52 = vdom__$VNode_VNode_$Impl_$.flatten([attr50.text]);
-				var __v_023 = attr55;
-				var attr56 = attr55.className;
-				var _g23 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g23.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g23.h["mdc-tab__icon-text"] = true;
-				}
-				children51 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr56,vdom__$Attr_ClassName_$Impl_$.ofMap(_g23)), accessKey : __v_023.accessKey, accessKeyLabel : __v_023.accessKeyLabel, attributes : __v_023.attributes, contentEditable : __v_023.contentEditable, dir : __v_023.dir, draggable : __v_023.draggable, hidden : __v_023.hidden, id : __v_023.id, key : __v_023.key, lang : __v_023.lang, onabort : function(event1750) {
-				}, onblur : function(event1751) {
-				}, oncanplay : function(event1752) {
-				}, oncanplaythrough : function(event1753) {
-				}, onchange : function(event1754) {
-				}, onclick : function(event1755) {
-				}, oncontextmenu : function(event1756) {
-				}, oncopy : function(event1757) {
-				}, oncut : function(event1758) {
-				}, ondblclick : function(event1759) {
-				}, ondrag : function(event1760) {
-				}, ondragend : function(event1761) {
-				}, ondragenter : function(event1762) {
-				}, ondragleave : function(event1763) {
-				}, ondragover : function(event1764) {
-				}, ondragstart : function(event1765) {
-				}, ondrop : function(event1766) {
-				}, ondurationchange : function(event1767) {
-				}, onemptied : function(event1768) {
-				}, onended : function(event1769) {
-				}, onerror : function(event1770) {
-				}, onfocus : function(event1771) {
-				}, onfullscreenchange : function(event1772) {
-				}, onfullscreenerror : function(event1773) {
-				}, ongotpointercapture : function(event1774) {
-				}, oninput : function(event1775) {
-				}, oninvalid : function(event1776) {
-				}, onkeydown : function(event1777) {
-				}, onkeypress : function(event1778) {
-				}, onkeyup : function(event1779) {
-				}, onload : function(event1780) {
-				}, onloadeddata : function(event1781) {
-				}, onloadedmetadata : function(event1782) {
-				}, onloadstart : function(event1783) {
-				}, onlostpointercapture : function(event1784) {
-				}, onmousedown : function(event1785) {
-				}, onmouseenter : function(event1786) {
-				}, onmouseleave : function(event1787) {
-				}, onmousemove : function(event1788) {
-				}, onmouseout : function(event1789) {
-				}, onmouseover : function(event1790) {
-				}, onmouseup : function(event1791) {
-				}, onpaste : function(event1792) {
-				}, onpause : function(event1793) {
-				}, onplay : function(event1794) {
-				}, onplaying : function(event1795) {
-				}, onpointercancel : function(event1796) {
-				}, onpointerdown : function(event1797) {
-				}, onpointerenter : function(event1798) {
-				}, onpointerleave : function(event1799) {
-				}, onpointerlockchange : function(event1800) {
-				}, onpointerlockerror : function(event1801) {
-				}, onpointermove : function(event1802) {
-				}, onpointerout : function(event1803) {
-				}, onpointerover : function(event1804) {
-				}, onpointerup : function(event1805) {
-				}, onprogress : function(event1806) {
-				}, onratechange : function(event1807) {
-				}, onreset : function(event1808) {
-				}, onresize : function(event1809) {
-				}, onscroll : function(event1810) {
-				}, onseeked : function(event1811) {
-				}, onseeking : function(event1812) {
-				}, onselect : function(event1813) {
-				}, onshow : function(event1814) {
-				}, onstalled : function(event1815) {
-				}, onsubmit : function(event1816) {
-				}, onsuspend : function(event1817) {
-				}, ontimeupdate : function(event1818) {
-				}, ontouchcancel : function(event1819) {
-				}, ontouchend : function(event1820) {
-				}, ontouchmove : function(event1821) {
-				}, ontouchstart : function(event1822) {
-				}, onvolumechange : function(event1823) {
-				}, onwaiting : function(event1824) {
-				}, onwheel : function(event1825) {
-				}, spellcheck : __v_023.spellcheck, style : __v_023.style, tabIndex : __v_023.tabIndex, title : __v_023.title},[children52])]);
-			} else {
-				children51 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children53 = vdom_VDom.h("a",attr52,[children49,children51,children48]);
-			var attr57 = { icon : "edit"};
-			var children54 = vdom__$VNode_VNode_$Impl_$.flatten(["Tab3"]);
-			var __v_024 = attr57;
-			var attr58 = attr57.className;
-			var _g24 = new haxe_ds_StringMap();
-			if(__map_reserved["mdc-tab"] != null) {
-				_g24.setReserved("mdc-tab",true);
-			} else {
-				_g24.h["mdc-tab"] = true;
-			}
-			var value8 = attr57.active;
-			if(__map_reserved["mdc-tab--active"] != null) {
-				_g24.setReserved("mdc-tab--active",value8);
-			} else {
-				_g24.h["mdc-tab--active"] = value8;
-			}
-			var attr59 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr58,vdom__$Attr_ClassName_$Impl_$.ofMap(_g24)), accessKey : __v_024.accessKey, accessKeyLabel : __v_024.accessKeyLabel, attributes : __v_024.attributes, contentEditable : __v_024.contentEditable, dir : __v_024.dir, draggable : __v_024.draggable, hidden : __v_024.hidden, href : __v_024.href, id : __v_024.id, key : __v_024.key, lang : __v_024.lang, onabort : function(event1826) {
-			}, onblur : function(event1827) {
-			}, oncanplay : function(event1828) {
-			}, oncanplaythrough : function(event1829) {
-			}, onchange : function(event1830) {
-			}, onclick : function(event1831) {
-			}, oncontextmenu : function(event1832) {
-			}, oncopy : function(event1833) {
-			}, oncut : function(event1834) {
-			}, ondblclick : function(event1835) {
-			}, ondrag : function(event1836) {
-			}, ondragend : function(event1837) {
-			}, ondragenter : function(event1838) {
-			}, ondragleave : function(event1839) {
-			}, ondragover : function(event1840) {
-			}, ondragstart : function(event1841) {
-			}, ondrop : function(event1842) {
-			}, ondurationchange : function(event1843) {
-			}, onemptied : function(event1844) {
-			}, onended : function(event1845) {
-			}, onerror : function(event1846) {
-			}, onfocus : function(event1847) {
-			}, onfullscreenchange : function(event1848) {
-			}, onfullscreenerror : function(event1849) {
-			}, ongotpointercapture : function(event1850) {
-			}, oninput : function(event1851) {
-			}, oninvalid : function(event1852) {
-			}, onkeydown : function(event1853) {
-			}, onkeypress : function(event1854) {
-			}, onkeyup : function(event1855) {
-			}, onload : function(event1856) {
-			}, onloadeddata : function(event1857) {
-			}, onloadedmetadata : function(event1858) {
-			}, onloadstart : function(event1859) {
-			}, onlostpointercapture : function(event1860) {
-			}, onmousedown : function(event1861) {
-			}, onmouseenter : function(event1862) {
-			}, onmouseleave : function(event1863) {
-			}, onmousemove : function(event1864) {
-			}, onmouseout : function(event1865) {
-			}, onmouseover : function(event1866) {
-			}, onmouseup : function(event1867) {
-			}, onpaste : function(event1868) {
-			}, onpause : function(event1869) {
-			}, onplay : function(event1870) {
-			}, onplaying : function(event1871) {
-			}, onpointercancel : function(event1872) {
-			}, onpointerdown : function(event1873) {
-			}, onpointerenter : function(event1874) {
-			}, onpointerleave : function(event1875) {
-			}, onpointerlockchange : function(event1876) {
-			}, onpointerlockerror : function(event1877) {
-			}, onpointermove : function(event1878) {
-			}, onpointerout : function(event1879) {
-			}, onpointerover : function(event1880) {
-			}, onpointerup : function(event1881) {
-			}, onprogress : function(event1882) {
-			}, onratechange : function(event1883) {
-			}, onreset : function(event1884) {
-			}, onresize : function(event1885) {
-			}, onscroll : function(event1886) {
-			}, onseeked : function(event1887) {
-			}, onseeking : function(event1888) {
-			}, onselect : function(event1889) {
-			}, onshow : function(event1890) {
-			}, onstalled : function(event1891) {
-			}, onsubmit : function(event1892) {
-			}, onsuspend : function(event1893) {
-			}, ontimeupdate : function(event1894) {
-			}, ontouchcancel : function(event1895) {
-			}, ontouchend : function(event1896) {
-			}, ontouchmove : function(event1897) {
-			}, ontouchstart : function(event1898) {
-			}, onvolumechange : function(event1899) {
-			}, onwaiting : function(event1900) {
-			}, onwheel : function(event1901) {
-			}, spellcheck : __v_024.spellcheck, style : __v_024.style, tabIndex : __v_024.tabIndex, target : __v_024.target, title : __v_024.title, type : __v_024.type};
-			var children55;
-			if(attr57.icon != null) {
-				var attr60 = { };
-				var children56 = vdom__$VNode_VNode_$Impl_$.flatten([attr57.icon]);
-				var __v_025 = attr60;
-				var attr61 = attr60.className;
-				var _g25 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon"] != null) {
-					_g25.setReserved("mdc-tab__icon",true);
-				} else {
-					_g25.h["mdc-tab__icon"] = true;
-				}
-				if(__map_reserved["material-icons"] != null) {
-					_g25.setReserved("material-icons",true);
-				} else {
-					_g25.h["material-icons"] = true;
-				}
-				children55 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr61,vdom__$Attr_ClassName_$Impl_$.ofMap(_g25)), accessKey : __v_025.accessKey, accessKeyLabel : __v_025.accessKeyLabel, attributes : __v_025.attributes, contentEditable : __v_025.contentEditable, dir : __v_025.dir, draggable : __v_025.draggable, hidden : __v_025.hidden, id : __v_025.id, key : __v_025.key, lang : __v_025.lang, onabort : function(event1902) {
-				}, onblur : function(event1903) {
-				}, oncanplay : function(event1904) {
-				}, oncanplaythrough : function(event1905) {
-				}, onchange : function(event1906) {
-				}, onclick : function(event1907) {
-				}, oncontextmenu : function(event1908) {
-				}, oncopy : function(event1909) {
-				}, oncut : function(event1910) {
-				}, ondblclick : function(event1911) {
-				}, ondrag : function(event1912) {
-				}, ondragend : function(event1913) {
-				}, ondragenter : function(event1914) {
-				}, ondragleave : function(event1915) {
-				}, ondragover : function(event1916) {
-				}, ondragstart : function(event1917) {
-				}, ondrop : function(event1918) {
-				}, ondurationchange : function(event1919) {
-				}, onemptied : function(event1920) {
-				}, onended : function(event1921) {
-				}, onerror : function(event1922) {
-				}, onfocus : function(event1923) {
-				}, onfullscreenchange : function(event1924) {
-				}, onfullscreenerror : function(event1925) {
-				}, ongotpointercapture : function(event1926) {
-				}, oninput : function(event1927) {
-				}, oninvalid : function(event1928) {
-				}, onkeydown : function(event1929) {
-				}, onkeypress : function(event1930) {
-				}, onkeyup : function(event1931) {
-				}, onload : function(event1932) {
-				}, onloadeddata : function(event1933) {
-				}, onloadedmetadata : function(event1934) {
-				}, onloadstart : function(event1935) {
-				}, onlostpointercapture : function(event1936) {
-				}, onmousedown : function(event1937) {
-				}, onmouseenter : function(event1938) {
-				}, onmouseleave : function(event1939) {
-				}, onmousemove : function(event1940) {
-				}, onmouseout : function(event1941) {
-				}, onmouseover : function(event1942) {
-				}, onmouseup : function(event1943) {
-				}, onpaste : function(event1944) {
-				}, onpause : function(event1945) {
-				}, onplay : function(event1946) {
-				}, onplaying : function(event1947) {
-				}, onpointercancel : function(event1948) {
-				}, onpointerdown : function(event1949) {
-				}, onpointerenter : function(event1950) {
-				}, onpointerleave : function(event1951) {
-				}, onpointerlockchange : function(event1952) {
-				}, onpointerlockerror : function(event1953) {
-				}, onpointermove : function(event1954) {
-				}, onpointerout : function(event1955) {
-				}, onpointerover : function(event1956) {
-				}, onpointerup : function(event1957) {
-				}, onprogress : function(event1958) {
-				}, onratechange : function(event1959) {
-				}, onreset : function(event1960) {
-				}, onresize : function(event1961) {
-				}, onscroll : function(event1962) {
-				}, onseeked : function(event1963) {
-				}, onseeking : function(event1964) {
-				}, onselect : function(event1965) {
-				}, onshow : function(event1966) {
-				}, onstalled : function(event1967) {
-				}, onsubmit : function(event1968) {
-				}, onsuspend : function(event1969) {
-				}, ontimeupdate : function(event1970) {
-				}, ontouchcancel : function(event1971) {
-				}, ontouchend : function(event1972) {
-				}, ontouchmove : function(event1973) {
-				}, ontouchstart : function(event1974) {
-				}, onvolumechange : function(event1975) {
-				}, onwaiting : function(event1976) {
-				}, onwheel : function(event1977) {
-				}, spellcheck : __v_025.spellcheck, style : __v_025.style, tabIndex : __v_025.tabIndex, title : __v_025.title},[children56])]);
-			} else {
-				children55 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			var children57;
-			if(attr57.text != null) {
-				var attr62 = { };
-				var children58 = vdom__$VNode_VNode_$Impl_$.flatten([attr57.text]);
-				var __v_026 = attr62;
-				var attr63 = attr62.className;
-				var _g26 = new haxe_ds_StringMap();
-				if(__map_reserved["mdc-tab__icon-text"] != null) {
-					_g26.setReserved("mdc-tab__icon-text",true);
-				} else {
-					_g26.h["mdc-tab__icon-text"] = true;
-				}
-				children57 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr63,vdom__$Attr_ClassName_$Impl_$.ofMap(_g26)), accessKey : __v_026.accessKey, accessKeyLabel : __v_026.accessKeyLabel, attributes : __v_026.attributes, contentEditable : __v_026.contentEditable, dir : __v_026.dir, draggable : __v_026.draggable, hidden : __v_026.hidden, id : __v_026.id, key : __v_026.key, lang : __v_026.lang, onabort : function(event1978) {
-				}, onblur : function(event1979) {
-				}, oncanplay : function(event1980) {
-				}, oncanplaythrough : function(event1981) {
-				}, onchange : function(event1982) {
-				}, onclick : function(event1983) {
-				}, oncontextmenu : function(event1984) {
-				}, oncopy : function(event1985) {
-				}, oncut : function(event1986) {
-				}, ondblclick : function(event1987) {
-				}, ondrag : function(event1988) {
-				}, ondragend : function(event1989) {
-				}, ondragenter : function(event1990) {
-				}, ondragleave : function(event1991) {
-				}, ondragover : function(event1992) {
-				}, ondragstart : function(event1993) {
-				}, ondrop : function(event1994) {
-				}, ondurationchange : function(event1995) {
-				}, onemptied : function(event1996) {
-				}, onended : function(event1997) {
-				}, onerror : function(event1998) {
-				}, onfocus : function(event1999) {
-				}, onfullscreenchange : function(event2000) {
-				}, onfullscreenerror : function(event2001) {
-				}, ongotpointercapture : function(event2002) {
-				}, oninput : function(event2003) {
-				}, oninvalid : function(event2004) {
-				}, onkeydown : function(event2005) {
-				}, onkeypress : function(event2006) {
-				}, onkeyup : function(event2007) {
-				}, onload : function(event2008) {
-				}, onloadeddata : function(event2009) {
-				}, onloadedmetadata : function(event2010) {
-				}, onloadstart : function(event2011) {
-				}, onlostpointercapture : function(event2012) {
-				}, onmousedown : function(event2013) {
-				}, onmouseenter : function(event2014) {
-				}, onmouseleave : function(event2015) {
-				}, onmousemove : function(event2016) {
-				}, onmouseout : function(event2017) {
-				}, onmouseover : function(event2018) {
-				}, onmouseup : function(event2019) {
-				}, onpaste : function(event2020) {
-				}, onpause : function(event2021) {
-				}, onplay : function(event2022) {
-				}, onplaying : function(event2023) {
-				}, onpointercancel : function(event2024) {
-				}, onpointerdown : function(event2025) {
-				}, onpointerenter : function(event2026) {
-				}, onpointerleave : function(event2027) {
-				}, onpointerlockchange : function(event2028) {
-				}, onpointerlockerror : function(event2029) {
-				}, onpointermove : function(event2030) {
-				}, onpointerout : function(event2031) {
-				}, onpointerover : function(event2032) {
-				}, onpointerup : function(event2033) {
-				}, onprogress : function(event2034) {
-				}, onratechange : function(event2035) {
-				}, onreset : function(event2036) {
-				}, onresize : function(event2037) {
-				}, onscroll : function(event2038) {
-				}, onseeked : function(event2039) {
-				}, onseeking : function(event2040) {
-				}, onselect : function(event2041) {
-				}, onshow : function(event2042) {
-				}, onstalled : function(event2043) {
-				}, onsubmit : function(event2044) {
-				}, onsuspend : function(event2045) {
-				}, ontimeupdate : function(event2046) {
-				}, ontouchcancel : function(event2047) {
-				}, ontouchend : function(event2048) {
-				}, ontouchmove : function(event2049) {
-				}, ontouchstart : function(event2050) {
-				}, onvolumechange : function(event2051) {
-				}, onwaiting : function(event2052) {
-				}, onwheel : function(event2053) {
-				}, spellcheck : __v_026.spellcheck, style : __v_026.style, tabIndex : __v_026.tabIndex, title : __v_026.title},[children58])]);
-			} else {
-				children57 = vdom__$VNode_VNode_$Impl_$.flatten([]);
-			}
-			return { type : "mdc-tab-bar--icons-with-text", tabs : vdom__$VNode_VNode_$Impl_$.flatten([children47,children53,vdom_VDom.h("a",attr59,[children55,children57,children54])])};
-		})))])]);
-		var children59 = vdom_VDom.h("h1",{ },["LinearProgress"]);
-		var children60 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("h2",{ },["Progress"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data19) {
-			return new mdc_LinearProgress(data19);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { progress : 0.7, open : true};
-		}))),vdom_VDom.h("h2",{ },["Buffer"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data20) {
-			return new mdc_LinearProgress(data20);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { progress : 0.3, buffer : 0.4, open : true};
-		}))),vdom_VDom.h("h2",{ },["Indeterminate"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data21) {
-			return new mdc_LinearProgress(data21);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { indeterminate : true, open : true};
-		}))),vdom_VDom.h("h2",{ },["Reverse"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data22) {
-			return new mdc_LinearProgress(data22);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { progress : 0.7, reverse : true, open : true};
-		}))),vdom_VDom.h("h2",{ },["Reverse indeterminate"]),coconut_ui_tools_ViewCache.get().getFactory("LinearProgress",function(data23) {
-			return new mdc_LinearProgress(data23);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { indeterminate : true, reverse : true, open : true};
-		})))]);
-		var children61 = vdom_VDom.h("h1",{ },["List"]);
-		var children62 = vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Simple list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data24) {
-			return new mdc_List(data24);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache3 = coconut_ui_tools_ViewCache.get();
-			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Simple item 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Dense list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data25) {
-			return new mdc_List(data25);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache4 = coconut_ui_tools_ViewCache.get();
-			return { items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 2"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten(["Dense item 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Interactive list"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data26) {
-			return new mdc_List(data26);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache5 = coconut_ui_tools_ViewCache.get();
-			return { interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 1"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 2"])),mdc_List.listLinkItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Link item with start icon 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Avatar list (+divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data27) {
-			return new mdc_List(data27);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache6 = coconut_ui_tools_ViewCache.get();
-			return { avatarList : true, interactive : true, items : vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 1"])),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 2"])),mdc_List.listDivider({ }),mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"])),"Item with start icon 3"]))])};
-		})))]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("float")},[vdom_VDom.h("h2",{ },["Two line list (+inset divider)"]),coconut_ui_tools_ViewCache.get().getFactory("List",function(data28) {
-			return new mdc_List(data28);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			var __coco_cache7 = coconut_ui_tools_ViewCache.get();
-			var children63 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/1.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children64 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 1",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 1"]))]));
-			var children65 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children63,children64,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
-			var children66 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/2.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children67 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 2",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 2"]))]));
-			var children68 = mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children66,children67,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]));
-			var children69 = mdc_List.listDivider({ inset : true});
-			var children70 = mdc_List.listStartImage({ src : "https://randomuser.me/api/portraits/women/3.jpg"},vdom__$VNode_VNode_$Impl_$.flatten(["folder"]));
-			var children71 = mdc_List.listText({ },vdom__$VNode_VNode_$Impl_$.flatten(["Item title 3",mdc_List.listTextSecondary({ },vdom__$VNode_VNode_$Impl_$.flatten(["Secondary text 3"]))]));
-			return { avatarList : true, interactive : true, twoLine : true, items : vdom__$VNode_VNode_$Impl_$.flatten([children65,children68,children69,mdc_List.listItem({ },vdom__$VNode_VNode_$Impl_$.flatten([children70,children71,mdc_List.listEndIcon({ },vdom__$VNode_VNode_$Impl_$.flatten(["info"]))]))])};
-		})))])]);
-		var children72 = vdom_VDom.h("h1",{ },["TextField"]);
-		var children73 = [coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data29) {
-			return new mdc_TextField(data29);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Text input"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data30) {
-			return new mdc_TextField(data30);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Boxed input", box : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data31) {
-			return new mdc_TextField(data31);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Password input", type : "password"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data32) {
-			return new mdc_TextField(data32);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Icon input", box : true, icon : "list"};
-		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data33) {
-			return new mdc_TextField(data33);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Input with helper"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data34) {
-			return new mdc_TextFieldHelperText(data34);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Helper for above"};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data35) {
-			return new mdc_TextField(data35);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Input with validation", invalid : true, required : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextFieldHelperText",function(data36) {
-			return new mdc_TextFieldHelperText(data36);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Error message", validation : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data37) {
-			return new mdc_TextField(data37);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "TextArea", textArea : true};
-		}))),vdom_VDom.h("br",{ }),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data38) {
-			return new mdc_TextField(data38);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "Text input fullWidth", fullWidth : true};
-		}))),coconut_ui_tools_ViewCache.get().getFactory("TextField",function(data39) {
-			return new mdc_TextField(data39);
-		}).make(tink_state__$Observable_Observable_$Impl_$.auto(tink_state__$Observable_Computation_$Impl_$.plain(function() {
-			return { label : "TextArea fullWidth", textArea : true, fullWidth : true};
-		})))];
-		return vdom_VDom.h("div",attr,[children,children2,children3,children5,children6,children8,children9,children10,children59,children60,children61,children62,children72,vdom_VDom.h("div",{ },children73)]);
+			};
+		}};
+		var __ret23 = { label : __ret21, value : __ret22, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this3)};
+		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret23));
+		var __ret24 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret24));
+		var __ret25 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Indeterminate"), indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret25));
+		var __ret26 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret26));
+		var __ret27 = { };
+		__r1.push(vdom_VDom.h("div",__ret27,__r7));
+		var __r8 = [];
+		__r8.push("TabBar");
+		var __ret28 = { };
+		__r1.push(vdom_VDom.h("h1",__ret28,__r8));
+		var __ret29 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")};
+		var __r9 = [];
+		var __ret30 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r10 = [];
+		var this4 = { f : function() {
+			var __r11 = [];
+			var __ret31 = { active : true};
+			var __r12 = [];
+			__r12.push("Tab1");
+			__r11.push(mdc_TabBar.tab(__ret31,__r12));
+			var __ret32 = { };
+			var __r13 = [];
+			__r13.push("Tab2");
+			__r11.push(mdc_TabBar.tab(__ret32,__r13));
+			var __ret33 = { };
+			var __r14 = [];
+			__r14.push("Tab3");
+			__r11.push(mdc_TabBar.tab(__ret33,__r14));
+			return __r11;
+		}};
+		var __ret34 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this4)};
+		__r10.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret34));
+		__r9.push(vdom_VDom.h("div",__ret30,__r10));
+		var __ret35 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r15 = [];
+		var this5 = { f : function() {
+			return "mdc-tab-bar--icon-tab-bar";
+		}};
+		var __ret36 = tink_state__$Observable_Observable_$Impl_$.auto(this5);
+		var this6 = { f : function() {
+			var __r16 = [];
+			var __ret37 = { icon : "camera", active : true};
+			__r16.push(mdc_TabBar.tab(__ret37));
+			var __ret38 = { icon : "colorize"};
+			__r16.push(mdc_TabBar.tab(__ret38));
+			var __ret39 = { icon : "edit"};
+			__r16.push(mdc_TabBar.tab(__ret39));
+			return __r16;
+		}};
+		var __ret40 = { type : __ret36, children : tink_state__$Observable_Observable_$Impl_$.auto(this6)};
+		__r15.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret40));
+		__r9.push(vdom_VDom.h("div",__ret35,__r15));
+		var __ret41 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r17 = [];
+		var this7 = { f : function() {
+			return "mdc-tab-bar--icons-with-text";
+		}};
+		var __ret42 = tink_state__$Observable_Observable_$Impl_$.auto(this7);
+		var this8 = { f : function() {
+			var __r18 = [];
+			var __ret43 = { icon : "camera", active : true};
+			var __r19 = [];
+			__r19.push("Tab1");
+			__r18.push(mdc_TabBar.tab(__ret43,__r19));
+			var __ret44 = { icon : "colorize"};
+			var __r20 = [];
+			__r20.push("Tab2");
+			__r18.push(mdc_TabBar.tab(__ret44,__r20));
+			var __ret45 = { icon : "edit"};
+			var __r21 = [];
+			__r21.push("Tab3");
+			__r18.push(mdc_TabBar.tab(__ret45,__r21));
+			return __r18;
+		}};
+		var __ret46 = { type : __ret42, children : tink_state__$Observable_Observable_$Impl_$.auto(this8)};
+		__r17.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret46));
+		__r9.push(vdom_VDom.h("div",__ret41,__r17));
+		__r1.push(vdom_VDom.h("div",__ret29,__r9));
+		var __r22 = [];
+		__r22.push("LinearProgress");
+		var __ret47 = { };
+		__r1.push(vdom_VDom.h("h1",__ret47,__r22));
+		var __ret48 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")};
+		var __r23 = [];
+		var __r24 = [];
+		__r24.push("Progress");
+		var __ret49 = { };
+		__r23.push(vdom_VDom.h("h2",__ret49,__r24));
+		var __ret50 = { progress : tink_state__$Observable_Observable_$Impl_$["const"](0.7), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret50));
+		var __r25 = [];
+		__r25.push("Buffer");
+		var __ret51 = { };
+		__r23.push(vdom_VDom.h("h2",__ret51,__r25));
+		var __ret52 = { progress : tink_state__$Observable_Observable_$Impl_$["const"](0.3), buffer : tink_state__$Observable_Observable_$Impl_$["const"](0.4), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret52));
+		var __r26 = [];
+		__r26.push("Indeterminate");
+		var __ret53 = { };
+		__r23.push(vdom_VDom.h("h2",__ret53,__r26));
+		var __ret54 = { indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret54));
+		var __r27 = [];
+		__r27.push("Reverse");
+		var __ret55 = { };
+		__r23.push(vdom_VDom.h("h2",__ret55,__r27));
+		var __ret56 = { progress : tink_state__$Observable_Observable_$Impl_$["const"](0.7), reverse : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret56));
+		var __r28 = [];
+		__r28.push("Reverse indeterminate");
+		var __ret57 = { };
+		__r23.push(vdom_VDom.h("h2",__ret57,__r28));
+		var __ret58 = { indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](true), reverse : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret58));
+		__r1.push(vdom_VDom.h("div",__ret48,__r23));
+		var __r29 = [];
+		__r29.push("List");
+		var __ret59 = { };
+		__r1.push(vdom_VDom.h("h1",__ret59,__r29));
+		var __ret60 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")};
+		var __r30 = [];
+		var __ret61 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r31 = [];
+		var __r32 = [];
+		__r32.push("Simple list");
+		var __ret62 = { };
+		__r31.push(vdom_VDom.h("h2",__ret62,__r32));
+		var this9 = { f : function() {
+			var __r33 = [];
+			var __ret63 = { };
+			var __r34 = [];
+			__r34.push("Simple item 1");
+			__r33.push(mdc_List.listItem(__ret63,__r34));
+			var __ret64 = { };
+			var __r35 = [];
+			__r35.push("Simple item 2");
+			__r33.push(mdc_List.listItem(__ret64,__r35));
+			var __ret65 = { };
+			var __r36 = [];
+			__r36.push("Simple item 3");
+			__r33.push(mdc_List.listItem(__ret65,__r36));
+			return __r33;
+		}};
+		var __ret66 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this9)};
+		__r31.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret66));
+		__r30.push(vdom_VDom.h("div",__ret61,__r31));
+		var __ret67 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r37 = [];
+		var __r38 = [];
+		__r38.push("Dense list");
+		var __ret68 = { };
+		__r37.push(vdom_VDom.h("h2",__ret68,__r38));
+		var this10 = { f : function() {
+			var __r39 = [];
+			var __ret69 = { };
+			var __r40 = [];
+			__r40.push("Dense item 1");
+			__r39.push(mdc_List.listItem(__ret69,__r40));
+			var __ret70 = { };
+			var __r41 = [];
+			__r41.push("Dense item 2");
+			__r39.push(mdc_List.listItem(__ret70,__r41));
+			var __ret71 = { };
+			var __r42 = [];
+			__r42.push("Dense item 3");
+			__r39.push(mdc_List.listItem(__ret71,__r42));
+			return __r39;
+		}};
+		var __ret72 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this10)};
+		__r37.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret72));
+		__r30.push(vdom_VDom.h("div",__ret67,__r37));
+		var __ret73 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r43 = [];
+		var __r44 = [];
+		__r44.push("Interactive list");
+		var __ret74 = { };
+		__r43.push(vdom_VDom.h("h2",__ret74,__r44));
+		var __ret75 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var this11 = { f : function() {
+			var __r45 = [];
+			var __ret76 = { };
+			var __r46 = [];
+			var __ret77 = { };
+			var __r47 = [];
+			__r47.push("folder");
+			__r46.push(mdc_List.listStartIcon(__ret77,__r47));
+			__r46.push("Link item with start icon 1");
+			__r45.push(mdc_List.listLinkItem(__ret76,__r46));
+			var __ret78 = { };
+			var __r48 = [];
+			var __ret79 = { };
+			var __r49 = [];
+			__r49.push("folder");
+			__r48.push(mdc_List.listStartIcon(__ret79,__r49));
+			__r48.push("Link item with start icon 2");
+			__r45.push(mdc_List.listLinkItem(__ret78,__r48));
+			var __ret80 = { };
+			var __r50 = [];
+			var __ret81 = { };
+			var __r51 = [];
+			__r51.push("folder");
+			__r50.push(mdc_List.listStartIcon(__ret81,__r51));
+			__r50.push("Link item with start icon 3");
+			__r45.push(mdc_List.listLinkItem(__ret80,__r50));
+			return __r45;
+		}};
+		var __ret82 = { interactive : __ret75, children : tink_state__$Observable_Observable_$Impl_$.auto(this11)};
+		__r43.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret82));
+		__r30.push(vdom_VDom.h("div",__ret73,__r43));
+		var __ret83 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r52 = [];
+		var __r53 = [];
+		__r53.push("Avatar list (+divider)");
+		var __ret84 = { };
+		__r52.push(vdom_VDom.h("h2",__ret84,__r53));
+		var __ret85 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret86 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var this12 = { f : function() {
+			var __r54 = [];
+			var __ret87 = { };
+			var __r55 = [];
+			var __ret88 = { src : "https://randomuser.me/api/portraits/women/1.jpg"};
+			var __r56 = [];
+			__r56.push("folder");
+			__r55.push(mdc_List.listStartImage(__ret88,__r56));
+			__r55.push("Item with start icon 1");
+			__r54.push(mdc_List.listItem(__ret87,__r55));
+			var __ret89 = { };
+			var __r57 = [];
+			var __ret90 = { src : "https://randomuser.me/api/portraits/women/2.jpg"};
+			var __r58 = [];
+			__r58.push("folder");
+			__r57.push(mdc_List.listStartImage(__ret90,__r58));
+			__r57.push("Item with start icon 2");
+			__r54.push(mdc_List.listItem(__ret89,__r57));
+			var __ret91 = { };
+			__r54.push(mdc_List.listDivider(__ret91));
+			var __ret92 = { };
+			var __r59 = [];
+			var __ret93 = { src : "https://randomuser.me/api/portraits/women/3.jpg"};
+			var __r60 = [];
+			__r60.push("folder");
+			__r59.push(mdc_List.listStartImage(__ret93,__r60));
+			__r59.push("Item with start icon 3");
+			__r54.push(mdc_List.listItem(__ret92,__r59));
+			return __r54;
+		}};
+		var __ret94 = { avatarList : __ret85, interactive : __ret86, children : tink_state__$Observable_Observable_$Impl_$.auto(this12)};
+		__r52.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret94));
+		__r30.push(vdom_VDom.h("div",__ret83,__r52));
+		var __ret95 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r61 = [];
+		var __r62 = [];
+		__r62.push("Two line list (+inset divider)");
+		var __ret96 = { };
+		__r61.push(vdom_VDom.h("h2",__ret96,__r62));
+		var __ret97 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret98 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret99 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var this13 = { f : function() {
+			var __r63 = [];
+			var __ret100 = { };
+			var __r64 = [];
+			var __ret101 = { src : "https://randomuser.me/api/portraits/women/1.jpg"};
+			var __r65 = [];
+			__r65.push("folder");
+			__r64.push(mdc_List.listStartImage(__ret101,__r65));
+			var __ret102 = { };
+			var __r66 = [];
+			__r66.push("Item title 1");
+			var __ret103 = { };
+			var __r67 = [];
+			__r67.push("Secondary text 1");
+			__r66.push(mdc_List.listTextSecondary(__ret103,__r67));
+			__r64.push(mdc_List.listText(__ret102,__r66));
+			var __ret104 = { };
+			var __r68 = [];
+			__r68.push("info");
+			__r64.push(mdc_List.listEndIcon(__ret104,__r68));
+			__r63.push(mdc_List.listItem(__ret100,__r64));
+			var __ret105 = { };
+			var __r69 = [];
+			var __ret106 = { src : "https://randomuser.me/api/portraits/women/2.jpg"};
+			var __r70 = [];
+			__r70.push("folder");
+			__r69.push(mdc_List.listStartImage(__ret106,__r70));
+			var __ret107 = { };
+			var __r71 = [];
+			__r71.push("Item title 2");
+			var __ret108 = { };
+			var __r72 = [];
+			__r72.push("Secondary text 2");
+			__r71.push(mdc_List.listTextSecondary(__ret108,__r72));
+			__r69.push(mdc_List.listText(__ret107,__r71));
+			var __ret109 = { };
+			var __r73 = [];
+			__r73.push("info");
+			__r69.push(mdc_List.listEndIcon(__ret109,__r73));
+			__r63.push(mdc_List.listItem(__ret105,__r69));
+			var __ret110 = { inset : true};
+			__r63.push(mdc_List.listDivider(__ret110));
+			var __ret111 = { };
+			var __r74 = [];
+			var __ret112 = { src : "https://randomuser.me/api/portraits/women/3.jpg"};
+			var __r75 = [];
+			__r75.push("folder");
+			__r74.push(mdc_List.listStartImage(__ret112,__r75));
+			var __ret113 = { };
+			var __r76 = [];
+			__r76.push("Item title 3");
+			var __ret114 = { };
+			var __r77 = [];
+			__r77.push("Secondary text 3");
+			__r76.push(mdc_List.listTextSecondary(__ret114,__r77));
+			__r74.push(mdc_List.listText(__ret113,__r76));
+			var __ret115 = { };
+			var __r78 = [];
+			__r78.push("info");
+			__r74.push(mdc_List.listEndIcon(__ret115,__r78));
+			__r63.push(mdc_List.listItem(__ret111,__r74));
+			return __r63;
+		}};
+		var __ret116 = { avatarList : __ret97, interactive : __ret98, twoLine : __ret99, children : tink_state__$Observable_Observable_$Impl_$.auto(this13)};
+		__r61.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret116));
+		__r30.push(vdom_VDom.h("div",__ret95,__r61));
+		__r1.push(vdom_VDom.h("div",__ret60,__r30));
+		var __r79 = [];
+		__r79.push("TextField");
+		var __ret117 = { };
+		__r1.push(vdom_VDom.h("h1",__ret117,__r79));
+		var __r80 = [];
+		var __ret118 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input")};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret118));
+		var __ret119 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Boxed input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret119));
+		var __ret120 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Password input"), type : tink_state__$Observable_Observable_$Impl_$["const"]("password")};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret120));
+		var __ret121 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("list")};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret121));
+		var __ret122 = { };
+		__r80.push(vdom_VDom.h("br",__ret122));
+		var __ret123 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with helper")};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret123));
+		var __ret124 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Helper for above")};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret124));
+		var __ret125 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with validation"), invalid : tink_state__$Observable_Observable_$Impl_$["const"](true), required : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret125));
+		var __ret126 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Error message"), validation : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret126));
+		var __ret127 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret127));
+		var __ret128 = { };
+		__r80.push(vdom_VDom.h("br",__ret128));
+		var __ret129 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input fullWidth"), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret129));
+		var __ret130 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea fullWidth"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret130));
+		var __ret131 = { };
+		__r1.push(vdom_VDom.h("div",__ret131,__r80));
+		__r.push(vdom_VDom.h("div",__ret,__r1));
+		return __r[0];
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults17: null
+	,__slots: null
+	,toString: function() {
+		return "TestView" + "#" + this.viewId;
+	}
+	,__tink_init18: function(attributes) {
 	}
 	,__class__: TestView
-	,__properties__: {get_data:"get_data"}
 });
 var Reflect = function() { };
 $hxClasses["Reflect"] = Reflect;
@@ -4297,9 +1847,119 @@ coconut_Ui.__name__ = ["coconut","Ui"];
 var coconut_data_Model = function() { };
 $hxClasses["coconut.data.Model"] = coconut_data_Model;
 coconut_data_Model.__name__ = ["coconut","data","Model"];
-var coconut_ui_macros_HXX = function() { };
-$hxClasses["coconut.ui.macros.HXX"] = coconut_ui_macros_HXX;
-coconut_ui_macros_HXX.__name__ = ["coconut","ui","macros","HXX"];
+var coconut_data__$Value_Value_$Impl_$ = {};
+$hxClasses["coconut.data._Value.Value_Impl_"] = coconut_data__$Value_Value_$Impl_$;
+coconut_data__$Value_Value_$Impl_$.__name__ = ["coconut","data","_Value","Value_Impl_"];
+coconut_data__$Value_Value_$Impl_$.or = function(this1,fallback) {
+	if(this1 == null) {
+		return fallback;
+	} else {
+		return this1;
+	}
+};
+var coconut_ui__$Children_Children_$Impl_$ = {};
+$hxClasses["coconut.ui._Children.Children_Impl_"] = coconut_ui__$Children_Children_$Impl_$;
+coconut_ui__$Children_Children_$Impl_$.__name__ = ["coconut","ui","_Children","Children_Impl_"];
+coconut_ui__$Children_Children_$Impl_$.__properties__ = {get_length:"get_length"};
+coconut_ui__$Children_Children_$Impl_$.get_length = function(this1) {
+	if(this1 == null) {
+		return 0;
+	} else {
+		return this1.length;
+	}
+};
+coconut_ui__$Children_Children_$Impl_$.get = function(this1,index) {
+	if(this1 == null) {
+		return null;
+	} else {
+		return this1[index];
+	}
+};
+coconut_ui__$Children_Children_$Impl_$.ofSingle = function(r) {
+	return [r];
+};
+var tink_state_ObservableObject = function() { };
+$hxClasses["tink.state.ObservableObject"] = tink_state_ObservableObject;
+tink_state_ObservableObject.__name__ = ["tink","state","ObservableObject"];
+tink_state_ObservableObject.prototype = {
+	poll: null
+	,__class__: tink_state_ObservableObject
+};
+var coconut_ui_tools_Slot = function(owner,compare) {
+	this.owner = owner;
+	var tmp;
+	if(compare == null) {
+		tmp = function(a,b) {
+			return a == b;
+		};
+	} else {
+		var v = compare;
+		tmp = v;
+	}
+	this.compare = tmp;
+};
+$hxClasses["coconut.ui.tools.Slot"] = coconut_ui_tools_Slot;
+coconut_ui_tools_Slot.__name__ = ["coconut","ui","tools","Slot"];
+coconut_ui_tools_Slot.__interfaces__ = [tink_state_ObservableObject];
+coconut_ui_tools_Slot.prototype = {
+	data: null
+	,last: null
+	,link: null
+	,owner: null
+	,compare: null
+	,get_value: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.observe());
+	}
+	,poll: function() {
+		var _gthis = this;
+		if(this.last == null) {
+			if(this.data == null) {
+				var this1 = new tink_core_MPair(null,new tink_core_FutureTrigger());
+				this.last = this1;
+			} else {
+				var m = tink_state__$Observable_Observable_$Impl_$.measure(this.data);
+				var this2 = new tink_core_MPair(m.a,new tink_core_FutureTrigger());
+				this.last = this2;
+				this.link = m.b.handle(($_=this.last.b,$bind($_,$_.trigger)));
+			}
+			this.last.b.handle(tink_core__$Callback_Callback_$Impl_$.fromNiladic(function() {
+				_gthis.last = null;
+			}));
+		}
+		var this3;
+		var this4 = new tink_core_MPair(this.last.a,this.last.b);
+		this3 = this4;
+		return this3;
+	}
+	,observe: function() {
+		return this;
+	}
+	,setData: function(data) {
+		this.data = data;
+		if(this.last != null) {
+			var this1 = this.link;
+			if(this1 != null) {
+				this1.dissolve();
+			}
+			if(data != null) {
+				var _e = data;
+				var m = tink_state__$Observable_Observable_$Impl_$.untracked(function() {
+					return tink_state__$Observable_Observable_$Impl_$.measure(_e);
+				});
+				if(this.compare(m.a,this.last.a)) {
+					this.link = m.b.handle(($_=this.last.b,$bind($_,$_.trigger)));
+				} else {
+					this.last.b.trigger(tink_core_Noise.Noise);
+				}
+			}
+		}
+	}
+	,toString: function() {
+		return "Slot(" + Std.string(this.owner) + ")";
+	}
+	,__class__: coconut_ui_tools_Slot
+	,__properties__: {get_value:"get_value"}
+};
 var coconut_ui_tools__$ViewCache_Stack = function(create) {
 	this.stored = [];
 	this.counter = 0;
@@ -4314,71 +1974,104 @@ coconut_ui_tools__$ViewCache_Stack.prototype = {
 	,purge: function() {
 		this.stored.splice(this.counter,this.stored.length);
 		this.counter = 0;
+		return this.stored.length;
 	}
-	,poll: function() {
-		var _g = this.stored[this.counter++];
-		if(_g == null) {
-			var ret = this.create();
-			this.stored.push(ret);
-			return ret;
-		} else {
-			var v = _g;
-			return v;
+	,poll: function(data) {
+		var ret = this.create(data,this.stored[this.counter]);
+		if(this.counter == this.stored.length) {
+			this.stored[this.counter] = ret;
 		}
+		this.counter++;
+		return ret;
 	}
 	,__class__: coconut_ui_tools__$ViewCache_Stack
 };
-var coconut_ui_tools__$ViewCache_Factory = function(render) {
-	this.dataByKey = new haxe_ds_ObjectMap();
-	this.stackByData = new haxe_ds_ObjectMap();
-	this.render = render;
+var coconut_ui_tools__$ViewCache_Registry = function(create) {
+	this.byObj = new haxe_ds_ObjectMap();
+	this.byString = new haxe_ds_StringMap();
+	this.create = create;
+	this.keyless = new coconut_ui_tools__$ViewCache_Stack(create);
 };
-$hxClasses["coconut.ui.tools._ViewCache.Factory"] = coconut_ui_tools__$ViewCache_Factory;
-coconut_ui_tools__$ViewCache_Factory.__name__ = ["coconut","ui","tools","_ViewCache","Factory"];
-coconut_ui_tools__$ViewCache_Factory.prototype = {
-	render: null
-	,stackByData: null
-	,dataByKey: null
-	,forKey: function(key,f) {
-		var _g = this.dataByKey.get(key);
-		if(_g == null) {
-			var this1 = this.dataByKey;
-			var v = f();
-			this1.set(key,v);
-			return v;
-		} else {
-			var v1 = _g;
-			return v1;
-		}
-	}
+$hxClasses["coconut.ui.tools._ViewCache.Registry"] = coconut_ui_tools__$ViewCache_Registry;
+coconut_ui_tools__$ViewCache_Registry.__name__ = ["coconut","ui","tools","_ViewCache","Registry"];
+coconut_ui_tools__$ViewCache_Registry.prototype = {
+	create: null
+	,keyless: null
+	,byString: null
+	,byObj: null
 	,purge: function() {
-		var s = this.stackByData.iterator();
-		while(s.hasNext()) {
-			var s1 = s.next();
-			s1.purge();
+		this.keyless.purge();
+		var m = this.byString;
+		var remove = [];
+		var k = m.keys();
+		while(k.hasNext()) {
+			var k1 = k.next();
+			var stack = __map_reserved[k1] != null ? m.getReserved(k1) : m.h[k1];
+			if(stack.purge() == 0) {
+				remove.push(k1);
+			}
+		}
+		var _g = 0;
+		while(_g < remove.length) {
+			var k2 = remove[_g];
+			++_g;
+			m.remove(k2);
+		}
+		var m1 = this.byObj;
+		var remove1 = [];
+		var k3 = m1.keys();
+		while(k3.hasNext()) {
+			var k4 = k3.next();
+			var stack1 = m1.h[k4.__id__];
+			if(stack1.purge() == 0) {
+				remove1.push(k4);
+			}
+		}
+		var _g1 = 0;
+		while(_g1 < remove1.length) {
+			var k5 = remove1[_g1];
+			++_g1;
+			m1.remove(k5);
 		}
 	}
-	,make: function(data) {
+	,poll: function(data,key) {
 		var stack;
-		var _g = this.stackByData.get(data);
-		if(_g == null) {
-			var this1 = this.stackByData;
-			var f = this.render;
-			var a1 = data;
-			var v = new coconut_ui_tools__$ViewCache_Stack(function() {
-				return f(a1);
-			});
-			this1.set(data,v);
-			stack = v;
+		if(key == null) {
+			stack = this.keyless;
+		} else if(typeof key === "string") {
+			var m = this.byString;
+			var key1 = key;
+			var _g = __map_reserved[key1] != null ? m.getReserved(key1) : m.h[key1];
+			if(_g == null) {
+				var v = new coconut_ui_tools__$ViewCache_Stack(this.create);
+				if(__map_reserved[key1] != null) {
+					m.setReserved(key1,v);
+				} else {
+					m.h[key1] = v;
+				}
+				stack = v;
+			} else {
+				var v1 = _g;
+				stack = v1;
+			}
 		} else {
-			var v1 = _g;
-			stack = v1;
+			var m1 = this.byObj;
+			var _g1 = m1.h[key.__id__];
+			if(_g1 == null) {
+				var v2 = new coconut_ui_tools__$ViewCache_Stack(this.create);
+				m1.set(key,v2);
+				stack = v2;
+			} else {
+				var v3 = _g1;
+				stack = v3;
+			}
 		}
-		return stack.poll();
+		return stack.poll(data);
 	}
-	,__class__: coconut_ui_tools__$ViewCache_Factory
+	,__class__: coconut_ui_tools__$ViewCache_Registry
 };
 var coconut_ui_tools_ViewCache = function() {
+	this.retainCount = 0;
 	this.__cache = new haxe_ds_StringMap();
 };
 $hxClasses["coconut.ui.tools.ViewCache"] = coconut_ui_tools_ViewCache;
@@ -4392,9 +2085,33 @@ coconut_ui_tools_ViewCache.get = function() {
 		return v[v.length - 1][0];
 	}
 };
+coconut_ui_tools_ViewCache.mk = function(cls,key,make,data) {
+	var _this;
+	var _g = coconut_ui_tools_ViewCache.stack;
+	if(_g.length == 0) {
+		_this = new coconut_ui_tools_ViewCache();
+	} else {
+		var v = _g;
+		_this = v[v.length - 1][0];
+	}
+	var _g1 = _this.__cache.get(cls);
+	var tmp;
+	if(_g1 == null) {
+		var this1 = _this.__cache;
+		var v1 = new coconut_ui_tools__$ViewCache_Registry(make);
+		this1.set(cls,v1);
+		tmp = v1;
+	} else {
+		var v2 = _g1;
+		tmp = v2;
+	}
+	return tmp.poll(data,key);
+};
 coconut_ui_tools_ViewCache.prototype = {
 	__cache: null
+	,retainCount: null
 	,cached: function(f) {
+		var _gthis = this;
 		if(coconut_ui_tools_ViewCache.stack.length > 0 && coconut_ui_tools_ViewCache.stack[coconut_ui_tools_ViewCache.stack.length - 1][0] == this) {
 			return f();
 		}
@@ -4405,17 +2122,17 @@ coconut_ui_tools_ViewCache.prototype = {
 		ret[0] = this;
 		var entry = ret;
 		coconut_ui_tools_ViewCache.stack.push(entry);
-		var ret1;
-		try {
-			ret1 = tink_core_Outcome.Success(f());
-		} catch( e ) {
-			haxe_CallStack.lastException = e;
-			if (e instanceof js__$Boot_HaxeError) e = e.val;
-			ret1 = tink_core_Outcome.Failure(e);
-		}
-		HxOverrides.remove(coconut_ui_tools_ViewCache.stack,entry);
-		this.purge();
-		return tink_core_OutcomeTools.sure(ret1);
+		this.retainCount++;
+		return tink_core_TypedError.tryFinally(f,function() {
+			HxOverrides.remove(coconut_ui_tools_ViewCache.stack,entry);
+			if(--_gthis.retainCount == 0) {
+				var f1 = _gthis.__cache.iterator();
+				while(f1.hasNext()) {
+					var f2 = f1.next();
+					f2.purge();
+				}
+			}
+		});
 	}
 	,purge: function() {
 		var _this = this.__cache;
@@ -4425,21 +2142,40 @@ coconut_ui_tools_ViewCache.prototype = {
 			f1.purge();
 		}
 	}
-	,getFactory: function(cls,make) {
+	,getView: function(cls,key,make,data) {
 		var _g = this.__cache.get(cls);
 		var tmp;
 		if(_g == null) {
 			var this1 = this.__cache;
-			var v = new coconut_ui_tools__$ViewCache_Factory(make);
+			var v = new coconut_ui_tools__$ViewCache_Registry(make);
 			this1.set(cls,v);
 			tmp = v;
 		} else {
 			var v1 = _g;
 			tmp = v1;
 		}
-		return tmp;
+		return tmp.poll(data,key);
 	}
 	,__class__: coconut_ui_tools_ViewCache
+};
+var coconut_ui_tools__$ViewCache_Key_$Impl_$ = {};
+$hxClasses["coconut.ui.tools._ViewCache.Key_Impl_"] = coconut_ui_tools__$ViewCache_Key_$Impl_$;
+coconut_ui_tools__$ViewCache_Key_$Impl_$.__name__ = ["coconut","ui","tools","_ViewCache","Key_Impl_"];
+coconut_ui_tools__$ViewCache_Key_$Impl_$.isString = function(this1) {
+	return typeof this1 === "string";
+};
+coconut_ui_tools__$ViewCache_Key_$Impl_$.ofFloat = function(f) {
+	return coconut_ui_tools__$ViewCache_Key_$Impl_$.ofAny(f == null ? "null" : "" + f);
+};
+coconut_ui_tools__$ViewCache_Key_$Impl_$.ofBool = function(b) {
+	if(b == null) {
+		return null;
+	} else {
+		return coconut_ui_tools__$ViewCache_Key_$Impl_$.ofAny(b == null ? "null" : "" + b);
+	}
+};
+coconut_ui_tools__$ViewCache_Key_$Impl_$.ofAny = function(o) {
+	return o;
 };
 var haxe_StackItem = $hxClasses["haxe.StackItem"] = { __ename__ : ["haxe","StackItem"], __constructs__ : ["CFunction","Module","FilePos","Method","LocalFunction"] };
 haxe_StackItem.CFunction = ["CFunction",0];
@@ -6959,139 +4695,585 @@ js_html_compat_Uint8Array._subarray = function(start,end) {
 	return a;
 };
 var mdc_Button = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
-	this.__cocodata = data;
+	this.mdcRipple = null;
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Button.hx", lineNumber : 10, className : "mdc.Button", methodName : "new"});
+	this.__tink_defaults21 = { label : null, icon : null, raised : tink_state__$Observable_Observable_$Impl_$["const"](false), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](false), stroked : tink_state__$Observable_Observable_$Impl_$["const"](false), dense : tink_state__$Observable_Observable_$Impl_$["const"](false), compact : tink_state__$Observable_Observable_$Impl_$["const"](false), ripple : tink_state__$Observable_Observable_$Impl_$["const"](true), accessKey : null, accessKeyLabel : null, attributes : null, autofocus : null, checked : null, className : null, dir : null, disabled : null, draggable : null, hidden : null, id : null, key : null, lang : null, max : null, maxlength : null, min : null, name : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, pattern : null, placeholder : null, required : null, spellcheck : null, step : null, style : null, tabIndex : null, title : null, type : null, value : null};
+	this.__slots = { label : new coconut_ui_tools_Slot(this,null), icon : new coconut_ui_tools_Slot(this,null), raised : new coconut_ui_tools_Slot(this,null), unelevated : new coconut_ui_tools_Slot(this,null), stroked : new coconut_ui_tools_Slot(this,null), dense : new coconut_ui_tools_Slot(this,null), compact : new coconut_ui_tools_Slot(this,null), ripple : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), autofocus : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), max : new coconut_ui_tools_Slot(this,null), maxlength : new coconut_ui_tools_Slot(this,null), min : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), pattern : new coconut_ui_tools_Slot(this,null), placeholder : new coconut_ui_tools_Slot(this,null), required : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), step : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null), type : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.Button"] = mdc_Button;
 mdc_Button.__name__ = ["mdc","Button"];
+mdc_Button.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_Button(attributes);
+	}
+	inst.__tink_init22(attributes);
+	return inst;
+};
 mdc_Button.__super__ = coconut_ui_View;
 mdc_Button.prototype = $extend(coconut_ui_View.prototype,{
 	mdcRipple: null
-	,render: function(attr) {
-		var __v_0 = attr;
-		var attr1 = attr.className;
+	,render: function() {
+		var _gthis = this;
+		var __r = [];
+		var __ret = _gthis.get_className();
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-button"] != null) {
 			_g.setReserved("mdc-button",true);
 		} else {
 			_g.h["mdc-button"] = true;
 		}
-		var value = attr.ripple != null ? attr.ripple : true;
+		var value = _gthis.get_ripple();
 		if(__map_reserved["mdc-ripple-surface"] != null) {
 			_g.setReserved("mdc-ripple-surface",value);
 		} else {
 			_g.h["mdc-ripple-surface"] = value;
 		}
-		var value1 = attr.raised;
+		var value1 = _gthis.get_raised();
 		if(__map_reserved["mdc-button--raised"] != null) {
 			_g.setReserved("mdc-button--raised",value1);
 		} else {
 			_g.h["mdc-button--raised"] = value1;
 		}
-		var value2 = attr.unelevated;
+		var value2 = _gthis.get_unelevated();
 		if(__map_reserved["mdc-button--unelevated"] != null) {
 			_g.setReserved("mdc-button--unelevated",value2);
 		} else {
 			_g.h["mdc-button--unelevated"] = value2;
 		}
-		var value3 = attr.stroked;
+		var value3 = _gthis.get_stroked();
 		if(__map_reserved["mdc-button--stroked"] != null) {
 			_g.setReserved("mdc-button--stroked",value3);
 		} else {
 			_g.h["mdc-button--stroked"] = value3;
 		}
-		var value4 = attr.dense;
+		var value4 = _gthis.get_dense();
 		if(__map_reserved["mdc-button--dense"] != null) {
 			_g.setReserved("mdc-button--dense",value4);
 		} else {
 			_g.h["mdc-button--dense"] = value4;
 		}
-		var value5 = attr.compact;
+		var value5 = _gthis.get_compact();
 		if(__map_reserved["mdc-button--compact"] != null) {
 			_g.setReserved("mdc-button--compact",value5);
 		} else {
 			_g.h["mdc-button--compact"] = value5;
 		}
-		return vdom_VDom.h("button",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), onclick : attr.onclick, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, checked : __v_0.checked, contentEditable : __v_0.contentEditable, dir : __v_0.dir, disabled : __v_0.disabled, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, max : __v_0.max, maxlength : __v_0.maxlength, min : __v_0.min, name : __v_0.name, onabort : function(event) {
-		}, onblur : function(event1) {
-		}, oncanplay : function(event2) {
-		}, oncanplaythrough : function(event3) {
-		}, onchange : function(event4) {
-		}, oncontextmenu : function(event5) {
-		}, oncopy : function(event6) {
-		}, oncut : function(event7) {
-		}, ondblclick : function(event8) {
-		}, ondrag : function(event9) {
-		}, ondragend : function(event10) {
-		}, ondragenter : function(event11) {
-		}, ondragleave : function(event12) {
-		}, ondragover : function(event13) {
-		}, ondragstart : function(event14) {
-		}, ondrop : function(event15) {
-		}, ondurationchange : function(event16) {
-		}, onemptied : function(event17) {
-		}, onended : function(event18) {
-		}, onerror : function(event19) {
-		}, onfocus : function(event20) {
-		}, onfullscreenchange : function(event21) {
-		}, onfullscreenerror : function(event22) {
-		}, ongotpointercapture : function(event23) {
-		}, oninput : function(event24) {
-		}, oninvalid : function(event25) {
-		}, onkeydown : function(event26) {
-		}, onkeypress : function(event27) {
-		}, onkeyup : function(event28) {
-		}, onload : function(event29) {
-		}, onloadeddata : function(event30) {
-		}, onloadedmetadata : function(event31) {
-		}, onloadstart : function(event32) {
-		}, onlostpointercapture : function(event33) {
-		}, onmousedown : function(event34) {
-		}, onmouseenter : function(event35) {
-		}, onmouseleave : function(event36) {
-		}, onmousemove : function(event37) {
-		}, onmouseout : function(event38) {
-		}, onmouseover : function(event39) {
-		}, onmouseup : function(event40) {
-		}, onpaste : function(event41) {
-		}, onpause : function(event42) {
-		}, onplay : function(event43) {
-		}, onplaying : function(event44) {
-		}, onpointercancel : function(event45) {
-		}, onpointerdown : function(event46) {
-		}, onpointerenter : function(event47) {
-		}, onpointerleave : function(event48) {
-		}, onpointerlockchange : function(event49) {
-		}, onpointerlockerror : function(event50) {
-		}, onpointermove : function(event51) {
-		}, onpointerout : function(event52) {
-		}, onpointerover : function(event53) {
-		}, onpointerup : function(event54) {
-		}, onprogress : function(event55) {
-		}, onratechange : function(event56) {
-		}, onreset : function(event57) {
-		}, onresize : function(event58) {
-		}, onscroll : function(event59) {
-		}, onseeked : function(event60) {
-		}, onseeking : function(event61) {
-		}, onselect : function(event62) {
-		}, onshow : function(event63) {
-		}, onstalled : function(event64) {
-		}, onsubmit : function(event65) {
-		}, onsuspend : function(event66) {
-		}, ontimeupdate : function(event67) {
-		}, ontouchcancel : function(event68) {
-		}, ontouchend : function(event69) {
-		}, ontouchmove : function(event70) {
-		}, ontouchstart : function(event71) {
-		}, onvolumechange : function(event72) {
-		}, onwaiting : function(event73) {
-		}, onwheel : function(event74) {
-		}, pattern : __v_0.pattern, placeholder : __v_0.placeholder, required : __v_0.required, spellcheck : __v_0.spellcheck, step : __v_0.step, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title, type : __v_0.type, value : __v_0.value},[attr.icon != null ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-button__icon material-icons")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.label]);
+		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), onclick : _gthis.get_onclick()};
+		var _g1 = this.get_accessKey();
+		if(_g1 != null) {
+			var v = _g1;
+			__ret1.accessKey = v;
+		}
+		var _g2 = this.get_accessKeyLabel();
+		if(_g2 != null) {
+			var v1 = _g2;
+			__ret1.accessKeyLabel = v1;
+		}
+		var _g3 = this.get_attributes();
+		if(_g3 != null) {
+			var v2 = _g3;
+			__ret1.attributes = v2;
+		}
+		var _g4 = this.get_autofocus();
+		if(_g4 != null) {
+			var v3 = _g4;
+			__ret1.autofocus = v3;
+		}
+		var _g5 = this.get_checked();
+		if(_g5 != null) {
+			var v4 = _g5;
+			__ret1.checked = v4;
+		}
+		var _g6 = this.get_dir();
+		if(_g6 != null) {
+			var v5 = _g6;
+			__ret1.dir = v5;
+		}
+		var _g7 = this.get_disabled();
+		if(_g7 != null) {
+			var v6 = _g7;
+			__ret1.disabled = v6;
+		}
+		var _g8 = this.get_draggable();
+		if(_g8 != null) {
+			var v7 = _g8;
+			__ret1.draggable = v7;
+		}
+		var _g9 = this.get_hidden();
+		if(_g9 != null) {
+			var v8 = _g9;
+			__ret1.hidden = v8;
+		}
+		var _g10 = this.get_id();
+		if(_g10 != null) {
+			var v9 = _g10;
+			__ret1.id = v9;
+		}
+		var _g11 = this.get_key();
+		if(_g11 != null) {
+			var v10 = _g11;
+			__ret1.key = v10;
+		}
+		var _g12 = this.get_lang();
+		if(_g12 != null) {
+			var v11 = _g12;
+			__ret1.lang = v11;
+		}
+		var _g13 = this.get_max();
+		if(_g13 != null) {
+			var v12 = _g13;
+			__ret1.max = v12;
+		}
+		var _g14 = this.get_maxlength();
+		if(_g14 != null) {
+			var v13 = _g14;
+			__ret1.maxlength = v13;
+		}
+		var _g15 = this.get_min();
+		if(_g15 != null) {
+			var v14 = _g15;
+			__ret1.min = v14;
+		}
+		var _g16 = this.get_name();
+		if(_g16 != null) {
+			var v15 = _g16;
+			__ret1.name = v15;
+		}
+		var _g17 = this.get_onabort();
+		if(_g17 != null) {
+			var v16 = _g17;
+			__ret1.onabort = v16;
+		}
+		var _g18 = this.get_onblur();
+		if(_g18 != null) {
+			var v17 = _g18;
+			__ret1.onblur = v17;
+		}
+		var _g19 = this.get_oncanplay();
+		if(_g19 != null) {
+			var v18 = _g19;
+			__ret1.oncanplay = v18;
+		}
+		var _g20 = this.get_oncanplaythrough();
+		if(_g20 != null) {
+			var v19 = _g20;
+			__ret1.oncanplaythrough = v19;
+		}
+		var _g21 = this.get_onchange();
+		if(_g21 != null) {
+			var v20 = _g21;
+			__ret1.onchange = v20;
+		}
+		var _g22 = this.get_oncontextmenu();
+		if(_g22 != null) {
+			var v21 = _g22;
+			__ret1.oncontextmenu = v21;
+		}
+		var _g23 = this.get_oncopy();
+		if(_g23 != null) {
+			var v22 = _g23;
+			__ret1.oncopy = v22;
+		}
+		var _g24 = this.get_oncut();
+		if(_g24 != null) {
+			var v23 = _g24;
+			__ret1.oncut = v23;
+		}
+		var _g25 = this.get_ondblclick();
+		if(_g25 != null) {
+			var v24 = _g25;
+			__ret1.ondblclick = v24;
+		}
+		var _g26 = this.get_ondrag();
+		if(_g26 != null) {
+			var v25 = _g26;
+			__ret1.ondrag = v25;
+		}
+		var _g27 = this.get_ondragend();
+		if(_g27 != null) {
+			var v26 = _g27;
+			__ret1.ondragend = v26;
+		}
+		var _g28 = this.get_ondragenter();
+		if(_g28 != null) {
+			var v27 = _g28;
+			__ret1.ondragenter = v27;
+		}
+		var _g29 = this.get_ondragleave();
+		if(_g29 != null) {
+			var v28 = _g29;
+			__ret1.ondragleave = v28;
+		}
+		var _g30 = this.get_ondragover();
+		if(_g30 != null) {
+			var v29 = _g30;
+			__ret1.ondragover = v29;
+		}
+		var _g31 = this.get_ondragstart();
+		if(_g31 != null) {
+			var v30 = _g31;
+			__ret1.ondragstart = v30;
+		}
+		var _g32 = this.get_ondrop();
+		if(_g32 != null) {
+			var v31 = _g32;
+			__ret1.ondrop = v31;
+		}
+		var _g33 = this.get_ondurationchange();
+		if(_g33 != null) {
+			var v32 = _g33;
+			__ret1.ondurationchange = v32;
+		}
+		var _g34 = this.get_onemptied();
+		if(_g34 != null) {
+			var v33 = _g34;
+			__ret1.onemptied = v33;
+		}
+		var _g35 = this.get_onended();
+		if(_g35 != null) {
+			var v34 = _g35;
+			__ret1.onended = v34;
+		}
+		var _g36 = this.get_onerror();
+		if(_g36 != null) {
+			var v35 = _g36;
+			__ret1.onerror = v35;
+		}
+		var _g37 = this.get_onfocus();
+		if(_g37 != null) {
+			var v36 = _g37;
+			__ret1.onfocus = v36;
+		}
+		var _g38 = this.get_onfullscreenchange();
+		if(_g38 != null) {
+			var v37 = _g38;
+			__ret1.onfullscreenchange = v37;
+		}
+		var _g39 = this.get_onfullscreenerror();
+		if(_g39 != null) {
+			var v38 = _g39;
+			__ret1.onfullscreenerror = v38;
+		}
+		var _g40 = this.get_ongotpointercapture();
+		if(_g40 != null) {
+			var v39 = _g40;
+			__ret1.ongotpointercapture = v39;
+		}
+		var _g41 = this.get_oninput();
+		if(_g41 != null) {
+			var v40 = _g41;
+			__ret1.oninput = v40;
+		}
+		var _g42 = this.get_oninvalid();
+		if(_g42 != null) {
+			var v41 = _g42;
+			__ret1.oninvalid = v41;
+		}
+		var _g43 = this.get_onkeydown();
+		if(_g43 != null) {
+			var v42 = _g43;
+			__ret1.onkeydown = v42;
+		}
+		var _g44 = this.get_onkeypress();
+		if(_g44 != null) {
+			var v43 = _g44;
+			__ret1.onkeypress = v43;
+		}
+		var _g45 = this.get_onkeyup();
+		if(_g45 != null) {
+			var v44 = _g45;
+			__ret1.onkeyup = v44;
+		}
+		var _g46 = this.get_onload();
+		if(_g46 != null) {
+			var v45 = _g46;
+			__ret1.onload = v45;
+		}
+		var _g47 = this.get_onloadeddata();
+		if(_g47 != null) {
+			var v46 = _g47;
+			__ret1.onloadeddata = v46;
+		}
+		var _g48 = this.get_onloadedmetadata();
+		if(_g48 != null) {
+			var v47 = _g48;
+			__ret1.onloadedmetadata = v47;
+		}
+		var _g49 = this.get_onloadstart();
+		if(_g49 != null) {
+			var v48 = _g49;
+			__ret1.onloadstart = v48;
+		}
+		var _g50 = this.get_onlostpointercapture();
+		if(_g50 != null) {
+			var v49 = _g50;
+			__ret1.onlostpointercapture = v49;
+		}
+		var _g51 = this.get_onmousedown();
+		if(_g51 != null) {
+			var v50 = _g51;
+			__ret1.onmousedown = v50;
+		}
+		var _g52 = this.get_onmouseenter();
+		if(_g52 != null) {
+			var v51 = _g52;
+			__ret1.onmouseenter = v51;
+		}
+		var _g53 = this.get_onmouseleave();
+		if(_g53 != null) {
+			var v52 = _g53;
+			__ret1.onmouseleave = v52;
+		}
+		var _g54 = this.get_onmousemove();
+		if(_g54 != null) {
+			var v53 = _g54;
+			__ret1.onmousemove = v53;
+		}
+		var _g55 = this.get_onmouseout();
+		if(_g55 != null) {
+			var v54 = _g55;
+			__ret1.onmouseout = v54;
+		}
+		var _g56 = this.get_onmouseover();
+		if(_g56 != null) {
+			var v55 = _g56;
+			__ret1.onmouseover = v55;
+		}
+		var _g57 = this.get_onmouseup();
+		if(_g57 != null) {
+			var v56 = _g57;
+			__ret1.onmouseup = v56;
+		}
+		var _g58 = this.get_onpaste();
+		if(_g58 != null) {
+			var v57 = _g58;
+			__ret1.onpaste = v57;
+		}
+		var _g59 = this.get_onpause();
+		if(_g59 != null) {
+			var v58 = _g59;
+			__ret1.onpause = v58;
+		}
+		var _g60 = this.get_onplay();
+		if(_g60 != null) {
+			var v59 = _g60;
+			__ret1.onplay = v59;
+		}
+		var _g61 = this.get_onplaying();
+		if(_g61 != null) {
+			var v60 = _g61;
+			__ret1.onplaying = v60;
+		}
+		var _g62 = this.get_onpointercancel();
+		if(_g62 != null) {
+			var v61 = _g62;
+			__ret1.onpointercancel = v61;
+		}
+		var _g63 = this.get_onpointerdown();
+		if(_g63 != null) {
+			var v62 = _g63;
+			__ret1.onpointerdown = v62;
+		}
+		var _g64 = this.get_onpointerenter();
+		if(_g64 != null) {
+			var v63 = _g64;
+			__ret1.onpointerenter = v63;
+		}
+		var _g65 = this.get_onpointerleave();
+		if(_g65 != null) {
+			var v64 = _g65;
+			__ret1.onpointerleave = v64;
+		}
+		var _g66 = this.get_onpointerlockchange();
+		if(_g66 != null) {
+			var v65 = _g66;
+			__ret1.onpointerlockchange = v65;
+		}
+		var _g67 = this.get_onpointerlockerror();
+		if(_g67 != null) {
+			var v66 = _g67;
+			__ret1.onpointerlockerror = v66;
+		}
+		var _g68 = this.get_onpointermove();
+		if(_g68 != null) {
+			var v67 = _g68;
+			__ret1.onpointermove = v67;
+		}
+		var _g69 = this.get_onpointerout();
+		if(_g69 != null) {
+			var v68 = _g69;
+			__ret1.onpointerout = v68;
+		}
+		var _g70 = this.get_onpointerover();
+		if(_g70 != null) {
+			var v69 = _g70;
+			__ret1.onpointerover = v69;
+		}
+		var _g71 = this.get_onpointerup();
+		if(_g71 != null) {
+			var v70 = _g71;
+			__ret1.onpointerup = v70;
+		}
+		var _g72 = this.get_onprogress();
+		if(_g72 != null) {
+			var v71 = _g72;
+			__ret1.onprogress = v71;
+		}
+		var _g73 = this.get_onratechange();
+		if(_g73 != null) {
+			var v72 = _g73;
+			__ret1.onratechange = v72;
+		}
+		var _g74 = this.get_onreset();
+		if(_g74 != null) {
+			var v73 = _g74;
+			__ret1.onreset = v73;
+		}
+		var _g75 = this.get_onresize();
+		if(_g75 != null) {
+			var v74 = _g75;
+			__ret1.onresize = v74;
+		}
+		var _g76 = this.get_onscroll();
+		if(_g76 != null) {
+			var v75 = _g76;
+			__ret1.onscroll = v75;
+		}
+		var _g77 = this.get_onseeked();
+		if(_g77 != null) {
+			var v76 = _g77;
+			__ret1.onseeked = v76;
+		}
+		var _g78 = this.get_onseeking();
+		if(_g78 != null) {
+			var v77 = _g78;
+			__ret1.onseeking = v77;
+		}
+		var _g79 = this.get_onselect();
+		if(_g79 != null) {
+			var v78 = _g79;
+			__ret1.onselect = v78;
+		}
+		var _g80 = this.get_onshow();
+		if(_g80 != null) {
+			var v79 = _g80;
+			__ret1.onshow = v79;
+		}
+		var _g81 = this.get_onstalled();
+		if(_g81 != null) {
+			var v80 = _g81;
+			__ret1.onstalled = v80;
+		}
+		var _g82 = this.get_onsubmit();
+		if(_g82 != null) {
+			var v81 = _g82;
+			__ret1.onsubmit = v81;
+		}
+		var _g83 = this.get_onsuspend();
+		if(_g83 != null) {
+			var v82 = _g83;
+			__ret1.onsuspend = v82;
+		}
+		var _g84 = this.get_ontimeupdate();
+		if(_g84 != null) {
+			var v83 = _g84;
+			__ret1.ontimeupdate = v83;
+		}
+		var _g85 = this.get_ontouchcancel();
+		if(_g85 != null) {
+			var v84 = _g85;
+			__ret1.ontouchcancel = v84;
+		}
+		var _g86 = this.get_ontouchend();
+		if(_g86 != null) {
+			var v85 = _g86;
+			__ret1.ontouchend = v85;
+		}
+		var _g87 = this.get_ontouchmove();
+		if(_g87 != null) {
+			var v86 = _g87;
+			__ret1.ontouchmove = v86;
+		}
+		var _g88 = this.get_ontouchstart();
+		if(_g88 != null) {
+			var v87 = _g88;
+			__ret1.ontouchstart = v87;
+		}
+		var _g89 = this.get_onvolumechange();
+		if(_g89 != null) {
+			var v88 = _g89;
+			__ret1.onvolumechange = v88;
+		}
+		var _g90 = this.get_onwaiting();
+		if(_g90 != null) {
+			var v89 = _g90;
+			__ret1.onwaiting = v89;
+		}
+		var _g91 = this.get_onwheel();
+		if(_g91 != null) {
+			var v90 = _g91;
+			__ret1.onwheel = v90;
+		}
+		var _g92 = this.get_pattern();
+		if(_g92 != null) {
+			var v91 = _g92;
+			__ret1.pattern = v91;
+		}
+		var _g93 = this.get_placeholder();
+		if(_g93 != null) {
+			var v92 = _g93;
+			__ret1.placeholder = v92;
+		}
+		var _g94 = this.get_required();
+		if(_g94 != null) {
+			var v93 = _g94;
+			__ret1.required = v93;
+		}
+		var _g95 = this.get_spellcheck();
+		if(_g95 != null) {
+			var v94 = _g95;
+			__ret1.spellcheck = v94;
+		}
+		var _g96 = this.get_step();
+		if(_g96 != null) {
+			var v95 = _g96;
+			__ret1.step = v95;
+		}
+		var _g97 = this.get_style();
+		if(_g97 != null) {
+			var v96 = _g97;
+			__ret1.style = v96;
+		}
+		var _g98 = this.get_tabIndex();
+		if(_g98 != null) {
+			var v97 = _g98;
+			__ret1.tabIndex = v97;
+		}
+		var _g99 = this.get_title();
+		if(_g99 != null) {
+			var v98 = _g99;
+			__ret1.title = v98;
+		}
+		var _g100 = this.get_type();
+		if(_g100 != null) {
+			var v99 = _g100;
+			__ret1.type = v99;
+		}
+		var _g101 = this.get_value();
+		if(_g101 != null) {
+			var v100 = _g101;
+			__ret1.value = v100;
+		}
+		var __r1 = [];
+		if(this.get_icon() != null) {
+			var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-button__icon material-icons")};
+			var __r2 = [];
+			__r2.push(this.get_icon());
+			__r1.push(vdom_VDom.h("i",__ret2,__r2));
+		}
+		__r1.push(this.get_label());
+		__r.push(vdom_VDom.h("button",__ret1,__r1));
+		return __r[0];
 	}
 	,afterInit: function(elem) {
 		this.mdcRipple = new window.mdc.ripple.MDCRipple(elem);
@@ -7101,21 +5283,576 @@ mdc_Button.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcRipple.destroy();
 		}
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults21: null
+	,__slots: null
+	,toString: function() {
+		return "Button" + "#" + this.viewId;
+	}
+	,__tink_init22: function(attributes) {
+		var this1 = attributes.label;
+		this.__slots.label.setData(this1 == null ? this.__tink_defaults21.label : this1);
+		var this2 = attributes.icon;
+		this.__slots.icon.setData(this2 == null ? this.__tink_defaults21.icon : this2);
+		var this3 = attributes.raised;
+		this.__slots.raised.setData(this3 == null ? this.__tink_defaults21.raised : this3);
+		var this4 = attributes.unelevated;
+		this.__slots.unelevated.setData(this4 == null ? this.__tink_defaults21.unelevated : this4);
+		var this5 = attributes.stroked;
+		this.__slots.stroked.setData(this5 == null ? this.__tink_defaults21.stroked : this5);
+		var this6 = attributes.dense;
+		this.__slots.dense.setData(this6 == null ? this.__tink_defaults21.dense : this6);
+		var this7 = attributes.compact;
+		this.__slots.compact.setData(this7 == null ? this.__tink_defaults21.compact : this7);
+		var this8 = attributes.ripple;
+		this.__slots.ripple.setData(this8 == null ? this.__tink_defaults21.ripple : this8);
+		var this9 = attributes.accessKey;
+		this.__slots.accessKey.setData(this9 == null ? this.__tink_defaults21.accessKey : this9);
+		var this10 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this10 == null ? this.__tink_defaults21.accessKeyLabel : this10);
+		var this11 = attributes.attributes;
+		this.__slots.attributes.setData(this11 == null ? this.__tink_defaults21.attributes : this11);
+		var this12 = attributes.autofocus;
+		this.__slots.autofocus.setData(this12 == null ? this.__tink_defaults21.autofocus : this12);
+		var this13 = attributes.checked;
+		this.__slots.checked.setData(this13 == null ? this.__tink_defaults21.checked : this13);
+		var this14 = attributes.className;
+		this.__slots.className.setData(this14 == null ? this.__tink_defaults21.className : this14);
+		var this15 = attributes.dir;
+		this.__slots.dir.setData(this15 == null ? this.__tink_defaults21.dir : this15);
+		var this16 = attributes.disabled;
+		this.__slots.disabled.setData(this16 == null ? this.__tink_defaults21.disabled : this16);
+		var this17 = attributes.draggable;
+		this.__slots.draggable.setData(this17 == null ? this.__tink_defaults21.draggable : this17);
+		var this18 = attributes.hidden;
+		this.__slots.hidden.setData(this18 == null ? this.__tink_defaults21.hidden : this18);
+		var this19 = attributes.id;
+		this.__slots.id.setData(this19 == null ? this.__tink_defaults21.id : this19);
+		var this20 = attributes.key;
+		this.__slots.key.setData(this20 == null ? this.__tink_defaults21.key : this20);
+		var this21 = attributes.lang;
+		this.__slots.lang.setData(this21 == null ? this.__tink_defaults21.lang : this21);
+		var this22 = attributes.max;
+		this.__slots.max.setData(this22 == null ? this.__tink_defaults21.max : this22);
+		var this23 = attributes.maxlength;
+		this.__slots.maxlength.setData(this23 == null ? this.__tink_defaults21.maxlength : this23);
+		var this24 = attributes.min;
+		this.__slots.min.setData(this24 == null ? this.__tink_defaults21.min : this24);
+		var this25 = attributes.name;
+		this.__slots.name.setData(this25 == null ? this.__tink_defaults21.name : this25);
+		var this26 = attributes.onabort;
+		this.__slots.onabort.setData(this26 == null ? this.__tink_defaults21.onabort : this26);
+		var this27 = attributes.onblur;
+		this.__slots.onblur.setData(this27 == null ? this.__tink_defaults21.onblur : this27);
+		var this28 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this28 == null ? this.__tink_defaults21.oncanplay : this28);
+		var this29 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this29 == null ? this.__tink_defaults21.oncanplaythrough : this29);
+		var this30 = attributes.onchange;
+		this.__slots.onchange.setData(this30 == null ? this.__tink_defaults21.onchange : this30);
+		var this31 = attributes.onclick;
+		this.__slots.onclick.setData(this31 == null ? this.__tink_defaults21.onclick : this31);
+		var this32 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this32 == null ? this.__tink_defaults21.oncontextmenu : this32);
+		var this33 = attributes.oncopy;
+		this.__slots.oncopy.setData(this33 == null ? this.__tink_defaults21.oncopy : this33);
+		var this34 = attributes.oncut;
+		this.__slots.oncut.setData(this34 == null ? this.__tink_defaults21.oncut : this34);
+		var this35 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this35 == null ? this.__tink_defaults21.ondblclick : this35);
+		var this36 = attributes.ondrag;
+		this.__slots.ondrag.setData(this36 == null ? this.__tink_defaults21.ondrag : this36);
+		var this37 = attributes.ondragend;
+		this.__slots.ondragend.setData(this37 == null ? this.__tink_defaults21.ondragend : this37);
+		var this38 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this38 == null ? this.__tink_defaults21.ondragenter : this38);
+		var this39 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this39 == null ? this.__tink_defaults21.ondragleave : this39);
+		var this40 = attributes.ondragover;
+		this.__slots.ondragover.setData(this40 == null ? this.__tink_defaults21.ondragover : this40);
+		var this41 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this41 == null ? this.__tink_defaults21.ondragstart : this41);
+		var this42 = attributes.ondrop;
+		this.__slots.ondrop.setData(this42 == null ? this.__tink_defaults21.ondrop : this42);
+		var this43 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this43 == null ? this.__tink_defaults21.ondurationchange : this43);
+		var this44 = attributes.onemptied;
+		this.__slots.onemptied.setData(this44 == null ? this.__tink_defaults21.onemptied : this44);
+		var this45 = attributes.onended;
+		this.__slots.onended.setData(this45 == null ? this.__tink_defaults21.onended : this45);
+		var this46 = attributes.onerror;
+		this.__slots.onerror.setData(this46 == null ? this.__tink_defaults21.onerror : this46);
+		var this47 = attributes.onfocus;
+		this.__slots.onfocus.setData(this47 == null ? this.__tink_defaults21.onfocus : this47);
+		var this48 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this48 == null ? this.__tink_defaults21.onfullscreenchange : this48);
+		var this49 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this49 == null ? this.__tink_defaults21.onfullscreenerror : this49);
+		var this50 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this50 == null ? this.__tink_defaults21.ongotpointercapture : this50);
+		var this51 = attributes.oninput;
+		this.__slots.oninput.setData(this51 == null ? this.__tink_defaults21.oninput : this51);
+		var this52 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this52 == null ? this.__tink_defaults21.oninvalid : this52);
+		var this53 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this53 == null ? this.__tink_defaults21.onkeydown : this53);
+		var this54 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this54 == null ? this.__tink_defaults21.onkeypress : this54);
+		var this55 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this55 == null ? this.__tink_defaults21.onkeyup : this55);
+		var this56 = attributes.onload;
+		this.__slots.onload.setData(this56 == null ? this.__tink_defaults21.onload : this56);
+		var this57 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this57 == null ? this.__tink_defaults21.onloadeddata : this57);
+		var this58 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this58 == null ? this.__tink_defaults21.onloadedmetadata : this58);
+		var this59 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this59 == null ? this.__tink_defaults21.onloadstart : this59);
+		var this60 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this60 == null ? this.__tink_defaults21.onlostpointercapture : this60);
+		var this61 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this61 == null ? this.__tink_defaults21.onmousedown : this61);
+		var this62 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this62 == null ? this.__tink_defaults21.onmouseenter : this62);
+		var this63 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this63 == null ? this.__tink_defaults21.onmouseleave : this63);
+		var this64 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this64 == null ? this.__tink_defaults21.onmousemove : this64);
+		var this65 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this65 == null ? this.__tink_defaults21.onmouseout : this65);
+		var this66 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this66 == null ? this.__tink_defaults21.onmouseover : this66);
+		var this67 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this67 == null ? this.__tink_defaults21.onmouseup : this67);
+		var this68 = attributes.onpaste;
+		this.__slots.onpaste.setData(this68 == null ? this.__tink_defaults21.onpaste : this68);
+		var this69 = attributes.onpause;
+		this.__slots.onpause.setData(this69 == null ? this.__tink_defaults21.onpause : this69);
+		var this70 = attributes.onplay;
+		this.__slots.onplay.setData(this70 == null ? this.__tink_defaults21.onplay : this70);
+		var this71 = attributes.onplaying;
+		this.__slots.onplaying.setData(this71 == null ? this.__tink_defaults21.onplaying : this71);
+		var this72 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this72 == null ? this.__tink_defaults21.onpointercancel : this72);
+		var this73 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this73 == null ? this.__tink_defaults21.onpointerdown : this73);
+		var this74 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this74 == null ? this.__tink_defaults21.onpointerenter : this74);
+		var this75 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this75 == null ? this.__tink_defaults21.onpointerleave : this75);
+		var this76 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this76 == null ? this.__tink_defaults21.onpointerlockchange : this76);
+		var this77 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this77 == null ? this.__tink_defaults21.onpointerlockerror : this77);
+		var this78 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this78 == null ? this.__tink_defaults21.onpointermove : this78);
+		var this79 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this79 == null ? this.__tink_defaults21.onpointerout : this79);
+		var this80 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this80 == null ? this.__tink_defaults21.onpointerover : this80);
+		var this81 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this81 == null ? this.__tink_defaults21.onpointerup : this81);
+		var this82 = attributes.onprogress;
+		this.__slots.onprogress.setData(this82 == null ? this.__tink_defaults21.onprogress : this82);
+		var this83 = attributes.onratechange;
+		this.__slots.onratechange.setData(this83 == null ? this.__tink_defaults21.onratechange : this83);
+		var this84 = attributes.onreset;
+		this.__slots.onreset.setData(this84 == null ? this.__tink_defaults21.onreset : this84);
+		var this85 = attributes.onresize;
+		this.__slots.onresize.setData(this85 == null ? this.__tink_defaults21.onresize : this85);
+		var this86 = attributes.onscroll;
+		this.__slots.onscroll.setData(this86 == null ? this.__tink_defaults21.onscroll : this86);
+		var this87 = attributes.onseeked;
+		this.__slots.onseeked.setData(this87 == null ? this.__tink_defaults21.onseeked : this87);
+		var this88 = attributes.onseeking;
+		this.__slots.onseeking.setData(this88 == null ? this.__tink_defaults21.onseeking : this88);
+		var this89 = attributes.onselect;
+		this.__slots.onselect.setData(this89 == null ? this.__tink_defaults21.onselect : this89);
+		var this90 = attributes.onshow;
+		this.__slots.onshow.setData(this90 == null ? this.__tink_defaults21.onshow : this90);
+		var this91 = attributes.onstalled;
+		this.__slots.onstalled.setData(this91 == null ? this.__tink_defaults21.onstalled : this91);
+		var this92 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this92 == null ? this.__tink_defaults21.onsubmit : this92);
+		var this93 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this93 == null ? this.__tink_defaults21.onsuspend : this93);
+		var this94 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this94 == null ? this.__tink_defaults21.ontimeupdate : this94);
+		var this95 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this95 == null ? this.__tink_defaults21.ontouchcancel : this95);
+		var this96 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this96 == null ? this.__tink_defaults21.ontouchend : this96);
+		var this97 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this97 == null ? this.__tink_defaults21.ontouchmove : this97);
+		var this98 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this98 == null ? this.__tink_defaults21.ontouchstart : this98);
+		var this99 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this99 == null ? this.__tink_defaults21.onvolumechange : this99);
+		var this100 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this100 == null ? this.__tink_defaults21.onwaiting : this100);
+		var this101 = attributes.onwheel;
+		this.__slots.onwheel.setData(this101 == null ? this.__tink_defaults21.onwheel : this101);
+		var this102 = attributes.pattern;
+		this.__slots.pattern.setData(this102 == null ? this.__tink_defaults21.pattern : this102);
+		var this103 = attributes.placeholder;
+		this.__slots.placeholder.setData(this103 == null ? this.__tink_defaults21.placeholder : this103);
+		var this104 = attributes.required;
+		this.__slots.required.setData(this104 == null ? this.__tink_defaults21.required : this104);
+		var this105 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this105 == null ? this.__tink_defaults21.spellcheck : this105);
+		var this106 = attributes.step;
+		this.__slots.step.setData(this106 == null ? this.__tink_defaults21.step : this106);
+		var this107 = attributes.style;
+		this.__slots.style.setData(this107 == null ? this.__tink_defaults21.style : this107);
+		var this108 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this108 == null ? this.__tink_defaults21.tabIndex : this108);
+		var this109 = attributes.title;
+		this.__slots.title.setData(this109 == null ? this.__tink_defaults21.title : this109);
+		var this110 = attributes.type;
+		this.__slots.type.setData(this110 == null ? this.__tink_defaults21.type : this110);
+		var this111 = attributes.value;
+		this.__slots.value.setData(this111 == null ? this.__tink_defaults21.value : this111);
+	}
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
+	}
+	,get_icon: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe());
+	}
+	,get_raised: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.raised.observe());
+	}
+	,get_unelevated: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.unelevated.observe());
+	}
+	,get_stroked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.stroked.observe());
+	}
+	,get_dense: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dense.observe());
+	}
+	,get_compact: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.compact.observe());
+	}
+	,get_ripple: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ripple.observe());
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_autofocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.autofocus.observe());
+	}
+	,get_checked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_disabled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_max: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.max.observe());
+	}
+	,get_maxlength: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.maxlength.observe());
+	}
+	,get_min: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.min.observe());
+	}
+	,get_name: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_pattern: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.pattern.observe());
+	}
+	,get_placeholder: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.placeholder.observe());
+	}
+	,get_required: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.required.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_step: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.step.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	}
+	,get_type: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.type.observe());
+	}
+	,get_value: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
 	}
 	,__class__: mdc_Button
-	,__properties__: {get_data:"get_data"}
+	,__properties__: {get_value:"get_value",get_type:"get_type",get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_step:"get_step",get_spellcheck:"get_spellcheck",get_required:"get_required",get_placeholder:"get_placeholder",get_pattern:"get_pattern",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_name:"get_name",get_min:"get_min",get_maxlength:"get_maxlength",get_max:"get_max",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_disabled:"get_disabled",get_dir:"get_dir",get_className:"get_className",get_checked:"get_checked",get_autofocus:"get_autofocus",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_ripple:"get_ripple",get_compact:"get_compact",get_dense:"get_dense",get_stroked:"get_stroked",get_unelevated:"get_unelevated",get_raised:"get_raised",get_icon:"get_icon",get_label:"get_label"}
 });
 var mdc_Checkbox = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
-	this.__cocodata = data;
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Checkbox.hx", lineNumber : 9, className : "mdc.Checkbox", methodName : "new"});
+	this.checkboxId = mdc_Checkbox.checkboxIndex++;
+	this.__tink_defaults25 = { accessKey : null, accessKeyLabel : null, attributes : null, checked : null, className : null, dir : null, disabled : null, draggable : null, hidden : null, id : null, indeterminate : null, key : null, label : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onchecked : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null, value : null};
+	this.__slots = { accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), indeterminate : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.Checkbox"] = mdc_Checkbox;
 mdc_Checkbox.__name__ = ["mdc","Checkbox"];
@@ -7125,179 +5862,964 @@ mdc_Checkbox.svg = function(attr,children) {
 mdc_Checkbox.path = function(attr,children) {
 	return vdom_VDom.h("path",attr,children);
 };
+mdc_Checkbox.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_Checkbox(attributes);
+	}
+	inst.__tink_init26(attributes);
+	return inst;
+};
 mdc_Checkbox.__super__ = coconut_ui_View;
 mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
-	mdcCheckbox: null
-	,render: function(attr) {
-		if(attr.label != null) {
-			var __v_0 = attr;
-			var attr1 = attr.className;
+	checkboxId: null
+	,mdcCheckbox: null
+	,render: function() {
+		var _gthis = this;
+		var id = this.get_id() == null ? "ch_" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.checkboxId)) : this.get_id();
+		if(this.get_label() != null) {
+			var __r = [];
+			var __ret = _gthis.get_className();
 			var _g = new haxe_ds_StringMap();
 			if(__map_reserved["mdc-form-field"] != null) {
 				_g.setReserved("mdc-form-field",true);
 			} else {
 				_g.h["mdc-form-field"] = true;
 			}
-			return vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-			}, onblur : function(event1) {
-			}, oncanplay : function(event2) {
-			}, oncanplaythrough : function(event3) {
-			}, onchange : function(event4) {
-			}, onclick : function(event5) {
-			}, oncontextmenu : function(event6) {
-			}, oncopy : function(event7) {
-			}, oncut : function(event8) {
-			}, ondblclick : function(event9) {
-			}, ondrag : function(event10) {
-			}, ondragend : function(event11) {
-			}, ondragenter : function(event12) {
-			}, ondragleave : function(event13) {
-			}, ondragover : function(event14) {
-			}, ondragstart : function(event15) {
-			}, ondrop : function(event16) {
-			}, ondurationchange : function(event17) {
-			}, onemptied : function(event18) {
-			}, onended : function(event19) {
-			}, onerror : function(event20) {
-			}, onfocus : function(event21) {
-			}, onfullscreenchange : function(event22) {
-			}, onfullscreenerror : function(event23) {
-			}, ongotpointercapture : function(event24) {
-			}, oninput : function(event25) {
-			}, oninvalid : function(event26) {
-			}, onkeydown : function(event27) {
-			}, onkeypress : function(event28) {
-			}, onkeyup : function(event29) {
-			}, onload : function(event30) {
-			}, onloadeddata : function(event31) {
-			}, onloadedmetadata : function(event32) {
-			}, onloadstart : function(event33) {
-			}, onlostpointercapture : function(event34) {
-			}, onmousedown : function(event35) {
-			}, onmouseenter : function(event36) {
-			}, onmouseleave : function(event37) {
-			}, onmousemove : function(event38) {
-			}, onmouseout : function(event39) {
-			}, onmouseover : function(event40) {
-			}, onmouseup : function(event41) {
-			}, onpaste : function(event42) {
-			}, onpause : function(event43) {
-			}, onplay : function(event44) {
-			}, onplaying : function(event45) {
-			}, onpointercancel : function(event46) {
-			}, onpointerdown : function(event47) {
-			}, onpointerenter : function(event48) {
-			}, onpointerleave : function(event49) {
-			}, onpointerlockchange : function(event50) {
-			}, onpointerlockerror : function(event51) {
-			}, onpointermove : function(event52) {
-			}, onpointerout : function(event53) {
-			}, onpointerover : function(event54) {
-			}, onpointerup : function(event55) {
-			}, onprogress : function(event56) {
-			}, onratechange : function(event57) {
-			}, onreset : function(event58) {
-			}, onresize : function(event59) {
-			}, onscroll : function(event60) {
-			}, onseeked : function(event61) {
-			}, onseeking : function(event62) {
-			}, onselect : function(event63) {
-			}, onshow : function(event64) {
-			}, onstalled : function(event65) {
-			}, onsubmit : function(event66) {
-			}, onsuspend : function(event67) {
-			}, ontimeupdate : function(event68) {
-			}, ontouchcancel : function(event69) {
-			}, ontouchend : function(event70) {
-			}, ontouchmove : function(event71) {
-			}, ontouchstart : function(event72) {
-			}, onvolumechange : function(event73) {
-			}, onwaiting : function(event74) {
-			}, onwheel : function(event75) {
-			}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox")},[vdom_VDom.h("input",{ type : "checkbox", onchange : function(event76) {
-				attr.onchecked(event76.target.checked);
-			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control")}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")},[vdom_HtmlFragment.create({ content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")},null)])]),vdom_VDom.h("label",{ htmlFor : "my-checkbox"},[attr.label])]);
+			var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+			var _g1 = this.get_accessKey();
+			if(_g1 != null) {
+				var v = _g1;
+				__ret1.accessKey = v;
+			}
+			var _g2 = this.get_accessKeyLabel();
+			if(_g2 != null) {
+				var v1 = _g2;
+				__ret1.accessKeyLabel = v1;
+			}
+			var _g3 = this.get_attributes();
+			if(_g3 != null) {
+				var v2 = _g3;
+				__ret1.attributes = v2;
+			}
+			var _g4 = this.get_dir();
+			if(_g4 != null) {
+				var v3 = _g4;
+				__ret1.dir = v3;
+			}
+			var _g5 = this.get_draggable();
+			if(_g5 != null) {
+				var v4 = _g5;
+				__ret1.draggable = v4;
+			}
+			var _g6 = this.get_hidden();
+			if(_g6 != null) {
+				var v5 = _g6;
+				__ret1.hidden = v5;
+			}
+			var _g7 = this.get_id();
+			if(_g7 != null) {
+				var v6 = _g7;
+				__ret1.id = v6;
+			}
+			var _g8 = this.get_key();
+			if(_g8 != null) {
+				var v7 = _g8;
+				__ret1.key = v7;
+			}
+			var _g9 = this.get_lang();
+			if(_g9 != null) {
+				var v8 = _g9;
+				__ret1.lang = v8;
+			}
+			var _g10 = this.get_onabort();
+			if(_g10 != null) {
+				var v9 = _g10;
+				__ret1.onabort = v9;
+			}
+			var _g11 = this.get_onblur();
+			if(_g11 != null) {
+				var v10 = _g11;
+				__ret1.onblur = v10;
+			}
+			var _g12 = this.get_oncanplay();
+			if(_g12 != null) {
+				var v11 = _g12;
+				__ret1.oncanplay = v11;
+			}
+			var _g13 = this.get_oncanplaythrough();
+			if(_g13 != null) {
+				var v12 = _g13;
+				__ret1.oncanplaythrough = v12;
+			}
+			var _g14 = this.get_onchange();
+			if(_g14 != null) {
+				var v13 = _g14;
+				__ret1.onchange = v13;
+			}
+			var _g15 = this.get_onclick();
+			if(_g15 != null) {
+				var v14 = _g15;
+				__ret1.onclick = v14;
+			}
+			var _g16 = this.get_oncontextmenu();
+			if(_g16 != null) {
+				var v15 = _g16;
+				__ret1.oncontextmenu = v15;
+			}
+			var _g17 = this.get_oncopy();
+			if(_g17 != null) {
+				var v16 = _g17;
+				__ret1.oncopy = v16;
+			}
+			var _g18 = this.get_oncut();
+			if(_g18 != null) {
+				var v17 = _g18;
+				__ret1.oncut = v17;
+			}
+			var _g19 = this.get_ondblclick();
+			if(_g19 != null) {
+				var v18 = _g19;
+				__ret1.ondblclick = v18;
+			}
+			var _g20 = this.get_ondrag();
+			if(_g20 != null) {
+				var v19 = _g20;
+				__ret1.ondrag = v19;
+			}
+			var _g21 = this.get_ondragend();
+			if(_g21 != null) {
+				var v20 = _g21;
+				__ret1.ondragend = v20;
+			}
+			var _g22 = this.get_ondragenter();
+			if(_g22 != null) {
+				var v21 = _g22;
+				__ret1.ondragenter = v21;
+			}
+			var _g23 = this.get_ondragleave();
+			if(_g23 != null) {
+				var v22 = _g23;
+				__ret1.ondragleave = v22;
+			}
+			var _g24 = this.get_ondragover();
+			if(_g24 != null) {
+				var v23 = _g24;
+				__ret1.ondragover = v23;
+			}
+			var _g25 = this.get_ondragstart();
+			if(_g25 != null) {
+				var v24 = _g25;
+				__ret1.ondragstart = v24;
+			}
+			var _g26 = this.get_ondrop();
+			if(_g26 != null) {
+				var v25 = _g26;
+				__ret1.ondrop = v25;
+			}
+			var _g27 = this.get_ondurationchange();
+			if(_g27 != null) {
+				var v26 = _g27;
+				__ret1.ondurationchange = v26;
+			}
+			var _g28 = this.get_onemptied();
+			if(_g28 != null) {
+				var v27 = _g28;
+				__ret1.onemptied = v27;
+			}
+			var _g29 = this.get_onended();
+			if(_g29 != null) {
+				var v28 = _g29;
+				__ret1.onended = v28;
+			}
+			var _g30 = this.get_onerror();
+			if(_g30 != null) {
+				var v29 = _g30;
+				__ret1.onerror = v29;
+			}
+			var _g31 = this.get_onfocus();
+			if(_g31 != null) {
+				var v30 = _g31;
+				__ret1.onfocus = v30;
+			}
+			var _g32 = this.get_onfullscreenchange();
+			if(_g32 != null) {
+				var v31 = _g32;
+				__ret1.onfullscreenchange = v31;
+			}
+			var _g33 = this.get_onfullscreenerror();
+			if(_g33 != null) {
+				var v32 = _g33;
+				__ret1.onfullscreenerror = v32;
+			}
+			var _g34 = this.get_ongotpointercapture();
+			if(_g34 != null) {
+				var v33 = _g34;
+				__ret1.ongotpointercapture = v33;
+			}
+			var _g35 = this.get_oninput();
+			if(_g35 != null) {
+				var v34 = _g35;
+				__ret1.oninput = v34;
+			}
+			var _g36 = this.get_oninvalid();
+			if(_g36 != null) {
+				var v35 = _g36;
+				__ret1.oninvalid = v35;
+			}
+			var _g37 = this.get_onkeydown();
+			if(_g37 != null) {
+				var v36 = _g37;
+				__ret1.onkeydown = v36;
+			}
+			var _g38 = this.get_onkeypress();
+			if(_g38 != null) {
+				var v37 = _g38;
+				__ret1.onkeypress = v37;
+			}
+			var _g39 = this.get_onkeyup();
+			if(_g39 != null) {
+				var v38 = _g39;
+				__ret1.onkeyup = v38;
+			}
+			var _g40 = this.get_onload();
+			if(_g40 != null) {
+				var v39 = _g40;
+				__ret1.onload = v39;
+			}
+			var _g41 = this.get_onloadeddata();
+			if(_g41 != null) {
+				var v40 = _g41;
+				__ret1.onloadeddata = v40;
+			}
+			var _g42 = this.get_onloadedmetadata();
+			if(_g42 != null) {
+				var v41 = _g42;
+				__ret1.onloadedmetadata = v41;
+			}
+			var _g43 = this.get_onloadstart();
+			if(_g43 != null) {
+				var v42 = _g43;
+				__ret1.onloadstart = v42;
+			}
+			var _g44 = this.get_onlostpointercapture();
+			if(_g44 != null) {
+				var v43 = _g44;
+				__ret1.onlostpointercapture = v43;
+			}
+			var _g45 = this.get_onmousedown();
+			if(_g45 != null) {
+				var v44 = _g45;
+				__ret1.onmousedown = v44;
+			}
+			var _g46 = this.get_onmouseenter();
+			if(_g46 != null) {
+				var v45 = _g46;
+				__ret1.onmouseenter = v45;
+			}
+			var _g47 = this.get_onmouseleave();
+			if(_g47 != null) {
+				var v46 = _g47;
+				__ret1.onmouseleave = v46;
+			}
+			var _g48 = this.get_onmousemove();
+			if(_g48 != null) {
+				var v47 = _g48;
+				__ret1.onmousemove = v47;
+			}
+			var _g49 = this.get_onmouseout();
+			if(_g49 != null) {
+				var v48 = _g49;
+				__ret1.onmouseout = v48;
+			}
+			var _g50 = this.get_onmouseover();
+			if(_g50 != null) {
+				var v49 = _g50;
+				__ret1.onmouseover = v49;
+			}
+			var _g51 = this.get_onmouseup();
+			if(_g51 != null) {
+				var v50 = _g51;
+				__ret1.onmouseup = v50;
+			}
+			var _g52 = this.get_onpaste();
+			if(_g52 != null) {
+				var v51 = _g52;
+				__ret1.onpaste = v51;
+			}
+			var _g53 = this.get_onpause();
+			if(_g53 != null) {
+				var v52 = _g53;
+				__ret1.onpause = v52;
+			}
+			var _g54 = this.get_onplay();
+			if(_g54 != null) {
+				var v53 = _g54;
+				__ret1.onplay = v53;
+			}
+			var _g55 = this.get_onplaying();
+			if(_g55 != null) {
+				var v54 = _g55;
+				__ret1.onplaying = v54;
+			}
+			var _g56 = this.get_onpointercancel();
+			if(_g56 != null) {
+				var v55 = _g56;
+				__ret1.onpointercancel = v55;
+			}
+			var _g57 = this.get_onpointerdown();
+			if(_g57 != null) {
+				var v56 = _g57;
+				__ret1.onpointerdown = v56;
+			}
+			var _g58 = this.get_onpointerenter();
+			if(_g58 != null) {
+				var v57 = _g58;
+				__ret1.onpointerenter = v57;
+			}
+			var _g59 = this.get_onpointerleave();
+			if(_g59 != null) {
+				var v58 = _g59;
+				__ret1.onpointerleave = v58;
+			}
+			var _g60 = this.get_onpointerlockchange();
+			if(_g60 != null) {
+				var v59 = _g60;
+				__ret1.onpointerlockchange = v59;
+			}
+			var _g61 = this.get_onpointerlockerror();
+			if(_g61 != null) {
+				var v60 = _g61;
+				__ret1.onpointerlockerror = v60;
+			}
+			var _g62 = this.get_onpointermove();
+			if(_g62 != null) {
+				var v61 = _g62;
+				__ret1.onpointermove = v61;
+			}
+			var _g63 = this.get_onpointerout();
+			if(_g63 != null) {
+				var v62 = _g63;
+				__ret1.onpointerout = v62;
+			}
+			var _g64 = this.get_onpointerover();
+			if(_g64 != null) {
+				var v63 = _g64;
+				__ret1.onpointerover = v63;
+			}
+			var _g65 = this.get_onpointerup();
+			if(_g65 != null) {
+				var v64 = _g65;
+				__ret1.onpointerup = v64;
+			}
+			var _g66 = this.get_onprogress();
+			if(_g66 != null) {
+				var v65 = _g66;
+				__ret1.onprogress = v65;
+			}
+			var _g67 = this.get_onratechange();
+			if(_g67 != null) {
+				var v66 = _g67;
+				__ret1.onratechange = v66;
+			}
+			var _g68 = this.get_onreset();
+			if(_g68 != null) {
+				var v67 = _g68;
+				__ret1.onreset = v67;
+			}
+			var _g69 = this.get_onresize();
+			if(_g69 != null) {
+				var v68 = _g69;
+				__ret1.onresize = v68;
+			}
+			var _g70 = this.get_onscroll();
+			if(_g70 != null) {
+				var v69 = _g70;
+				__ret1.onscroll = v69;
+			}
+			var _g71 = this.get_onseeked();
+			if(_g71 != null) {
+				var v70 = _g71;
+				__ret1.onseeked = v70;
+			}
+			var _g72 = this.get_onseeking();
+			if(_g72 != null) {
+				var v71 = _g72;
+				__ret1.onseeking = v71;
+			}
+			var _g73 = this.get_onselect();
+			if(_g73 != null) {
+				var v72 = _g73;
+				__ret1.onselect = v72;
+			}
+			var _g74 = this.get_onshow();
+			if(_g74 != null) {
+				var v73 = _g74;
+				__ret1.onshow = v73;
+			}
+			var _g75 = this.get_onstalled();
+			if(_g75 != null) {
+				var v74 = _g75;
+				__ret1.onstalled = v74;
+			}
+			var _g76 = this.get_onsubmit();
+			if(_g76 != null) {
+				var v75 = _g76;
+				__ret1.onsubmit = v75;
+			}
+			var _g77 = this.get_onsuspend();
+			if(_g77 != null) {
+				var v76 = _g77;
+				__ret1.onsuspend = v76;
+			}
+			var _g78 = this.get_ontimeupdate();
+			if(_g78 != null) {
+				var v77 = _g78;
+				__ret1.ontimeupdate = v77;
+			}
+			var _g79 = this.get_ontouchcancel();
+			if(_g79 != null) {
+				var v78 = _g79;
+				__ret1.ontouchcancel = v78;
+			}
+			var _g80 = this.get_ontouchend();
+			if(_g80 != null) {
+				var v79 = _g80;
+				__ret1.ontouchend = v79;
+			}
+			var _g81 = this.get_ontouchmove();
+			if(_g81 != null) {
+				var v80 = _g81;
+				__ret1.ontouchmove = v80;
+			}
+			var _g82 = this.get_ontouchstart();
+			if(_g82 != null) {
+				var v81 = _g82;
+				__ret1.ontouchstart = v81;
+			}
+			var _g83 = this.get_onvolumechange();
+			if(_g83 != null) {
+				var v82 = _g83;
+				__ret1.onvolumechange = v82;
+			}
+			var _g84 = this.get_onwaiting();
+			if(_g84 != null) {
+				var v83 = _g84;
+				__ret1.onwaiting = v83;
+			}
+			var _g85 = this.get_onwheel();
+			if(_g85 != null) {
+				var v84 = _g85;
+				__ret1.onwheel = v84;
+			}
+			var _g86 = this.get_spellcheck();
+			if(_g86 != null) {
+				var v85 = _g86;
+				__ret1.spellcheck = v85;
+			}
+			var _g87 = this.get_style();
+			if(_g87 != null) {
+				var v86 = _g87;
+				__ret1.style = v86;
+			}
+			var _g88 = this.get_tabIndex();
+			if(_g88 != null) {
+				var v87 = _g88;
+				__ret1.tabIndex = v87;
+			}
+			var _g89 = this.get_title();
+			if(_g89 != null) {
+				var v88 = _g89;
+				__ret1.title = v88;
+			}
+			var __r1 = [];
+			var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox")};
+			var __r2 = [];
+			var __ret3 = { type : "checkbox", onchange : function(event) {
+				if(_gthis.get_onchecked() != null) {
+					(_gthis.get_onchecked())(event.target.checked);
+				}
+			}, value : _gthis.get_value(), checked : _gthis.get_checked(), className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control"), id : id};
+			__r2.push(vdom_VDom.h("input",__ret3));
+			var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")};
+			var __r3 = [];
+			var __ret5 = { content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"};
+			__r3.push(vdom_HtmlFragment.create(__ret5));
+			var __ret6 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")};
+			var __r4 = [];
+			__r3.push(vdom_VDom.h("div",__ret6,__r4));
+			__r2.push(vdom_VDom.h("div",__ret4,__r3));
+			__r1.push(vdom_VDom.h("div",__ret2,__r2));
+			var __r5 = [];
+			__r5.push(this.get_label());
+			var __ret7 = { htmlFor : id};
+			__r1.push(vdom_VDom.h("label",__ret7,__r5));
+			__r.push(vdom_VDom.h("div",__ret1,__r1));
+			return __r[0];
 		} else {
-			var __v_01 = attr;
-			return vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox"), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event77) {
-			}, onblur : function(event78) {
-			}, oncanplay : function(event79) {
-			}, oncanplaythrough : function(event80) {
-			}, onchange : function(event81) {
-			}, onclick : function(event82) {
-			}, oncontextmenu : function(event83) {
-			}, oncopy : function(event84) {
-			}, oncut : function(event85) {
-			}, ondblclick : function(event86) {
-			}, ondrag : function(event87) {
-			}, ondragend : function(event88) {
-			}, ondragenter : function(event89) {
-			}, ondragleave : function(event90) {
-			}, ondragover : function(event91) {
-			}, ondragstart : function(event92) {
-			}, ondrop : function(event93) {
-			}, ondurationchange : function(event94) {
-			}, onemptied : function(event95) {
-			}, onended : function(event96) {
-			}, onerror : function(event97) {
-			}, onfocus : function(event98) {
-			}, onfullscreenchange : function(event99) {
-			}, onfullscreenerror : function(event100) {
-			}, ongotpointercapture : function(event101) {
-			}, oninput : function(event102) {
-			}, oninvalid : function(event103) {
-			}, onkeydown : function(event104) {
-			}, onkeypress : function(event105) {
-			}, onkeyup : function(event106) {
-			}, onload : function(event107) {
-			}, onloadeddata : function(event108) {
-			}, onloadedmetadata : function(event109) {
-			}, onloadstart : function(event110) {
-			}, onlostpointercapture : function(event111) {
-			}, onmousedown : function(event112) {
-			}, onmouseenter : function(event113) {
-			}, onmouseleave : function(event114) {
-			}, onmousemove : function(event115) {
-			}, onmouseout : function(event116) {
-			}, onmouseover : function(event117) {
-			}, onmouseup : function(event118) {
-			}, onpaste : function(event119) {
-			}, onpause : function(event120) {
-			}, onplay : function(event121) {
-			}, onplaying : function(event122) {
-			}, onpointercancel : function(event123) {
-			}, onpointerdown : function(event124) {
-			}, onpointerenter : function(event125) {
-			}, onpointerleave : function(event126) {
-			}, onpointerlockchange : function(event127) {
-			}, onpointerlockerror : function(event128) {
-			}, onpointermove : function(event129) {
-			}, onpointerout : function(event130) {
-			}, onpointerover : function(event131) {
-			}, onpointerup : function(event132) {
-			}, onprogress : function(event133) {
-			}, onratechange : function(event134) {
-			}, onreset : function(event135) {
-			}, onresize : function(event136) {
-			}, onscroll : function(event137) {
-			}, onseeked : function(event138) {
-			}, onseeking : function(event139) {
-			}, onselect : function(event140) {
-			}, onshow : function(event141) {
-			}, onstalled : function(event142) {
-			}, onsubmit : function(event143) {
-			}, onsuspend : function(event144) {
-			}, ontimeupdate : function(event145) {
-			}, ontouchcancel : function(event146) {
-			}, ontouchend : function(event147) {
-			}, ontouchmove : function(event148) {
-			}, ontouchstart : function(event149) {
-			}, onvolumechange : function(event150) {
-			}, onwaiting : function(event151) {
-			}, onwheel : function(event152) {
-			}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[vdom_VDom.h("input",{ type : "checkbox", onchange : function(event153) {
-				attr.onchecked(event153.target.checked);
-			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control")}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")},[vdom_HtmlFragment.create({ content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"}),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")},null)])]);
+			var __r6 = [];
+			var __ret8 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox")};
+			var _g90 = this.get_accessKey();
+			if(_g90 != null) {
+				var v89 = _g90;
+				__ret8.accessKey = v89;
+			}
+			var _g110 = this.get_accessKeyLabel();
+			if(_g110 != null) {
+				var v90 = _g110;
+				__ret8.accessKeyLabel = v90;
+			}
+			var _g210 = this.get_attributes();
+			if(_g210 != null) {
+				var v91 = _g210;
+				__ret8.attributes = v91;
+			}
+			var _g310 = this.get_dir();
+			if(_g310 != null) {
+				var v92 = _g310;
+				__ret8.dir = v92;
+			}
+			var _g410 = this.get_draggable();
+			if(_g410 != null) {
+				var v93 = _g410;
+				__ret8.draggable = v93;
+			}
+			var _g510 = this.get_hidden();
+			if(_g510 != null) {
+				var v94 = _g510;
+				__ret8.hidden = v94;
+			}
+			var _g610 = this.get_id();
+			if(_g610 != null) {
+				var v95 = _g610;
+				__ret8.id = v95;
+			}
+			var _g710 = this.get_key();
+			if(_g710 != null) {
+				var v96 = _g710;
+				__ret8.key = v96;
+			}
+			var _g810 = this.get_lang();
+			if(_g810 != null) {
+				var v97 = _g810;
+				__ret8.lang = v97;
+			}
+			var _g91 = this.get_onabort();
+			if(_g91 != null) {
+				var v98 = _g91;
+				__ret8.onabort = v98;
+			}
+			var _g101 = this.get_onblur();
+			if(_g101 != null) {
+				var v99 = _g101;
+				__ret8.onblur = v99;
+			}
+			var _g111 = this.get_oncanplay();
+			if(_g111 != null) {
+				var v100 = _g111;
+				__ret8.oncanplay = v100;
+			}
+			var _g121 = this.get_oncanplaythrough();
+			if(_g121 != null) {
+				var v101 = _g121;
+				__ret8.oncanplaythrough = v101;
+			}
+			var _g131 = this.get_onchange();
+			if(_g131 != null) {
+				var v102 = _g131;
+				__ret8.onchange = v102;
+			}
+			var _g141 = this.get_onclick();
+			if(_g141 != null) {
+				var v103 = _g141;
+				__ret8.onclick = v103;
+			}
+			var _g151 = this.get_oncontextmenu();
+			if(_g151 != null) {
+				var v104 = _g151;
+				__ret8.oncontextmenu = v104;
+			}
+			var _g161 = this.get_oncopy();
+			if(_g161 != null) {
+				var v105 = _g161;
+				__ret8.oncopy = v105;
+			}
+			var _g171 = this.get_oncut();
+			if(_g171 != null) {
+				var v106 = _g171;
+				__ret8.oncut = v106;
+			}
+			var _g181 = this.get_ondblclick();
+			if(_g181 != null) {
+				var v107 = _g181;
+				__ret8.ondblclick = v107;
+			}
+			var _g191 = this.get_ondrag();
+			if(_g191 != null) {
+				var v108 = _g191;
+				__ret8.ondrag = v108;
+			}
+			var _g201 = this.get_ondragend();
+			if(_g201 != null) {
+				var v109 = _g201;
+				__ret8.ondragend = v109;
+			}
+			var _g211 = this.get_ondragenter();
+			if(_g211 != null) {
+				var v110 = _g211;
+				__ret8.ondragenter = v110;
+			}
+			var _g221 = this.get_ondragleave();
+			if(_g221 != null) {
+				var v111 = _g221;
+				__ret8.ondragleave = v111;
+			}
+			var _g231 = this.get_ondragover();
+			if(_g231 != null) {
+				var v112 = _g231;
+				__ret8.ondragover = v112;
+			}
+			var _g241 = this.get_ondragstart();
+			if(_g241 != null) {
+				var v113 = _g241;
+				__ret8.ondragstart = v113;
+			}
+			var _g251 = this.get_ondrop();
+			if(_g251 != null) {
+				var v114 = _g251;
+				__ret8.ondrop = v114;
+			}
+			var _g261 = this.get_ondurationchange();
+			if(_g261 != null) {
+				var v115 = _g261;
+				__ret8.ondurationchange = v115;
+			}
+			var _g271 = this.get_onemptied();
+			if(_g271 != null) {
+				var v116 = _g271;
+				__ret8.onemptied = v116;
+			}
+			var _g281 = this.get_onended();
+			if(_g281 != null) {
+				var v117 = _g281;
+				__ret8.onended = v117;
+			}
+			var _g291 = this.get_onerror();
+			if(_g291 != null) {
+				var v118 = _g291;
+				__ret8.onerror = v118;
+			}
+			var _g301 = this.get_onfocus();
+			if(_g301 != null) {
+				var v119 = _g301;
+				__ret8.onfocus = v119;
+			}
+			var _g311 = this.get_onfullscreenchange();
+			if(_g311 != null) {
+				var v120 = _g311;
+				__ret8.onfullscreenchange = v120;
+			}
+			var _g321 = this.get_onfullscreenerror();
+			if(_g321 != null) {
+				var v121 = _g321;
+				__ret8.onfullscreenerror = v121;
+			}
+			var _g331 = this.get_ongotpointercapture();
+			if(_g331 != null) {
+				var v122 = _g331;
+				__ret8.ongotpointercapture = v122;
+			}
+			var _g341 = this.get_oninput();
+			if(_g341 != null) {
+				var v123 = _g341;
+				__ret8.oninput = v123;
+			}
+			var _g351 = this.get_oninvalid();
+			if(_g351 != null) {
+				var v124 = _g351;
+				__ret8.oninvalid = v124;
+			}
+			var _g361 = this.get_onkeydown();
+			if(_g361 != null) {
+				var v125 = _g361;
+				__ret8.onkeydown = v125;
+			}
+			var _g371 = this.get_onkeypress();
+			if(_g371 != null) {
+				var v126 = _g371;
+				__ret8.onkeypress = v126;
+			}
+			var _g381 = this.get_onkeyup();
+			if(_g381 != null) {
+				var v127 = _g381;
+				__ret8.onkeyup = v127;
+			}
+			var _g391 = this.get_onload();
+			if(_g391 != null) {
+				var v128 = _g391;
+				__ret8.onload = v128;
+			}
+			var _g401 = this.get_onloadeddata();
+			if(_g401 != null) {
+				var v129 = _g401;
+				__ret8.onloadeddata = v129;
+			}
+			var _g411 = this.get_onloadedmetadata();
+			if(_g411 != null) {
+				var v130 = _g411;
+				__ret8.onloadedmetadata = v130;
+			}
+			var _g421 = this.get_onloadstart();
+			if(_g421 != null) {
+				var v131 = _g421;
+				__ret8.onloadstart = v131;
+			}
+			var _g431 = this.get_onlostpointercapture();
+			if(_g431 != null) {
+				var v132 = _g431;
+				__ret8.onlostpointercapture = v132;
+			}
+			var _g441 = this.get_onmousedown();
+			if(_g441 != null) {
+				var v133 = _g441;
+				__ret8.onmousedown = v133;
+			}
+			var _g451 = this.get_onmouseenter();
+			if(_g451 != null) {
+				var v134 = _g451;
+				__ret8.onmouseenter = v134;
+			}
+			var _g461 = this.get_onmouseleave();
+			if(_g461 != null) {
+				var v135 = _g461;
+				__ret8.onmouseleave = v135;
+			}
+			var _g471 = this.get_onmousemove();
+			if(_g471 != null) {
+				var v136 = _g471;
+				__ret8.onmousemove = v136;
+			}
+			var _g481 = this.get_onmouseout();
+			if(_g481 != null) {
+				var v137 = _g481;
+				__ret8.onmouseout = v137;
+			}
+			var _g491 = this.get_onmouseover();
+			if(_g491 != null) {
+				var v138 = _g491;
+				__ret8.onmouseover = v138;
+			}
+			var _g501 = this.get_onmouseup();
+			if(_g501 != null) {
+				var v139 = _g501;
+				__ret8.onmouseup = v139;
+			}
+			var _g511 = this.get_onpaste();
+			if(_g511 != null) {
+				var v140 = _g511;
+				__ret8.onpaste = v140;
+			}
+			var _g521 = this.get_onpause();
+			if(_g521 != null) {
+				var v141 = _g521;
+				__ret8.onpause = v141;
+			}
+			var _g531 = this.get_onplay();
+			if(_g531 != null) {
+				var v142 = _g531;
+				__ret8.onplay = v142;
+			}
+			var _g541 = this.get_onplaying();
+			if(_g541 != null) {
+				var v143 = _g541;
+				__ret8.onplaying = v143;
+			}
+			var _g551 = this.get_onpointercancel();
+			if(_g551 != null) {
+				var v144 = _g551;
+				__ret8.onpointercancel = v144;
+			}
+			var _g561 = this.get_onpointerdown();
+			if(_g561 != null) {
+				var v145 = _g561;
+				__ret8.onpointerdown = v145;
+			}
+			var _g571 = this.get_onpointerenter();
+			if(_g571 != null) {
+				var v146 = _g571;
+				__ret8.onpointerenter = v146;
+			}
+			var _g581 = this.get_onpointerleave();
+			if(_g581 != null) {
+				var v147 = _g581;
+				__ret8.onpointerleave = v147;
+			}
+			var _g591 = this.get_onpointerlockchange();
+			if(_g591 != null) {
+				var v148 = _g591;
+				__ret8.onpointerlockchange = v148;
+			}
+			var _g601 = this.get_onpointerlockerror();
+			if(_g601 != null) {
+				var v149 = _g601;
+				__ret8.onpointerlockerror = v149;
+			}
+			var _g611 = this.get_onpointermove();
+			if(_g611 != null) {
+				var v150 = _g611;
+				__ret8.onpointermove = v150;
+			}
+			var _g621 = this.get_onpointerout();
+			if(_g621 != null) {
+				var v151 = _g621;
+				__ret8.onpointerout = v151;
+			}
+			var _g631 = this.get_onpointerover();
+			if(_g631 != null) {
+				var v152 = _g631;
+				__ret8.onpointerover = v152;
+			}
+			var _g641 = this.get_onpointerup();
+			if(_g641 != null) {
+				var v153 = _g641;
+				__ret8.onpointerup = v153;
+			}
+			var _g651 = this.get_onprogress();
+			if(_g651 != null) {
+				var v154 = _g651;
+				__ret8.onprogress = v154;
+			}
+			var _g661 = this.get_onratechange();
+			if(_g661 != null) {
+				var v155 = _g661;
+				__ret8.onratechange = v155;
+			}
+			var _g671 = this.get_onreset();
+			if(_g671 != null) {
+				var v156 = _g671;
+				__ret8.onreset = v156;
+			}
+			var _g681 = this.get_onresize();
+			if(_g681 != null) {
+				var v157 = _g681;
+				__ret8.onresize = v157;
+			}
+			var _g691 = this.get_onscroll();
+			if(_g691 != null) {
+				var v158 = _g691;
+				__ret8.onscroll = v158;
+			}
+			var _g701 = this.get_onseeked();
+			if(_g701 != null) {
+				var v159 = _g701;
+				__ret8.onseeked = v159;
+			}
+			var _g711 = this.get_onseeking();
+			if(_g711 != null) {
+				var v160 = _g711;
+				__ret8.onseeking = v160;
+			}
+			var _g721 = this.get_onselect();
+			if(_g721 != null) {
+				var v161 = _g721;
+				__ret8.onselect = v161;
+			}
+			var _g731 = this.get_onshow();
+			if(_g731 != null) {
+				var v162 = _g731;
+				__ret8.onshow = v162;
+			}
+			var _g741 = this.get_onstalled();
+			if(_g741 != null) {
+				var v163 = _g741;
+				__ret8.onstalled = v163;
+			}
+			var _g751 = this.get_onsubmit();
+			if(_g751 != null) {
+				var v164 = _g751;
+				__ret8.onsubmit = v164;
+			}
+			var _g761 = this.get_onsuspend();
+			if(_g761 != null) {
+				var v165 = _g761;
+				__ret8.onsuspend = v165;
+			}
+			var _g771 = this.get_ontimeupdate();
+			if(_g771 != null) {
+				var v166 = _g771;
+				__ret8.ontimeupdate = v166;
+			}
+			var _g781 = this.get_ontouchcancel();
+			if(_g781 != null) {
+				var v167 = _g781;
+				__ret8.ontouchcancel = v167;
+			}
+			var _g791 = this.get_ontouchend();
+			if(_g791 != null) {
+				var v168 = _g791;
+				__ret8.ontouchend = v168;
+			}
+			var _g801 = this.get_ontouchmove();
+			if(_g801 != null) {
+				var v169 = _g801;
+				__ret8.ontouchmove = v169;
+			}
+			var _g811 = this.get_ontouchstart();
+			if(_g811 != null) {
+				var v170 = _g811;
+				__ret8.ontouchstart = v170;
+			}
+			var _g821 = this.get_onvolumechange();
+			if(_g821 != null) {
+				var v171 = _g821;
+				__ret8.onvolumechange = v171;
+			}
+			var _g831 = this.get_onwaiting();
+			if(_g831 != null) {
+				var v172 = _g831;
+				__ret8.onwaiting = v172;
+			}
+			var _g841 = this.get_onwheel();
+			if(_g841 != null) {
+				var v173 = _g841;
+				__ret8.onwheel = v173;
+			}
+			var _g851 = this.get_spellcheck();
+			if(_g851 != null) {
+				var v174 = _g851;
+				__ret8.spellcheck = v174;
+			}
+			var _g861 = this.get_style();
+			if(_g861 != null) {
+				var v175 = _g861;
+				__ret8.style = v175;
+			}
+			var _g871 = this.get_tabIndex();
+			if(_g871 != null) {
+				var v176 = _g871;
+				__ret8.tabIndex = v176;
+			}
+			var _g881 = this.get_title();
+			if(_g881 != null) {
+				var v177 = _g881;
+				__ret8.title = v177;
+			}
+			var __r7 = [];
+			var __ret9 = { type : "checkbox", value : _gthis.get_value(), checked : _gthis.get_checked(), onchange : function(event1) {
+				if(_gthis.get_onchecked() != null) {
+					(_gthis.get_onchecked())(event1.target.checked);
+				}
+			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control")};
+			__r7.push(vdom_VDom.h("input",__ret9));
+			var __ret10 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")};
+			var __r8 = [];
+			var __ret11 = { content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"};
+			__r8.push(vdom_HtmlFragment.create(__ret11));
+			var __ret12 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")};
+			var __r9 = [];
+			__r8.push(vdom_VDom.h("div",__ret12,__r9));
+			__r7.push(vdom_VDom.h("div",__ret10,__r8));
+			__r6.push(vdom_VDom.h("div",__ret8,__r7));
+			return __r6[0];
 		}
 	}
 	,afterInit: function(elem) {
@@ -7308,219 +6830,1000 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 		this.setCheckboxProperties();
 	}
 	,setCheckboxProperties: function() {
-		this.mdcCheckbox.checked = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).checked;
-		this.mdcCheckbox.indeterminate = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).indeterminate;
-		this.mdcCheckbox.disabled = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).disabled;
-		this.mdcCheckbox.value = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).value;
+		this.mdcCheckbox.checked = this.get_checked();
+		this.mdcCheckbox.indeterminate = this.get_indeterminate();
+		this.mdcCheckbox.disabled = this.get_disabled();
+		this.mdcCheckbox.value = this.get_value();
 	}
 	,destroy: function() {
 		if(this.mdcCheckbox != null) {
 			this.mdcCheckbox.destroy();
 		}
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults25: null
+	,__slots: null
+	,toString: function() {
+		return "Checkbox" + "#" + this.viewId;
+	}
+	,__tink_init26: function(attributes) {
+		var this1 = attributes.accessKey;
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults25.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults25.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults25.attributes : this3);
+		var this4 = attributes.checked;
+		this.__slots.checked.setData(this4 == null ? this.__tink_defaults25.checked : this4);
+		var this5 = attributes.className;
+		this.__slots.className.setData(this5 == null ? this.__tink_defaults25.className : this5);
+		var this6 = attributes.dir;
+		this.__slots.dir.setData(this6 == null ? this.__tink_defaults25.dir : this6);
+		var this7 = attributes.disabled;
+		this.__slots.disabled.setData(this7 == null ? this.__tink_defaults25.disabled : this7);
+		var this8 = attributes.draggable;
+		this.__slots.draggable.setData(this8 == null ? this.__tink_defaults25.draggable : this8);
+		var this9 = attributes.hidden;
+		this.__slots.hidden.setData(this9 == null ? this.__tink_defaults25.hidden : this9);
+		var this10 = attributes.id;
+		this.__slots.id.setData(this10 == null ? this.__tink_defaults25.id : this10);
+		var this11 = attributes.indeterminate;
+		this.__slots.indeterminate.setData(this11 == null ? this.__tink_defaults25.indeterminate : this11);
+		var this12 = attributes.key;
+		this.__slots.key.setData(this12 == null ? this.__tink_defaults25.key : this12);
+		var this13 = attributes.label;
+		this.__slots.label.setData(this13 == null ? this.__tink_defaults25.label : this13);
+		var this14 = attributes.lang;
+		this.__slots.lang.setData(this14 == null ? this.__tink_defaults25.lang : this14);
+		var this15 = attributes.onabort;
+		this.__slots.onabort.setData(this15 == null ? this.__tink_defaults25.onabort : this15);
+		var this16 = attributes.onblur;
+		this.__slots.onblur.setData(this16 == null ? this.__tink_defaults25.onblur : this16);
+		var this17 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this17 == null ? this.__tink_defaults25.oncanplay : this17);
+		var this18 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this18 == null ? this.__tink_defaults25.oncanplaythrough : this18);
+		var this19 = attributes.onchange;
+		this.__slots.onchange.setData(this19 == null ? this.__tink_defaults25.onchange : this19);
+		var this20 = attributes.onchecked;
+		this.__slots.onchecked.setData(this20 == null ? this.__tink_defaults25.onchecked : this20);
+		var this21 = attributes.onclick;
+		this.__slots.onclick.setData(this21 == null ? this.__tink_defaults25.onclick : this21);
+		var this22 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this22 == null ? this.__tink_defaults25.oncontextmenu : this22);
+		var this23 = attributes.oncopy;
+		this.__slots.oncopy.setData(this23 == null ? this.__tink_defaults25.oncopy : this23);
+		var this24 = attributes.oncut;
+		this.__slots.oncut.setData(this24 == null ? this.__tink_defaults25.oncut : this24);
+		var this25 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this25 == null ? this.__tink_defaults25.ondblclick : this25);
+		var this26 = attributes.ondrag;
+		this.__slots.ondrag.setData(this26 == null ? this.__tink_defaults25.ondrag : this26);
+		var this27 = attributes.ondragend;
+		this.__slots.ondragend.setData(this27 == null ? this.__tink_defaults25.ondragend : this27);
+		var this28 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this28 == null ? this.__tink_defaults25.ondragenter : this28);
+		var this29 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this29 == null ? this.__tink_defaults25.ondragleave : this29);
+		var this30 = attributes.ondragover;
+		this.__slots.ondragover.setData(this30 == null ? this.__tink_defaults25.ondragover : this30);
+		var this31 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this31 == null ? this.__tink_defaults25.ondragstart : this31);
+		var this32 = attributes.ondrop;
+		this.__slots.ondrop.setData(this32 == null ? this.__tink_defaults25.ondrop : this32);
+		var this33 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this33 == null ? this.__tink_defaults25.ondurationchange : this33);
+		var this34 = attributes.onemptied;
+		this.__slots.onemptied.setData(this34 == null ? this.__tink_defaults25.onemptied : this34);
+		var this35 = attributes.onended;
+		this.__slots.onended.setData(this35 == null ? this.__tink_defaults25.onended : this35);
+		var this36 = attributes.onerror;
+		this.__slots.onerror.setData(this36 == null ? this.__tink_defaults25.onerror : this36);
+		var this37 = attributes.onfocus;
+		this.__slots.onfocus.setData(this37 == null ? this.__tink_defaults25.onfocus : this37);
+		var this38 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this38 == null ? this.__tink_defaults25.onfullscreenchange : this38);
+		var this39 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this39 == null ? this.__tink_defaults25.onfullscreenerror : this39);
+		var this40 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this40 == null ? this.__tink_defaults25.ongotpointercapture : this40);
+		var this41 = attributes.oninput;
+		this.__slots.oninput.setData(this41 == null ? this.__tink_defaults25.oninput : this41);
+		var this42 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this42 == null ? this.__tink_defaults25.oninvalid : this42);
+		var this43 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this43 == null ? this.__tink_defaults25.onkeydown : this43);
+		var this44 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this44 == null ? this.__tink_defaults25.onkeypress : this44);
+		var this45 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this45 == null ? this.__tink_defaults25.onkeyup : this45);
+		var this46 = attributes.onload;
+		this.__slots.onload.setData(this46 == null ? this.__tink_defaults25.onload : this46);
+		var this47 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this47 == null ? this.__tink_defaults25.onloadeddata : this47);
+		var this48 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this48 == null ? this.__tink_defaults25.onloadedmetadata : this48);
+		var this49 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this49 == null ? this.__tink_defaults25.onloadstart : this49);
+		var this50 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this50 == null ? this.__tink_defaults25.onlostpointercapture : this50);
+		var this51 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this51 == null ? this.__tink_defaults25.onmousedown : this51);
+		var this52 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this52 == null ? this.__tink_defaults25.onmouseenter : this52);
+		var this53 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this53 == null ? this.__tink_defaults25.onmouseleave : this53);
+		var this54 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this54 == null ? this.__tink_defaults25.onmousemove : this54);
+		var this55 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this55 == null ? this.__tink_defaults25.onmouseout : this55);
+		var this56 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this56 == null ? this.__tink_defaults25.onmouseover : this56);
+		var this57 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this57 == null ? this.__tink_defaults25.onmouseup : this57);
+		var this58 = attributes.onpaste;
+		this.__slots.onpaste.setData(this58 == null ? this.__tink_defaults25.onpaste : this58);
+		var this59 = attributes.onpause;
+		this.__slots.onpause.setData(this59 == null ? this.__tink_defaults25.onpause : this59);
+		var this60 = attributes.onplay;
+		this.__slots.onplay.setData(this60 == null ? this.__tink_defaults25.onplay : this60);
+		var this61 = attributes.onplaying;
+		this.__slots.onplaying.setData(this61 == null ? this.__tink_defaults25.onplaying : this61);
+		var this62 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this62 == null ? this.__tink_defaults25.onpointercancel : this62);
+		var this63 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this63 == null ? this.__tink_defaults25.onpointerdown : this63);
+		var this64 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this64 == null ? this.__tink_defaults25.onpointerenter : this64);
+		var this65 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this65 == null ? this.__tink_defaults25.onpointerleave : this65);
+		var this66 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this66 == null ? this.__tink_defaults25.onpointerlockchange : this66);
+		var this67 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this67 == null ? this.__tink_defaults25.onpointerlockerror : this67);
+		var this68 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this68 == null ? this.__tink_defaults25.onpointermove : this68);
+		var this69 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this69 == null ? this.__tink_defaults25.onpointerout : this69);
+		var this70 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this70 == null ? this.__tink_defaults25.onpointerover : this70);
+		var this71 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this71 == null ? this.__tink_defaults25.onpointerup : this71);
+		var this72 = attributes.onprogress;
+		this.__slots.onprogress.setData(this72 == null ? this.__tink_defaults25.onprogress : this72);
+		var this73 = attributes.onratechange;
+		this.__slots.onratechange.setData(this73 == null ? this.__tink_defaults25.onratechange : this73);
+		var this74 = attributes.onreset;
+		this.__slots.onreset.setData(this74 == null ? this.__tink_defaults25.onreset : this74);
+		var this75 = attributes.onresize;
+		this.__slots.onresize.setData(this75 == null ? this.__tink_defaults25.onresize : this75);
+		var this76 = attributes.onscroll;
+		this.__slots.onscroll.setData(this76 == null ? this.__tink_defaults25.onscroll : this76);
+		var this77 = attributes.onseeked;
+		this.__slots.onseeked.setData(this77 == null ? this.__tink_defaults25.onseeked : this77);
+		var this78 = attributes.onseeking;
+		this.__slots.onseeking.setData(this78 == null ? this.__tink_defaults25.onseeking : this78);
+		var this79 = attributes.onselect;
+		this.__slots.onselect.setData(this79 == null ? this.__tink_defaults25.onselect : this79);
+		var this80 = attributes.onshow;
+		this.__slots.onshow.setData(this80 == null ? this.__tink_defaults25.onshow : this80);
+		var this81 = attributes.onstalled;
+		this.__slots.onstalled.setData(this81 == null ? this.__tink_defaults25.onstalled : this81);
+		var this82 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this82 == null ? this.__tink_defaults25.onsubmit : this82);
+		var this83 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this83 == null ? this.__tink_defaults25.onsuspend : this83);
+		var this84 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this84 == null ? this.__tink_defaults25.ontimeupdate : this84);
+		var this85 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this85 == null ? this.__tink_defaults25.ontouchcancel : this85);
+		var this86 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this86 == null ? this.__tink_defaults25.ontouchend : this86);
+		var this87 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this87 == null ? this.__tink_defaults25.ontouchmove : this87);
+		var this88 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this88 == null ? this.__tink_defaults25.ontouchstart : this88);
+		var this89 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this89 == null ? this.__tink_defaults25.onvolumechange : this89);
+		var this90 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this90 == null ? this.__tink_defaults25.onwaiting : this90);
+		var this91 = attributes.onwheel;
+		this.__slots.onwheel.setData(this91 == null ? this.__tink_defaults25.onwheel : this91);
+		var this92 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this92 == null ? this.__tink_defaults25.spellcheck : this92);
+		var this93 = attributes.style;
+		this.__slots.style.setData(this93 == null ? this.__tink_defaults25.style : this93);
+		var this94 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this94 == null ? this.__tink_defaults25.tabIndex : this94);
+		var this95 = attributes.title;
+		this.__slots.title.setData(this95 == null ? this.__tink_defaults25.title : this95);
+		var this96 = attributes.value;
+		this.__slots.value.setData(this96 == null ? this.__tink_defaults25.value : this96);
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_checked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_disabled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_indeterminate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onchecked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	}
+	,get_value: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
 	}
 	,__class__: mdc_Checkbox
-	,__properties__: {get_data:"get_data"}
+	,__properties__: {get_value:"get_value",get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchecked:"get_onchecked",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_label:"get_label",get_key:"get_key",get_indeterminate:"get_indeterminate",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_disabled:"get_disabled",get_dir:"get_dir",get_className:"get_className",get_checked:"get_checked",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey"}
 });
 var mdc_LinearProgress = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
-	this.__cocodata = data;
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "LinearProgress.hx", lineNumber : 6, className : "mdc.LinearProgress", methodName : "new"});
+	this.__tink_defaults30 = { accessKey : null, accessKeyLabel : null, attributes : null, buffer : null, className : null, dir : null, draggable : null, hidden : null, id : null, indeterminate : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, open : null, progress : null, reverse : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__slots = { accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), buffer : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), indeterminate : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), open : new coconut_ui_tools_Slot(this,null), progress : new coconut_ui_tools_Slot(this,null), reverse : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.LinearProgress"] = mdc_LinearProgress;
 mdc_LinearProgress.__name__ = ["mdc","LinearProgress"];
+mdc_LinearProgress.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_LinearProgress(attributes);
+	}
+	inst.__tink_init31(attributes);
+	return inst;
+};
 mdc_LinearProgress.__super__ = coconut_ui_View;
 mdc_LinearProgress.prototype = $extend(coconut_ui_View.prototype,{
 	mdcLinearProgress: null
-	,render: function(__data__) {
-		var title = __data__.title;
-		var tabIndex = __data__.tabIndex;
-		var style = __data__.style;
-		var spellcheck = __data__.spellcheck;
-		var reverse = __data__.reverse;
-		var progress = __data__.progress;
-		var open = __data__.open;
-		var onwheel = __data__.onwheel;
-		var onwaiting = __data__.onwaiting;
-		var onvolumechange = __data__.onvolumechange;
-		var ontouchstart = __data__.ontouchstart;
-		var ontouchmove = __data__.ontouchmove;
-		var ontouchend = __data__.ontouchend;
-		var ontouchcancel = __data__.ontouchcancel;
-		var ontimeupdate = __data__.ontimeupdate;
-		var onsuspend = __data__.onsuspend;
-		var onsubmit = __data__.onsubmit;
-		var onstalled = __data__.onstalled;
-		var onshow = __data__.onshow;
-		var onselect = __data__.onselect;
-		var onseeking = __data__.onseeking;
-		var onseeked = __data__.onseeked;
-		var onscroll = __data__.onscroll;
-		var onresize = __data__.onresize;
-		var onreset = __data__.onreset;
-		var onratechange = __data__.onratechange;
-		var onprogress = __data__.onprogress;
-		var onpointerup = __data__.onpointerup;
-		var onpointerover = __data__.onpointerover;
-		var onpointerout = __data__.onpointerout;
-		var onpointermove = __data__.onpointermove;
-		var onpointerlockerror = __data__.onpointerlockerror;
-		var onpointerlockchange = __data__.onpointerlockchange;
-		var onpointerleave = __data__.onpointerleave;
-		var onpointerenter = __data__.onpointerenter;
-		var onpointerdown = __data__.onpointerdown;
-		var onpointercancel = __data__.onpointercancel;
-		var onplaying = __data__.onplaying;
-		var onplay = __data__.onplay;
-		var onpause = __data__.onpause;
-		var onpaste = __data__.onpaste;
-		var onmouseup = __data__.onmouseup;
-		var onmouseover = __data__.onmouseover;
-		var onmouseout = __data__.onmouseout;
-		var onmousemove = __data__.onmousemove;
-		var onmouseleave = __data__.onmouseleave;
-		var onmouseenter = __data__.onmouseenter;
-		var onmousedown = __data__.onmousedown;
-		var onlostpointercapture = __data__.onlostpointercapture;
-		var onloadstart = __data__.onloadstart;
-		var onloadedmetadata = __data__.onloadedmetadata;
-		var onloadeddata = __data__.onloadeddata;
-		var onload = __data__.onload;
-		var onkeyup = __data__.onkeyup;
-		var onkeypress = __data__.onkeypress;
-		var onkeydown = __data__.onkeydown;
-		var oninvalid = __data__.oninvalid;
-		var oninput = __data__.oninput;
-		var ongotpointercapture = __data__.ongotpointercapture;
-		var onfullscreenerror = __data__.onfullscreenerror;
-		var onfullscreenchange = __data__.onfullscreenchange;
-		var onfocus = __data__.onfocus;
-		var onerror = __data__.onerror;
-		var onended = __data__.onended;
-		var onemptied = __data__.onemptied;
-		var ondurationchange = __data__.ondurationchange;
-		var ondrop = __data__.ondrop;
-		var ondragstart = __data__.ondragstart;
-		var ondragover = __data__.ondragover;
-		var ondragleave = __data__.ondragleave;
-		var ondragenter = __data__.ondragenter;
-		var ondragend = __data__.ondragend;
-		var ondrag = __data__.ondrag;
-		var ondblclick = __data__.ondblclick;
-		var oncut = __data__.oncut;
-		var oncopy = __data__.oncopy;
-		var oncontextmenu = __data__.oncontextmenu;
-		var onclick = __data__.onclick;
-		var onchange = __data__.onchange;
-		var oncanplaythrough = __data__.oncanplaythrough;
-		var oncanplay = __data__.oncanplay;
-		var onblur = __data__.onblur;
-		var onabort = __data__.onabort;
-		var lang = __data__.lang;
-		var key = __data__.key;
-		var indeterminate = __data__.indeterminate;
-		var id = __data__.id;
-		var hidden = __data__.hidden;
-		var draggable = __data__.draggable;
-		var dir = __data__.dir;
-		var contentEditable = __data__.contentEditable;
-		var className = __data__.className;
-		var buffer = __data__.buffer;
-		var attributes = __data__.attributes;
-		var accessKeyLabel = __data__.accessKeyLabel;
-		var accessKey = __data__.accessKey;
-		var __v_0 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
-		var attr = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).className;
+	,render: function() {
+		var _gthis = this;
+		var __r = [];
+		var __ret = _gthis.get_className();
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-linear-progress"] != null) {
 			_g.setReserved("mdc-linear-progress",true);
 		} else {
 			_g.h["mdc-linear-progress"] = true;
 		}
-		return vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-		}, onblur : function(event1) {
-		}, oncanplay : function(event2) {
-		}, oncanplaythrough : function(event3) {
-		}, onchange : function(event4) {
-		}, onclick : function(event5) {
-		}, oncontextmenu : function(event6) {
-		}, oncopy : function(event7) {
-		}, oncut : function(event8) {
-		}, ondblclick : function(event9) {
-		}, ondrag : function(event10) {
-		}, ondragend : function(event11) {
-		}, ondragenter : function(event12) {
-		}, ondragleave : function(event13) {
-		}, ondragover : function(event14) {
-		}, ondragstart : function(event15) {
-		}, ondrop : function(event16) {
-		}, ondurationchange : function(event17) {
-		}, onemptied : function(event18) {
-		}, onended : function(event19) {
-		}, onerror : function(event20) {
-		}, onfocus : function(event21) {
-		}, onfullscreenchange : function(event22) {
-		}, onfullscreenerror : function(event23) {
-		}, ongotpointercapture : function(event24) {
-		}, oninput : function(event25) {
-		}, oninvalid : function(event26) {
-		}, onkeydown : function(event27) {
-		}, onkeypress : function(event28) {
-		}, onkeyup : function(event29) {
-		}, onload : function(event30) {
-		}, onloadeddata : function(event31) {
-		}, onloadedmetadata : function(event32) {
-		}, onloadstart : function(event33) {
-		}, onlostpointercapture : function(event34) {
-		}, onmousedown : function(event35) {
-		}, onmouseenter : function(event36) {
-		}, onmouseleave : function(event37) {
-		}, onmousemove : function(event38) {
-		}, onmouseout : function(event39) {
-		}, onmouseover : function(event40) {
-		}, onmouseup : function(event41) {
-		}, onpaste : function(event42) {
-		}, onpause : function(event43) {
-		}, onplay : function(event44) {
-		}, onplaying : function(event45) {
-		}, onpointercancel : function(event46) {
-		}, onpointerdown : function(event47) {
-		}, onpointerenter : function(event48) {
-		}, onpointerleave : function(event49) {
-		}, onpointerlockchange : function(event50) {
-		}, onpointerlockerror : function(event51) {
-		}, onpointermove : function(event52) {
-		}, onpointerout : function(event53) {
-		}, onpointerover : function(event54) {
-		}, onpointerup : function(event55) {
-		}, onprogress : function(event56) {
-		}, onratechange : function(event57) {
-		}, onreset : function(event58) {
-		}, onresize : function(event59) {
-		}, onscroll : function(event60) {
-		}, onseeked : function(event61) {
-		}, onseeking : function(event62) {
-		}, onselect : function(event63) {
-		}, onshow : function(event64) {
-		}, onstalled : function(event65) {
-		}, onsubmit : function(event66) {
-		}, onsuspend : function(event67) {
-		}, ontimeupdate : function(event68) {
-		}, ontouchcancel : function(event69) {
-		}, ontouchend : function(event70) {
-		}, ontouchmove : function(event71) {
-		}, ontouchstart : function(event72) {
-		}, onvolumechange : function(event73) {
-		}, onwaiting : function(event74) {
-		}, onwheel : function(event75) {
-		}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffering-dots")},null),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffer")},null),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__primary-bar")},[vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")},null)]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__secondary-bar")},[vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")},null)])]);
+		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var _g1 = this.get_accessKey();
+		if(_g1 != null) {
+			var v = _g1;
+			__ret1.accessKey = v;
+		}
+		var _g2 = this.get_accessKeyLabel();
+		if(_g2 != null) {
+			var v1 = _g2;
+			__ret1.accessKeyLabel = v1;
+		}
+		var _g3 = this.get_attributes();
+		if(_g3 != null) {
+			var v2 = _g3;
+			__ret1.attributes = v2;
+		}
+		var _g4 = this.get_dir();
+		if(_g4 != null) {
+			var v3 = _g4;
+			__ret1.dir = v3;
+		}
+		var _g5 = this.get_draggable();
+		if(_g5 != null) {
+			var v4 = _g5;
+			__ret1.draggable = v4;
+		}
+		var _g6 = this.get_hidden();
+		if(_g6 != null) {
+			var v5 = _g6;
+			__ret1.hidden = v5;
+		}
+		var _g7 = this.get_id();
+		if(_g7 != null) {
+			var v6 = _g7;
+			__ret1.id = v6;
+		}
+		var _g8 = this.get_key();
+		if(_g8 != null) {
+			var v7 = _g8;
+			__ret1.key = v7;
+		}
+		var _g9 = this.get_lang();
+		if(_g9 != null) {
+			var v8 = _g9;
+			__ret1.lang = v8;
+		}
+		var _g10 = this.get_onabort();
+		if(_g10 != null) {
+			var v9 = _g10;
+			__ret1.onabort = v9;
+		}
+		var _g11 = this.get_onblur();
+		if(_g11 != null) {
+			var v10 = _g11;
+			__ret1.onblur = v10;
+		}
+		var _g12 = this.get_oncanplay();
+		if(_g12 != null) {
+			var v11 = _g12;
+			__ret1.oncanplay = v11;
+		}
+		var _g13 = this.get_oncanplaythrough();
+		if(_g13 != null) {
+			var v12 = _g13;
+			__ret1.oncanplaythrough = v12;
+		}
+		var _g14 = this.get_onchange();
+		if(_g14 != null) {
+			var v13 = _g14;
+			__ret1.onchange = v13;
+		}
+		var _g15 = this.get_onclick();
+		if(_g15 != null) {
+			var v14 = _g15;
+			__ret1.onclick = v14;
+		}
+		var _g16 = this.get_oncontextmenu();
+		if(_g16 != null) {
+			var v15 = _g16;
+			__ret1.oncontextmenu = v15;
+		}
+		var _g17 = this.get_oncopy();
+		if(_g17 != null) {
+			var v16 = _g17;
+			__ret1.oncopy = v16;
+		}
+		var _g18 = this.get_oncut();
+		if(_g18 != null) {
+			var v17 = _g18;
+			__ret1.oncut = v17;
+		}
+		var _g19 = this.get_ondblclick();
+		if(_g19 != null) {
+			var v18 = _g19;
+			__ret1.ondblclick = v18;
+		}
+		var _g20 = this.get_ondrag();
+		if(_g20 != null) {
+			var v19 = _g20;
+			__ret1.ondrag = v19;
+		}
+		var _g21 = this.get_ondragend();
+		if(_g21 != null) {
+			var v20 = _g21;
+			__ret1.ondragend = v20;
+		}
+		var _g22 = this.get_ondragenter();
+		if(_g22 != null) {
+			var v21 = _g22;
+			__ret1.ondragenter = v21;
+		}
+		var _g23 = this.get_ondragleave();
+		if(_g23 != null) {
+			var v22 = _g23;
+			__ret1.ondragleave = v22;
+		}
+		var _g24 = this.get_ondragover();
+		if(_g24 != null) {
+			var v23 = _g24;
+			__ret1.ondragover = v23;
+		}
+		var _g25 = this.get_ondragstart();
+		if(_g25 != null) {
+			var v24 = _g25;
+			__ret1.ondragstart = v24;
+		}
+		var _g26 = this.get_ondrop();
+		if(_g26 != null) {
+			var v25 = _g26;
+			__ret1.ondrop = v25;
+		}
+		var _g27 = this.get_ondurationchange();
+		if(_g27 != null) {
+			var v26 = _g27;
+			__ret1.ondurationchange = v26;
+		}
+		var _g28 = this.get_onemptied();
+		if(_g28 != null) {
+			var v27 = _g28;
+			__ret1.onemptied = v27;
+		}
+		var _g29 = this.get_onended();
+		if(_g29 != null) {
+			var v28 = _g29;
+			__ret1.onended = v28;
+		}
+		var _g30 = this.get_onerror();
+		if(_g30 != null) {
+			var v29 = _g30;
+			__ret1.onerror = v29;
+		}
+		var _g31 = this.get_onfocus();
+		if(_g31 != null) {
+			var v30 = _g31;
+			__ret1.onfocus = v30;
+		}
+		var _g32 = this.get_onfullscreenchange();
+		if(_g32 != null) {
+			var v31 = _g32;
+			__ret1.onfullscreenchange = v31;
+		}
+		var _g33 = this.get_onfullscreenerror();
+		if(_g33 != null) {
+			var v32 = _g33;
+			__ret1.onfullscreenerror = v32;
+		}
+		var _g34 = this.get_ongotpointercapture();
+		if(_g34 != null) {
+			var v33 = _g34;
+			__ret1.ongotpointercapture = v33;
+		}
+		var _g35 = this.get_oninput();
+		if(_g35 != null) {
+			var v34 = _g35;
+			__ret1.oninput = v34;
+		}
+		var _g36 = this.get_oninvalid();
+		if(_g36 != null) {
+			var v35 = _g36;
+			__ret1.oninvalid = v35;
+		}
+		var _g37 = this.get_onkeydown();
+		if(_g37 != null) {
+			var v36 = _g37;
+			__ret1.onkeydown = v36;
+		}
+		var _g38 = this.get_onkeypress();
+		if(_g38 != null) {
+			var v37 = _g38;
+			__ret1.onkeypress = v37;
+		}
+		var _g39 = this.get_onkeyup();
+		if(_g39 != null) {
+			var v38 = _g39;
+			__ret1.onkeyup = v38;
+		}
+		var _g40 = this.get_onload();
+		if(_g40 != null) {
+			var v39 = _g40;
+			__ret1.onload = v39;
+		}
+		var _g41 = this.get_onloadeddata();
+		if(_g41 != null) {
+			var v40 = _g41;
+			__ret1.onloadeddata = v40;
+		}
+		var _g42 = this.get_onloadedmetadata();
+		if(_g42 != null) {
+			var v41 = _g42;
+			__ret1.onloadedmetadata = v41;
+		}
+		var _g43 = this.get_onloadstart();
+		if(_g43 != null) {
+			var v42 = _g43;
+			__ret1.onloadstart = v42;
+		}
+		var _g44 = this.get_onlostpointercapture();
+		if(_g44 != null) {
+			var v43 = _g44;
+			__ret1.onlostpointercapture = v43;
+		}
+		var _g45 = this.get_onmousedown();
+		if(_g45 != null) {
+			var v44 = _g45;
+			__ret1.onmousedown = v44;
+		}
+		var _g46 = this.get_onmouseenter();
+		if(_g46 != null) {
+			var v45 = _g46;
+			__ret1.onmouseenter = v45;
+		}
+		var _g47 = this.get_onmouseleave();
+		if(_g47 != null) {
+			var v46 = _g47;
+			__ret1.onmouseleave = v46;
+		}
+		var _g48 = this.get_onmousemove();
+		if(_g48 != null) {
+			var v47 = _g48;
+			__ret1.onmousemove = v47;
+		}
+		var _g49 = this.get_onmouseout();
+		if(_g49 != null) {
+			var v48 = _g49;
+			__ret1.onmouseout = v48;
+		}
+		var _g50 = this.get_onmouseover();
+		if(_g50 != null) {
+			var v49 = _g50;
+			__ret1.onmouseover = v49;
+		}
+		var _g51 = this.get_onmouseup();
+		if(_g51 != null) {
+			var v50 = _g51;
+			__ret1.onmouseup = v50;
+		}
+		var _g52 = this.get_onpaste();
+		if(_g52 != null) {
+			var v51 = _g52;
+			__ret1.onpaste = v51;
+		}
+		var _g53 = this.get_onpause();
+		if(_g53 != null) {
+			var v52 = _g53;
+			__ret1.onpause = v52;
+		}
+		var _g54 = this.get_onplay();
+		if(_g54 != null) {
+			var v53 = _g54;
+			__ret1.onplay = v53;
+		}
+		var _g55 = this.get_onplaying();
+		if(_g55 != null) {
+			var v54 = _g55;
+			__ret1.onplaying = v54;
+		}
+		var _g56 = this.get_onpointercancel();
+		if(_g56 != null) {
+			var v55 = _g56;
+			__ret1.onpointercancel = v55;
+		}
+		var _g57 = this.get_onpointerdown();
+		if(_g57 != null) {
+			var v56 = _g57;
+			__ret1.onpointerdown = v56;
+		}
+		var _g58 = this.get_onpointerenter();
+		if(_g58 != null) {
+			var v57 = _g58;
+			__ret1.onpointerenter = v57;
+		}
+		var _g59 = this.get_onpointerleave();
+		if(_g59 != null) {
+			var v58 = _g59;
+			__ret1.onpointerleave = v58;
+		}
+		var _g60 = this.get_onpointerlockchange();
+		if(_g60 != null) {
+			var v59 = _g60;
+			__ret1.onpointerlockchange = v59;
+		}
+		var _g61 = this.get_onpointerlockerror();
+		if(_g61 != null) {
+			var v60 = _g61;
+			__ret1.onpointerlockerror = v60;
+		}
+		var _g62 = this.get_onpointermove();
+		if(_g62 != null) {
+			var v61 = _g62;
+			__ret1.onpointermove = v61;
+		}
+		var _g63 = this.get_onpointerout();
+		if(_g63 != null) {
+			var v62 = _g63;
+			__ret1.onpointerout = v62;
+		}
+		var _g64 = this.get_onpointerover();
+		if(_g64 != null) {
+			var v63 = _g64;
+			__ret1.onpointerover = v63;
+		}
+		var _g65 = this.get_onpointerup();
+		if(_g65 != null) {
+			var v64 = _g65;
+			__ret1.onpointerup = v64;
+		}
+		var _g66 = this.get_onprogress();
+		if(_g66 != null) {
+			var v65 = _g66;
+			__ret1.onprogress = v65;
+		}
+		var _g67 = this.get_onratechange();
+		if(_g67 != null) {
+			var v66 = _g67;
+			__ret1.onratechange = v66;
+		}
+		var _g68 = this.get_onreset();
+		if(_g68 != null) {
+			var v67 = _g68;
+			__ret1.onreset = v67;
+		}
+		var _g69 = this.get_onresize();
+		if(_g69 != null) {
+			var v68 = _g69;
+			__ret1.onresize = v68;
+		}
+		var _g70 = this.get_onscroll();
+		if(_g70 != null) {
+			var v69 = _g70;
+			__ret1.onscroll = v69;
+		}
+		var _g71 = this.get_onseeked();
+		if(_g71 != null) {
+			var v70 = _g71;
+			__ret1.onseeked = v70;
+		}
+		var _g72 = this.get_onseeking();
+		if(_g72 != null) {
+			var v71 = _g72;
+			__ret1.onseeking = v71;
+		}
+		var _g73 = this.get_onselect();
+		if(_g73 != null) {
+			var v72 = _g73;
+			__ret1.onselect = v72;
+		}
+		var _g74 = this.get_onshow();
+		if(_g74 != null) {
+			var v73 = _g74;
+			__ret1.onshow = v73;
+		}
+		var _g75 = this.get_onstalled();
+		if(_g75 != null) {
+			var v74 = _g75;
+			__ret1.onstalled = v74;
+		}
+		var _g76 = this.get_onsubmit();
+		if(_g76 != null) {
+			var v75 = _g76;
+			__ret1.onsubmit = v75;
+		}
+		var _g77 = this.get_onsuspend();
+		if(_g77 != null) {
+			var v76 = _g77;
+			__ret1.onsuspend = v76;
+		}
+		var _g78 = this.get_ontimeupdate();
+		if(_g78 != null) {
+			var v77 = _g78;
+			__ret1.ontimeupdate = v77;
+		}
+		var _g79 = this.get_ontouchcancel();
+		if(_g79 != null) {
+			var v78 = _g79;
+			__ret1.ontouchcancel = v78;
+		}
+		var _g80 = this.get_ontouchend();
+		if(_g80 != null) {
+			var v79 = _g80;
+			__ret1.ontouchend = v79;
+		}
+		var _g81 = this.get_ontouchmove();
+		if(_g81 != null) {
+			var v80 = _g81;
+			__ret1.ontouchmove = v80;
+		}
+		var _g82 = this.get_ontouchstart();
+		if(_g82 != null) {
+			var v81 = _g82;
+			__ret1.ontouchstart = v81;
+		}
+		var _g83 = this.get_onvolumechange();
+		if(_g83 != null) {
+			var v82 = _g83;
+			__ret1.onvolumechange = v82;
+		}
+		var _g84 = this.get_onwaiting();
+		if(_g84 != null) {
+			var v83 = _g84;
+			__ret1.onwaiting = v83;
+		}
+		var _g85 = this.get_onwheel();
+		if(_g85 != null) {
+			var v84 = _g85;
+			__ret1.onwheel = v84;
+		}
+		var _g86 = this.get_spellcheck();
+		if(_g86 != null) {
+			var v85 = _g86;
+			__ret1.spellcheck = v85;
+		}
+		var _g87 = this.get_style();
+		if(_g87 != null) {
+			var v86 = _g87;
+			__ret1.style = v86;
+		}
+		var _g88 = this.get_tabIndex();
+		if(_g88 != null) {
+			var v87 = _g88;
+			__ret1.tabIndex = v87;
+		}
+		var _g89 = this.get_title();
+		if(_g89 != null) {
+			var v88 = _g89;
+			__ret1.title = v88;
+		}
+		var __r1 = [];
+		var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffering-dots")};
+		var __r2 = [];
+		__r1.push(vdom_VDom.h("div",__ret2,__r2));
+		var __ret3 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffer")};
+		var __r3 = [];
+		__r1.push(vdom_VDom.h("div",__ret3,__r3));
+		var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__primary-bar")};
+		var __r4 = [];
+		var __ret5 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")};
+		var __r5 = [];
+		__r4.push(vdom_VDom.h("span",__ret5,__r5));
+		__r1.push(vdom_VDom.h("div",__ret4,__r4));
+		var __ret6 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__secondary-bar")};
+		var __r6 = [];
+		var __ret7 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")};
+		var __r7 = [];
+		__r6.push(vdom_VDom.h("span",__ret7,__r7));
+		__r1.push(vdom_VDom.h("div",__ret6,__r6));
+		__r.push(vdom_VDom.h("div",__ret1,__r1));
+		return __r[0];
 	}
 	,afterInit: function(elem) {
 		this.mdcLinearProgress = new window.mdc.linearProgress.MDCLinearProgress(elem);
@@ -7530,36 +7833,510 @@ mdc_LinearProgress.prototype = $extend(coconut_ui_View.prototype,{
 		this.setLinearProgress();
 	}
 	,setLinearProgress: function() {
-		this.mdcLinearProgress.determinate = !tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).indeterminate;
-		this.mdcLinearProgress.progress = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).progress;
-		this.mdcLinearProgress.buffer = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).buffer;
-		this.mdcLinearProgress.reverse = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).reverse;
-		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).open == true) {
+		this.mdcLinearProgress.determinate = !this.get_indeterminate();
+		this.mdcLinearProgress.progress = this.get_progress();
+		this.mdcLinearProgress.buffer = this.get_buffer();
+		this.mdcLinearProgress.reverse = this.get_reverse();
+		if(this.get_open() == true) {
 			this.mdcLinearProgress.open();
 		} else {
 			this.mdcLinearProgress.close();
 		}
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults30: null
+	,__slots: null
+	,toString: function() {
+		return "LinearProgress" + "#" + this.viewId;
+	}
+	,__tink_init31: function(attributes) {
+		var this1 = attributes.accessKey;
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults30.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults30.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults30.attributes : this3);
+		var this4 = attributes.buffer;
+		this.__slots.buffer.setData(this4 == null ? this.__tink_defaults30.buffer : this4);
+		var this5 = attributes.className;
+		this.__slots.className.setData(this5 == null ? this.__tink_defaults30.className : this5);
+		var this6 = attributes.dir;
+		this.__slots.dir.setData(this6 == null ? this.__tink_defaults30.dir : this6);
+		var this7 = attributes.draggable;
+		this.__slots.draggable.setData(this7 == null ? this.__tink_defaults30.draggable : this7);
+		var this8 = attributes.hidden;
+		this.__slots.hidden.setData(this8 == null ? this.__tink_defaults30.hidden : this8);
+		var this9 = attributes.id;
+		this.__slots.id.setData(this9 == null ? this.__tink_defaults30.id : this9);
+		var this10 = attributes.indeterminate;
+		this.__slots.indeterminate.setData(this10 == null ? this.__tink_defaults30.indeterminate : this10);
+		var this11 = attributes.key;
+		this.__slots.key.setData(this11 == null ? this.__tink_defaults30.key : this11);
+		var this12 = attributes.lang;
+		this.__slots.lang.setData(this12 == null ? this.__tink_defaults30.lang : this12);
+		var this13 = attributes.onabort;
+		this.__slots.onabort.setData(this13 == null ? this.__tink_defaults30.onabort : this13);
+		var this14 = attributes.onblur;
+		this.__slots.onblur.setData(this14 == null ? this.__tink_defaults30.onblur : this14);
+		var this15 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this15 == null ? this.__tink_defaults30.oncanplay : this15);
+		var this16 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this16 == null ? this.__tink_defaults30.oncanplaythrough : this16);
+		var this17 = attributes.onchange;
+		this.__slots.onchange.setData(this17 == null ? this.__tink_defaults30.onchange : this17);
+		var this18 = attributes.onclick;
+		this.__slots.onclick.setData(this18 == null ? this.__tink_defaults30.onclick : this18);
+		var this19 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this19 == null ? this.__tink_defaults30.oncontextmenu : this19);
+		var this20 = attributes.oncopy;
+		this.__slots.oncopy.setData(this20 == null ? this.__tink_defaults30.oncopy : this20);
+		var this21 = attributes.oncut;
+		this.__slots.oncut.setData(this21 == null ? this.__tink_defaults30.oncut : this21);
+		var this22 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this22 == null ? this.__tink_defaults30.ondblclick : this22);
+		var this23 = attributes.ondrag;
+		this.__slots.ondrag.setData(this23 == null ? this.__tink_defaults30.ondrag : this23);
+		var this24 = attributes.ondragend;
+		this.__slots.ondragend.setData(this24 == null ? this.__tink_defaults30.ondragend : this24);
+		var this25 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this25 == null ? this.__tink_defaults30.ondragenter : this25);
+		var this26 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this26 == null ? this.__tink_defaults30.ondragleave : this26);
+		var this27 = attributes.ondragover;
+		this.__slots.ondragover.setData(this27 == null ? this.__tink_defaults30.ondragover : this27);
+		var this28 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this28 == null ? this.__tink_defaults30.ondragstart : this28);
+		var this29 = attributes.ondrop;
+		this.__slots.ondrop.setData(this29 == null ? this.__tink_defaults30.ondrop : this29);
+		var this30 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this30 == null ? this.__tink_defaults30.ondurationchange : this30);
+		var this31 = attributes.onemptied;
+		this.__slots.onemptied.setData(this31 == null ? this.__tink_defaults30.onemptied : this31);
+		var this32 = attributes.onended;
+		this.__slots.onended.setData(this32 == null ? this.__tink_defaults30.onended : this32);
+		var this33 = attributes.onerror;
+		this.__slots.onerror.setData(this33 == null ? this.__tink_defaults30.onerror : this33);
+		var this34 = attributes.onfocus;
+		this.__slots.onfocus.setData(this34 == null ? this.__tink_defaults30.onfocus : this34);
+		var this35 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this35 == null ? this.__tink_defaults30.onfullscreenchange : this35);
+		var this36 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this36 == null ? this.__tink_defaults30.onfullscreenerror : this36);
+		var this37 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this37 == null ? this.__tink_defaults30.ongotpointercapture : this37);
+		var this38 = attributes.oninput;
+		this.__slots.oninput.setData(this38 == null ? this.__tink_defaults30.oninput : this38);
+		var this39 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this39 == null ? this.__tink_defaults30.oninvalid : this39);
+		var this40 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this40 == null ? this.__tink_defaults30.onkeydown : this40);
+		var this41 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this41 == null ? this.__tink_defaults30.onkeypress : this41);
+		var this42 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this42 == null ? this.__tink_defaults30.onkeyup : this42);
+		var this43 = attributes.onload;
+		this.__slots.onload.setData(this43 == null ? this.__tink_defaults30.onload : this43);
+		var this44 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this44 == null ? this.__tink_defaults30.onloadeddata : this44);
+		var this45 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this45 == null ? this.__tink_defaults30.onloadedmetadata : this45);
+		var this46 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this46 == null ? this.__tink_defaults30.onloadstart : this46);
+		var this47 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this47 == null ? this.__tink_defaults30.onlostpointercapture : this47);
+		var this48 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this48 == null ? this.__tink_defaults30.onmousedown : this48);
+		var this49 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this49 == null ? this.__tink_defaults30.onmouseenter : this49);
+		var this50 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this50 == null ? this.__tink_defaults30.onmouseleave : this50);
+		var this51 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this51 == null ? this.__tink_defaults30.onmousemove : this51);
+		var this52 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this52 == null ? this.__tink_defaults30.onmouseout : this52);
+		var this53 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this53 == null ? this.__tink_defaults30.onmouseover : this53);
+		var this54 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this54 == null ? this.__tink_defaults30.onmouseup : this54);
+		var this55 = attributes.onpaste;
+		this.__slots.onpaste.setData(this55 == null ? this.__tink_defaults30.onpaste : this55);
+		var this56 = attributes.onpause;
+		this.__slots.onpause.setData(this56 == null ? this.__tink_defaults30.onpause : this56);
+		var this57 = attributes.onplay;
+		this.__slots.onplay.setData(this57 == null ? this.__tink_defaults30.onplay : this57);
+		var this58 = attributes.onplaying;
+		this.__slots.onplaying.setData(this58 == null ? this.__tink_defaults30.onplaying : this58);
+		var this59 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this59 == null ? this.__tink_defaults30.onpointercancel : this59);
+		var this60 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this60 == null ? this.__tink_defaults30.onpointerdown : this60);
+		var this61 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this61 == null ? this.__tink_defaults30.onpointerenter : this61);
+		var this62 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this62 == null ? this.__tink_defaults30.onpointerleave : this62);
+		var this63 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this63 == null ? this.__tink_defaults30.onpointerlockchange : this63);
+		var this64 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this64 == null ? this.__tink_defaults30.onpointerlockerror : this64);
+		var this65 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this65 == null ? this.__tink_defaults30.onpointermove : this65);
+		var this66 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this66 == null ? this.__tink_defaults30.onpointerout : this66);
+		var this67 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this67 == null ? this.__tink_defaults30.onpointerover : this67);
+		var this68 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this68 == null ? this.__tink_defaults30.onpointerup : this68);
+		var this69 = attributes.onprogress;
+		this.__slots.onprogress.setData(this69 == null ? this.__tink_defaults30.onprogress : this69);
+		var this70 = attributes.onratechange;
+		this.__slots.onratechange.setData(this70 == null ? this.__tink_defaults30.onratechange : this70);
+		var this71 = attributes.onreset;
+		this.__slots.onreset.setData(this71 == null ? this.__tink_defaults30.onreset : this71);
+		var this72 = attributes.onresize;
+		this.__slots.onresize.setData(this72 == null ? this.__tink_defaults30.onresize : this72);
+		var this73 = attributes.onscroll;
+		this.__slots.onscroll.setData(this73 == null ? this.__tink_defaults30.onscroll : this73);
+		var this74 = attributes.onseeked;
+		this.__slots.onseeked.setData(this74 == null ? this.__tink_defaults30.onseeked : this74);
+		var this75 = attributes.onseeking;
+		this.__slots.onseeking.setData(this75 == null ? this.__tink_defaults30.onseeking : this75);
+		var this76 = attributes.onselect;
+		this.__slots.onselect.setData(this76 == null ? this.__tink_defaults30.onselect : this76);
+		var this77 = attributes.onshow;
+		this.__slots.onshow.setData(this77 == null ? this.__tink_defaults30.onshow : this77);
+		var this78 = attributes.onstalled;
+		this.__slots.onstalled.setData(this78 == null ? this.__tink_defaults30.onstalled : this78);
+		var this79 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this79 == null ? this.__tink_defaults30.onsubmit : this79);
+		var this80 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this80 == null ? this.__tink_defaults30.onsuspend : this80);
+		var this81 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this81 == null ? this.__tink_defaults30.ontimeupdate : this81);
+		var this82 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this82 == null ? this.__tink_defaults30.ontouchcancel : this82);
+		var this83 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this83 == null ? this.__tink_defaults30.ontouchend : this83);
+		var this84 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this84 == null ? this.__tink_defaults30.ontouchmove : this84);
+		var this85 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this85 == null ? this.__tink_defaults30.ontouchstart : this85);
+		var this86 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this86 == null ? this.__tink_defaults30.onvolumechange : this86);
+		var this87 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this87 == null ? this.__tink_defaults30.onwaiting : this87);
+		var this88 = attributes.onwheel;
+		this.__slots.onwheel.setData(this88 == null ? this.__tink_defaults30.onwheel : this88);
+		var this89 = attributes.open;
+		this.__slots.open.setData(this89 == null ? this.__tink_defaults30.open : this89);
+		var this90 = attributes.progress;
+		this.__slots.progress.setData(this90 == null ? this.__tink_defaults30.progress : this90);
+		var this91 = attributes.reverse;
+		this.__slots.reverse.setData(this91 == null ? this.__tink_defaults30.reverse : this91);
+		var this92 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this92 == null ? this.__tink_defaults30.spellcheck : this92);
+		var this93 = attributes.style;
+		this.__slots.style.setData(this93 == null ? this.__tink_defaults30.style : this93);
+		var this94 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this94 == null ? this.__tink_defaults30.tabIndex : this94);
+		var this95 = attributes.title;
+		this.__slots.title.setData(this95 == null ? this.__tink_defaults30.title : this95);
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_buffer: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.buffer.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_indeterminate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_open: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.open.observe());
+	}
+	,get_progress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.progress.observe());
+	}
+	,get_reverse: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.reverse.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
 	}
 	,__class__: mdc_LinearProgress
-	,__properties__: {get_data:"get_data"}
+	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_reverse:"get_reverse",get_progress:"get_progress",get_open:"get_open",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_indeterminate:"get_indeterminate",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_buffer:"get_buffer",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey"}
 });
 var mdc_List = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
-	this.__cocodata = data;
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 19, className : "mdc.List", methodName : "new"});
+	this.__tink_defaults0 = { dense : tink_state__$Observable_Observable_$Impl_$["const"](false), twoLine : tink_state__$Observable_Observable_$Impl_$["const"](false), avatarList : tink_state__$Observable_Observable_$Impl_$["const"](false), interactive : tink_state__$Observable_Observable_$Impl_$["const"](false), accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__slots = { dense : new coconut_ui_tools_Slot(this,null), twoLine : new coconut_ui_tools_Slot(this,null), avatarList : new coconut_ui_tools_Slot(this,null), interactive : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.List"] = mdc_List;
 mdc_List.__name__ = ["mdc","List"];
 mdc_List.listItem = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item"] != null) {
@@ -7573,88 +8350,462 @@ mdc_List.listItem = function(attr,children) {
 	} else {
 		_g.h["mdc-ripple-surface"] = value;
 	}
-	return vdom_VDom.h("li",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.dir;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.dir = v2;
+	}
+	var _g4 = attr.draggable;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.draggable = v3;
+	}
+	var _g5 = attr.hidden;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.hidden = v4;
+	}
+	var _g6 = attr.id;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.id = v5;
+	}
+	var _g7 = attr.key;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.key = v6;
+	}
+	var _g8 = attr.lang;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.lang = v7;
+	}
+	var _g9 = attr.onabort;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.onabort = v8;
+	}
+	var _g10 = attr.onblur;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onblur = v9;
+	}
+	var _g11 = attr.oncanplay;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.oncanplay = v10;
+	}
+	var _g12 = attr.oncanplaythrough;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplaythrough = v11;
+	}
+	var _g13 = attr.onchange;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.onchange = v12;
+	}
+	var _g14 = attr.onclick;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onclick = v13;
+	}
+	var _g15 = attr.oncontextmenu;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.oncontextmenu = v14;
+	}
+	var _g16 = attr.oncopy;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncopy = v15;
+	}
+	var _g17 = attr.oncut;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncut = v16;
+	}
+	var _g18 = attr.ondblclick;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.ondblclick = v17;
+	}
+	var _g19 = attr.ondrag;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondrag = v18;
+	}
+	var _g20 = attr.ondragend;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondragend = v19;
+	}
+	var _g21 = attr.ondragenter;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragenter = v20;
+	}
+	var _g22 = attr.ondragleave;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragleave = v21;
+	}
+	var _g23 = attr.ondragover;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragover = v22;
+	}
+	var _g24 = attr.ondragstart;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragstart = v23;
+	}
+	var _g25 = attr.ondrop;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondrop = v24;
+	}
+	var _g26 = attr.ondurationchange;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondurationchange = v25;
+	}
+	var _g27 = attr.onemptied;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.onemptied = v26;
+	}
+	var _g28 = attr.onended;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onended = v27;
+	}
+	var _g29 = attr.onerror;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onerror = v28;
+	}
+	var _g30 = attr.onfocus;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onfocus = v29;
+	}
+	var _g31 = attr.onfullscreenchange;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfullscreenchange = v30;
+	}
+	var _g32 = attr.onfullscreenerror;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenerror = v31;
+	}
+	var _g33 = attr.ongotpointercapture;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.ongotpointercapture = v32;
+	}
+	var _g34 = attr.oninput;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.oninput = v33;
+	}
+	var _g35 = attr.oninvalid;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninvalid = v34;
+	}
+	var _g36 = attr.onkeydown;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.onkeydown = v35;
+	}
+	var _g37 = attr.onkeypress;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeypress = v36;
+	}
+	var _g38 = attr.onkeyup;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeyup = v37;
+	}
+	var _g39 = attr.onload;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onload = v38;
+	}
+	var _g40 = attr.onloadeddata;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onloadeddata = v39;
+	}
+	var _g41 = attr.onloadedmetadata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadedmetadata = v40;
+	}
+	var _g42 = attr.onloadstart;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadstart = v41;
+	}
+	var _g43 = attr.onlostpointercapture;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onlostpointercapture = v42;
+	}
+	var _g44 = attr.onmousedown;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onmousedown = v43;
+	}
+	var _g45 = attr.onmouseenter;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmouseenter = v44;
+	}
+	var _g46 = attr.onmouseleave;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseleave = v45;
+	}
+	var _g47 = attr.onmousemove;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmousemove = v46;
+	}
+	var _g48 = attr.onmouseout;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmouseout = v47;
+	}
+	var _g49 = attr.onmouseover;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseover = v48;
+	}
+	var _g50 = attr.onmouseup;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseup = v49;
+	}
+	var _g51 = attr.onpaste;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onpaste = v50;
+	}
+	var _g52 = attr.onpause;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpause = v51;
+	}
+	var _g53 = attr.onplay;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onplay = v52;
+	}
+	var _g54 = attr.onplaying;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplaying = v53;
+	}
+	var _g55 = attr.onpointercancel;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onpointercancel = v54;
+	}
+	var _g56 = attr.onpointerdown;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointerdown = v55;
+	}
+	var _g57 = attr.onpointerenter;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerenter = v56;
+	}
+	var _g58 = attr.onpointerleave;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerleave = v57;
+	}
+	var _g59 = attr.onpointerlockchange;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerlockchange = v58;
+	}
+	var _g60 = attr.onpointerlockerror;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockerror = v59;
+	}
+	var _g61 = attr.onpointermove;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointermove = v60;
+	}
+	var _g62 = attr.onpointerout;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointerout = v61;
+	}
+	var _g63 = attr.onpointerover;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerover = v62;
+	}
+	var _g64 = attr.onpointerup;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerup = v63;
+	}
+	var _g65 = attr.onprogress;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onprogress = v64;
+	}
+	var _g66 = attr.onratechange;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onratechange = v65;
+	}
+	var _g67 = attr.onreset;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onreset = v66;
+	}
+	var _g68 = attr.onresize;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onresize = v67;
+	}
+	var _g69 = attr.onscroll;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onscroll = v68;
+	}
+	var _g70 = attr.onseeked;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onseeked = v69;
+	}
+	var _g71 = attr.onseeking;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeking = v70;
+	}
+	var _g72 = attr.onselect;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onselect = v71;
+	}
+	var _g73 = attr.onshow;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onshow = v72;
+	}
+	var _g74 = attr.onstalled;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onstalled = v73;
+	}
+	var _g75 = attr.onsubmit;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onsubmit = v74;
+	}
+	var _g76 = attr.onsuspend;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsuspend = v75;
+	}
+	var _g77 = attr.ontimeupdate;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.ontimeupdate = v76;
+	}
+	var _g78 = attr.ontouchcancel;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontouchcancel = v77;
+	}
+	var _g79 = attr.ontouchend;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchend = v78;
+	}
+	var _g80 = attr.ontouchmove;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchmove = v79;
+	}
+	var _g81 = attr.ontouchstart;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchstart = v80;
+	}
+	var _g82 = attr.onvolumechange;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.onvolumechange = v81;
+	}
+	var _g83 = attr.onwaiting;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onwaiting = v82;
+	}
+	var _g84 = attr.onwheel;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwheel = v83;
+	}
+	var _g85 = attr.spellcheck;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.spellcheck = v84;
+	}
+	var _g86 = attr.style;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.style = v85;
+	}
+	var _g87 = attr.tabIndex;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.tabIndex = v86;
+	}
+	var _g88 = attr.title;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.title = v87;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g89 = 0;
+	while(_g89 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g89];
+		++_g89;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("li",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listLinkItem = function(attr,children) {
-	var __v_0 = attr;
-	var attr1 = attr.href != null ? attr.href : "#";
-	var attr2 = attr.className;
+	var __r = [];
+	var __ret = attr.href != null ? attr.href : "#";
+	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item"] != null) {
 		_g.setReserved("mdc-list-item",true);
@@ -7667,85 +8818,465 @@ mdc_List.listLinkItem = function(attr,children) {
 	} else {
 		_g.h["mdc-ripple-surface"] = value;
 	}
-	return vdom_VDom.h("a",{ href : attr1, className : vdom__$Attr_ClassName_$Impl_$.add(attr2,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), onclick : attr.onclick, attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, oncontextmenu : function(event5) {
-	}, oncopy : function(event6) {
-	}, oncut : function(event7) {
-	}, ondblclick : function(event8) {
-	}, ondrag : function(event9) {
-	}, ondragend : function(event10) {
-	}, ondragenter : function(event11) {
-	}, ondragleave : function(event12) {
-	}, ondragover : function(event13) {
-	}, ondragstart : function(event14) {
-	}, ondrop : function(event15) {
-	}, ondurationchange : function(event16) {
-	}, onemptied : function(event17) {
-	}, onended : function(event18) {
-	}, onerror : function(event19) {
-	}, onfocus : function(event20) {
-	}, onfullscreenchange : function(event21) {
-	}, onfullscreenerror : function(event22) {
-	}, ongotpointercapture : function(event23) {
-	}, oninput : function(event24) {
-	}, oninvalid : function(event25) {
-	}, onkeydown : function(event26) {
-	}, onkeypress : function(event27) {
-	}, onkeyup : function(event28) {
-	}, onload : function(event29) {
-	}, onloadeddata : function(event30) {
-	}, onloadedmetadata : function(event31) {
-	}, onloadstart : function(event32) {
-	}, onlostpointercapture : function(event33) {
-	}, onmousedown : function(event34) {
-	}, onmouseenter : function(event35) {
-	}, onmouseleave : function(event36) {
-	}, onmousemove : function(event37) {
-	}, onmouseout : function(event38) {
-	}, onmouseover : function(event39) {
-	}, onmouseup : function(event40) {
-	}, onpaste : function(event41) {
-	}, onpause : function(event42) {
-	}, onplay : function(event43) {
-	}, onplaying : function(event44) {
-	}, onpointercancel : function(event45) {
-	}, onpointerdown : function(event46) {
-	}, onpointerenter : function(event47) {
-	}, onpointerleave : function(event48) {
-	}, onpointerlockchange : function(event49) {
-	}, onpointerlockerror : function(event50) {
-	}, onpointermove : function(event51) {
-	}, onpointerout : function(event52) {
-	}, onpointerover : function(event53) {
-	}, onpointerup : function(event54) {
-	}, onprogress : function(event55) {
-	}, onratechange : function(event56) {
-	}, onreset : function(event57) {
-	}, onresize : function(event58) {
-	}, onscroll : function(event59) {
-	}, onseeked : function(event60) {
-	}, onseeking : function(event61) {
-	}, onselect : function(event62) {
-	}, onshow : function(event63) {
-	}, onstalled : function(event64) {
-	}, onsubmit : function(event65) {
-	}, onsuspend : function(event66) {
-	}, ontimeupdate : function(event67) {
-	}, ontouchcancel : function(event68) {
-	}, ontouchend : function(event69) {
-	}, ontouchmove : function(event70) {
-	}, ontouchstart : function(event71) {
-	}, onvolumechange : function(event72) {
-	}, onwaiting : function(event73) {
-	}, onwheel : function(event74) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, target : __v_0.target, title : __v_0.title, type : __v_0.type},[children]);
+	var __ret1 = { href : __ret, className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), onclick : attr.onclick, attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret1.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret1.accessKeyLabel = v1;
+	}
+	var _g3 = attr.dir;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret1.dir = v2;
+	}
+	var _g4 = attr.draggable;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret1.draggable = v3;
+	}
+	var _g5 = attr.hidden;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret1.hidden = v4;
+	}
+	var _g6 = attr.id;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret1.id = v5;
+	}
+	var _g7 = attr.key;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret1.key = v6;
+	}
+	var _g8 = attr.lang;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret1.lang = v7;
+	}
+	var _g9 = attr.onabort;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret1.onabort = v8;
+	}
+	var _g10 = attr.onblur;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret1.onblur = v9;
+	}
+	var _g11 = attr.oncanplay;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret1.oncanplay = v10;
+	}
+	var _g12 = attr.oncanplaythrough;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret1.oncanplaythrough = v11;
+	}
+	var _g13 = attr.onchange;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret1.onchange = v12;
+	}
+	var _g14 = attr.oncontextmenu;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret1.oncontextmenu = v13;
+	}
+	var _g15 = attr.oncopy;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret1.oncopy = v14;
+	}
+	var _g16 = attr.oncut;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret1.oncut = v15;
+	}
+	var _g17 = attr.ondblclick;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret1.ondblclick = v16;
+	}
+	var _g18 = attr.ondrag;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret1.ondrag = v17;
+	}
+	var _g19 = attr.ondragend;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret1.ondragend = v18;
+	}
+	var _g20 = attr.ondragenter;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret1.ondragenter = v19;
+	}
+	var _g21 = attr.ondragleave;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret1.ondragleave = v20;
+	}
+	var _g22 = attr.ondragover;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret1.ondragover = v21;
+	}
+	var _g23 = attr.ondragstart;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret1.ondragstart = v22;
+	}
+	var _g24 = attr.ondrop;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret1.ondrop = v23;
+	}
+	var _g25 = attr.ondurationchange;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret1.ondurationchange = v24;
+	}
+	var _g26 = attr.onemptied;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret1.onemptied = v25;
+	}
+	var _g27 = attr.onended;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret1.onended = v26;
+	}
+	var _g28 = attr.onerror;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret1.onerror = v27;
+	}
+	var _g29 = attr.onfocus;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret1.onfocus = v28;
+	}
+	var _g30 = attr.onfullscreenchange;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret1.onfullscreenchange = v29;
+	}
+	var _g31 = attr.onfullscreenerror;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret1.onfullscreenerror = v30;
+	}
+	var _g32 = attr.ongotpointercapture;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret1.ongotpointercapture = v31;
+	}
+	var _g33 = attr.oninput;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret1.oninput = v32;
+	}
+	var _g34 = attr.oninvalid;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret1.oninvalid = v33;
+	}
+	var _g35 = attr.onkeydown;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret1.onkeydown = v34;
+	}
+	var _g36 = attr.onkeypress;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret1.onkeypress = v35;
+	}
+	var _g37 = attr.onkeyup;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret1.onkeyup = v36;
+	}
+	var _g38 = attr.onload;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret1.onload = v37;
+	}
+	var _g39 = attr.onloadeddata;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret1.onloadeddata = v38;
+	}
+	var _g40 = attr.onloadedmetadata;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret1.onloadedmetadata = v39;
+	}
+	var _g41 = attr.onloadstart;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret1.onloadstart = v40;
+	}
+	var _g42 = attr.onlostpointercapture;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret1.onlostpointercapture = v41;
+	}
+	var _g43 = attr.onmousedown;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret1.onmousedown = v42;
+	}
+	var _g44 = attr.onmouseenter;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret1.onmouseenter = v43;
+	}
+	var _g45 = attr.onmouseleave;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret1.onmouseleave = v44;
+	}
+	var _g46 = attr.onmousemove;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret1.onmousemove = v45;
+	}
+	var _g47 = attr.onmouseout;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret1.onmouseout = v46;
+	}
+	var _g48 = attr.onmouseover;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret1.onmouseover = v47;
+	}
+	var _g49 = attr.onmouseup;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret1.onmouseup = v48;
+	}
+	var _g50 = attr.onpaste;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret1.onpaste = v49;
+	}
+	var _g51 = attr.onpause;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret1.onpause = v50;
+	}
+	var _g52 = attr.onplay;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret1.onplay = v51;
+	}
+	var _g53 = attr.onplaying;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret1.onplaying = v52;
+	}
+	var _g54 = attr.onpointercancel;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret1.onpointercancel = v53;
+	}
+	var _g55 = attr.onpointerdown;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret1.onpointerdown = v54;
+	}
+	var _g56 = attr.onpointerenter;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret1.onpointerenter = v55;
+	}
+	var _g57 = attr.onpointerleave;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret1.onpointerleave = v56;
+	}
+	var _g58 = attr.onpointerlockchange;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret1.onpointerlockchange = v57;
+	}
+	var _g59 = attr.onpointerlockerror;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret1.onpointerlockerror = v58;
+	}
+	var _g60 = attr.onpointermove;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret1.onpointermove = v59;
+	}
+	var _g61 = attr.onpointerout;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret1.onpointerout = v60;
+	}
+	var _g62 = attr.onpointerover;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret1.onpointerover = v61;
+	}
+	var _g63 = attr.onpointerup;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret1.onpointerup = v62;
+	}
+	var _g64 = attr.onprogress;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret1.onprogress = v63;
+	}
+	var _g65 = attr.onratechange;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret1.onratechange = v64;
+	}
+	var _g66 = attr.onreset;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret1.onreset = v65;
+	}
+	var _g67 = attr.onresize;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret1.onresize = v66;
+	}
+	var _g68 = attr.onscroll;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret1.onscroll = v67;
+	}
+	var _g69 = attr.onseeked;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret1.onseeked = v68;
+	}
+	var _g70 = attr.onseeking;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret1.onseeking = v69;
+	}
+	var _g71 = attr.onselect;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret1.onselect = v70;
+	}
+	var _g72 = attr.onshow;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret1.onshow = v71;
+	}
+	var _g73 = attr.onstalled;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret1.onstalled = v72;
+	}
+	var _g74 = attr.onsubmit;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret1.onsubmit = v73;
+	}
+	var _g75 = attr.onsuspend;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret1.onsuspend = v74;
+	}
+	var _g76 = attr.ontimeupdate;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret1.ontimeupdate = v75;
+	}
+	var _g77 = attr.ontouchcancel;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret1.ontouchcancel = v76;
+	}
+	var _g78 = attr.ontouchend;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret1.ontouchend = v77;
+	}
+	var _g79 = attr.ontouchmove;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret1.ontouchmove = v78;
+	}
+	var _g80 = attr.ontouchstart;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret1.ontouchstart = v79;
+	}
+	var _g81 = attr.onvolumechange;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret1.onvolumechange = v80;
+	}
+	var _g82 = attr.onwaiting;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret1.onwaiting = v81;
+	}
+	var _g83 = attr.onwheel;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret1.onwheel = v82;
+	}
+	var _g84 = attr.spellcheck;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret1.spellcheck = v83;
+	}
+	var _g85 = attr.style;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret1.style = v84;
+	}
+	var _g86 = attr.tabIndex;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret1.tabIndex = v85;
+	}
+	var _g87 = attr.target;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret1.target = v86;
+	}
+	var _g88 = attr.title;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret1.title = v87;
+	}
+	var _g89 = attr.type;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret1.type = v88;
+	}
+	var attr2 = __ret1;
+	var __r1 = [];
+	var _g90 = 0;
+	while(_g90 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g90];
+		++_g90;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("a",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listStartDetail = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item__graphic"] != null) {
@@ -7759,86 +9290,460 @@ mdc_List.listStartDetail = function(attr,children) {
 	} else {
 		_g.h["mdc-ripple-surface"] = value;
 	}
-	return vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.dir;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.dir = v2;
+	}
+	var _g4 = attr.draggable;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.draggable = v3;
+	}
+	var _g5 = attr.hidden;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.hidden = v4;
+	}
+	var _g6 = attr.id;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.id = v5;
+	}
+	var _g7 = attr.key;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.key = v6;
+	}
+	var _g8 = attr.lang;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.lang = v7;
+	}
+	var _g9 = attr.onabort;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.onabort = v8;
+	}
+	var _g10 = attr.onblur;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onblur = v9;
+	}
+	var _g11 = attr.oncanplay;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.oncanplay = v10;
+	}
+	var _g12 = attr.oncanplaythrough;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplaythrough = v11;
+	}
+	var _g13 = attr.onchange;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.onchange = v12;
+	}
+	var _g14 = attr.onclick;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onclick = v13;
+	}
+	var _g15 = attr.oncontextmenu;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.oncontextmenu = v14;
+	}
+	var _g16 = attr.oncopy;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncopy = v15;
+	}
+	var _g17 = attr.oncut;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncut = v16;
+	}
+	var _g18 = attr.ondblclick;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.ondblclick = v17;
+	}
+	var _g19 = attr.ondrag;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondrag = v18;
+	}
+	var _g20 = attr.ondragend;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondragend = v19;
+	}
+	var _g21 = attr.ondragenter;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragenter = v20;
+	}
+	var _g22 = attr.ondragleave;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragleave = v21;
+	}
+	var _g23 = attr.ondragover;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragover = v22;
+	}
+	var _g24 = attr.ondragstart;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragstart = v23;
+	}
+	var _g25 = attr.ondrop;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondrop = v24;
+	}
+	var _g26 = attr.ondurationchange;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondurationchange = v25;
+	}
+	var _g27 = attr.onemptied;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.onemptied = v26;
+	}
+	var _g28 = attr.onended;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onended = v27;
+	}
+	var _g29 = attr.onerror;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onerror = v28;
+	}
+	var _g30 = attr.onfocus;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onfocus = v29;
+	}
+	var _g31 = attr.onfullscreenchange;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfullscreenchange = v30;
+	}
+	var _g32 = attr.onfullscreenerror;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenerror = v31;
+	}
+	var _g33 = attr.ongotpointercapture;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.ongotpointercapture = v32;
+	}
+	var _g34 = attr.oninput;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.oninput = v33;
+	}
+	var _g35 = attr.oninvalid;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninvalid = v34;
+	}
+	var _g36 = attr.onkeydown;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.onkeydown = v35;
+	}
+	var _g37 = attr.onkeypress;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeypress = v36;
+	}
+	var _g38 = attr.onkeyup;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeyup = v37;
+	}
+	var _g39 = attr.onload;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onload = v38;
+	}
+	var _g40 = attr.onloadeddata;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onloadeddata = v39;
+	}
+	var _g41 = attr.onloadedmetadata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadedmetadata = v40;
+	}
+	var _g42 = attr.onloadstart;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadstart = v41;
+	}
+	var _g43 = attr.onlostpointercapture;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onlostpointercapture = v42;
+	}
+	var _g44 = attr.onmousedown;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onmousedown = v43;
+	}
+	var _g45 = attr.onmouseenter;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmouseenter = v44;
+	}
+	var _g46 = attr.onmouseleave;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseleave = v45;
+	}
+	var _g47 = attr.onmousemove;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmousemove = v46;
+	}
+	var _g48 = attr.onmouseout;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmouseout = v47;
+	}
+	var _g49 = attr.onmouseover;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseover = v48;
+	}
+	var _g50 = attr.onmouseup;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseup = v49;
+	}
+	var _g51 = attr.onpaste;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onpaste = v50;
+	}
+	var _g52 = attr.onpause;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpause = v51;
+	}
+	var _g53 = attr.onplay;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onplay = v52;
+	}
+	var _g54 = attr.onplaying;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplaying = v53;
+	}
+	var _g55 = attr.onpointercancel;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onpointercancel = v54;
+	}
+	var _g56 = attr.onpointerdown;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointerdown = v55;
+	}
+	var _g57 = attr.onpointerenter;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerenter = v56;
+	}
+	var _g58 = attr.onpointerleave;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerleave = v57;
+	}
+	var _g59 = attr.onpointerlockchange;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerlockchange = v58;
+	}
+	var _g60 = attr.onpointerlockerror;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockerror = v59;
+	}
+	var _g61 = attr.onpointermove;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointermove = v60;
+	}
+	var _g62 = attr.onpointerout;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointerout = v61;
+	}
+	var _g63 = attr.onpointerover;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerover = v62;
+	}
+	var _g64 = attr.onpointerup;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerup = v63;
+	}
+	var _g65 = attr.onprogress;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onprogress = v64;
+	}
+	var _g66 = attr.onratechange;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onratechange = v65;
+	}
+	var _g67 = attr.onreset;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onreset = v66;
+	}
+	var _g68 = attr.onresize;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onresize = v67;
+	}
+	var _g69 = attr.onscroll;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onscroll = v68;
+	}
+	var _g70 = attr.onseeked;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onseeked = v69;
+	}
+	var _g71 = attr.onseeking;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeking = v70;
+	}
+	var _g72 = attr.onselect;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onselect = v71;
+	}
+	var _g73 = attr.onshow;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onshow = v72;
+	}
+	var _g74 = attr.onstalled;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onstalled = v73;
+	}
+	var _g75 = attr.onsubmit;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onsubmit = v74;
+	}
+	var _g76 = attr.onsuspend;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsuspend = v75;
+	}
+	var _g77 = attr.ontimeupdate;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.ontimeupdate = v76;
+	}
+	var _g78 = attr.ontouchcancel;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontouchcancel = v77;
+	}
+	var _g79 = attr.ontouchend;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchend = v78;
+	}
+	var _g80 = attr.ontouchmove;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchmove = v79;
+	}
+	var _g81 = attr.ontouchstart;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchstart = v80;
+	}
+	var _g82 = attr.onvolumechange;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.onvolumechange = v81;
+	}
+	var _g83 = attr.onwaiting;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onwaiting = v82;
+	}
+	var _g84 = attr.onwheel;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwheel = v83;
+	}
+	var _g85 = attr.spellcheck;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.spellcheck = v84;
+	}
+	var _g86 = attr.style;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.style = v85;
+	}
+	var _g87 = attr.tabIndex;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.tabIndex = v86;
+	}
+	var _g88 = attr.title;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.title = v87;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g89 = 0;
+	while(_g89 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g89];
+		++_g89;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("span",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listStartIcon = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item__graphic"] != null) {
@@ -7857,86 +9762,460 @@ mdc_List.listStartIcon = function(attr,children) {
 	} else {
 		_g.h["mdc-ripple-surface"] = value;
 	}
-	return vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.dir;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.dir = v2;
+	}
+	var _g4 = attr.draggable;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.draggable = v3;
+	}
+	var _g5 = attr.hidden;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.hidden = v4;
+	}
+	var _g6 = attr.id;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.id = v5;
+	}
+	var _g7 = attr.key;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.key = v6;
+	}
+	var _g8 = attr.lang;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.lang = v7;
+	}
+	var _g9 = attr.onabort;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.onabort = v8;
+	}
+	var _g10 = attr.onblur;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onblur = v9;
+	}
+	var _g11 = attr.oncanplay;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.oncanplay = v10;
+	}
+	var _g12 = attr.oncanplaythrough;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplaythrough = v11;
+	}
+	var _g13 = attr.onchange;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.onchange = v12;
+	}
+	var _g14 = attr.onclick;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onclick = v13;
+	}
+	var _g15 = attr.oncontextmenu;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.oncontextmenu = v14;
+	}
+	var _g16 = attr.oncopy;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncopy = v15;
+	}
+	var _g17 = attr.oncut;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncut = v16;
+	}
+	var _g18 = attr.ondblclick;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.ondblclick = v17;
+	}
+	var _g19 = attr.ondrag;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondrag = v18;
+	}
+	var _g20 = attr.ondragend;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondragend = v19;
+	}
+	var _g21 = attr.ondragenter;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragenter = v20;
+	}
+	var _g22 = attr.ondragleave;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragleave = v21;
+	}
+	var _g23 = attr.ondragover;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragover = v22;
+	}
+	var _g24 = attr.ondragstart;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragstart = v23;
+	}
+	var _g25 = attr.ondrop;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondrop = v24;
+	}
+	var _g26 = attr.ondurationchange;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondurationchange = v25;
+	}
+	var _g27 = attr.onemptied;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.onemptied = v26;
+	}
+	var _g28 = attr.onended;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onended = v27;
+	}
+	var _g29 = attr.onerror;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onerror = v28;
+	}
+	var _g30 = attr.onfocus;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onfocus = v29;
+	}
+	var _g31 = attr.onfullscreenchange;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfullscreenchange = v30;
+	}
+	var _g32 = attr.onfullscreenerror;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenerror = v31;
+	}
+	var _g33 = attr.ongotpointercapture;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.ongotpointercapture = v32;
+	}
+	var _g34 = attr.oninput;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.oninput = v33;
+	}
+	var _g35 = attr.oninvalid;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninvalid = v34;
+	}
+	var _g36 = attr.onkeydown;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.onkeydown = v35;
+	}
+	var _g37 = attr.onkeypress;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeypress = v36;
+	}
+	var _g38 = attr.onkeyup;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeyup = v37;
+	}
+	var _g39 = attr.onload;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onload = v38;
+	}
+	var _g40 = attr.onloadeddata;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onloadeddata = v39;
+	}
+	var _g41 = attr.onloadedmetadata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadedmetadata = v40;
+	}
+	var _g42 = attr.onloadstart;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadstart = v41;
+	}
+	var _g43 = attr.onlostpointercapture;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onlostpointercapture = v42;
+	}
+	var _g44 = attr.onmousedown;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onmousedown = v43;
+	}
+	var _g45 = attr.onmouseenter;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmouseenter = v44;
+	}
+	var _g46 = attr.onmouseleave;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseleave = v45;
+	}
+	var _g47 = attr.onmousemove;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmousemove = v46;
+	}
+	var _g48 = attr.onmouseout;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmouseout = v47;
+	}
+	var _g49 = attr.onmouseover;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseover = v48;
+	}
+	var _g50 = attr.onmouseup;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseup = v49;
+	}
+	var _g51 = attr.onpaste;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onpaste = v50;
+	}
+	var _g52 = attr.onpause;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpause = v51;
+	}
+	var _g53 = attr.onplay;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onplay = v52;
+	}
+	var _g54 = attr.onplaying;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplaying = v53;
+	}
+	var _g55 = attr.onpointercancel;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onpointercancel = v54;
+	}
+	var _g56 = attr.onpointerdown;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointerdown = v55;
+	}
+	var _g57 = attr.onpointerenter;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerenter = v56;
+	}
+	var _g58 = attr.onpointerleave;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerleave = v57;
+	}
+	var _g59 = attr.onpointerlockchange;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerlockchange = v58;
+	}
+	var _g60 = attr.onpointerlockerror;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockerror = v59;
+	}
+	var _g61 = attr.onpointermove;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointermove = v60;
+	}
+	var _g62 = attr.onpointerout;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointerout = v61;
+	}
+	var _g63 = attr.onpointerover;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerover = v62;
+	}
+	var _g64 = attr.onpointerup;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerup = v63;
+	}
+	var _g65 = attr.onprogress;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onprogress = v64;
+	}
+	var _g66 = attr.onratechange;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onratechange = v65;
+	}
+	var _g67 = attr.onreset;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onreset = v66;
+	}
+	var _g68 = attr.onresize;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onresize = v67;
+	}
+	var _g69 = attr.onscroll;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onscroll = v68;
+	}
+	var _g70 = attr.onseeked;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onseeked = v69;
+	}
+	var _g71 = attr.onseeking;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeking = v70;
+	}
+	var _g72 = attr.onselect;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onselect = v71;
+	}
+	var _g73 = attr.onshow;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onshow = v72;
+	}
+	var _g74 = attr.onstalled;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onstalled = v73;
+	}
+	var _g75 = attr.onsubmit;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onsubmit = v74;
+	}
+	var _g76 = attr.onsuspend;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsuspend = v75;
+	}
+	var _g77 = attr.ontimeupdate;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.ontimeupdate = v76;
+	}
+	var _g78 = attr.ontouchcancel;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontouchcancel = v77;
+	}
+	var _g79 = attr.ontouchend;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchend = v78;
+	}
+	var _g80 = attr.ontouchmove;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchmove = v79;
+	}
+	var _g81 = attr.ontouchstart;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchstart = v80;
+	}
+	var _g82 = attr.onvolumechange;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.onvolumechange = v81;
+	}
+	var _g83 = attr.onwaiting;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onwaiting = v82;
+	}
+	var _g84 = attr.onwheel;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwheel = v83;
+	}
+	var _g85 = attr.spellcheck;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.spellcheck = v84;
+	}
+	var _g86 = attr.style;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.style = v85;
+	}
+	var _g87 = attr.tabIndex;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.tabIndex = v86;
+	}
+	var _g88 = attr.title;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.title = v87;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g89 = 0;
+	while(_g89 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g89];
+		++_g89;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("i",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listEndIcon = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item__meta"] != null) {
@@ -7955,86 +10234,460 @@ mdc_List.listEndIcon = function(attr,children) {
 	} else {
 		_g.h["mdc-ripple-surface"] = value;
 	}
-	return vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.dir;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.dir = v2;
+	}
+	var _g4 = attr.draggable;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.draggable = v3;
+	}
+	var _g5 = attr.hidden;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.hidden = v4;
+	}
+	var _g6 = attr.id;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.id = v5;
+	}
+	var _g7 = attr.key;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.key = v6;
+	}
+	var _g8 = attr.lang;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.lang = v7;
+	}
+	var _g9 = attr.onabort;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.onabort = v8;
+	}
+	var _g10 = attr.onblur;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onblur = v9;
+	}
+	var _g11 = attr.oncanplay;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.oncanplay = v10;
+	}
+	var _g12 = attr.oncanplaythrough;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplaythrough = v11;
+	}
+	var _g13 = attr.onchange;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.onchange = v12;
+	}
+	var _g14 = attr.onclick;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onclick = v13;
+	}
+	var _g15 = attr.oncontextmenu;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.oncontextmenu = v14;
+	}
+	var _g16 = attr.oncopy;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncopy = v15;
+	}
+	var _g17 = attr.oncut;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncut = v16;
+	}
+	var _g18 = attr.ondblclick;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.ondblclick = v17;
+	}
+	var _g19 = attr.ondrag;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondrag = v18;
+	}
+	var _g20 = attr.ondragend;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondragend = v19;
+	}
+	var _g21 = attr.ondragenter;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragenter = v20;
+	}
+	var _g22 = attr.ondragleave;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragleave = v21;
+	}
+	var _g23 = attr.ondragover;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragover = v22;
+	}
+	var _g24 = attr.ondragstart;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragstart = v23;
+	}
+	var _g25 = attr.ondrop;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondrop = v24;
+	}
+	var _g26 = attr.ondurationchange;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondurationchange = v25;
+	}
+	var _g27 = attr.onemptied;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.onemptied = v26;
+	}
+	var _g28 = attr.onended;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onended = v27;
+	}
+	var _g29 = attr.onerror;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onerror = v28;
+	}
+	var _g30 = attr.onfocus;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onfocus = v29;
+	}
+	var _g31 = attr.onfullscreenchange;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfullscreenchange = v30;
+	}
+	var _g32 = attr.onfullscreenerror;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenerror = v31;
+	}
+	var _g33 = attr.ongotpointercapture;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.ongotpointercapture = v32;
+	}
+	var _g34 = attr.oninput;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.oninput = v33;
+	}
+	var _g35 = attr.oninvalid;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninvalid = v34;
+	}
+	var _g36 = attr.onkeydown;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.onkeydown = v35;
+	}
+	var _g37 = attr.onkeypress;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeypress = v36;
+	}
+	var _g38 = attr.onkeyup;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeyup = v37;
+	}
+	var _g39 = attr.onload;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onload = v38;
+	}
+	var _g40 = attr.onloadeddata;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onloadeddata = v39;
+	}
+	var _g41 = attr.onloadedmetadata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadedmetadata = v40;
+	}
+	var _g42 = attr.onloadstart;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadstart = v41;
+	}
+	var _g43 = attr.onlostpointercapture;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onlostpointercapture = v42;
+	}
+	var _g44 = attr.onmousedown;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onmousedown = v43;
+	}
+	var _g45 = attr.onmouseenter;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmouseenter = v44;
+	}
+	var _g46 = attr.onmouseleave;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseleave = v45;
+	}
+	var _g47 = attr.onmousemove;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmousemove = v46;
+	}
+	var _g48 = attr.onmouseout;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmouseout = v47;
+	}
+	var _g49 = attr.onmouseover;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseover = v48;
+	}
+	var _g50 = attr.onmouseup;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseup = v49;
+	}
+	var _g51 = attr.onpaste;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onpaste = v50;
+	}
+	var _g52 = attr.onpause;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpause = v51;
+	}
+	var _g53 = attr.onplay;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onplay = v52;
+	}
+	var _g54 = attr.onplaying;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplaying = v53;
+	}
+	var _g55 = attr.onpointercancel;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onpointercancel = v54;
+	}
+	var _g56 = attr.onpointerdown;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointerdown = v55;
+	}
+	var _g57 = attr.onpointerenter;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerenter = v56;
+	}
+	var _g58 = attr.onpointerleave;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerleave = v57;
+	}
+	var _g59 = attr.onpointerlockchange;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerlockchange = v58;
+	}
+	var _g60 = attr.onpointerlockerror;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockerror = v59;
+	}
+	var _g61 = attr.onpointermove;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointermove = v60;
+	}
+	var _g62 = attr.onpointerout;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointerout = v61;
+	}
+	var _g63 = attr.onpointerover;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerover = v62;
+	}
+	var _g64 = attr.onpointerup;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerup = v63;
+	}
+	var _g65 = attr.onprogress;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onprogress = v64;
+	}
+	var _g66 = attr.onratechange;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onratechange = v65;
+	}
+	var _g67 = attr.onreset;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onreset = v66;
+	}
+	var _g68 = attr.onresize;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onresize = v67;
+	}
+	var _g69 = attr.onscroll;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onscroll = v68;
+	}
+	var _g70 = attr.onseeked;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onseeked = v69;
+	}
+	var _g71 = attr.onseeking;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeking = v70;
+	}
+	var _g72 = attr.onselect;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onselect = v71;
+	}
+	var _g73 = attr.onshow;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onshow = v72;
+	}
+	var _g74 = attr.onstalled;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onstalled = v73;
+	}
+	var _g75 = attr.onsubmit;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onsubmit = v74;
+	}
+	var _g76 = attr.onsuspend;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsuspend = v75;
+	}
+	var _g77 = attr.ontimeupdate;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.ontimeupdate = v76;
+	}
+	var _g78 = attr.ontouchcancel;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontouchcancel = v77;
+	}
+	var _g79 = attr.ontouchend;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchend = v78;
+	}
+	var _g80 = attr.ontouchmove;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchmove = v79;
+	}
+	var _g81 = attr.ontouchstart;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchstart = v80;
+	}
+	var _g82 = attr.onvolumechange;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.onvolumechange = v81;
+	}
+	var _g83 = attr.onwaiting;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onwaiting = v82;
+	}
+	var _g84 = attr.onwheel;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwheel = v83;
+	}
+	var _g85 = attr.spellcheck;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.spellcheck = v84;
+	}
+	var _g86 = attr.style;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.style = v85;
+	}
+	var _g87 = attr.tabIndex;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.tabIndex = v86;
+	}
+	var _g88 = attr.title;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.title = v87;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g89 = 0;
+	while(_g89 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g89];
+		++_g89;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("i",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listStartImage = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item__graphic"] != null) {
@@ -8048,86 +10701,467 @@ mdc_List.listStartImage = function(attr,children) {
 	} else {
 		_g.h["mdc-ripple-surface"] = value;
 	}
-	return vdom_VDom.h("img",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, height : __v_0.height, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, src : __v_0.src, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title, width : __v_0.width});
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.dir;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.dir = v2;
+	}
+	var _g4 = attr.draggable;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.draggable = v3;
+	}
+	var _g5 = attr.height;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.height = v4;
+	}
+	var _g6 = attr.hidden;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.hidden = v5;
+	}
+	var _g7 = attr.id;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.id = v6;
+	}
+	var _g8 = attr.key;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.key = v7;
+	}
+	var _g9 = attr.lang;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.lang = v8;
+	}
+	var _g10 = attr.onabort;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onabort = v9;
+	}
+	var _g11 = attr.onblur;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.onblur = v10;
+	}
+	var _g12 = attr.oncanplay;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplay = v11;
+	}
+	var _g13 = attr.oncanplaythrough;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.oncanplaythrough = v12;
+	}
+	var _g14 = attr.onchange;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onchange = v13;
+	}
+	var _g15 = attr.onclick;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.onclick = v14;
+	}
+	var _g16 = attr.oncontextmenu;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncontextmenu = v15;
+	}
+	var _g17 = attr.oncopy;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncopy = v16;
+	}
+	var _g18 = attr.oncut;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.oncut = v17;
+	}
+	var _g19 = attr.ondblclick;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondblclick = v18;
+	}
+	var _g20 = attr.ondrag;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondrag = v19;
+	}
+	var _g21 = attr.ondragend;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragend = v20;
+	}
+	var _g22 = attr.ondragenter;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragenter = v21;
+	}
+	var _g23 = attr.ondragleave;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragleave = v22;
+	}
+	var _g24 = attr.ondragover;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragover = v23;
+	}
+	var _g25 = attr.ondragstart;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondragstart = v24;
+	}
+	var _g26 = attr.ondrop;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondrop = v25;
+	}
+	var _g27 = attr.ondurationchange;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.ondurationchange = v26;
+	}
+	var _g28 = attr.onemptied;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onemptied = v27;
+	}
+	var _g29 = attr.onended;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onended = v28;
+	}
+	var _g30 = attr.onerror;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onerror = v29;
+	}
+	var _g31 = attr.onfocus;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfocus = v30;
+	}
+	var _g32 = attr.onfullscreenchange;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenchange = v31;
+	}
+	var _g33 = attr.onfullscreenerror;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.onfullscreenerror = v32;
+	}
+	var _g34 = attr.ongotpointercapture;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.ongotpointercapture = v33;
+	}
+	var _g35 = attr.oninput;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninput = v34;
+	}
+	var _g36 = attr.oninvalid;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.oninvalid = v35;
+	}
+	var _g37 = attr.onkeydown;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeydown = v36;
+	}
+	var _g38 = attr.onkeypress;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeypress = v37;
+	}
+	var _g39 = attr.onkeyup;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onkeyup = v38;
+	}
+	var _g40 = attr.onload;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onload = v39;
+	}
+	var _g41 = attr.onloadeddata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadeddata = v40;
+	}
+	var _g42 = attr.onloadedmetadata;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadedmetadata = v41;
+	}
+	var _g43 = attr.onloadstart;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onloadstart = v42;
+	}
+	var _g44 = attr.onlostpointercapture;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onlostpointercapture = v43;
+	}
+	var _g45 = attr.onmousedown;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmousedown = v44;
+	}
+	var _g46 = attr.onmouseenter;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseenter = v45;
+	}
+	var _g47 = attr.onmouseleave;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmouseleave = v46;
+	}
+	var _g48 = attr.onmousemove;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmousemove = v47;
+	}
+	var _g49 = attr.onmouseout;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseout = v48;
+	}
+	var _g50 = attr.onmouseover;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseover = v49;
+	}
+	var _g51 = attr.onmouseup;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onmouseup = v50;
+	}
+	var _g52 = attr.onpaste;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpaste = v51;
+	}
+	var _g53 = attr.onpause;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onpause = v52;
+	}
+	var _g54 = attr.onplay;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplay = v53;
+	}
+	var _g55 = attr.onplaying;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onplaying = v54;
+	}
+	var _g56 = attr.onpointercancel;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointercancel = v55;
+	}
+	var _g57 = attr.onpointerdown;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerdown = v56;
+	}
+	var _g58 = attr.onpointerenter;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerenter = v57;
+	}
+	var _g59 = attr.onpointerleave;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerleave = v58;
+	}
+	var _g60 = attr.onpointerlockchange;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockchange = v59;
+	}
+	var _g61 = attr.onpointerlockerror;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointerlockerror = v60;
+	}
+	var _g62 = attr.onpointermove;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointermove = v61;
+	}
+	var _g63 = attr.onpointerout;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerout = v62;
+	}
+	var _g64 = attr.onpointerover;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerover = v63;
+	}
+	var _g65 = attr.onpointerup;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onpointerup = v64;
+	}
+	var _g66 = attr.onprogress;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onprogress = v65;
+	}
+	var _g67 = attr.onratechange;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onratechange = v66;
+	}
+	var _g68 = attr.onreset;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onreset = v67;
+	}
+	var _g69 = attr.onresize;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onresize = v68;
+	}
+	var _g70 = attr.onscroll;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onscroll = v69;
+	}
+	var _g71 = attr.onseeked;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeked = v70;
+	}
+	var _g72 = attr.onseeking;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onseeking = v71;
+	}
+	var _g73 = attr.onselect;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onselect = v72;
+	}
+	var _g74 = attr.onshow;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onshow = v73;
+	}
+	var _g75 = attr.onstalled;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onstalled = v74;
+	}
+	var _g76 = attr.onsubmit;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsubmit = v75;
+	}
+	var _g77 = attr.onsuspend;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.onsuspend = v76;
+	}
+	var _g78 = attr.ontimeupdate;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontimeupdate = v77;
+	}
+	var _g79 = attr.ontouchcancel;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchcancel = v78;
+	}
+	var _g80 = attr.ontouchend;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchend = v79;
+	}
+	var _g81 = attr.ontouchmove;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchmove = v80;
+	}
+	var _g82 = attr.ontouchstart;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.ontouchstart = v81;
+	}
+	var _g83 = attr.onvolumechange;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onvolumechange = v82;
+	}
+	var _g84 = attr.onwaiting;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwaiting = v83;
+	}
+	var _g85 = attr.onwheel;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.onwheel = v84;
+	}
+	var _g86 = attr.spellcheck;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.spellcheck = v85;
+	}
+	var _g87 = attr.src;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.src = v86;
+	}
+	var _g88 = attr.style;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.style = v87;
+	}
+	var _g89 = attr.tabIndex;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret.tabIndex = v88;
+	}
+	var _g90 = attr.title;
+	if(_g90 != null) {
+		var v89 = _g90;
+		__ret.title = v89;
+	}
+	var _g91 = attr.width;
+	if(_g91 != null) {
+		var v90 = _g91;
+		__ret.width = v90;
+	}
+	__r.push(vdom_VDom.h("img",__ret));
+	return __r[0];
 };
 mdc_List.listEndDetail = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item__meta"] != null) {
@@ -8141,86 +11175,460 @@ mdc_List.listEndDetail = function(attr,children) {
 	} else {
 		_g.h["mdc-ripple-surface"] = value;
 	}
-	return vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : attr.unboundedRipple ? "" : undefined}};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.dir;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.dir = v2;
+	}
+	var _g4 = attr.draggable;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.draggable = v3;
+	}
+	var _g5 = attr.hidden;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.hidden = v4;
+	}
+	var _g6 = attr.id;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.id = v5;
+	}
+	var _g7 = attr.key;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.key = v6;
+	}
+	var _g8 = attr.lang;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.lang = v7;
+	}
+	var _g9 = attr.onabort;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.onabort = v8;
+	}
+	var _g10 = attr.onblur;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onblur = v9;
+	}
+	var _g11 = attr.oncanplay;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.oncanplay = v10;
+	}
+	var _g12 = attr.oncanplaythrough;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplaythrough = v11;
+	}
+	var _g13 = attr.onchange;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.onchange = v12;
+	}
+	var _g14 = attr.onclick;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onclick = v13;
+	}
+	var _g15 = attr.oncontextmenu;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.oncontextmenu = v14;
+	}
+	var _g16 = attr.oncopy;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncopy = v15;
+	}
+	var _g17 = attr.oncut;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncut = v16;
+	}
+	var _g18 = attr.ondblclick;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.ondblclick = v17;
+	}
+	var _g19 = attr.ondrag;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondrag = v18;
+	}
+	var _g20 = attr.ondragend;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondragend = v19;
+	}
+	var _g21 = attr.ondragenter;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragenter = v20;
+	}
+	var _g22 = attr.ondragleave;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragleave = v21;
+	}
+	var _g23 = attr.ondragover;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragover = v22;
+	}
+	var _g24 = attr.ondragstart;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragstart = v23;
+	}
+	var _g25 = attr.ondrop;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondrop = v24;
+	}
+	var _g26 = attr.ondurationchange;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondurationchange = v25;
+	}
+	var _g27 = attr.onemptied;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.onemptied = v26;
+	}
+	var _g28 = attr.onended;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onended = v27;
+	}
+	var _g29 = attr.onerror;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onerror = v28;
+	}
+	var _g30 = attr.onfocus;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onfocus = v29;
+	}
+	var _g31 = attr.onfullscreenchange;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfullscreenchange = v30;
+	}
+	var _g32 = attr.onfullscreenerror;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenerror = v31;
+	}
+	var _g33 = attr.ongotpointercapture;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.ongotpointercapture = v32;
+	}
+	var _g34 = attr.oninput;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.oninput = v33;
+	}
+	var _g35 = attr.oninvalid;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninvalid = v34;
+	}
+	var _g36 = attr.onkeydown;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.onkeydown = v35;
+	}
+	var _g37 = attr.onkeypress;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeypress = v36;
+	}
+	var _g38 = attr.onkeyup;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeyup = v37;
+	}
+	var _g39 = attr.onload;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onload = v38;
+	}
+	var _g40 = attr.onloadeddata;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onloadeddata = v39;
+	}
+	var _g41 = attr.onloadedmetadata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadedmetadata = v40;
+	}
+	var _g42 = attr.onloadstart;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadstart = v41;
+	}
+	var _g43 = attr.onlostpointercapture;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onlostpointercapture = v42;
+	}
+	var _g44 = attr.onmousedown;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onmousedown = v43;
+	}
+	var _g45 = attr.onmouseenter;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmouseenter = v44;
+	}
+	var _g46 = attr.onmouseleave;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseleave = v45;
+	}
+	var _g47 = attr.onmousemove;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmousemove = v46;
+	}
+	var _g48 = attr.onmouseout;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmouseout = v47;
+	}
+	var _g49 = attr.onmouseover;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseover = v48;
+	}
+	var _g50 = attr.onmouseup;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseup = v49;
+	}
+	var _g51 = attr.onpaste;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onpaste = v50;
+	}
+	var _g52 = attr.onpause;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpause = v51;
+	}
+	var _g53 = attr.onplay;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onplay = v52;
+	}
+	var _g54 = attr.onplaying;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplaying = v53;
+	}
+	var _g55 = attr.onpointercancel;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onpointercancel = v54;
+	}
+	var _g56 = attr.onpointerdown;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointerdown = v55;
+	}
+	var _g57 = attr.onpointerenter;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerenter = v56;
+	}
+	var _g58 = attr.onpointerleave;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerleave = v57;
+	}
+	var _g59 = attr.onpointerlockchange;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerlockchange = v58;
+	}
+	var _g60 = attr.onpointerlockerror;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockerror = v59;
+	}
+	var _g61 = attr.onpointermove;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointermove = v60;
+	}
+	var _g62 = attr.onpointerout;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointerout = v61;
+	}
+	var _g63 = attr.onpointerover;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerover = v62;
+	}
+	var _g64 = attr.onpointerup;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerup = v63;
+	}
+	var _g65 = attr.onprogress;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onprogress = v64;
+	}
+	var _g66 = attr.onratechange;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onratechange = v65;
+	}
+	var _g67 = attr.onreset;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onreset = v66;
+	}
+	var _g68 = attr.onresize;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onresize = v67;
+	}
+	var _g69 = attr.onscroll;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onscroll = v68;
+	}
+	var _g70 = attr.onseeked;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onseeked = v69;
+	}
+	var _g71 = attr.onseeking;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeking = v70;
+	}
+	var _g72 = attr.onselect;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onselect = v71;
+	}
+	var _g73 = attr.onshow;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onshow = v72;
+	}
+	var _g74 = attr.onstalled;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onstalled = v73;
+	}
+	var _g75 = attr.onsubmit;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onsubmit = v74;
+	}
+	var _g76 = attr.onsuspend;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsuspend = v75;
+	}
+	var _g77 = attr.ontimeupdate;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.ontimeupdate = v76;
+	}
+	var _g78 = attr.ontouchcancel;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontouchcancel = v77;
+	}
+	var _g79 = attr.ontouchend;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchend = v78;
+	}
+	var _g80 = attr.ontouchmove;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchmove = v79;
+	}
+	var _g81 = attr.ontouchstart;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchstart = v80;
+	}
+	var _g82 = attr.onvolumechange;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.onvolumechange = v81;
+	}
+	var _g83 = attr.onwaiting;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onwaiting = v82;
+	}
+	var _g84 = attr.onwheel;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwheel = v83;
+	}
+	var _g85 = attr.spellcheck;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.spellcheck = v84;
+	}
+	var _g86 = attr.style;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.style = v85;
+	}
+	var _g87 = attr.tabIndex;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.tabIndex = v86;
+	}
+	var _g88 = attr.title;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.title = v87;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g89 = 0;
+	while(_g89 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g89];
+		++_g89;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("span",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listText = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item__text"] != null) {
@@ -8228,86 +11636,465 @@ mdc_List.listText = function(attr,children) {
 	} else {
 		_g.h["mdc-list-item__text"] = true;
 	}
-	return vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.attributes;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.attributes = v2;
+	}
+	var _g4 = attr.dir;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.dir = v3;
+	}
+	var _g5 = attr.draggable;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.draggable = v4;
+	}
+	var _g6 = attr.hidden;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.hidden = v5;
+	}
+	var _g7 = attr.id;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.id = v6;
+	}
+	var _g8 = attr.key;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.key = v7;
+	}
+	var _g9 = attr.lang;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.lang = v8;
+	}
+	var _g10 = attr.onabort;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onabort = v9;
+	}
+	var _g11 = attr.onblur;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.onblur = v10;
+	}
+	var _g12 = attr.oncanplay;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplay = v11;
+	}
+	var _g13 = attr.oncanplaythrough;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.oncanplaythrough = v12;
+	}
+	var _g14 = attr.onchange;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onchange = v13;
+	}
+	var _g15 = attr.onclick;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.onclick = v14;
+	}
+	var _g16 = attr.oncontextmenu;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncontextmenu = v15;
+	}
+	var _g17 = attr.oncopy;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncopy = v16;
+	}
+	var _g18 = attr.oncut;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.oncut = v17;
+	}
+	var _g19 = attr.ondblclick;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondblclick = v18;
+	}
+	var _g20 = attr.ondrag;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondrag = v19;
+	}
+	var _g21 = attr.ondragend;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragend = v20;
+	}
+	var _g22 = attr.ondragenter;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragenter = v21;
+	}
+	var _g23 = attr.ondragleave;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragleave = v22;
+	}
+	var _g24 = attr.ondragover;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragover = v23;
+	}
+	var _g25 = attr.ondragstart;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondragstart = v24;
+	}
+	var _g26 = attr.ondrop;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondrop = v25;
+	}
+	var _g27 = attr.ondurationchange;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.ondurationchange = v26;
+	}
+	var _g28 = attr.onemptied;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onemptied = v27;
+	}
+	var _g29 = attr.onended;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onended = v28;
+	}
+	var _g30 = attr.onerror;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onerror = v29;
+	}
+	var _g31 = attr.onfocus;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfocus = v30;
+	}
+	var _g32 = attr.onfullscreenchange;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenchange = v31;
+	}
+	var _g33 = attr.onfullscreenerror;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.onfullscreenerror = v32;
+	}
+	var _g34 = attr.ongotpointercapture;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.ongotpointercapture = v33;
+	}
+	var _g35 = attr.oninput;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninput = v34;
+	}
+	var _g36 = attr.oninvalid;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.oninvalid = v35;
+	}
+	var _g37 = attr.onkeydown;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeydown = v36;
+	}
+	var _g38 = attr.onkeypress;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeypress = v37;
+	}
+	var _g39 = attr.onkeyup;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onkeyup = v38;
+	}
+	var _g40 = attr.onload;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onload = v39;
+	}
+	var _g41 = attr.onloadeddata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadeddata = v40;
+	}
+	var _g42 = attr.onloadedmetadata;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadedmetadata = v41;
+	}
+	var _g43 = attr.onloadstart;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onloadstart = v42;
+	}
+	var _g44 = attr.onlostpointercapture;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onlostpointercapture = v43;
+	}
+	var _g45 = attr.onmousedown;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmousedown = v44;
+	}
+	var _g46 = attr.onmouseenter;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseenter = v45;
+	}
+	var _g47 = attr.onmouseleave;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmouseleave = v46;
+	}
+	var _g48 = attr.onmousemove;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmousemove = v47;
+	}
+	var _g49 = attr.onmouseout;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseout = v48;
+	}
+	var _g50 = attr.onmouseover;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseover = v49;
+	}
+	var _g51 = attr.onmouseup;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onmouseup = v50;
+	}
+	var _g52 = attr.onpaste;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpaste = v51;
+	}
+	var _g53 = attr.onpause;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onpause = v52;
+	}
+	var _g54 = attr.onplay;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplay = v53;
+	}
+	var _g55 = attr.onplaying;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onplaying = v54;
+	}
+	var _g56 = attr.onpointercancel;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointercancel = v55;
+	}
+	var _g57 = attr.onpointerdown;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerdown = v56;
+	}
+	var _g58 = attr.onpointerenter;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerenter = v57;
+	}
+	var _g59 = attr.onpointerleave;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerleave = v58;
+	}
+	var _g60 = attr.onpointerlockchange;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockchange = v59;
+	}
+	var _g61 = attr.onpointerlockerror;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointerlockerror = v60;
+	}
+	var _g62 = attr.onpointermove;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointermove = v61;
+	}
+	var _g63 = attr.onpointerout;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerout = v62;
+	}
+	var _g64 = attr.onpointerover;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerover = v63;
+	}
+	var _g65 = attr.onpointerup;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onpointerup = v64;
+	}
+	var _g66 = attr.onprogress;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onprogress = v65;
+	}
+	var _g67 = attr.onratechange;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onratechange = v66;
+	}
+	var _g68 = attr.onreset;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onreset = v67;
+	}
+	var _g69 = attr.onresize;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onresize = v68;
+	}
+	var _g70 = attr.onscroll;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onscroll = v69;
+	}
+	var _g71 = attr.onseeked;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeked = v70;
+	}
+	var _g72 = attr.onseeking;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onseeking = v71;
+	}
+	var _g73 = attr.onselect;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onselect = v72;
+	}
+	var _g74 = attr.onshow;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onshow = v73;
+	}
+	var _g75 = attr.onstalled;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onstalled = v74;
+	}
+	var _g76 = attr.onsubmit;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsubmit = v75;
+	}
+	var _g77 = attr.onsuspend;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.onsuspend = v76;
+	}
+	var _g78 = attr.ontimeupdate;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontimeupdate = v77;
+	}
+	var _g79 = attr.ontouchcancel;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchcancel = v78;
+	}
+	var _g80 = attr.ontouchend;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchend = v79;
+	}
+	var _g81 = attr.ontouchmove;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchmove = v80;
+	}
+	var _g82 = attr.ontouchstart;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.ontouchstart = v81;
+	}
+	var _g83 = attr.onvolumechange;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onvolumechange = v82;
+	}
+	var _g84 = attr.onwaiting;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwaiting = v83;
+	}
+	var _g85 = attr.onwheel;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.onwheel = v84;
+	}
+	var _g86 = attr.spellcheck;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.spellcheck = v85;
+	}
+	var _g87 = attr.style;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.style = v86;
+	}
+	var _g88 = attr.tabIndex;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.tabIndex = v87;
+	}
+	var _g89 = attr.title;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret.title = v88;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g90 = 0;
+	while(_g90 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g90];
+		++_g90;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("span",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listTextSecondary = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-item__secondary-text"] != null) {
@@ -8315,86 +12102,465 @@ mdc_List.listTextSecondary = function(attr,children) {
 	} else {
 		_g.h["mdc-list-item__secondary-text"] = true;
 	}
-	return vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.attributes;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.attributes = v2;
+	}
+	var _g4 = attr.dir;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.dir = v3;
+	}
+	var _g5 = attr.draggable;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.draggable = v4;
+	}
+	var _g6 = attr.hidden;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.hidden = v5;
+	}
+	var _g7 = attr.id;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.id = v6;
+	}
+	var _g8 = attr.key;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.key = v7;
+	}
+	var _g9 = attr.lang;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.lang = v8;
+	}
+	var _g10 = attr.onabort;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onabort = v9;
+	}
+	var _g11 = attr.onblur;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.onblur = v10;
+	}
+	var _g12 = attr.oncanplay;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplay = v11;
+	}
+	var _g13 = attr.oncanplaythrough;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.oncanplaythrough = v12;
+	}
+	var _g14 = attr.onchange;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onchange = v13;
+	}
+	var _g15 = attr.onclick;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.onclick = v14;
+	}
+	var _g16 = attr.oncontextmenu;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncontextmenu = v15;
+	}
+	var _g17 = attr.oncopy;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncopy = v16;
+	}
+	var _g18 = attr.oncut;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.oncut = v17;
+	}
+	var _g19 = attr.ondblclick;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondblclick = v18;
+	}
+	var _g20 = attr.ondrag;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondrag = v19;
+	}
+	var _g21 = attr.ondragend;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragend = v20;
+	}
+	var _g22 = attr.ondragenter;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragenter = v21;
+	}
+	var _g23 = attr.ondragleave;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragleave = v22;
+	}
+	var _g24 = attr.ondragover;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragover = v23;
+	}
+	var _g25 = attr.ondragstart;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondragstart = v24;
+	}
+	var _g26 = attr.ondrop;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondrop = v25;
+	}
+	var _g27 = attr.ondurationchange;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.ondurationchange = v26;
+	}
+	var _g28 = attr.onemptied;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onemptied = v27;
+	}
+	var _g29 = attr.onended;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onended = v28;
+	}
+	var _g30 = attr.onerror;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onerror = v29;
+	}
+	var _g31 = attr.onfocus;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfocus = v30;
+	}
+	var _g32 = attr.onfullscreenchange;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenchange = v31;
+	}
+	var _g33 = attr.onfullscreenerror;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.onfullscreenerror = v32;
+	}
+	var _g34 = attr.ongotpointercapture;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.ongotpointercapture = v33;
+	}
+	var _g35 = attr.oninput;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninput = v34;
+	}
+	var _g36 = attr.oninvalid;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.oninvalid = v35;
+	}
+	var _g37 = attr.onkeydown;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeydown = v36;
+	}
+	var _g38 = attr.onkeypress;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeypress = v37;
+	}
+	var _g39 = attr.onkeyup;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onkeyup = v38;
+	}
+	var _g40 = attr.onload;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onload = v39;
+	}
+	var _g41 = attr.onloadeddata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadeddata = v40;
+	}
+	var _g42 = attr.onloadedmetadata;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadedmetadata = v41;
+	}
+	var _g43 = attr.onloadstart;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onloadstart = v42;
+	}
+	var _g44 = attr.onlostpointercapture;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onlostpointercapture = v43;
+	}
+	var _g45 = attr.onmousedown;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmousedown = v44;
+	}
+	var _g46 = attr.onmouseenter;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseenter = v45;
+	}
+	var _g47 = attr.onmouseleave;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmouseleave = v46;
+	}
+	var _g48 = attr.onmousemove;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmousemove = v47;
+	}
+	var _g49 = attr.onmouseout;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseout = v48;
+	}
+	var _g50 = attr.onmouseover;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseover = v49;
+	}
+	var _g51 = attr.onmouseup;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onmouseup = v50;
+	}
+	var _g52 = attr.onpaste;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpaste = v51;
+	}
+	var _g53 = attr.onpause;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onpause = v52;
+	}
+	var _g54 = attr.onplay;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplay = v53;
+	}
+	var _g55 = attr.onplaying;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onplaying = v54;
+	}
+	var _g56 = attr.onpointercancel;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointercancel = v55;
+	}
+	var _g57 = attr.onpointerdown;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerdown = v56;
+	}
+	var _g58 = attr.onpointerenter;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerenter = v57;
+	}
+	var _g59 = attr.onpointerleave;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerleave = v58;
+	}
+	var _g60 = attr.onpointerlockchange;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockchange = v59;
+	}
+	var _g61 = attr.onpointerlockerror;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointerlockerror = v60;
+	}
+	var _g62 = attr.onpointermove;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointermove = v61;
+	}
+	var _g63 = attr.onpointerout;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerout = v62;
+	}
+	var _g64 = attr.onpointerover;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerover = v63;
+	}
+	var _g65 = attr.onpointerup;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onpointerup = v64;
+	}
+	var _g66 = attr.onprogress;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onprogress = v65;
+	}
+	var _g67 = attr.onratechange;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onratechange = v66;
+	}
+	var _g68 = attr.onreset;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onreset = v67;
+	}
+	var _g69 = attr.onresize;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onresize = v68;
+	}
+	var _g70 = attr.onscroll;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onscroll = v69;
+	}
+	var _g71 = attr.onseeked;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeked = v70;
+	}
+	var _g72 = attr.onseeking;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onseeking = v71;
+	}
+	var _g73 = attr.onselect;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onselect = v72;
+	}
+	var _g74 = attr.onshow;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onshow = v73;
+	}
+	var _g75 = attr.onstalled;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onstalled = v74;
+	}
+	var _g76 = attr.onsubmit;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsubmit = v75;
+	}
+	var _g77 = attr.onsuspend;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.onsuspend = v76;
+	}
+	var _g78 = attr.ontimeupdate;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontimeupdate = v77;
+	}
+	var _g79 = attr.ontouchcancel;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchcancel = v78;
+	}
+	var _g80 = attr.ontouchend;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchend = v79;
+	}
+	var _g81 = attr.ontouchmove;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchmove = v80;
+	}
+	var _g82 = attr.ontouchstart;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.ontouchstart = v81;
+	}
+	var _g83 = attr.onvolumechange;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onvolumechange = v82;
+	}
+	var _g84 = attr.onwaiting;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwaiting = v83;
+	}
+	var _g85 = attr.onwheel;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.onwheel = v84;
+	}
+	var _g86 = attr.spellcheck;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.spellcheck = v85;
+	}
+	var _g87 = attr.style;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.style = v86;
+	}
+	var _g88 = attr.tabIndex;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.tabIndex = v87;
+	}
+	var _g89 = attr.title;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret.title = v88;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g90 = 0;
+	while(_g90 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g90];
+		++_g90;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("span",attr2,__r1));
+	return __r[0];
 };
 mdc_List.listDivider = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-list-divider"] != null) {
@@ -8408,289 +12574,1909 @@ mdc_List.listDivider = function(attr,children) {
 	} else {
 		_g.h["mdc-list-divider--inset"] = value;
 	}
-	return vdom_VDom.h("li",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.attributes;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.attributes = v2;
+	}
+	var _g4 = attr.dir;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.dir = v3;
+	}
+	var _g5 = attr.draggable;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.draggable = v4;
+	}
+	var _g6 = attr.hidden;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.hidden = v5;
+	}
+	var _g7 = attr.id;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.id = v6;
+	}
+	var _g8 = attr.key;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.key = v7;
+	}
+	var _g9 = attr.lang;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.lang = v8;
+	}
+	var _g10 = attr.onabort;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onabort = v9;
+	}
+	var _g11 = attr.onblur;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.onblur = v10;
+	}
+	var _g12 = attr.oncanplay;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplay = v11;
+	}
+	var _g13 = attr.oncanplaythrough;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.oncanplaythrough = v12;
+	}
+	var _g14 = attr.onchange;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onchange = v13;
+	}
+	var _g15 = attr.onclick;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.onclick = v14;
+	}
+	var _g16 = attr.oncontextmenu;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncontextmenu = v15;
+	}
+	var _g17 = attr.oncopy;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncopy = v16;
+	}
+	var _g18 = attr.oncut;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.oncut = v17;
+	}
+	var _g19 = attr.ondblclick;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondblclick = v18;
+	}
+	var _g20 = attr.ondrag;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondrag = v19;
+	}
+	var _g21 = attr.ondragend;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragend = v20;
+	}
+	var _g22 = attr.ondragenter;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragenter = v21;
+	}
+	var _g23 = attr.ondragleave;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragleave = v22;
+	}
+	var _g24 = attr.ondragover;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragover = v23;
+	}
+	var _g25 = attr.ondragstart;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondragstart = v24;
+	}
+	var _g26 = attr.ondrop;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondrop = v25;
+	}
+	var _g27 = attr.ondurationchange;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.ondurationchange = v26;
+	}
+	var _g28 = attr.onemptied;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onemptied = v27;
+	}
+	var _g29 = attr.onended;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onended = v28;
+	}
+	var _g30 = attr.onerror;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onerror = v29;
+	}
+	var _g31 = attr.onfocus;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfocus = v30;
+	}
+	var _g32 = attr.onfullscreenchange;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenchange = v31;
+	}
+	var _g33 = attr.onfullscreenerror;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.onfullscreenerror = v32;
+	}
+	var _g34 = attr.ongotpointercapture;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.ongotpointercapture = v33;
+	}
+	var _g35 = attr.oninput;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninput = v34;
+	}
+	var _g36 = attr.oninvalid;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.oninvalid = v35;
+	}
+	var _g37 = attr.onkeydown;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeydown = v36;
+	}
+	var _g38 = attr.onkeypress;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeypress = v37;
+	}
+	var _g39 = attr.onkeyup;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onkeyup = v38;
+	}
+	var _g40 = attr.onload;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onload = v39;
+	}
+	var _g41 = attr.onloadeddata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadeddata = v40;
+	}
+	var _g42 = attr.onloadedmetadata;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadedmetadata = v41;
+	}
+	var _g43 = attr.onloadstart;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onloadstart = v42;
+	}
+	var _g44 = attr.onlostpointercapture;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onlostpointercapture = v43;
+	}
+	var _g45 = attr.onmousedown;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmousedown = v44;
+	}
+	var _g46 = attr.onmouseenter;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseenter = v45;
+	}
+	var _g47 = attr.onmouseleave;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmouseleave = v46;
+	}
+	var _g48 = attr.onmousemove;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmousemove = v47;
+	}
+	var _g49 = attr.onmouseout;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseout = v48;
+	}
+	var _g50 = attr.onmouseover;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseover = v49;
+	}
+	var _g51 = attr.onmouseup;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onmouseup = v50;
+	}
+	var _g52 = attr.onpaste;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpaste = v51;
+	}
+	var _g53 = attr.onpause;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onpause = v52;
+	}
+	var _g54 = attr.onplay;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplay = v53;
+	}
+	var _g55 = attr.onplaying;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onplaying = v54;
+	}
+	var _g56 = attr.onpointercancel;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointercancel = v55;
+	}
+	var _g57 = attr.onpointerdown;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerdown = v56;
+	}
+	var _g58 = attr.onpointerenter;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerenter = v57;
+	}
+	var _g59 = attr.onpointerleave;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerleave = v58;
+	}
+	var _g60 = attr.onpointerlockchange;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockchange = v59;
+	}
+	var _g61 = attr.onpointerlockerror;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointerlockerror = v60;
+	}
+	var _g62 = attr.onpointermove;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointermove = v61;
+	}
+	var _g63 = attr.onpointerout;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerout = v62;
+	}
+	var _g64 = attr.onpointerover;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerover = v63;
+	}
+	var _g65 = attr.onpointerup;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onpointerup = v64;
+	}
+	var _g66 = attr.onprogress;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onprogress = v65;
+	}
+	var _g67 = attr.onratechange;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onratechange = v66;
+	}
+	var _g68 = attr.onreset;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onreset = v67;
+	}
+	var _g69 = attr.onresize;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onresize = v68;
+	}
+	var _g70 = attr.onscroll;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onscroll = v69;
+	}
+	var _g71 = attr.onseeked;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeked = v70;
+	}
+	var _g72 = attr.onseeking;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onseeking = v71;
+	}
+	var _g73 = attr.onselect;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onselect = v72;
+	}
+	var _g74 = attr.onshow;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onshow = v73;
+	}
+	var _g75 = attr.onstalled;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onstalled = v74;
+	}
+	var _g76 = attr.onsubmit;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsubmit = v75;
+	}
+	var _g77 = attr.onsuspend;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.onsuspend = v76;
+	}
+	var _g78 = attr.ontimeupdate;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontimeupdate = v77;
+	}
+	var _g79 = attr.ontouchcancel;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchcancel = v78;
+	}
+	var _g80 = attr.ontouchend;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchend = v79;
+	}
+	var _g81 = attr.ontouchmove;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchmove = v80;
+	}
+	var _g82 = attr.ontouchstart;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.ontouchstart = v81;
+	}
+	var _g83 = attr.onvolumechange;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onvolumechange = v82;
+	}
+	var _g84 = attr.onwaiting;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwaiting = v83;
+	}
+	var _g85 = attr.onwheel;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.onwheel = v84;
+	}
+	var _g86 = attr.spellcheck;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.spellcheck = v85;
+	}
+	var _g87 = attr.style;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.style = v86;
+	}
+	var _g88 = attr.tabIndex;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.tabIndex = v87;
+	}
+	var _g89 = attr.title;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret.title = v88;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
+	var _g90 = 0;
+	while(_g90 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g90];
+		++_g90;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("li",attr2,__r1));
+	return __r[0];
+};
+mdc_List.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_List(attributes);
+	}
+	inst.__tink_init14(attributes);
+	return inst;
 };
 mdc_List.__super__ = coconut_ui_View;
 mdc_List.prototype = $extend(coconut_ui_View.prototype,{
-	render: function(attr) {
-		var attr1 = attr.className;
+	render: function() {
+		var _gthis = this;
+		var className = this.get_className();
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list"] != null) {
 			_g.setReserved("mdc-list",true);
 		} else {
 			_g.h["mdc-list"] = true;
 		}
-		var value = attr.twoLine;
+		var value = this.get_twoLine();
 		if(__map_reserved["mdc-list--two-line"] != null) {
 			_g.setReserved("mdc-list--two-line",value);
 		} else {
 			_g.h["mdc-list--two-line"] = value;
 		}
-		var value1 = attr.avatarList;
+		var value1 = this.get_avatarList();
 		if(__map_reserved["mdc-list--avatar-list"] != null) {
 			_g.setReserved("mdc-list--avatar-list",value1);
 		} else {
 			_g.h["mdc-list--avatar-list"] = value1;
 		}
-		var value2 = attr.dense;
+		var value2 = this.get_dense();
 		if(__map_reserved["mdc-list--dense"] != null) {
 			_g.setReserved("mdc-list--dense",value2);
 		} else {
 			_g.h["mdc-list--dense"] = value2;
 		}
-		var className = vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g));
-		if(attr.interactive) {
-			var __v_0 = attr;
-			return vdom_VDom.h("nav",{ className : className, accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-			}, onblur : function(event1) {
-			}, oncanplay : function(event2) {
-			}, oncanplaythrough : function(event3) {
-			}, onchange : function(event4) {
-			}, onclick : function(event5) {
-			}, oncontextmenu : function(event6) {
-			}, oncopy : function(event7) {
-			}, oncut : function(event8) {
-			}, ondblclick : function(event9) {
-			}, ondrag : function(event10) {
-			}, ondragend : function(event11) {
-			}, ondragenter : function(event12) {
-			}, ondragleave : function(event13) {
-			}, ondragover : function(event14) {
-			}, ondragstart : function(event15) {
-			}, ondrop : function(event16) {
-			}, ondurationchange : function(event17) {
-			}, onemptied : function(event18) {
-			}, onended : function(event19) {
-			}, onerror : function(event20) {
-			}, onfocus : function(event21) {
-			}, onfullscreenchange : function(event22) {
-			}, onfullscreenerror : function(event23) {
-			}, ongotpointercapture : function(event24) {
-			}, oninput : function(event25) {
-			}, oninvalid : function(event26) {
-			}, onkeydown : function(event27) {
-			}, onkeypress : function(event28) {
-			}, onkeyup : function(event29) {
-			}, onload : function(event30) {
-			}, onloadeddata : function(event31) {
-			}, onloadedmetadata : function(event32) {
-			}, onloadstart : function(event33) {
-			}, onlostpointercapture : function(event34) {
-			}, onmousedown : function(event35) {
-			}, onmouseenter : function(event36) {
-			}, onmouseleave : function(event37) {
-			}, onmousemove : function(event38) {
-			}, onmouseout : function(event39) {
-			}, onmouseover : function(event40) {
-			}, onmouseup : function(event41) {
-			}, onpaste : function(event42) {
-			}, onpause : function(event43) {
-			}, onplay : function(event44) {
-			}, onplaying : function(event45) {
-			}, onpointercancel : function(event46) {
-			}, onpointerdown : function(event47) {
-			}, onpointerenter : function(event48) {
-			}, onpointerleave : function(event49) {
-			}, onpointerlockchange : function(event50) {
-			}, onpointerlockerror : function(event51) {
-			}, onpointermove : function(event52) {
-			}, onpointerout : function(event53) {
-			}, onpointerover : function(event54) {
-			}, onpointerup : function(event55) {
-			}, onprogress : function(event56) {
-			}, onratechange : function(event57) {
-			}, onreset : function(event58) {
-			}, onresize : function(event59) {
-			}, onscroll : function(event60) {
-			}, onseeked : function(event61) {
-			}, onseeking : function(event62) {
-			}, onselect : function(event63) {
-			}, onshow : function(event64) {
-			}, onstalled : function(event65) {
-			}, onsubmit : function(event66) {
-			}, onsuspend : function(event67) {
-			}, ontimeupdate : function(event68) {
-			}, ontouchcancel : function(event69) {
-			}, ontouchend : function(event70) {
-			}, ontouchmove : function(event71) {
-			}, ontouchstart : function(event72) {
-			}, onvolumechange : function(event73) {
-			}, onwaiting : function(event74) {
-			}, onwheel : function(event75) {
-			}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[attr.items]);
+		var className1 = vdom__$Attr_ClassName_$Impl_$.add(className,vdom__$Attr_ClassName_$Impl_$.ofMap(_g));
+		if(this.get_interactive()) {
+			var __r = [];
+			var __ret = { className : className1};
+			var _g1 = this.get_accessKey();
+			if(_g1 != null) {
+				var v = _g1;
+				__ret.accessKey = v;
+			}
+			var _g2 = this.get_accessKeyLabel();
+			if(_g2 != null) {
+				var v1 = _g2;
+				__ret.accessKeyLabel = v1;
+			}
+			var _g3 = this.get_attributes();
+			if(_g3 != null) {
+				var v2 = _g3;
+				__ret.attributes = v2;
+			}
+			var _g4 = this.get_dir();
+			if(_g4 != null) {
+				var v3 = _g4;
+				__ret.dir = v3;
+			}
+			var _g5 = this.get_draggable();
+			if(_g5 != null) {
+				var v4 = _g5;
+				__ret.draggable = v4;
+			}
+			var _g6 = this.get_hidden();
+			if(_g6 != null) {
+				var v5 = _g6;
+				__ret.hidden = v5;
+			}
+			var _g7 = this.get_id();
+			if(_g7 != null) {
+				var v6 = _g7;
+				__ret.id = v6;
+			}
+			var _g8 = this.get_key();
+			if(_g8 != null) {
+				var v7 = _g8;
+				__ret.key = v7;
+			}
+			var _g9 = this.get_lang();
+			if(_g9 != null) {
+				var v8 = _g9;
+				__ret.lang = v8;
+			}
+			var _g10 = this.get_onabort();
+			if(_g10 != null) {
+				var v9 = _g10;
+				__ret.onabort = v9;
+			}
+			var _g11 = this.get_onblur();
+			if(_g11 != null) {
+				var v10 = _g11;
+				__ret.onblur = v10;
+			}
+			var _g12 = this.get_oncanplay();
+			if(_g12 != null) {
+				var v11 = _g12;
+				__ret.oncanplay = v11;
+			}
+			var _g13 = this.get_oncanplaythrough();
+			if(_g13 != null) {
+				var v12 = _g13;
+				__ret.oncanplaythrough = v12;
+			}
+			var _g14 = this.get_onchange();
+			if(_g14 != null) {
+				var v13 = _g14;
+				__ret.onchange = v13;
+			}
+			var _g15 = this.get_onclick();
+			if(_g15 != null) {
+				var v14 = _g15;
+				__ret.onclick = v14;
+			}
+			var _g16 = this.get_oncontextmenu();
+			if(_g16 != null) {
+				var v15 = _g16;
+				__ret.oncontextmenu = v15;
+			}
+			var _g17 = this.get_oncopy();
+			if(_g17 != null) {
+				var v16 = _g17;
+				__ret.oncopy = v16;
+			}
+			var _g18 = this.get_oncut();
+			if(_g18 != null) {
+				var v17 = _g18;
+				__ret.oncut = v17;
+			}
+			var _g19 = this.get_ondblclick();
+			if(_g19 != null) {
+				var v18 = _g19;
+				__ret.ondblclick = v18;
+			}
+			var _g20 = this.get_ondrag();
+			if(_g20 != null) {
+				var v19 = _g20;
+				__ret.ondrag = v19;
+			}
+			var _g21 = this.get_ondragend();
+			if(_g21 != null) {
+				var v20 = _g21;
+				__ret.ondragend = v20;
+			}
+			var _g22 = this.get_ondragenter();
+			if(_g22 != null) {
+				var v21 = _g22;
+				__ret.ondragenter = v21;
+			}
+			var _g23 = this.get_ondragleave();
+			if(_g23 != null) {
+				var v22 = _g23;
+				__ret.ondragleave = v22;
+			}
+			var _g24 = this.get_ondragover();
+			if(_g24 != null) {
+				var v23 = _g24;
+				__ret.ondragover = v23;
+			}
+			var _g25 = this.get_ondragstart();
+			if(_g25 != null) {
+				var v24 = _g25;
+				__ret.ondragstart = v24;
+			}
+			var _g26 = this.get_ondrop();
+			if(_g26 != null) {
+				var v25 = _g26;
+				__ret.ondrop = v25;
+			}
+			var _g27 = this.get_ondurationchange();
+			if(_g27 != null) {
+				var v26 = _g27;
+				__ret.ondurationchange = v26;
+			}
+			var _g28 = this.get_onemptied();
+			if(_g28 != null) {
+				var v27 = _g28;
+				__ret.onemptied = v27;
+			}
+			var _g29 = this.get_onended();
+			if(_g29 != null) {
+				var v28 = _g29;
+				__ret.onended = v28;
+			}
+			var _g30 = this.get_onerror();
+			if(_g30 != null) {
+				var v29 = _g30;
+				__ret.onerror = v29;
+			}
+			var _g31 = this.get_onfocus();
+			if(_g31 != null) {
+				var v30 = _g31;
+				__ret.onfocus = v30;
+			}
+			var _g32 = this.get_onfullscreenchange();
+			if(_g32 != null) {
+				var v31 = _g32;
+				__ret.onfullscreenchange = v31;
+			}
+			var _g33 = this.get_onfullscreenerror();
+			if(_g33 != null) {
+				var v32 = _g33;
+				__ret.onfullscreenerror = v32;
+			}
+			var _g34 = this.get_ongotpointercapture();
+			if(_g34 != null) {
+				var v33 = _g34;
+				__ret.ongotpointercapture = v33;
+			}
+			var _g35 = this.get_oninput();
+			if(_g35 != null) {
+				var v34 = _g35;
+				__ret.oninput = v34;
+			}
+			var _g36 = this.get_oninvalid();
+			if(_g36 != null) {
+				var v35 = _g36;
+				__ret.oninvalid = v35;
+			}
+			var _g37 = this.get_onkeydown();
+			if(_g37 != null) {
+				var v36 = _g37;
+				__ret.onkeydown = v36;
+			}
+			var _g38 = this.get_onkeypress();
+			if(_g38 != null) {
+				var v37 = _g38;
+				__ret.onkeypress = v37;
+			}
+			var _g39 = this.get_onkeyup();
+			if(_g39 != null) {
+				var v38 = _g39;
+				__ret.onkeyup = v38;
+			}
+			var _g40 = this.get_onload();
+			if(_g40 != null) {
+				var v39 = _g40;
+				__ret.onload = v39;
+			}
+			var _g41 = this.get_onloadeddata();
+			if(_g41 != null) {
+				var v40 = _g41;
+				__ret.onloadeddata = v40;
+			}
+			var _g42 = this.get_onloadedmetadata();
+			if(_g42 != null) {
+				var v41 = _g42;
+				__ret.onloadedmetadata = v41;
+			}
+			var _g43 = this.get_onloadstart();
+			if(_g43 != null) {
+				var v42 = _g43;
+				__ret.onloadstart = v42;
+			}
+			var _g44 = this.get_onlostpointercapture();
+			if(_g44 != null) {
+				var v43 = _g44;
+				__ret.onlostpointercapture = v43;
+			}
+			var _g45 = this.get_onmousedown();
+			if(_g45 != null) {
+				var v44 = _g45;
+				__ret.onmousedown = v44;
+			}
+			var _g46 = this.get_onmouseenter();
+			if(_g46 != null) {
+				var v45 = _g46;
+				__ret.onmouseenter = v45;
+			}
+			var _g47 = this.get_onmouseleave();
+			if(_g47 != null) {
+				var v46 = _g47;
+				__ret.onmouseleave = v46;
+			}
+			var _g48 = this.get_onmousemove();
+			if(_g48 != null) {
+				var v47 = _g48;
+				__ret.onmousemove = v47;
+			}
+			var _g49 = this.get_onmouseout();
+			if(_g49 != null) {
+				var v48 = _g49;
+				__ret.onmouseout = v48;
+			}
+			var _g50 = this.get_onmouseover();
+			if(_g50 != null) {
+				var v49 = _g50;
+				__ret.onmouseover = v49;
+			}
+			var _g51 = this.get_onmouseup();
+			if(_g51 != null) {
+				var v50 = _g51;
+				__ret.onmouseup = v50;
+			}
+			var _g52 = this.get_onpaste();
+			if(_g52 != null) {
+				var v51 = _g52;
+				__ret.onpaste = v51;
+			}
+			var _g53 = this.get_onpause();
+			if(_g53 != null) {
+				var v52 = _g53;
+				__ret.onpause = v52;
+			}
+			var _g54 = this.get_onplay();
+			if(_g54 != null) {
+				var v53 = _g54;
+				__ret.onplay = v53;
+			}
+			var _g55 = this.get_onplaying();
+			if(_g55 != null) {
+				var v54 = _g55;
+				__ret.onplaying = v54;
+			}
+			var _g56 = this.get_onpointercancel();
+			if(_g56 != null) {
+				var v55 = _g56;
+				__ret.onpointercancel = v55;
+			}
+			var _g57 = this.get_onpointerdown();
+			if(_g57 != null) {
+				var v56 = _g57;
+				__ret.onpointerdown = v56;
+			}
+			var _g58 = this.get_onpointerenter();
+			if(_g58 != null) {
+				var v57 = _g58;
+				__ret.onpointerenter = v57;
+			}
+			var _g59 = this.get_onpointerleave();
+			if(_g59 != null) {
+				var v58 = _g59;
+				__ret.onpointerleave = v58;
+			}
+			var _g60 = this.get_onpointerlockchange();
+			if(_g60 != null) {
+				var v59 = _g60;
+				__ret.onpointerlockchange = v59;
+			}
+			var _g61 = this.get_onpointerlockerror();
+			if(_g61 != null) {
+				var v60 = _g61;
+				__ret.onpointerlockerror = v60;
+			}
+			var _g62 = this.get_onpointermove();
+			if(_g62 != null) {
+				var v61 = _g62;
+				__ret.onpointermove = v61;
+			}
+			var _g63 = this.get_onpointerout();
+			if(_g63 != null) {
+				var v62 = _g63;
+				__ret.onpointerout = v62;
+			}
+			var _g64 = this.get_onpointerover();
+			if(_g64 != null) {
+				var v63 = _g64;
+				__ret.onpointerover = v63;
+			}
+			var _g65 = this.get_onpointerup();
+			if(_g65 != null) {
+				var v64 = _g65;
+				__ret.onpointerup = v64;
+			}
+			var _g66 = this.get_onprogress();
+			if(_g66 != null) {
+				var v65 = _g66;
+				__ret.onprogress = v65;
+			}
+			var _g67 = this.get_onratechange();
+			if(_g67 != null) {
+				var v66 = _g67;
+				__ret.onratechange = v66;
+			}
+			var _g68 = this.get_onreset();
+			if(_g68 != null) {
+				var v67 = _g68;
+				__ret.onreset = v67;
+			}
+			var _g69 = this.get_onresize();
+			if(_g69 != null) {
+				var v68 = _g69;
+				__ret.onresize = v68;
+			}
+			var _g70 = this.get_onscroll();
+			if(_g70 != null) {
+				var v69 = _g70;
+				__ret.onscroll = v69;
+			}
+			var _g71 = this.get_onseeked();
+			if(_g71 != null) {
+				var v70 = _g71;
+				__ret.onseeked = v70;
+			}
+			var _g72 = this.get_onseeking();
+			if(_g72 != null) {
+				var v71 = _g72;
+				__ret.onseeking = v71;
+			}
+			var _g73 = this.get_onselect();
+			if(_g73 != null) {
+				var v72 = _g73;
+				__ret.onselect = v72;
+			}
+			var _g74 = this.get_onshow();
+			if(_g74 != null) {
+				var v73 = _g74;
+				__ret.onshow = v73;
+			}
+			var _g75 = this.get_onstalled();
+			if(_g75 != null) {
+				var v74 = _g75;
+				__ret.onstalled = v74;
+			}
+			var _g76 = this.get_onsubmit();
+			if(_g76 != null) {
+				var v75 = _g76;
+				__ret.onsubmit = v75;
+			}
+			var _g77 = this.get_onsuspend();
+			if(_g77 != null) {
+				var v76 = _g77;
+				__ret.onsuspend = v76;
+			}
+			var _g78 = this.get_ontimeupdate();
+			if(_g78 != null) {
+				var v77 = _g78;
+				__ret.ontimeupdate = v77;
+			}
+			var _g79 = this.get_ontouchcancel();
+			if(_g79 != null) {
+				var v78 = _g79;
+				__ret.ontouchcancel = v78;
+			}
+			var _g80 = this.get_ontouchend();
+			if(_g80 != null) {
+				var v79 = _g80;
+				__ret.ontouchend = v79;
+			}
+			var _g81 = this.get_ontouchmove();
+			if(_g81 != null) {
+				var v80 = _g81;
+				__ret.ontouchmove = v80;
+			}
+			var _g82 = this.get_ontouchstart();
+			if(_g82 != null) {
+				var v81 = _g82;
+				__ret.ontouchstart = v81;
+			}
+			var _g83 = this.get_onvolumechange();
+			if(_g83 != null) {
+				var v82 = _g83;
+				__ret.onvolumechange = v82;
+			}
+			var _g84 = this.get_onwaiting();
+			if(_g84 != null) {
+				var v83 = _g84;
+				__ret.onwaiting = v83;
+			}
+			var _g85 = this.get_onwheel();
+			if(_g85 != null) {
+				var v84 = _g85;
+				__ret.onwheel = v84;
+			}
+			var _g86 = this.get_spellcheck();
+			if(_g86 != null) {
+				var v85 = _g86;
+				__ret.spellcheck = v85;
+			}
+			var _g87 = this.get_style();
+			if(_g87 != null) {
+				var v86 = _g87;
+				__ret.style = v86;
+			}
+			var _g88 = this.get_tabIndex();
+			if(_g88 != null) {
+				var v87 = _g88;
+				__ret.tabIndex = v87;
+			}
+			var _g89 = this.get_title();
+			if(_g89 != null) {
+				var v88 = _g89;
+				__ret.title = v88;
+			}
+			var attr = __ret;
+			var __r1 = [];
+			var _g110 = 0;
+			var _g210 = this.get_children();
+			while(_g110 < (_g210 == null ? 0 : _g210.length)) {
+				var _0 = _g210 == null ? null : _g210[_g110];
+				++_g110;
+				__r1.push(_0);
+			}
+			__r.push(vdom_VDom.h("nav",attr,__r1));
+			return __r[0];
 		} else {
-			var __v_01 = attr;
-			return vdom_VDom.h("ul",{ className : className, accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event76) {
-			}, onblur : function(event77) {
-			}, oncanplay : function(event78) {
-			}, oncanplaythrough : function(event79) {
-			}, onchange : function(event80) {
-			}, onclick : function(event81) {
-			}, oncontextmenu : function(event82) {
-			}, oncopy : function(event83) {
-			}, oncut : function(event84) {
-			}, ondblclick : function(event85) {
-			}, ondrag : function(event86) {
-			}, ondragend : function(event87) {
-			}, ondragenter : function(event88) {
-			}, ondragleave : function(event89) {
-			}, ondragover : function(event90) {
-			}, ondragstart : function(event91) {
-			}, ondrop : function(event92) {
-			}, ondurationchange : function(event93) {
-			}, onemptied : function(event94) {
-			}, onended : function(event95) {
-			}, onerror : function(event96) {
-			}, onfocus : function(event97) {
-			}, onfullscreenchange : function(event98) {
-			}, onfullscreenerror : function(event99) {
-			}, ongotpointercapture : function(event100) {
-			}, oninput : function(event101) {
-			}, oninvalid : function(event102) {
-			}, onkeydown : function(event103) {
-			}, onkeypress : function(event104) {
-			}, onkeyup : function(event105) {
-			}, onload : function(event106) {
-			}, onloadeddata : function(event107) {
-			}, onloadedmetadata : function(event108) {
-			}, onloadstart : function(event109) {
-			}, onlostpointercapture : function(event110) {
-			}, onmousedown : function(event111) {
-			}, onmouseenter : function(event112) {
-			}, onmouseleave : function(event113) {
-			}, onmousemove : function(event114) {
-			}, onmouseout : function(event115) {
-			}, onmouseover : function(event116) {
-			}, onmouseup : function(event117) {
-			}, onpaste : function(event118) {
-			}, onpause : function(event119) {
-			}, onplay : function(event120) {
-			}, onplaying : function(event121) {
-			}, onpointercancel : function(event122) {
-			}, onpointerdown : function(event123) {
-			}, onpointerenter : function(event124) {
-			}, onpointerleave : function(event125) {
-			}, onpointerlockchange : function(event126) {
-			}, onpointerlockerror : function(event127) {
-			}, onpointermove : function(event128) {
-			}, onpointerout : function(event129) {
-			}, onpointerover : function(event130) {
-			}, onpointerup : function(event131) {
-			}, onprogress : function(event132) {
-			}, onratechange : function(event133) {
-			}, onreset : function(event134) {
-			}, onresize : function(event135) {
-			}, onscroll : function(event136) {
-			}, onseeked : function(event137) {
-			}, onseeking : function(event138) {
-			}, onselect : function(event139) {
-			}, onshow : function(event140) {
-			}, onstalled : function(event141) {
-			}, onsubmit : function(event142) {
-			}, onsuspend : function(event143) {
-			}, ontimeupdate : function(event144) {
-			}, ontouchcancel : function(event145) {
-			}, ontouchend : function(event146) {
-			}, ontouchmove : function(event147) {
-			}, ontouchstart : function(event148) {
-			}, onvolumechange : function(event149) {
-			}, onwaiting : function(event150) {
-			}, onwheel : function(event151) {
-			}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[attr.items]);
+			var __r2 = [];
+			var __ret1 = { className : className1};
+			var _g111 = this.get_accessKey();
+			if(_g111 != null) {
+				var v89 = _g111;
+				__ret1.accessKey = v89;
+			}
+			var _g211 = this.get_accessKeyLabel();
+			if(_g211 != null) {
+				var v90 = _g211;
+				__ret1.accessKeyLabel = v90;
+			}
+			var _g310 = this.get_attributes();
+			if(_g310 != null) {
+				var v91 = _g310;
+				__ret1.attributes = v91;
+			}
+			var _g410 = this.get_dir();
+			if(_g410 != null) {
+				var v92 = _g410;
+				__ret1.dir = v92;
+			}
+			var _g510 = this.get_draggable();
+			if(_g510 != null) {
+				var v93 = _g510;
+				__ret1.draggable = v93;
+			}
+			var _g610 = this.get_hidden();
+			if(_g610 != null) {
+				var v94 = _g610;
+				__ret1.hidden = v94;
+			}
+			var _g710 = this.get_id();
+			if(_g710 != null) {
+				var v95 = _g710;
+				__ret1.id = v95;
+			}
+			var _g810 = this.get_key();
+			if(_g810 != null) {
+				var v96 = _g810;
+				__ret1.key = v96;
+			}
+			var _g91 = this.get_lang();
+			if(_g91 != null) {
+				var v97 = _g91;
+				__ret1.lang = v97;
+			}
+			var _g101 = this.get_onabort();
+			if(_g101 != null) {
+				var v98 = _g101;
+				__ret1.onabort = v98;
+			}
+			var _g112 = this.get_onblur();
+			if(_g112 != null) {
+				var v99 = _g112;
+				__ret1.onblur = v99;
+			}
+			var _g121 = this.get_oncanplay();
+			if(_g121 != null) {
+				var v100 = _g121;
+				__ret1.oncanplay = v100;
+			}
+			var _g131 = this.get_oncanplaythrough();
+			if(_g131 != null) {
+				var v101 = _g131;
+				__ret1.oncanplaythrough = v101;
+			}
+			var _g141 = this.get_onchange();
+			if(_g141 != null) {
+				var v102 = _g141;
+				__ret1.onchange = v102;
+			}
+			var _g151 = this.get_onclick();
+			if(_g151 != null) {
+				var v103 = _g151;
+				__ret1.onclick = v103;
+			}
+			var _g161 = this.get_oncontextmenu();
+			if(_g161 != null) {
+				var v104 = _g161;
+				__ret1.oncontextmenu = v104;
+			}
+			var _g171 = this.get_oncopy();
+			if(_g171 != null) {
+				var v105 = _g171;
+				__ret1.oncopy = v105;
+			}
+			var _g181 = this.get_oncut();
+			if(_g181 != null) {
+				var v106 = _g181;
+				__ret1.oncut = v106;
+			}
+			var _g191 = this.get_ondblclick();
+			if(_g191 != null) {
+				var v107 = _g191;
+				__ret1.ondblclick = v107;
+			}
+			var _g201 = this.get_ondrag();
+			if(_g201 != null) {
+				var v108 = _g201;
+				__ret1.ondrag = v108;
+			}
+			var _g212 = this.get_ondragend();
+			if(_g212 != null) {
+				var v109 = _g212;
+				__ret1.ondragend = v109;
+			}
+			var _g221 = this.get_ondragenter();
+			if(_g221 != null) {
+				var v110 = _g221;
+				__ret1.ondragenter = v110;
+			}
+			var _g231 = this.get_ondragleave();
+			if(_g231 != null) {
+				var v111 = _g231;
+				__ret1.ondragleave = v111;
+			}
+			var _g241 = this.get_ondragover();
+			if(_g241 != null) {
+				var v112 = _g241;
+				__ret1.ondragover = v112;
+			}
+			var _g251 = this.get_ondragstart();
+			if(_g251 != null) {
+				var v113 = _g251;
+				__ret1.ondragstart = v113;
+			}
+			var _g261 = this.get_ondrop();
+			if(_g261 != null) {
+				var v114 = _g261;
+				__ret1.ondrop = v114;
+			}
+			var _g271 = this.get_ondurationchange();
+			if(_g271 != null) {
+				var v115 = _g271;
+				__ret1.ondurationchange = v115;
+			}
+			var _g281 = this.get_onemptied();
+			if(_g281 != null) {
+				var v116 = _g281;
+				__ret1.onemptied = v116;
+			}
+			var _g291 = this.get_onended();
+			if(_g291 != null) {
+				var v117 = _g291;
+				__ret1.onended = v117;
+			}
+			var _g301 = this.get_onerror();
+			if(_g301 != null) {
+				var v118 = _g301;
+				__ret1.onerror = v118;
+			}
+			var _g311 = this.get_onfocus();
+			if(_g311 != null) {
+				var v119 = _g311;
+				__ret1.onfocus = v119;
+			}
+			var _g321 = this.get_onfullscreenchange();
+			if(_g321 != null) {
+				var v120 = _g321;
+				__ret1.onfullscreenchange = v120;
+			}
+			var _g331 = this.get_onfullscreenerror();
+			if(_g331 != null) {
+				var v121 = _g331;
+				__ret1.onfullscreenerror = v121;
+			}
+			var _g341 = this.get_ongotpointercapture();
+			if(_g341 != null) {
+				var v122 = _g341;
+				__ret1.ongotpointercapture = v122;
+			}
+			var _g351 = this.get_oninput();
+			if(_g351 != null) {
+				var v123 = _g351;
+				__ret1.oninput = v123;
+			}
+			var _g361 = this.get_oninvalid();
+			if(_g361 != null) {
+				var v124 = _g361;
+				__ret1.oninvalid = v124;
+			}
+			var _g371 = this.get_onkeydown();
+			if(_g371 != null) {
+				var v125 = _g371;
+				__ret1.onkeydown = v125;
+			}
+			var _g381 = this.get_onkeypress();
+			if(_g381 != null) {
+				var v126 = _g381;
+				__ret1.onkeypress = v126;
+			}
+			var _g391 = this.get_onkeyup();
+			if(_g391 != null) {
+				var v127 = _g391;
+				__ret1.onkeyup = v127;
+			}
+			var _g401 = this.get_onload();
+			if(_g401 != null) {
+				var v128 = _g401;
+				__ret1.onload = v128;
+			}
+			var _g411 = this.get_onloadeddata();
+			if(_g411 != null) {
+				var v129 = _g411;
+				__ret1.onloadeddata = v129;
+			}
+			var _g421 = this.get_onloadedmetadata();
+			if(_g421 != null) {
+				var v130 = _g421;
+				__ret1.onloadedmetadata = v130;
+			}
+			var _g431 = this.get_onloadstart();
+			if(_g431 != null) {
+				var v131 = _g431;
+				__ret1.onloadstart = v131;
+			}
+			var _g441 = this.get_onlostpointercapture();
+			if(_g441 != null) {
+				var v132 = _g441;
+				__ret1.onlostpointercapture = v132;
+			}
+			var _g451 = this.get_onmousedown();
+			if(_g451 != null) {
+				var v133 = _g451;
+				__ret1.onmousedown = v133;
+			}
+			var _g461 = this.get_onmouseenter();
+			if(_g461 != null) {
+				var v134 = _g461;
+				__ret1.onmouseenter = v134;
+			}
+			var _g471 = this.get_onmouseleave();
+			if(_g471 != null) {
+				var v135 = _g471;
+				__ret1.onmouseleave = v135;
+			}
+			var _g481 = this.get_onmousemove();
+			if(_g481 != null) {
+				var v136 = _g481;
+				__ret1.onmousemove = v136;
+			}
+			var _g491 = this.get_onmouseout();
+			if(_g491 != null) {
+				var v137 = _g491;
+				__ret1.onmouseout = v137;
+			}
+			var _g501 = this.get_onmouseover();
+			if(_g501 != null) {
+				var v138 = _g501;
+				__ret1.onmouseover = v138;
+			}
+			var _g511 = this.get_onmouseup();
+			if(_g511 != null) {
+				var v139 = _g511;
+				__ret1.onmouseup = v139;
+			}
+			var _g521 = this.get_onpaste();
+			if(_g521 != null) {
+				var v140 = _g521;
+				__ret1.onpaste = v140;
+			}
+			var _g531 = this.get_onpause();
+			if(_g531 != null) {
+				var v141 = _g531;
+				__ret1.onpause = v141;
+			}
+			var _g541 = this.get_onplay();
+			if(_g541 != null) {
+				var v142 = _g541;
+				__ret1.onplay = v142;
+			}
+			var _g551 = this.get_onplaying();
+			if(_g551 != null) {
+				var v143 = _g551;
+				__ret1.onplaying = v143;
+			}
+			var _g561 = this.get_onpointercancel();
+			if(_g561 != null) {
+				var v144 = _g561;
+				__ret1.onpointercancel = v144;
+			}
+			var _g571 = this.get_onpointerdown();
+			if(_g571 != null) {
+				var v145 = _g571;
+				__ret1.onpointerdown = v145;
+			}
+			var _g581 = this.get_onpointerenter();
+			if(_g581 != null) {
+				var v146 = _g581;
+				__ret1.onpointerenter = v146;
+			}
+			var _g591 = this.get_onpointerleave();
+			if(_g591 != null) {
+				var v147 = _g591;
+				__ret1.onpointerleave = v147;
+			}
+			var _g601 = this.get_onpointerlockchange();
+			if(_g601 != null) {
+				var v148 = _g601;
+				__ret1.onpointerlockchange = v148;
+			}
+			var _g611 = this.get_onpointerlockerror();
+			if(_g611 != null) {
+				var v149 = _g611;
+				__ret1.onpointerlockerror = v149;
+			}
+			var _g621 = this.get_onpointermove();
+			if(_g621 != null) {
+				var v150 = _g621;
+				__ret1.onpointermove = v150;
+			}
+			var _g631 = this.get_onpointerout();
+			if(_g631 != null) {
+				var v151 = _g631;
+				__ret1.onpointerout = v151;
+			}
+			var _g641 = this.get_onpointerover();
+			if(_g641 != null) {
+				var v152 = _g641;
+				__ret1.onpointerover = v152;
+			}
+			var _g651 = this.get_onpointerup();
+			if(_g651 != null) {
+				var v153 = _g651;
+				__ret1.onpointerup = v153;
+			}
+			var _g661 = this.get_onprogress();
+			if(_g661 != null) {
+				var v154 = _g661;
+				__ret1.onprogress = v154;
+			}
+			var _g671 = this.get_onratechange();
+			if(_g671 != null) {
+				var v155 = _g671;
+				__ret1.onratechange = v155;
+			}
+			var _g681 = this.get_onreset();
+			if(_g681 != null) {
+				var v156 = _g681;
+				__ret1.onreset = v156;
+			}
+			var _g691 = this.get_onresize();
+			if(_g691 != null) {
+				var v157 = _g691;
+				__ret1.onresize = v157;
+			}
+			var _g701 = this.get_onscroll();
+			if(_g701 != null) {
+				var v158 = _g701;
+				__ret1.onscroll = v158;
+			}
+			var _g711 = this.get_onseeked();
+			if(_g711 != null) {
+				var v159 = _g711;
+				__ret1.onseeked = v159;
+			}
+			var _g721 = this.get_onseeking();
+			if(_g721 != null) {
+				var v160 = _g721;
+				__ret1.onseeking = v160;
+			}
+			var _g731 = this.get_onselect();
+			if(_g731 != null) {
+				var v161 = _g731;
+				__ret1.onselect = v161;
+			}
+			var _g741 = this.get_onshow();
+			if(_g741 != null) {
+				var v162 = _g741;
+				__ret1.onshow = v162;
+			}
+			var _g751 = this.get_onstalled();
+			if(_g751 != null) {
+				var v163 = _g751;
+				__ret1.onstalled = v163;
+			}
+			var _g761 = this.get_onsubmit();
+			if(_g761 != null) {
+				var v164 = _g761;
+				__ret1.onsubmit = v164;
+			}
+			var _g771 = this.get_onsuspend();
+			if(_g771 != null) {
+				var v165 = _g771;
+				__ret1.onsuspend = v165;
+			}
+			var _g781 = this.get_ontimeupdate();
+			if(_g781 != null) {
+				var v166 = _g781;
+				__ret1.ontimeupdate = v166;
+			}
+			var _g791 = this.get_ontouchcancel();
+			if(_g791 != null) {
+				var v167 = _g791;
+				__ret1.ontouchcancel = v167;
+			}
+			var _g801 = this.get_ontouchend();
+			if(_g801 != null) {
+				var v168 = _g801;
+				__ret1.ontouchend = v168;
+			}
+			var _g811 = this.get_ontouchmove();
+			if(_g811 != null) {
+				var v169 = _g811;
+				__ret1.ontouchmove = v169;
+			}
+			var _g821 = this.get_ontouchstart();
+			if(_g821 != null) {
+				var v170 = _g821;
+				__ret1.ontouchstart = v170;
+			}
+			var _g831 = this.get_onvolumechange();
+			if(_g831 != null) {
+				var v171 = _g831;
+				__ret1.onvolumechange = v171;
+			}
+			var _g841 = this.get_onwaiting();
+			if(_g841 != null) {
+				var v172 = _g841;
+				__ret1.onwaiting = v172;
+			}
+			var _g851 = this.get_onwheel();
+			if(_g851 != null) {
+				var v173 = _g851;
+				__ret1.onwheel = v173;
+			}
+			var _g861 = this.get_spellcheck();
+			if(_g861 != null) {
+				var v174 = _g861;
+				__ret1.spellcheck = v174;
+			}
+			var _g871 = this.get_style();
+			if(_g871 != null) {
+				var v175 = _g871;
+				__ret1.style = v175;
+			}
+			var _g881 = this.get_tabIndex();
+			if(_g881 != null) {
+				var v176 = _g881;
+				__ret1.tabIndex = v176;
+			}
+			var _g891 = this.get_title();
+			if(_g891 != null) {
+				var v177 = _g891;
+				__ret1.title = v177;
+			}
+			var attr1 = __ret1;
+			var __r3 = [];
+			var _g113 = 0;
+			var _g213 = this.get_children();
+			while(_g113 < (_g213 == null ? 0 : _g213.length)) {
+				var _01 = _g213 == null ? null : _g213[_g113];
+				++_g113;
+				__r3.push(_01);
+			}
+			__r2.push(vdom_VDom.h("ul",attr1,__r3));
+			return __r2[0];
 		}
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults0: null
+	,__slots: null
+	,toString: function() {
+		return "List" + "#" + this.viewId;
+	}
+	,__tink_init14: function(attributes) {
+		var this1 = attributes.dense;
+		this.__slots.dense.setData(this1 == null ? this.__tink_defaults0.dense : this1);
+		var this2 = attributes.twoLine;
+		this.__slots.twoLine.setData(this2 == null ? this.__tink_defaults0.twoLine : this2);
+		var this3 = attributes.avatarList;
+		this.__slots.avatarList.setData(this3 == null ? this.__tink_defaults0.avatarList : this3);
+		var this4 = attributes.interactive;
+		this.__slots.interactive.setData(this4 == null ? this.__tink_defaults0.interactive : this4);
+		this.__slots.children.setData(attributes.children);
+		var this5 = attributes.accessKey;
+		this.__slots.accessKey.setData(this5 == null ? this.__tink_defaults0.accessKey : this5);
+		var this6 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this6 == null ? this.__tink_defaults0.accessKeyLabel : this6);
+		var this7 = attributes.attributes;
+		this.__slots.attributes.setData(this7 == null ? this.__tink_defaults0.attributes : this7);
+		var this8 = attributes.className;
+		this.__slots.className.setData(this8 == null ? this.__tink_defaults0.className : this8);
+		var this9 = attributes.dir;
+		this.__slots.dir.setData(this9 == null ? this.__tink_defaults0.dir : this9);
+		var this10 = attributes.draggable;
+		this.__slots.draggable.setData(this10 == null ? this.__tink_defaults0.draggable : this10);
+		var this11 = attributes.hidden;
+		this.__slots.hidden.setData(this11 == null ? this.__tink_defaults0.hidden : this11);
+		var this12 = attributes.id;
+		this.__slots.id.setData(this12 == null ? this.__tink_defaults0.id : this12);
+		var this13 = attributes.key;
+		this.__slots.key.setData(this13 == null ? this.__tink_defaults0.key : this13);
+		var this14 = attributes.lang;
+		this.__slots.lang.setData(this14 == null ? this.__tink_defaults0.lang : this14);
+		var this15 = attributes.onabort;
+		this.__slots.onabort.setData(this15 == null ? this.__tink_defaults0.onabort : this15);
+		var this16 = attributes.onblur;
+		this.__slots.onblur.setData(this16 == null ? this.__tink_defaults0.onblur : this16);
+		var this17 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this17 == null ? this.__tink_defaults0.oncanplay : this17);
+		var this18 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this18 == null ? this.__tink_defaults0.oncanplaythrough : this18);
+		var this19 = attributes.onchange;
+		this.__slots.onchange.setData(this19 == null ? this.__tink_defaults0.onchange : this19);
+		var this20 = attributes.onclick;
+		this.__slots.onclick.setData(this20 == null ? this.__tink_defaults0.onclick : this20);
+		var this21 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this21 == null ? this.__tink_defaults0.oncontextmenu : this21);
+		var this22 = attributes.oncopy;
+		this.__slots.oncopy.setData(this22 == null ? this.__tink_defaults0.oncopy : this22);
+		var this23 = attributes.oncut;
+		this.__slots.oncut.setData(this23 == null ? this.__tink_defaults0.oncut : this23);
+		var this24 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this24 == null ? this.__tink_defaults0.ondblclick : this24);
+		var this25 = attributes.ondrag;
+		this.__slots.ondrag.setData(this25 == null ? this.__tink_defaults0.ondrag : this25);
+		var this26 = attributes.ondragend;
+		this.__slots.ondragend.setData(this26 == null ? this.__tink_defaults0.ondragend : this26);
+		var this27 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this27 == null ? this.__tink_defaults0.ondragenter : this27);
+		var this28 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this28 == null ? this.__tink_defaults0.ondragleave : this28);
+		var this29 = attributes.ondragover;
+		this.__slots.ondragover.setData(this29 == null ? this.__tink_defaults0.ondragover : this29);
+		var this30 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this30 == null ? this.__tink_defaults0.ondragstart : this30);
+		var this31 = attributes.ondrop;
+		this.__slots.ondrop.setData(this31 == null ? this.__tink_defaults0.ondrop : this31);
+		var this32 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this32 == null ? this.__tink_defaults0.ondurationchange : this32);
+		var this33 = attributes.onemptied;
+		this.__slots.onemptied.setData(this33 == null ? this.__tink_defaults0.onemptied : this33);
+		var this34 = attributes.onended;
+		this.__slots.onended.setData(this34 == null ? this.__tink_defaults0.onended : this34);
+		var this35 = attributes.onerror;
+		this.__slots.onerror.setData(this35 == null ? this.__tink_defaults0.onerror : this35);
+		var this36 = attributes.onfocus;
+		this.__slots.onfocus.setData(this36 == null ? this.__tink_defaults0.onfocus : this36);
+		var this37 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this37 == null ? this.__tink_defaults0.onfullscreenchange : this37);
+		var this38 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this38 == null ? this.__tink_defaults0.onfullscreenerror : this38);
+		var this39 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this39 == null ? this.__tink_defaults0.ongotpointercapture : this39);
+		var this40 = attributes.oninput;
+		this.__slots.oninput.setData(this40 == null ? this.__tink_defaults0.oninput : this40);
+		var this41 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this41 == null ? this.__tink_defaults0.oninvalid : this41);
+		var this42 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this42 == null ? this.__tink_defaults0.onkeydown : this42);
+		var this43 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this43 == null ? this.__tink_defaults0.onkeypress : this43);
+		var this44 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this44 == null ? this.__tink_defaults0.onkeyup : this44);
+		var this45 = attributes.onload;
+		this.__slots.onload.setData(this45 == null ? this.__tink_defaults0.onload : this45);
+		var this46 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this46 == null ? this.__tink_defaults0.onloadeddata : this46);
+		var this47 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this47 == null ? this.__tink_defaults0.onloadedmetadata : this47);
+		var this48 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this48 == null ? this.__tink_defaults0.onloadstart : this48);
+		var this49 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this49 == null ? this.__tink_defaults0.onlostpointercapture : this49);
+		var this50 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this50 == null ? this.__tink_defaults0.onmousedown : this50);
+		var this51 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this51 == null ? this.__tink_defaults0.onmouseenter : this51);
+		var this52 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this52 == null ? this.__tink_defaults0.onmouseleave : this52);
+		var this53 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this53 == null ? this.__tink_defaults0.onmousemove : this53);
+		var this54 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this54 == null ? this.__tink_defaults0.onmouseout : this54);
+		var this55 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this55 == null ? this.__tink_defaults0.onmouseover : this55);
+		var this56 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this56 == null ? this.__tink_defaults0.onmouseup : this56);
+		var this57 = attributes.onpaste;
+		this.__slots.onpaste.setData(this57 == null ? this.__tink_defaults0.onpaste : this57);
+		var this58 = attributes.onpause;
+		this.__slots.onpause.setData(this58 == null ? this.__tink_defaults0.onpause : this58);
+		var this59 = attributes.onplay;
+		this.__slots.onplay.setData(this59 == null ? this.__tink_defaults0.onplay : this59);
+		var this60 = attributes.onplaying;
+		this.__slots.onplaying.setData(this60 == null ? this.__tink_defaults0.onplaying : this60);
+		var this61 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this61 == null ? this.__tink_defaults0.onpointercancel : this61);
+		var this62 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this62 == null ? this.__tink_defaults0.onpointerdown : this62);
+		var this63 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this63 == null ? this.__tink_defaults0.onpointerenter : this63);
+		var this64 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this64 == null ? this.__tink_defaults0.onpointerleave : this64);
+		var this65 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this65 == null ? this.__tink_defaults0.onpointerlockchange : this65);
+		var this66 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this66 == null ? this.__tink_defaults0.onpointerlockerror : this66);
+		var this67 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this67 == null ? this.__tink_defaults0.onpointermove : this67);
+		var this68 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this68 == null ? this.__tink_defaults0.onpointerout : this68);
+		var this69 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this69 == null ? this.__tink_defaults0.onpointerover : this69);
+		var this70 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this70 == null ? this.__tink_defaults0.onpointerup : this70);
+		var this71 = attributes.onprogress;
+		this.__slots.onprogress.setData(this71 == null ? this.__tink_defaults0.onprogress : this71);
+		var this72 = attributes.onratechange;
+		this.__slots.onratechange.setData(this72 == null ? this.__tink_defaults0.onratechange : this72);
+		var this73 = attributes.onreset;
+		this.__slots.onreset.setData(this73 == null ? this.__tink_defaults0.onreset : this73);
+		var this74 = attributes.onresize;
+		this.__slots.onresize.setData(this74 == null ? this.__tink_defaults0.onresize : this74);
+		var this75 = attributes.onscroll;
+		this.__slots.onscroll.setData(this75 == null ? this.__tink_defaults0.onscroll : this75);
+		var this76 = attributes.onseeked;
+		this.__slots.onseeked.setData(this76 == null ? this.__tink_defaults0.onseeked : this76);
+		var this77 = attributes.onseeking;
+		this.__slots.onseeking.setData(this77 == null ? this.__tink_defaults0.onseeking : this77);
+		var this78 = attributes.onselect;
+		this.__slots.onselect.setData(this78 == null ? this.__tink_defaults0.onselect : this78);
+		var this79 = attributes.onshow;
+		this.__slots.onshow.setData(this79 == null ? this.__tink_defaults0.onshow : this79);
+		var this80 = attributes.onstalled;
+		this.__slots.onstalled.setData(this80 == null ? this.__tink_defaults0.onstalled : this80);
+		var this81 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this81 == null ? this.__tink_defaults0.onsubmit : this81);
+		var this82 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this82 == null ? this.__tink_defaults0.onsuspend : this82);
+		var this83 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this83 == null ? this.__tink_defaults0.ontimeupdate : this83);
+		var this84 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this84 == null ? this.__tink_defaults0.ontouchcancel : this84);
+		var this85 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this85 == null ? this.__tink_defaults0.ontouchend : this85);
+		var this86 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this86 == null ? this.__tink_defaults0.ontouchmove : this86);
+		var this87 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this87 == null ? this.__tink_defaults0.ontouchstart : this87);
+		var this88 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this88 == null ? this.__tink_defaults0.onvolumechange : this88);
+		var this89 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this89 == null ? this.__tink_defaults0.onwaiting : this89);
+		var this90 = attributes.onwheel;
+		this.__slots.onwheel.setData(this90 == null ? this.__tink_defaults0.onwheel : this90);
+		var this91 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this91 == null ? this.__tink_defaults0.spellcheck : this91);
+		var this92 = attributes.style;
+		this.__slots.style.setData(this92 == null ? this.__tink_defaults0.style : this92);
+		var this93 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this93 == null ? this.__tink_defaults0.tabIndex : this93);
+		var this94 = attributes.title;
+		this.__slots.title.setData(this94 == null ? this.__tink_defaults0.title : this94);
+	}
+	,get_dense: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dense.observe());
+	}
+	,get_twoLine: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.twoLine.observe());
+	}
+	,get_avatarList: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.avatarList.observe());
+	}
+	,get_interactive: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.interactive.observe());
+	}
+	,get_children: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
 	}
 	,__class__: mdc_List
-	,__properties__: {get_data:"get_data"}
+	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_children:"get_children",get_interactive:"get_interactive",get_avatarList:"get_avatarList",get_twoLine:"get_twoLine",get_dense:"get_dense"}
 });
 var mdc_MDC = function() { };
 $hxClasses["mdc.MDC"] = mdc_MDC;
 mdc_MDC.__name__ = ["mdc","MDC"];
-mdc_MDC.getTabBar = function(elem) {
-	return js_Boot.__cast(Reflect.getProperty(elem.toElement(),"MDCTabBar") , window.mdc.tabs.MDCTabBar);
-};
 mdc_MDC.registerAll = function(node,className,handler,ref) {
-	var el = js_Boot.__cast(node , Element);
+	var el = node;
 	if(el.classList.contains(className)) {
 		if(Reflect.getProperty(el,ref) == null) {
 			var handler1 = Type.createInstance(handler,[el]);
@@ -8716,7 +14502,7 @@ mdc_MDC.register = function(node,className,handler,ref) {
 	Reflect.setProperty(node,ref,handler1);
 };
 mdc_MDC.unregisterAll = function(node,className,ref) {
-	var el = js_Boot.__cast(node , Element);
+	var el = node;
 	if(el.classList.contains(className)) {
 		var handler = Reflect.getProperty(el,ref);
 		if(handler != null) {
@@ -8741,17 +14527,22 @@ mdc_MDC.unregister = function(node,className,ref) {
 	}
 };
 var mdc_TabBar = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
-	this.__cocodata = data;
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TabBar.hx", lineNumber : 13, className : "mdc.TabBar", methodName : "new"});
+	var this1 = { f : function() {
+		return "";
+	}};
+	var tmp = tink_state__$Observable_Observable_$Impl_$.auto(this1);
+	var this2 = { f : function() {
+		return function(index) {
+		};
+	}};
+	this.__tink_defaults1 = { type : tmp, ontabchange : tink_state__$Observable_Observable_$Impl_$.auto(this2), accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__slots = { children : new coconut_ui_tools_Slot(this,null), type : new coconut_ui_tools_Slot(this,null), ontabchange : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.TabBar"] = mdc_TabBar;
 mdc_TabBar.__name__ = ["mdc","TabBar"];
 mdc_TabBar.tab = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-tab"] != null) {
@@ -8765,276 +14556,492 @@ mdc_TabBar.tab = function(attr,children) {
 	} else {
 		_g.h["mdc-tab--active"] = value;
 	}
-	var attr2 = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, href : __v_0.href, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, target : __v_0.target, title : __v_0.title, type : __v_0.type};
-	var children1;
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.attributes;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.attributes = v2;
+	}
+	var _g4 = attr.dir;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.dir = v3;
+	}
+	var _g5 = attr.draggable;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.draggable = v4;
+	}
+	var _g6 = attr.hidden;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.hidden = v5;
+	}
+	var _g7 = attr.href;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.href = v6;
+	}
+	var _g8 = attr.id;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.id = v7;
+	}
+	var _g9 = attr.key;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.key = v8;
+	}
+	var _g10 = attr.lang;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.lang = v9;
+	}
+	var _g11 = attr.onabort;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.onabort = v10;
+	}
+	var _g12 = attr.onblur;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.onblur = v11;
+	}
+	var _g13 = attr.oncanplay;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.oncanplay = v12;
+	}
+	var _g14 = attr.oncanplaythrough;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.oncanplaythrough = v13;
+	}
+	var _g15 = attr.onchange;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.onchange = v14;
+	}
+	var _g16 = attr.onclick;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.onclick = v15;
+	}
+	var _g17 = attr.oncontextmenu;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncontextmenu = v16;
+	}
+	var _g18 = attr.oncopy;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.oncopy = v17;
+	}
+	var _g19 = attr.oncut;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.oncut = v18;
+	}
+	var _g20 = attr.ondblclick;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondblclick = v19;
+	}
+	var _g21 = attr.ondrag;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondrag = v20;
+	}
+	var _g22 = attr.ondragend;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragend = v21;
+	}
+	var _g23 = attr.ondragenter;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragenter = v22;
+	}
+	var _g24 = attr.ondragleave;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragleave = v23;
+	}
+	var _g25 = attr.ondragover;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondragover = v24;
+	}
+	var _g26 = attr.ondragstart;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondragstart = v25;
+	}
+	var _g27 = attr.ondrop;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.ondrop = v26;
+	}
+	var _g28 = attr.ondurationchange;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.ondurationchange = v27;
+	}
+	var _g29 = attr.onemptied;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onemptied = v28;
+	}
+	var _g30 = attr.onended;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onended = v29;
+	}
+	var _g31 = attr.onerror;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onerror = v30;
+	}
+	var _g32 = attr.onfocus;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfocus = v31;
+	}
+	var _g33 = attr.onfullscreenchange;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.onfullscreenchange = v32;
+	}
+	var _g34 = attr.onfullscreenerror;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.onfullscreenerror = v33;
+	}
+	var _g35 = attr.ongotpointercapture;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.ongotpointercapture = v34;
+	}
+	var _g36 = attr.oninput;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.oninput = v35;
+	}
+	var _g37 = attr.oninvalid;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.oninvalid = v36;
+	}
+	var _g38 = attr.onkeydown;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeydown = v37;
+	}
+	var _g39 = attr.onkeypress;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onkeypress = v38;
+	}
+	var _g40 = attr.onkeyup;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onkeyup = v39;
+	}
+	var _g41 = attr.onload;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onload = v40;
+	}
+	var _g42 = attr.onloadeddata;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadeddata = v41;
+	}
+	var _g43 = attr.onloadedmetadata;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onloadedmetadata = v42;
+	}
+	var _g44 = attr.onloadstart;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onloadstart = v43;
+	}
+	var _g45 = attr.onlostpointercapture;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onlostpointercapture = v44;
+	}
+	var _g46 = attr.onmousedown;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmousedown = v45;
+	}
+	var _g47 = attr.onmouseenter;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmouseenter = v46;
+	}
+	var _g48 = attr.onmouseleave;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmouseleave = v47;
+	}
+	var _g49 = attr.onmousemove;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmousemove = v48;
+	}
+	var _g50 = attr.onmouseout;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseout = v49;
+	}
+	var _g51 = attr.onmouseover;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onmouseover = v50;
+	}
+	var _g52 = attr.onmouseup;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onmouseup = v51;
+	}
+	var _g53 = attr.onpaste;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onpaste = v52;
+	}
+	var _g54 = attr.onpause;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onpause = v53;
+	}
+	var _g55 = attr.onplay;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onplay = v54;
+	}
+	var _g56 = attr.onplaying;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onplaying = v55;
+	}
+	var _g57 = attr.onpointercancel;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointercancel = v56;
+	}
+	var _g58 = attr.onpointerdown;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerdown = v57;
+	}
+	var _g59 = attr.onpointerenter;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerenter = v58;
+	}
+	var _g60 = attr.onpointerleave;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerleave = v59;
+	}
+	var _g61 = attr.onpointerlockchange;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointerlockchange = v60;
+	}
+	var _g62 = attr.onpointerlockerror;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointerlockerror = v61;
+	}
+	var _g63 = attr.onpointermove;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointermove = v62;
+	}
+	var _g64 = attr.onpointerout;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerout = v63;
+	}
+	var _g65 = attr.onpointerover;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onpointerover = v64;
+	}
+	var _g66 = attr.onpointerup;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onpointerup = v65;
+	}
+	var _g67 = attr.onprogress;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onprogress = v66;
+	}
+	var _g68 = attr.onratechange;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onratechange = v67;
+	}
+	var _g69 = attr.onreset;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onreset = v68;
+	}
+	var _g70 = attr.onresize;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onresize = v69;
+	}
+	var _g71 = attr.onscroll;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onscroll = v70;
+	}
+	var _g72 = attr.onseeked;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onseeked = v71;
+	}
+	var _g73 = attr.onseeking;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onseeking = v72;
+	}
+	var _g74 = attr.onselect;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onselect = v73;
+	}
+	var _g75 = attr.onshow;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onshow = v74;
+	}
+	var _g76 = attr.onstalled;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onstalled = v75;
+	}
+	var _g77 = attr.onsubmit;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.onsubmit = v76;
+	}
+	var _g78 = attr.onsuspend;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.onsuspend = v77;
+	}
+	var _g79 = attr.ontimeupdate;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontimeupdate = v78;
+	}
+	var _g80 = attr.ontouchcancel;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchcancel = v79;
+	}
+	var _g81 = attr.ontouchend;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchend = v80;
+	}
+	var _g82 = attr.ontouchmove;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.ontouchmove = v81;
+	}
+	var _g83 = attr.ontouchstart;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.ontouchstart = v82;
+	}
+	var _g84 = attr.onvolumechange;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onvolumechange = v83;
+	}
+	var _g85 = attr.onwaiting;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.onwaiting = v84;
+	}
+	var _g86 = attr.onwheel;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.onwheel = v85;
+	}
+	var _g87 = attr.spellcheck;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.spellcheck = v86;
+	}
+	var _g88 = attr.style;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.style = v87;
+	}
+	var _g89 = attr.tabIndex;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret.tabIndex = v88;
+	}
+	var _g90 = attr.target;
+	if(_g90 != null) {
+		var v89 = _g90;
+		__ret.target = v89;
+	}
+	var _g91 = attr.title;
+	if(_g91 != null) {
+		var v90 = _g91;
+		__ret.title = v90;
+	}
+	var _g92 = attr.type;
+	if(_g92 != null) {
+		var v91 = _g92;
+		__ret.type = v91;
+	}
+	var attr2 = __ret;
+	var __r1 = [];
 	if(attr.icon != null) {
-		var attr3 = { };
-		var children2 = vdom__$VNode_VNode_$Impl_$.flatten([attr.icon]);
-		var __v_01 = attr3;
-		var attr4 = attr3.className;
-		var _g1 = new haxe_ds_StringMap();
-		if(__map_reserved["mdc-tab__icon"] != null) {
-			_g1.setReserved("mdc-tab__icon",true);
-		} else {
-			_g1.h["mdc-tab__icon"] = true;
-		}
-		if(__map_reserved["material-icons"] != null) {
-			_g1.setReserved("material-icons",true);
-		} else {
-			_g1.h["material-icons"] = true;
-		}
-		children1 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr4,vdom__$Attr_ClassName_$Impl_$.ofMap(_g1)), accessKey : __v_01.accessKey, accessKeyLabel : __v_01.accessKeyLabel, attributes : __v_01.attributes, contentEditable : __v_01.contentEditable, dir : __v_01.dir, draggable : __v_01.draggable, hidden : __v_01.hidden, id : __v_01.id, key : __v_01.key, lang : __v_01.lang, onabort : function(event76) {
-		}, onblur : function(event77) {
-		}, oncanplay : function(event78) {
-		}, oncanplaythrough : function(event79) {
-		}, onchange : function(event80) {
-		}, onclick : function(event81) {
-		}, oncontextmenu : function(event82) {
-		}, oncopy : function(event83) {
-		}, oncut : function(event84) {
-		}, ondblclick : function(event85) {
-		}, ondrag : function(event86) {
-		}, ondragend : function(event87) {
-		}, ondragenter : function(event88) {
-		}, ondragleave : function(event89) {
-		}, ondragover : function(event90) {
-		}, ondragstart : function(event91) {
-		}, ondrop : function(event92) {
-		}, ondurationchange : function(event93) {
-		}, onemptied : function(event94) {
-		}, onended : function(event95) {
-		}, onerror : function(event96) {
-		}, onfocus : function(event97) {
-		}, onfullscreenchange : function(event98) {
-		}, onfullscreenerror : function(event99) {
-		}, ongotpointercapture : function(event100) {
-		}, oninput : function(event101) {
-		}, oninvalid : function(event102) {
-		}, onkeydown : function(event103) {
-		}, onkeypress : function(event104) {
-		}, onkeyup : function(event105) {
-		}, onload : function(event106) {
-		}, onloadeddata : function(event107) {
-		}, onloadedmetadata : function(event108) {
-		}, onloadstart : function(event109) {
-		}, onlostpointercapture : function(event110) {
-		}, onmousedown : function(event111) {
-		}, onmouseenter : function(event112) {
-		}, onmouseleave : function(event113) {
-		}, onmousemove : function(event114) {
-		}, onmouseout : function(event115) {
-		}, onmouseover : function(event116) {
-		}, onmouseup : function(event117) {
-		}, onpaste : function(event118) {
-		}, onpause : function(event119) {
-		}, onplay : function(event120) {
-		}, onplaying : function(event121) {
-		}, onpointercancel : function(event122) {
-		}, onpointerdown : function(event123) {
-		}, onpointerenter : function(event124) {
-		}, onpointerleave : function(event125) {
-		}, onpointerlockchange : function(event126) {
-		}, onpointerlockerror : function(event127) {
-		}, onpointermove : function(event128) {
-		}, onpointerout : function(event129) {
-		}, onpointerover : function(event130) {
-		}, onpointerup : function(event131) {
-		}, onprogress : function(event132) {
-		}, onratechange : function(event133) {
-		}, onreset : function(event134) {
-		}, onresize : function(event135) {
-		}, onscroll : function(event136) {
-		}, onseeked : function(event137) {
-		}, onseeking : function(event138) {
-		}, onselect : function(event139) {
-		}, onshow : function(event140) {
-		}, onstalled : function(event141) {
-		}, onsubmit : function(event142) {
-		}, onsuspend : function(event143) {
-		}, ontimeupdate : function(event144) {
-		}, ontouchcancel : function(event145) {
-		}, ontouchend : function(event146) {
-		}, ontouchmove : function(event147) {
-		}, ontouchstart : function(event148) {
-		}, onvolumechange : function(event149) {
-		}, onwaiting : function(event150) {
-		}, onwheel : function(event151) {
-		}, spellcheck : __v_01.spellcheck, style : __v_01.style, tabIndex : __v_01.tabIndex, title : __v_01.title},[children2])]);
-	} else {
-		children1 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+		var __ret1 = { };
+		var __r2 = [];
+		__r2.push(attr.icon);
+		__r1.push(mdc_TabBar.tabIcon(__ret1,__r2[0]));
 	}
-	var children3;
 	if(attr.text != null) {
-		var attr5 = { };
-		var children4 = vdom__$VNode_VNode_$Impl_$.flatten([attr.text]);
-		var __v_02 = attr5;
-		var attr6 = attr5.className;
-		var _g2 = new haxe_ds_StringMap();
-		if(__map_reserved["mdc-tab__icon-text"] != null) {
-			_g2.setReserved("mdc-tab__icon-text",true);
-		} else {
-			_g2.h["mdc-tab__icon-text"] = true;
-		}
-		children3 = vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr6,vdom__$Attr_ClassName_$Impl_$.ofMap(_g2)), accessKey : __v_02.accessKey, accessKeyLabel : __v_02.accessKeyLabel, attributes : __v_02.attributes, contentEditable : __v_02.contentEditable, dir : __v_02.dir, draggable : __v_02.draggable, hidden : __v_02.hidden, id : __v_02.id, key : __v_02.key, lang : __v_02.lang, onabort : function(event152) {
-		}, onblur : function(event153) {
-		}, oncanplay : function(event154) {
-		}, oncanplaythrough : function(event155) {
-		}, onchange : function(event156) {
-		}, onclick : function(event157) {
-		}, oncontextmenu : function(event158) {
-		}, oncopy : function(event159) {
-		}, oncut : function(event160) {
-		}, ondblclick : function(event161) {
-		}, ondrag : function(event162) {
-		}, ondragend : function(event163) {
-		}, ondragenter : function(event164) {
-		}, ondragleave : function(event165) {
-		}, ondragover : function(event166) {
-		}, ondragstart : function(event167) {
-		}, ondrop : function(event168) {
-		}, ondurationchange : function(event169) {
-		}, onemptied : function(event170) {
-		}, onended : function(event171) {
-		}, onerror : function(event172) {
-		}, onfocus : function(event173) {
-		}, onfullscreenchange : function(event174) {
-		}, onfullscreenerror : function(event175) {
-		}, ongotpointercapture : function(event176) {
-		}, oninput : function(event177) {
-		}, oninvalid : function(event178) {
-		}, onkeydown : function(event179) {
-		}, onkeypress : function(event180) {
-		}, onkeyup : function(event181) {
-		}, onload : function(event182) {
-		}, onloadeddata : function(event183) {
-		}, onloadedmetadata : function(event184) {
-		}, onloadstart : function(event185) {
-		}, onlostpointercapture : function(event186) {
-		}, onmousedown : function(event187) {
-		}, onmouseenter : function(event188) {
-		}, onmouseleave : function(event189) {
-		}, onmousemove : function(event190) {
-		}, onmouseout : function(event191) {
-		}, onmouseover : function(event192) {
-		}, onmouseup : function(event193) {
-		}, onpaste : function(event194) {
-		}, onpause : function(event195) {
-		}, onplay : function(event196) {
-		}, onplaying : function(event197) {
-		}, onpointercancel : function(event198) {
-		}, onpointerdown : function(event199) {
-		}, onpointerenter : function(event200) {
-		}, onpointerleave : function(event201) {
-		}, onpointerlockchange : function(event202) {
-		}, onpointerlockerror : function(event203) {
-		}, onpointermove : function(event204) {
-		}, onpointerout : function(event205) {
-		}, onpointerover : function(event206) {
-		}, onpointerup : function(event207) {
-		}, onprogress : function(event208) {
-		}, onratechange : function(event209) {
-		}, onreset : function(event210) {
-		}, onresize : function(event211) {
-		}, onscroll : function(event212) {
-		}, onseeked : function(event213) {
-		}, onseeking : function(event214) {
-		}, onselect : function(event215) {
-		}, onshow : function(event216) {
-		}, onstalled : function(event217) {
-		}, onsubmit : function(event218) {
-		}, onsuspend : function(event219) {
-		}, ontimeupdate : function(event220) {
-		}, ontouchcancel : function(event221) {
-		}, ontouchend : function(event222) {
-		}, ontouchmove : function(event223) {
-		}, ontouchstart : function(event224) {
-		}, onvolumechange : function(event225) {
-		}, onwaiting : function(event226) {
-		}, onwheel : function(event227) {
-		}, spellcheck : __v_02.spellcheck, style : __v_02.style, tabIndex : __v_02.tabIndex, title : __v_02.title},[children4])]);
-	} else {
-		children3 = vdom__$VNode_VNode_$Impl_$.flatten([]);
+		var __ret2 = { };
+		var __r3 = [];
+		__r3.push(attr.text);
+		__r1.push(mdc_TabBar.tabText(__ret2,__r3[0]));
 	}
-	return vdom_VDom.h("a",attr2,[children1,children3,children]);
+	var _g93 = 0;
+	while(_g93 < (children == null ? 0 : children.length)) {
+		var _0 = children == null ? null : children[_g93];
+		++_g93;
+		__r1.push(_0);
+	}
+	__r.push(vdom_VDom.h("a",attr2,__r1));
+	return __r[0];
 };
 mdc_TabBar.tabIcon = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-tab__icon"] != null) {
@@ -9047,86 +15054,459 @@ mdc_TabBar.tabIcon = function(attr,children) {
 	} else {
 		_g.h["material-icons"] = true;
 	}
-	return vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.attributes;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.attributes = v2;
+	}
+	var _g4 = attr.dir;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.dir = v3;
+	}
+	var _g5 = attr.draggable;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.draggable = v4;
+	}
+	var _g6 = attr.hidden;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.hidden = v5;
+	}
+	var _g7 = attr.id;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.id = v6;
+	}
+	var _g8 = attr.key;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.key = v7;
+	}
+	var _g9 = attr.lang;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.lang = v8;
+	}
+	var _g10 = attr.onabort;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onabort = v9;
+	}
+	var _g11 = attr.onblur;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.onblur = v10;
+	}
+	var _g12 = attr.oncanplay;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplay = v11;
+	}
+	var _g13 = attr.oncanplaythrough;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.oncanplaythrough = v12;
+	}
+	var _g14 = attr.onchange;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onchange = v13;
+	}
+	var _g15 = attr.onclick;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.onclick = v14;
+	}
+	var _g16 = attr.oncontextmenu;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncontextmenu = v15;
+	}
+	var _g17 = attr.oncopy;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncopy = v16;
+	}
+	var _g18 = attr.oncut;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.oncut = v17;
+	}
+	var _g19 = attr.ondblclick;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondblclick = v18;
+	}
+	var _g20 = attr.ondrag;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondrag = v19;
+	}
+	var _g21 = attr.ondragend;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragend = v20;
+	}
+	var _g22 = attr.ondragenter;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragenter = v21;
+	}
+	var _g23 = attr.ondragleave;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragleave = v22;
+	}
+	var _g24 = attr.ondragover;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragover = v23;
+	}
+	var _g25 = attr.ondragstart;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondragstart = v24;
+	}
+	var _g26 = attr.ondrop;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondrop = v25;
+	}
+	var _g27 = attr.ondurationchange;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.ondurationchange = v26;
+	}
+	var _g28 = attr.onemptied;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onemptied = v27;
+	}
+	var _g29 = attr.onended;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onended = v28;
+	}
+	var _g30 = attr.onerror;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onerror = v29;
+	}
+	var _g31 = attr.onfocus;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfocus = v30;
+	}
+	var _g32 = attr.onfullscreenchange;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenchange = v31;
+	}
+	var _g33 = attr.onfullscreenerror;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.onfullscreenerror = v32;
+	}
+	var _g34 = attr.ongotpointercapture;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.ongotpointercapture = v33;
+	}
+	var _g35 = attr.oninput;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninput = v34;
+	}
+	var _g36 = attr.oninvalid;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.oninvalid = v35;
+	}
+	var _g37 = attr.onkeydown;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeydown = v36;
+	}
+	var _g38 = attr.onkeypress;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeypress = v37;
+	}
+	var _g39 = attr.onkeyup;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onkeyup = v38;
+	}
+	var _g40 = attr.onload;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onload = v39;
+	}
+	var _g41 = attr.onloadeddata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadeddata = v40;
+	}
+	var _g42 = attr.onloadedmetadata;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadedmetadata = v41;
+	}
+	var _g43 = attr.onloadstart;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onloadstart = v42;
+	}
+	var _g44 = attr.onlostpointercapture;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onlostpointercapture = v43;
+	}
+	var _g45 = attr.onmousedown;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmousedown = v44;
+	}
+	var _g46 = attr.onmouseenter;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseenter = v45;
+	}
+	var _g47 = attr.onmouseleave;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmouseleave = v46;
+	}
+	var _g48 = attr.onmousemove;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmousemove = v47;
+	}
+	var _g49 = attr.onmouseout;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseout = v48;
+	}
+	var _g50 = attr.onmouseover;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseover = v49;
+	}
+	var _g51 = attr.onmouseup;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onmouseup = v50;
+	}
+	var _g52 = attr.onpaste;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpaste = v51;
+	}
+	var _g53 = attr.onpause;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onpause = v52;
+	}
+	var _g54 = attr.onplay;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplay = v53;
+	}
+	var _g55 = attr.onplaying;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onplaying = v54;
+	}
+	var _g56 = attr.onpointercancel;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointercancel = v55;
+	}
+	var _g57 = attr.onpointerdown;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerdown = v56;
+	}
+	var _g58 = attr.onpointerenter;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerenter = v57;
+	}
+	var _g59 = attr.onpointerleave;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerleave = v58;
+	}
+	var _g60 = attr.onpointerlockchange;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockchange = v59;
+	}
+	var _g61 = attr.onpointerlockerror;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointerlockerror = v60;
+	}
+	var _g62 = attr.onpointermove;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointermove = v61;
+	}
+	var _g63 = attr.onpointerout;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerout = v62;
+	}
+	var _g64 = attr.onpointerover;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerover = v63;
+	}
+	var _g65 = attr.onpointerup;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onpointerup = v64;
+	}
+	var _g66 = attr.onprogress;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onprogress = v65;
+	}
+	var _g67 = attr.onratechange;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onratechange = v66;
+	}
+	var _g68 = attr.onreset;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onreset = v67;
+	}
+	var _g69 = attr.onresize;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onresize = v68;
+	}
+	var _g70 = attr.onscroll;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onscroll = v69;
+	}
+	var _g71 = attr.onseeked;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeked = v70;
+	}
+	var _g72 = attr.onseeking;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onseeking = v71;
+	}
+	var _g73 = attr.onselect;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onselect = v72;
+	}
+	var _g74 = attr.onshow;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onshow = v73;
+	}
+	var _g75 = attr.onstalled;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onstalled = v74;
+	}
+	var _g76 = attr.onsubmit;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsubmit = v75;
+	}
+	var _g77 = attr.onsuspend;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.onsuspend = v76;
+	}
+	var _g78 = attr.ontimeupdate;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontimeupdate = v77;
+	}
+	var _g79 = attr.ontouchcancel;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchcancel = v78;
+	}
+	var _g80 = attr.ontouchend;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchend = v79;
+	}
+	var _g81 = attr.ontouchmove;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchmove = v80;
+	}
+	var _g82 = attr.ontouchstart;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.ontouchstart = v81;
+	}
+	var _g83 = attr.onvolumechange;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onvolumechange = v82;
+	}
+	var _g84 = attr.onwaiting;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwaiting = v83;
+	}
+	var _g85 = attr.onwheel;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.onwheel = v84;
+	}
+	var _g86 = attr.spellcheck;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.spellcheck = v85;
+	}
+	var _g87 = attr.style;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.style = v86;
+	}
+	var _g88 = attr.tabIndex;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.tabIndex = v87;
+	}
+	var _g89 = attr.title;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret.title = v88;
+	}
+	var __r1 = [];
+	__r1.push(children);
+	__r.push(vdom_VDom.h("i",__ret,__r1));
+	return __r[0];
 };
 mdc_TabBar.tabText = function(attr,children) {
-	var __v_0 = attr;
+	var __r = [];
 	var attr1 = attr.className;
 	var _g = new haxe_ds_StringMap();
 	if(__map_reserved["mdc-tab__icon-text"] != null) {
@@ -9134,340 +15514,1984 @@ mdc_TabBar.tabText = function(attr,children) {
 	} else {
 		_g.h["mdc-tab__icon-text"] = true;
 	}
-	return vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-	}, onblur : function(event1) {
-	}, oncanplay : function(event2) {
-	}, oncanplaythrough : function(event3) {
-	}, onchange : function(event4) {
-	}, onclick : function(event5) {
-	}, oncontextmenu : function(event6) {
-	}, oncopy : function(event7) {
-	}, oncut : function(event8) {
-	}, ondblclick : function(event9) {
-	}, ondrag : function(event10) {
-	}, ondragend : function(event11) {
-	}, ondragenter : function(event12) {
-	}, ondragleave : function(event13) {
-	}, ondragover : function(event14) {
-	}, ondragstart : function(event15) {
-	}, ondrop : function(event16) {
-	}, ondurationchange : function(event17) {
-	}, onemptied : function(event18) {
-	}, onended : function(event19) {
-	}, onerror : function(event20) {
-	}, onfocus : function(event21) {
-	}, onfullscreenchange : function(event22) {
-	}, onfullscreenerror : function(event23) {
-	}, ongotpointercapture : function(event24) {
-	}, oninput : function(event25) {
-	}, oninvalid : function(event26) {
-	}, onkeydown : function(event27) {
-	}, onkeypress : function(event28) {
-	}, onkeyup : function(event29) {
-	}, onload : function(event30) {
-	}, onloadeddata : function(event31) {
-	}, onloadedmetadata : function(event32) {
-	}, onloadstart : function(event33) {
-	}, onlostpointercapture : function(event34) {
-	}, onmousedown : function(event35) {
-	}, onmouseenter : function(event36) {
-	}, onmouseleave : function(event37) {
-	}, onmousemove : function(event38) {
-	}, onmouseout : function(event39) {
-	}, onmouseover : function(event40) {
-	}, onmouseup : function(event41) {
-	}, onpaste : function(event42) {
-	}, onpause : function(event43) {
-	}, onplay : function(event44) {
-	}, onplaying : function(event45) {
-	}, onpointercancel : function(event46) {
-	}, onpointerdown : function(event47) {
-	}, onpointerenter : function(event48) {
-	}, onpointerleave : function(event49) {
-	}, onpointerlockchange : function(event50) {
-	}, onpointerlockerror : function(event51) {
-	}, onpointermove : function(event52) {
-	}, onpointerout : function(event53) {
-	}, onpointerover : function(event54) {
-	}, onpointerup : function(event55) {
-	}, onprogress : function(event56) {
-	}, onratechange : function(event57) {
-	}, onreset : function(event58) {
-	}, onresize : function(event59) {
-	}, onscroll : function(event60) {
-	}, onseeked : function(event61) {
-	}, onseeking : function(event62) {
-	}, onselect : function(event63) {
-	}, onshow : function(event64) {
-	}, onstalled : function(event65) {
-	}, onsubmit : function(event66) {
-	}, onsuspend : function(event67) {
-	}, ontimeupdate : function(event68) {
-	}, ontouchcancel : function(event69) {
-	}, ontouchend : function(event70) {
-	}, ontouchmove : function(event71) {
-	}, ontouchstart : function(event72) {
-	}, onvolumechange : function(event73) {
-	}, onwaiting : function(event74) {
-	}, onwheel : function(event75) {
-	}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[children]);
+	var __ret = { className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+	var _g1 = attr.accessKey;
+	if(_g1 != null) {
+		var v = _g1;
+		__ret.accessKey = v;
+	}
+	var _g2 = attr.accessKeyLabel;
+	if(_g2 != null) {
+		var v1 = _g2;
+		__ret.accessKeyLabel = v1;
+	}
+	var _g3 = attr.attributes;
+	if(_g3 != null) {
+		var v2 = _g3;
+		__ret.attributes = v2;
+	}
+	var _g4 = attr.dir;
+	if(_g4 != null) {
+		var v3 = _g4;
+		__ret.dir = v3;
+	}
+	var _g5 = attr.draggable;
+	if(_g5 != null) {
+		var v4 = _g5;
+		__ret.draggable = v4;
+	}
+	var _g6 = attr.hidden;
+	if(_g6 != null) {
+		var v5 = _g6;
+		__ret.hidden = v5;
+	}
+	var _g7 = attr.id;
+	if(_g7 != null) {
+		var v6 = _g7;
+		__ret.id = v6;
+	}
+	var _g8 = attr.key;
+	if(_g8 != null) {
+		var v7 = _g8;
+		__ret.key = v7;
+	}
+	var _g9 = attr.lang;
+	if(_g9 != null) {
+		var v8 = _g9;
+		__ret.lang = v8;
+	}
+	var _g10 = attr.onabort;
+	if(_g10 != null) {
+		var v9 = _g10;
+		__ret.onabort = v9;
+	}
+	var _g11 = attr.onblur;
+	if(_g11 != null) {
+		var v10 = _g11;
+		__ret.onblur = v10;
+	}
+	var _g12 = attr.oncanplay;
+	if(_g12 != null) {
+		var v11 = _g12;
+		__ret.oncanplay = v11;
+	}
+	var _g13 = attr.oncanplaythrough;
+	if(_g13 != null) {
+		var v12 = _g13;
+		__ret.oncanplaythrough = v12;
+	}
+	var _g14 = attr.onchange;
+	if(_g14 != null) {
+		var v13 = _g14;
+		__ret.onchange = v13;
+	}
+	var _g15 = attr.onclick;
+	if(_g15 != null) {
+		var v14 = _g15;
+		__ret.onclick = v14;
+	}
+	var _g16 = attr.oncontextmenu;
+	if(_g16 != null) {
+		var v15 = _g16;
+		__ret.oncontextmenu = v15;
+	}
+	var _g17 = attr.oncopy;
+	if(_g17 != null) {
+		var v16 = _g17;
+		__ret.oncopy = v16;
+	}
+	var _g18 = attr.oncut;
+	if(_g18 != null) {
+		var v17 = _g18;
+		__ret.oncut = v17;
+	}
+	var _g19 = attr.ondblclick;
+	if(_g19 != null) {
+		var v18 = _g19;
+		__ret.ondblclick = v18;
+	}
+	var _g20 = attr.ondrag;
+	if(_g20 != null) {
+		var v19 = _g20;
+		__ret.ondrag = v19;
+	}
+	var _g21 = attr.ondragend;
+	if(_g21 != null) {
+		var v20 = _g21;
+		__ret.ondragend = v20;
+	}
+	var _g22 = attr.ondragenter;
+	if(_g22 != null) {
+		var v21 = _g22;
+		__ret.ondragenter = v21;
+	}
+	var _g23 = attr.ondragleave;
+	if(_g23 != null) {
+		var v22 = _g23;
+		__ret.ondragleave = v22;
+	}
+	var _g24 = attr.ondragover;
+	if(_g24 != null) {
+		var v23 = _g24;
+		__ret.ondragover = v23;
+	}
+	var _g25 = attr.ondragstart;
+	if(_g25 != null) {
+		var v24 = _g25;
+		__ret.ondragstart = v24;
+	}
+	var _g26 = attr.ondrop;
+	if(_g26 != null) {
+		var v25 = _g26;
+		__ret.ondrop = v25;
+	}
+	var _g27 = attr.ondurationchange;
+	if(_g27 != null) {
+		var v26 = _g27;
+		__ret.ondurationchange = v26;
+	}
+	var _g28 = attr.onemptied;
+	if(_g28 != null) {
+		var v27 = _g28;
+		__ret.onemptied = v27;
+	}
+	var _g29 = attr.onended;
+	if(_g29 != null) {
+		var v28 = _g29;
+		__ret.onended = v28;
+	}
+	var _g30 = attr.onerror;
+	if(_g30 != null) {
+		var v29 = _g30;
+		__ret.onerror = v29;
+	}
+	var _g31 = attr.onfocus;
+	if(_g31 != null) {
+		var v30 = _g31;
+		__ret.onfocus = v30;
+	}
+	var _g32 = attr.onfullscreenchange;
+	if(_g32 != null) {
+		var v31 = _g32;
+		__ret.onfullscreenchange = v31;
+	}
+	var _g33 = attr.onfullscreenerror;
+	if(_g33 != null) {
+		var v32 = _g33;
+		__ret.onfullscreenerror = v32;
+	}
+	var _g34 = attr.ongotpointercapture;
+	if(_g34 != null) {
+		var v33 = _g34;
+		__ret.ongotpointercapture = v33;
+	}
+	var _g35 = attr.oninput;
+	if(_g35 != null) {
+		var v34 = _g35;
+		__ret.oninput = v34;
+	}
+	var _g36 = attr.oninvalid;
+	if(_g36 != null) {
+		var v35 = _g36;
+		__ret.oninvalid = v35;
+	}
+	var _g37 = attr.onkeydown;
+	if(_g37 != null) {
+		var v36 = _g37;
+		__ret.onkeydown = v36;
+	}
+	var _g38 = attr.onkeypress;
+	if(_g38 != null) {
+		var v37 = _g38;
+		__ret.onkeypress = v37;
+	}
+	var _g39 = attr.onkeyup;
+	if(_g39 != null) {
+		var v38 = _g39;
+		__ret.onkeyup = v38;
+	}
+	var _g40 = attr.onload;
+	if(_g40 != null) {
+		var v39 = _g40;
+		__ret.onload = v39;
+	}
+	var _g41 = attr.onloadeddata;
+	if(_g41 != null) {
+		var v40 = _g41;
+		__ret.onloadeddata = v40;
+	}
+	var _g42 = attr.onloadedmetadata;
+	if(_g42 != null) {
+		var v41 = _g42;
+		__ret.onloadedmetadata = v41;
+	}
+	var _g43 = attr.onloadstart;
+	if(_g43 != null) {
+		var v42 = _g43;
+		__ret.onloadstart = v42;
+	}
+	var _g44 = attr.onlostpointercapture;
+	if(_g44 != null) {
+		var v43 = _g44;
+		__ret.onlostpointercapture = v43;
+	}
+	var _g45 = attr.onmousedown;
+	if(_g45 != null) {
+		var v44 = _g45;
+		__ret.onmousedown = v44;
+	}
+	var _g46 = attr.onmouseenter;
+	if(_g46 != null) {
+		var v45 = _g46;
+		__ret.onmouseenter = v45;
+	}
+	var _g47 = attr.onmouseleave;
+	if(_g47 != null) {
+		var v46 = _g47;
+		__ret.onmouseleave = v46;
+	}
+	var _g48 = attr.onmousemove;
+	if(_g48 != null) {
+		var v47 = _g48;
+		__ret.onmousemove = v47;
+	}
+	var _g49 = attr.onmouseout;
+	if(_g49 != null) {
+		var v48 = _g49;
+		__ret.onmouseout = v48;
+	}
+	var _g50 = attr.onmouseover;
+	if(_g50 != null) {
+		var v49 = _g50;
+		__ret.onmouseover = v49;
+	}
+	var _g51 = attr.onmouseup;
+	if(_g51 != null) {
+		var v50 = _g51;
+		__ret.onmouseup = v50;
+	}
+	var _g52 = attr.onpaste;
+	if(_g52 != null) {
+		var v51 = _g52;
+		__ret.onpaste = v51;
+	}
+	var _g53 = attr.onpause;
+	if(_g53 != null) {
+		var v52 = _g53;
+		__ret.onpause = v52;
+	}
+	var _g54 = attr.onplay;
+	if(_g54 != null) {
+		var v53 = _g54;
+		__ret.onplay = v53;
+	}
+	var _g55 = attr.onplaying;
+	if(_g55 != null) {
+		var v54 = _g55;
+		__ret.onplaying = v54;
+	}
+	var _g56 = attr.onpointercancel;
+	if(_g56 != null) {
+		var v55 = _g56;
+		__ret.onpointercancel = v55;
+	}
+	var _g57 = attr.onpointerdown;
+	if(_g57 != null) {
+		var v56 = _g57;
+		__ret.onpointerdown = v56;
+	}
+	var _g58 = attr.onpointerenter;
+	if(_g58 != null) {
+		var v57 = _g58;
+		__ret.onpointerenter = v57;
+	}
+	var _g59 = attr.onpointerleave;
+	if(_g59 != null) {
+		var v58 = _g59;
+		__ret.onpointerleave = v58;
+	}
+	var _g60 = attr.onpointerlockchange;
+	if(_g60 != null) {
+		var v59 = _g60;
+		__ret.onpointerlockchange = v59;
+	}
+	var _g61 = attr.onpointerlockerror;
+	if(_g61 != null) {
+		var v60 = _g61;
+		__ret.onpointerlockerror = v60;
+	}
+	var _g62 = attr.onpointermove;
+	if(_g62 != null) {
+		var v61 = _g62;
+		__ret.onpointermove = v61;
+	}
+	var _g63 = attr.onpointerout;
+	if(_g63 != null) {
+		var v62 = _g63;
+		__ret.onpointerout = v62;
+	}
+	var _g64 = attr.onpointerover;
+	if(_g64 != null) {
+		var v63 = _g64;
+		__ret.onpointerover = v63;
+	}
+	var _g65 = attr.onpointerup;
+	if(_g65 != null) {
+		var v64 = _g65;
+		__ret.onpointerup = v64;
+	}
+	var _g66 = attr.onprogress;
+	if(_g66 != null) {
+		var v65 = _g66;
+		__ret.onprogress = v65;
+	}
+	var _g67 = attr.onratechange;
+	if(_g67 != null) {
+		var v66 = _g67;
+		__ret.onratechange = v66;
+	}
+	var _g68 = attr.onreset;
+	if(_g68 != null) {
+		var v67 = _g68;
+		__ret.onreset = v67;
+	}
+	var _g69 = attr.onresize;
+	if(_g69 != null) {
+		var v68 = _g69;
+		__ret.onresize = v68;
+	}
+	var _g70 = attr.onscroll;
+	if(_g70 != null) {
+		var v69 = _g70;
+		__ret.onscroll = v69;
+	}
+	var _g71 = attr.onseeked;
+	if(_g71 != null) {
+		var v70 = _g71;
+		__ret.onseeked = v70;
+	}
+	var _g72 = attr.onseeking;
+	if(_g72 != null) {
+		var v71 = _g72;
+		__ret.onseeking = v71;
+	}
+	var _g73 = attr.onselect;
+	if(_g73 != null) {
+		var v72 = _g73;
+		__ret.onselect = v72;
+	}
+	var _g74 = attr.onshow;
+	if(_g74 != null) {
+		var v73 = _g74;
+		__ret.onshow = v73;
+	}
+	var _g75 = attr.onstalled;
+	if(_g75 != null) {
+		var v74 = _g75;
+		__ret.onstalled = v74;
+	}
+	var _g76 = attr.onsubmit;
+	if(_g76 != null) {
+		var v75 = _g76;
+		__ret.onsubmit = v75;
+	}
+	var _g77 = attr.onsuspend;
+	if(_g77 != null) {
+		var v76 = _g77;
+		__ret.onsuspend = v76;
+	}
+	var _g78 = attr.ontimeupdate;
+	if(_g78 != null) {
+		var v77 = _g78;
+		__ret.ontimeupdate = v77;
+	}
+	var _g79 = attr.ontouchcancel;
+	if(_g79 != null) {
+		var v78 = _g79;
+		__ret.ontouchcancel = v78;
+	}
+	var _g80 = attr.ontouchend;
+	if(_g80 != null) {
+		var v79 = _g80;
+		__ret.ontouchend = v79;
+	}
+	var _g81 = attr.ontouchmove;
+	if(_g81 != null) {
+		var v80 = _g81;
+		__ret.ontouchmove = v80;
+	}
+	var _g82 = attr.ontouchstart;
+	if(_g82 != null) {
+		var v81 = _g82;
+		__ret.ontouchstart = v81;
+	}
+	var _g83 = attr.onvolumechange;
+	if(_g83 != null) {
+		var v82 = _g83;
+		__ret.onvolumechange = v82;
+	}
+	var _g84 = attr.onwaiting;
+	if(_g84 != null) {
+		var v83 = _g84;
+		__ret.onwaiting = v83;
+	}
+	var _g85 = attr.onwheel;
+	if(_g85 != null) {
+		var v84 = _g85;
+		__ret.onwheel = v84;
+	}
+	var _g86 = attr.spellcheck;
+	if(_g86 != null) {
+		var v85 = _g86;
+		__ret.spellcheck = v85;
+	}
+	var _g87 = attr.style;
+	if(_g87 != null) {
+		var v86 = _g87;
+		__ret.style = v86;
+	}
+	var _g88 = attr.tabIndex;
+	if(_g88 != null) {
+		var v87 = _g88;
+		__ret.tabIndex = v87;
+	}
+	var _g89 = attr.title;
+	if(_g89 != null) {
+		var v88 = _g89;
+		__ret.title = v88;
+	}
+	var __r1 = [];
+	__r1.push(children);
+	__r.push(vdom_VDom.h("span",__ret,__r1));
+	return __r[0];
+};
+mdc_TabBar.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_TabBar(attributes);
+	}
+	inst.__tink_init2(attributes);
+	return inst;
 };
 mdc_TabBar.__super__ = coconut_ui_View;
 mdc_TabBar.prototype = $extend(coconut_ui_View.prototype,{
 	mdcTabBar: null
-	,ontabchangeCB: null
-	,selectedTabIndex: null
-	,render: function(attr) {
-		this.ontabchangeCB = $bind(attr,attr.ontabchange);
-		this.selectedTabIndex = attr.selectedTabIndex;
-		var type = attr.type != null ? attr.type : "";
-		var __v_0 = attr;
-		var attr1 = attr.className;
+	,render: function() {
+		var _gthis = this;
+		haxe_Log.trace("TABBARRENDER",{ fileName : "TabBar.hx", lineNumber : 46, className : "mdc.TabBar", methodName : "render"});
+		var __r = [];
+		var __ret = _gthis.get_className();
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-tab-bar"] != null) {
 			_g.setReserved("mdc-tab-bar",true);
 		} else {
 			_g.h["mdc-tab-bar"] = true;
 		}
-		if(__map_reserved[type] != null) {
-			_g.setReserved(type,true);
+		var key = _gthis.get_type();
+		if(__map_reserved[key] != null) {
+			_g.setReserved(key,true);
 		} else {
-			_g.h[type] = true;
+			_g.h[key] = true;
 		}
-		return vdom_VDom.h("nav",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-		}, onblur : function(event1) {
-		}, oncanplay : function(event2) {
-		}, oncanplaythrough : function(event3) {
-		}, onchange : function(event4) {
-		}, onclick : function(event5) {
-		}, oncontextmenu : function(event6) {
-		}, oncopy : function(event7) {
-		}, oncut : function(event8) {
-		}, ondblclick : function(event9) {
-		}, ondrag : function(event10) {
-		}, ondragend : function(event11) {
-		}, ondragenter : function(event12) {
-		}, ondragleave : function(event13) {
-		}, ondragover : function(event14) {
-		}, ondragstart : function(event15) {
-		}, ondrop : function(event16) {
-		}, ondurationchange : function(event17) {
-		}, onemptied : function(event18) {
-		}, onended : function(event19) {
-		}, onerror : function(event20) {
-		}, onfocus : function(event21) {
-		}, onfullscreenchange : function(event22) {
-		}, onfullscreenerror : function(event23) {
-		}, ongotpointercapture : function(event24) {
-		}, oninput : function(event25) {
-		}, oninvalid : function(event26) {
-		}, onkeydown : function(event27) {
-		}, onkeypress : function(event28) {
-		}, onkeyup : function(event29) {
-		}, onload : function(event30) {
-		}, onloadeddata : function(event31) {
-		}, onloadedmetadata : function(event32) {
-		}, onloadstart : function(event33) {
-		}, onlostpointercapture : function(event34) {
-		}, onmousedown : function(event35) {
-		}, onmouseenter : function(event36) {
-		}, onmouseleave : function(event37) {
-		}, onmousemove : function(event38) {
-		}, onmouseout : function(event39) {
-		}, onmouseover : function(event40) {
-		}, onmouseup : function(event41) {
-		}, onpaste : function(event42) {
-		}, onpause : function(event43) {
-		}, onplay : function(event44) {
-		}, onplaying : function(event45) {
-		}, onpointercancel : function(event46) {
-		}, onpointerdown : function(event47) {
-		}, onpointerenter : function(event48) {
-		}, onpointerleave : function(event49) {
-		}, onpointerlockchange : function(event50) {
-		}, onpointerlockerror : function(event51) {
-		}, onpointermove : function(event52) {
-		}, onpointerout : function(event53) {
-		}, onpointerover : function(event54) {
-		}, onpointerup : function(event55) {
-		}, onprogress : function(event56) {
-		}, onratechange : function(event57) {
-		}, onreset : function(event58) {
-		}, onresize : function(event59) {
-		}, onscroll : function(event60) {
-		}, onseeked : function(event61) {
-		}, onseeking : function(event62) {
-		}, onselect : function(event63) {
-		}, onshow : function(event64) {
-		}, onstalled : function(event65) {
-		}, onsubmit : function(event66) {
-		}, onsuspend : function(event67) {
-		}, ontimeupdate : function(event68) {
-		}, ontouchcancel : function(event69) {
-		}, ontouchend : function(event70) {
-		}, ontouchmove : function(event71) {
-		}, ontouchstart : function(event72) {
-		}, onvolumechange : function(event73) {
-		}, onwaiting : function(event74) {
-		}, onwheel : function(event75) {
-		}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[attr.tabs,vdom_VDom.h("span",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-tab-bar__indicator")},null)]);
+		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var _g1 = this.get_accessKey();
+		if(_g1 != null) {
+			var v = _g1;
+			__ret1.accessKey = v;
+		}
+		var _g2 = this.get_accessKeyLabel();
+		if(_g2 != null) {
+			var v1 = _g2;
+			__ret1.accessKeyLabel = v1;
+		}
+		var _g3 = this.get_attributes();
+		if(_g3 != null) {
+			var v2 = _g3;
+			__ret1.attributes = v2;
+		}
+		var _g4 = this.get_dir();
+		if(_g4 != null) {
+			var v3 = _g4;
+			__ret1.dir = v3;
+		}
+		var _g5 = this.get_draggable();
+		if(_g5 != null) {
+			var v4 = _g5;
+			__ret1.draggable = v4;
+		}
+		var _g6 = this.get_hidden();
+		if(_g6 != null) {
+			var v5 = _g6;
+			__ret1.hidden = v5;
+		}
+		var _g7 = this.get_id();
+		if(_g7 != null) {
+			var v6 = _g7;
+			__ret1.id = v6;
+		}
+		var _g8 = this.get_key();
+		if(_g8 != null) {
+			var v7 = _g8;
+			__ret1.key = v7;
+		}
+		var _g9 = this.get_lang();
+		if(_g9 != null) {
+			var v8 = _g9;
+			__ret1.lang = v8;
+		}
+		var _g10 = this.get_onabort();
+		if(_g10 != null) {
+			var v9 = _g10;
+			__ret1.onabort = v9;
+		}
+		var _g11 = this.get_onblur();
+		if(_g11 != null) {
+			var v10 = _g11;
+			__ret1.onblur = v10;
+		}
+		var _g12 = this.get_oncanplay();
+		if(_g12 != null) {
+			var v11 = _g12;
+			__ret1.oncanplay = v11;
+		}
+		var _g13 = this.get_oncanplaythrough();
+		if(_g13 != null) {
+			var v12 = _g13;
+			__ret1.oncanplaythrough = v12;
+		}
+		var _g14 = this.get_onchange();
+		if(_g14 != null) {
+			var v13 = _g14;
+			__ret1.onchange = v13;
+		}
+		var _g15 = this.get_onclick();
+		if(_g15 != null) {
+			var v14 = _g15;
+			__ret1.onclick = v14;
+		}
+		var _g16 = this.get_oncontextmenu();
+		if(_g16 != null) {
+			var v15 = _g16;
+			__ret1.oncontextmenu = v15;
+		}
+		var _g17 = this.get_oncopy();
+		if(_g17 != null) {
+			var v16 = _g17;
+			__ret1.oncopy = v16;
+		}
+		var _g18 = this.get_oncut();
+		if(_g18 != null) {
+			var v17 = _g18;
+			__ret1.oncut = v17;
+		}
+		var _g19 = this.get_ondblclick();
+		if(_g19 != null) {
+			var v18 = _g19;
+			__ret1.ondblclick = v18;
+		}
+		var _g20 = this.get_ondrag();
+		if(_g20 != null) {
+			var v19 = _g20;
+			__ret1.ondrag = v19;
+		}
+		var _g21 = this.get_ondragend();
+		if(_g21 != null) {
+			var v20 = _g21;
+			__ret1.ondragend = v20;
+		}
+		var _g22 = this.get_ondragenter();
+		if(_g22 != null) {
+			var v21 = _g22;
+			__ret1.ondragenter = v21;
+		}
+		var _g23 = this.get_ondragleave();
+		if(_g23 != null) {
+			var v22 = _g23;
+			__ret1.ondragleave = v22;
+		}
+		var _g24 = this.get_ondragover();
+		if(_g24 != null) {
+			var v23 = _g24;
+			__ret1.ondragover = v23;
+		}
+		var _g25 = this.get_ondragstart();
+		if(_g25 != null) {
+			var v24 = _g25;
+			__ret1.ondragstart = v24;
+		}
+		var _g26 = this.get_ondrop();
+		if(_g26 != null) {
+			var v25 = _g26;
+			__ret1.ondrop = v25;
+		}
+		var _g27 = this.get_ondurationchange();
+		if(_g27 != null) {
+			var v26 = _g27;
+			__ret1.ondurationchange = v26;
+		}
+		var _g28 = this.get_onemptied();
+		if(_g28 != null) {
+			var v27 = _g28;
+			__ret1.onemptied = v27;
+		}
+		var _g29 = this.get_onended();
+		if(_g29 != null) {
+			var v28 = _g29;
+			__ret1.onended = v28;
+		}
+		var _g30 = this.get_onerror();
+		if(_g30 != null) {
+			var v29 = _g30;
+			__ret1.onerror = v29;
+		}
+		var _g31 = this.get_onfocus();
+		if(_g31 != null) {
+			var v30 = _g31;
+			__ret1.onfocus = v30;
+		}
+		var _g32 = this.get_onfullscreenchange();
+		if(_g32 != null) {
+			var v31 = _g32;
+			__ret1.onfullscreenchange = v31;
+		}
+		var _g33 = this.get_onfullscreenerror();
+		if(_g33 != null) {
+			var v32 = _g33;
+			__ret1.onfullscreenerror = v32;
+		}
+		var _g34 = this.get_ongotpointercapture();
+		if(_g34 != null) {
+			var v33 = _g34;
+			__ret1.ongotpointercapture = v33;
+		}
+		var _g35 = this.get_oninput();
+		if(_g35 != null) {
+			var v34 = _g35;
+			__ret1.oninput = v34;
+		}
+		var _g36 = this.get_oninvalid();
+		if(_g36 != null) {
+			var v35 = _g36;
+			__ret1.oninvalid = v35;
+		}
+		var _g37 = this.get_onkeydown();
+		if(_g37 != null) {
+			var v36 = _g37;
+			__ret1.onkeydown = v36;
+		}
+		var _g38 = this.get_onkeypress();
+		if(_g38 != null) {
+			var v37 = _g38;
+			__ret1.onkeypress = v37;
+		}
+		var _g39 = this.get_onkeyup();
+		if(_g39 != null) {
+			var v38 = _g39;
+			__ret1.onkeyup = v38;
+		}
+		var _g40 = this.get_onload();
+		if(_g40 != null) {
+			var v39 = _g40;
+			__ret1.onload = v39;
+		}
+		var _g41 = this.get_onloadeddata();
+		if(_g41 != null) {
+			var v40 = _g41;
+			__ret1.onloadeddata = v40;
+		}
+		var _g42 = this.get_onloadedmetadata();
+		if(_g42 != null) {
+			var v41 = _g42;
+			__ret1.onloadedmetadata = v41;
+		}
+		var _g43 = this.get_onloadstart();
+		if(_g43 != null) {
+			var v42 = _g43;
+			__ret1.onloadstart = v42;
+		}
+		var _g44 = this.get_onlostpointercapture();
+		if(_g44 != null) {
+			var v43 = _g44;
+			__ret1.onlostpointercapture = v43;
+		}
+		var _g45 = this.get_onmousedown();
+		if(_g45 != null) {
+			var v44 = _g45;
+			__ret1.onmousedown = v44;
+		}
+		var _g46 = this.get_onmouseenter();
+		if(_g46 != null) {
+			var v45 = _g46;
+			__ret1.onmouseenter = v45;
+		}
+		var _g47 = this.get_onmouseleave();
+		if(_g47 != null) {
+			var v46 = _g47;
+			__ret1.onmouseleave = v46;
+		}
+		var _g48 = this.get_onmousemove();
+		if(_g48 != null) {
+			var v47 = _g48;
+			__ret1.onmousemove = v47;
+		}
+		var _g49 = this.get_onmouseout();
+		if(_g49 != null) {
+			var v48 = _g49;
+			__ret1.onmouseout = v48;
+		}
+		var _g50 = this.get_onmouseover();
+		if(_g50 != null) {
+			var v49 = _g50;
+			__ret1.onmouseover = v49;
+		}
+		var _g51 = this.get_onmouseup();
+		if(_g51 != null) {
+			var v50 = _g51;
+			__ret1.onmouseup = v50;
+		}
+		var _g52 = this.get_onpaste();
+		if(_g52 != null) {
+			var v51 = _g52;
+			__ret1.onpaste = v51;
+		}
+		var _g53 = this.get_onpause();
+		if(_g53 != null) {
+			var v52 = _g53;
+			__ret1.onpause = v52;
+		}
+		var _g54 = this.get_onplay();
+		if(_g54 != null) {
+			var v53 = _g54;
+			__ret1.onplay = v53;
+		}
+		var _g55 = this.get_onplaying();
+		if(_g55 != null) {
+			var v54 = _g55;
+			__ret1.onplaying = v54;
+		}
+		var _g56 = this.get_onpointercancel();
+		if(_g56 != null) {
+			var v55 = _g56;
+			__ret1.onpointercancel = v55;
+		}
+		var _g57 = this.get_onpointerdown();
+		if(_g57 != null) {
+			var v56 = _g57;
+			__ret1.onpointerdown = v56;
+		}
+		var _g58 = this.get_onpointerenter();
+		if(_g58 != null) {
+			var v57 = _g58;
+			__ret1.onpointerenter = v57;
+		}
+		var _g59 = this.get_onpointerleave();
+		if(_g59 != null) {
+			var v58 = _g59;
+			__ret1.onpointerleave = v58;
+		}
+		var _g60 = this.get_onpointerlockchange();
+		if(_g60 != null) {
+			var v59 = _g60;
+			__ret1.onpointerlockchange = v59;
+		}
+		var _g61 = this.get_onpointerlockerror();
+		if(_g61 != null) {
+			var v60 = _g61;
+			__ret1.onpointerlockerror = v60;
+		}
+		var _g62 = this.get_onpointermove();
+		if(_g62 != null) {
+			var v61 = _g62;
+			__ret1.onpointermove = v61;
+		}
+		var _g63 = this.get_onpointerout();
+		if(_g63 != null) {
+			var v62 = _g63;
+			__ret1.onpointerout = v62;
+		}
+		var _g64 = this.get_onpointerover();
+		if(_g64 != null) {
+			var v63 = _g64;
+			__ret1.onpointerover = v63;
+		}
+		var _g65 = this.get_onpointerup();
+		if(_g65 != null) {
+			var v64 = _g65;
+			__ret1.onpointerup = v64;
+		}
+		var _g66 = this.get_onprogress();
+		if(_g66 != null) {
+			var v65 = _g66;
+			__ret1.onprogress = v65;
+		}
+		var _g67 = this.get_onratechange();
+		if(_g67 != null) {
+			var v66 = _g67;
+			__ret1.onratechange = v66;
+		}
+		var _g68 = this.get_onreset();
+		if(_g68 != null) {
+			var v67 = _g68;
+			__ret1.onreset = v67;
+		}
+		var _g69 = this.get_onresize();
+		if(_g69 != null) {
+			var v68 = _g69;
+			__ret1.onresize = v68;
+		}
+		var _g70 = this.get_onscroll();
+		if(_g70 != null) {
+			var v69 = _g70;
+			__ret1.onscroll = v69;
+		}
+		var _g71 = this.get_onseeked();
+		if(_g71 != null) {
+			var v70 = _g71;
+			__ret1.onseeked = v70;
+		}
+		var _g72 = this.get_onseeking();
+		if(_g72 != null) {
+			var v71 = _g72;
+			__ret1.onseeking = v71;
+		}
+		var _g73 = this.get_onselect();
+		if(_g73 != null) {
+			var v72 = _g73;
+			__ret1.onselect = v72;
+		}
+		var _g74 = this.get_onshow();
+		if(_g74 != null) {
+			var v73 = _g74;
+			__ret1.onshow = v73;
+		}
+		var _g75 = this.get_onstalled();
+		if(_g75 != null) {
+			var v74 = _g75;
+			__ret1.onstalled = v74;
+		}
+		var _g76 = this.get_onsubmit();
+		if(_g76 != null) {
+			var v75 = _g76;
+			__ret1.onsubmit = v75;
+		}
+		var _g77 = this.get_onsuspend();
+		if(_g77 != null) {
+			var v76 = _g77;
+			__ret1.onsuspend = v76;
+		}
+		var _g78 = this.get_ontimeupdate();
+		if(_g78 != null) {
+			var v77 = _g78;
+			__ret1.ontimeupdate = v77;
+		}
+		var _g79 = this.get_ontouchcancel();
+		if(_g79 != null) {
+			var v78 = _g79;
+			__ret1.ontouchcancel = v78;
+		}
+		var _g80 = this.get_ontouchend();
+		if(_g80 != null) {
+			var v79 = _g80;
+			__ret1.ontouchend = v79;
+		}
+		var _g81 = this.get_ontouchmove();
+		if(_g81 != null) {
+			var v80 = _g81;
+			__ret1.ontouchmove = v80;
+		}
+		var _g82 = this.get_ontouchstart();
+		if(_g82 != null) {
+			var v81 = _g82;
+			__ret1.ontouchstart = v81;
+		}
+		var _g83 = this.get_onvolumechange();
+		if(_g83 != null) {
+			var v82 = _g83;
+			__ret1.onvolumechange = v82;
+		}
+		var _g84 = this.get_onwaiting();
+		if(_g84 != null) {
+			var v83 = _g84;
+			__ret1.onwaiting = v83;
+		}
+		var _g85 = this.get_onwheel();
+		if(_g85 != null) {
+			var v84 = _g85;
+			__ret1.onwheel = v84;
+		}
+		var _g86 = this.get_spellcheck();
+		if(_g86 != null) {
+			var v85 = _g86;
+			__ret1.spellcheck = v85;
+		}
+		var _g87 = this.get_style();
+		if(_g87 != null) {
+			var v86 = _g87;
+			__ret1.style = v86;
+		}
+		var _g88 = this.get_tabIndex();
+		if(_g88 != null) {
+			var v87 = _g88;
+			__ret1.tabIndex = v87;
+		}
+		var _g89 = this.get_title();
+		if(_g89 != null) {
+			var v88 = _g89;
+			__ret1.title = v88;
+		}
+		var attr = __ret1;
+		var __r1 = [];
+		var _g90 = 0;
+		var _g110 = this.get_children();
+		while(_g90 < (_g110 == null ? 0 : _g110.length)) {
+			var _0 = _g110 == null ? null : _g110[_g90];
+			++_g90;
+			__r1.push(_0);
+		}
+		var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-tab-bar__indicator")};
+		var __r2 = [];
+		__r1.push(vdom_VDom.h("span",__ret2,__r2));
+		__r.push(vdom_VDom.h("nav",attr,__r1));
+		return __r[0];
 	}
 	,afterInit: function(elem) {
 		var _gthis = this;
 		this.mdcTabBar = new window.mdc.tabs.MDCTabBar(elem);
 		this.mdcTabBar.listen("MDCTabBar:change",function(data) {
-			if(_gthis.ontabchangeCB != null) {
-				_gthis.ontabchangeCB(_gthis.mdcTabBar.activeTabIndex);
-			}
+			(_gthis.get_ontabchange())(_gthis.mdcTabBar.activeTabIndex);
 		});
+	}
+	,lastChildren: null
+	,lastElem: null
+	,afterPatching: function(elem) {
 	}
 	,destroy: function() {
 		if(this.mdcTabBar != null) {
 			this.mdcTabBar.destroy();
 		}
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults1: null
+	,__slots: null
+	,toString: function() {
+		return "TabBar" + "#" + this.viewId;
+	}
+	,__tink_init2: function(attributes) {
+		this.__slots.children.setData(attributes.children);
+		var this1 = attributes.type;
+		this.__slots.type.setData(this1 == null ? this.__tink_defaults1.type : this1);
+		var this2 = attributes.ontabchange;
+		this.__slots.ontabchange.setData(this2 == null ? this.__tink_defaults1.ontabchange : this2);
+		var this3 = attributes.accessKey;
+		this.__slots.accessKey.setData(this3 == null ? this.__tink_defaults1.accessKey : this3);
+		var this4 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this4 == null ? this.__tink_defaults1.accessKeyLabel : this4);
+		var this5 = attributes.attributes;
+		this.__slots.attributes.setData(this5 == null ? this.__tink_defaults1.attributes : this5);
+		var this6 = attributes.className;
+		this.__slots.className.setData(this6 == null ? this.__tink_defaults1.className : this6);
+		var this7 = attributes.dir;
+		this.__slots.dir.setData(this7 == null ? this.__tink_defaults1.dir : this7);
+		var this8 = attributes.draggable;
+		this.__slots.draggable.setData(this8 == null ? this.__tink_defaults1.draggable : this8);
+		var this9 = attributes.hidden;
+		this.__slots.hidden.setData(this9 == null ? this.__tink_defaults1.hidden : this9);
+		var this10 = attributes.id;
+		this.__slots.id.setData(this10 == null ? this.__tink_defaults1.id : this10);
+		var this11 = attributes.key;
+		this.__slots.key.setData(this11 == null ? this.__tink_defaults1.key : this11);
+		var this12 = attributes.lang;
+		this.__slots.lang.setData(this12 == null ? this.__tink_defaults1.lang : this12);
+		var this13 = attributes.onabort;
+		this.__slots.onabort.setData(this13 == null ? this.__tink_defaults1.onabort : this13);
+		var this14 = attributes.onblur;
+		this.__slots.onblur.setData(this14 == null ? this.__tink_defaults1.onblur : this14);
+		var this15 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this15 == null ? this.__tink_defaults1.oncanplay : this15);
+		var this16 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this16 == null ? this.__tink_defaults1.oncanplaythrough : this16);
+		var this17 = attributes.onchange;
+		this.__slots.onchange.setData(this17 == null ? this.__tink_defaults1.onchange : this17);
+		var this18 = attributes.onclick;
+		this.__slots.onclick.setData(this18 == null ? this.__tink_defaults1.onclick : this18);
+		var this19 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this19 == null ? this.__tink_defaults1.oncontextmenu : this19);
+		var this20 = attributes.oncopy;
+		this.__slots.oncopy.setData(this20 == null ? this.__tink_defaults1.oncopy : this20);
+		var this21 = attributes.oncut;
+		this.__slots.oncut.setData(this21 == null ? this.__tink_defaults1.oncut : this21);
+		var this22 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this22 == null ? this.__tink_defaults1.ondblclick : this22);
+		var this23 = attributes.ondrag;
+		this.__slots.ondrag.setData(this23 == null ? this.__tink_defaults1.ondrag : this23);
+		var this24 = attributes.ondragend;
+		this.__slots.ondragend.setData(this24 == null ? this.__tink_defaults1.ondragend : this24);
+		var this25 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this25 == null ? this.__tink_defaults1.ondragenter : this25);
+		var this26 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this26 == null ? this.__tink_defaults1.ondragleave : this26);
+		var this27 = attributes.ondragover;
+		this.__slots.ondragover.setData(this27 == null ? this.__tink_defaults1.ondragover : this27);
+		var this28 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this28 == null ? this.__tink_defaults1.ondragstart : this28);
+		var this29 = attributes.ondrop;
+		this.__slots.ondrop.setData(this29 == null ? this.__tink_defaults1.ondrop : this29);
+		var this30 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this30 == null ? this.__tink_defaults1.ondurationchange : this30);
+		var this31 = attributes.onemptied;
+		this.__slots.onemptied.setData(this31 == null ? this.__tink_defaults1.onemptied : this31);
+		var this32 = attributes.onended;
+		this.__slots.onended.setData(this32 == null ? this.__tink_defaults1.onended : this32);
+		var this33 = attributes.onerror;
+		this.__slots.onerror.setData(this33 == null ? this.__tink_defaults1.onerror : this33);
+		var this34 = attributes.onfocus;
+		this.__slots.onfocus.setData(this34 == null ? this.__tink_defaults1.onfocus : this34);
+		var this35 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this35 == null ? this.__tink_defaults1.onfullscreenchange : this35);
+		var this36 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this36 == null ? this.__tink_defaults1.onfullscreenerror : this36);
+		var this37 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this37 == null ? this.__tink_defaults1.ongotpointercapture : this37);
+		var this38 = attributes.oninput;
+		this.__slots.oninput.setData(this38 == null ? this.__tink_defaults1.oninput : this38);
+		var this39 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this39 == null ? this.__tink_defaults1.oninvalid : this39);
+		var this40 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this40 == null ? this.__tink_defaults1.onkeydown : this40);
+		var this41 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this41 == null ? this.__tink_defaults1.onkeypress : this41);
+		var this42 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this42 == null ? this.__tink_defaults1.onkeyup : this42);
+		var this43 = attributes.onload;
+		this.__slots.onload.setData(this43 == null ? this.__tink_defaults1.onload : this43);
+		var this44 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this44 == null ? this.__tink_defaults1.onloadeddata : this44);
+		var this45 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this45 == null ? this.__tink_defaults1.onloadedmetadata : this45);
+		var this46 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this46 == null ? this.__tink_defaults1.onloadstart : this46);
+		var this47 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this47 == null ? this.__tink_defaults1.onlostpointercapture : this47);
+		var this48 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this48 == null ? this.__tink_defaults1.onmousedown : this48);
+		var this49 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this49 == null ? this.__tink_defaults1.onmouseenter : this49);
+		var this50 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this50 == null ? this.__tink_defaults1.onmouseleave : this50);
+		var this51 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this51 == null ? this.__tink_defaults1.onmousemove : this51);
+		var this52 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this52 == null ? this.__tink_defaults1.onmouseout : this52);
+		var this53 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this53 == null ? this.__tink_defaults1.onmouseover : this53);
+		var this54 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this54 == null ? this.__tink_defaults1.onmouseup : this54);
+		var this55 = attributes.onpaste;
+		this.__slots.onpaste.setData(this55 == null ? this.__tink_defaults1.onpaste : this55);
+		var this56 = attributes.onpause;
+		this.__slots.onpause.setData(this56 == null ? this.__tink_defaults1.onpause : this56);
+		var this57 = attributes.onplay;
+		this.__slots.onplay.setData(this57 == null ? this.__tink_defaults1.onplay : this57);
+		var this58 = attributes.onplaying;
+		this.__slots.onplaying.setData(this58 == null ? this.__tink_defaults1.onplaying : this58);
+		var this59 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this59 == null ? this.__tink_defaults1.onpointercancel : this59);
+		var this60 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this60 == null ? this.__tink_defaults1.onpointerdown : this60);
+		var this61 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this61 == null ? this.__tink_defaults1.onpointerenter : this61);
+		var this62 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this62 == null ? this.__tink_defaults1.onpointerleave : this62);
+		var this63 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this63 == null ? this.__tink_defaults1.onpointerlockchange : this63);
+		var this64 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this64 == null ? this.__tink_defaults1.onpointerlockerror : this64);
+		var this65 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this65 == null ? this.__tink_defaults1.onpointermove : this65);
+		var this66 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this66 == null ? this.__tink_defaults1.onpointerout : this66);
+		var this67 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this67 == null ? this.__tink_defaults1.onpointerover : this67);
+		var this68 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this68 == null ? this.__tink_defaults1.onpointerup : this68);
+		var this69 = attributes.onprogress;
+		this.__slots.onprogress.setData(this69 == null ? this.__tink_defaults1.onprogress : this69);
+		var this70 = attributes.onratechange;
+		this.__slots.onratechange.setData(this70 == null ? this.__tink_defaults1.onratechange : this70);
+		var this71 = attributes.onreset;
+		this.__slots.onreset.setData(this71 == null ? this.__tink_defaults1.onreset : this71);
+		var this72 = attributes.onresize;
+		this.__slots.onresize.setData(this72 == null ? this.__tink_defaults1.onresize : this72);
+		var this73 = attributes.onscroll;
+		this.__slots.onscroll.setData(this73 == null ? this.__tink_defaults1.onscroll : this73);
+		var this74 = attributes.onseeked;
+		this.__slots.onseeked.setData(this74 == null ? this.__tink_defaults1.onseeked : this74);
+		var this75 = attributes.onseeking;
+		this.__slots.onseeking.setData(this75 == null ? this.__tink_defaults1.onseeking : this75);
+		var this76 = attributes.onselect;
+		this.__slots.onselect.setData(this76 == null ? this.__tink_defaults1.onselect : this76);
+		var this77 = attributes.onshow;
+		this.__slots.onshow.setData(this77 == null ? this.__tink_defaults1.onshow : this77);
+		var this78 = attributes.onstalled;
+		this.__slots.onstalled.setData(this78 == null ? this.__tink_defaults1.onstalled : this78);
+		var this79 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this79 == null ? this.__tink_defaults1.onsubmit : this79);
+		var this80 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this80 == null ? this.__tink_defaults1.onsuspend : this80);
+		var this81 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this81 == null ? this.__tink_defaults1.ontimeupdate : this81);
+		var this82 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this82 == null ? this.__tink_defaults1.ontouchcancel : this82);
+		var this83 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this83 == null ? this.__tink_defaults1.ontouchend : this83);
+		var this84 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this84 == null ? this.__tink_defaults1.ontouchmove : this84);
+		var this85 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this85 == null ? this.__tink_defaults1.ontouchstart : this85);
+		var this86 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this86 == null ? this.__tink_defaults1.onvolumechange : this86);
+		var this87 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this87 == null ? this.__tink_defaults1.onwaiting : this87);
+		var this88 = attributes.onwheel;
+		this.__slots.onwheel.setData(this88 == null ? this.__tink_defaults1.onwheel : this88);
+		var this89 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this89 == null ? this.__tink_defaults1.spellcheck : this89);
+		var this90 = attributes.style;
+		this.__slots.style.setData(this90 == null ? this.__tink_defaults1.style : this90);
+		var this91 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this91 == null ? this.__tink_defaults1.tabIndex : this91);
+		var this92 = attributes.title;
+		this.__slots.title.setData(this92 == null ? this.__tink_defaults1.title : this92);
+	}
+	,get_children: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
+	}
+	,get_type: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.type.observe());
+	}
+	,get_ontabchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontabchange.observe());
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
 	}
 	,__class__: mdc_TabBar
-	,__properties__: {get_data:"get_data"}
+	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_ontabchange:"get_ontabchange",get_type:"get_type",get_children:"get_children"}
 });
 var mdc_TextField = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TextField.hx", lineNumber : 10, className : "mdc.TextField", methodName : "new"});
 	this.textFieldId = mdc_TextField.textFieldIdIndex++;
-	this.__cocodata = data;
+	this.__tink_defaults5 = { accessKey : null, accessKeyLabel : null, attributes : null, autofocus : null, box : null, checked : null, className : null, dir : null, disabled : null, draggable : null, fullWidth : null, hidden : null, icon : null, iconPos : null, id : null, invalid : null, key : null, label : null, lang : null, max : null, maxlength : null, min : null, name : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onedit : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, pattern : null, placeholder : null, required : null, spellcheck : null, step : null, style : null, tabIndex : null, textArea : null, title : null, type : null, value : null};
+	this.__slots = { accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), autofocus : new coconut_ui_tools_Slot(this,null), box : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), fullWidth : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), icon : new coconut_ui_tools_Slot(this,null), iconPos : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), invalid : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), max : new coconut_ui_tools_Slot(this,null), maxlength : new coconut_ui_tools_Slot(this,null), min : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onedit : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), pattern : new coconut_ui_tools_Slot(this,null), placeholder : new coconut_ui_tools_Slot(this,null), required : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), step : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), textArea : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null), type : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.TextField"] = mdc_TextField;
 mdc_TextField.__name__ = ["mdc","TextField"];
+mdc_TextField.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_TextField(attributes);
+	}
+	inst.__tink_init6(attributes);
+	return inst;
+};
 mdc_TextField.__super__ = coconut_ui_View;
 mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 	textFieldId: null
 	,mdcTextField: null
-	,render: function(attr) {
-		var __v_0 = attr;
-		var attr1 = attr.className;
+	,render: function() {
+		var _gthis = this;
+		var __r = [];
+		var __ret = _gthis.get_className();
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-text-field"] != null) {
 			_g.setReserved("mdc-text-field",true);
 		} else {
 			_g.h["mdc-text-field"] = true;
 		}
-		var value = attr.disabled;
+		var value = _gthis.get_disabled();
 		if(__map_reserved["mdc-text-field--disabled"] != null) {
 			_g.setReserved("mdc-text-field--disabled",value);
 		} else {
 			_g.h["mdc-text-field--disabled"] = value;
 		}
-		var value1 = attr.icon != null;
+		var value1 = _gthis.get_icon() != null;
 		if(__map_reserved["mdc-text-field--with-leading-icon"] != null) {
 			_g.setReserved("mdc-text-field--with-leading-icon",value1);
 		} else {
 			_g.h["mdc-text-field--with-leading-icon"] = value1;
 		}
-		var value2 = attr.box;
+		var value2 = _gthis.get_box();
 		if(__map_reserved["mdc-text-field--box"] != null) {
 			_g.setReserved("mdc-text-field--box",value2);
 		} else {
 			_g.h["mdc-text-field--box"] = value2;
 		}
-		var value3 = attr.textArea;
+		var value3 = _gthis.get_textArea();
 		if(__map_reserved["mdc-text-field--textarea"] != null) {
 			_g.setReserved("mdc-text-field--textarea",value3);
 		} else {
 			_g.h["mdc-text-field--textarea"] = value3;
 		}
-		var value4 = attr.fullWidth;
+		var value4 = _gthis.get_fullWidth();
 		if(__map_reserved["mdc-text-field--fullwidth"] != null) {
 			_g.setReserved("mdc-text-field--fullwidth",value4);
 		} else {
 			_g.h["mdc-text-field--fullwidth"] = value4;
 		}
-		return vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr1,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), accessKey : __v_0.accessKey, accessKeyLabel : __v_0.accessKeyLabel, attributes : __v_0.attributes, contentEditable : __v_0.contentEditable, dir : __v_0.dir, draggable : __v_0.draggable, hidden : __v_0.hidden, id : __v_0.id, key : __v_0.key, lang : __v_0.lang, onabort : function(event) {
-		}, onblur : function(event1) {
-		}, oncanplay : function(event2) {
-		}, oncanplaythrough : function(event3) {
-		}, onchange : function(event4) {
-		}, onclick : function(event5) {
-		}, oncontextmenu : function(event6) {
-		}, oncopy : function(event7) {
-		}, oncut : function(event8) {
-		}, ondblclick : function(event9) {
-		}, ondrag : function(event10) {
-		}, ondragend : function(event11) {
-		}, ondragenter : function(event12) {
-		}, ondragleave : function(event13) {
-		}, ondragover : function(event14) {
-		}, ondragstart : function(event15) {
-		}, ondrop : function(event16) {
-		}, ondurationchange : function(event17) {
-		}, onemptied : function(event18) {
-		}, onended : function(event19) {
-		}, onerror : function(event20) {
-		}, onfocus : function(event21) {
-		}, onfullscreenchange : function(event22) {
-		}, onfullscreenerror : function(event23) {
-		}, ongotpointercapture : function(event24) {
-		}, oninput : function(event25) {
-		}, oninvalid : function(event26) {
-		}, onkeydown : function(event27) {
-		}, onkeypress : function(event28) {
-		}, onkeyup : function(event29) {
-		}, onload : function(event30) {
-		}, onloadeddata : function(event31) {
-		}, onloadedmetadata : function(event32) {
-		}, onloadstart : function(event33) {
-		}, onlostpointercapture : function(event34) {
-		}, onmousedown : function(event35) {
-		}, onmouseenter : function(event36) {
-		}, onmouseleave : function(event37) {
-		}, onmousemove : function(event38) {
-		}, onmouseout : function(event39) {
-		}, onmouseover : function(event40) {
-		}, onmouseup : function(event41) {
-		}, onpaste : function(event42) {
-		}, onpause : function(event43) {
-		}, onplay : function(event44) {
-		}, onplaying : function(event45) {
-		}, onpointercancel : function(event46) {
-		}, onpointerdown : function(event47) {
-		}, onpointerenter : function(event48) {
-		}, onpointerleave : function(event49) {
-		}, onpointerlockchange : function(event50) {
-		}, onpointerlockerror : function(event51) {
-		}, onpointermove : function(event52) {
-		}, onpointerout : function(event53) {
-		}, onpointerover : function(event54) {
-		}, onpointerup : function(event55) {
-		}, onprogress : function(event56) {
-		}, onratechange : function(event57) {
-		}, onreset : function(event58) {
-		}, onresize : function(event59) {
-		}, onscroll : function(event60) {
-		}, onseeked : function(event61) {
-		}, onseeking : function(event62) {
-		}, onselect : function(event63) {
-		}, onshow : function(event64) {
-		}, onstalled : function(event65) {
-		}, onsubmit : function(event66) {
-		}, onsuspend : function(event67) {
-		}, ontimeupdate : function(event68) {
-		}, ontouchcancel : function(event69) {
-		}, ontouchend : function(event70) {
-		}, ontouchmove : function(event71) {
-		}, ontouchstart : function(event72) {
-		}, onvolumechange : function(event73) {
-		}, onwaiting : function(event74) {
-		}, onwheel : function(event75) {
-		}, spellcheck : __v_0.spellcheck, style : __v_0.style, tabIndex : __v_0.tabIndex, title : __v_0.title},[attr.icon != null && attr.iconPos != "right" ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.textArea ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("textarea",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId)), required : attr.required},[attr.value])]) : vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("input",{ type : attr.type != null ? attr.type : "text", pattern : attr.pattern, required : attr.required, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId)), value : attr.value})]),attr.label != null ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("label",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__label"), htmlFor : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.textFieldId))},[attr.label])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),attr.icon != null && attr.iconPos == "right" ? vdom__$VNode_VNode_$Impl_$.flatten([vdom_VDom.h("i",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")},[attr.icon])]) : vdom__$VNode_VNode_$Impl_$.flatten([]),vdom_VDom.h("div",{ className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__bottom-line")},null)]);
+		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var _g1 = this.get_accessKey();
+		if(_g1 != null) {
+			var v = _g1;
+			__ret1.accessKey = v;
+		}
+		var _g2 = this.get_accessKeyLabel();
+		if(_g2 != null) {
+			var v1 = _g2;
+			__ret1.accessKeyLabel = v1;
+		}
+		var _g3 = this.get_attributes();
+		if(_g3 != null) {
+			var v2 = _g3;
+			__ret1.attributes = v2;
+		}
+		var _g4 = this.get_dir();
+		if(_g4 != null) {
+			var v3 = _g4;
+			__ret1.dir = v3;
+		}
+		var _g5 = this.get_draggable();
+		if(_g5 != null) {
+			var v4 = _g5;
+			__ret1.draggable = v4;
+		}
+		var _g6 = this.get_hidden();
+		if(_g6 != null) {
+			var v5 = _g6;
+			__ret1.hidden = v5;
+		}
+		var _g7 = this.get_id();
+		if(_g7 != null) {
+			var v6 = _g7;
+			__ret1.id = v6;
+		}
+		var _g8 = this.get_key();
+		if(_g8 != null) {
+			var v7 = _g8;
+			__ret1.key = v7;
+		}
+		var _g9 = this.get_lang();
+		if(_g9 != null) {
+			var v8 = _g9;
+			__ret1.lang = v8;
+		}
+		var _g10 = this.get_onabort();
+		if(_g10 != null) {
+			var v9 = _g10;
+			__ret1.onabort = v9;
+		}
+		var _g11 = this.get_onblur();
+		if(_g11 != null) {
+			var v10 = _g11;
+			__ret1.onblur = v10;
+		}
+		var _g12 = this.get_oncanplay();
+		if(_g12 != null) {
+			var v11 = _g12;
+			__ret1.oncanplay = v11;
+		}
+		var _g13 = this.get_oncanplaythrough();
+		if(_g13 != null) {
+			var v12 = _g13;
+			__ret1.oncanplaythrough = v12;
+		}
+		var _g14 = this.get_onchange();
+		if(_g14 != null) {
+			var v13 = _g14;
+			__ret1.onchange = v13;
+		}
+		var _g15 = this.get_onclick();
+		if(_g15 != null) {
+			var v14 = _g15;
+			__ret1.onclick = v14;
+		}
+		var _g16 = this.get_oncontextmenu();
+		if(_g16 != null) {
+			var v15 = _g16;
+			__ret1.oncontextmenu = v15;
+		}
+		var _g17 = this.get_oncopy();
+		if(_g17 != null) {
+			var v16 = _g17;
+			__ret1.oncopy = v16;
+		}
+		var _g18 = this.get_oncut();
+		if(_g18 != null) {
+			var v17 = _g18;
+			__ret1.oncut = v17;
+		}
+		var _g19 = this.get_ondblclick();
+		if(_g19 != null) {
+			var v18 = _g19;
+			__ret1.ondblclick = v18;
+		}
+		var _g20 = this.get_ondrag();
+		if(_g20 != null) {
+			var v19 = _g20;
+			__ret1.ondrag = v19;
+		}
+		var _g21 = this.get_ondragend();
+		if(_g21 != null) {
+			var v20 = _g21;
+			__ret1.ondragend = v20;
+		}
+		var _g22 = this.get_ondragenter();
+		if(_g22 != null) {
+			var v21 = _g22;
+			__ret1.ondragenter = v21;
+		}
+		var _g23 = this.get_ondragleave();
+		if(_g23 != null) {
+			var v22 = _g23;
+			__ret1.ondragleave = v22;
+		}
+		var _g24 = this.get_ondragover();
+		if(_g24 != null) {
+			var v23 = _g24;
+			__ret1.ondragover = v23;
+		}
+		var _g25 = this.get_ondragstart();
+		if(_g25 != null) {
+			var v24 = _g25;
+			__ret1.ondragstart = v24;
+		}
+		var _g26 = this.get_ondrop();
+		if(_g26 != null) {
+			var v25 = _g26;
+			__ret1.ondrop = v25;
+		}
+		var _g27 = this.get_ondurationchange();
+		if(_g27 != null) {
+			var v26 = _g27;
+			__ret1.ondurationchange = v26;
+		}
+		var _g28 = this.get_onemptied();
+		if(_g28 != null) {
+			var v27 = _g28;
+			__ret1.onemptied = v27;
+		}
+		var _g29 = this.get_onended();
+		if(_g29 != null) {
+			var v28 = _g29;
+			__ret1.onended = v28;
+		}
+		var _g30 = this.get_onerror();
+		if(_g30 != null) {
+			var v29 = _g30;
+			__ret1.onerror = v29;
+		}
+		var _g31 = this.get_onfocus();
+		if(_g31 != null) {
+			var v30 = _g31;
+			__ret1.onfocus = v30;
+		}
+		var _g32 = this.get_onfullscreenchange();
+		if(_g32 != null) {
+			var v31 = _g32;
+			__ret1.onfullscreenchange = v31;
+		}
+		var _g33 = this.get_onfullscreenerror();
+		if(_g33 != null) {
+			var v32 = _g33;
+			__ret1.onfullscreenerror = v32;
+		}
+		var _g34 = this.get_ongotpointercapture();
+		if(_g34 != null) {
+			var v33 = _g34;
+			__ret1.ongotpointercapture = v33;
+		}
+		var _g35 = this.get_oninput();
+		if(_g35 != null) {
+			var v34 = _g35;
+			__ret1.oninput = v34;
+		}
+		var _g36 = this.get_oninvalid();
+		if(_g36 != null) {
+			var v35 = _g36;
+			__ret1.oninvalid = v35;
+		}
+		var _g37 = this.get_onkeydown();
+		if(_g37 != null) {
+			var v36 = _g37;
+			__ret1.onkeydown = v36;
+		}
+		var _g38 = this.get_onkeypress();
+		if(_g38 != null) {
+			var v37 = _g38;
+			__ret1.onkeypress = v37;
+		}
+		var _g39 = this.get_onkeyup();
+		if(_g39 != null) {
+			var v38 = _g39;
+			__ret1.onkeyup = v38;
+		}
+		var _g40 = this.get_onload();
+		if(_g40 != null) {
+			var v39 = _g40;
+			__ret1.onload = v39;
+		}
+		var _g41 = this.get_onloadeddata();
+		if(_g41 != null) {
+			var v40 = _g41;
+			__ret1.onloadeddata = v40;
+		}
+		var _g42 = this.get_onloadedmetadata();
+		if(_g42 != null) {
+			var v41 = _g42;
+			__ret1.onloadedmetadata = v41;
+		}
+		var _g43 = this.get_onloadstart();
+		if(_g43 != null) {
+			var v42 = _g43;
+			__ret1.onloadstart = v42;
+		}
+		var _g44 = this.get_onlostpointercapture();
+		if(_g44 != null) {
+			var v43 = _g44;
+			__ret1.onlostpointercapture = v43;
+		}
+		var _g45 = this.get_onmousedown();
+		if(_g45 != null) {
+			var v44 = _g45;
+			__ret1.onmousedown = v44;
+		}
+		var _g46 = this.get_onmouseenter();
+		if(_g46 != null) {
+			var v45 = _g46;
+			__ret1.onmouseenter = v45;
+		}
+		var _g47 = this.get_onmouseleave();
+		if(_g47 != null) {
+			var v46 = _g47;
+			__ret1.onmouseleave = v46;
+		}
+		var _g48 = this.get_onmousemove();
+		if(_g48 != null) {
+			var v47 = _g48;
+			__ret1.onmousemove = v47;
+		}
+		var _g49 = this.get_onmouseout();
+		if(_g49 != null) {
+			var v48 = _g49;
+			__ret1.onmouseout = v48;
+		}
+		var _g50 = this.get_onmouseover();
+		if(_g50 != null) {
+			var v49 = _g50;
+			__ret1.onmouseover = v49;
+		}
+		var _g51 = this.get_onmouseup();
+		if(_g51 != null) {
+			var v50 = _g51;
+			__ret1.onmouseup = v50;
+		}
+		var _g52 = this.get_onpaste();
+		if(_g52 != null) {
+			var v51 = _g52;
+			__ret1.onpaste = v51;
+		}
+		var _g53 = this.get_onpause();
+		if(_g53 != null) {
+			var v52 = _g53;
+			__ret1.onpause = v52;
+		}
+		var _g54 = this.get_onplay();
+		if(_g54 != null) {
+			var v53 = _g54;
+			__ret1.onplay = v53;
+		}
+		var _g55 = this.get_onplaying();
+		if(_g55 != null) {
+			var v54 = _g55;
+			__ret1.onplaying = v54;
+		}
+		var _g56 = this.get_onpointercancel();
+		if(_g56 != null) {
+			var v55 = _g56;
+			__ret1.onpointercancel = v55;
+		}
+		var _g57 = this.get_onpointerdown();
+		if(_g57 != null) {
+			var v56 = _g57;
+			__ret1.onpointerdown = v56;
+		}
+		var _g58 = this.get_onpointerenter();
+		if(_g58 != null) {
+			var v57 = _g58;
+			__ret1.onpointerenter = v57;
+		}
+		var _g59 = this.get_onpointerleave();
+		if(_g59 != null) {
+			var v58 = _g59;
+			__ret1.onpointerleave = v58;
+		}
+		var _g60 = this.get_onpointerlockchange();
+		if(_g60 != null) {
+			var v59 = _g60;
+			__ret1.onpointerlockchange = v59;
+		}
+		var _g61 = this.get_onpointerlockerror();
+		if(_g61 != null) {
+			var v60 = _g61;
+			__ret1.onpointerlockerror = v60;
+		}
+		var _g62 = this.get_onpointermove();
+		if(_g62 != null) {
+			var v61 = _g62;
+			__ret1.onpointermove = v61;
+		}
+		var _g63 = this.get_onpointerout();
+		if(_g63 != null) {
+			var v62 = _g63;
+			__ret1.onpointerout = v62;
+		}
+		var _g64 = this.get_onpointerover();
+		if(_g64 != null) {
+			var v63 = _g64;
+			__ret1.onpointerover = v63;
+		}
+		var _g65 = this.get_onpointerup();
+		if(_g65 != null) {
+			var v64 = _g65;
+			__ret1.onpointerup = v64;
+		}
+		var _g66 = this.get_onprogress();
+		if(_g66 != null) {
+			var v65 = _g66;
+			__ret1.onprogress = v65;
+		}
+		var _g67 = this.get_onratechange();
+		if(_g67 != null) {
+			var v66 = _g67;
+			__ret1.onratechange = v66;
+		}
+		var _g68 = this.get_onreset();
+		if(_g68 != null) {
+			var v67 = _g68;
+			__ret1.onreset = v67;
+		}
+		var _g69 = this.get_onresize();
+		if(_g69 != null) {
+			var v68 = _g69;
+			__ret1.onresize = v68;
+		}
+		var _g70 = this.get_onscroll();
+		if(_g70 != null) {
+			var v69 = _g70;
+			__ret1.onscroll = v69;
+		}
+		var _g71 = this.get_onseeked();
+		if(_g71 != null) {
+			var v70 = _g71;
+			__ret1.onseeked = v70;
+		}
+		var _g72 = this.get_onseeking();
+		if(_g72 != null) {
+			var v71 = _g72;
+			__ret1.onseeking = v71;
+		}
+		var _g73 = this.get_onselect();
+		if(_g73 != null) {
+			var v72 = _g73;
+			__ret1.onselect = v72;
+		}
+		var _g74 = this.get_onshow();
+		if(_g74 != null) {
+			var v73 = _g74;
+			__ret1.onshow = v73;
+		}
+		var _g75 = this.get_onstalled();
+		if(_g75 != null) {
+			var v74 = _g75;
+			__ret1.onstalled = v74;
+		}
+		var _g76 = this.get_onsubmit();
+		if(_g76 != null) {
+			var v75 = _g76;
+			__ret1.onsubmit = v75;
+		}
+		var _g77 = this.get_onsuspend();
+		if(_g77 != null) {
+			var v76 = _g77;
+			__ret1.onsuspend = v76;
+		}
+		var _g78 = this.get_ontimeupdate();
+		if(_g78 != null) {
+			var v77 = _g78;
+			__ret1.ontimeupdate = v77;
+		}
+		var _g79 = this.get_ontouchcancel();
+		if(_g79 != null) {
+			var v78 = _g79;
+			__ret1.ontouchcancel = v78;
+		}
+		var _g80 = this.get_ontouchend();
+		if(_g80 != null) {
+			var v79 = _g80;
+			__ret1.ontouchend = v79;
+		}
+		var _g81 = this.get_ontouchmove();
+		if(_g81 != null) {
+			var v80 = _g81;
+			__ret1.ontouchmove = v80;
+		}
+		var _g82 = this.get_ontouchstart();
+		if(_g82 != null) {
+			var v81 = _g82;
+			__ret1.ontouchstart = v81;
+		}
+		var _g83 = this.get_onvolumechange();
+		if(_g83 != null) {
+			var v82 = _g83;
+			__ret1.onvolumechange = v82;
+		}
+		var _g84 = this.get_onwaiting();
+		if(_g84 != null) {
+			var v83 = _g84;
+			__ret1.onwaiting = v83;
+		}
+		var _g85 = this.get_onwheel();
+		if(_g85 != null) {
+			var v84 = _g85;
+			__ret1.onwheel = v84;
+		}
+		var _g86 = this.get_spellcheck();
+		if(_g86 != null) {
+			var v85 = _g86;
+			__ret1.spellcheck = v85;
+		}
+		var _g87 = this.get_style();
+		if(_g87 != null) {
+			var v86 = _g87;
+			__ret1.style = v86;
+		}
+		var _g88 = this.get_tabIndex();
+		if(_g88 != null) {
+			var v87 = _g88;
+			__ret1.tabIndex = v87;
+		}
+		var _g89 = this.get_title();
+		if(_g89 != null) {
+			var v88 = _g89;
+			__ret1.title = v88;
+		}
+		var __r1 = [];
+		if(this.get_icon() != null && this.get_iconPos() != "right") {
+			var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")};
+			var __r2 = [];
+			__r2.push(this.get_icon());
+			__r1.push(vdom_VDom.h("i",__ret2,__r2));
+		}
+		if(this.get_textArea()) {
+			var __ret3 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId)), required : _gthis.get_required(), onchange : function(event) {
+				if(_gthis.get_onedit() != null) {
+					(_gthis.get_onedit())(event.target.value);
+				}
+			}};
+			var __r3 = [];
+			__r3.push(this.get_value());
+			__r1.push(vdom_VDom.h("textarea",__ret3,__r3));
+		} else {
+			var __ret4 = { type : _gthis.get_type() != null ? _gthis.get_type() : "text", className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId)), value : _gthis.get_value(), pattern : _gthis.get_pattern(), required : _gthis.get_required(), onchange : function(event1) {
+				if(_gthis.get_onedit() != null) {
+					(_gthis.get_onedit())(event1.target.value);
+				}
+			}};
+			__r1.push(vdom_VDom.h("input",__ret4));
+		}
+		if(this.get_label() != null) {
+			var __ret5 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__label"), htmlFor : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId))};
+			var __r4 = [];
+			__r4.push(this.get_label());
+			__r1.push(vdom_VDom.h("label",__ret5,__r4));
+		}
+		if(this.get_icon() != null && this.get_iconPos() == "right") {
+			var __ret6 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")};
+			var __r5 = [];
+			__r5.push(this.get_icon());
+			__r1.push(vdom_VDom.h("i",__ret6,__r5));
+		}
+		var __ret7 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-line-ripple")};
+		var __r6 = [];
+		__r1.push(vdom_VDom.h("div",__ret7,__r6));
+		__r.push(vdom_VDom.h("div",__ret1,__r1));
+		return __r[0];
 	}
 	,afterPatching: function(elem) {
-		this.mdcTextField.valid = !tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).invalid;
+		this.mdcTextField.valid = !this.get_invalid();
 	}
 	,afterInit: function(elem) {
 		this.mdcTextField = new mdc.textField.MDCTextField(elem);
@@ -9477,59 +17501,1528 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcTextField.destroy();
 		}
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults5: null
+	,__slots: null
+	,toString: function() {
+		return "TextField" + "#" + this.viewId;
+	}
+	,__tink_init6: function(attributes) {
+		var this1 = attributes.accessKey;
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults5.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults5.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults5.attributes : this3);
+		var this4 = attributes.autofocus;
+		this.__slots.autofocus.setData(this4 == null ? this.__tink_defaults5.autofocus : this4);
+		var this5 = attributes.box;
+		this.__slots.box.setData(this5 == null ? this.__tink_defaults5.box : this5);
+		var this6 = attributes.checked;
+		this.__slots.checked.setData(this6 == null ? this.__tink_defaults5.checked : this6);
+		var this7 = attributes.className;
+		this.__slots.className.setData(this7 == null ? this.__tink_defaults5.className : this7);
+		var this8 = attributes.dir;
+		this.__slots.dir.setData(this8 == null ? this.__tink_defaults5.dir : this8);
+		var this9 = attributes.disabled;
+		this.__slots.disabled.setData(this9 == null ? this.__tink_defaults5.disabled : this9);
+		var this10 = attributes.draggable;
+		this.__slots.draggable.setData(this10 == null ? this.__tink_defaults5.draggable : this10);
+		var this11 = attributes.fullWidth;
+		this.__slots.fullWidth.setData(this11 == null ? this.__tink_defaults5.fullWidth : this11);
+		var this12 = attributes.hidden;
+		this.__slots.hidden.setData(this12 == null ? this.__tink_defaults5.hidden : this12);
+		var this13 = attributes.icon;
+		this.__slots.icon.setData(this13 == null ? this.__tink_defaults5.icon : this13);
+		var this14 = attributes.iconPos;
+		this.__slots.iconPos.setData(this14 == null ? this.__tink_defaults5.iconPos : this14);
+		var this15 = attributes.id;
+		this.__slots.id.setData(this15 == null ? this.__tink_defaults5.id : this15);
+		var this16 = attributes.invalid;
+		this.__slots.invalid.setData(this16 == null ? this.__tink_defaults5.invalid : this16);
+		var this17 = attributes.key;
+		this.__slots.key.setData(this17 == null ? this.__tink_defaults5.key : this17);
+		var this18 = attributes.label;
+		this.__slots.label.setData(this18 == null ? this.__tink_defaults5.label : this18);
+		var this19 = attributes.lang;
+		this.__slots.lang.setData(this19 == null ? this.__tink_defaults5.lang : this19);
+		var this20 = attributes.max;
+		this.__slots.max.setData(this20 == null ? this.__tink_defaults5.max : this20);
+		var this21 = attributes.maxlength;
+		this.__slots.maxlength.setData(this21 == null ? this.__tink_defaults5.maxlength : this21);
+		var this22 = attributes.min;
+		this.__slots.min.setData(this22 == null ? this.__tink_defaults5.min : this22);
+		var this23 = attributes.name;
+		this.__slots.name.setData(this23 == null ? this.__tink_defaults5.name : this23);
+		var this24 = attributes.onabort;
+		this.__slots.onabort.setData(this24 == null ? this.__tink_defaults5.onabort : this24);
+		var this25 = attributes.onblur;
+		this.__slots.onblur.setData(this25 == null ? this.__tink_defaults5.onblur : this25);
+		var this26 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this26 == null ? this.__tink_defaults5.oncanplay : this26);
+		var this27 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this27 == null ? this.__tink_defaults5.oncanplaythrough : this27);
+		var this28 = attributes.onchange;
+		this.__slots.onchange.setData(this28 == null ? this.__tink_defaults5.onchange : this28);
+		var this29 = attributes.onclick;
+		this.__slots.onclick.setData(this29 == null ? this.__tink_defaults5.onclick : this29);
+		var this30 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this30 == null ? this.__tink_defaults5.oncontextmenu : this30);
+		var this31 = attributes.oncopy;
+		this.__slots.oncopy.setData(this31 == null ? this.__tink_defaults5.oncopy : this31);
+		var this32 = attributes.oncut;
+		this.__slots.oncut.setData(this32 == null ? this.__tink_defaults5.oncut : this32);
+		var this33 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this33 == null ? this.__tink_defaults5.ondblclick : this33);
+		var this34 = attributes.ondrag;
+		this.__slots.ondrag.setData(this34 == null ? this.__tink_defaults5.ondrag : this34);
+		var this35 = attributes.ondragend;
+		this.__slots.ondragend.setData(this35 == null ? this.__tink_defaults5.ondragend : this35);
+		var this36 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this36 == null ? this.__tink_defaults5.ondragenter : this36);
+		var this37 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this37 == null ? this.__tink_defaults5.ondragleave : this37);
+		var this38 = attributes.ondragover;
+		this.__slots.ondragover.setData(this38 == null ? this.__tink_defaults5.ondragover : this38);
+		var this39 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this39 == null ? this.__tink_defaults5.ondragstart : this39);
+		var this40 = attributes.ondrop;
+		this.__slots.ondrop.setData(this40 == null ? this.__tink_defaults5.ondrop : this40);
+		var this41 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this41 == null ? this.__tink_defaults5.ondurationchange : this41);
+		var this42 = attributes.onedit;
+		this.__slots.onedit.setData(this42 == null ? this.__tink_defaults5.onedit : this42);
+		var this43 = attributes.onemptied;
+		this.__slots.onemptied.setData(this43 == null ? this.__tink_defaults5.onemptied : this43);
+		var this44 = attributes.onended;
+		this.__slots.onended.setData(this44 == null ? this.__tink_defaults5.onended : this44);
+		var this45 = attributes.onerror;
+		this.__slots.onerror.setData(this45 == null ? this.__tink_defaults5.onerror : this45);
+		var this46 = attributes.onfocus;
+		this.__slots.onfocus.setData(this46 == null ? this.__tink_defaults5.onfocus : this46);
+		var this47 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this47 == null ? this.__tink_defaults5.onfullscreenchange : this47);
+		var this48 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this48 == null ? this.__tink_defaults5.onfullscreenerror : this48);
+		var this49 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this49 == null ? this.__tink_defaults5.ongotpointercapture : this49);
+		var this50 = attributes.oninput;
+		this.__slots.oninput.setData(this50 == null ? this.__tink_defaults5.oninput : this50);
+		var this51 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this51 == null ? this.__tink_defaults5.oninvalid : this51);
+		var this52 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this52 == null ? this.__tink_defaults5.onkeydown : this52);
+		var this53 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this53 == null ? this.__tink_defaults5.onkeypress : this53);
+		var this54 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this54 == null ? this.__tink_defaults5.onkeyup : this54);
+		var this55 = attributes.onload;
+		this.__slots.onload.setData(this55 == null ? this.__tink_defaults5.onload : this55);
+		var this56 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this56 == null ? this.__tink_defaults5.onloadeddata : this56);
+		var this57 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this57 == null ? this.__tink_defaults5.onloadedmetadata : this57);
+		var this58 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this58 == null ? this.__tink_defaults5.onloadstart : this58);
+		var this59 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this59 == null ? this.__tink_defaults5.onlostpointercapture : this59);
+		var this60 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this60 == null ? this.__tink_defaults5.onmousedown : this60);
+		var this61 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this61 == null ? this.__tink_defaults5.onmouseenter : this61);
+		var this62 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this62 == null ? this.__tink_defaults5.onmouseleave : this62);
+		var this63 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this63 == null ? this.__tink_defaults5.onmousemove : this63);
+		var this64 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this64 == null ? this.__tink_defaults5.onmouseout : this64);
+		var this65 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this65 == null ? this.__tink_defaults5.onmouseover : this65);
+		var this66 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this66 == null ? this.__tink_defaults5.onmouseup : this66);
+		var this67 = attributes.onpaste;
+		this.__slots.onpaste.setData(this67 == null ? this.__tink_defaults5.onpaste : this67);
+		var this68 = attributes.onpause;
+		this.__slots.onpause.setData(this68 == null ? this.__tink_defaults5.onpause : this68);
+		var this69 = attributes.onplay;
+		this.__slots.onplay.setData(this69 == null ? this.__tink_defaults5.onplay : this69);
+		var this70 = attributes.onplaying;
+		this.__slots.onplaying.setData(this70 == null ? this.__tink_defaults5.onplaying : this70);
+		var this71 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this71 == null ? this.__tink_defaults5.onpointercancel : this71);
+		var this72 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this72 == null ? this.__tink_defaults5.onpointerdown : this72);
+		var this73 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this73 == null ? this.__tink_defaults5.onpointerenter : this73);
+		var this74 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this74 == null ? this.__tink_defaults5.onpointerleave : this74);
+		var this75 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this75 == null ? this.__tink_defaults5.onpointerlockchange : this75);
+		var this76 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this76 == null ? this.__tink_defaults5.onpointerlockerror : this76);
+		var this77 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this77 == null ? this.__tink_defaults5.onpointermove : this77);
+		var this78 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this78 == null ? this.__tink_defaults5.onpointerout : this78);
+		var this79 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this79 == null ? this.__tink_defaults5.onpointerover : this79);
+		var this80 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this80 == null ? this.__tink_defaults5.onpointerup : this80);
+		var this81 = attributes.onprogress;
+		this.__slots.onprogress.setData(this81 == null ? this.__tink_defaults5.onprogress : this81);
+		var this82 = attributes.onratechange;
+		this.__slots.onratechange.setData(this82 == null ? this.__tink_defaults5.onratechange : this82);
+		var this83 = attributes.onreset;
+		this.__slots.onreset.setData(this83 == null ? this.__tink_defaults5.onreset : this83);
+		var this84 = attributes.onresize;
+		this.__slots.onresize.setData(this84 == null ? this.__tink_defaults5.onresize : this84);
+		var this85 = attributes.onscroll;
+		this.__slots.onscroll.setData(this85 == null ? this.__tink_defaults5.onscroll : this85);
+		var this86 = attributes.onseeked;
+		this.__slots.onseeked.setData(this86 == null ? this.__tink_defaults5.onseeked : this86);
+		var this87 = attributes.onseeking;
+		this.__slots.onseeking.setData(this87 == null ? this.__tink_defaults5.onseeking : this87);
+		var this88 = attributes.onselect;
+		this.__slots.onselect.setData(this88 == null ? this.__tink_defaults5.onselect : this88);
+		var this89 = attributes.onshow;
+		this.__slots.onshow.setData(this89 == null ? this.__tink_defaults5.onshow : this89);
+		var this90 = attributes.onstalled;
+		this.__slots.onstalled.setData(this90 == null ? this.__tink_defaults5.onstalled : this90);
+		var this91 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this91 == null ? this.__tink_defaults5.onsubmit : this91);
+		var this92 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this92 == null ? this.__tink_defaults5.onsuspend : this92);
+		var this93 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this93 == null ? this.__tink_defaults5.ontimeupdate : this93);
+		var this94 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this94 == null ? this.__tink_defaults5.ontouchcancel : this94);
+		var this95 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this95 == null ? this.__tink_defaults5.ontouchend : this95);
+		var this96 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this96 == null ? this.__tink_defaults5.ontouchmove : this96);
+		var this97 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this97 == null ? this.__tink_defaults5.ontouchstart : this97);
+		var this98 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this98 == null ? this.__tink_defaults5.onvolumechange : this98);
+		var this99 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this99 == null ? this.__tink_defaults5.onwaiting : this99);
+		var this100 = attributes.onwheel;
+		this.__slots.onwheel.setData(this100 == null ? this.__tink_defaults5.onwheel : this100);
+		var this101 = attributes.pattern;
+		this.__slots.pattern.setData(this101 == null ? this.__tink_defaults5.pattern : this101);
+		var this102 = attributes.placeholder;
+		this.__slots.placeholder.setData(this102 == null ? this.__tink_defaults5.placeholder : this102);
+		var this103 = attributes.required;
+		this.__slots.required.setData(this103 == null ? this.__tink_defaults5.required : this103);
+		var this104 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this104 == null ? this.__tink_defaults5.spellcheck : this104);
+		var this105 = attributes.step;
+		this.__slots.step.setData(this105 == null ? this.__tink_defaults5.step : this105);
+		var this106 = attributes.style;
+		this.__slots.style.setData(this106 == null ? this.__tink_defaults5.style : this106);
+		var this107 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this107 == null ? this.__tink_defaults5.tabIndex : this107);
+		var this108 = attributes.textArea;
+		this.__slots.textArea.setData(this108 == null ? this.__tink_defaults5.textArea : this108);
+		var this109 = attributes.title;
+		this.__slots.title.setData(this109 == null ? this.__tink_defaults5.title : this109);
+		var this110 = attributes.type;
+		this.__slots.type.setData(this110 == null ? this.__tink_defaults5.type : this110);
+		var this111 = attributes.value;
+		this.__slots.value.setData(this111 == null ? this.__tink_defaults5.value : this111);
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_autofocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.autofocus.observe());
+	}
+	,get_box: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.box.observe());
+	}
+	,get_checked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_disabled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_fullWidth: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.fullWidth.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_icon: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe());
+	}
+	,get_iconPos: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.iconPos.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_invalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.invalid.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_max: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.max.observe());
+	}
+	,get_maxlength: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.maxlength.observe());
+	}
+	,get_min: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.min.observe());
+	}
+	,get_name: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onedit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onedit.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_pattern: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.pattern.observe());
+	}
+	,get_placeholder: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.placeholder.observe());
+	}
+	,get_required: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.required.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_step: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.step.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_textArea: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.textArea.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	}
+	,get_type: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.type.observe());
+	}
+	,get_value: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
 	}
 	,__class__: mdc_TextField
-	,__properties__: {get_data:"get_data"}
+	,__properties__: {get_value:"get_value",get_type:"get_type",get_title:"get_title",get_textArea:"get_textArea",get_tabIndex:"get_tabIndex",get_style:"get_style",get_step:"get_step",get_spellcheck:"get_spellcheck",get_required:"get_required",get_placeholder:"get_placeholder",get_pattern:"get_pattern",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_onedit:"get_onedit",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_name:"get_name",get_min:"get_min",get_maxlength:"get_maxlength",get_max:"get_max",get_lang:"get_lang",get_label:"get_label",get_key:"get_key",get_invalid:"get_invalid",get_id:"get_id",get_iconPos:"get_iconPos",get_icon:"get_icon",get_hidden:"get_hidden",get_fullWidth:"get_fullWidth",get_draggable:"get_draggable",get_disabled:"get_disabled",get_dir:"get_dir",get_className:"get_className",get_checked:"get_checked",get_box:"get_box",get_autofocus:"get_autofocus",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey"}
 });
 var mdc_TextFieldHelperText = function(data) {
-	var _gthis = this;
-	coconut_ui_View.call(this,data,function(data1) {
-		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(data1);
-		return _gthis.render(tmp);
-	});
-	this.__cocodata = data;
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TextField.hx", lineNumber : 88, className : "mdc.TextFieldHelperText", methodName : "new"});
+	this.__tink_defaults3 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, persistent : null, spellcheck : null, style : null, tabIndex : null, title : null, validation : null};
+	this.__slots = { accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), persistent : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null), validation : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.TextFieldHelperText"] = mdc_TextFieldHelperText;
 mdc_TextFieldHelperText.__name__ = ["mdc","TextFieldHelperText"];
+mdc_TextFieldHelperText.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_TextFieldHelperText(attributes);
+	}
+	inst.__tink_init4(attributes);
+	return inst;
+};
 mdc_TextFieldHelperText.__super__ = coconut_ui_View;
 mdc_TextFieldHelperText.prototype = $extend(coconut_ui_View.prototype,{
-	render: function(__data__) {
-		var validation = __data__.validation;
-		var persistent = __data__.persistent;
-		var label = __data__.label;
-		var className = __data__.className;
-		var attr = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).className;
+	render: function() {
+		var _gthis = this;
+		var __r = [];
+		var __ret = _gthis.get_className();
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-text-field-helper-text"] != null) {
 			_g.setReserved("mdc-text-field-helper-text",true);
 		} else {
 			_g.h["mdc-text-field-helper-text"] = true;
 		}
-		var value = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).persistent;
+		var value = _gthis.get_persistent();
 		if(__map_reserved["mdc-text-field-helper-text--persistent"] != null) {
 			_g.setReserved("mdc-text-field-helper-text--persistent",value);
 		} else {
 			_g.h["mdc-text-field-helper-text--persistent"] = value;
 		}
-		var value1 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).validation;
+		var value1 = _gthis.get_validation();
 		if(__map_reserved["mdc-text-field-helper-text--validation-msg"] != null) {
 			_g.setReserved("mdc-text-field-helper-text--validation-msg",value1);
 		} else {
 			_g.h["mdc-text-field-helper-text--validation-msg"] = value1;
 		}
-		return vdom_VDom.h("p",{ className : vdom__$Attr_ClassName_$Impl_$.add(attr,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}},[tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata).label]);
+		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}};
+		var _g1 = this.get_accessKey();
+		if(_g1 != null) {
+			var v = _g1;
+			__ret1.accessKey = v;
+		}
+		var _g2 = this.get_accessKeyLabel();
+		if(_g2 != null) {
+			var v1 = _g2;
+			__ret1.accessKeyLabel = v1;
+		}
+		var _g3 = this.get_dir();
+		if(_g3 != null) {
+			var v2 = _g3;
+			__ret1.dir = v2;
+		}
+		var _g4 = this.get_draggable();
+		if(_g4 != null) {
+			var v3 = _g4;
+			__ret1.draggable = v3;
+		}
+		var _g5 = this.get_hidden();
+		if(_g5 != null) {
+			var v4 = _g5;
+			__ret1.hidden = v4;
+		}
+		var _g6 = this.get_id();
+		if(_g6 != null) {
+			var v5 = _g6;
+			__ret1.id = v5;
+		}
+		var _g7 = this.get_key();
+		if(_g7 != null) {
+			var v6 = _g7;
+			__ret1.key = v6;
+		}
+		var _g8 = this.get_lang();
+		if(_g8 != null) {
+			var v7 = _g8;
+			__ret1.lang = v7;
+		}
+		var _g9 = this.get_onabort();
+		if(_g9 != null) {
+			var v8 = _g9;
+			__ret1.onabort = v8;
+		}
+		var _g10 = this.get_onblur();
+		if(_g10 != null) {
+			var v9 = _g10;
+			__ret1.onblur = v9;
+		}
+		var _g11 = this.get_oncanplay();
+		if(_g11 != null) {
+			var v10 = _g11;
+			__ret1.oncanplay = v10;
+		}
+		var _g12 = this.get_oncanplaythrough();
+		if(_g12 != null) {
+			var v11 = _g12;
+			__ret1.oncanplaythrough = v11;
+		}
+		var _g13 = this.get_onchange();
+		if(_g13 != null) {
+			var v12 = _g13;
+			__ret1.onchange = v12;
+		}
+		var _g14 = this.get_onclick();
+		if(_g14 != null) {
+			var v13 = _g14;
+			__ret1.onclick = v13;
+		}
+		var _g15 = this.get_oncontextmenu();
+		if(_g15 != null) {
+			var v14 = _g15;
+			__ret1.oncontextmenu = v14;
+		}
+		var _g16 = this.get_oncopy();
+		if(_g16 != null) {
+			var v15 = _g16;
+			__ret1.oncopy = v15;
+		}
+		var _g17 = this.get_oncut();
+		if(_g17 != null) {
+			var v16 = _g17;
+			__ret1.oncut = v16;
+		}
+		var _g18 = this.get_ondblclick();
+		if(_g18 != null) {
+			var v17 = _g18;
+			__ret1.ondblclick = v17;
+		}
+		var _g19 = this.get_ondrag();
+		if(_g19 != null) {
+			var v18 = _g19;
+			__ret1.ondrag = v18;
+		}
+		var _g20 = this.get_ondragend();
+		if(_g20 != null) {
+			var v19 = _g20;
+			__ret1.ondragend = v19;
+		}
+		var _g21 = this.get_ondragenter();
+		if(_g21 != null) {
+			var v20 = _g21;
+			__ret1.ondragenter = v20;
+		}
+		var _g22 = this.get_ondragleave();
+		if(_g22 != null) {
+			var v21 = _g22;
+			__ret1.ondragleave = v21;
+		}
+		var _g23 = this.get_ondragover();
+		if(_g23 != null) {
+			var v22 = _g23;
+			__ret1.ondragover = v22;
+		}
+		var _g24 = this.get_ondragstart();
+		if(_g24 != null) {
+			var v23 = _g24;
+			__ret1.ondragstart = v23;
+		}
+		var _g25 = this.get_ondrop();
+		if(_g25 != null) {
+			var v24 = _g25;
+			__ret1.ondrop = v24;
+		}
+		var _g26 = this.get_ondurationchange();
+		if(_g26 != null) {
+			var v25 = _g26;
+			__ret1.ondurationchange = v25;
+		}
+		var _g27 = this.get_onemptied();
+		if(_g27 != null) {
+			var v26 = _g27;
+			__ret1.onemptied = v26;
+		}
+		var _g28 = this.get_onended();
+		if(_g28 != null) {
+			var v27 = _g28;
+			__ret1.onended = v27;
+		}
+		var _g29 = this.get_onerror();
+		if(_g29 != null) {
+			var v28 = _g29;
+			__ret1.onerror = v28;
+		}
+		var _g30 = this.get_onfocus();
+		if(_g30 != null) {
+			var v29 = _g30;
+			__ret1.onfocus = v29;
+		}
+		var _g31 = this.get_onfullscreenchange();
+		if(_g31 != null) {
+			var v30 = _g31;
+			__ret1.onfullscreenchange = v30;
+		}
+		var _g32 = this.get_onfullscreenerror();
+		if(_g32 != null) {
+			var v31 = _g32;
+			__ret1.onfullscreenerror = v31;
+		}
+		var _g33 = this.get_ongotpointercapture();
+		if(_g33 != null) {
+			var v32 = _g33;
+			__ret1.ongotpointercapture = v32;
+		}
+		var _g34 = this.get_oninput();
+		if(_g34 != null) {
+			var v33 = _g34;
+			__ret1.oninput = v33;
+		}
+		var _g35 = this.get_oninvalid();
+		if(_g35 != null) {
+			var v34 = _g35;
+			__ret1.oninvalid = v34;
+		}
+		var _g36 = this.get_onkeydown();
+		if(_g36 != null) {
+			var v35 = _g36;
+			__ret1.onkeydown = v35;
+		}
+		var _g37 = this.get_onkeypress();
+		if(_g37 != null) {
+			var v36 = _g37;
+			__ret1.onkeypress = v36;
+		}
+		var _g38 = this.get_onkeyup();
+		if(_g38 != null) {
+			var v37 = _g38;
+			__ret1.onkeyup = v37;
+		}
+		var _g39 = this.get_onload();
+		if(_g39 != null) {
+			var v38 = _g39;
+			__ret1.onload = v38;
+		}
+		var _g40 = this.get_onloadeddata();
+		if(_g40 != null) {
+			var v39 = _g40;
+			__ret1.onloadeddata = v39;
+		}
+		var _g41 = this.get_onloadedmetadata();
+		if(_g41 != null) {
+			var v40 = _g41;
+			__ret1.onloadedmetadata = v40;
+		}
+		var _g42 = this.get_onloadstart();
+		if(_g42 != null) {
+			var v41 = _g42;
+			__ret1.onloadstart = v41;
+		}
+		var _g43 = this.get_onlostpointercapture();
+		if(_g43 != null) {
+			var v42 = _g43;
+			__ret1.onlostpointercapture = v42;
+		}
+		var _g44 = this.get_onmousedown();
+		if(_g44 != null) {
+			var v43 = _g44;
+			__ret1.onmousedown = v43;
+		}
+		var _g45 = this.get_onmouseenter();
+		if(_g45 != null) {
+			var v44 = _g45;
+			__ret1.onmouseenter = v44;
+		}
+		var _g46 = this.get_onmouseleave();
+		if(_g46 != null) {
+			var v45 = _g46;
+			__ret1.onmouseleave = v45;
+		}
+		var _g47 = this.get_onmousemove();
+		if(_g47 != null) {
+			var v46 = _g47;
+			__ret1.onmousemove = v46;
+		}
+		var _g48 = this.get_onmouseout();
+		if(_g48 != null) {
+			var v47 = _g48;
+			__ret1.onmouseout = v47;
+		}
+		var _g49 = this.get_onmouseover();
+		if(_g49 != null) {
+			var v48 = _g49;
+			__ret1.onmouseover = v48;
+		}
+		var _g50 = this.get_onmouseup();
+		if(_g50 != null) {
+			var v49 = _g50;
+			__ret1.onmouseup = v49;
+		}
+		var _g51 = this.get_onpaste();
+		if(_g51 != null) {
+			var v50 = _g51;
+			__ret1.onpaste = v50;
+		}
+		var _g52 = this.get_onpause();
+		if(_g52 != null) {
+			var v51 = _g52;
+			__ret1.onpause = v51;
+		}
+		var _g53 = this.get_onplay();
+		if(_g53 != null) {
+			var v52 = _g53;
+			__ret1.onplay = v52;
+		}
+		var _g54 = this.get_onplaying();
+		if(_g54 != null) {
+			var v53 = _g54;
+			__ret1.onplaying = v53;
+		}
+		var _g55 = this.get_onpointercancel();
+		if(_g55 != null) {
+			var v54 = _g55;
+			__ret1.onpointercancel = v54;
+		}
+		var _g56 = this.get_onpointerdown();
+		if(_g56 != null) {
+			var v55 = _g56;
+			__ret1.onpointerdown = v55;
+		}
+		var _g57 = this.get_onpointerenter();
+		if(_g57 != null) {
+			var v56 = _g57;
+			__ret1.onpointerenter = v56;
+		}
+		var _g58 = this.get_onpointerleave();
+		if(_g58 != null) {
+			var v57 = _g58;
+			__ret1.onpointerleave = v57;
+		}
+		var _g59 = this.get_onpointerlockchange();
+		if(_g59 != null) {
+			var v58 = _g59;
+			__ret1.onpointerlockchange = v58;
+		}
+		var _g60 = this.get_onpointerlockerror();
+		if(_g60 != null) {
+			var v59 = _g60;
+			__ret1.onpointerlockerror = v59;
+		}
+		var _g61 = this.get_onpointermove();
+		if(_g61 != null) {
+			var v60 = _g61;
+			__ret1.onpointermove = v60;
+		}
+		var _g62 = this.get_onpointerout();
+		if(_g62 != null) {
+			var v61 = _g62;
+			__ret1.onpointerout = v61;
+		}
+		var _g63 = this.get_onpointerover();
+		if(_g63 != null) {
+			var v62 = _g63;
+			__ret1.onpointerover = v62;
+		}
+		var _g64 = this.get_onpointerup();
+		if(_g64 != null) {
+			var v63 = _g64;
+			__ret1.onpointerup = v63;
+		}
+		var _g65 = this.get_onprogress();
+		if(_g65 != null) {
+			var v64 = _g65;
+			__ret1.onprogress = v64;
+		}
+		var _g66 = this.get_onratechange();
+		if(_g66 != null) {
+			var v65 = _g66;
+			__ret1.onratechange = v65;
+		}
+		var _g67 = this.get_onreset();
+		if(_g67 != null) {
+			var v66 = _g67;
+			__ret1.onreset = v66;
+		}
+		var _g68 = this.get_onresize();
+		if(_g68 != null) {
+			var v67 = _g68;
+			__ret1.onresize = v67;
+		}
+		var _g69 = this.get_onscroll();
+		if(_g69 != null) {
+			var v68 = _g69;
+			__ret1.onscroll = v68;
+		}
+		var _g70 = this.get_onseeked();
+		if(_g70 != null) {
+			var v69 = _g70;
+			__ret1.onseeked = v69;
+		}
+		var _g71 = this.get_onseeking();
+		if(_g71 != null) {
+			var v70 = _g71;
+			__ret1.onseeking = v70;
+		}
+		var _g72 = this.get_onselect();
+		if(_g72 != null) {
+			var v71 = _g72;
+			__ret1.onselect = v71;
+		}
+		var _g73 = this.get_onshow();
+		if(_g73 != null) {
+			var v72 = _g73;
+			__ret1.onshow = v72;
+		}
+		var _g74 = this.get_onstalled();
+		if(_g74 != null) {
+			var v73 = _g74;
+			__ret1.onstalled = v73;
+		}
+		var _g75 = this.get_onsubmit();
+		if(_g75 != null) {
+			var v74 = _g75;
+			__ret1.onsubmit = v74;
+		}
+		var _g76 = this.get_onsuspend();
+		if(_g76 != null) {
+			var v75 = _g76;
+			__ret1.onsuspend = v75;
+		}
+		var _g77 = this.get_ontimeupdate();
+		if(_g77 != null) {
+			var v76 = _g77;
+			__ret1.ontimeupdate = v76;
+		}
+		var _g78 = this.get_ontouchcancel();
+		if(_g78 != null) {
+			var v77 = _g78;
+			__ret1.ontouchcancel = v77;
+		}
+		var _g79 = this.get_ontouchend();
+		if(_g79 != null) {
+			var v78 = _g79;
+			__ret1.ontouchend = v78;
+		}
+		var _g80 = this.get_ontouchmove();
+		if(_g80 != null) {
+			var v79 = _g80;
+			__ret1.ontouchmove = v79;
+		}
+		var _g81 = this.get_ontouchstart();
+		if(_g81 != null) {
+			var v80 = _g81;
+			__ret1.ontouchstart = v80;
+		}
+		var _g82 = this.get_onvolumechange();
+		if(_g82 != null) {
+			var v81 = _g82;
+			__ret1.onvolumechange = v81;
+		}
+		var _g83 = this.get_onwaiting();
+		if(_g83 != null) {
+			var v82 = _g83;
+			__ret1.onwaiting = v82;
+		}
+		var _g84 = this.get_onwheel();
+		if(_g84 != null) {
+			var v83 = _g84;
+			__ret1.onwheel = v83;
+		}
+		var _g85 = this.get_spellcheck();
+		if(_g85 != null) {
+			var v84 = _g85;
+			__ret1.spellcheck = v84;
+		}
+		var _g86 = this.get_style();
+		if(_g86 != null) {
+			var v85 = _g86;
+			__ret1.style = v85;
+		}
+		var _g87 = this.get_tabIndex();
+		if(_g87 != null) {
+			var v86 = _g87;
+			__ret1.tabIndex = v86;
+		}
+		var _g88 = this.get_title();
+		if(_g88 != null) {
+			var v87 = _g88;
+			__ret1.title = v87;
+		}
+		var __r1 = [];
+		__r1.push(this.get_label());
+		__r.push(vdom_VDom.h("p",__ret1,__r1));
+		return __r[0];
 	}
-	,__cocodata: null
-	,data: null
-	,get_data: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__cocodata);
+	,__tink_defaults3: null
+	,__slots: null
+	,toString: function() {
+		return "TextFieldHelperText" + "#" + this.viewId;
+	}
+	,__tink_init4: function(attributes) {
+		var this1 = attributes.accessKey;
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults3.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults3.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults3.attributes : this3);
+		var this4 = attributes.className;
+		this.__slots.className.setData(this4 == null ? this.__tink_defaults3.className : this4);
+		var this5 = attributes.dir;
+		this.__slots.dir.setData(this5 == null ? this.__tink_defaults3.dir : this5);
+		var this6 = attributes.draggable;
+		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults3.draggable : this6);
+		var this7 = attributes.hidden;
+		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults3.hidden : this7);
+		var this8 = attributes.id;
+		this.__slots.id.setData(this8 == null ? this.__tink_defaults3.id : this8);
+		var this9 = attributes.key;
+		this.__slots.key.setData(this9 == null ? this.__tink_defaults3.key : this9);
+		this.__slots.label.setData(attributes.label);
+		var this10 = attributes.lang;
+		this.__slots.lang.setData(this10 == null ? this.__tink_defaults3.lang : this10);
+		var this11 = attributes.onabort;
+		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults3.onabort : this11);
+		var this12 = attributes.onblur;
+		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults3.onblur : this12);
+		var this13 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults3.oncanplay : this13);
+		var this14 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults3.oncanplaythrough : this14);
+		var this15 = attributes.onchange;
+		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults3.onchange : this15);
+		var this16 = attributes.onclick;
+		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults3.onclick : this16);
+		var this17 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults3.oncontextmenu : this17);
+		var this18 = attributes.oncopy;
+		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults3.oncopy : this18);
+		var this19 = attributes.oncut;
+		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults3.oncut : this19);
+		var this20 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults3.ondblclick : this20);
+		var this21 = attributes.ondrag;
+		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults3.ondrag : this21);
+		var this22 = attributes.ondragend;
+		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults3.ondragend : this22);
+		var this23 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults3.ondragenter : this23);
+		var this24 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults3.ondragleave : this24);
+		var this25 = attributes.ondragover;
+		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults3.ondragover : this25);
+		var this26 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults3.ondragstart : this26);
+		var this27 = attributes.ondrop;
+		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults3.ondrop : this27);
+		var this28 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults3.ondurationchange : this28);
+		var this29 = attributes.onemptied;
+		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults3.onemptied : this29);
+		var this30 = attributes.onended;
+		this.__slots.onended.setData(this30 == null ? this.__tink_defaults3.onended : this30);
+		var this31 = attributes.onerror;
+		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults3.onerror : this31);
+		var this32 = attributes.onfocus;
+		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults3.onfocus : this32);
+		var this33 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults3.onfullscreenchange : this33);
+		var this34 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults3.onfullscreenerror : this34);
+		var this35 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults3.ongotpointercapture : this35);
+		var this36 = attributes.oninput;
+		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults3.oninput : this36);
+		var this37 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults3.oninvalid : this37);
+		var this38 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults3.onkeydown : this38);
+		var this39 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults3.onkeypress : this39);
+		var this40 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults3.onkeyup : this40);
+		var this41 = attributes.onload;
+		this.__slots.onload.setData(this41 == null ? this.__tink_defaults3.onload : this41);
+		var this42 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults3.onloadeddata : this42);
+		var this43 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults3.onloadedmetadata : this43);
+		var this44 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults3.onloadstart : this44);
+		var this45 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults3.onlostpointercapture : this45);
+		var this46 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults3.onmousedown : this46);
+		var this47 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults3.onmouseenter : this47);
+		var this48 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults3.onmouseleave : this48);
+		var this49 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults3.onmousemove : this49);
+		var this50 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults3.onmouseout : this50);
+		var this51 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults3.onmouseover : this51);
+		var this52 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults3.onmouseup : this52);
+		var this53 = attributes.onpaste;
+		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults3.onpaste : this53);
+		var this54 = attributes.onpause;
+		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults3.onpause : this54);
+		var this55 = attributes.onplay;
+		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults3.onplay : this55);
+		var this56 = attributes.onplaying;
+		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults3.onplaying : this56);
+		var this57 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults3.onpointercancel : this57);
+		var this58 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults3.onpointerdown : this58);
+		var this59 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults3.onpointerenter : this59);
+		var this60 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults3.onpointerleave : this60);
+		var this61 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults3.onpointerlockchange : this61);
+		var this62 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults3.onpointerlockerror : this62);
+		var this63 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults3.onpointermove : this63);
+		var this64 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults3.onpointerout : this64);
+		var this65 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults3.onpointerover : this65);
+		var this66 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults3.onpointerup : this66);
+		var this67 = attributes.onprogress;
+		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults3.onprogress : this67);
+		var this68 = attributes.onratechange;
+		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults3.onratechange : this68);
+		var this69 = attributes.onreset;
+		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults3.onreset : this69);
+		var this70 = attributes.onresize;
+		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults3.onresize : this70);
+		var this71 = attributes.onscroll;
+		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults3.onscroll : this71);
+		var this72 = attributes.onseeked;
+		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults3.onseeked : this72);
+		var this73 = attributes.onseeking;
+		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults3.onseeking : this73);
+		var this74 = attributes.onselect;
+		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults3.onselect : this74);
+		var this75 = attributes.onshow;
+		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults3.onshow : this75);
+		var this76 = attributes.onstalled;
+		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults3.onstalled : this76);
+		var this77 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults3.onsubmit : this77);
+		var this78 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults3.onsuspend : this78);
+		var this79 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults3.ontimeupdate : this79);
+		var this80 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults3.ontouchcancel : this80);
+		var this81 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults3.ontouchend : this81);
+		var this82 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults3.ontouchmove : this82);
+		var this83 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults3.ontouchstart : this83);
+		var this84 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults3.onvolumechange : this84);
+		var this85 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults3.onwaiting : this85);
+		var this86 = attributes.onwheel;
+		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults3.onwheel : this86);
+		var this87 = attributes.persistent;
+		this.__slots.persistent.setData(this87 == null ? this.__tink_defaults3.persistent : this87);
+		var this88 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this88 == null ? this.__tink_defaults3.spellcheck : this88);
+		var this89 = attributes.style;
+		this.__slots.style.setData(this89 == null ? this.__tink_defaults3.style : this89);
+		var this90 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this90 == null ? this.__tink_defaults3.tabIndex : this90);
+		var this91 = attributes.title;
+		this.__slots.title.setData(this91 == null ? this.__tink_defaults3.title : this91);
+		var this92 = attributes.validation;
+		this.__slots.validation.setData(this92 == null ? this.__tink_defaults3.validation : this92);
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_persistent: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.persistent.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	}
+	,get_validation: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.validation.observe());
 	}
 	,__class__: mdc_TextFieldHelperText
-	,__properties__: {get_data:"get_data"}
+	,__properties__: {get_validation:"get_validation",get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_persistent:"get_persistent",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_label:"get_label",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey"}
 });
 var tink_core_Annex = function(target) {
 	this.target = target;
@@ -10862,6 +20355,50 @@ tink_core__$Promise_Promise_$Impl_$.and = function(a,b) {
 		return tink_core__$Promise_Promise_$Impl_$.ofOutcome(tink_core_Outcome.Success(this1));
 	});
 };
+tink_core__$Promise_Promise_$Impl_$.iterate = function(promises,$yield,$finally,lazy) {
+	return tink_core__$Future_Future_$Impl_$.async(function(cb) {
+		var iter = $iterator(promises)();
+		var next = null;
+		next = function() {
+			if(iter.hasNext()) {
+				iter.next().handle(function(o) {
+					switch(o[1]) {
+					case 0:
+						var v = o[2];
+						$yield(v).handle(function(o1) {
+							switch(o1[1]) {
+							case 0:
+								switch(o1[2][1]) {
+								case 0:
+									var ret = o1[2][2];
+									cb(tink_core_Outcome.Success(ret));
+									break;
+								case 1:
+									next();
+									break;
+								}
+								break;
+							case 1:
+								var e = o1[2];
+								cb(tink_core_Outcome.Failure(e));
+								break;
+							}
+						});
+						break;
+					case 1:
+						var e1 = o[2];
+						cb(tink_core_Outcome.Failure(e1));
+						break;
+					}
+				});
+			} else {
+				$finally.handle(cb);
+			}
+		};
+		var next1 = next;
+		next1();
+	},lazy);
+};
 tink_core__$Promise_Promise_$Impl_$.ofJsPromise = function(promise) {
 	return tink_core__$Future_Future_$Impl_$.ofJsPromise(promise);
 };
@@ -10961,6 +20498,32 @@ tink_core__$Promise_Promise_$Impl_$.inSequence = function(a) {
 	};
 	var loop1 = loop;
 	return loop1(0);
+};
+tink_core__$Promise_Promise_$Impl_$.cache = function(gen) {
+	var p = null;
+	return function() {
+		var ret = p;
+		if(ret == null) {
+			var sync = false;
+			ret = tink_core__$Promise_Promise_$Impl_$.next(gen(),function(o) {
+				o.b.handle(function(_) {
+					sync = true;
+					p = null;
+				});
+				return tink_core__$Promise_Promise_$Impl_$.ofOutcome(tink_core_Outcome.Success(o.a));
+			});
+			if(!sync) {
+				p = ret;
+			}
+		}
+		var ret1 = ret.map(function(o1) {
+			if(!tink_core_OutcomeTools.isSuccess(o1)) {
+				p = null;
+			}
+			return o1;
+		});
+		return ret1.gather();
+	};
 };
 tink_core__$Promise_Promise_$Impl_$.lift = function(p) {
 	return p;
@@ -11253,9 +20816,12 @@ tink_core_SignalTrigger.prototype = {
 	}
 	,__class__: tink_core_SignalTrigger
 };
-var tink_hxx_Merge = function() { };
-$hxClasses["tink.hxx.Merge"] = tink_hxx_Merge;
-tink_hxx_Merge.__name__ = ["tink","hxx","Merge"];
+var tink_macro_Bouncer = function() { };
+$hxClasses["tink.macro.Bouncer"] = tink_macro_Bouncer;
+tink_macro_Bouncer.__name__ = ["tink","macro","Bouncer"];
+tink_macro_Bouncer.makeOuter = function(a) {
+	return null;
+};
 var tink_state__$Measurement_Measurement_$Impl_$ = {};
 $hxClasses["tink.state._Measurement.Measurement_Impl_"] = tink_state__$Measurement_Measurement_$Impl_$;
 tink_state__$Measurement_Measurement_$Impl_$.__name__ = ["tink","state","_Measurement","Measurement_Impl_"];
@@ -11285,7 +20851,7 @@ tink_state__$Observable_Observable_$Impl_$._new = function(get,changed) {
 		var this3 = new tink_core_MPair(get(),tink_core__$Signal_Signal_$Impl_$.nextTime(changed,null));
 		this2 = this3;
 		return this2;
-	},{ fileName : "Observable.hx", lineNumber : 17, className : "tink.state._Observable.Observable_Impl_", methodName : "_new"});
+	});
 	return this1;
 };
 tink_state__$Observable_Observable_$Impl_$.combine = function(this1,that,f) {
@@ -11296,16 +20862,33 @@ tink_state__$Observable_Observable_$Impl_$.combine = function(this1,that,f) {
 		var this3 = new tink_core_MPair(f(p.a,q.a),tink_core__$Future_Future_$Impl_$.first(p.b,q.b));
 		this2 = this3;
 		return this2;
-	},{ fileName : "Observable.hx", lineNumber : 20, className : "tink.state._Observable.Observable_Impl_", methodName : "combine"});
+	});
 };
 tink_state__$Observable_Observable_$Impl_$.nextTime = function(this1,options,check) {
+	return tink_state__$Observable_Observable_$Impl_$.getNext(this1,options,function(v) {
+		if(check(v)) {
+			return haxe_ds_Option.Some(v);
+		} else {
+			return haxe_ds_Option.None;
+		}
+	});
+};
+tink_state__$Observable_Observable_$Impl_$.getNext = function(this1,options,select) {
 	var ret = new tink_core_FutureTrigger();
 	var waiting = options != null && options.butNotNow;
 	var link = tink_state__$Observable_Observable_$Impl_$.bind(this1,{ direct : options != null && options.hires},function(value) {
+		var out = select(value);
 		if(waiting) {
-			waiting = check(value);
-		} else if(check(value)) {
-			ret.trigger(value);
+			waiting = out != haxe_ds_Option.None;
+		} else {
+			switch(out[1]) {
+			case 0:
+				var value1 = out[2];
+				ret.trigger(value1);
+				break;
+			case 1:
+				break;
+			}
 		}
 	});
 	var _e = link;
@@ -11332,7 +20915,7 @@ tink_state__$Observable_Observable_$Impl_$.map = function(this1,f) {
 		var this3 = new tink_core_MPair(f(m.a),m.b);
 		this2 = this3;
 		return this2;
-	},{ fileName : "Observable.hx", lineNumber : 56, className : "tink.state._Observable.Observable_Impl_", methodName : "map"});
+	});
 };
 tink_state__$Observable_Observable_$Impl_$.combineAsync = function(this1,that,f) {
 	return tink_state__$Observable_Observable_$Impl_$.mapAsync(tink_state__$Observable_Observable_$Impl_$.combine(this1,that,f),tink_state__$Observable_Transform_$Impl_$.plain(function(x) {
@@ -11371,7 +20954,7 @@ tink_state__$Observable_Observable_$Impl_$.switchSync = function(this1,cases,dfa
 		var this3 = new tink_core_MPair(p2.a,tink_core__$Future_Future_$Impl_$.first(p.b,p2.b));
 		this2 = this3;
 		return this2;
-	},{ fileName : "Observable.hx", lineNumber : 83, className : "tink.state._Observable.Observable_Impl_", methodName : "switchSync"});
+	});
 };
 tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 	if(options == null) {
@@ -11489,33 +21072,55 @@ tink_state__$Observable_Observable_$Impl_$.schedule = function(f) {
 	var _g = tink_state__$Observable_Observable_$Impl_$.scheduled;
 	if(_g == null) {
 		f();
-	} else if(_g.length == 0) {
-		tink_state__$Observable_Observable_$Impl_$.scheduled.push(f);
-		if(tink_state__$Observable_Observable_$Impl_$.hasRAF) {
-			window.requestAnimationFrame(function(_) {
-				tink_state__$Observable_Observable_$Impl_$.updateAll();
-			});
-		} else {
-			tink_core__$Callback_Callback_$Impl_$.defer(tink_state__$Observable_Observable_$Impl_$.updateAll);
-		}
 	} else {
 		var v = _g;
 		v.push(f);
+		tink_state__$Observable_Observable_$Impl_$.scheduleUpdate();
+	}
+};
+tink_state__$Observable_Observable_$Impl_$.scheduleUpdate = function() {
+	if(!tink_state__$Observable_Observable_$Impl_$.isScheduled) {
+		tink_state__$Observable_Observable_$Impl_$.isScheduled = true;
+		if(tink_state__$Observable_Observable_$Impl_$.hasRAF) {
+			window.requestAnimationFrame(function(_) {
+				tink_state__$Observable_Observable_$Impl_$.scheduledRun();
+			});
+		} else {
+			tink_core__$Callback_Callback_$Impl_$.defer(tink_state__$Observable_Observable_$Impl_$.scheduledRun);
+		}
+	}
+};
+tink_state__$Observable_Observable_$Impl_$.scheduledRun = function() {
+	tink_state__$Observable_Observable_$Impl_$.isScheduled = false;
+	tink_state__$Observable_Observable_$Impl_$.updatePending();
+};
+tink_state__$Observable_Observable_$Impl_$.updatePending = function(maxSeconds) {
+	if(maxSeconds == null) {
+		maxSeconds = .01;
+	}
+	var end = new Date().getTime() / 1000 + maxSeconds;
+	while(true) {
+		var old = tink_state__$Observable_Observable_$Impl_$.scheduled;
+		tink_state__$Observable_Observable_$Impl_$.scheduled = [];
+		var _g = 0;
+		while(_g < old.length) {
+			var o = old[_g];
+			++_g;
+			o();
+		}
+		if(!(tink_state__$Observable_Observable_$Impl_$.scheduled.length > 0 && new Date().getTime() / 1000 < end)) {
+			break;
+		}
+	}
+	if(tink_state__$Observable_Observable_$Impl_$.scheduled.length > 0) {
+		tink_state__$Observable_Observable_$Impl_$.scheduleUpdate();
+		return true;
+	} else {
+		return false;
 	}
 };
 tink_state__$Observable_Observable_$Impl_$.updateAll = function() {
-	if(tink_state__$Observable_Observable_$Impl_$.scheduled == null) {
-		return;
-	}
-	var old = tink_state__$Observable_Observable_$Impl_$.scheduled;
-	tink_state__$Observable_Observable_$Impl_$.scheduled = null;
-	var _g = 0;
-	while(_g < old.length) {
-		var o = old[_g];
-		++_g;
-		o();
-	}
-	tink_state__$Observable_Observable_$Impl_$.scheduled = [];
+	tink_state__$Observable_Observable_$Impl_$.updatePending(Infinity);
 };
 tink_state__$Observable_Observable_$Impl_$.lift = function(o) {
 	return o;
@@ -11539,7 +21144,7 @@ tink_state__$Observable_Observable_$Impl_$.flatten = function(o) {
 		var this2 = new tink_core_MPair(m2.a,tink_core__$Future_Future_$Impl_$.or(m.b,m2.b));
 		this1 = this2;
 		return this1;
-	},{ fileName : "Observable.hx", lineNumber : 200, className : "tink.state._Observable.Observable_Impl_", methodName : "flatten"});
+	});
 };
 tink_state__$Observable_Observable_$Impl_$.ofPromise = function(p) {
 	if(p == null) {
@@ -11577,10 +21182,10 @@ tink_state__$Observable_Observable_$Impl_$.ofPromise = function(p) {
 		var this2 = new tink_core_MPair(value,becameInvalid1);
 		this1 = this2;
 		return this1;
-	},{ fileName : "Observable.hx", lineNumber : 213, className : "tink.state._Observable.Observable_Impl_", methodName : "ofPromise"});
+	});
 };
-tink_state__$Observable_Observable_$Impl_$.create = function(f,pos) {
-	return new tink_state__$Observable_SimpleObservable(f,pos);
+tink_state__$Observable_Observable_$Impl_$.create = function(f) {
+	return new tink_state__$Observable_SimpleObservable(f);
 };
 tink_state__$Observable_Observable_$Impl_$.auto = function(f) {
 	return new tink_state__$Observable_AutoObservable(f);
@@ -11588,8 +21193,12 @@ tink_state__$Observable_Observable_$Impl_$.auto = function(f) {
 tink_state__$Observable_Observable_$Impl_$["const"] = function(value) {
 	return new tink_state_ConstObservable(value);
 };
-tink_state__$Observable_Observable_$Impl_$.equalsConst = function(o,value) {
-	return tink_state__$Observable_Observable_$Impl_$.get_value(o) == value;
+tink_state__$Observable_Observable_$Impl_$.ofConst = function(value) {
+	return tink_state__$Observable_Observable_$Impl_$["const"](value);
+};
+tink_state__$Observable_Observable_$Impl_$.untracked = function(f) {
+	tink_state__$Observable_Observable_$Impl_$.stack.push(null);
+	return tink_core_TypedError.tryFinally(f,($_=tink_state__$Observable_Observable_$Impl_$.stack,$bind($_,$_.pop)));
 };
 var tink_state__$Observable_Computation_$Impl_$ = {};
 $hxClasses["tink.state._Observable.Computation_Impl_"] = tink_state__$Observable_Computation_$Impl_$;
@@ -11604,31 +21213,23 @@ tink_state__$Observable_Computation_$Impl_$.perform = function(this1) {
 tink_state__$Observable_Computation_$Impl_$.async = function(f) {
 	var this1 = { f : f};
 	var o = tink_state__$Observable_Observable_$Impl_$.map(tink_state__$Observable_Observable_$Impl_$.auto(this1),tink_state__$Observable_Transform_$Impl_$.plain(tink_state__$Observable_Observable_$Impl_$.ofPromise));
-	return tink_state__$Observable_Computation_$Impl_$.plain(function() {
+	var this2 = { f : function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(tink_state__$Observable_Observable_$Impl_$.get_value(o));
-	});
+	}};
+	return this2;
 };
 tink_state__$Observable_Computation_$Impl_$.plain = function(f) {
 	var this1 = { f : f};
 	return this1;
 };
-var tink_state_ObservableObject = function() { };
-$hxClasses["tink.state.ObservableObject"] = tink_state_ObservableObject;
-tink_state_ObservableObject.__name__ = ["tink","state","ObservableObject"];
-tink_state_ObservableObject.prototype = {
-	poll: null
-	,__class__: tink_state_ObservableObject
-};
-var tink_state__$Observable_SimpleObservable = function(f,pos) {
+var tink_state__$Observable_SimpleObservable = function(f) {
 	this._poll = f;
-	this.pos = pos;
 };
 $hxClasses["tink.state._Observable.SimpleObservable"] = tink_state__$Observable_SimpleObservable;
 tink_state__$Observable_SimpleObservable.__name__ = ["tink","state","_Observable","SimpleObservable"];
 tink_state__$Observable_SimpleObservable.__interfaces__ = [tink_state_ObservableObject];
 tink_state__$Observable_SimpleObservable.prototype = {
 	_poll: null
-	,pos: null
 	,cache: null
 	,resetCache: function(_) {
 		this.cache = null;
@@ -11722,7 +21323,7 @@ var tink_state__$Observable_AutoObservable = function(comp) {
 		var this2 = new tink_core_MPair(comp.f(),_gthis.trigger);
 		this1 = this2;
 		return this1;
-	},{ fileName : "Observable.hx", lineNumber : 334, className : "tink.state._Observable.AutoObservable", methodName : "new"});
+	});
 };
 $hxClasses["tink.state._Observable.AutoObservable"] = tink_state__$Observable_AutoObservable;
 tink_state__$Observable_AutoObservable.__name__ = ["tink","state","_Observable","AutoObservable"];
@@ -11778,6 +21379,22 @@ tink_state_PromisedTools.flatMap = function(a,f) {
 	case 2:
 		var e = a[2];
 		return tink_state_Promised.Failed(e);
+	}
+};
+tink_state_PromisedTools.or = function(p,l) {
+	if(p[1] == 1) {
+		var v = p[2];
+		return v;
+	} else {
+		return l.get();
+	}
+};
+tink_state_PromisedTools.orNull = function(p) {
+	if(p[1] == 1) {
+		var v = p[2];
+		return v;
+	} else {
+		return null;
 	}
 };
 var vdom__$Attr_ClassName_$Impl_$ = {};
@@ -11966,27 +21583,79 @@ vdom__$Style_Style_$Impl_$.ofString = function(s) {
 	}
 	return ret;
 };
+var vdom__$VDom_VDom_$Impl_$ = function() { };
+$hxClasses["vdom._VDom.VDom_Impl_"] = vdom__$VDom_VDom_$Impl_$;
+vdom__$VDom_VDom_$Impl_$.__name__ = ["vdom","_VDom","VDom_Impl_"];
+vdom__$VDom_VDom_$Impl_$.p = function(attr,children) {
+	return vdom_VDom.h("p",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.br = function(attr) {
+	return vdom_VDom.h("br",attr);
+};
+vdom__$VDom_VDom_$Impl_$.textarea = function(attr,children) {
+	return vdom_VDom.h("textarea",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.img = function(attr) {
+	return vdom_VDom.h("img",attr);
+};
+vdom__$VDom_VDom_$Impl_$.li = function(attr,children) {
+	return vdom_VDom.h("li",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.ul = function(attr,children) {
+	return vdom_VDom.h("ul",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.h2 = function(attr,children) {
+	return vdom_VDom.h("h2",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.a = function(attr,children) {
+	return vdom_VDom.h("a",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.span = function(attr,children) {
+	return vdom_VDom.h("span",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.nav = function(attr,children) {
+	return vdom_VDom.h("nav",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.label = function(attr,children) {
+	return vdom_VDom.h("label",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.raw = function(attr) {
+	return vdom_HtmlFragment.create(attr);
+};
+vdom__$VDom_VDom_$Impl_$.input = function(attr) {
+	return vdom_VDom.h("input",attr);
+};
+vdom__$VDom_VDom_$Impl_$.i = function(attr,children) {
+	return vdom_VDom.h("i",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.button = function(attr,children) {
+	return vdom_VDom.h("button",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.h1 = function(attr,children) {
+	return vdom_VDom.h("h1",attr,children);
+};
+vdom__$VDom_VDom_$Impl_$.div = function(attr,children) {
+	return vdom_VDom.h("div",attr,children);
+};
 var vdom__$VNode_VNode_$Impl_$ = {};
 $hxClasses["vdom._VNode.VNode_Impl_"] = vdom__$VNode_VNode_$Impl_$;
 vdom__$VNode_VNode_$Impl_$.__name__ = ["vdom","_VNode","VNode_Impl_"];
 vdom__$VNode_VNode_$Impl_$.toElement = function(this1) {
 	return vdom_VDom.create(this1);
 };
+vdom__$VNode_VNode_$Impl_$.toChildList = function(this1) {
+	return [this1];
+};
 vdom__$VNode_VNode_$Impl_$._new = function(tagName,properties,children,key,$namespace) {
 	var this1 = new window.virtualDom.VNode(tagName,properties,children,key,$namespace);
 	return this1;
 };
-vdom__$VNode_VNode_$Impl_$.ofString = function(s) {
-	return s;
-};
 vdom__$VNode_VNode_$Impl_$.ofInt = function(i) {
-	return i == null ? "null" : "" + i;
-};
-vdom__$VNode_VNode_$Impl_$.toChildren = function(this1) {
-	return this1;
-};
-vdom__$VNode_VNode_$Impl_$.flatten = function(c) {
-	return c;
+	if(i == null) {
+		return "null";
+	} else {
+		return "" + i;
+	}
 };
 var vdom_macros_Loader = function() { };
 $hxClasses["vdom.macros.Loader"] = vdom_macros_Loader;
@@ -12011,35 +21680,6 @@ Bool.__ename__ = ["Bool"];
 var Class = $hxClasses["Class"] = { __name__ : ["Class"]};
 var Enum = { };
 var Void = $hxClasses["Void"] = { __ename__ : ["Void"]};
-if(typeof WeakMap == "undefined") {
-	var counter = 0;
-	var cls = function() {
-	};
-	cls.prototype = { get : function(k) {
-		var tmp;
-		if(k == null) {
-			tmp = 0;
-		} else if(k.__hx_key__ == null) {
-			counter += 1;
-			tmp = k.__hx_key__ = counter;
-		} else {
-			tmp = k.__hx_key__;
-		}
-		return this[tmp];
-	}, set : function(k1,v) {
-		var tmp1;
-		if(k1 == null) {
-			tmp1 = 0;
-		} else if(k1.__hx_key__ == null) {
-			counter += 1;
-			tmp1 = k1.__hx_key__ = counter;
-		} else {
-			tmp1 = k1.__hx_key__;
-		}
-		this[tmp1] = v;
-	}};
-	window.WeakMap = cls;
-}
 var __map_reserved = {};
 var ArrayBuffer = $global.ArrayBuffer || js_html_compat_ArrayBuffer;
 if(ArrayBuffer.prototype.slice == null) {
@@ -12059,7 +21699,7 @@ var observer = new MutationObserver(function(mutations,mo) {
 			++_g1;
 			if(node.nodeType == 1) {
 				var handler = window.mdc.ripple.MDCRipple;
-				var el = js_Boot.__cast(node , Element);
+				var el = node;
 				if(el.classList.contains("mdc-ripple-surface")) {
 					if(Reflect.getProperty(el,"MDCRipple") == null) {
 						var handler1 = Type.createInstance(handler,[el]);
@@ -12084,7 +21724,7 @@ var observer = new MutationObserver(function(mutations,mo) {
 			var node1 = _g21[_g11];
 			++_g11;
 			if(node1.nodeType == 1) {
-				var el1 = js_Boot.__cast(node1 , Element);
+				var el1 = node1;
 				if(el1.classList.contains("mdc-ripple-surface")) {
 					var handler3 = Reflect.getProperty(el1,"MDCRipple");
 					if(handler3 != null) {
@@ -13778,7 +23418,7 @@ function appendPatch(apply, patch) {
 },{"../vnode/handle-thunk":24,"../vnode/is-thunk":25,"../vnode/is-vnode":27,"../vnode/is-vtext":28,"../vnode/is-widget":29,"../vnode/vpatch":32,"./diff-props":34,"x-is-array":12}]},{},[4])(4)
 });
 coconut_vdom_Renderable.keygen = 0;
-coconut_ui_BaseView.idCounter = 0;
+coconut_ui_View.idCounter = 0;
 StringTools.winMetaCharacters = [32,40,41,37,33,94,34,60,62,38,124,10,13,44,59];
 coconut_ui_tools_ViewCache.stack = [];
 haxe__$Int32_Int32_$Impl_$._mul = Math.imul != null ? Math.imul : function(a,b) {
@@ -13795,6 +23435,7 @@ haxe_io_FPHelper.LN2 = 0.6931471805599453;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Float32Array.BYTES_PER_ELEMENT = 4;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
+mdc_Checkbox.checkboxIndex = 0;
 mdc_Checkbox.checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
 mdc_MDC.DEFAULT_RIPPLE = true;
 mdc_TextField.textFieldIdIndex = 0;
@@ -13815,6 +23456,7 @@ tink_core__$Promise_Promise_$Impl_$.NEVER = (function($this) {
 tink_state__$Observable_Observable_$Impl_$.stack = new List();
 tink_state__$Observable_Observable_$Impl_$.scheduled = [];
 tink_state__$Observable_Observable_$Impl_$.hasRAF = typeof window != 'undefined' && 'requestAnimationFrame' in window;
+tink_state__$Observable_Observable_$Impl_$.isScheduled = false;
 tink_state__$Observable_Observable_$Impl_$.counter = 0;
 tink_state_ConstObservable.NEVER = (function($this) {
 	var $r;

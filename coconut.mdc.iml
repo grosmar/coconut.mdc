@@ -28,5 +28,7 @@
     <orderEntry type="library" name="lix:coconut.vdom" level="project" />
     <orderEntry type="library" name="lix:tink_csss" level="project" />
     <orderEntry type="library" name="lix:js-virtual-dom" level="project" />
+    <orderEntry type="library" name="lix:tink_anon" level="project" />
+    <orderEntry type="library" name="lix:tink_slice" level="project" />
   </component>
 </module>

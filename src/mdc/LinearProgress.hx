@@ -3,13 +3,14 @@ package mdc;
 import mdc.MDC.MDCLinearProgress;
 import vdom.Attr;
 import coconut.ui.View;
-class LinearProgress extends View<LinearProgressAttr>
+class LinearProgress extends View
 {
+    var attributes:LinearProgressAttr;
     var mdcLinearProgress:MDCLinearProgress;
 
     function render()
     '
-        <div class=${data.className.add(["mdc-linear-progress"=>true])} {...data}>
+        <div class=${className.add(["mdc-linear-progress"=>true])} ${...this}>
             <div class="mdc-linear-progress__buffering-dots"></div>
             <div class="mdc-linear-progress__buffer"></div>
             <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
@@ -35,12 +36,12 @@ class LinearProgress extends View<LinearProgressAttr>
 
     function setLinearProgress()
     {
-        mdcLinearProgress.determinate = !data.indeterminate;
-        mdcLinearProgress.progress = data.progress;
-        mdcLinearProgress.buffer = data.buffer;
-        mdcLinearProgress.reverse = data.reverse;
+        mdcLinearProgress.determinate = !indeterminate;
+        mdcLinearProgress.progress = progress;
+        mdcLinearProgress.buffer = buffer;
+        mdcLinearProgress.reverse = reverse;
 
-        if ( data.open == true )
+        if ( open == true )
         {
             mdcLinearProgress.open();
         }

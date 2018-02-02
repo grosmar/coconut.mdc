@@ -5,7 +5,6 @@ import vdom.Attr;
 import vdom.VNode;
 import vdom.VDom.*;
 import coconut.ui.View;
-//import coconut.Ui.hxx;
 
 class Checkbox extends View
 {
@@ -19,13 +18,13 @@ class Checkbox extends View
     //TODO: fix svg support
     function render()
     {
-        var id = this.id == null ? checkboxId : "ch_" + attr.id;
+        var id:String = this.id == null ? "ch_" + checkboxId : this.id;
         return
             if ( label != null )
                 @hxx '<div class=${className.add(["mdc-form-field" => true])} {...this}>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
-                                   onchange=${onchecked(event.target.checked)}
+                                   onchange=${if(onchecked != null) onchecked(event.target.checked) }
                                    value=${value}
                                    checked=${checked}
                                    class="mdc-checkbox__native-control"
@@ -46,7 +45,7 @@ class Checkbox extends View
                       <input type="checkbox"
                              value=${value}
                              checked=${checked}
-                             onchange=${onchecked(event.target.checked)}
+                             onchange=${if(onchecked != null) onchecked(event.target.checked)}
                              class="mdc-checkbox__native-control"/>
                       <div class="mdc-checkbox__background">
                         <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -75,24 +74,10 @@ class Checkbox extends View
 
     function setCheckboxProperties()
     {
-        mdcCheckbox.checked = data.checked;
-        mdcCheckbox.indeterminate = data.indeterminate;
-        mdcCheckbox.disabled = data.disabled;
-        mdcCheckbox.value = data.value;
-        setCheckboxProperties();
-    }
-
-    override function afterPatching(elem)
-    {
-        setCheckboxProperties();
-    }
-
-    function setCheckboxProperties()
-    {
-        mdcCheckbox.checked = data.checked;
-        mdcCheckbox.indeterminate = data.indeterminate;
-        mdcCheckbox.disabled = data.disabled;
-        mdcCheckbox.value = data.value;
+        mdcCheckbox.checked = checked;
+        mdcCheckbox.indeterminate = indeterminate;
+        mdcCheckbox.disabled = disabled;
+        mdcCheckbox.value = value;
     }
 
     override function destroy()
