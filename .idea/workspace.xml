@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14356a14-4eff-4d9a-9bbd-c041524f6617" name="Default" comment="Merge remote-tracking branch 'remotes/origin/master' into gen3&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;haxe_libraries/coconut.ui.hxml&#10;#&#9;haxe_libraries/tink_anon.hxml&#10;#&#9;haxe_libraries/tink_core.hxml&#10;#&#9;haxe_libraries/tink_macro.hxml&#10;#&#9;src/mdc/Checkbox.hx&#10;#&#9;src/mdc/List.hx&#10;#&#9;src/mdc/TextField.hx">
+    <list default="true" id="14356a14-4eff-4d9a-9bbd-c041524f6617" name="Default" comment="refactored list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/bin/playground/index.js" afterPath="$PROJECT_DIR$/bin/playground/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/cmdc/InfiniteScroll.hx" afterPath="$PROJECT_DIR$/src/cmdc/InfiniteScroll.hx" />
-      <change beforePath="$PROJECT_DIR$/src/mdc/LinearProgress.hx" afterPath="$PROJECT_DIR$/src/mdc/LinearProgress.hx" />
+      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.css" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.css" />
+      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.js" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.js" />
+      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.css" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.css" />
+      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.js" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.js" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/coconut.data.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.data.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/coconut.ui.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.ui.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/coconut.vdom.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.vdom.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/js-virtual-dom.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/js-virtual-dom.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_anon.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_anon.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_core.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_core.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_csss.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_csss.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_hxx.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_hxx.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_lang.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_lang.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_macro.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_macro.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_parse.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_parse.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_priority.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_priority.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_pure.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_pure.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_slice.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_slice.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_state.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_state.hxml" />
+      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_syntaxhub.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_syntaxhub.hxml" />
       <change beforePath="$PROJECT_DIR$/src/mdc/List.hx" afterPath="$PROJECT_DIR$/src/mdc/List.hx" />
-      <change beforePath="$PROJECT_DIR$/src/mdc/MDC.hx" afterPath="$PROJECT_DIR$/src/mdc/MDC.hx" />
-      <change beforePath="$PROJECT_DIR$/src/mdc/TextField.hx" afterPath="$PROJECT_DIR$/src/mdc/TextField.hx" />
       <change beforePath="$PROJECT_DIR$/test/Playground.hx" afterPath="$PROJECT_DIR$/test/Playground.hx" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,7 +40,7 @@
       <file leaf-file-name="TextField.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mdc/TextField.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
+            <state relative-caret-position="0">
               <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
@@ -51,48 +67,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/Playground.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="108" column="19" lean-forward="true" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
+            <state relative-caret-position="4">
+              <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="List.hx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VNode.hx" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/js-virtual-dom/0.9.3/github/9126fef3ac9705cdd605642b3eb4d44f3d49fac9/src/vdom/VNode.hx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VDom.hx" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/js-virtual-dom/0.9.3/github/9126fef3ac9705cdd605642b3eb4d44f3d49fac9/src/vdom/VDom.hx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="165" column="1" lean-forward="false" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="List.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mdc/List.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="115" column="84" lean-forward="false" selection-start-line="115" selection-start-column="84" selection-end-line="115" selection-end-column="84" />
+            <state relative-caret-position="498">
+              <caret line="93" column="1" lean-forward="false" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coconut.vdom.hxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/haxe_libraries/coconut.vdom.hxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="js-virtual-dom.hxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/haxe_libraries/js-virtual-dom.hxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tink_core.hxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/haxe_libraries/tink_core.hxml">
+      <file leaf-file-name="Icon.hx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mdc/Icon.hx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -122,37 +138,44 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>icon</find>
-      <find>icon right</find>
-      <find>iconpos</find>
-      <find>tabbar</find>
-      <find>dense</find>
-      <find>listitem</find>
-      <find>attr</find>
-      <find>data</find>
-      <find>box</find>
-      <find>upgraded</find>
-      <find>upgr</find>
-      <find>upgra</find>
-      <find>buttonattr</find>
-      <find>compact</find>
-      <find>ripple</find>
-      <find>tabs</find>
-      <find>ontab</find>
-      <find>unele</find>
-      <find>pattern</find>
-      <find>attr.</find>
-      <find>onchange</find>
-      <find>callback</find>
-      <find>onchec</find>
-      <find>valid</find>
       <find>inputattr</find>
       <find>inter</find>
       <find>Inter</find>
       <find>children</find>
       <find>listitemb</find>
       <find>${...</find>
+      <find>@:attribute</find>
+      <find>{...</find>
+      <find>&gt;{...</find>
+      <find>listItem</find>
+      <find>&lt;/listStartImage&gt;</find>
+      <find>list</find>
+      <find>info</find>
+      <find>GroupWork</find>
+      <find>help</find>
+      <find>live</find>
+      <find>&lt;listEndIcon&gt;info&lt;/listEndIcon&gt;</find>
+      <find>IframeScrolling</find>
+      <find>iconname</find>
+      <find>forward</find>
+      <find>listDivider</find>
+      <find>attr</find>
+      <find>data</find>
+      <find>MaterialIcon</find>
+      <find>icon</find>
+      <find>tabbar</find>
+      <find>tabbarmode</find>
+      <find>iconnae</find>
+      <find>start-</find>
+      <find>graphic</find>
     </findStrings>
+    <replaceStrings>
+      <replace>@:attr</replace>
+      <replace>&gt;${...</replace>
+      <replace>/&gt;&lt;/ListGraphic&gt;</replace>
+      <replace>ListDivider</replace>
+      <replace>Icon</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -178,8 +201,9 @@
         <option value="$PROJECT_DIR$/src/mdc/TextField.hx" />
         <option value="$PROJECT_DIR$/src/mdc/TabBar.hx" />
         <option value="$PROJECT_DIR$/../js-virtual-dom/src/vdom/VDom.hx" />
-        <option value="$PROJECT_DIR$/test/Playground.hx" />
+        <option value="$PROJECT_DIR$/src/mdc/Icon.hx" />
         <option value="$PROJECT_DIR$/src/mdc/List.hx" />
+        <option value="$PROJECT_DIR$/test/Playground.hx" />
       </list>
     </option>
   </component>
@@ -218,28 +242,64 @@
         <subPane>
           <expand>
             <path>
-              <item name="coconut.mdc_gen3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coconut.mdc_gen3" type="462c0819:PsiDirectoryNode" />
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coconut.mdc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="coconut.mdc_gen3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coconut.mdc_gen3" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coconut.mdc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="coconut.mdc_gen3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coconut.mdc_gen3" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
-              <item name="playground" type="462c0819:PsiDirectoryNode" />
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coconut.mdc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mdc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="coconut.mdc_gen3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coconut.mdc_gen3" type="462c0819:PsiDirectoryNode" />
-              <item name="haxe_libraries" type="462c0819:PsiDirectoryNode" />
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coconut.mdc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mdc" type="462c0819:PsiDirectoryNode" />
+              <item name="Icon.hx" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
-              <item name="coconut.mdc_gen3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="lix:js-virtual-dom" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="lix:js-virtual-dom" type="70bed36:NamedLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="lix:js-virtual-dom" type="70bed36:NamedLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="vdom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="lix:js-virtual-dom" type="70bed36:NamedLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="vdom" type="462c0819:PsiDirectoryNode" />
+              <item name="VDom.hx" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="lix:js-virtual-dom" type="70bed36:NamedLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="vdom" type="462c0819:PsiDirectoryNode" />
+              <item name="VNode.hx" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
@@ -381,7 +441,7 @@
       <workItem from="1517573662169" duration="604000" />
       <workItem from="1517574279815" duration="47000" />
       <workItem from="1517574375306" duration="1689000" />
-      <workItem from="1517905134932" duration="1375000" />
+      <workItem from="1517905134932" duration="6894000" />
     </task>
     <task id="LOCAL-00001" summary="Merge remote-tracking branch 'remotes/origin/master' into gen3&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;haxe_libraries/coconut.ui.hxml&#10;#&#9;haxe_libraries/tink_anon.hxml&#10;#&#9;haxe_libraries/tink_core.hxml&#10;#&#9;haxe_libraries/tink_macro.hxml&#10;#&#9;src/mdc/Checkbox.hx&#10;#&#9;src/mdc/List.hx&#10;#&#9;src/mdc/TextField.hx">
       <created>1517574998767</created>
@@ -394,7 +454,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29883000" />
+    <option name="totallyTimeSpent" value="35402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -402,7 +462,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32596686" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32596686" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -413,8 +473,9 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23854166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.153125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -427,7 +488,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,36 +506,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/playground.hxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Playground.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdc/TextField.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/playground/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="66" lean-forward="false" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/playground/mdc/material-components-web.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113967">
@@ -703,14 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="73" column="37" lean-forward="true" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/coconut.vdom/0.4.2/github/a03cd3b9154948d1d8c2638e451faef32fc5901b/src/coconut/vdom/macros/Setup.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -762,7 +784,7 @@
     <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/js-virtual-dom/0.9.3/github/5a98acd6452829543faec6a7cb863a9c908307ca/src/vdom/VDom.hx" />
     <entry file="file://$PROJECT_DIR$/src/mdc/TextField.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
+        <state relative-caret-position="0">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
@@ -777,18 +799,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/Playground.hx">
+    <entry file="file://D:/Programs/HaxeToolkit/haxe/std/js/html/IFrameElement.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="108" column="19" lean-forward="true" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
+        <state relative-caret-position="-1323">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/js-virtual-dom/0.9.3/github/9126fef3ac9705cdd605642b3eb4d44f3d49fac9/src/vdom/VNode.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/haxe/haxe_libraries/js-virtual-dom/0.9.3/github/9126fef3ac9705cdd605642b3eb4d44f3d49fac9/src/vdom/VDom.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="165" column="1" lean-forward="false" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="114" column="12" lean-forward="false" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdc/Icon.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdc/List.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="115" column="84" lean-forward="false" selection-start-line="115" selection-start-column="84" selection-end-line="115" selection-end-column="84" />
+        <state relative-caret-position="498">
+          <caret line="93" column="1" lean-forward="false" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Playground.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
           <folding />
         </state>
       </provider>
