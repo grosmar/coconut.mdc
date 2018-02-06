@@ -10,14 +10,19 @@ import coconut.ui.View;
 class TextField extends View
 {
     var attributes:TextFieldAttr;
+
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
 
     var mdcTextField:MDCTextField;
 
 
+
     function render()
     {
+        var invalid = this.invalid; //TODO: remove after fixing referencing issue
+        var value = this.value; //TODO: remove after fixing referencing issue
+
         return @hxx '<div class=${className.add(["mdc-text-field" => true,
                                                       "mdc-text-field--disabled" => disabled,
                                                       "mdc-text-field--with-leading-icon" => icon != null,
@@ -28,9 +33,9 @@ class TextField extends View
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
                         <if ${textArea}>
-                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId}  required=${required} onchange=${if(onedit != null) onedit(event.target.value)}>${value}</textarea>
+                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}>${value}</textarea>
                         <else>
-                            <input type=${type != null ? type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} value=${value} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
+                            <input type=${type != null ? type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
                         </if>
                         <if ${label != null}>
                             <vdom.VDom.label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
@@ -45,6 +50,8 @@ class TextField extends View
     override function afterPatching(elem)
     {
         mdcTextField.valid = !invalid;
+        if ( value != null)
+            mdcTextField.value = value;
     }
 
     override function afterInit(elem:DOMElement)
@@ -63,6 +70,7 @@ typedef TextFieldAttr = {>InputAttr,
     @:optional var label(default,never):String;
     @:optional var value(default,never):String;
     @:optional var disabled(default,never):Bool;
+    @:optional var invalid(default,never):Bool;
     @:optional var icon(default,never):String;
     @:optional var iconPos(default,never):TextFieldIconPos;
     @:optional var box(default,never):Bool;
@@ -70,7 +78,6 @@ typedef TextFieldAttr = {>InputAttr,
     @:optional var textArea(default,never):Bool;
     @:optional var type(default,never):String;
     @:optional function onedit(value:String):Void;
-    @:optional var invalid(default,never):Bool;
     @:optional var pattern(default,never):String;
 }
 

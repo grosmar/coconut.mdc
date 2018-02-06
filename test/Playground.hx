@@ -7,6 +7,8 @@ import mdc.MDC;
 import mdc.*;
 import mdc.TextField.TextFieldHelperText;
 import mdc.List.*;
+import mdc.List.ListItem2;
+import mdc.List.ListText2;
 import mdc.TabBar.*;
 import mdc.TabBar.TabBarMode;
 
@@ -97,88 +99,16 @@ class TestView extends View
 
     <h1>List</h1>
     <div class="flex-container">
+
         <div class="float">
-            <h2>Simple list</h2>
+            <h2>Interactive list</h2>
             <List>
-                <listItem>Simple item 1</listItem>
-                <listItem>Simple item 2</listItem>
-                <listItem>Simple item 3</listItem>
+                <ListItem2>
+                    <ListText2>Link item with start icon 1</ListText2>
+                </ListItem2>
             </List>
         </div>
 
-        <div class="float">
-            <h2>Dense list</h2>
-            <List>
-                <listItem>Dense item 1</listItem>
-                <listItem>Dense item 2</listItem>
-                <listItem>Dense item 3</listItem>
-            </List>
-        </div>
-        <div class="float">
-            <h2>Interactive list</h2>
-            <List interactive>
-                <listLinkItem>
-                    <listStartIcon>folder</listStartIcon>
-                    Link item with start icon 1
-                </listLinkItem>
-                <listLinkItem>
-                    <listStartIcon>folder</listStartIcon>
-                    Link item with start icon 2
-                </listLinkItem>
-                <listLinkItem>
-                    <listStartIcon>folder</listStartIcon>
-                    Link item with start icon 3
-                </listLinkItem>
-            </List>
-        </div>
-        <div class="float">
-            <h2>Avatar list (+divider)</h2>
-            <List avatarList interactive>
-                <listItem>
-                    <listStartImage src="https://randomuser.me/api/portraits/women/1.jpg">folder</listStartImage>
-                    Item with start icon 1
-                </listItem>
-                <listItem>
-                    <listStartImage src="https://randomuser.me/api/portraits/women/2.jpg">folder</listStartImage>
-                    Item with start icon 2
-                </listItem>
-                <listDivider/>
-                <listItem>
-                    <listStartImage src="https://randomuser.me/api/portraits/women/3.jpg">folder</listStartImage>
-                    Item with start icon 3
-                </listItem>
-            </List>
-        </div>
-        <div class="float">
-            <h2>Two line list (+inset divider)</h2>
-            <List avatarList interactive twoLine>
-                <listItem>
-                    <listStartImage src="https://randomuser.me/api/portraits/women/1.jpg">folder</listStartImage>
-                    <listText>
-                        Item title 1
-                        <listTextSecondary>Secondary text 1</listTextSecondary>
-                    </listText>
-                    <listEndIcon>info</listEndIcon>
-                </listItem>
-                <listItem>
-                    <listStartImage src="https://randomuser.me/api/portraits/women/2.jpg">folder</listStartImage>
-                    <listText>
-                        Item title 2
-                        <listTextSecondary>Secondary text 2</listTextSecondary>
-                    </listText>
-                    <listEndIcon>info</listEndIcon>
-                </listItem>
-                <listDivider inset />
-                <listItem>
-                    <listStartImage src="https://randomuser.me/api/portraits/women/3.jpg">folder</listStartImage>
-                    <listText>
-                        Item title 3
-                        <listTextSecondary>Secondary text 3</listTextSecondary>
-                    </listText>
-                    <listEndIcon>info</listEndIcon>
-                </listItem>
-            </List>
-        </div>
     </div>
 
     <h1>TextField</h1>

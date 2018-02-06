@@ -5,22 +5,19 @@ import js.html.DOMElement;
 import vdom.Attr;
 import vdom.VNode;
 import coconut.ui.View;
-class InfiniteScroll extends View<{>Attr, content:VNode, ?tolerance:Float, onscrolltop:Void->Void, onscrollbottom:Void->Void}>
+class InfiniteScroll extends View
 {
-    var tolerance:Float;
-    var onscrolltop:Void->Void;
-    var onscrollbottom:Void->Void;
+    var attributes:Attr;
+    @:attribute var children:VNode;
+    @:attribute var tolerance:Float = 0.1;
+    @:attribute var onscrolltop:Void->Void;
+    @:attribute var onscrollbottom:Void->Void;
 
-
-    function render(data)
+    function render()
     {
-        this.tolerance = data.tolerance != null ? data.tolerance : 0.1;
-        this.onscrolltop = data.onscrolltop;
-        this.onscrollbottom = data.onscrollbottom;
-
         return @hxx '
-        <div {...data} style="overflow-y:auto">
-            ${data.content}
+        <div {...this} style="overflow-y:auto">
+            ${children}
         </div>
         ';
     };

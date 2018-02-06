@@ -107,6 +107,8 @@ extern class MDCRipple extends MDCComponent { }
 extern class MDCTextField extends MDCComponent
 {
 	var valid:Bool;
+	var required:Bool;
+	var value:String;
 }
 
 @:native("window.mdc.checkbox.MDCCheckbox")

@@ -9,7 +9,15 @@ class LinearProgress extends View
     var mdcLinearProgress:MDCLinearProgress;
 
     function render()
-    '
+    {
+        //TODO: temporary hack till v3 resolves update listener
+        var intererminate = this.indeterminate;
+        var progress = this.progress;
+        var buffer = this.buffer;
+        var reverse = this.reverse;
+        var open = this.open;
+
+        return @hxx '
         <div class=${className.add(["mdc-linear-progress"=>true])} ${...this}>
             <div class="mdc-linear-progress__buffering-dots"></div>
             <div class="mdc-linear-progress__buffer"></div>
@@ -20,7 +28,9 @@ class LinearProgress extends View
                 <span class="mdc-linear-progress__bar-inner"></span>
             </div>
         </div>
-    ';
+        ';
+    }
+
 
     override function afterInit(elem)
     {
