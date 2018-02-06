@@ -623,7 +623,7 @@ coconut_ui_View.prototype = $extend(coconut_vdom_Renderable.prototype,{
 });
 var TestView = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Playground.hx", lineNumber : 36, className : "TestView", methodName : "new"});
-	this.__tink_defaults190 = { };
+	this.__tink_defaults85 = { };
 	this.__slots = { };
 };
 $hxClasses["TestView"] = TestView;
@@ -632,7 +632,7 @@ TestView.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new TestView(attributes);
 	}
-	inst.__tink_init191(attributes);
+	inst.__tink_init86(attributes);
 	return inst;
 };
 TestView.__super__ = coconut_ui_View;
@@ -673,12 +673,12 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __r5 = [];
 		var __ret11 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
 		var __ret12 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this11 = { f : function() {
+		var this2 = { f : function() {
 			return function(event1) {
 				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 51, className : "TestView", methodName : "render"});
 			};
 		}};
-		var __ret13 = { label : __ret11, raised : __ret12, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this11)};
+		var __ret13 = { label : __ret11, raised : __ret12, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this2)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret13));
 		var __ret14 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret14));
@@ -699,13 +699,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __r7 = [];
 		var __ret21 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
 		var __ret22 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this12 = { f : function() {
+		var this3 = { f : function() {
 			return function(checked) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 61, className : "TestView", methodName : "render", customParams : [checked]});
 				return;
 			};
 		}};
-		var __ret23 = { label : __ret21, value : __ret22, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this12)};
+		var __ret23 = { label : __ret21, value : __ret22, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this3)};
 		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret23));
 		var __ret24 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret24));
@@ -723,42 +723,42 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __r9 = [];
 		var __ret30 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
 		var __r10 = [];
-		var this13 = { f : function() {
+		var this4 = { f : function() {
 			var __r11 = [];
 			var __ret31 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-			var this14 = { f : function() {
+			var this5 = { f : function() {
 				var __r12 = [];
 				__r12.push("Tab1");
 				return __r12;
 			}};
-			var __ret32 = { active : __ret31, children : tink_state__$Observable_Observable_$Impl_$.auto(this14)};
+			var __ret32 = { active : __ret31, children : tink_state__$Observable_Observable_$Impl_$.auto(this5)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret32));
-			var this15 = { f : function() {
+			var this6 = { f : function() {
 				var __r13 = [];
 				__r13.push("Tab2");
 				return __r13;
 			}};
-			var __ret33 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this15)};
+			var __ret33 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this6)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret33));
-			var this16 = { f : function() {
+			var this7 = { f : function() {
 				var __r14 = [];
 				__r14.push("Tab3");
 				return __r14;
 			}};
-			var __ret34 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this16)};
+			var __ret34 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this7)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret34));
 			return __r11;
 		}};
-		var __ret35 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this13)};
+		var __ret35 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this4)};
 		__r10.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret35));
 		__r9.push(vdom_VDom.h("div",__ret30,__r10));
 		var __ret36 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
 		var __r15 = [];
-		var this17 = { f : function() {
+		var this8 = { f : function() {
 			return "mdc-tab-bar--icon-tab-bar";
 		}};
-		var __ret37 = tink_state__$Observable_Observable_$Impl_$.auto(this17);
-		var this18 = { f : function() {
+		var __ret37 = tink_state__$Observable_Observable_$Impl_$.auto(this8);
+		var this9 = { f : function() {
 			var __r16 = [];
 			var __ret38 = { icon : tink_state__$Observable_Observable_$Impl_$["const"]("camera"), active : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 			__r16.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret38));
@@ -768,45 +768,45 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			__r16.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret40));
 			return __r16;
 		}};
-		var __ret41 = { mode : __ret37, children : tink_state__$Observable_Observable_$Impl_$.auto(this18)};
+		var __ret41 = { mode : __ret37, children : tink_state__$Observable_Observable_$Impl_$.auto(this9)};
 		__r15.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret41));
 		__r9.push(vdom_VDom.h("div",__ret36,__r15));
 		var __ret42 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
 		var __r17 = [];
-		var this19 = { f : function() {
+		var this10 = { f : function() {
 			return "mdc-tab-bar--icons-with-text";
 		}};
-		var __ret43 = tink_state__$Observable_Observable_$Impl_$.auto(this19);
-		var this110 = { f : function() {
+		var __ret43 = tink_state__$Observable_Observable_$Impl_$.auto(this10);
+		var this11 = { f : function() {
 			var __r18 = [];
 			var __ret44 = tink_state__$Observable_Observable_$Impl_$["const"]("camera");
 			var __ret45 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-			var this111 = { f : function() {
+			var this12 = { f : function() {
 				var __r19 = [];
 				__r19.push("Tab1");
 				return __r19;
 			}};
-			var __ret46 = { icon : __ret44, active : __ret45, children : tink_state__$Observable_Observable_$Impl_$.auto(this111)};
+			var __ret46 = { icon : __ret44, active : __ret45, children : tink_state__$Observable_Observable_$Impl_$.auto(this12)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret46));
 			var __ret47 = tink_state__$Observable_Observable_$Impl_$["const"]("colorize");
-			var this112 = { f : function() {
+			var this13 = { f : function() {
 				var __r20 = [];
 				__r20.push("Tab2");
 				return __r20;
 			}};
-			var __ret48 = { icon : __ret47, children : tink_state__$Observable_Observable_$Impl_$.auto(this112)};
+			var __ret48 = { icon : __ret47, children : tink_state__$Observable_Observable_$Impl_$.auto(this13)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret48));
 			var __ret49 = tink_state__$Observable_Observable_$Impl_$["const"]("edit");
-			var this113 = { f : function() {
+			var this14 = { f : function() {
 				var __r21 = [];
 				__r21.push("Tab3");
 				return __r21;
 			}};
-			var __ret50 = { icon : __ret49, children : tink_state__$Observable_Observable_$Impl_$.auto(this113)};
+			var __ret50 = { icon : __ret49, children : tink_state__$Observable_Observable_$Impl_$.auto(this14)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret50));
 			return __r18;
 		}};
-		var __ret51 = { mode : __ret43, children : tink_state__$Observable_Observable_$Impl_$.auto(this110)};
+		var __ret51 = { mode : __ret43, children : tink_state__$Observable_Observable_$Impl_$.auto(this11)};
 		__r17.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret51));
 		__r9.push(vdom_VDom.h("div",__ret42,__r17));
 		__r1.push(vdom_VDom.h("div",__ret29,__r9));
@@ -859,32 +859,32 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r32.push("Simple list");
 		var __ret67 = { };
 		__r31.push(vdom_VDom.h("h2",__ret67,__r32));
-		var this114 = { f : function() {
+		var this15 = { f : function() {
 			var __r33 = [];
-			var this115 = { f : function() {
+			var this16 = { f : function() {
 				var __r34 = [];
 				__r34.push("Simple item 1");
 				return __r34;
 			}};
-			var __ret68 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this115)};
+			var __ret68 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this16)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret68));
-			var this116 = { f : function() {
+			var this17 = { f : function() {
 				var __r35 = [];
 				__r35.push("Simple item 2");
 				return __r35;
 			}};
-			var __ret69 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this116)};
+			var __ret69 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this17)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret69));
-			var this117 = { f : function() {
+			var this18 = { f : function() {
 				var __r36 = [];
 				__r36.push("Simple item 3");
 				return __r36;
 			}};
-			var __ret70 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this117)};
+			var __ret70 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this18)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret70));
 			return __r33;
 		}};
-		var __ret71 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this114)};
+		var __ret71 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this15)};
 		__r31.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret71));
 		__r30.push(vdom_VDom.h("div",__ret66,__r31));
 		var __ret72 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
@@ -893,32 +893,32 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r38.push("Dense list");
 		var __ret73 = { };
 		__r37.push(vdom_VDom.h("h2",__ret73,__r38));
-		var this118 = { f : function() {
+		var this19 = { f : function() {
 			var __r39 = [];
-			var this119 = { f : function() {
+			var this20 = { f : function() {
 				var __r40 = [];
 				__r40.push("Dense item 1");
 				return __r40;
 			}};
-			var __ret74 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this119)};
+			var __ret74 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this20)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret74));
-			var this120 = { f : function() {
+			var this21 = { f : function() {
 				var __r41 = [];
 				__r41.push("Dense item 2");
 				return __r41;
 			}};
-			var __ret75 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this120)};
+			var __ret75 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this21)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret75));
-			var this121 = { f : function() {
+			var this22 = { f : function() {
 				var __r42 = [];
 				__r42.push("Dense item 3");
 				return __r42;
 			}};
-			var __ret76 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this121)};
+			var __ret76 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this22)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret76));
 			return __r39;
 		}};
-		var __ret77 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this118)};
+		var __ret77 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this19)};
 		__r37.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret77));
 		__r30.push(vdom_VDom.h("div",__ret72,__r37));
 		var __ret78 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
@@ -927,65 +927,65 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r44.push("Interactive list");
 		var __ret79 = { };
 		__r43.push(vdom_VDom.h("h2",__ret79,__r44));
-		var this122 = { f : function() {
+		var this23 = { f : function() {
 			var __r45 = [];
-			var this123 = { f : function() {
+			var this24 = { f : function() {
 				var __r46 = [];
-				var this124 = { f : function() {
+				var this25 = { f : function() {
 					var __r47 = [];
-					var this125 = { f : function() {
+					var this26 = { f : function() {
 						return "folder";
 					}};
-					var __ret80 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this125)};
+					var __ret80 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this26)};
 					__r47.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret80));
 					return __r47;
 				}};
-				var __ret81 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this124)};
+				var __ret81 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this25)};
 				__r46.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret81));
 				__r46.push("Link item with start icon 1");
 				return __r46;
 			}};
-			var __ret82 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this123)};
+			var __ret82 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this24)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret82));
-			var this126 = { f : function() {
+			var this27 = { f : function() {
 				var __r48 = [];
-				var this127 = { f : function() {
+				var this28 = { f : function() {
 					var __r49 = [];
-					var this128 = { f : function() {
+					var this29 = { f : function() {
 						return "folder";
 					}};
-					var __ret83 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this128)};
+					var __ret83 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this29)};
 					__r49.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret83));
 					return __r49;
 				}};
-				var __ret84 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this127)};
+				var __ret84 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this28)};
 				__r48.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret84));
 				__r48.push("Link item with start icon 2");
 				return __r48;
 			}};
-			var __ret85 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this126)};
+			var __ret85 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this27)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret85));
-			var this129 = { f : function() {
+			var this30 = { f : function() {
 				var __r50 = [];
-				var this130 = { f : function() {
+				var this31 = { f : function() {
 					var __r51 = [];
-					var this131 = { f : function() {
+					var this32 = { f : function() {
 						return "folder";
 					}};
-					var __ret86 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this131)};
+					var __ret86 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this32)};
 					__r51.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret86));
 					return __r51;
 				}};
-				var __ret87 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this130)};
+				var __ret87 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this31)};
 				__r50.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret87));
 				__r50.push("Link item with start icon 3");
 				return __r50;
 			}};
-			var __ret88 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this129)};
+			var __ret88 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this30)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret88));
 			return __r45;
 		}};
-		var __ret89 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this122)};
+		var __ret89 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this23)};
 		__r43.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret89));
 		__r30.push(vdom_VDom.h("div",__ret78,__r43));
 		var __ret90 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
@@ -995,40 +995,40 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __ret91 = { };
 		__r52.push(vdom_VDom.h("h2",__ret91,__r53));
 		var __ret92 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this132 = { f : function() {
+		var this33 = { f : function() {
 			var __r54 = [];
-			var this133 = { f : function() {
+			var this34 = { f : function() {
 				var __r55 = [];
 				var __ret93 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/1.jpg")};
 				__r55.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret93));
 				__r55.push("Item with start icon 1");
 				return __r55;
 			}};
-			var __ret94 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this133)};
+			var __ret94 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this34)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret94));
-			var this134 = { f : function() {
+			var this35 = { f : function() {
 				var __r56 = [];
 				var __ret95 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/2.jpg")};
 				__r56.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret95));
 				__r56.push("Item with start icon 2");
 				return __r56;
 			}};
-			var __ret96 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this134)};
+			var __ret96 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this35)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret96));
 			var __ret97 = { };
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListDivider",null,mdc_ListDivider.__init,__ret97));
-			var this135 = { f : function() {
+			var this36 = { f : function() {
 				var __r57 = [];
 				var __ret98 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/3.jpg")};
 				__r57.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret98));
 				__r57.push("Item with start icon 3");
 				return __r57;
 			}};
-			var __ret99 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this135)};
+			var __ret99 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this36)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret99));
 			return __r54;
 		}};
-		var __ret100 = { avatarList : __ret92, children : tink_state__$Observable_Observable_$Impl_$.auto(this132)};
+		var __ret100 = { avatarList : __ret92, children : tink_state__$Observable_Observable_$Impl_$.auto(this33)};
 		__r52.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret100));
 		__r30.push(vdom_VDom.h("div",__ret90,__r52));
 		var __ret101 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
@@ -1039,219 +1039,240 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r58.push(vdom_VDom.h("h2",__ret102,__r59));
 		var __ret103 = tink_state__$Observable_Observable_$Impl_$["const"](true);
 		var __ret104 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this136 = { f : function() {
+		var this37 = { f : function() {
 			var __r60 = [];
-			var this137 = { f : function() {
+			var this38 = { f : function() {
 				var __r61 = [];
 				var __ret105 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/1.jpg")};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret105));
-				var this138 = { f : function() {
+				var this39 = { f : function() {
 					var __r62 = [];
 					__r62.push("Item title 1");
-					var this139 = { f : function() {
+					var this40 = { f : function() {
 						var __r63 = [];
 						__r63.push("Secondary text 1");
 						return __r63;
 					}};
-					var __ret106 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this139)};
+					var __ret106 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this40)};
 					__r62.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret106));
 					return __r62;
 				}};
-				var __ret107 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this138)};
+				var __ret107 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this39)};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret107));
-				var this140 = { f : function() {
+				var this41 = { f : function() {
 					var __r64 = [];
-					var this141 = { f : function() {
+					var this42 = { f : function() {
 						return "info";
 					}};
-					var __ret108 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this141)};
+					var __ret108 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this42)};
 					__r64.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret108));
 					return __r64;
 				}};
-				var __ret109 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this140)};
+				var __ret109 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this41)};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret109));
 				return __r61;
 			}};
-			var __ret110 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this137)};
+			var __ret110 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this38)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret110));
-			var this142 = { f : function() {
+			var this43 = { f : function() {
 				var __r65 = [];
 				var __ret111 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/2.jpg")};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret111));
-				var this143 = { f : function() {
+				var this44 = { f : function() {
 					var __r66 = [];
 					__r66.push("Item title 2");
-					var this144 = { f : function() {
+					var this45 = { f : function() {
 						var __r67 = [];
 						__r67.push("Secondary text 2");
 						return __r67;
 					}};
-					var __ret112 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this144)};
+					var __ret112 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this45)};
 					__r66.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret112));
 					return __r66;
 				}};
-				var __ret113 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this143)};
+				var __ret113 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this44)};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret113));
-				var this145 = { f : function() {
+				var this46 = { f : function() {
 					var __r68 = [];
-					var this146 = { f : function() {
+					var this47 = { f : function() {
 						return "info";
 					}};
-					var __ret114 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this146)};
+					var __ret114 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this47)};
 					__r68.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret114));
 					return __r68;
 				}};
-				var __ret115 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this145)};
+				var __ret115 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this46)};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret115));
 				return __r65;
 			}};
-			var __ret116 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this142)};
+			var __ret116 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this43)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret116));
 			var __ret117 = { inset : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListDivider",null,mdc_ListDivider.__init,__ret117));
-			var this147 = { f : function() {
+			var this48 = { f : function() {
 				var __r69 = [];
 				var __ret118 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/3.jpg")};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret118));
-				var this148 = { f : function() {
+				var this49 = { f : function() {
 					var __r70 = [];
 					__r70.push("Item title 3");
-					var this149 = { f : function() {
+					var this50 = { f : function() {
 						var __r71 = [];
 						__r71.push("Secondary text 3");
 						return __r71;
 					}};
-					var __ret119 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this149)};
+					var __ret119 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this50)};
 					__r70.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret119));
 					return __r70;
 				}};
-				var __ret120 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this148)};
+				var __ret120 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this49)};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret120));
-				var this150 = { f : function() {
+				var this51 = { f : function() {
 					var __r72 = [];
-					var this151 = { f : function() {
+					var this52 = { f : function() {
 						return "info";
 					}};
-					var __ret121 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this151)};
+					var __ret121 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this52)};
 					__r72.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret121));
 					return __r72;
 				}};
-				var __ret122 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this150)};
+				var __ret122 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this51)};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret122));
 				return __r69;
 			}};
-			var __ret123 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this147)};
+			var __ret123 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this48)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret123));
 			return __r60;
 		}};
-		var __ret124 = { avatarList : __ret103, twoLine : __ret104, children : tink_state__$Observable_Observable_$Impl_$.auto(this136)};
+		var __ret124 = { avatarList : __ret103, twoLine : __ret104, children : tink_state__$Observable_Observable_$Impl_$.auto(this37)};
 		__r58.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret124));
 		__r30.push(vdom_VDom.h("div",__ret101,__r58));
 		__r1.push(vdom_VDom.h("div",__ret65,__r30));
 		var __r73 = [];
-		__r73.push("TextField");
+		__r73.push("Radio");
 		var __ret125 = { };
 		__r1.push(vdom_VDom.h("h1",__ret125,__r73));
 		var __r74 = [];
-		var __ret126 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input")};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret126));
-		var __ret127 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Boxed input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret127));
-		var __ret128 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Password input"), type : tink_state__$Observable_Observable_$Impl_$["const"]("password")};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret128));
-		var __ret129 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("list")};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret129));
-		var __ret130 = { };
-		__r74.push(vdom_VDom.h("br",__ret130));
-		var __ret131 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with helper")};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret131));
-		var __ret132 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Helper for above")};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret132));
-		var __ret133 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with validation"), invalid : tink_state__$Observable_Observable_$Impl_$["const"](true), required : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret133));
-		var __ret134 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Error message"), validation : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret134));
-		var __ret135 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret135));
-		var __ret136 = { };
-		__r74.push(vdom_VDom.h("br",__ret136));
-		var __ret137 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input fullWidth"), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret137));
-		var __ret138 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea fullWidth"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret138));
-		var __ret139 = { };
-		__r1.push(vdom_VDom.h("div",__ret139,__r74));
+		var __ret126 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		var __ret127 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this53 = { f : function() {
+			return function(checked1) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 196, className : "TestView", methodName : "render", customParams : [checked1]});
+				return;
+			};
+		}};
+		var __ret128 = { label : __ret126, value : __ret127, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this53)};
+		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret128));
+		var __ret129 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret129));
+		var __ret130 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret130));
+		var __ret131 = { };
+		__r1.push(vdom_VDom.h("div",__ret131,__r74));
 		var __r75 = [];
-		__r75.push("Toolbar");
-		var __ret140 = { };
-		__r1.push(vdom_VDom.h("h1",__ret140,__r75));
+		__r75.push("TextField");
+		var __ret132 = { };
+		__r1.push(vdom_VDom.h("h1",__ret132,__r75));
 		var __r76 = [];
-		var this152 = { f : function() {
-			var __r77 = [];
-			var this153 = { f : function() {
-				var __r78 = [];
-				var this154 = { f : function() {
+		var __ret133 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input")};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret133));
+		var __ret134 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Boxed input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret134));
+		var __ret135 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Password input"), type : tink_state__$Observable_Observable_$Impl_$["const"]("password")};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret135));
+		var __ret136 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("list")};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret136));
+		var __ret137 = { };
+		__r76.push(vdom_VDom.h("br",__ret137));
+		var __ret138 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with helper")};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret138));
+		var __ret139 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Helper for above")};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret139));
+		var __ret140 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with validation"), invalid : tink_state__$Observable_Observable_$Impl_$["const"](true), required : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret140));
+		var __ret141 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Error message"), validation : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret141));
+		var __ret142 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret142));
+		var __ret143 = { };
+		__r76.push(vdom_VDom.h("br",__ret143));
+		var __ret144 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input fullWidth"), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret144));
+		var __ret145 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea fullWidth"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret145));
+		var __ret146 = { };
+		__r1.push(vdom_VDom.h("div",__ret146,__r76));
+		var __r77 = [];
+		__r77.push("Toolbar");
+		var __ret147 = { };
+		__r1.push(vdom_VDom.h("h1",__ret147,__r77));
+		var __r78 = [];
+		var this54 = { f : function() {
+			var __r79 = [];
+			var this55 = { f : function() {
+				var __r80 = [];
+				var this56 = { f : function() {
 					return "mdc-toolbar__section--align-start";
 				}};
-				var __ret141 = tink_state__$Observable_Observable_$Impl_$.auto(this154);
-				var this155 = { f : function() {
-					var __r79 = [];
-					var this156 = { f : function() {
+				var __ret148 = tink_state__$Observable_Observable_$Impl_$.auto(this56);
+				var this57 = { f : function() {
+					var __r81 = [];
+					var this58 = { f : function() {
 						return "menu";
 					}};
-					var __ret142 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this156)};
-					__r79.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret142));
-					return __r79;
+					var __ret149 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this58)};
+					__r81.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret149));
+					return __r81;
 				}};
-				var __ret143 = { align : __ret141, children : tink_state__$Observable_Observable_$Impl_$.auto(this155)};
-				__r78.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret143));
-				var this157 = { f : function() {
-					var __r80 = [];
-					var this158 = { f : function() {
-						var __r81 = [];
-						__r81.push("Toolbar title");
-						return __r81;
-					}};
-					var __ret144 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this158)};
-					__r80.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret144));
-					return __r80;
-				}};
-				var __ret145 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this157)};
-				__r78.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret145));
-				var this159 = { f : function() {
-					return "mdc-toolbar__section--align-end";
-				}};
-				var __ret146 = tink_state__$Observable_Observable_$Impl_$.auto(this159);
-				var this160 = { f : function() {
+				var __ret150 = { align : __ret148, children : tink_state__$Observable_Observable_$Impl_$.auto(this57)};
+				__r80.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret150));
+				var this59 = { f : function() {
 					var __r82 = [];
-					var this161 = { f : function() {
-						return "person";
+					var this60 = { f : function() {
+						var __r83 = [];
+						__r83.push("Toolbar title");
+						return __r83;
 					}};
-					var __ret147 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this161)};
-					__r82.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret147));
+					var __ret151 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this60)};
+					__r82.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret151));
 					return __r82;
 				}};
-				var __ret148 = { align : __ret146, children : tink_state__$Observable_Observable_$Impl_$.auto(this160)};
-				__r78.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret148));
-				return __r78;
+				var __ret152 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this59)};
+				__r80.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret152));
+				var this61 = { f : function() {
+					return "mdc-toolbar__section--align-end";
+				}};
+				var __ret153 = tink_state__$Observable_Observable_$Impl_$.auto(this61);
+				var this62 = { f : function() {
+					var __r84 = [];
+					var this63 = { f : function() {
+						return "person";
+					}};
+					var __ret154 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this63)};
+					__r84.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret154));
+					return __r84;
+				}};
+				var __ret155 = { align : __ret153, children : tink_state__$Observable_Observable_$Impl_$.auto(this62)};
+				__r80.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret155));
+				return __r80;
 			}};
-			var __ret149 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this153)};
-			__r77.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret149));
-			return __r77;
+			var __ret156 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this55)};
+			__r79.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret156));
+			return __r79;
 		}};
-		var __ret150 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this152)};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret150));
-		var __ret151 = { };
-		__r1.push(vdom_VDom.h("div",__ret151,__r76));
+		var __ret157 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this54)};
+		__r78.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret157));
+		var __ret158 = { };
+		__r1.push(vdom_VDom.h("div",__ret158,__r78));
 		__r.push(vdom_VDom.h("div",__ret,__r1));
 		return __r[0];
 	}
-	,__tink_defaults190: null
+	,__tink_defaults85: null
 	,__slots: null
 	,toString: function() {
 		return "TestView" + "#" + this.viewId;
 	}
-	,__tink_init191: function(attributes) {
+	,__tink_init86: function(attributes) {
 	}
 	,__class__: TestView
 });
@@ -6026,17 +6047,11 @@ mdc_Button.prototype = $extend(coconut_ui_View.prototype,{
 var mdc_Checkbox = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Checkbox.hx", lineNumber : 9, className : "mdc.Checkbox", methodName : "new"});
 	this.checkboxId = mdc_Checkbox.checkboxIndex++;
-	this.__tink_defaults93 = { accessKey : null, accessKeyLabel : null, attributes : null, checked : null, className : null, dir : null, disabled : null, draggable : null, hidden : null, id : null, indeterminate : null, key : null, label : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onchecked : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null, value : null};
-	this.__slots = { accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), indeterminate : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults93 = { label : null, disabled : null, checked : null, indeterminate : null, value : null, onchecked : null, accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__slots = { label : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), indeterminate : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.Checkbox"] = mdc_Checkbox;
 mdc_Checkbox.__name__ = ["mdc","Checkbox"];
-mdc_Checkbox.svg = function(attr,children) {
-	return vdom_VDom.h("svg",attr,children);
-};
-mdc_Checkbox.path = function(attr,children) {
-	return vdom_VDom.h("path",attr,children);
-};
 mdc_Checkbox.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Checkbox(attributes);
@@ -6050,6 +6065,10 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 	,mdcCheckbox: null
 	,render: function() {
 		var _gthis = this;
+		var checked = this.get_checked();
+		var indeterminate = this.get_indeterminate();
+		var disabled = this.get_disabled();
+		var value = this.get_value();
 		var id = this.get_id() == null ? "ch_" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.checkboxId)) : this.get_id();
 		if(this.get_label() != null) {
 			var __r = [];
@@ -6513,7 +6532,7 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 				if(_gthis.get_onchecked() != null) {
 					(_gthis.get_onchecked())(event.target.checked);
 				}
-			}, value : _gthis.get_value(), checked : _gthis.get_checked(), className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control"), id : id};
+			}, value : value, checked : checked, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control"), id : id};
 			__r2.push(vdom_VDom.h("input",__ret3));
 			var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")};
 			var __r3 = [];
@@ -6979,7 +6998,7 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 				__ret8.title = v177;
 			}
 			var __r7 = [];
-			var __ret9 = { type : "checkbox", value : _gthis.get_value(), checked : _gthis.get_checked(), onchange : function(event1) {
+			var __ret9 = { type : "checkbox", value : value, checked : checked, onchange : function(event1) {
 				if(_gthis.get_onchecked() != null) {
 					(_gthis.get_onchecked())(event1.target.checked);
 				}
@@ -7021,198 +7040,216 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 		return "Checkbox" + "#" + this.viewId;
 	}
 	,__tink_init94: function(attributes) {
-		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults93.accessKey : this1);
-		var this2 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults93.accessKeyLabel : this2);
-		var this3 = attributes.attributes;
-		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults93.attributes : this3);
-		var this4 = attributes.checked;
-		this.__slots.checked.setData(this4 == null ? this.__tink_defaults93.checked : this4);
-		var this5 = attributes.className;
-		this.__slots.className.setData(this5 == null ? this.__tink_defaults93.className : this5);
-		var this6 = attributes.dir;
-		this.__slots.dir.setData(this6 == null ? this.__tink_defaults93.dir : this6);
-		var this7 = attributes.disabled;
-		this.__slots.disabled.setData(this7 == null ? this.__tink_defaults93.disabled : this7);
-		var this8 = attributes.draggable;
-		this.__slots.draggable.setData(this8 == null ? this.__tink_defaults93.draggable : this8);
-		var this9 = attributes.hidden;
-		this.__slots.hidden.setData(this9 == null ? this.__tink_defaults93.hidden : this9);
-		var this10 = attributes.id;
-		this.__slots.id.setData(this10 == null ? this.__tink_defaults93.id : this10);
-		var this11 = attributes.indeterminate;
-		this.__slots.indeterminate.setData(this11 == null ? this.__tink_defaults93.indeterminate : this11);
-		var this12 = attributes.key;
-		this.__slots.key.setData(this12 == null ? this.__tink_defaults93.key : this12);
-		var this13 = attributes.label;
-		this.__slots.label.setData(this13 == null ? this.__tink_defaults93.label : this13);
-		var this14 = attributes.lang;
-		this.__slots.lang.setData(this14 == null ? this.__tink_defaults93.lang : this14);
-		var this15 = attributes.onabort;
-		this.__slots.onabort.setData(this15 == null ? this.__tink_defaults93.onabort : this15);
-		var this16 = attributes.onblur;
-		this.__slots.onblur.setData(this16 == null ? this.__tink_defaults93.onblur : this16);
-		var this17 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this17 == null ? this.__tink_defaults93.oncanplay : this17);
-		var this18 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this18 == null ? this.__tink_defaults93.oncanplaythrough : this18);
-		var this19 = attributes.onchange;
-		this.__slots.onchange.setData(this19 == null ? this.__tink_defaults93.onchange : this19);
-		var this20 = attributes.onchecked;
-		this.__slots.onchecked.setData(this20 == null ? this.__tink_defaults93.onchecked : this20);
-		var this21 = attributes.onclick;
-		this.__slots.onclick.setData(this21 == null ? this.__tink_defaults93.onclick : this21);
-		var this22 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this22 == null ? this.__tink_defaults93.oncontextmenu : this22);
-		var this23 = attributes.oncopy;
-		this.__slots.oncopy.setData(this23 == null ? this.__tink_defaults93.oncopy : this23);
-		var this24 = attributes.oncut;
-		this.__slots.oncut.setData(this24 == null ? this.__tink_defaults93.oncut : this24);
-		var this25 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this25 == null ? this.__tink_defaults93.ondblclick : this25);
-		var this26 = attributes.ondrag;
-		this.__slots.ondrag.setData(this26 == null ? this.__tink_defaults93.ondrag : this26);
-		var this27 = attributes.ondragend;
-		this.__slots.ondragend.setData(this27 == null ? this.__tink_defaults93.ondragend : this27);
-		var this28 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this28 == null ? this.__tink_defaults93.ondragenter : this28);
-		var this29 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this29 == null ? this.__tink_defaults93.ondragleave : this29);
-		var this30 = attributes.ondragover;
-		this.__slots.ondragover.setData(this30 == null ? this.__tink_defaults93.ondragover : this30);
-		var this31 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this31 == null ? this.__tink_defaults93.ondragstart : this31);
-		var this32 = attributes.ondrop;
-		this.__slots.ondrop.setData(this32 == null ? this.__tink_defaults93.ondrop : this32);
-		var this33 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this33 == null ? this.__tink_defaults93.ondurationchange : this33);
-		var this34 = attributes.onemptied;
-		this.__slots.onemptied.setData(this34 == null ? this.__tink_defaults93.onemptied : this34);
-		var this35 = attributes.onended;
-		this.__slots.onended.setData(this35 == null ? this.__tink_defaults93.onended : this35);
-		var this36 = attributes.onerror;
-		this.__slots.onerror.setData(this36 == null ? this.__tink_defaults93.onerror : this36);
-		var this37 = attributes.onfocus;
-		this.__slots.onfocus.setData(this37 == null ? this.__tink_defaults93.onfocus : this37);
-		var this38 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this38 == null ? this.__tink_defaults93.onfullscreenchange : this38);
-		var this39 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this39 == null ? this.__tink_defaults93.onfullscreenerror : this39);
-		var this40 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this40 == null ? this.__tink_defaults93.ongotpointercapture : this40);
-		var this41 = attributes.oninput;
-		this.__slots.oninput.setData(this41 == null ? this.__tink_defaults93.oninput : this41);
-		var this42 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this42 == null ? this.__tink_defaults93.oninvalid : this42);
-		var this43 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this43 == null ? this.__tink_defaults93.onkeydown : this43);
-		var this44 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this44 == null ? this.__tink_defaults93.onkeypress : this44);
-		var this45 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this45 == null ? this.__tink_defaults93.onkeyup : this45);
-		var this46 = attributes.onload;
-		this.__slots.onload.setData(this46 == null ? this.__tink_defaults93.onload : this46);
-		var this47 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this47 == null ? this.__tink_defaults93.onloadeddata : this47);
-		var this48 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this48 == null ? this.__tink_defaults93.onloadedmetadata : this48);
-		var this49 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this49 == null ? this.__tink_defaults93.onloadstart : this49);
-		var this50 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this50 == null ? this.__tink_defaults93.onlostpointercapture : this50);
-		var this51 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this51 == null ? this.__tink_defaults93.onmousedown : this51);
-		var this52 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this52 == null ? this.__tink_defaults93.onmouseenter : this52);
-		var this53 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this53 == null ? this.__tink_defaults93.onmouseleave : this53);
-		var this54 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this54 == null ? this.__tink_defaults93.onmousemove : this54);
-		var this55 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this55 == null ? this.__tink_defaults93.onmouseout : this55);
-		var this56 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this56 == null ? this.__tink_defaults93.onmouseover : this56);
-		var this57 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this57 == null ? this.__tink_defaults93.onmouseup : this57);
-		var this58 = attributes.onpaste;
-		this.__slots.onpaste.setData(this58 == null ? this.__tink_defaults93.onpaste : this58);
-		var this59 = attributes.onpause;
-		this.__slots.onpause.setData(this59 == null ? this.__tink_defaults93.onpause : this59);
-		var this60 = attributes.onplay;
-		this.__slots.onplay.setData(this60 == null ? this.__tink_defaults93.onplay : this60);
-		var this61 = attributes.onplaying;
-		this.__slots.onplaying.setData(this61 == null ? this.__tink_defaults93.onplaying : this61);
-		var this62 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this62 == null ? this.__tink_defaults93.onpointercancel : this62);
-		var this63 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this63 == null ? this.__tink_defaults93.onpointerdown : this63);
-		var this64 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this64 == null ? this.__tink_defaults93.onpointerenter : this64);
-		var this65 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this65 == null ? this.__tink_defaults93.onpointerleave : this65);
-		var this66 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this66 == null ? this.__tink_defaults93.onpointerlockchange : this66);
-		var this67 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this67 == null ? this.__tink_defaults93.onpointerlockerror : this67);
-		var this68 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this68 == null ? this.__tink_defaults93.onpointermove : this68);
-		var this69 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this69 == null ? this.__tink_defaults93.onpointerout : this69);
-		var this70 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this70 == null ? this.__tink_defaults93.onpointerover : this70);
-		var this71 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this71 == null ? this.__tink_defaults93.onpointerup : this71);
-		var this72 = attributes.onprogress;
-		this.__slots.onprogress.setData(this72 == null ? this.__tink_defaults93.onprogress : this72);
-		var this73 = attributes.onratechange;
-		this.__slots.onratechange.setData(this73 == null ? this.__tink_defaults93.onratechange : this73);
-		var this74 = attributes.onreset;
-		this.__slots.onreset.setData(this74 == null ? this.__tink_defaults93.onreset : this74);
-		var this75 = attributes.onresize;
-		this.__slots.onresize.setData(this75 == null ? this.__tink_defaults93.onresize : this75);
-		var this76 = attributes.onscroll;
-		this.__slots.onscroll.setData(this76 == null ? this.__tink_defaults93.onscroll : this76);
-		var this77 = attributes.onseeked;
-		this.__slots.onseeked.setData(this77 == null ? this.__tink_defaults93.onseeked : this77);
-		var this78 = attributes.onseeking;
-		this.__slots.onseeking.setData(this78 == null ? this.__tink_defaults93.onseeking : this78);
-		var this79 = attributes.onselect;
-		this.__slots.onselect.setData(this79 == null ? this.__tink_defaults93.onselect : this79);
-		var this80 = attributes.onshow;
-		this.__slots.onshow.setData(this80 == null ? this.__tink_defaults93.onshow : this80);
-		var this81 = attributes.onstalled;
-		this.__slots.onstalled.setData(this81 == null ? this.__tink_defaults93.onstalled : this81);
-		var this82 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this82 == null ? this.__tink_defaults93.onsubmit : this82);
-		var this83 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this83 == null ? this.__tink_defaults93.onsuspend : this83);
-		var this84 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this84 == null ? this.__tink_defaults93.ontimeupdate : this84);
-		var this85 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this85 == null ? this.__tink_defaults93.ontouchcancel : this85);
-		var this86 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this86 == null ? this.__tink_defaults93.ontouchend : this86);
-		var this87 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this87 == null ? this.__tink_defaults93.ontouchmove : this87);
-		var this88 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this88 == null ? this.__tink_defaults93.ontouchstart : this88);
-		var this89 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this89 == null ? this.__tink_defaults93.onvolumechange : this89);
-		var this90 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this90 == null ? this.__tink_defaults93.onwaiting : this90);
-		var this91 = attributes.onwheel;
-		this.__slots.onwheel.setData(this91 == null ? this.__tink_defaults93.onwheel : this91);
-		var this92 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this92 == null ? this.__tink_defaults93.spellcheck : this92);
-		var this93 = attributes.style;
-		this.__slots.style.setData(this93 == null ? this.__tink_defaults93.style : this93);
-		var this94 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this94 == null ? this.__tink_defaults93.tabIndex : this94);
-		var this95 = attributes.title;
-		this.__slots.title.setData(this95 == null ? this.__tink_defaults93.title : this95);
-		var this96 = attributes.value;
-		this.__slots.value.setData(this96 == null ? this.__tink_defaults93.value : this96);
+		var this1 = attributes.label;
+		this.__slots.label.setData(this1 == null ? this.__tink_defaults93.label : this1);
+		var this2 = attributes.disabled;
+		this.__slots.disabled.setData(this2 == null ? this.__tink_defaults93.disabled : this2);
+		var this3 = attributes.checked;
+		this.__slots.checked.setData(this3 == null ? this.__tink_defaults93.checked : this3);
+		var this4 = attributes.indeterminate;
+		this.__slots.indeterminate.setData(this4 == null ? this.__tink_defaults93.indeterminate : this4);
+		var this5 = attributes.value;
+		this.__slots.value.setData(this5 == null ? this.__tink_defaults93.value : this5);
+		var this6 = attributes.onchecked;
+		this.__slots.onchecked.setData(this6 == null ? this.__tink_defaults93.onchecked : this6);
+		var this7 = attributes.accessKey;
+		this.__slots.accessKey.setData(this7 == null ? this.__tink_defaults93.accessKey : this7);
+		var this8 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this8 == null ? this.__tink_defaults93.accessKeyLabel : this8);
+		var this9 = attributes.attributes;
+		this.__slots.attributes.setData(this9 == null ? this.__tink_defaults93.attributes : this9);
+		var this10 = attributes.className;
+		this.__slots.className.setData(this10 == null ? this.__tink_defaults93.className : this10);
+		var this11 = attributes.dir;
+		this.__slots.dir.setData(this11 == null ? this.__tink_defaults93.dir : this11);
+		var this12 = attributes.draggable;
+		this.__slots.draggable.setData(this12 == null ? this.__tink_defaults93.draggable : this12);
+		var this13 = attributes.hidden;
+		this.__slots.hidden.setData(this13 == null ? this.__tink_defaults93.hidden : this13);
+		var this14 = attributes.id;
+		this.__slots.id.setData(this14 == null ? this.__tink_defaults93.id : this14);
+		var this15 = attributes.key;
+		this.__slots.key.setData(this15 == null ? this.__tink_defaults93.key : this15);
+		var this16 = attributes.lang;
+		this.__slots.lang.setData(this16 == null ? this.__tink_defaults93.lang : this16);
+		var this17 = attributes.onabort;
+		this.__slots.onabort.setData(this17 == null ? this.__tink_defaults93.onabort : this17);
+		var this18 = attributes.onblur;
+		this.__slots.onblur.setData(this18 == null ? this.__tink_defaults93.onblur : this18);
+		var this19 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this19 == null ? this.__tink_defaults93.oncanplay : this19);
+		var this20 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this20 == null ? this.__tink_defaults93.oncanplaythrough : this20);
+		var this21 = attributes.onchange;
+		this.__slots.onchange.setData(this21 == null ? this.__tink_defaults93.onchange : this21);
+		var this22 = attributes.onclick;
+		this.__slots.onclick.setData(this22 == null ? this.__tink_defaults93.onclick : this22);
+		var this23 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this23 == null ? this.__tink_defaults93.oncontextmenu : this23);
+		var this24 = attributes.oncopy;
+		this.__slots.oncopy.setData(this24 == null ? this.__tink_defaults93.oncopy : this24);
+		var this25 = attributes.oncut;
+		this.__slots.oncut.setData(this25 == null ? this.__tink_defaults93.oncut : this25);
+		var this26 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this26 == null ? this.__tink_defaults93.ondblclick : this26);
+		var this27 = attributes.ondrag;
+		this.__slots.ondrag.setData(this27 == null ? this.__tink_defaults93.ondrag : this27);
+		var this28 = attributes.ondragend;
+		this.__slots.ondragend.setData(this28 == null ? this.__tink_defaults93.ondragend : this28);
+		var this29 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this29 == null ? this.__tink_defaults93.ondragenter : this29);
+		var this30 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this30 == null ? this.__tink_defaults93.ondragleave : this30);
+		var this31 = attributes.ondragover;
+		this.__slots.ondragover.setData(this31 == null ? this.__tink_defaults93.ondragover : this31);
+		var this32 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this32 == null ? this.__tink_defaults93.ondragstart : this32);
+		var this33 = attributes.ondrop;
+		this.__slots.ondrop.setData(this33 == null ? this.__tink_defaults93.ondrop : this33);
+		var this34 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this34 == null ? this.__tink_defaults93.ondurationchange : this34);
+		var this35 = attributes.onemptied;
+		this.__slots.onemptied.setData(this35 == null ? this.__tink_defaults93.onemptied : this35);
+		var this36 = attributes.onended;
+		this.__slots.onended.setData(this36 == null ? this.__tink_defaults93.onended : this36);
+		var this37 = attributes.onerror;
+		this.__slots.onerror.setData(this37 == null ? this.__tink_defaults93.onerror : this37);
+		var this38 = attributes.onfocus;
+		this.__slots.onfocus.setData(this38 == null ? this.__tink_defaults93.onfocus : this38);
+		var this39 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this39 == null ? this.__tink_defaults93.onfullscreenchange : this39);
+		var this40 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this40 == null ? this.__tink_defaults93.onfullscreenerror : this40);
+		var this41 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this41 == null ? this.__tink_defaults93.ongotpointercapture : this41);
+		var this42 = attributes.oninput;
+		this.__slots.oninput.setData(this42 == null ? this.__tink_defaults93.oninput : this42);
+		var this43 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this43 == null ? this.__tink_defaults93.oninvalid : this43);
+		var this44 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this44 == null ? this.__tink_defaults93.onkeydown : this44);
+		var this45 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this45 == null ? this.__tink_defaults93.onkeypress : this45);
+		var this46 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this46 == null ? this.__tink_defaults93.onkeyup : this46);
+		var this47 = attributes.onload;
+		this.__slots.onload.setData(this47 == null ? this.__tink_defaults93.onload : this47);
+		var this48 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this48 == null ? this.__tink_defaults93.onloadeddata : this48);
+		var this49 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this49 == null ? this.__tink_defaults93.onloadedmetadata : this49);
+		var this50 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this50 == null ? this.__tink_defaults93.onloadstart : this50);
+		var this51 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this51 == null ? this.__tink_defaults93.onlostpointercapture : this51);
+		var this52 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this52 == null ? this.__tink_defaults93.onmousedown : this52);
+		var this53 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this53 == null ? this.__tink_defaults93.onmouseenter : this53);
+		var this54 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this54 == null ? this.__tink_defaults93.onmouseleave : this54);
+		var this55 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this55 == null ? this.__tink_defaults93.onmousemove : this55);
+		var this56 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this56 == null ? this.__tink_defaults93.onmouseout : this56);
+		var this57 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this57 == null ? this.__tink_defaults93.onmouseover : this57);
+		var this58 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this58 == null ? this.__tink_defaults93.onmouseup : this58);
+		var this59 = attributes.onpaste;
+		this.__slots.onpaste.setData(this59 == null ? this.__tink_defaults93.onpaste : this59);
+		var this60 = attributes.onpause;
+		this.__slots.onpause.setData(this60 == null ? this.__tink_defaults93.onpause : this60);
+		var this61 = attributes.onplay;
+		this.__slots.onplay.setData(this61 == null ? this.__tink_defaults93.onplay : this61);
+		var this62 = attributes.onplaying;
+		this.__slots.onplaying.setData(this62 == null ? this.__tink_defaults93.onplaying : this62);
+		var this63 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this63 == null ? this.__tink_defaults93.onpointercancel : this63);
+		var this64 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this64 == null ? this.__tink_defaults93.onpointerdown : this64);
+		var this65 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this65 == null ? this.__tink_defaults93.onpointerenter : this65);
+		var this66 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this66 == null ? this.__tink_defaults93.onpointerleave : this66);
+		var this67 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this67 == null ? this.__tink_defaults93.onpointerlockchange : this67);
+		var this68 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this68 == null ? this.__tink_defaults93.onpointerlockerror : this68);
+		var this69 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this69 == null ? this.__tink_defaults93.onpointermove : this69);
+		var this70 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this70 == null ? this.__tink_defaults93.onpointerout : this70);
+		var this71 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this71 == null ? this.__tink_defaults93.onpointerover : this71);
+		var this72 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this72 == null ? this.__tink_defaults93.onpointerup : this72);
+		var this73 = attributes.onprogress;
+		this.__slots.onprogress.setData(this73 == null ? this.__tink_defaults93.onprogress : this73);
+		var this74 = attributes.onratechange;
+		this.__slots.onratechange.setData(this74 == null ? this.__tink_defaults93.onratechange : this74);
+		var this75 = attributes.onreset;
+		this.__slots.onreset.setData(this75 == null ? this.__tink_defaults93.onreset : this75);
+		var this76 = attributes.onresize;
+		this.__slots.onresize.setData(this76 == null ? this.__tink_defaults93.onresize : this76);
+		var this77 = attributes.onscroll;
+		this.__slots.onscroll.setData(this77 == null ? this.__tink_defaults93.onscroll : this77);
+		var this78 = attributes.onseeked;
+		this.__slots.onseeked.setData(this78 == null ? this.__tink_defaults93.onseeked : this78);
+		var this79 = attributes.onseeking;
+		this.__slots.onseeking.setData(this79 == null ? this.__tink_defaults93.onseeking : this79);
+		var this80 = attributes.onselect;
+		this.__slots.onselect.setData(this80 == null ? this.__tink_defaults93.onselect : this80);
+		var this81 = attributes.onshow;
+		this.__slots.onshow.setData(this81 == null ? this.__tink_defaults93.onshow : this81);
+		var this82 = attributes.onstalled;
+		this.__slots.onstalled.setData(this82 == null ? this.__tink_defaults93.onstalled : this82);
+		var this83 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this83 == null ? this.__tink_defaults93.onsubmit : this83);
+		var this84 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this84 == null ? this.__tink_defaults93.onsuspend : this84);
+		var this85 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this85 == null ? this.__tink_defaults93.ontimeupdate : this85);
+		var this86 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this86 == null ? this.__tink_defaults93.ontouchcancel : this86);
+		var this87 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this87 == null ? this.__tink_defaults93.ontouchend : this87);
+		var this88 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this88 == null ? this.__tink_defaults93.ontouchmove : this88);
+		var this89 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this89 == null ? this.__tink_defaults93.ontouchstart : this89);
+		var this90 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this90 == null ? this.__tink_defaults93.onvolumechange : this90);
+		var this91 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this91 == null ? this.__tink_defaults93.onwaiting : this91);
+		var this92 = attributes.onwheel;
+		this.__slots.onwheel.setData(this92 == null ? this.__tink_defaults93.onwheel : this92);
+		var this93 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this93 == null ? this.__tink_defaults93.spellcheck : this93);
+		var this94 = attributes.style;
+		this.__slots.style.setData(this94 == null ? this.__tink_defaults93.style : this94);
+		var this95 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this95 == null ? this.__tink_defaults93.tabIndex : this95);
+		var this96 = attributes.title;
+		this.__slots.title.setData(this96 == null ? this.__tink_defaults93.title : this96);
+	}
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
+	}
+	,get_disabled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+	}
+	,get_checked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+	}
+	,get_indeterminate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
+	}
+	,get_value: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
+	}
+	,get_onchecked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
 	}
 	,get_accessKey: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
@@ -7223,17 +7260,11 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 	,get_attributes: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
 	}
-	,get_checked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
-	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
 	,get_dir: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_disabled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
 	}
 	,get_draggable: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
@@ -7244,14 +7275,8 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 	,get_id: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
 	}
-	,get_indeterminate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
-	}
 	,get_key: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_label: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
 	}
 	,get_lang: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
@@ -7270,9 +7295,6 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 	}
 	,get_onchange: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onchecked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
 	}
 	,get_onclick: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
@@ -7499,11 +7521,8 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 	,get_title: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
 	}
-	,get_value: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
-	}
 	,__class__: mdc_Checkbox
-	,__properties__: {get_value:"get_value",get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchecked:"get_onchecked",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_label:"get_label",get_key:"get_key",get_indeterminate:"get_indeterminate",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_disabled:"get_disabled",get_dir:"get_dir",get_className:"get_className",get_checked:"get_checked",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey"}
+	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_onchecked:"get_onchecked",get_value:"get_value",get_indeterminate:"get_indeterminate",get_checked:"get_checked",get_disabled:"get_disabled",get_label:"get_label"}
 });
 var mdc_Icon = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Icon.hx", lineNumber : 4, className : "mdc.Icon", methodName : "new"});
@@ -17128,6 +17147,1024 @@ mdc_ListDivider.prototype = $extend(coconut_ui_View.prototype,{
 var mdc_MDC = function() { };
 $hxClasses["mdc.MDC"] = mdc_MDC;
 mdc_MDC.__name__ = ["mdc","MDC"];
+var mdc_Radio = function(data) {
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Radio.hx", lineNumber : 8, className : "mdc.Radio", methodName : "new"});
+	this.radioId = mdc_Radio.radioIndex++;
+	this.__tink_defaults102 = { label : null, disabled : null, checked : null, value : null, name : null, onchecked : null, accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__slots = { label : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+};
+$hxClasses["mdc.Radio"] = mdc_Radio;
+mdc_Radio.__name__ = ["mdc","Radio"];
+mdc_Radio.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_Radio(attributes);
+	}
+	inst.__tink_init103(attributes);
+	return inst;
+};
+mdc_Radio.__super__ = coconut_ui_View;
+mdc_Radio.prototype = $extend(coconut_ui_View.prototype,{
+	radioId: null
+	,mdcRadio: null
+	,render: function() {
+		var _gthis = this;
+		var id = this.get_id() == null ? "r_" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.radioId)) : this.get_id();
+		if(this.get_label() != null) {
+			var __r = [];
+			var __ret = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-form-field")};
+			var _g = this.get_accessKey();
+			if(_g != null) {
+				var v = _g;
+				__ret.accessKey = v;
+			}
+			var _g1 = this.get_accessKeyLabel();
+			if(_g1 != null) {
+				var v1 = _g1;
+				__ret.accessKeyLabel = v1;
+			}
+			var _g2 = this.get_attributes();
+			if(_g2 != null) {
+				var v2 = _g2;
+				__ret.attributes = v2;
+			}
+			var _g3 = this.get_dir();
+			if(_g3 != null) {
+				var v3 = _g3;
+				__ret.dir = v3;
+			}
+			var _g4 = this.get_draggable();
+			if(_g4 != null) {
+				var v4 = _g4;
+				__ret.draggable = v4;
+			}
+			var _g5 = this.get_hidden();
+			if(_g5 != null) {
+				var v5 = _g5;
+				__ret.hidden = v5;
+			}
+			var _g6 = this.get_id();
+			if(_g6 != null) {
+				var v6 = _g6;
+				__ret.id = v6;
+			}
+			var _g7 = this.get_key();
+			if(_g7 != null) {
+				var v7 = _g7;
+				__ret.key = v7;
+			}
+			var _g8 = this.get_lang();
+			if(_g8 != null) {
+				var v8 = _g8;
+				__ret.lang = v8;
+			}
+			var _g9 = this.get_onabort();
+			if(_g9 != null) {
+				var v9 = _g9;
+				__ret.onabort = v9;
+			}
+			var _g10 = this.get_onblur();
+			if(_g10 != null) {
+				var v10 = _g10;
+				__ret.onblur = v10;
+			}
+			var _g11 = this.get_oncanplay();
+			if(_g11 != null) {
+				var v11 = _g11;
+				__ret.oncanplay = v11;
+			}
+			var _g12 = this.get_oncanplaythrough();
+			if(_g12 != null) {
+				var v12 = _g12;
+				__ret.oncanplaythrough = v12;
+			}
+			var _g13 = this.get_onchange();
+			if(_g13 != null) {
+				var v13 = _g13;
+				__ret.onchange = v13;
+			}
+			var _g14 = this.get_onclick();
+			if(_g14 != null) {
+				var v14 = _g14;
+				__ret.onclick = v14;
+			}
+			var _g15 = this.get_oncontextmenu();
+			if(_g15 != null) {
+				var v15 = _g15;
+				__ret.oncontextmenu = v15;
+			}
+			var _g16 = this.get_oncopy();
+			if(_g16 != null) {
+				var v16 = _g16;
+				__ret.oncopy = v16;
+			}
+			var _g17 = this.get_oncut();
+			if(_g17 != null) {
+				var v17 = _g17;
+				__ret.oncut = v17;
+			}
+			var _g18 = this.get_ondblclick();
+			if(_g18 != null) {
+				var v18 = _g18;
+				__ret.ondblclick = v18;
+			}
+			var _g19 = this.get_ondrag();
+			if(_g19 != null) {
+				var v19 = _g19;
+				__ret.ondrag = v19;
+			}
+			var _g20 = this.get_ondragend();
+			if(_g20 != null) {
+				var v20 = _g20;
+				__ret.ondragend = v20;
+			}
+			var _g21 = this.get_ondragenter();
+			if(_g21 != null) {
+				var v21 = _g21;
+				__ret.ondragenter = v21;
+			}
+			var _g22 = this.get_ondragleave();
+			if(_g22 != null) {
+				var v22 = _g22;
+				__ret.ondragleave = v22;
+			}
+			var _g23 = this.get_ondragover();
+			if(_g23 != null) {
+				var v23 = _g23;
+				__ret.ondragover = v23;
+			}
+			var _g24 = this.get_ondragstart();
+			if(_g24 != null) {
+				var v24 = _g24;
+				__ret.ondragstart = v24;
+			}
+			var _g25 = this.get_ondrop();
+			if(_g25 != null) {
+				var v25 = _g25;
+				__ret.ondrop = v25;
+			}
+			var _g26 = this.get_ondurationchange();
+			if(_g26 != null) {
+				var v26 = _g26;
+				__ret.ondurationchange = v26;
+			}
+			var _g27 = this.get_onemptied();
+			if(_g27 != null) {
+				var v27 = _g27;
+				__ret.onemptied = v27;
+			}
+			var _g28 = this.get_onended();
+			if(_g28 != null) {
+				var v28 = _g28;
+				__ret.onended = v28;
+			}
+			var _g29 = this.get_onerror();
+			if(_g29 != null) {
+				var v29 = _g29;
+				__ret.onerror = v29;
+			}
+			var _g30 = this.get_onfocus();
+			if(_g30 != null) {
+				var v30 = _g30;
+				__ret.onfocus = v30;
+			}
+			var _g31 = this.get_onfullscreenchange();
+			if(_g31 != null) {
+				var v31 = _g31;
+				__ret.onfullscreenchange = v31;
+			}
+			var _g32 = this.get_onfullscreenerror();
+			if(_g32 != null) {
+				var v32 = _g32;
+				__ret.onfullscreenerror = v32;
+			}
+			var _g33 = this.get_ongotpointercapture();
+			if(_g33 != null) {
+				var v33 = _g33;
+				__ret.ongotpointercapture = v33;
+			}
+			var _g34 = this.get_oninput();
+			if(_g34 != null) {
+				var v34 = _g34;
+				__ret.oninput = v34;
+			}
+			var _g35 = this.get_oninvalid();
+			if(_g35 != null) {
+				var v35 = _g35;
+				__ret.oninvalid = v35;
+			}
+			var _g36 = this.get_onkeydown();
+			if(_g36 != null) {
+				var v36 = _g36;
+				__ret.onkeydown = v36;
+			}
+			var _g37 = this.get_onkeypress();
+			if(_g37 != null) {
+				var v37 = _g37;
+				__ret.onkeypress = v37;
+			}
+			var _g38 = this.get_onkeyup();
+			if(_g38 != null) {
+				var v38 = _g38;
+				__ret.onkeyup = v38;
+			}
+			var _g39 = this.get_onload();
+			if(_g39 != null) {
+				var v39 = _g39;
+				__ret.onload = v39;
+			}
+			var _g40 = this.get_onloadeddata();
+			if(_g40 != null) {
+				var v40 = _g40;
+				__ret.onloadeddata = v40;
+			}
+			var _g41 = this.get_onloadedmetadata();
+			if(_g41 != null) {
+				var v41 = _g41;
+				__ret.onloadedmetadata = v41;
+			}
+			var _g42 = this.get_onloadstart();
+			if(_g42 != null) {
+				var v42 = _g42;
+				__ret.onloadstart = v42;
+			}
+			var _g43 = this.get_onlostpointercapture();
+			if(_g43 != null) {
+				var v43 = _g43;
+				__ret.onlostpointercapture = v43;
+			}
+			var _g44 = this.get_onmousedown();
+			if(_g44 != null) {
+				var v44 = _g44;
+				__ret.onmousedown = v44;
+			}
+			var _g45 = this.get_onmouseenter();
+			if(_g45 != null) {
+				var v45 = _g45;
+				__ret.onmouseenter = v45;
+			}
+			var _g46 = this.get_onmouseleave();
+			if(_g46 != null) {
+				var v46 = _g46;
+				__ret.onmouseleave = v46;
+			}
+			var _g47 = this.get_onmousemove();
+			if(_g47 != null) {
+				var v47 = _g47;
+				__ret.onmousemove = v47;
+			}
+			var _g48 = this.get_onmouseout();
+			if(_g48 != null) {
+				var v48 = _g48;
+				__ret.onmouseout = v48;
+			}
+			var _g49 = this.get_onmouseover();
+			if(_g49 != null) {
+				var v49 = _g49;
+				__ret.onmouseover = v49;
+			}
+			var _g50 = this.get_onmouseup();
+			if(_g50 != null) {
+				var v50 = _g50;
+				__ret.onmouseup = v50;
+			}
+			var _g51 = this.get_onpaste();
+			if(_g51 != null) {
+				var v51 = _g51;
+				__ret.onpaste = v51;
+			}
+			var _g52 = this.get_onpause();
+			if(_g52 != null) {
+				var v52 = _g52;
+				__ret.onpause = v52;
+			}
+			var _g53 = this.get_onplay();
+			if(_g53 != null) {
+				var v53 = _g53;
+				__ret.onplay = v53;
+			}
+			var _g54 = this.get_onplaying();
+			if(_g54 != null) {
+				var v54 = _g54;
+				__ret.onplaying = v54;
+			}
+			var _g55 = this.get_onpointercancel();
+			if(_g55 != null) {
+				var v55 = _g55;
+				__ret.onpointercancel = v55;
+			}
+			var _g56 = this.get_onpointerdown();
+			if(_g56 != null) {
+				var v56 = _g56;
+				__ret.onpointerdown = v56;
+			}
+			var _g57 = this.get_onpointerenter();
+			if(_g57 != null) {
+				var v57 = _g57;
+				__ret.onpointerenter = v57;
+			}
+			var _g58 = this.get_onpointerleave();
+			if(_g58 != null) {
+				var v58 = _g58;
+				__ret.onpointerleave = v58;
+			}
+			var _g59 = this.get_onpointerlockchange();
+			if(_g59 != null) {
+				var v59 = _g59;
+				__ret.onpointerlockchange = v59;
+			}
+			var _g60 = this.get_onpointerlockerror();
+			if(_g60 != null) {
+				var v60 = _g60;
+				__ret.onpointerlockerror = v60;
+			}
+			var _g61 = this.get_onpointermove();
+			if(_g61 != null) {
+				var v61 = _g61;
+				__ret.onpointermove = v61;
+			}
+			var _g62 = this.get_onpointerout();
+			if(_g62 != null) {
+				var v62 = _g62;
+				__ret.onpointerout = v62;
+			}
+			var _g63 = this.get_onpointerover();
+			if(_g63 != null) {
+				var v63 = _g63;
+				__ret.onpointerover = v63;
+			}
+			var _g64 = this.get_onpointerup();
+			if(_g64 != null) {
+				var v64 = _g64;
+				__ret.onpointerup = v64;
+			}
+			var _g65 = this.get_onprogress();
+			if(_g65 != null) {
+				var v65 = _g65;
+				__ret.onprogress = v65;
+			}
+			var _g66 = this.get_onratechange();
+			if(_g66 != null) {
+				var v66 = _g66;
+				__ret.onratechange = v66;
+			}
+			var _g67 = this.get_onreset();
+			if(_g67 != null) {
+				var v67 = _g67;
+				__ret.onreset = v67;
+			}
+			var _g68 = this.get_onresize();
+			if(_g68 != null) {
+				var v68 = _g68;
+				__ret.onresize = v68;
+			}
+			var _g69 = this.get_onscroll();
+			if(_g69 != null) {
+				var v69 = _g69;
+				__ret.onscroll = v69;
+			}
+			var _g70 = this.get_onseeked();
+			if(_g70 != null) {
+				var v70 = _g70;
+				__ret.onseeked = v70;
+			}
+			var _g71 = this.get_onseeking();
+			if(_g71 != null) {
+				var v71 = _g71;
+				__ret.onseeking = v71;
+			}
+			var _g72 = this.get_onselect();
+			if(_g72 != null) {
+				var v72 = _g72;
+				__ret.onselect = v72;
+			}
+			var _g73 = this.get_onshow();
+			if(_g73 != null) {
+				var v73 = _g73;
+				__ret.onshow = v73;
+			}
+			var _g74 = this.get_onstalled();
+			if(_g74 != null) {
+				var v74 = _g74;
+				__ret.onstalled = v74;
+			}
+			var _g75 = this.get_onsubmit();
+			if(_g75 != null) {
+				var v75 = _g75;
+				__ret.onsubmit = v75;
+			}
+			var _g76 = this.get_onsuspend();
+			if(_g76 != null) {
+				var v76 = _g76;
+				__ret.onsuspend = v76;
+			}
+			var _g77 = this.get_ontimeupdate();
+			if(_g77 != null) {
+				var v77 = _g77;
+				__ret.ontimeupdate = v77;
+			}
+			var _g78 = this.get_ontouchcancel();
+			if(_g78 != null) {
+				var v78 = _g78;
+				__ret.ontouchcancel = v78;
+			}
+			var _g79 = this.get_ontouchend();
+			if(_g79 != null) {
+				var v79 = _g79;
+				__ret.ontouchend = v79;
+			}
+			var _g80 = this.get_ontouchmove();
+			if(_g80 != null) {
+				var v80 = _g80;
+				__ret.ontouchmove = v80;
+			}
+			var _g81 = this.get_ontouchstart();
+			if(_g81 != null) {
+				var v81 = _g81;
+				__ret.ontouchstart = v81;
+			}
+			var _g82 = this.get_onvolumechange();
+			if(_g82 != null) {
+				var v82 = _g82;
+				__ret.onvolumechange = v82;
+			}
+			var _g83 = this.get_onwaiting();
+			if(_g83 != null) {
+				var v83 = _g83;
+				__ret.onwaiting = v83;
+			}
+			var _g84 = this.get_onwheel();
+			if(_g84 != null) {
+				var v84 = _g84;
+				__ret.onwheel = v84;
+			}
+			var _g85 = this.get_spellcheck();
+			if(_g85 != null) {
+				var v85 = _g85;
+				__ret.spellcheck = v85;
+			}
+			var _g86 = this.get_style();
+			if(_g86 != null) {
+				var v86 = _g86;
+				__ret.style = v86;
+			}
+			var _g87 = this.get_tabIndex();
+			if(_g87 != null) {
+				var v87 = _g87;
+				__ret.tabIndex = v87;
+			}
+			var _g88 = this.get_title();
+			if(_g88 != null) {
+				var v88 = _g88;
+				__ret.title = v88;
+			}
+			var __r1 = [];
+			var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio")};
+			var __r2 = [];
+			var __ret2 = { type : "radio", onchange : function(event) {
+				if(_gthis.get_onchecked() != null) {
+					(_gthis.get_onchecked())(event.target.checked);
+				}
+			}, value : _gthis.get_value(), checked : _gthis.get_checked(), className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__native-control"), id : "r_" + id, name : _gthis.get_name()};
+			__r2.push(vdom_VDom.h("input",__ret2));
+			var __ret3 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__background")};
+			var __r3 = [];
+			var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__outer-circle")};
+			var __r4 = [];
+			__r3.push(vdom_VDom.h("div",__ret4,__r4));
+			var __ret5 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__inner-circle")};
+			var __r5 = [];
+			__r3.push(vdom_VDom.h("div",__ret5,__r5));
+			__r2.push(vdom_VDom.h("div",__ret3,__r3));
+			__r1.push(vdom_VDom.h("div",__ret1,__r2));
+			if(this.get_label() != null) {
+				var __r6 = [];
+				__r6.push(this.get_label());
+				var __ret6 = { htmlFor : id};
+				__r1.push(vdom_VDom.h("label",__ret6,__r6));
+			}
+			__r.push(vdom_VDom.h("div",__ret,__r1));
+			return __r[0];
+		} else {
+			var __r7 = [];
+			var __ret7 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio")};
+			var __r8 = [];
+			var __ret8 = { type : "radio", onchange : function(event1) {
+				if(_gthis.get_onchecked() != null) {
+					(_gthis.get_onchecked())(event1.target.checked);
+				}
+			}, value : _gthis.get_value(), checked : _gthis.get_checked(), className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__native-control"), id : "r_" + id, name : _gthis.get_name()};
+			__r8.push(vdom_VDom.h("input",__ret8));
+			var __ret9 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__background")};
+			var __r9 = [];
+			var __ret10 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__outer-circle")};
+			var __r10 = [];
+			__r9.push(vdom_VDom.h("div",__ret10,__r10));
+			var __ret11 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__inner-circle")};
+			var __r11 = [];
+			__r9.push(vdom_VDom.h("div",__ret11,__r11));
+			__r8.push(vdom_VDom.h("div",__ret9,__r9));
+			__r7.push(vdom_VDom.h("div",__ret7,__r8));
+			return __r7[0];
+		}
+	}
+	,afterInit: function(elem) {
+		this.mdcRadio = new window.mdc.radio.MDCRadio(elem);
+	}
+	,beforeDestroy: function(elem) {
+		if(this.mdcRadio != null) {
+			this.mdcRadio.destroy();
+		}
+	}
+	,__tink_defaults102: null
+	,__slots: null
+	,toString: function() {
+		return "Radio" + "#" + this.viewId;
+	}
+	,__tink_init103: function(attributes) {
+		var this1 = attributes.label;
+		this.__slots.label.setData(this1 == null ? this.__tink_defaults102.label : this1);
+		var this2 = attributes.disabled;
+		this.__slots.disabled.setData(this2 == null ? this.__tink_defaults102.disabled : this2);
+		var this3 = attributes.checked;
+		this.__slots.checked.setData(this3 == null ? this.__tink_defaults102.checked : this3);
+		var this4 = attributes.value;
+		this.__slots.value.setData(this4 == null ? this.__tink_defaults102.value : this4);
+		var this5 = attributes.name;
+		this.__slots.name.setData(this5 == null ? this.__tink_defaults102.name : this5);
+		var this6 = attributes.onchecked;
+		this.__slots.onchecked.setData(this6 == null ? this.__tink_defaults102.onchecked : this6);
+		var this7 = attributes.accessKey;
+		this.__slots.accessKey.setData(this7 == null ? this.__tink_defaults102.accessKey : this7);
+		var this8 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this8 == null ? this.__tink_defaults102.accessKeyLabel : this8);
+		var this9 = attributes.attributes;
+		this.__slots.attributes.setData(this9 == null ? this.__tink_defaults102.attributes : this9);
+		var this10 = attributes.className;
+		this.__slots.className.setData(this10 == null ? this.__tink_defaults102.className : this10);
+		var this11 = attributes.dir;
+		this.__slots.dir.setData(this11 == null ? this.__tink_defaults102.dir : this11);
+		var this12 = attributes.draggable;
+		this.__slots.draggable.setData(this12 == null ? this.__tink_defaults102.draggable : this12);
+		var this13 = attributes.hidden;
+		this.__slots.hidden.setData(this13 == null ? this.__tink_defaults102.hidden : this13);
+		var this14 = attributes.id;
+		this.__slots.id.setData(this14 == null ? this.__tink_defaults102.id : this14);
+		var this15 = attributes.key;
+		this.__slots.key.setData(this15 == null ? this.__tink_defaults102.key : this15);
+		var this16 = attributes.lang;
+		this.__slots.lang.setData(this16 == null ? this.__tink_defaults102.lang : this16);
+		var this17 = attributes.onabort;
+		this.__slots.onabort.setData(this17 == null ? this.__tink_defaults102.onabort : this17);
+		var this18 = attributes.onblur;
+		this.__slots.onblur.setData(this18 == null ? this.__tink_defaults102.onblur : this18);
+		var this19 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this19 == null ? this.__tink_defaults102.oncanplay : this19);
+		var this20 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this20 == null ? this.__tink_defaults102.oncanplaythrough : this20);
+		var this21 = attributes.onchange;
+		this.__slots.onchange.setData(this21 == null ? this.__tink_defaults102.onchange : this21);
+		var this22 = attributes.onclick;
+		this.__slots.onclick.setData(this22 == null ? this.__tink_defaults102.onclick : this22);
+		var this23 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this23 == null ? this.__tink_defaults102.oncontextmenu : this23);
+		var this24 = attributes.oncopy;
+		this.__slots.oncopy.setData(this24 == null ? this.__tink_defaults102.oncopy : this24);
+		var this25 = attributes.oncut;
+		this.__slots.oncut.setData(this25 == null ? this.__tink_defaults102.oncut : this25);
+		var this26 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this26 == null ? this.__tink_defaults102.ondblclick : this26);
+		var this27 = attributes.ondrag;
+		this.__slots.ondrag.setData(this27 == null ? this.__tink_defaults102.ondrag : this27);
+		var this28 = attributes.ondragend;
+		this.__slots.ondragend.setData(this28 == null ? this.__tink_defaults102.ondragend : this28);
+		var this29 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this29 == null ? this.__tink_defaults102.ondragenter : this29);
+		var this30 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this30 == null ? this.__tink_defaults102.ondragleave : this30);
+		var this31 = attributes.ondragover;
+		this.__slots.ondragover.setData(this31 == null ? this.__tink_defaults102.ondragover : this31);
+		var this32 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this32 == null ? this.__tink_defaults102.ondragstart : this32);
+		var this33 = attributes.ondrop;
+		this.__slots.ondrop.setData(this33 == null ? this.__tink_defaults102.ondrop : this33);
+		var this34 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this34 == null ? this.__tink_defaults102.ondurationchange : this34);
+		var this35 = attributes.onemptied;
+		this.__slots.onemptied.setData(this35 == null ? this.__tink_defaults102.onemptied : this35);
+		var this36 = attributes.onended;
+		this.__slots.onended.setData(this36 == null ? this.__tink_defaults102.onended : this36);
+		var this37 = attributes.onerror;
+		this.__slots.onerror.setData(this37 == null ? this.__tink_defaults102.onerror : this37);
+		var this38 = attributes.onfocus;
+		this.__slots.onfocus.setData(this38 == null ? this.__tink_defaults102.onfocus : this38);
+		var this39 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this39 == null ? this.__tink_defaults102.onfullscreenchange : this39);
+		var this40 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this40 == null ? this.__tink_defaults102.onfullscreenerror : this40);
+		var this41 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this41 == null ? this.__tink_defaults102.ongotpointercapture : this41);
+		var this42 = attributes.oninput;
+		this.__slots.oninput.setData(this42 == null ? this.__tink_defaults102.oninput : this42);
+		var this43 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this43 == null ? this.__tink_defaults102.oninvalid : this43);
+		var this44 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this44 == null ? this.__tink_defaults102.onkeydown : this44);
+		var this45 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this45 == null ? this.__tink_defaults102.onkeypress : this45);
+		var this46 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this46 == null ? this.__tink_defaults102.onkeyup : this46);
+		var this47 = attributes.onload;
+		this.__slots.onload.setData(this47 == null ? this.__tink_defaults102.onload : this47);
+		var this48 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this48 == null ? this.__tink_defaults102.onloadeddata : this48);
+		var this49 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this49 == null ? this.__tink_defaults102.onloadedmetadata : this49);
+		var this50 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this50 == null ? this.__tink_defaults102.onloadstart : this50);
+		var this51 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this51 == null ? this.__tink_defaults102.onlostpointercapture : this51);
+		var this52 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this52 == null ? this.__tink_defaults102.onmousedown : this52);
+		var this53 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this53 == null ? this.__tink_defaults102.onmouseenter : this53);
+		var this54 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this54 == null ? this.__tink_defaults102.onmouseleave : this54);
+		var this55 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this55 == null ? this.__tink_defaults102.onmousemove : this55);
+		var this56 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this56 == null ? this.__tink_defaults102.onmouseout : this56);
+		var this57 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this57 == null ? this.__tink_defaults102.onmouseover : this57);
+		var this58 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this58 == null ? this.__tink_defaults102.onmouseup : this58);
+		var this59 = attributes.onpaste;
+		this.__slots.onpaste.setData(this59 == null ? this.__tink_defaults102.onpaste : this59);
+		var this60 = attributes.onpause;
+		this.__slots.onpause.setData(this60 == null ? this.__tink_defaults102.onpause : this60);
+		var this61 = attributes.onplay;
+		this.__slots.onplay.setData(this61 == null ? this.__tink_defaults102.onplay : this61);
+		var this62 = attributes.onplaying;
+		this.__slots.onplaying.setData(this62 == null ? this.__tink_defaults102.onplaying : this62);
+		var this63 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this63 == null ? this.__tink_defaults102.onpointercancel : this63);
+		var this64 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this64 == null ? this.__tink_defaults102.onpointerdown : this64);
+		var this65 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this65 == null ? this.__tink_defaults102.onpointerenter : this65);
+		var this66 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this66 == null ? this.__tink_defaults102.onpointerleave : this66);
+		var this67 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this67 == null ? this.__tink_defaults102.onpointerlockchange : this67);
+		var this68 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this68 == null ? this.__tink_defaults102.onpointerlockerror : this68);
+		var this69 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this69 == null ? this.__tink_defaults102.onpointermove : this69);
+		var this70 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this70 == null ? this.__tink_defaults102.onpointerout : this70);
+		var this71 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this71 == null ? this.__tink_defaults102.onpointerover : this71);
+		var this72 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this72 == null ? this.__tink_defaults102.onpointerup : this72);
+		var this73 = attributes.onprogress;
+		this.__slots.onprogress.setData(this73 == null ? this.__tink_defaults102.onprogress : this73);
+		var this74 = attributes.onratechange;
+		this.__slots.onratechange.setData(this74 == null ? this.__tink_defaults102.onratechange : this74);
+		var this75 = attributes.onreset;
+		this.__slots.onreset.setData(this75 == null ? this.__tink_defaults102.onreset : this75);
+		var this76 = attributes.onresize;
+		this.__slots.onresize.setData(this76 == null ? this.__tink_defaults102.onresize : this76);
+		var this77 = attributes.onscroll;
+		this.__slots.onscroll.setData(this77 == null ? this.__tink_defaults102.onscroll : this77);
+		var this78 = attributes.onseeked;
+		this.__slots.onseeked.setData(this78 == null ? this.__tink_defaults102.onseeked : this78);
+		var this79 = attributes.onseeking;
+		this.__slots.onseeking.setData(this79 == null ? this.__tink_defaults102.onseeking : this79);
+		var this80 = attributes.onselect;
+		this.__slots.onselect.setData(this80 == null ? this.__tink_defaults102.onselect : this80);
+		var this81 = attributes.onshow;
+		this.__slots.onshow.setData(this81 == null ? this.__tink_defaults102.onshow : this81);
+		var this82 = attributes.onstalled;
+		this.__slots.onstalled.setData(this82 == null ? this.__tink_defaults102.onstalled : this82);
+		var this83 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this83 == null ? this.__tink_defaults102.onsubmit : this83);
+		var this84 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this84 == null ? this.__tink_defaults102.onsuspend : this84);
+		var this85 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this85 == null ? this.__tink_defaults102.ontimeupdate : this85);
+		var this86 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this86 == null ? this.__tink_defaults102.ontouchcancel : this86);
+		var this87 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this87 == null ? this.__tink_defaults102.ontouchend : this87);
+		var this88 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this88 == null ? this.__tink_defaults102.ontouchmove : this88);
+		var this89 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this89 == null ? this.__tink_defaults102.ontouchstart : this89);
+		var this90 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this90 == null ? this.__tink_defaults102.onvolumechange : this90);
+		var this91 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this91 == null ? this.__tink_defaults102.onwaiting : this91);
+		var this92 = attributes.onwheel;
+		this.__slots.onwheel.setData(this92 == null ? this.__tink_defaults102.onwheel : this92);
+		var this93 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this93 == null ? this.__tink_defaults102.spellcheck : this93);
+		var this94 = attributes.style;
+		this.__slots.style.setData(this94 == null ? this.__tink_defaults102.style : this94);
+		var this95 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this95 == null ? this.__tink_defaults102.tabIndex : this95);
+		var this96 = attributes.title;
+		this.__slots.title.setData(this96 == null ? this.__tink_defaults102.title : this96);
+	}
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
+	}
+	,get_disabled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+	}
+	,get_checked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+	}
+	,get_value: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
+	}
+	,get_name: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
+	}
+	,get_onchecked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	}
+	,__class__: mdc_Radio
+	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_onchecked:"get_onchecked",get_name:"get_name",get_value:"get_value",get_checked:"get_checked",get_disabled:"get_disabled",get_label:"get_label"}
+});
 var mdc_TabBar = function(data) {
 	this.prevTabIndex = 0;
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TabBar.hx", lineNumber : 14, className : "mdc.TabBar", methodName : "new"});
@@ -23164,7 +24201,7 @@ mdc_TextFieldHelperText.prototype = $extend(coconut_ui_View.prototype,{
 });
 var mdc_Toolbar = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 7, className : "mdc.Toolbar", methodName : "new"});
-	this.__tink_defaults166 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__tink_defaults13 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
 	this.__slots = { children : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.Toolbar"] = mdc_Toolbar;
@@ -23173,7 +24210,7 @@ mdc_Toolbar.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Toolbar(attributes);
 	}
-	inst.__tink_init167(attributes);
+	inst.__tink_init14(attributes);
 	return inst;
 };
 mdc_Toolbar.__super__ = coconut_ui_View;
@@ -23647,193 +24684,193 @@ mdc_Toolbar.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push(vdom_VDom.h("header",attr1,__r1));
 		return __r[0];
 	}
-	,__tink_defaults166: null
+	,__tink_defaults13: null
 	,__slots: null
 	,toString: function() {
 		return "Toolbar" + "#" + this.viewId;
 	}
-	,__tink_init167: function(attributes) {
+	,__tink_init14: function(attributes) {
 		this.__slots.children.setData(attributes.children);
 		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults166.accessKey : this1);
-		var this11 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this11 == null ? this.__tink_defaults166.accessKeyLabel : this11);
-		var this12 = attributes.attributes;
-		this.__slots.attributes.setData(this12 == null ? this.__tink_defaults166.attributes : this12);
-		var this13 = attributes.className;
-		this.__slots.className.setData(this13 == null ? this.__tink_defaults166.className : this13);
-		var this14 = attributes.dir;
-		this.__slots.dir.setData(this14 == null ? this.__tink_defaults166.dir : this14);
-		var this15 = attributes.draggable;
-		this.__slots.draggable.setData(this15 == null ? this.__tink_defaults166.draggable : this15);
-		var this16 = attributes.hidden;
-		this.__slots.hidden.setData(this16 == null ? this.__tink_defaults166.hidden : this16);
-		var this17 = attributes.id;
-		this.__slots.id.setData(this17 == null ? this.__tink_defaults166.id : this17);
-		var this18 = attributes.key;
-		this.__slots.key.setData(this18 == null ? this.__tink_defaults166.key : this18);
-		var this19 = attributes.lang;
-		this.__slots.lang.setData(this19 == null ? this.__tink_defaults166.lang : this19);
-		var this110 = attributes.onabort;
-		this.__slots.onabort.setData(this110 == null ? this.__tink_defaults166.onabort : this110);
-		var this111 = attributes.onblur;
-		this.__slots.onblur.setData(this111 == null ? this.__tink_defaults166.onblur : this111);
-		var this112 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this112 == null ? this.__tink_defaults166.oncanplay : this112);
-		var this113 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this113 == null ? this.__tink_defaults166.oncanplaythrough : this113);
-		var this114 = attributes.onchange;
-		this.__slots.onchange.setData(this114 == null ? this.__tink_defaults166.onchange : this114);
-		var this115 = attributes.onclick;
-		this.__slots.onclick.setData(this115 == null ? this.__tink_defaults166.onclick : this115);
-		var this116 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this116 == null ? this.__tink_defaults166.oncontextmenu : this116);
-		var this117 = attributes.oncopy;
-		this.__slots.oncopy.setData(this117 == null ? this.__tink_defaults166.oncopy : this117);
-		var this118 = attributes.oncut;
-		this.__slots.oncut.setData(this118 == null ? this.__tink_defaults166.oncut : this118);
-		var this119 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this119 == null ? this.__tink_defaults166.ondblclick : this119);
-		var this120 = attributes.ondrag;
-		this.__slots.ondrag.setData(this120 == null ? this.__tink_defaults166.ondrag : this120);
-		var this121 = attributes.ondragend;
-		this.__slots.ondragend.setData(this121 == null ? this.__tink_defaults166.ondragend : this121);
-		var this122 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this122 == null ? this.__tink_defaults166.ondragenter : this122);
-		var this123 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this123 == null ? this.__tink_defaults166.ondragleave : this123);
-		var this124 = attributes.ondragover;
-		this.__slots.ondragover.setData(this124 == null ? this.__tink_defaults166.ondragover : this124);
-		var this125 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this125 == null ? this.__tink_defaults166.ondragstart : this125);
-		var this126 = attributes.ondrop;
-		this.__slots.ondrop.setData(this126 == null ? this.__tink_defaults166.ondrop : this126);
-		var this127 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this127 == null ? this.__tink_defaults166.ondurationchange : this127);
-		var this128 = attributes.onemptied;
-		this.__slots.onemptied.setData(this128 == null ? this.__tink_defaults166.onemptied : this128);
-		var this129 = attributes.onended;
-		this.__slots.onended.setData(this129 == null ? this.__tink_defaults166.onended : this129);
-		var this130 = attributes.onerror;
-		this.__slots.onerror.setData(this130 == null ? this.__tink_defaults166.onerror : this130);
-		var this131 = attributes.onfocus;
-		this.__slots.onfocus.setData(this131 == null ? this.__tink_defaults166.onfocus : this131);
-		var this132 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this132 == null ? this.__tink_defaults166.onfullscreenchange : this132);
-		var this133 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this133 == null ? this.__tink_defaults166.onfullscreenerror : this133);
-		var this134 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this134 == null ? this.__tink_defaults166.ongotpointercapture : this134);
-		var this135 = attributes.oninput;
-		this.__slots.oninput.setData(this135 == null ? this.__tink_defaults166.oninput : this135);
-		var this136 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this136 == null ? this.__tink_defaults166.oninvalid : this136);
-		var this137 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this137 == null ? this.__tink_defaults166.onkeydown : this137);
-		var this138 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this138 == null ? this.__tink_defaults166.onkeypress : this138);
-		var this139 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this139 == null ? this.__tink_defaults166.onkeyup : this139);
-		var this140 = attributes.onload;
-		this.__slots.onload.setData(this140 == null ? this.__tink_defaults166.onload : this140);
-		var this141 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this141 == null ? this.__tink_defaults166.onloadeddata : this141);
-		var this142 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this142 == null ? this.__tink_defaults166.onloadedmetadata : this142);
-		var this143 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this143 == null ? this.__tink_defaults166.onloadstart : this143);
-		var this144 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this144 == null ? this.__tink_defaults166.onlostpointercapture : this144);
-		var this145 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this145 == null ? this.__tink_defaults166.onmousedown : this145);
-		var this146 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this146 == null ? this.__tink_defaults166.onmouseenter : this146);
-		var this147 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this147 == null ? this.__tink_defaults166.onmouseleave : this147);
-		var this148 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this148 == null ? this.__tink_defaults166.onmousemove : this148);
-		var this149 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this149 == null ? this.__tink_defaults166.onmouseout : this149);
-		var this150 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this150 == null ? this.__tink_defaults166.onmouseover : this150);
-		var this151 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this151 == null ? this.__tink_defaults166.onmouseup : this151);
-		var this152 = attributes.onpaste;
-		this.__slots.onpaste.setData(this152 == null ? this.__tink_defaults166.onpaste : this152);
-		var this153 = attributes.onpause;
-		this.__slots.onpause.setData(this153 == null ? this.__tink_defaults166.onpause : this153);
-		var this154 = attributes.onplay;
-		this.__slots.onplay.setData(this154 == null ? this.__tink_defaults166.onplay : this154);
-		var this155 = attributes.onplaying;
-		this.__slots.onplaying.setData(this155 == null ? this.__tink_defaults166.onplaying : this155);
-		var this156 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this156 == null ? this.__tink_defaults166.onpointercancel : this156);
-		var this157 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this157 == null ? this.__tink_defaults166.onpointerdown : this157);
-		var this158 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this158 == null ? this.__tink_defaults166.onpointerenter : this158);
-		var this159 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this159 == null ? this.__tink_defaults166.onpointerleave : this159);
-		var this160 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this160 == null ? this.__tink_defaults166.onpointerlockchange : this160);
-		var this161 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this161 == null ? this.__tink_defaults166.onpointerlockerror : this161);
-		var this162 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this162 == null ? this.__tink_defaults166.onpointermove : this162);
-		var this163 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this163 == null ? this.__tink_defaults166.onpointerout : this163);
-		var this164 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this164 == null ? this.__tink_defaults166.onpointerover : this164);
-		var this165 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this165 == null ? this.__tink_defaults166.onpointerup : this165);
-		var this166 = attributes.onprogress;
-		this.__slots.onprogress.setData(this166 == null ? this.__tink_defaults166.onprogress : this166);
-		var this167 = attributes.onratechange;
-		this.__slots.onratechange.setData(this167 == null ? this.__tink_defaults166.onratechange : this167);
-		var this168 = attributes.onreset;
-		this.__slots.onreset.setData(this168 == null ? this.__tink_defaults166.onreset : this168);
-		var this169 = attributes.onresize;
-		this.__slots.onresize.setData(this169 == null ? this.__tink_defaults166.onresize : this169);
-		var this170 = attributes.onscroll;
-		this.__slots.onscroll.setData(this170 == null ? this.__tink_defaults166.onscroll : this170);
-		var this171 = attributes.onseeked;
-		this.__slots.onseeked.setData(this171 == null ? this.__tink_defaults166.onseeked : this171);
-		var this172 = attributes.onseeking;
-		this.__slots.onseeking.setData(this172 == null ? this.__tink_defaults166.onseeking : this172);
-		var this173 = attributes.onselect;
-		this.__slots.onselect.setData(this173 == null ? this.__tink_defaults166.onselect : this173);
-		var this174 = attributes.onshow;
-		this.__slots.onshow.setData(this174 == null ? this.__tink_defaults166.onshow : this174);
-		var this175 = attributes.onstalled;
-		this.__slots.onstalled.setData(this175 == null ? this.__tink_defaults166.onstalled : this175);
-		var this176 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this176 == null ? this.__tink_defaults166.onsubmit : this176);
-		var this177 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this177 == null ? this.__tink_defaults166.onsuspend : this177);
-		var this178 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this178 == null ? this.__tink_defaults166.ontimeupdate : this178);
-		var this179 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this179 == null ? this.__tink_defaults166.ontouchcancel : this179);
-		var this180 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this180 == null ? this.__tink_defaults166.ontouchend : this180);
-		var this181 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this181 == null ? this.__tink_defaults166.ontouchmove : this181);
-		var this182 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this182 == null ? this.__tink_defaults166.ontouchstart : this182);
-		var this183 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this183 == null ? this.__tink_defaults166.onvolumechange : this183);
-		var this184 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this184 == null ? this.__tink_defaults166.onwaiting : this184);
-		var this185 = attributes.onwheel;
-		this.__slots.onwheel.setData(this185 == null ? this.__tink_defaults166.onwheel : this185);
-		var this186 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this186 == null ? this.__tink_defaults166.spellcheck : this186);
-		var this187 = attributes.style;
-		this.__slots.style.setData(this187 == null ? this.__tink_defaults166.style : this187);
-		var this188 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this188 == null ? this.__tink_defaults166.tabIndex : this188);
-		var this189 = attributes.title;
-		this.__slots.title.setData(this189 == null ? this.__tink_defaults166.title : this189);
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults13.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults13.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults13.attributes : this3);
+		var this4 = attributes.className;
+		this.__slots.className.setData(this4 == null ? this.__tink_defaults13.className : this4);
+		var this5 = attributes.dir;
+		this.__slots.dir.setData(this5 == null ? this.__tink_defaults13.dir : this5);
+		var this6 = attributes.draggable;
+		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults13.draggable : this6);
+		var this7 = attributes.hidden;
+		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults13.hidden : this7);
+		var this8 = attributes.id;
+		this.__slots.id.setData(this8 == null ? this.__tink_defaults13.id : this8);
+		var this9 = attributes.key;
+		this.__slots.key.setData(this9 == null ? this.__tink_defaults13.key : this9);
+		var this10 = attributes.lang;
+		this.__slots.lang.setData(this10 == null ? this.__tink_defaults13.lang : this10);
+		var this11 = attributes.onabort;
+		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults13.onabort : this11);
+		var this12 = attributes.onblur;
+		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults13.onblur : this12);
+		var this13 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults13.oncanplay : this13);
+		var this14 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults13.oncanplaythrough : this14);
+		var this15 = attributes.onchange;
+		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults13.onchange : this15);
+		var this16 = attributes.onclick;
+		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults13.onclick : this16);
+		var this17 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults13.oncontextmenu : this17);
+		var this18 = attributes.oncopy;
+		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults13.oncopy : this18);
+		var this19 = attributes.oncut;
+		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults13.oncut : this19);
+		var this20 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults13.ondblclick : this20);
+		var this21 = attributes.ondrag;
+		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults13.ondrag : this21);
+		var this22 = attributes.ondragend;
+		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults13.ondragend : this22);
+		var this23 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults13.ondragenter : this23);
+		var this24 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults13.ondragleave : this24);
+		var this25 = attributes.ondragover;
+		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults13.ondragover : this25);
+		var this26 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults13.ondragstart : this26);
+		var this27 = attributes.ondrop;
+		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults13.ondrop : this27);
+		var this28 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults13.ondurationchange : this28);
+		var this29 = attributes.onemptied;
+		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults13.onemptied : this29);
+		var this30 = attributes.onended;
+		this.__slots.onended.setData(this30 == null ? this.__tink_defaults13.onended : this30);
+		var this31 = attributes.onerror;
+		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults13.onerror : this31);
+		var this32 = attributes.onfocus;
+		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults13.onfocus : this32);
+		var this33 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults13.onfullscreenchange : this33);
+		var this34 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults13.onfullscreenerror : this34);
+		var this35 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults13.ongotpointercapture : this35);
+		var this36 = attributes.oninput;
+		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults13.oninput : this36);
+		var this37 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults13.oninvalid : this37);
+		var this38 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults13.onkeydown : this38);
+		var this39 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults13.onkeypress : this39);
+		var this40 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults13.onkeyup : this40);
+		var this41 = attributes.onload;
+		this.__slots.onload.setData(this41 == null ? this.__tink_defaults13.onload : this41);
+		var this42 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults13.onloadeddata : this42);
+		var this43 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults13.onloadedmetadata : this43);
+		var this44 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults13.onloadstart : this44);
+		var this45 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults13.onlostpointercapture : this45);
+		var this46 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults13.onmousedown : this46);
+		var this47 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults13.onmouseenter : this47);
+		var this48 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults13.onmouseleave : this48);
+		var this49 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults13.onmousemove : this49);
+		var this50 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults13.onmouseout : this50);
+		var this51 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults13.onmouseover : this51);
+		var this52 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults13.onmouseup : this52);
+		var this53 = attributes.onpaste;
+		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults13.onpaste : this53);
+		var this54 = attributes.onpause;
+		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults13.onpause : this54);
+		var this55 = attributes.onplay;
+		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults13.onplay : this55);
+		var this56 = attributes.onplaying;
+		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults13.onplaying : this56);
+		var this57 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults13.onpointercancel : this57);
+		var this58 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults13.onpointerdown : this58);
+		var this59 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults13.onpointerenter : this59);
+		var this60 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults13.onpointerleave : this60);
+		var this61 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults13.onpointerlockchange : this61);
+		var this62 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults13.onpointerlockerror : this62);
+		var this63 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults13.onpointermove : this63);
+		var this64 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults13.onpointerout : this64);
+		var this65 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults13.onpointerover : this65);
+		var this66 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults13.onpointerup : this66);
+		var this67 = attributes.onprogress;
+		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults13.onprogress : this67);
+		var this68 = attributes.onratechange;
+		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults13.onratechange : this68);
+		var this69 = attributes.onreset;
+		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults13.onreset : this69);
+		var this70 = attributes.onresize;
+		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults13.onresize : this70);
+		var this71 = attributes.onscroll;
+		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults13.onscroll : this71);
+		var this72 = attributes.onseeked;
+		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults13.onseeked : this72);
+		var this73 = attributes.onseeking;
+		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults13.onseeking : this73);
+		var this74 = attributes.onselect;
+		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults13.onselect : this74);
+		var this75 = attributes.onshow;
+		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults13.onshow : this75);
+		var this76 = attributes.onstalled;
+		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults13.onstalled : this76);
+		var this77 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults13.onsubmit : this77);
+		var this78 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults13.onsuspend : this78);
+		var this79 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults13.ontimeupdate : this79);
+		var this80 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults13.ontouchcancel : this80);
+		var this81 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults13.ontouchend : this81);
+		var this82 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults13.ontouchmove : this82);
+		var this83 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults13.ontouchstart : this83);
+		var this84 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults13.onvolumechange : this84);
+		var this85 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults13.onwaiting : this85);
+		var this86 = attributes.onwheel;
+		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults13.onwheel : this86);
+		var this87 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults13.spellcheck : this87);
+		var this88 = attributes.style;
+		this.__slots.style.setData(this88 == null ? this.__tink_defaults13.style : this88);
+		var this89 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults13.tabIndex : this89);
+		var this90 = attributes.title;
+		this.__slots.title.setData(this90 == null ? this.__tink_defaults13.title : this90);
 	}
 	,get_children: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
@@ -24113,7 +25150,7 @@ mdc_Toolbar.prototype = $extend(coconut_ui_View.prototype,{
 });
 var mdc_ToolbarRow = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 21, className : "mdc.ToolbarRow", methodName : "new"});
-	this.__tink_defaults176 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__tink_defaults11 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
 	this.__slots = { children : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.ToolbarRow"] = mdc_ToolbarRow;
@@ -24122,7 +25159,7 @@ mdc_ToolbarRow.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarRow(attributes);
 	}
-	inst.__tink_init177(attributes);
+	inst.__tink_init12(attributes);
 	return inst;
 };
 mdc_ToolbarRow.__super__ = coconut_ui_View;
@@ -24596,193 +25633,193 @@ mdc_ToolbarRow.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push(vdom_VDom.h("div",attr1,__r1));
 		return __r[0];
 	}
-	,__tink_defaults176: null
+	,__tink_defaults11: null
 	,__slots: null
 	,toString: function() {
 		return "ToolbarRow" + "#" + this.viewId;
 	}
-	,__tink_init177: function(attributes) {
+	,__tink_init12: function(attributes) {
 		this.__slots.children.setData(attributes.children);
 		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults176.accessKey : this1);
-		var this11 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this11 == null ? this.__tink_defaults176.accessKeyLabel : this11);
-		var this12 = attributes.attributes;
-		this.__slots.attributes.setData(this12 == null ? this.__tink_defaults176.attributes : this12);
-		var this13 = attributes.className;
-		this.__slots.className.setData(this13 == null ? this.__tink_defaults176.className : this13);
-		var this14 = attributes.dir;
-		this.__slots.dir.setData(this14 == null ? this.__tink_defaults176.dir : this14);
-		var this15 = attributes.draggable;
-		this.__slots.draggable.setData(this15 == null ? this.__tink_defaults176.draggable : this15);
-		var this16 = attributes.hidden;
-		this.__slots.hidden.setData(this16 == null ? this.__tink_defaults176.hidden : this16);
-		var this17 = attributes.id;
-		this.__slots.id.setData(this17 == null ? this.__tink_defaults176.id : this17);
-		var this18 = attributes.key;
-		this.__slots.key.setData(this18 == null ? this.__tink_defaults176.key : this18);
-		var this19 = attributes.lang;
-		this.__slots.lang.setData(this19 == null ? this.__tink_defaults176.lang : this19);
-		var this110 = attributes.onabort;
-		this.__slots.onabort.setData(this110 == null ? this.__tink_defaults176.onabort : this110);
-		var this111 = attributes.onblur;
-		this.__slots.onblur.setData(this111 == null ? this.__tink_defaults176.onblur : this111);
-		var this112 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this112 == null ? this.__tink_defaults176.oncanplay : this112);
-		var this113 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this113 == null ? this.__tink_defaults176.oncanplaythrough : this113);
-		var this114 = attributes.onchange;
-		this.__slots.onchange.setData(this114 == null ? this.__tink_defaults176.onchange : this114);
-		var this115 = attributes.onclick;
-		this.__slots.onclick.setData(this115 == null ? this.__tink_defaults176.onclick : this115);
-		var this116 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this116 == null ? this.__tink_defaults176.oncontextmenu : this116);
-		var this117 = attributes.oncopy;
-		this.__slots.oncopy.setData(this117 == null ? this.__tink_defaults176.oncopy : this117);
-		var this118 = attributes.oncut;
-		this.__slots.oncut.setData(this118 == null ? this.__tink_defaults176.oncut : this118);
-		var this119 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this119 == null ? this.__tink_defaults176.ondblclick : this119);
-		var this120 = attributes.ondrag;
-		this.__slots.ondrag.setData(this120 == null ? this.__tink_defaults176.ondrag : this120);
-		var this121 = attributes.ondragend;
-		this.__slots.ondragend.setData(this121 == null ? this.__tink_defaults176.ondragend : this121);
-		var this122 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this122 == null ? this.__tink_defaults176.ondragenter : this122);
-		var this123 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this123 == null ? this.__tink_defaults176.ondragleave : this123);
-		var this124 = attributes.ondragover;
-		this.__slots.ondragover.setData(this124 == null ? this.__tink_defaults176.ondragover : this124);
-		var this125 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this125 == null ? this.__tink_defaults176.ondragstart : this125);
-		var this126 = attributes.ondrop;
-		this.__slots.ondrop.setData(this126 == null ? this.__tink_defaults176.ondrop : this126);
-		var this127 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this127 == null ? this.__tink_defaults176.ondurationchange : this127);
-		var this128 = attributes.onemptied;
-		this.__slots.onemptied.setData(this128 == null ? this.__tink_defaults176.onemptied : this128);
-		var this129 = attributes.onended;
-		this.__slots.onended.setData(this129 == null ? this.__tink_defaults176.onended : this129);
-		var this130 = attributes.onerror;
-		this.__slots.onerror.setData(this130 == null ? this.__tink_defaults176.onerror : this130);
-		var this131 = attributes.onfocus;
-		this.__slots.onfocus.setData(this131 == null ? this.__tink_defaults176.onfocus : this131);
-		var this132 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this132 == null ? this.__tink_defaults176.onfullscreenchange : this132);
-		var this133 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this133 == null ? this.__tink_defaults176.onfullscreenerror : this133);
-		var this134 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this134 == null ? this.__tink_defaults176.ongotpointercapture : this134);
-		var this135 = attributes.oninput;
-		this.__slots.oninput.setData(this135 == null ? this.__tink_defaults176.oninput : this135);
-		var this136 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this136 == null ? this.__tink_defaults176.oninvalid : this136);
-		var this137 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this137 == null ? this.__tink_defaults176.onkeydown : this137);
-		var this138 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this138 == null ? this.__tink_defaults176.onkeypress : this138);
-		var this139 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this139 == null ? this.__tink_defaults176.onkeyup : this139);
-		var this140 = attributes.onload;
-		this.__slots.onload.setData(this140 == null ? this.__tink_defaults176.onload : this140);
-		var this141 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this141 == null ? this.__tink_defaults176.onloadeddata : this141);
-		var this142 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this142 == null ? this.__tink_defaults176.onloadedmetadata : this142);
-		var this143 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this143 == null ? this.__tink_defaults176.onloadstart : this143);
-		var this144 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this144 == null ? this.__tink_defaults176.onlostpointercapture : this144);
-		var this145 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this145 == null ? this.__tink_defaults176.onmousedown : this145);
-		var this146 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this146 == null ? this.__tink_defaults176.onmouseenter : this146);
-		var this147 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this147 == null ? this.__tink_defaults176.onmouseleave : this147);
-		var this148 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this148 == null ? this.__tink_defaults176.onmousemove : this148);
-		var this149 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this149 == null ? this.__tink_defaults176.onmouseout : this149);
-		var this150 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this150 == null ? this.__tink_defaults176.onmouseover : this150);
-		var this151 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this151 == null ? this.__tink_defaults176.onmouseup : this151);
-		var this152 = attributes.onpaste;
-		this.__slots.onpaste.setData(this152 == null ? this.__tink_defaults176.onpaste : this152);
-		var this153 = attributes.onpause;
-		this.__slots.onpause.setData(this153 == null ? this.__tink_defaults176.onpause : this153);
-		var this154 = attributes.onplay;
-		this.__slots.onplay.setData(this154 == null ? this.__tink_defaults176.onplay : this154);
-		var this155 = attributes.onplaying;
-		this.__slots.onplaying.setData(this155 == null ? this.__tink_defaults176.onplaying : this155);
-		var this156 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this156 == null ? this.__tink_defaults176.onpointercancel : this156);
-		var this157 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this157 == null ? this.__tink_defaults176.onpointerdown : this157);
-		var this158 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this158 == null ? this.__tink_defaults176.onpointerenter : this158);
-		var this159 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this159 == null ? this.__tink_defaults176.onpointerleave : this159);
-		var this160 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this160 == null ? this.__tink_defaults176.onpointerlockchange : this160);
-		var this161 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this161 == null ? this.__tink_defaults176.onpointerlockerror : this161);
-		var this162 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this162 == null ? this.__tink_defaults176.onpointermove : this162);
-		var this163 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this163 == null ? this.__tink_defaults176.onpointerout : this163);
-		var this164 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this164 == null ? this.__tink_defaults176.onpointerover : this164);
-		var this165 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this165 == null ? this.__tink_defaults176.onpointerup : this165);
-		var this166 = attributes.onprogress;
-		this.__slots.onprogress.setData(this166 == null ? this.__tink_defaults176.onprogress : this166);
-		var this167 = attributes.onratechange;
-		this.__slots.onratechange.setData(this167 == null ? this.__tink_defaults176.onratechange : this167);
-		var this168 = attributes.onreset;
-		this.__slots.onreset.setData(this168 == null ? this.__tink_defaults176.onreset : this168);
-		var this169 = attributes.onresize;
-		this.__slots.onresize.setData(this169 == null ? this.__tink_defaults176.onresize : this169);
-		var this170 = attributes.onscroll;
-		this.__slots.onscroll.setData(this170 == null ? this.__tink_defaults176.onscroll : this170);
-		var this171 = attributes.onseeked;
-		this.__slots.onseeked.setData(this171 == null ? this.__tink_defaults176.onseeked : this171);
-		var this172 = attributes.onseeking;
-		this.__slots.onseeking.setData(this172 == null ? this.__tink_defaults176.onseeking : this172);
-		var this173 = attributes.onselect;
-		this.__slots.onselect.setData(this173 == null ? this.__tink_defaults176.onselect : this173);
-		var this174 = attributes.onshow;
-		this.__slots.onshow.setData(this174 == null ? this.__tink_defaults176.onshow : this174);
-		var this175 = attributes.onstalled;
-		this.__slots.onstalled.setData(this175 == null ? this.__tink_defaults176.onstalled : this175);
-		var this176 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this176 == null ? this.__tink_defaults176.onsubmit : this176);
-		var this177 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this177 == null ? this.__tink_defaults176.onsuspend : this177);
-		var this178 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this178 == null ? this.__tink_defaults176.ontimeupdate : this178);
-		var this179 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this179 == null ? this.__tink_defaults176.ontouchcancel : this179);
-		var this180 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this180 == null ? this.__tink_defaults176.ontouchend : this180);
-		var this181 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this181 == null ? this.__tink_defaults176.ontouchmove : this181);
-		var this182 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this182 == null ? this.__tink_defaults176.ontouchstart : this182);
-		var this183 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this183 == null ? this.__tink_defaults176.onvolumechange : this183);
-		var this184 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this184 == null ? this.__tink_defaults176.onwaiting : this184);
-		var this185 = attributes.onwheel;
-		this.__slots.onwheel.setData(this185 == null ? this.__tink_defaults176.onwheel : this185);
-		var this186 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this186 == null ? this.__tink_defaults176.spellcheck : this186);
-		var this187 = attributes.style;
-		this.__slots.style.setData(this187 == null ? this.__tink_defaults176.style : this187);
-		var this188 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this188 == null ? this.__tink_defaults176.tabIndex : this188);
-		var this189 = attributes.title;
-		this.__slots.title.setData(this189 == null ? this.__tink_defaults176.title : this189);
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults11.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults11.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults11.attributes : this3);
+		var this4 = attributes.className;
+		this.__slots.className.setData(this4 == null ? this.__tink_defaults11.className : this4);
+		var this5 = attributes.dir;
+		this.__slots.dir.setData(this5 == null ? this.__tink_defaults11.dir : this5);
+		var this6 = attributes.draggable;
+		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults11.draggable : this6);
+		var this7 = attributes.hidden;
+		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults11.hidden : this7);
+		var this8 = attributes.id;
+		this.__slots.id.setData(this8 == null ? this.__tink_defaults11.id : this8);
+		var this9 = attributes.key;
+		this.__slots.key.setData(this9 == null ? this.__tink_defaults11.key : this9);
+		var this10 = attributes.lang;
+		this.__slots.lang.setData(this10 == null ? this.__tink_defaults11.lang : this10);
+		var this11 = attributes.onabort;
+		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults11.onabort : this11);
+		var this12 = attributes.onblur;
+		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults11.onblur : this12);
+		var this13 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults11.oncanplay : this13);
+		var this14 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults11.oncanplaythrough : this14);
+		var this15 = attributes.onchange;
+		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults11.onchange : this15);
+		var this16 = attributes.onclick;
+		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults11.onclick : this16);
+		var this17 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults11.oncontextmenu : this17);
+		var this18 = attributes.oncopy;
+		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults11.oncopy : this18);
+		var this19 = attributes.oncut;
+		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults11.oncut : this19);
+		var this20 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults11.ondblclick : this20);
+		var this21 = attributes.ondrag;
+		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults11.ondrag : this21);
+		var this22 = attributes.ondragend;
+		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults11.ondragend : this22);
+		var this23 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults11.ondragenter : this23);
+		var this24 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults11.ondragleave : this24);
+		var this25 = attributes.ondragover;
+		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults11.ondragover : this25);
+		var this26 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults11.ondragstart : this26);
+		var this27 = attributes.ondrop;
+		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults11.ondrop : this27);
+		var this28 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults11.ondurationchange : this28);
+		var this29 = attributes.onemptied;
+		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults11.onemptied : this29);
+		var this30 = attributes.onended;
+		this.__slots.onended.setData(this30 == null ? this.__tink_defaults11.onended : this30);
+		var this31 = attributes.onerror;
+		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults11.onerror : this31);
+		var this32 = attributes.onfocus;
+		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults11.onfocus : this32);
+		var this33 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults11.onfullscreenchange : this33);
+		var this34 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults11.onfullscreenerror : this34);
+		var this35 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults11.ongotpointercapture : this35);
+		var this36 = attributes.oninput;
+		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults11.oninput : this36);
+		var this37 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults11.oninvalid : this37);
+		var this38 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults11.onkeydown : this38);
+		var this39 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults11.onkeypress : this39);
+		var this40 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults11.onkeyup : this40);
+		var this41 = attributes.onload;
+		this.__slots.onload.setData(this41 == null ? this.__tink_defaults11.onload : this41);
+		var this42 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults11.onloadeddata : this42);
+		var this43 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults11.onloadedmetadata : this43);
+		var this44 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults11.onloadstart : this44);
+		var this45 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults11.onlostpointercapture : this45);
+		var this46 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults11.onmousedown : this46);
+		var this47 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults11.onmouseenter : this47);
+		var this48 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults11.onmouseleave : this48);
+		var this49 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults11.onmousemove : this49);
+		var this50 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults11.onmouseout : this50);
+		var this51 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults11.onmouseover : this51);
+		var this52 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults11.onmouseup : this52);
+		var this53 = attributes.onpaste;
+		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults11.onpaste : this53);
+		var this54 = attributes.onpause;
+		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults11.onpause : this54);
+		var this55 = attributes.onplay;
+		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults11.onplay : this55);
+		var this56 = attributes.onplaying;
+		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults11.onplaying : this56);
+		var this57 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults11.onpointercancel : this57);
+		var this58 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults11.onpointerdown : this58);
+		var this59 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults11.onpointerenter : this59);
+		var this60 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults11.onpointerleave : this60);
+		var this61 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults11.onpointerlockchange : this61);
+		var this62 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults11.onpointerlockerror : this62);
+		var this63 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults11.onpointermove : this63);
+		var this64 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults11.onpointerout : this64);
+		var this65 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults11.onpointerover : this65);
+		var this66 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults11.onpointerup : this66);
+		var this67 = attributes.onprogress;
+		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults11.onprogress : this67);
+		var this68 = attributes.onratechange;
+		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults11.onratechange : this68);
+		var this69 = attributes.onreset;
+		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults11.onreset : this69);
+		var this70 = attributes.onresize;
+		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults11.onresize : this70);
+		var this71 = attributes.onscroll;
+		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults11.onscroll : this71);
+		var this72 = attributes.onseeked;
+		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults11.onseeked : this72);
+		var this73 = attributes.onseeking;
+		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults11.onseeking : this73);
+		var this74 = attributes.onselect;
+		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults11.onselect : this74);
+		var this75 = attributes.onshow;
+		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults11.onshow : this75);
+		var this76 = attributes.onstalled;
+		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults11.onstalled : this76);
+		var this77 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults11.onsubmit : this77);
+		var this78 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults11.onsuspend : this78);
+		var this79 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults11.ontimeupdate : this79);
+		var this80 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults11.ontouchcancel : this80);
+		var this81 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults11.ontouchend : this81);
+		var this82 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults11.ontouchmove : this82);
+		var this83 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults11.ontouchstart : this83);
+		var this84 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults11.onvolumechange : this84);
+		var this85 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults11.onwaiting : this85);
+		var this86 = attributes.onwheel;
+		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults11.onwheel : this86);
+		var this87 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults11.spellcheck : this87);
+		var this88 = attributes.style;
+		this.__slots.style.setData(this88 == null ? this.__tink_defaults11.style : this88);
+		var this89 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults11.tabIndex : this89);
+		var this90 = attributes.title;
+		this.__slots.title.setData(this90 == null ? this.__tink_defaults11.title : this90);
 	}
 	,get_children: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
@@ -25065,7 +26102,7 @@ var mdc_ToolbarSection = function(data) {
 	var this1 = { f : function() {
 		return "";
 	}};
-	this.__tink_defaults174 = { align : tink_state__$Observable_Observable_$Impl_$.auto(this1), shringToFit : tink_state__$Observable_Observable_$Impl_$["const"](false), accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__tink_defaults9 = { align : tink_state__$Observable_Observable_$Impl_$.auto(this1), shringToFit : tink_state__$Observable_Observable_$Impl_$["const"](false), accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
 	this.__slots = { children : new coconut_ui_tools_Slot(this,null), align : new coconut_ui_tools_Slot(this,null), shringToFit : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.ToolbarSection"] = mdc_ToolbarSection;
@@ -25074,7 +26111,7 @@ mdc_ToolbarSection.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarSection(attributes);
 	}
-	inst.__tink_init175(attributes);
+	inst.__tink_init10(attributes);
 	return inst;
 };
 mdc_ToolbarSection.__super__ = coconut_ui_View;
@@ -25560,197 +26597,197 @@ mdc_ToolbarSection.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push(vdom_VDom.h("section",attr1,__r1));
 		return __r[0];
 	}
-	,__tink_defaults174: null
+	,__tink_defaults9: null
 	,__slots: null
 	,toString: function() {
 		return "ToolbarSection" + "#" + this.viewId;
 	}
-	,__tink_init175: function(attributes) {
+	,__tink_init10: function(attributes) {
 		this.__slots.children.setData(attributes.children);
 		var this1 = attributes.align;
-		this.__slots.align.setData(this1 == null ? this.__tink_defaults174.align : this1);
-		var this11 = attributes.shringToFit;
-		this.__slots.shringToFit.setData(this11 == null ? this.__tink_defaults174.shringToFit : this11);
-		var this12 = attributes.accessKey;
-		this.__slots.accessKey.setData(this12 == null ? this.__tink_defaults174.accessKey : this12);
-		var this13 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this13 == null ? this.__tink_defaults174.accessKeyLabel : this13);
-		var this14 = attributes.attributes;
-		this.__slots.attributes.setData(this14 == null ? this.__tink_defaults174.attributes : this14);
-		var this15 = attributes.className;
-		this.__slots.className.setData(this15 == null ? this.__tink_defaults174.className : this15);
-		var this16 = attributes.dir;
-		this.__slots.dir.setData(this16 == null ? this.__tink_defaults174.dir : this16);
-		var this17 = attributes.draggable;
-		this.__slots.draggable.setData(this17 == null ? this.__tink_defaults174.draggable : this17);
-		var this18 = attributes.hidden;
-		this.__slots.hidden.setData(this18 == null ? this.__tink_defaults174.hidden : this18);
-		var this19 = attributes.id;
-		this.__slots.id.setData(this19 == null ? this.__tink_defaults174.id : this19);
-		var this110 = attributes.key;
-		this.__slots.key.setData(this110 == null ? this.__tink_defaults174.key : this110);
-		var this111 = attributes.lang;
-		this.__slots.lang.setData(this111 == null ? this.__tink_defaults174.lang : this111);
-		var this112 = attributes.onabort;
-		this.__slots.onabort.setData(this112 == null ? this.__tink_defaults174.onabort : this112);
-		var this113 = attributes.onblur;
-		this.__slots.onblur.setData(this113 == null ? this.__tink_defaults174.onblur : this113);
-		var this114 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this114 == null ? this.__tink_defaults174.oncanplay : this114);
-		var this115 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this115 == null ? this.__tink_defaults174.oncanplaythrough : this115);
-		var this116 = attributes.onchange;
-		this.__slots.onchange.setData(this116 == null ? this.__tink_defaults174.onchange : this116);
-		var this117 = attributes.onclick;
-		this.__slots.onclick.setData(this117 == null ? this.__tink_defaults174.onclick : this117);
-		var this118 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this118 == null ? this.__tink_defaults174.oncontextmenu : this118);
-		var this119 = attributes.oncopy;
-		this.__slots.oncopy.setData(this119 == null ? this.__tink_defaults174.oncopy : this119);
-		var this120 = attributes.oncut;
-		this.__slots.oncut.setData(this120 == null ? this.__tink_defaults174.oncut : this120);
-		var this121 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this121 == null ? this.__tink_defaults174.ondblclick : this121);
-		var this122 = attributes.ondrag;
-		this.__slots.ondrag.setData(this122 == null ? this.__tink_defaults174.ondrag : this122);
-		var this123 = attributes.ondragend;
-		this.__slots.ondragend.setData(this123 == null ? this.__tink_defaults174.ondragend : this123);
-		var this124 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this124 == null ? this.__tink_defaults174.ondragenter : this124);
-		var this125 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this125 == null ? this.__tink_defaults174.ondragleave : this125);
-		var this126 = attributes.ondragover;
-		this.__slots.ondragover.setData(this126 == null ? this.__tink_defaults174.ondragover : this126);
-		var this127 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this127 == null ? this.__tink_defaults174.ondragstart : this127);
-		var this128 = attributes.ondrop;
-		this.__slots.ondrop.setData(this128 == null ? this.__tink_defaults174.ondrop : this128);
-		var this129 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this129 == null ? this.__tink_defaults174.ondurationchange : this129);
-		var this130 = attributes.onemptied;
-		this.__slots.onemptied.setData(this130 == null ? this.__tink_defaults174.onemptied : this130);
-		var this131 = attributes.onended;
-		this.__slots.onended.setData(this131 == null ? this.__tink_defaults174.onended : this131);
-		var this132 = attributes.onerror;
-		this.__slots.onerror.setData(this132 == null ? this.__tink_defaults174.onerror : this132);
-		var this133 = attributes.onfocus;
-		this.__slots.onfocus.setData(this133 == null ? this.__tink_defaults174.onfocus : this133);
-		var this134 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this134 == null ? this.__tink_defaults174.onfullscreenchange : this134);
-		var this135 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this135 == null ? this.__tink_defaults174.onfullscreenerror : this135);
-		var this136 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this136 == null ? this.__tink_defaults174.ongotpointercapture : this136);
-		var this137 = attributes.oninput;
-		this.__slots.oninput.setData(this137 == null ? this.__tink_defaults174.oninput : this137);
-		var this138 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this138 == null ? this.__tink_defaults174.oninvalid : this138);
-		var this139 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this139 == null ? this.__tink_defaults174.onkeydown : this139);
-		var this140 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this140 == null ? this.__tink_defaults174.onkeypress : this140);
-		var this141 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this141 == null ? this.__tink_defaults174.onkeyup : this141);
-		var this142 = attributes.onload;
-		this.__slots.onload.setData(this142 == null ? this.__tink_defaults174.onload : this142);
-		var this143 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this143 == null ? this.__tink_defaults174.onloadeddata : this143);
-		var this144 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this144 == null ? this.__tink_defaults174.onloadedmetadata : this144);
-		var this145 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this145 == null ? this.__tink_defaults174.onloadstart : this145);
-		var this146 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this146 == null ? this.__tink_defaults174.onlostpointercapture : this146);
-		var this147 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this147 == null ? this.__tink_defaults174.onmousedown : this147);
-		var this148 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this148 == null ? this.__tink_defaults174.onmouseenter : this148);
-		var this149 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this149 == null ? this.__tink_defaults174.onmouseleave : this149);
-		var this150 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this150 == null ? this.__tink_defaults174.onmousemove : this150);
-		var this151 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this151 == null ? this.__tink_defaults174.onmouseout : this151);
-		var this152 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this152 == null ? this.__tink_defaults174.onmouseover : this152);
-		var this153 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this153 == null ? this.__tink_defaults174.onmouseup : this153);
-		var this154 = attributes.onpaste;
-		this.__slots.onpaste.setData(this154 == null ? this.__tink_defaults174.onpaste : this154);
-		var this155 = attributes.onpause;
-		this.__slots.onpause.setData(this155 == null ? this.__tink_defaults174.onpause : this155);
-		var this156 = attributes.onplay;
-		this.__slots.onplay.setData(this156 == null ? this.__tink_defaults174.onplay : this156);
-		var this157 = attributes.onplaying;
-		this.__slots.onplaying.setData(this157 == null ? this.__tink_defaults174.onplaying : this157);
-		var this158 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this158 == null ? this.__tink_defaults174.onpointercancel : this158);
-		var this159 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this159 == null ? this.__tink_defaults174.onpointerdown : this159);
-		var this160 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this160 == null ? this.__tink_defaults174.onpointerenter : this160);
-		var this161 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this161 == null ? this.__tink_defaults174.onpointerleave : this161);
-		var this162 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this162 == null ? this.__tink_defaults174.onpointerlockchange : this162);
-		var this163 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this163 == null ? this.__tink_defaults174.onpointerlockerror : this163);
-		var this164 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this164 == null ? this.__tink_defaults174.onpointermove : this164);
-		var this165 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this165 == null ? this.__tink_defaults174.onpointerout : this165);
-		var this166 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this166 == null ? this.__tink_defaults174.onpointerover : this166);
-		var this167 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this167 == null ? this.__tink_defaults174.onpointerup : this167);
-		var this168 = attributes.onprogress;
-		this.__slots.onprogress.setData(this168 == null ? this.__tink_defaults174.onprogress : this168);
-		var this169 = attributes.onratechange;
-		this.__slots.onratechange.setData(this169 == null ? this.__tink_defaults174.onratechange : this169);
-		var this170 = attributes.onreset;
-		this.__slots.onreset.setData(this170 == null ? this.__tink_defaults174.onreset : this170);
-		var this171 = attributes.onresize;
-		this.__slots.onresize.setData(this171 == null ? this.__tink_defaults174.onresize : this171);
-		var this172 = attributes.onscroll;
-		this.__slots.onscroll.setData(this172 == null ? this.__tink_defaults174.onscroll : this172);
-		var this173 = attributes.onseeked;
-		this.__slots.onseeked.setData(this173 == null ? this.__tink_defaults174.onseeked : this173);
-		var this174 = attributes.onseeking;
-		this.__slots.onseeking.setData(this174 == null ? this.__tink_defaults174.onseeking : this174);
-		var this175 = attributes.onselect;
-		this.__slots.onselect.setData(this175 == null ? this.__tink_defaults174.onselect : this175);
-		var this176 = attributes.onshow;
-		this.__slots.onshow.setData(this176 == null ? this.__tink_defaults174.onshow : this176);
-		var this177 = attributes.onstalled;
-		this.__slots.onstalled.setData(this177 == null ? this.__tink_defaults174.onstalled : this177);
-		var this178 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this178 == null ? this.__tink_defaults174.onsubmit : this178);
-		var this179 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this179 == null ? this.__tink_defaults174.onsuspend : this179);
-		var this180 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this180 == null ? this.__tink_defaults174.ontimeupdate : this180);
-		var this181 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this181 == null ? this.__tink_defaults174.ontouchcancel : this181);
-		var this182 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this182 == null ? this.__tink_defaults174.ontouchend : this182);
-		var this183 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this183 == null ? this.__tink_defaults174.ontouchmove : this183);
-		var this184 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this184 == null ? this.__tink_defaults174.ontouchstart : this184);
-		var this185 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this185 == null ? this.__tink_defaults174.onvolumechange : this185);
-		var this186 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this186 == null ? this.__tink_defaults174.onwaiting : this186);
-		var this187 = attributes.onwheel;
-		this.__slots.onwheel.setData(this187 == null ? this.__tink_defaults174.onwheel : this187);
-		var this188 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this188 == null ? this.__tink_defaults174.spellcheck : this188);
-		var this189 = attributes.style;
-		this.__slots.style.setData(this189 == null ? this.__tink_defaults174.style : this189);
-		var this190 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this190 == null ? this.__tink_defaults174.tabIndex : this190);
-		var this191 = attributes.title;
-		this.__slots.title.setData(this191 == null ? this.__tink_defaults174.title : this191);
+		this.__slots.align.setData(this1 == null ? this.__tink_defaults9.align : this1);
+		var this2 = attributes.shringToFit;
+		this.__slots.shringToFit.setData(this2 == null ? this.__tink_defaults9.shringToFit : this2);
+		var this3 = attributes.accessKey;
+		this.__slots.accessKey.setData(this3 == null ? this.__tink_defaults9.accessKey : this3);
+		var this4 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this4 == null ? this.__tink_defaults9.accessKeyLabel : this4);
+		var this5 = attributes.attributes;
+		this.__slots.attributes.setData(this5 == null ? this.__tink_defaults9.attributes : this5);
+		var this6 = attributes.className;
+		this.__slots.className.setData(this6 == null ? this.__tink_defaults9.className : this6);
+		var this7 = attributes.dir;
+		this.__slots.dir.setData(this7 == null ? this.__tink_defaults9.dir : this7);
+		var this8 = attributes.draggable;
+		this.__slots.draggable.setData(this8 == null ? this.__tink_defaults9.draggable : this8);
+		var this9 = attributes.hidden;
+		this.__slots.hidden.setData(this9 == null ? this.__tink_defaults9.hidden : this9);
+		var this10 = attributes.id;
+		this.__slots.id.setData(this10 == null ? this.__tink_defaults9.id : this10);
+		var this11 = attributes.key;
+		this.__slots.key.setData(this11 == null ? this.__tink_defaults9.key : this11);
+		var this12 = attributes.lang;
+		this.__slots.lang.setData(this12 == null ? this.__tink_defaults9.lang : this12);
+		var this13 = attributes.onabort;
+		this.__slots.onabort.setData(this13 == null ? this.__tink_defaults9.onabort : this13);
+		var this14 = attributes.onblur;
+		this.__slots.onblur.setData(this14 == null ? this.__tink_defaults9.onblur : this14);
+		var this15 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this15 == null ? this.__tink_defaults9.oncanplay : this15);
+		var this16 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this16 == null ? this.__tink_defaults9.oncanplaythrough : this16);
+		var this17 = attributes.onchange;
+		this.__slots.onchange.setData(this17 == null ? this.__tink_defaults9.onchange : this17);
+		var this18 = attributes.onclick;
+		this.__slots.onclick.setData(this18 == null ? this.__tink_defaults9.onclick : this18);
+		var this19 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this19 == null ? this.__tink_defaults9.oncontextmenu : this19);
+		var this20 = attributes.oncopy;
+		this.__slots.oncopy.setData(this20 == null ? this.__tink_defaults9.oncopy : this20);
+		var this21 = attributes.oncut;
+		this.__slots.oncut.setData(this21 == null ? this.__tink_defaults9.oncut : this21);
+		var this22 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this22 == null ? this.__tink_defaults9.ondblclick : this22);
+		var this23 = attributes.ondrag;
+		this.__slots.ondrag.setData(this23 == null ? this.__tink_defaults9.ondrag : this23);
+		var this24 = attributes.ondragend;
+		this.__slots.ondragend.setData(this24 == null ? this.__tink_defaults9.ondragend : this24);
+		var this25 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this25 == null ? this.__tink_defaults9.ondragenter : this25);
+		var this26 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this26 == null ? this.__tink_defaults9.ondragleave : this26);
+		var this27 = attributes.ondragover;
+		this.__slots.ondragover.setData(this27 == null ? this.__tink_defaults9.ondragover : this27);
+		var this28 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this28 == null ? this.__tink_defaults9.ondragstart : this28);
+		var this29 = attributes.ondrop;
+		this.__slots.ondrop.setData(this29 == null ? this.__tink_defaults9.ondrop : this29);
+		var this30 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this30 == null ? this.__tink_defaults9.ondurationchange : this30);
+		var this31 = attributes.onemptied;
+		this.__slots.onemptied.setData(this31 == null ? this.__tink_defaults9.onemptied : this31);
+		var this32 = attributes.onended;
+		this.__slots.onended.setData(this32 == null ? this.__tink_defaults9.onended : this32);
+		var this33 = attributes.onerror;
+		this.__slots.onerror.setData(this33 == null ? this.__tink_defaults9.onerror : this33);
+		var this34 = attributes.onfocus;
+		this.__slots.onfocus.setData(this34 == null ? this.__tink_defaults9.onfocus : this34);
+		var this35 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this35 == null ? this.__tink_defaults9.onfullscreenchange : this35);
+		var this36 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this36 == null ? this.__tink_defaults9.onfullscreenerror : this36);
+		var this37 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this37 == null ? this.__tink_defaults9.ongotpointercapture : this37);
+		var this38 = attributes.oninput;
+		this.__slots.oninput.setData(this38 == null ? this.__tink_defaults9.oninput : this38);
+		var this39 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this39 == null ? this.__tink_defaults9.oninvalid : this39);
+		var this40 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this40 == null ? this.__tink_defaults9.onkeydown : this40);
+		var this41 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this41 == null ? this.__tink_defaults9.onkeypress : this41);
+		var this42 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this42 == null ? this.__tink_defaults9.onkeyup : this42);
+		var this43 = attributes.onload;
+		this.__slots.onload.setData(this43 == null ? this.__tink_defaults9.onload : this43);
+		var this44 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this44 == null ? this.__tink_defaults9.onloadeddata : this44);
+		var this45 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this45 == null ? this.__tink_defaults9.onloadedmetadata : this45);
+		var this46 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this46 == null ? this.__tink_defaults9.onloadstart : this46);
+		var this47 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this47 == null ? this.__tink_defaults9.onlostpointercapture : this47);
+		var this48 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this48 == null ? this.__tink_defaults9.onmousedown : this48);
+		var this49 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this49 == null ? this.__tink_defaults9.onmouseenter : this49);
+		var this50 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this50 == null ? this.__tink_defaults9.onmouseleave : this50);
+		var this51 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this51 == null ? this.__tink_defaults9.onmousemove : this51);
+		var this52 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this52 == null ? this.__tink_defaults9.onmouseout : this52);
+		var this53 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this53 == null ? this.__tink_defaults9.onmouseover : this53);
+		var this54 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this54 == null ? this.__tink_defaults9.onmouseup : this54);
+		var this55 = attributes.onpaste;
+		this.__slots.onpaste.setData(this55 == null ? this.__tink_defaults9.onpaste : this55);
+		var this56 = attributes.onpause;
+		this.__slots.onpause.setData(this56 == null ? this.__tink_defaults9.onpause : this56);
+		var this57 = attributes.onplay;
+		this.__slots.onplay.setData(this57 == null ? this.__tink_defaults9.onplay : this57);
+		var this58 = attributes.onplaying;
+		this.__slots.onplaying.setData(this58 == null ? this.__tink_defaults9.onplaying : this58);
+		var this59 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this59 == null ? this.__tink_defaults9.onpointercancel : this59);
+		var this60 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this60 == null ? this.__tink_defaults9.onpointerdown : this60);
+		var this61 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this61 == null ? this.__tink_defaults9.onpointerenter : this61);
+		var this62 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this62 == null ? this.__tink_defaults9.onpointerleave : this62);
+		var this63 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this63 == null ? this.__tink_defaults9.onpointerlockchange : this63);
+		var this64 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this64 == null ? this.__tink_defaults9.onpointerlockerror : this64);
+		var this65 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this65 == null ? this.__tink_defaults9.onpointermove : this65);
+		var this66 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this66 == null ? this.__tink_defaults9.onpointerout : this66);
+		var this67 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this67 == null ? this.__tink_defaults9.onpointerover : this67);
+		var this68 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this68 == null ? this.__tink_defaults9.onpointerup : this68);
+		var this69 = attributes.onprogress;
+		this.__slots.onprogress.setData(this69 == null ? this.__tink_defaults9.onprogress : this69);
+		var this70 = attributes.onratechange;
+		this.__slots.onratechange.setData(this70 == null ? this.__tink_defaults9.onratechange : this70);
+		var this71 = attributes.onreset;
+		this.__slots.onreset.setData(this71 == null ? this.__tink_defaults9.onreset : this71);
+		var this72 = attributes.onresize;
+		this.__slots.onresize.setData(this72 == null ? this.__tink_defaults9.onresize : this72);
+		var this73 = attributes.onscroll;
+		this.__slots.onscroll.setData(this73 == null ? this.__tink_defaults9.onscroll : this73);
+		var this74 = attributes.onseeked;
+		this.__slots.onseeked.setData(this74 == null ? this.__tink_defaults9.onseeked : this74);
+		var this75 = attributes.onseeking;
+		this.__slots.onseeking.setData(this75 == null ? this.__tink_defaults9.onseeking : this75);
+		var this76 = attributes.onselect;
+		this.__slots.onselect.setData(this76 == null ? this.__tink_defaults9.onselect : this76);
+		var this77 = attributes.onshow;
+		this.__slots.onshow.setData(this77 == null ? this.__tink_defaults9.onshow : this77);
+		var this78 = attributes.onstalled;
+		this.__slots.onstalled.setData(this78 == null ? this.__tink_defaults9.onstalled : this78);
+		var this79 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this79 == null ? this.__tink_defaults9.onsubmit : this79);
+		var this80 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this80 == null ? this.__tink_defaults9.onsuspend : this80);
+		var this81 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this81 == null ? this.__tink_defaults9.ontimeupdate : this81);
+		var this82 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this82 == null ? this.__tink_defaults9.ontouchcancel : this82);
+		var this83 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this83 == null ? this.__tink_defaults9.ontouchend : this83);
+		var this84 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this84 == null ? this.__tink_defaults9.ontouchmove : this84);
+		var this85 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this85 == null ? this.__tink_defaults9.ontouchstart : this85);
+		var this86 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this86 == null ? this.__tink_defaults9.onvolumechange : this86);
+		var this87 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this87 == null ? this.__tink_defaults9.onwaiting : this87);
+		var this88 = attributes.onwheel;
+		this.__slots.onwheel.setData(this88 == null ? this.__tink_defaults9.onwheel : this88);
+		var this89 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this89 == null ? this.__tink_defaults9.spellcheck : this89);
+		var this90 = attributes.style;
+		this.__slots.style.setData(this90 == null ? this.__tink_defaults9.style : this90);
+		var this91 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this91 == null ? this.__tink_defaults9.tabIndex : this91);
+		var this92 = attributes.title;
+		this.__slots.title.setData(this92 == null ? this.__tink_defaults9.title : this92);
 	}
 	,get_children: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
@@ -26036,7 +27073,7 @@ mdc_ToolbarSection.prototype = $extend(coconut_ui_View.prototype,{
 });
 var mdc_ToolbarTitle = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 56, className : "mdc.ToolbarTitle", methodName : "new"});
-	this.__tink_defaults172 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__tink_defaults7 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
 	this.__slots = { children : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.ToolbarTitle"] = mdc_ToolbarTitle;
@@ -26045,7 +27082,7 @@ mdc_ToolbarTitle.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarTitle(attributes);
 	}
-	inst.__tink_init173(attributes);
+	inst.__tink_init8(attributes);
 	return inst;
 };
 mdc_ToolbarTitle.__super__ = coconut_ui_View;
@@ -26519,193 +27556,193 @@ mdc_ToolbarTitle.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push(vdom_VDom.h("span",attr1,__r1));
 		return __r[0];
 	}
-	,__tink_defaults172: null
+	,__tink_defaults7: null
 	,__slots: null
 	,toString: function() {
 		return "ToolbarTitle" + "#" + this.viewId;
 	}
-	,__tink_init173: function(attributes) {
+	,__tink_init8: function(attributes) {
 		this.__slots.children.setData(attributes.children);
 		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults172.accessKey : this1);
-		var this11 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this11 == null ? this.__tink_defaults172.accessKeyLabel : this11);
-		var this12 = attributes.attributes;
-		this.__slots.attributes.setData(this12 == null ? this.__tink_defaults172.attributes : this12);
-		var this13 = attributes.className;
-		this.__slots.className.setData(this13 == null ? this.__tink_defaults172.className : this13);
-		var this14 = attributes.dir;
-		this.__slots.dir.setData(this14 == null ? this.__tink_defaults172.dir : this14);
-		var this15 = attributes.draggable;
-		this.__slots.draggable.setData(this15 == null ? this.__tink_defaults172.draggable : this15);
-		var this16 = attributes.hidden;
-		this.__slots.hidden.setData(this16 == null ? this.__tink_defaults172.hidden : this16);
-		var this17 = attributes.id;
-		this.__slots.id.setData(this17 == null ? this.__tink_defaults172.id : this17);
-		var this18 = attributes.key;
-		this.__slots.key.setData(this18 == null ? this.__tink_defaults172.key : this18);
-		var this19 = attributes.lang;
-		this.__slots.lang.setData(this19 == null ? this.__tink_defaults172.lang : this19);
-		var this110 = attributes.onabort;
-		this.__slots.onabort.setData(this110 == null ? this.__tink_defaults172.onabort : this110);
-		var this111 = attributes.onblur;
-		this.__slots.onblur.setData(this111 == null ? this.__tink_defaults172.onblur : this111);
-		var this112 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this112 == null ? this.__tink_defaults172.oncanplay : this112);
-		var this113 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this113 == null ? this.__tink_defaults172.oncanplaythrough : this113);
-		var this114 = attributes.onchange;
-		this.__slots.onchange.setData(this114 == null ? this.__tink_defaults172.onchange : this114);
-		var this115 = attributes.onclick;
-		this.__slots.onclick.setData(this115 == null ? this.__tink_defaults172.onclick : this115);
-		var this116 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this116 == null ? this.__tink_defaults172.oncontextmenu : this116);
-		var this117 = attributes.oncopy;
-		this.__slots.oncopy.setData(this117 == null ? this.__tink_defaults172.oncopy : this117);
-		var this118 = attributes.oncut;
-		this.__slots.oncut.setData(this118 == null ? this.__tink_defaults172.oncut : this118);
-		var this119 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this119 == null ? this.__tink_defaults172.ondblclick : this119);
-		var this120 = attributes.ondrag;
-		this.__slots.ondrag.setData(this120 == null ? this.__tink_defaults172.ondrag : this120);
-		var this121 = attributes.ondragend;
-		this.__slots.ondragend.setData(this121 == null ? this.__tink_defaults172.ondragend : this121);
-		var this122 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this122 == null ? this.__tink_defaults172.ondragenter : this122);
-		var this123 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this123 == null ? this.__tink_defaults172.ondragleave : this123);
-		var this124 = attributes.ondragover;
-		this.__slots.ondragover.setData(this124 == null ? this.__tink_defaults172.ondragover : this124);
-		var this125 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this125 == null ? this.__tink_defaults172.ondragstart : this125);
-		var this126 = attributes.ondrop;
-		this.__slots.ondrop.setData(this126 == null ? this.__tink_defaults172.ondrop : this126);
-		var this127 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this127 == null ? this.__tink_defaults172.ondurationchange : this127);
-		var this128 = attributes.onemptied;
-		this.__slots.onemptied.setData(this128 == null ? this.__tink_defaults172.onemptied : this128);
-		var this129 = attributes.onended;
-		this.__slots.onended.setData(this129 == null ? this.__tink_defaults172.onended : this129);
-		var this130 = attributes.onerror;
-		this.__slots.onerror.setData(this130 == null ? this.__tink_defaults172.onerror : this130);
-		var this131 = attributes.onfocus;
-		this.__slots.onfocus.setData(this131 == null ? this.__tink_defaults172.onfocus : this131);
-		var this132 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this132 == null ? this.__tink_defaults172.onfullscreenchange : this132);
-		var this133 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this133 == null ? this.__tink_defaults172.onfullscreenerror : this133);
-		var this134 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this134 == null ? this.__tink_defaults172.ongotpointercapture : this134);
-		var this135 = attributes.oninput;
-		this.__slots.oninput.setData(this135 == null ? this.__tink_defaults172.oninput : this135);
-		var this136 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this136 == null ? this.__tink_defaults172.oninvalid : this136);
-		var this137 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this137 == null ? this.__tink_defaults172.onkeydown : this137);
-		var this138 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this138 == null ? this.__tink_defaults172.onkeypress : this138);
-		var this139 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this139 == null ? this.__tink_defaults172.onkeyup : this139);
-		var this140 = attributes.onload;
-		this.__slots.onload.setData(this140 == null ? this.__tink_defaults172.onload : this140);
-		var this141 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this141 == null ? this.__tink_defaults172.onloadeddata : this141);
-		var this142 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this142 == null ? this.__tink_defaults172.onloadedmetadata : this142);
-		var this143 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this143 == null ? this.__tink_defaults172.onloadstart : this143);
-		var this144 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this144 == null ? this.__tink_defaults172.onlostpointercapture : this144);
-		var this145 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this145 == null ? this.__tink_defaults172.onmousedown : this145);
-		var this146 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this146 == null ? this.__tink_defaults172.onmouseenter : this146);
-		var this147 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this147 == null ? this.__tink_defaults172.onmouseleave : this147);
-		var this148 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this148 == null ? this.__tink_defaults172.onmousemove : this148);
-		var this149 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this149 == null ? this.__tink_defaults172.onmouseout : this149);
-		var this150 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this150 == null ? this.__tink_defaults172.onmouseover : this150);
-		var this151 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this151 == null ? this.__tink_defaults172.onmouseup : this151);
-		var this152 = attributes.onpaste;
-		this.__slots.onpaste.setData(this152 == null ? this.__tink_defaults172.onpaste : this152);
-		var this153 = attributes.onpause;
-		this.__slots.onpause.setData(this153 == null ? this.__tink_defaults172.onpause : this153);
-		var this154 = attributes.onplay;
-		this.__slots.onplay.setData(this154 == null ? this.__tink_defaults172.onplay : this154);
-		var this155 = attributes.onplaying;
-		this.__slots.onplaying.setData(this155 == null ? this.__tink_defaults172.onplaying : this155);
-		var this156 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this156 == null ? this.__tink_defaults172.onpointercancel : this156);
-		var this157 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this157 == null ? this.__tink_defaults172.onpointerdown : this157);
-		var this158 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this158 == null ? this.__tink_defaults172.onpointerenter : this158);
-		var this159 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this159 == null ? this.__tink_defaults172.onpointerleave : this159);
-		var this160 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this160 == null ? this.__tink_defaults172.onpointerlockchange : this160);
-		var this161 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this161 == null ? this.__tink_defaults172.onpointerlockerror : this161);
-		var this162 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this162 == null ? this.__tink_defaults172.onpointermove : this162);
-		var this163 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this163 == null ? this.__tink_defaults172.onpointerout : this163);
-		var this164 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this164 == null ? this.__tink_defaults172.onpointerover : this164);
-		var this165 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this165 == null ? this.__tink_defaults172.onpointerup : this165);
-		var this166 = attributes.onprogress;
-		this.__slots.onprogress.setData(this166 == null ? this.__tink_defaults172.onprogress : this166);
-		var this167 = attributes.onratechange;
-		this.__slots.onratechange.setData(this167 == null ? this.__tink_defaults172.onratechange : this167);
-		var this168 = attributes.onreset;
-		this.__slots.onreset.setData(this168 == null ? this.__tink_defaults172.onreset : this168);
-		var this169 = attributes.onresize;
-		this.__slots.onresize.setData(this169 == null ? this.__tink_defaults172.onresize : this169);
-		var this170 = attributes.onscroll;
-		this.__slots.onscroll.setData(this170 == null ? this.__tink_defaults172.onscroll : this170);
-		var this171 = attributes.onseeked;
-		this.__slots.onseeked.setData(this171 == null ? this.__tink_defaults172.onseeked : this171);
-		var this172 = attributes.onseeking;
-		this.__slots.onseeking.setData(this172 == null ? this.__tink_defaults172.onseeking : this172);
-		var this173 = attributes.onselect;
-		this.__slots.onselect.setData(this173 == null ? this.__tink_defaults172.onselect : this173);
-		var this174 = attributes.onshow;
-		this.__slots.onshow.setData(this174 == null ? this.__tink_defaults172.onshow : this174);
-		var this175 = attributes.onstalled;
-		this.__slots.onstalled.setData(this175 == null ? this.__tink_defaults172.onstalled : this175);
-		var this176 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this176 == null ? this.__tink_defaults172.onsubmit : this176);
-		var this177 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this177 == null ? this.__tink_defaults172.onsuspend : this177);
-		var this178 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this178 == null ? this.__tink_defaults172.ontimeupdate : this178);
-		var this179 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this179 == null ? this.__tink_defaults172.ontouchcancel : this179);
-		var this180 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this180 == null ? this.__tink_defaults172.ontouchend : this180);
-		var this181 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this181 == null ? this.__tink_defaults172.ontouchmove : this181);
-		var this182 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this182 == null ? this.__tink_defaults172.ontouchstart : this182);
-		var this183 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this183 == null ? this.__tink_defaults172.onvolumechange : this183);
-		var this184 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this184 == null ? this.__tink_defaults172.onwaiting : this184);
-		var this185 = attributes.onwheel;
-		this.__slots.onwheel.setData(this185 == null ? this.__tink_defaults172.onwheel : this185);
-		var this186 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this186 == null ? this.__tink_defaults172.spellcheck : this186);
-		var this187 = attributes.style;
-		this.__slots.style.setData(this187 == null ? this.__tink_defaults172.style : this187);
-		var this188 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this188 == null ? this.__tink_defaults172.tabIndex : this188);
-		var this189 = attributes.title;
-		this.__slots.title.setData(this189 == null ? this.__tink_defaults172.title : this189);
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults7.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults7.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults7.attributes : this3);
+		var this4 = attributes.className;
+		this.__slots.className.setData(this4 == null ? this.__tink_defaults7.className : this4);
+		var this5 = attributes.dir;
+		this.__slots.dir.setData(this5 == null ? this.__tink_defaults7.dir : this5);
+		var this6 = attributes.draggable;
+		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults7.draggable : this6);
+		var this7 = attributes.hidden;
+		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults7.hidden : this7);
+		var this8 = attributes.id;
+		this.__slots.id.setData(this8 == null ? this.__tink_defaults7.id : this8);
+		var this9 = attributes.key;
+		this.__slots.key.setData(this9 == null ? this.__tink_defaults7.key : this9);
+		var this10 = attributes.lang;
+		this.__slots.lang.setData(this10 == null ? this.__tink_defaults7.lang : this10);
+		var this11 = attributes.onabort;
+		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults7.onabort : this11);
+		var this12 = attributes.onblur;
+		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults7.onblur : this12);
+		var this13 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults7.oncanplay : this13);
+		var this14 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults7.oncanplaythrough : this14);
+		var this15 = attributes.onchange;
+		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults7.onchange : this15);
+		var this16 = attributes.onclick;
+		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults7.onclick : this16);
+		var this17 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults7.oncontextmenu : this17);
+		var this18 = attributes.oncopy;
+		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults7.oncopy : this18);
+		var this19 = attributes.oncut;
+		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults7.oncut : this19);
+		var this20 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults7.ondblclick : this20);
+		var this21 = attributes.ondrag;
+		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults7.ondrag : this21);
+		var this22 = attributes.ondragend;
+		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults7.ondragend : this22);
+		var this23 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults7.ondragenter : this23);
+		var this24 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults7.ondragleave : this24);
+		var this25 = attributes.ondragover;
+		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults7.ondragover : this25);
+		var this26 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults7.ondragstart : this26);
+		var this27 = attributes.ondrop;
+		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults7.ondrop : this27);
+		var this28 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults7.ondurationchange : this28);
+		var this29 = attributes.onemptied;
+		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults7.onemptied : this29);
+		var this30 = attributes.onended;
+		this.__slots.onended.setData(this30 == null ? this.__tink_defaults7.onended : this30);
+		var this31 = attributes.onerror;
+		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults7.onerror : this31);
+		var this32 = attributes.onfocus;
+		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults7.onfocus : this32);
+		var this33 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults7.onfullscreenchange : this33);
+		var this34 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults7.onfullscreenerror : this34);
+		var this35 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults7.ongotpointercapture : this35);
+		var this36 = attributes.oninput;
+		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults7.oninput : this36);
+		var this37 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults7.oninvalid : this37);
+		var this38 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults7.onkeydown : this38);
+		var this39 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults7.onkeypress : this39);
+		var this40 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults7.onkeyup : this40);
+		var this41 = attributes.onload;
+		this.__slots.onload.setData(this41 == null ? this.__tink_defaults7.onload : this41);
+		var this42 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults7.onloadeddata : this42);
+		var this43 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults7.onloadedmetadata : this43);
+		var this44 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults7.onloadstart : this44);
+		var this45 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults7.onlostpointercapture : this45);
+		var this46 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults7.onmousedown : this46);
+		var this47 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults7.onmouseenter : this47);
+		var this48 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults7.onmouseleave : this48);
+		var this49 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults7.onmousemove : this49);
+		var this50 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults7.onmouseout : this50);
+		var this51 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults7.onmouseover : this51);
+		var this52 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults7.onmouseup : this52);
+		var this53 = attributes.onpaste;
+		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults7.onpaste : this53);
+		var this54 = attributes.onpause;
+		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults7.onpause : this54);
+		var this55 = attributes.onplay;
+		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults7.onplay : this55);
+		var this56 = attributes.onplaying;
+		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults7.onplaying : this56);
+		var this57 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults7.onpointercancel : this57);
+		var this58 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults7.onpointerdown : this58);
+		var this59 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults7.onpointerenter : this59);
+		var this60 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults7.onpointerleave : this60);
+		var this61 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults7.onpointerlockchange : this61);
+		var this62 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults7.onpointerlockerror : this62);
+		var this63 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults7.onpointermove : this63);
+		var this64 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults7.onpointerout : this64);
+		var this65 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults7.onpointerover : this65);
+		var this66 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults7.onpointerup : this66);
+		var this67 = attributes.onprogress;
+		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults7.onprogress : this67);
+		var this68 = attributes.onratechange;
+		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults7.onratechange : this68);
+		var this69 = attributes.onreset;
+		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults7.onreset : this69);
+		var this70 = attributes.onresize;
+		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults7.onresize : this70);
+		var this71 = attributes.onscroll;
+		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults7.onscroll : this71);
+		var this72 = attributes.onseeked;
+		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults7.onseeked : this72);
+		var this73 = attributes.onseeking;
+		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults7.onseeking : this73);
+		var this74 = attributes.onselect;
+		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults7.onselect : this74);
+		var this75 = attributes.onshow;
+		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults7.onshow : this75);
+		var this76 = attributes.onstalled;
+		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults7.onstalled : this76);
+		var this77 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults7.onsubmit : this77);
+		var this78 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults7.onsuspend : this78);
+		var this79 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults7.ontimeupdate : this79);
+		var this80 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults7.ontouchcancel : this80);
+		var this81 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults7.ontouchend : this81);
+		var this82 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults7.ontouchmove : this82);
+		var this83 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults7.ontouchstart : this83);
+		var this84 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults7.onvolumechange : this84);
+		var this85 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults7.onwaiting : this85);
+		var this86 = attributes.onwheel;
+		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults7.onwheel : this86);
+		var this87 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults7.spellcheck : this87);
+		var this88 = attributes.style;
+		this.__slots.style.setData(this88 == null ? this.__tink_defaults7.style : this88);
+		var this89 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults7.tabIndex : this89);
+		var this90 = attributes.title;
+		this.__slots.title.setData(this90 == null ? this.__tink_defaults7.title : this90);
 	}
 	,get_children: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
@@ -26985,7 +28022,7 @@ mdc_ToolbarTitle.prototype = $extend(coconut_ui_View.prototype,{
 });
 var mdc_ToolbarMenuIcon = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 69, className : "mdc.ToolbarMenuIcon", methodName : "new"});
-	this.__tink_defaults170 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__tink_defaults5 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
 	this.__slots = { name : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.ToolbarMenuIcon"] = mdc_ToolbarMenuIcon;
@@ -26994,7 +28031,7 @@ mdc_ToolbarMenuIcon.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarMenuIcon(attributes);
 	}
-	inst.__tink_init171(attributes);
+	inst.__tink_init6(attributes);
 	return inst;
 };
 mdc_ToolbarMenuIcon.__super__ = coconut_ui_View;
@@ -27466,193 +28503,193 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push(vdom_VDom.h("span",__ret1,__r1));
 		return __r[0];
 	}
-	,__tink_defaults170: null
+	,__tink_defaults5: null
 	,__slots: null
 	,toString: function() {
 		return "ToolbarMenuIcon" + "#" + this.viewId;
 	}
-	,__tink_init171: function(attributes) {
+	,__tink_init6: function(attributes) {
 		this.__slots.name.setData(attributes.name);
 		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults170.accessKey : this1);
-		var this11 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this11 == null ? this.__tink_defaults170.accessKeyLabel : this11);
-		var this12 = attributes.attributes;
-		this.__slots.attributes.setData(this12 == null ? this.__tink_defaults170.attributes : this12);
-		var this13 = attributes.className;
-		this.__slots.className.setData(this13 == null ? this.__tink_defaults170.className : this13);
-		var this14 = attributes.dir;
-		this.__slots.dir.setData(this14 == null ? this.__tink_defaults170.dir : this14);
-		var this15 = attributes.draggable;
-		this.__slots.draggable.setData(this15 == null ? this.__tink_defaults170.draggable : this15);
-		var this16 = attributes.hidden;
-		this.__slots.hidden.setData(this16 == null ? this.__tink_defaults170.hidden : this16);
-		var this17 = attributes.id;
-		this.__slots.id.setData(this17 == null ? this.__tink_defaults170.id : this17);
-		var this18 = attributes.key;
-		this.__slots.key.setData(this18 == null ? this.__tink_defaults170.key : this18);
-		var this19 = attributes.lang;
-		this.__slots.lang.setData(this19 == null ? this.__tink_defaults170.lang : this19);
-		var this110 = attributes.onabort;
-		this.__slots.onabort.setData(this110 == null ? this.__tink_defaults170.onabort : this110);
-		var this111 = attributes.onblur;
-		this.__slots.onblur.setData(this111 == null ? this.__tink_defaults170.onblur : this111);
-		var this112 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this112 == null ? this.__tink_defaults170.oncanplay : this112);
-		var this113 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this113 == null ? this.__tink_defaults170.oncanplaythrough : this113);
-		var this114 = attributes.onchange;
-		this.__slots.onchange.setData(this114 == null ? this.__tink_defaults170.onchange : this114);
-		var this115 = attributes.onclick;
-		this.__slots.onclick.setData(this115 == null ? this.__tink_defaults170.onclick : this115);
-		var this116 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this116 == null ? this.__tink_defaults170.oncontextmenu : this116);
-		var this117 = attributes.oncopy;
-		this.__slots.oncopy.setData(this117 == null ? this.__tink_defaults170.oncopy : this117);
-		var this118 = attributes.oncut;
-		this.__slots.oncut.setData(this118 == null ? this.__tink_defaults170.oncut : this118);
-		var this119 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this119 == null ? this.__tink_defaults170.ondblclick : this119);
-		var this120 = attributes.ondrag;
-		this.__slots.ondrag.setData(this120 == null ? this.__tink_defaults170.ondrag : this120);
-		var this121 = attributes.ondragend;
-		this.__slots.ondragend.setData(this121 == null ? this.__tink_defaults170.ondragend : this121);
-		var this122 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this122 == null ? this.__tink_defaults170.ondragenter : this122);
-		var this123 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this123 == null ? this.__tink_defaults170.ondragleave : this123);
-		var this124 = attributes.ondragover;
-		this.__slots.ondragover.setData(this124 == null ? this.__tink_defaults170.ondragover : this124);
-		var this125 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this125 == null ? this.__tink_defaults170.ondragstart : this125);
-		var this126 = attributes.ondrop;
-		this.__slots.ondrop.setData(this126 == null ? this.__tink_defaults170.ondrop : this126);
-		var this127 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this127 == null ? this.__tink_defaults170.ondurationchange : this127);
-		var this128 = attributes.onemptied;
-		this.__slots.onemptied.setData(this128 == null ? this.__tink_defaults170.onemptied : this128);
-		var this129 = attributes.onended;
-		this.__slots.onended.setData(this129 == null ? this.__tink_defaults170.onended : this129);
-		var this130 = attributes.onerror;
-		this.__slots.onerror.setData(this130 == null ? this.__tink_defaults170.onerror : this130);
-		var this131 = attributes.onfocus;
-		this.__slots.onfocus.setData(this131 == null ? this.__tink_defaults170.onfocus : this131);
-		var this132 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this132 == null ? this.__tink_defaults170.onfullscreenchange : this132);
-		var this133 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this133 == null ? this.__tink_defaults170.onfullscreenerror : this133);
-		var this134 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this134 == null ? this.__tink_defaults170.ongotpointercapture : this134);
-		var this135 = attributes.oninput;
-		this.__slots.oninput.setData(this135 == null ? this.__tink_defaults170.oninput : this135);
-		var this136 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this136 == null ? this.__tink_defaults170.oninvalid : this136);
-		var this137 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this137 == null ? this.__tink_defaults170.onkeydown : this137);
-		var this138 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this138 == null ? this.__tink_defaults170.onkeypress : this138);
-		var this139 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this139 == null ? this.__tink_defaults170.onkeyup : this139);
-		var this140 = attributes.onload;
-		this.__slots.onload.setData(this140 == null ? this.__tink_defaults170.onload : this140);
-		var this141 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this141 == null ? this.__tink_defaults170.onloadeddata : this141);
-		var this142 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this142 == null ? this.__tink_defaults170.onloadedmetadata : this142);
-		var this143 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this143 == null ? this.__tink_defaults170.onloadstart : this143);
-		var this144 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this144 == null ? this.__tink_defaults170.onlostpointercapture : this144);
-		var this145 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this145 == null ? this.__tink_defaults170.onmousedown : this145);
-		var this146 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this146 == null ? this.__tink_defaults170.onmouseenter : this146);
-		var this147 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this147 == null ? this.__tink_defaults170.onmouseleave : this147);
-		var this148 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this148 == null ? this.__tink_defaults170.onmousemove : this148);
-		var this149 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this149 == null ? this.__tink_defaults170.onmouseout : this149);
-		var this150 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this150 == null ? this.__tink_defaults170.onmouseover : this150);
-		var this151 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this151 == null ? this.__tink_defaults170.onmouseup : this151);
-		var this152 = attributes.onpaste;
-		this.__slots.onpaste.setData(this152 == null ? this.__tink_defaults170.onpaste : this152);
-		var this153 = attributes.onpause;
-		this.__slots.onpause.setData(this153 == null ? this.__tink_defaults170.onpause : this153);
-		var this154 = attributes.onplay;
-		this.__slots.onplay.setData(this154 == null ? this.__tink_defaults170.onplay : this154);
-		var this155 = attributes.onplaying;
-		this.__slots.onplaying.setData(this155 == null ? this.__tink_defaults170.onplaying : this155);
-		var this156 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this156 == null ? this.__tink_defaults170.onpointercancel : this156);
-		var this157 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this157 == null ? this.__tink_defaults170.onpointerdown : this157);
-		var this158 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this158 == null ? this.__tink_defaults170.onpointerenter : this158);
-		var this159 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this159 == null ? this.__tink_defaults170.onpointerleave : this159);
-		var this160 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this160 == null ? this.__tink_defaults170.onpointerlockchange : this160);
-		var this161 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this161 == null ? this.__tink_defaults170.onpointerlockerror : this161);
-		var this162 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this162 == null ? this.__tink_defaults170.onpointermove : this162);
-		var this163 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this163 == null ? this.__tink_defaults170.onpointerout : this163);
-		var this164 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this164 == null ? this.__tink_defaults170.onpointerover : this164);
-		var this165 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this165 == null ? this.__tink_defaults170.onpointerup : this165);
-		var this166 = attributes.onprogress;
-		this.__slots.onprogress.setData(this166 == null ? this.__tink_defaults170.onprogress : this166);
-		var this167 = attributes.onratechange;
-		this.__slots.onratechange.setData(this167 == null ? this.__tink_defaults170.onratechange : this167);
-		var this168 = attributes.onreset;
-		this.__slots.onreset.setData(this168 == null ? this.__tink_defaults170.onreset : this168);
-		var this169 = attributes.onresize;
-		this.__slots.onresize.setData(this169 == null ? this.__tink_defaults170.onresize : this169);
-		var this170 = attributes.onscroll;
-		this.__slots.onscroll.setData(this170 == null ? this.__tink_defaults170.onscroll : this170);
-		var this171 = attributes.onseeked;
-		this.__slots.onseeked.setData(this171 == null ? this.__tink_defaults170.onseeked : this171);
-		var this172 = attributes.onseeking;
-		this.__slots.onseeking.setData(this172 == null ? this.__tink_defaults170.onseeking : this172);
-		var this173 = attributes.onselect;
-		this.__slots.onselect.setData(this173 == null ? this.__tink_defaults170.onselect : this173);
-		var this174 = attributes.onshow;
-		this.__slots.onshow.setData(this174 == null ? this.__tink_defaults170.onshow : this174);
-		var this175 = attributes.onstalled;
-		this.__slots.onstalled.setData(this175 == null ? this.__tink_defaults170.onstalled : this175);
-		var this176 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this176 == null ? this.__tink_defaults170.onsubmit : this176);
-		var this177 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this177 == null ? this.__tink_defaults170.onsuspend : this177);
-		var this178 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this178 == null ? this.__tink_defaults170.ontimeupdate : this178);
-		var this179 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this179 == null ? this.__tink_defaults170.ontouchcancel : this179);
-		var this180 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this180 == null ? this.__tink_defaults170.ontouchend : this180);
-		var this181 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this181 == null ? this.__tink_defaults170.ontouchmove : this181);
-		var this182 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this182 == null ? this.__tink_defaults170.ontouchstart : this182);
-		var this183 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this183 == null ? this.__tink_defaults170.onvolumechange : this183);
-		var this184 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this184 == null ? this.__tink_defaults170.onwaiting : this184);
-		var this185 = attributes.onwheel;
-		this.__slots.onwheel.setData(this185 == null ? this.__tink_defaults170.onwheel : this185);
-		var this186 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this186 == null ? this.__tink_defaults170.spellcheck : this186);
-		var this187 = attributes.style;
-		this.__slots.style.setData(this187 == null ? this.__tink_defaults170.style : this187);
-		var this188 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this188 == null ? this.__tink_defaults170.tabIndex : this188);
-		var this189 = attributes.title;
-		this.__slots.title.setData(this189 == null ? this.__tink_defaults170.title : this189);
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults5.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults5.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults5.attributes : this3);
+		var this4 = attributes.className;
+		this.__slots.className.setData(this4 == null ? this.__tink_defaults5.className : this4);
+		var this5 = attributes.dir;
+		this.__slots.dir.setData(this5 == null ? this.__tink_defaults5.dir : this5);
+		var this6 = attributes.draggable;
+		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults5.draggable : this6);
+		var this7 = attributes.hidden;
+		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults5.hidden : this7);
+		var this8 = attributes.id;
+		this.__slots.id.setData(this8 == null ? this.__tink_defaults5.id : this8);
+		var this9 = attributes.key;
+		this.__slots.key.setData(this9 == null ? this.__tink_defaults5.key : this9);
+		var this10 = attributes.lang;
+		this.__slots.lang.setData(this10 == null ? this.__tink_defaults5.lang : this10);
+		var this11 = attributes.onabort;
+		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults5.onabort : this11);
+		var this12 = attributes.onblur;
+		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults5.onblur : this12);
+		var this13 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults5.oncanplay : this13);
+		var this14 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults5.oncanplaythrough : this14);
+		var this15 = attributes.onchange;
+		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults5.onchange : this15);
+		var this16 = attributes.onclick;
+		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults5.onclick : this16);
+		var this17 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults5.oncontextmenu : this17);
+		var this18 = attributes.oncopy;
+		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults5.oncopy : this18);
+		var this19 = attributes.oncut;
+		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults5.oncut : this19);
+		var this20 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults5.ondblclick : this20);
+		var this21 = attributes.ondrag;
+		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults5.ondrag : this21);
+		var this22 = attributes.ondragend;
+		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults5.ondragend : this22);
+		var this23 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults5.ondragenter : this23);
+		var this24 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults5.ondragleave : this24);
+		var this25 = attributes.ondragover;
+		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults5.ondragover : this25);
+		var this26 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults5.ondragstart : this26);
+		var this27 = attributes.ondrop;
+		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults5.ondrop : this27);
+		var this28 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults5.ondurationchange : this28);
+		var this29 = attributes.onemptied;
+		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults5.onemptied : this29);
+		var this30 = attributes.onended;
+		this.__slots.onended.setData(this30 == null ? this.__tink_defaults5.onended : this30);
+		var this31 = attributes.onerror;
+		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults5.onerror : this31);
+		var this32 = attributes.onfocus;
+		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults5.onfocus : this32);
+		var this33 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults5.onfullscreenchange : this33);
+		var this34 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults5.onfullscreenerror : this34);
+		var this35 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults5.ongotpointercapture : this35);
+		var this36 = attributes.oninput;
+		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults5.oninput : this36);
+		var this37 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults5.oninvalid : this37);
+		var this38 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults5.onkeydown : this38);
+		var this39 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults5.onkeypress : this39);
+		var this40 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults5.onkeyup : this40);
+		var this41 = attributes.onload;
+		this.__slots.onload.setData(this41 == null ? this.__tink_defaults5.onload : this41);
+		var this42 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults5.onloadeddata : this42);
+		var this43 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults5.onloadedmetadata : this43);
+		var this44 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults5.onloadstart : this44);
+		var this45 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults5.onlostpointercapture : this45);
+		var this46 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults5.onmousedown : this46);
+		var this47 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults5.onmouseenter : this47);
+		var this48 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults5.onmouseleave : this48);
+		var this49 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults5.onmousemove : this49);
+		var this50 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults5.onmouseout : this50);
+		var this51 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults5.onmouseover : this51);
+		var this52 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults5.onmouseup : this52);
+		var this53 = attributes.onpaste;
+		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults5.onpaste : this53);
+		var this54 = attributes.onpause;
+		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults5.onpause : this54);
+		var this55 = attributes.onplay;
+		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults5.onplay : this55);
+		var this56 = attributes.onplaying;
+		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults5.onplaying : this56);
+		var this57 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults5.onpointercancel : this57);
+		var this58 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults5.onpointerdown : this58);
+		var this59 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults5.onpointerenter : this59);
+		var this60 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults5.onpointerleave : this60);
+		var this61 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults5.onpointerlockchange : this61);
+		var this62 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults5.onpointerlockerror : this62);
+		var this63 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults5.onpointermove : this63);
+		var this64 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults5.onpointerout : this64);
+		var this65 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults5.onpointerover : this65);
+		var this66 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults5.onpointerup : this66);
+		var this67 = attributes.onprogress;
+		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults5.onprogress : this67);
+		var this68 = attributes.onratechange;
+		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults5.onratechange : this68);
+		var this69 = attributes.onreset;
+		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults5.onreset : this69);
+		var this70 = attributes.onresize;
+		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults5.onresize : this70);
+		var this71 = attributes.onscroll;
+		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults5.onscroll : this71);
+		var this72 = attributes.onseeked;
+		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults5.onseeked : this72);
+		var this73 = attributes.onseeking;
+		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults5.onseeking : this73);
+		var this74 = attributes.onselect;
+		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults5.onselect : this74);
+		var this75 = attributes.onshow;
+		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults5.onshow : this75);
+		var this76 = attributes.onstalled;
+		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults5.onstalled : this76);
+		var this77 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults5.onsubmit : this77);
+		var this78 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults5.onsuspend : this78);
+		var this79 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults5.ontimeupdate : this79);
+		var this80 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults5.ontouchcancel : this80);
+		var this81 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults5.ontouchend : this81);
+		var this82 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults5.ontouchmove : this82);
+		var this83 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults5.ontouchstart : this83);
+		var this84 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults5.onvolumechange : this84);
+		var this85 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults5.onwaiting : this85);
+		var this86 = attributes.onwheel;
+		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults5.onwheel : this86);
+		var this87 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults5.spellcheck : this87);
+		var this88 = attributes.style;
+		this.__slots.style.setData(this88 == null ? this.__tink_defaults5.style : this88);
+		var this89 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults5.tabIndex : this89);
+		var this90 = attributes.title;
+		this.__slots.title.setData(this90 == null ? this.__tink_defaults5.title : this90);
 	}
 	,get_name: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
@@ -27932,7 +28969,7 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 });
 var mdc_ToolbarIcon = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 82, className : "mdc.ToolbarIcon", methodName : "new"});
-	this.__tink_defaults168 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
+	this.__tink_defaults3 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
 	this.__slots = { name : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
 };
 $hxClasses["mdc.ToolbarIcon"] = mdc_ToolbarIcon;
@@ -27941,7 +28978,7 @@ mdc_ToolbarIcon.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarIcon(attributes);
 	}
-	inst.__tink_init169(attributes);
+	inst.__tink_init4(attributes);
 	return inst;
 };
 mdc_ToolbarIcon.__super__ = coconut_ui_View;
@@ -28413,193 +29450,193 @@ mdc_ToolbarIcon.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push(vdom_VDom.h("span",__ret1,__r1));
 		return __r[0];
 	}
-	,__tink_defaults168: null
+	,__tink_defaults3: null
 	,__slots: null
 	,toString: function() {
 		return "ToolbarIcon" + "#" + this.viewId;
 	}
-	,__tink_init169: function(attributes) {
+	,__tink_init4: function(attributes) {
 		this.__slots.name.setData(attributes.name);
 		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults168.accessKey : this1);
-		var this11 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this11 == null ? this.__tink_defaults168.accessKeyLabel : this11);
-		var this12 = attributes.attributes;
-		this.__slots.attributes.setData(this12 == null ? this.__tink_defaults168.attributes : this12);
-		var this13 = attributes.className;
-		this.__slots.className.setData(this13 == null ? this.__tink_defaults168.className : this13);
-		var this14 = attributes.dir;
-		this.__slots.dir.setData(this14 == null ? this.__tink_defaults168.dir : this14);
-		var this15 = attributes.draggable;
-		this.__slots.draggable.setData(this15 == null ? this.__tink_defaults168.draggable : this15);
-		var this16 = attributes.hidden;
-		this.__slots.hidden.setData(this16 == null ? this.__tink_defaults168.hidden : this16);
-		var this17 = attributes.id;
-		this.__slots.id.setData(this17 == null ? this.__tink_defaults168.id : this17);
-		var this18 = attributes.key;
-		this.__slots.key.setData(this18 == null ? this.__tink_defaults168.key : this18);
-		var this19 = attributes.lang;
-		this.__slots.lang.setData(this19 == null ? this.__tink_defaults168.lang : this19);
-		var this110 = attributes.onabort;
-		this.__slots.onabort.setData(this110 == null ? this.__tink_defaults168.onabort : this110);
-		var this111 = attributes.onblur;
-		this.__slots.onblur.setData(this111 == null ? this.__tink_defaults168.onblur : this111);
-		var this112 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this112 == null ? this.__tink_defaults168.oncanplay : this112);
-		var this113 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this113 == null ? this.__tink_defaults168.oncanplaythrough : this113);
-		var this114 = attributes.onchange;
-		this.__slots.onchange.setData(this114 == null ? this.__tink_defaults168.onchange : this114);
-		var this115 = attributes.onclick;
-		this.__slots.onclick.setData(this115 == null ? this.__tink_defaults168.onclick : this115);
-		var this116 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this116 == null ? this.__tink_defaults168.oncontextmenu : this116);
-		var this117 = attributes.oncopy;
-		this.__slots.oncopy.setData(this117 == null ? this.__tink_defaults168.oncopy : this117);
-		var this118 = attributes.oncut;
-		this.__slots.oncut.setData(this118 == null ? this.__tink_defaults168.oncut : this118);
-		var this119 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this119 == null ? this.__tink_defaults168.ondblclick : this119);
-		var this120 = attributes.ondrag;
-		this.__slots.ondrag.setData(this120 == null ? this.__tink_defaults168.ondrag : this120);
-		var this121 = attributes.ondragend;
-		this.__slots.ondragend.setData(this121 == null ? this.__tink_defaults168.ondragend : this121);
-		var this122 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this122 == null ? this.__tink_defaults168.ondragenter : this122);
-		var this123 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this123 == null ? this.__tink_defaults168.ondragleave : this123);
-		var this124 = attributes.ondragover;
-		this.__slots.ondragover.setData(this124 == null ? this.__tink_defaults168.ondragover : this124);
-		var this125 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this125 == null ? this.__tink_defaults168.ondragstart : this125);
-		var this126 = attributes.ondrop;
-		this.__slots.ondrop.setData(this126 == null ? this.__tink_defaults168.ondrop : this126);
-		var this127 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this127 == null ? this.__tink_defaults168.ondurationchange : this127);
-		var this128 = attributes.onemptied;
-		this.__slots.onemptied.setData(this128 == null ? this.__tink_defaults168.onemptied : this128);
-		var this129 = attributes.onended;
-		this.__slots.onended.setData(this129 == null ? this.__tink_defaults168.onended : this129);
-		var this130 = attributes.onerror;
-		this.__slots.onerror.setData(this130 == null ? this.__tink_defaults168.onerror : this130);
-		var this131 = attributes.onfocus;
-		this.__slots.onfocus.setData(this131 == null ? this.__tink_defaults168.onfocus : this131);
-		var this132 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this132 == null ? this.__tink_defaults168.onfullscreenchange : this132);
-		var this133 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this133 == null ? this.__tink_defaults168.onfullscreenerror : this133);
-		var this134 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this134 == null ? this.__tink_defaults168.ongotpointercapture : this134);
-		var this135 = attributes.oninput;
-		this.__slots.oninput.setData(this135 == null ? this.__tink_defaults168.oninput : this135);
-		var this136 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this136 == null ? this.__tink_defaults168.oninvalid : this136);
-		var this137 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this137 == null ? this.__tink_defaults168.onkeydown : this137);
-		var this138 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this138 == null ? this.__tink_defaults168.onkeypress : this138);
-		var this139 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this139 == null ? this.__tink_defaults168.onkeyup : this139);
-		var this140 = attributes.onload;
-		this.__slots.onload.setData(this140 == null ? this.__tink_defaults168.onload : this140);
-		var this141 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this141 == null ? this.__tink_defaults168.onloadeddata : this141);
-		var this142 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this142 == null ? this.__tink_defaults168.onloadedmetadata : this142);
-		var this143 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this143 == null ? this.__tink_defaults168.onloadstart : this143);
-		var this144 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this144 == null ? this.__tink_defaults168.onlostpointercapture : this144);
-		var this145 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this145 == null ? this.__tink_defaults168.onmousedown : this145);
-		var this146 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this146 == null ? this.__tink_defaults168.onmouseenter : this146);
-		var this147 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this147 == null ? this.__tink_defaults168.onmouseleave : this147);
-		var this148 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this148 == null ? this.__tink_defaults168.onmousemove : this148);
-		var this149 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this149 == null ? this.__tink_defaults168.onmouseout : this149);
-		var this150 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this150 == null ? this.__tink_defaults168.onmouseover : this150);
-		var this151 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this151 == null ? this.__tink_defaults168.onmouseup : this151);
-		var this152 = attributes.onpaste;
-		this.__slots.onpaste.setData(this152 == null ? this.__tink_defaults168.onpaste : this152);
-		var this153 = attributes.onpause;
-		this.__slots.onpause.setData(this153 == null ? this.__tink_defaults168.onpause : this153);
-		var this154 = attributes.onplay;
-		this.__slots.onplay.setData(this154 == null ? this.__tink_defaults168.onplay : this154);
-		var this155 = attributes.onplaying;
-		this.__slots.onplaying.setData(this155 == null ? this.__tink_defaults168.onplaying : this155);
-		var this156 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this156 == null ? this.__tink_defaults168.onpointercancel : this156);
-		var this157 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this157 == null ? this.__tink_defaults168.onpointerdown : this157);
-		var this158 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this158 == null ? this.__tink_defaults168.onpointerenter : this158);
-		var this159 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this159 == null ? this.__tink_defaults168.onpointerleave : this159);
-		var this160 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this160 == null ? this.__tink_defaults168.onpointerlockchange : this160);
-		var this161 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this161 == null ? this.__tink_defaults168.onpointerlockerror : this161);
-		var this162 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this162 == null ? this.__tink_defaults168.onpointermove : this162);
-		var this163 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this163 == null ? this.__tink_defaults168.onpointerout : this163);
-		var this164 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this164 == null ? this.__tink_defaults168.onpointerover : this164);
-		var this165 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this165 == null ? this.__tink_defaults168.onpointerup : this165);
-		var this166 = attributes.onprogress;
-		this.__slots.onprogress.setData(this166 == null ? this.__tink_defaults168.onprogress : this166);
-		var this167 = attributes.onratechange;
-		this.__slots.onratechange.setData(this167 == null ? this.__tink_defaults168.onratechange : this167);
-		var this168 = attributes.onreset;
-		this.__slots.onreset.setData(this168 == null ? this.__tink_defaults168.onreset : this168);
-		var this169 = attributes.onresize;
-		this.__slots.onresize.setData(this169 == null ? this.__tink_defaults168.onresize : this169);
-		var this170 = attributes.onscroll;
-		this.__slots.onscroll.setData(this170 == null ? this.__tink_defaults168.onscroll : this170);
-		var this171 = attributes.onseeked;
-		this.__slots.onseeked.setData(this171 == null ? this.__tink_defaults168.onseeked : this171);
-		var this172 = attributes.onseeking;
-		this.__slots.onseeking.setData(this172 == null ? this.__tink_defaults168.onseeking : this172);
-		var this173 = attributes.onselect;
-		this.__slots.onselect.setData(this173 == null ? this.__tink_defaults168.onselect : this173);
-		var this174 = attributes.onshow;
-		this.__slots.onshow.setData(this174 == null ? this.__tink_defaults168.onshow : this174);
-		var this175 = attributes.onstalled;
-		this.__slots.onstalled.setData(this175 == null ? this.__tink_defaults168.onstalled : this175);
-		var this176 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this176 == null ? this.__tink_defaults168.onsubmit : this176);
-		var this177 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this177 == null ? this.__tink_defaults168.onsuspend : this177);
-		var this178 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this178 == null ? this.__tink_defaults168.ontimeupdate : this178);
-		var this179 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this179 == null ? this.__tink_defaults168.ontouchcancel : this179);
-		var this180 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this180 == null ? this.__tink_defaults168.ontouchend : this180);
-		var this181 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this181 == null ? this.__tink_defaults168.ontouchmove : this181);
-		var this182 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this182 == null ? this.__tink_defaults168.ontouchstart : this182);
-		var this183 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this183 == null ? this.__tink_defaults168.onvolumechange : this183);
-		var this184 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this184 == null ? this.__tink_defaults168.onwaiting : this184);
-		var this185 = attributes.onwheel;
-		this.__slots.onwheel.setData(this185 == null ? this.__tink_defaults168.onwheel : this185);
-		var this186 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this186 == null ? this.__tink_defaults168.spellcheck : this186);
-		var this187 = attributes.style;
-		this.__slots.style.setData(this187 == null ? this.__tink_defaults168.style : this187);
-		var this188 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this188 == null ? this.__tink_defaults168.tabIndex : this188);
-		var this189 = attributes.title;
-		this.__slots.title.setData(this189 == null ? this.__tink_defaults168.title : this189);
+		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults3.accessKey : this1);
+		var this2 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults3.accessKeyLabel : this2);
+		var this3 = attributes.attributes;
+		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults3.attributes : this3);
+		var this4 = attributes.className;
+		this.__slots.className.setData(this4 == null ? this.__tink_defaults3.className : this4);
+		var this5 = attributes.dir;
+		this.__slots.dir.setData(this5 == null ? this.__tink_defaults3.dir : this5);
+		var this6 = attributes.draggable;
+		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults3.draggable : this6);
+		var this7 = attributes.hidden;
+		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults3.hidden : this7);
+		var this8 = attributes.id;
+		this.__slots.id.setData(this8 == null ? this.__tink_defaults3.id : this8);
+		var this9 = attributes.key;
+		this.__slots.key.setData(this9 == null ? this.__tink_defaults3.key : this9);
+		var this10 = attributes.lang;
+		this.__slots.lang.setData(this10 == null ? this.__tink_defaults3.lang : this10);
+		var this11 = attributes.onabort;
+		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults3.onabort : this11);
+		var this12 = attributes.onblur;
+		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults3.onblur : this12);
+		var this13 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults3.oncanplay : this13);
+		var this14 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults3.oncanplaythrough : this14);
+		var this15 = attributes.onchange;
+		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults3.onchange : this15);
+		var this16 = attributes.onclick;
+		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults3.onclick : this16);
+		var this17 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults3.oncontextmenu : this17);
+		var this18 = attributes.oncopy;
+		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults3.oncopy : this18);
+		var this19 = attributes.oncut;
+		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults3.oncut : this19);
+		var this20 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults3.ondblclick : this20);
+		var this21 = attributes.ondrag;
+		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults3.ondrag : this21);
+		var this22 = attributes.ondragend;
+		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults3.ondragend : this22);
+		var this23 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults3.ondragenter : this23);
+		var this24 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults3.ondragleave : this24);
+		var this25 = attributes.ondragover;
+		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults3.ondragover : this25);
+		var this26 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults3.ondragstart : this26);
+		var this27 = attributes.ondrop;
+		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults3.ondrop : this27);
+		var this28 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults3.ondurationchange : this28);
+		var this29 = attributes.onemptied;
+		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults3.onemptied : this29);
+		var this30 = attributes.onended;
+		this.__slots.onended.setData(this30 == null ? this.__tink_defaults3.onended : this30);
+		var this31 = attributes.onerror;
+		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults3.onerror : this31);
+		var this32 = attributes.onfocus;
+		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults3.onfocus : this32);
+		var this33 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults3.onfullscreenchange : this33);
+		var this34 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults3.onfullscreenerror : this34);
+		var this35 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults3.ongotpointercapture : this35);
+		var this36 = attributes.oninput;
+		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults3.oninput : this36);
+		var this37 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults3.oninvalid : this37);
+		var this38 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults3.onkeydown : this38);
+		var this39 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults3.onkeypress : this39);
+		var this40 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults3.onkeyup : this40);
+		var this41 = attributes.onload;
+		this.__slots.onload.setData(this41 == null ? this.__tink_defaults3.onload : this41);
+		var this42 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults3.onloadeddata : this42);
+		var this43 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults3.onloadedmetadata : this43);
+		var this44 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults3.onloadstart : this44);
+		var this45 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults3.onlostpointercapture : this45);
+		var this46 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults3.onmousedown : this46);
+		var this47 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults3.onmouseenter : this47);
+		var this48 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults3.onmouseleave : this48);
+		var this49 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults3.onmousemove : this49);
+		var this50 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults3.onmouseout : this50);
+		var this51 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults3.onmouseover : this51);
+		var this52 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults3.onmouseup : this52);
+		var this53 = attributes.onpaste;
+		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults3.onpaste : this53);
+		var this54 = attributes.onpause;
+		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults3.onpause : this54);
+		var this55 = attributes.onplay;
+		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults3.onplay : this55);
+		var this56 = attributes.onplaying;
+		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults3.onplaying : this56);
+		var this57 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults3.onpointercancel : this57);
+		var this58 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults3.onpointerdown : this58);
+		var this59 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults3.onpointerenter : this59);
+		var this60 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults3.onpointerleave : this60);
+		var this61 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults3.onpointerlockchange : this61);
+		var this62 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults3.onpointerlockerror : this62);
+		var this63 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults3.onpointermove : this63);
+		var this64 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults3.onpointerout : this64);
+		var this65 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults3.onpointerover : this65);
+		var this66 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults3.onpointerup : this66);
+		var this67 = attributes.onprogress;
+		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults3.onprogress : this67);
+		var this68 = attributes.onratechange;
+		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults3.onratechange : this68);
+		var this69 = attributes.onreset;
+		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults3.onreset : this69);
+		var this70 = attributes.onresize;
+		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults3.onresize : this70);
+		var this71 = attributes.onscroll;
+		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults3.onscroll : this71);
+		var this72 = attributes.onseeked;
+		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults3.onseeked : this72);
+		var this73 = attributes.onseeking;
+		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults3.onseeking : this73);
+		var this74 = attributes.onselect;
+		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults3.onselect : this74);
+		var this75 = attributes.onshow;
+		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults3.onshow : this75);
+		var this76 = attributes.onstalled;
+		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults3.onstalled : this76);
+		var this77 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults3.onsubmit : this77);
+		var this78 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults3.onsuspend : this78);
+		var this79 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults3.ontimeupdate : this79);
+		var this80 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults3.ontouchcancel : this80);
+		var this81 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults3.ontouchend : this81);
+		var this82 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults3.ontouchmove : this82);
+		var this83 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults3.ontouchstart : this83);
+		var this84 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults3.onvolumechange : this84);
+		var this85 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults3.onwaiting : this85);
+		var this86 = attributes.onwheel;
+		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults3.onwheel : this86);
+		var this87 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults3.spellcheck : this87);
+		var this88 = attributes.style;
+		this.__slots.style.setData(this88 == null ? this.__tink_defaults3.style : this88);
+		var this89 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults3.tabIndex : this89);
+		var this90 = attributes.title;
+		this.__slots.title.setData(this90 == null ? this.__tink_defaults3.title : this90);
 	}
 	,get_name: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
@@ -33168,6 +34205,7 @@ js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
 mdc_Checkbox.checkboxIndex = 0;
 mdc_Checkbox.checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
 mdc_MDC.DEFAULT_RIPPLE = true;
+mdc_Radio.radioIndex = 0;
 mdc_Tab.tabIdIndex = 0;
 mdc_TextField.textFieldIdIndex = 0;
 tink_core__$Callback_Callback_$Impl_$.depth = 0;

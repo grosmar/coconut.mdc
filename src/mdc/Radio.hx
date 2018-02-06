@@ -2,49 +2,56 @@ package mdc;
 
 import mdc.MDC.MDCRadio;
 import vdom.Attr;
-import vdom.VNode;
 import vdom.VDom.*;
 import coconut.ui.View;
-//import coconut.Ui.hxx;
 
-class Radio extends View<RadioAttr>
+class Radio extends View
 {
-
+    var attributes:Attr;
+    @:attr var label:String = null;
+    @:attr var disabled:Bool = null;
+    @:attr var checked:Bool = null;
+    @:attr var value:String = null;
+    @:attr var name:String = null;
+    @:attr var onchecked:Bool->Void = null;
+    
     static var radioIndex = 0;
     var radioId:UInt = radioIndex++;
     var mdcRadio:MDCRadio;
 
-    function render(attr:RadioAttr)
+    function render()
     {
-        var id = attr.id == null ? radioId : attr.id;
+        var id = id == null ? "r_" + radioId : id;
         return
-            if ( attr.label != null )
-                @hxx '<div class="mdc-form-field" {...attr}>
+            if ( label != null )
+                @hxx '<div class="mdc-form-field" {...this}>
                           <div class="mdc-radio">
                               <input type="radio"
-                                   onchange=${attr.onchecked(event.target.checked)}
-                                   value=${attr.value}
-                                   checked=${attr.checked}
+                                   onchange=${if (onchecked != null) onchecked(event.target.checked)}
+                                   value=${value}
+                                   checked=${checked}
                                    class="mdc-radio__native-control"
                                    id=${"r_" + id}
-                                   name=${attr.name}
+                                   name=${name}
                               />
                               <div class="mdc-radio__background">
                                 <div class="mdc-radio__outer-circle"></div>
                                 <div class="mdc-radio__inner-circle"></div>
                               </div>
                           </div>
-                          <label htmlFor=${"r_" + id}>${attr.label}</label>
+                          <if ${label != null}>
+                            <vdom.VDom.label htmlFor=${id}>${this.label}</vdom.VDom.label>
+                          </if>
                     </div>';
             else
                 @hxx '<div class="mdc-radio">
                           <input type="radio"
-                               onchange=${attr.onchecked(event.target.checked)}
-                               value=${attr.value}
-                               checked=${attr.checked}
+                               onchange=${if (onchecked != null) onchecked(event.target.checked)}
+                               value=${value}
+                               checked=${checked}
                                class="mdc-radio__native-control"
-                               id=${"r_" + attr.id}
-                               name=${attr.name}
+                               id=${"r_" + id}
+                               name=${name}
                           />
                           <div class="mdc-radio__background">
                             <div class="mdc-radio__outer-circle"></div>
@@ -66,12 +73,3 @@ class Radio extends View<RadioAttr>
     }
 }
 
-typedef RadioAttr = {>Attr,
-    @:optional var label(default,never):String;
-    @:optional var disabled(default,never):Bool;
-    @:optional var checked(default,never):Bool;
-    @:optional var value(default,never):String;
-    @:optional var name(default,never):String;
-    @:optional function onchecked(checked:Bool):Void;
-
-}

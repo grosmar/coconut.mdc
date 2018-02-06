@@ -191,6 +191,13 @@ class TestView extends View
         </div>
     </div>
 
+    <h1>Radio</h1>
+    <div>
+        <Radio label="Simple" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        <Radio label="Checked" checked />
+        <Radio label="Disabled" disabled />
+    </div>
+
     <h1>TextField</h1>
     <div>
         <TextField label="Text input" />

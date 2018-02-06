@@ -23,6 +23,8 @@ Check test/Playground.hx for usage examples.
 
 &#10003; List
 
+&#10003; Radio
+
 &#10003; Ripple
 
 &#10003; TabBar

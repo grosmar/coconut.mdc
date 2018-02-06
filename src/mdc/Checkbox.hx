@@ -8,9 +8,16 @@ import coconut.ui.View;
 
 class Checkbox extends View
 {
+    var attributes:Attr;
+    @:attr var label:String = null;
+    @:attr var disabled:Bool = null;
+    @:attr var checked:Bool = null;
+    @:attr var indeterminate:Bool = null;
+    @:attr var value:String = null;
+    @:attr var onchecked:Bool->Void = null;
+
     static var checkboxIndex = 0;
     var checkboxId:UInt = checkboxIndex++;
-    var attributes:CheckboxAttr;
     var mdcCheckbox:MDCCheckbox;
 
     static inline var checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
@@ -18,6 +25,11 @@ class Checkbox extends View
     //TODO: fix svg support
     function render()
     {
+        var checked = this.checked;
+        var indeterminate = this.indeterminate;
+        var disabled = this.disabled;
+        var value = this.value;
+
         var id:String = this.id == null ? "ch_" + checkboxId : this.id;
         return
             if ( label != null )
@@ -57,10 +69,6 @@ class Checkbox extends View
 
     }
 
-    static function svg(?attr:SvgAttr, ?children:Children):VNode return h('svg', attr, children);
-
-    static function path(?attr:PathAttr, ?children:Children):VNode return h('path', attr, children);
-
     override function afterInit(elem)
     {
         this.mdcCheckbox = new MDCCheckbox(elem);
@@ -85,45 +93,4 @@ class Checkbox extends View
         if ( this.mdcCheckbox != null )
             this.mdcCheckbox.destroy();
     }
-}
-
-typedef CheckboxAttr = {>Attr,
-    @:optional var label(default,never):String;
-    @:optional var disabled(default,never):Bool;
-    @:optional var checked(default,never):Bool;
-    @:optional var indeterminate(default,never):Bool;
-    @:optional var value(default,never):String;
-    @:optional function onchecked(checked:Bool):Void;
-}
-
-typedef SvgAttr = {>Attr,
-    @:optional var xmlns:String;
-    @:optional var externalResourcesRequired:Bool;
-    @:optional var version:Float;
-    @:optional var baseProfile:SvgBaseProfile;
-    @:optional var width:Float;
-    @:optional var height:Float;
-    @:optional var preserveAspectRatio:String;
-    @:optional var contentScriptType:String;
-    @:optional var contentStyleType:String;
-    @:optional var viewBox:String;
-}
-
-typedef PathAttr = {>Attr,
-    @:optional var transform:String;
-    @:optional var externalResourcesRequired:Bool;
-    @:optional var d:String;
-    @:optional var pathLength:Float;
-    @:optional var fillOpacity:Float;
-
-    @:optional var fill:String;
-    @:optional var stroke:String;
-}
-
-@:enum abstract SvgBaseProfile(String)
-{
-    var None = "none";
-    var Full = "full";
-    var Basic = "basic";
-    var Tiny = "tiny";
 }
