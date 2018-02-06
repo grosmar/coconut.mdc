@@ -24,12 +24,10 @@ class Radio extends View
         var id = id == null ? "r_" + radioId : id;
         return
             if ( label != null )
-                @hxx '<div class="mdc-form-field" {...this}>
+                @hxx '<div class=${className.add(["mdc-form-field" => true])} {...this}>
                           <div class="mdc-radio">
                               <input type="radio"
                                    onchange=${if (onchecked != null) onchecked(event.target.checked)}
-                                   value=${value}
-                                   checked=${checked}
                                    class="mdc-radio__native-control"
                                    id=${"r_" + id}
                                    name=${name}
@@ -39,16 +37,12 @@ class Radio extends View
                                 <div class="mdc-radio__inner-circle"></div>
                               </div>
                           </div>
-                          <if ${label != null}>
-                            <vdom.VDom.label htmlFor=${id}>${this.label}</vdom.VDom.label>
-                          </if>
+                          <vdom.VDom.label htmlFor=${id}>${this.label}</vdom.VDom.label>
                     </div>';
             else
                 @hxx '<div class="mdc-radio">
                           <input type="radio"
                                onchange=${if (onchecked != null) onchecked(event.target.checked)}
-                               value=${value}
-                               checked=${checked}
                                class="mdc-radio__native-control"
                                id=${"r_" + id}
                                name=${name}
@@ -64,6 +58,19 @@ class Radio extends View
     override function afterInit(elem)
     {
         this.mdcRadio = new MDCRadio(elem);
+        setRadioProperties();
+    }
+
+    override function afterPatching(elem)
+    {
+        setRadioProperties();
+    }
+
+    function setRadioProperties()
+    {
+        mdcRadio.checked = checked;
+        mdcRadio.disabled = disabled;
+        mdcRadio.value = value;
     }
 
     override function beforeDestroy(elem)

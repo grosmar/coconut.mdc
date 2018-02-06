@@ -9,7 +9,19 @@ import coconut.ui.View;
 
 class TextField extends View
 {
-    var attributes:TextFieldAttr;
+    var attributes:InputAttr;
+    @:attr var label:String = null;
+    //@:attr var value:String = null;
+    //@:attr var disabled:Bool = null;
+    @:attr var invalid:Bool = null;
+    @:attr var icon:String = null;
+    @:attr var iconPos:TextFieldIconPos = null;
+    @:attr var box:Bool = null;
+    @:attr var fullWidth:Bool = null;
+    @:attr var textArea:Bool = null;
+    //@:attr var type:String = null;
+    @:attr var onedit:String->Void = null;
+    //@:attr var pattern:String = null;
 
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
@@ -66,21 +78,6 @@ class TextField extends View
     }
 }
 
-typedef TextFieldAttr = {>InputAttr,
-    @:optional var label(default,never):String;
-    @:optional var value(default,never):String;
-    @:optional var disabled(default,never):Bool;
-    @:optional var invalid(default,never):Bool;
-    @:optional var icon(default,never):String;
-    @:optional var iconPos(default,never):TextFieldIconPos;
-    @:optional var box(default,never):Bool;
-    @:optional var fullWidth(default,never):Bool;
-    @:optional var textArea(default,never):Bool;
-    @:optional var type(default,never):String;
-    @:optional function onedit(value:String):Void;
-    @:optional var pattern(default,never):String;
-}
-
 @:enum abstract TextFieldType(String) from String to String {
     var Text = "";
     var Icon = "mdc-tab-bar--icon-tab-bar";
@@ -94,7 +91,10 @@ typedef TextFieldAttr = {>InputAttr,
 
 class TextFieldHelperText extends View
 {
-    var attributes:TextFieldHelperTextAttr;
+    var attributes:Attr;
+    @:attr var label:String;
+    @:attr var persistent:Bool = null;
+    @:attr var validation:Bool = null;
 
     function render()
     '
@@ -104,10 +104,4 @@ class TextFieldHelperText extends View
             ${label}
         </p>
     ';
-}
-
-typedef TextFieldHelperTextAttr = {>Attr,
-    var label(default, never):String;
-    @:optional var persistent(default, never):Bool;
-    @:optional var validation(default, never):Bool;
 }

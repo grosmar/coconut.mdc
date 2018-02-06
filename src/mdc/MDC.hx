@@ -119,7 +119,12 @@ extern class MDCCheckbox extends MDCComponent
 }
 
 @:native("window.mdc.radio.MDCRadio")
-extern class MDCRadio extends MDCComponent { }
+extern class MDCRadio extends MDCComponent
+{
+	var checked:Bool;
+	var disabled:Bool;
+	var value:String;
+}
 
 @:native("window.mdc.tabs.MDCTabBar")
 extern class MDCTabBar extends MDCComponent
