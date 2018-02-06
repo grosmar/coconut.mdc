@@ -15,6 +15,8 @@ import mdc.List.ListGraphicImage;
 import mdc.List.ListMeta;
 import mdc.List.ListDivider;
 import mdc.TabBar.*;
+import mdc.TabBar.Tab;
+import mdc.Icon;
 
 class Playground
 {
@@ -64,25 +66,25 @@ class TestView extends View
     <div class="flex-container">
         <div class="float">
             <TabBar>
-                <tab active>Tab1</tab>
-                <tab>Tab2</tab>
-                <tab>Tab3</tab>
+                <Tab active>Tab1</Tab>
+                <Tab>Tab2</Tab>
+                <Tab>Tab3</Tab>
             </TabBar>
         </div>
 
         <div class="float" >
-            <TabBar type=${mdc.TabBar.TabBarMode.Icon}>
-                <tab icon="camera" active />
-                <tab icon="colorize" />
-                <tab icon="edit" />
+            <TabBar mode=${mdc.TabBar.TabBarMode.Icon}>
+                <Tab icon="camera" active />
+                <Tab icon="colorize" />
+                <Tab icon="edit" />
             </TabBar>
         </div>
 
         <div class="float">
-            <TabBar type=${mdc.TabBar.TabBarMode.IconWithText}>
-                <tab icon="camera" active>Tab1</tab>
-                <tab icon="colorize">Tab2</tab>
-                <tab icon="edit">Tab3</tab>
+            <TabBar mode=${mdc.TabBar.TabBarMode.IconWithText}>
+                <Tab icon="camera" active>Tab1</Tab>
+                <Tab icon="colorize">Tab2</Tab>
+                <Tab icon="edit">Tab3</Tab>
             </TabBar>
         </div>
     </div>
@@ -124,15 +126,15 @@ class TestView extends View
             <h2>Interactive list</h2>
             <List>
                 <ListItem>
-                    <ListGraphic><Icon name=${mdc.Icon.IconName.Folder} /></ListGraphic>
+                    <ListGraphic><Icon name=${mdc.IconName.Folder} /></ListGraphic>
                     Link item with start icon 1
                 </ListItem>
                 <ListItem>
-                    <ListGraphic><Icon name=${mdc.Icon.IconName.Folder} /></ListGraphic>
+                    <ListGraphic><Icon name=${mdc.IconName.Folder} /></ListGraphic>
                     Link item with start icon 2
                 </ListItem>
                 <ListItem>
-                    <ListGraphic><Icon name=${mdc.Icon.IconName.Folder} /></ListGraphic>
+                    <ListGraphic><Icon name=${mdc.IconName.Folder} /></ListGraphic>
                     Link item with start icon 3
                 </ListItem>
             </List>
@@ -164,7 +166,7 @@ class TestView extends View
                         Item title 1
                         <ListTextSecondary>Secondary text 1</ListTextSecondary>
                     </ListText>
-                    <ListMeta><Icon name=${mdc.Icon.IconName.Info} /></ListMeta>
+                    <ListMeta><Icon name=${mdc.IconName.Info} /></ListMeta>
                 </ListItem>
                 <ListItem>
                     <ListGraphicImage src="https://randomuser.me/api/portraits/women/2.jpg" />
@@ -172,7 +174,7 @@ class TestView extends View
                         Item title 2
                         <ListTextSecondary>Secondary text 2</ListTextSecondary>
                     </ListText>
-                    <ListMeta><Icon name=${mdc.Icon.IconName.Info} /></ListMeta>
+                    <ListMeta><Icon name=${mdc.IconName.Info} /></ListMeta>
                 </ListItem>
                 <ListDivider inset />
                 <ListItem>
@@ -181,7 +183,7 @@ class TestView extends View
                         Item title 3
                         <ListTextSecondary>Secondary text 3</ListTextSecondary>
                     </ListText>
-                    <ListMeta><Icon name=${mdc.Icon.IconName.Info} /></ListMeta>
+                    <ListMeta><Icon name=${mdc.IconName.Info} /></ListMeta>
                 </ListItem>
             </List>
         </div>

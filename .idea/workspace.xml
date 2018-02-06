@@ -4,27 +4,8 @@
     <list default="true" id="14356a14-4eff-4d9a-9bbd-c041524f6617" name="Default" comment="refactored list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/bin/playground/index.js" afterPath="$PROJECT_DIR$/bin/playground/index.js" />
-      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.css" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.css" />
-      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.js" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.js" />
-      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.css" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.css" />
-      <change beforePath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.js" afterPath="$PROJECT_DIR$/bin/playground/mdc/material-components-web.min.js" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/coconut.data.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.data.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/coconut.ui.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.ui.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/coconut.vdom.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/coconut.vdom.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/js-virtual-dom.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/js-virtual-dom.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_anon.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_anon.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_core.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_core.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_csss.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_csss.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_hxx.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_hxx.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_lang.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_lang.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_macro.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_macro.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_parse.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_parse.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_priority.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_priority.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_pure.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_pure.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_slice.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_slice.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_state.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_state.hxml" />
-      <change beforePath="$PROJECT_DIR$/haxe_libraries/tink_syntaxhub.hxml" afterPath="$PROJECT_DIR$/haxe_libraries/tink_syntaxhub.hxml" />
-      <change beforePath="$PROJECT_DIR$/src/mdc/List.hx" afterPath="$PROJECT_DIR$/src/mdc/List.hx" />
+      <change beforePath="$PROJECT_DIR$/src/mdc/Icon.hx" afterPath="$PROJECT_DIR$/src/mdc/Icon.hx" />
+      <change beforePath="$PROJECT_DIR$/src/mdc/TabBar.hx" afterPath="$PROJECT_DIR$/src/mdc/TabBar.hx" />
       <change beforePath="$PROJECT_DIR$/test/Playground.hx" afterPath="$PROJECT_DIR$/test/Playground.hx" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -67,11 +48,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Playground.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/Playground.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4">
-              <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
+            <state relative-caret-position="220">
+              <caret line="67" column="16" lean-forward="false" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TabBar.hx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="655">
+              <caret line="119" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -110,18 +101,18 @@
       <file leaf-file-name="Icon.hx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mdc/Icon.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tink_hxx.hxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/haxe_libraries/tink_hxx.hxml">
+      <file leaf-file-name="IconName.hx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mdc/IconName.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="538">
+              <caret line="934" column="1" lean-forward="false" selection-start-line="934" selection-start-column="1" selection-end-line="934" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -138,15 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inputattr</find>
-      <find>inter</find>
-      <find>Inter</find>
-      <find>children</find>
-      <find>listitemb</find>
-      <find>${...</find>
-      <find>@:attribute</find>
-      <find>{...</find>
-      <find>&gt;{...</find>
       <find>listItem</find>
       <find>&lt;/listStartImage&gt;</find>
       <find>list</find>
@@ -162,19 +144,29 @@
       <find>attr</find>
       <find>data</find>
       <find>MaterialIcon</find>
-      <find>icon</find>
-      <find>tabbar</find>
       <find>tabbarmode</find>
       <find>iconnae</find>
       <find>start-</find>
       <find>graphic</find>
+      <find>icon</find>
+      <find>type</find>
+      <find>mdc.</find>
+      <find>mdc.ico</find>
+      <find>@:attribute</find>
+      <find>tabbar</find>
+      <find>&lt;/tab</find>
+      <find>tabicon</find>
+      <find>tabIdIndex</find>
+      <find>tabidi</find>
+      <find>&lt;tab</find>
     </findStrings>
     <replaceStrings>
-      <replace>@:attr</replace>
       <replace>&gt;${...</replace>
       <replace>/&gt;&lt;/ListGraphic&gt;</replace>
       <replace>ListDivider</replace>
       <replace>Icon</replace>
+      <replace>@:attr</replace>
+      <replace>&lt;/Tab</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -199,11 +191,12 @@
         <option value="$PROJECT_DIR$/src/mdc/LinearProgress.hx" />
         <option value="$PROJECT_DIR$/src/mdc/Checkbox.hx" />
         <option value="$PROJECT_DIR$/src/mdc/TextField.hx" />
-        <option value="$PROJECT_DIR$/src/mdc/TabBar.hx" />
         <option value="$PROJECT_DIR$/../js-virtual-dom/src/vdom/VDom.hx" />
-        <option value="$PROJECT_DIR$/src/mdc/Icon.hx" />
         <option value="$PROJECT_DIR$/src/mdc/List.hx" />
+        <option value="$PROJECT_DIR$/src/mdc/Icon.hx" />
+        <option value="$PROJECT_DIR$/src/mdc/IconName.hx" />
         <option value="$PROJECT_DIR$/test/Playground.hx" />
+        <option value="$PROJECT_DIR$/src/mdc/TabBar.hx" />
       </list>
     </option>
   </component>
@@ -255,13 +248,6 @@
               <item name="coconut.mdc" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="mdc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coconut.mdc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdc" type="462c0819:PsiDirectoryNode" />
-              <item name="Icon.hx" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="coconut.mdc" type="b2602c69:ProjectViewProjectNode" />
@@ -441,7 +427,7 @@
       <workItem from="1517573662169" duration="604000" />
       <workItem from="1517574279815" duration="47000" />
       <workItem from="1517574375306" duration="1689000" />
-      <workItem from="1517905134932" duration="6894000" />
+      <workItem from="1517905134932" duration="9091000" />
     </task>
     <task id="LOCAL-00001" summary="Merge remote-tracking branch 'remotes/origin/master' into gen3&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;haxe_libraries/coconut.ui.hxml&#10;#&#9;haxe_libraries/tink_anon.hxml&#10;#&#9;haxe_libraries/tink_core.hxml&#10;#&#9;haxe_libraries/tink_macro.hxml&#10;#&#9;src/mdc/Checkbox.hx&#10;#&#9;src/mdc/List.hx&#10;#&#9;src/mdc/TextField.hx">
       <created>1517574998767</created>
@@ -454,7 +440,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35402000" />
+    <option name="totallyTimeSpent" value="37599000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -506,13 +492,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bin/playground/mdc/material-components-web.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113967">
-          <caret line="5427" column="3" lean-forward="false" selection-start-line="5427" selection-start-column="3" selection-end-line="5427" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdc/MDC.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -823,22 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="114" column="12" lean-forward="false" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdc/Icon.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdc/List.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
@@ -847,10 +810,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdc/Icon.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdc/IconName.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="934" column="1" lean-forward="false" selection-start-line="934" selection-start-column="1" selection-end-line="934" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/Playground.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
+        <state relative-caret-position="220">
+          <caret line="67" column="16" lean-forward="false" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdc/TabBar.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="119" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
           <folding />
         </state>
       </provider>
