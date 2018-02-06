@@ -23,11 +23,13 @@ Check test/Playground.hx for usage examples.
 
 &#10003; List
 
-&#10003; Ripple (temporary solution)
+&#10003; Ripple
 
 &#10003; TabBar
 
 &#10003; TextField
+
+&#10003; Toolbar
 
 # Contribute
 Feel free to ask questions in github issues or send PRs for components

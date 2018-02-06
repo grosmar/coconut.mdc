@@ -59,7 +59,7 @@ class Radio extends View<RadioAttr>
         this.mdcRadio = new MDCRadio(elem);
     }
 
-    override function destroy()
+    override function beforeDestroy(elem)
     {
         if ( this.mdcRadio != null )
             this.mdcRadio.destroy();

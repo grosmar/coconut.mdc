@@ -80,7 +80,7 @@ class Checkbox extends View
         mdcCheckbox.value = value;
     }
 
-    override function destroy()
+    override function beforeDestroy(elem)
     {
         if ( this.mdcCheckbox != null )
             this.mdcCheckbox.destroy();

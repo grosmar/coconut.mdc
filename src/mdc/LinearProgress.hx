@@ -5,7 +5,13 @@ import vdom.Attr;
 import coconut.ui.View;
 class LinearProgress extends View
 {
-    var attributes:LinearProgressAttr;
+    var attributes:Attr;
+    @:attr var indeterminate:Bool = false;
+    @:attr var progress:Float = null;
+    @:attr var buffer:Float = null;
+    @:attr var reverse:Bool = null;
+    @:attr var open:Bool = false;
+
     var mdcLinearProgress:MDCLinearProgress;
 
     function render()
@@ -60,12 +66,4 @@ class LinearProgress extends View
             mdcLinearProgress.close();
         }
     }
-}
-
-typedef LinearProgressAttr = {>Attr,
-    @:optional var indeterminate(default,never):Bool;
-    @:optional var progress(default,never):Float;
-    @:optional var buffer(default,never):Float;
-    @:optional var reverse(default,never):Bool;
-    @:optional var open(default,never):Bool;
 }

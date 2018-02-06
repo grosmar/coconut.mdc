@@ -43,7 +43,7 @@ class Button extends View
         this.mdcRipple = new MDCRipple(elem);
     }
 
-    override function destroy()
+    override function beforeDestroy(elem)
     {
         if ( this.mdcRipple != null )
             this.mdcRipple.destroy();

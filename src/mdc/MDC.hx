@@ -6,10 +6,8 @@ class MDC
 {
 	public static inline var DEFAULT_RIPPLE = true;
 
-	static function __init__()
+	/*static function __init__()
 	{
-		// TODO: remove
-		// TODO: deeply check it's performance and if it's leaking!!!
 		var observer = new MutationObserver( function( mutations:Array<MutationRecord>, mo:MutationObserver)
 		{
 
@@ -23,10 +21,10 @@ class MDC
 						registerAll(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
 
 
-						//registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");
-						/*registerAll(node, "mdc-tab-bar", MDCTabBar, "MDCTabBar");
-						registerAll(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
-						registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");*/
+//						registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");
+//						registerAll(node, "mdc-tab-bar", MDCTabBar, "MDCTabBar");
+//						registerAll(node, "mdc-ripple-surface", MDCRipple, "MDCRipple");
+//						registerAll(node, "mdc-radio", MDCRadio, "MDCRadio");
 
 					}
 				}
@@ -95,7 +93,7 @@ class MDC
 		{
 			handler.destroy();
 		}
-	}
+	}*/
 }
 
 

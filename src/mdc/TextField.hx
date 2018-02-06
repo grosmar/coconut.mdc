@@ -59,7 +59,7 @@ class TextField extends View
         this.mdcTextField = new MDCTextField(elem);
     }
 
-    override function destroy()
+    override function beforeDestroy(elem)
     {
         if ( this.mdcTextField != null )
             this.mdcTextField.destroy();

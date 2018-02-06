@@ -16,6 +16,8 @@ import mdc.List.ListMeta;
 import mdc.List.ListDivider;
 import mdc.TabBar.*;
 import mdc.TabBar.Tab;
+import mdc.Toolbar;
+import mdc.Toolbar.*;
 import mdc.Icon;
 
 class Playground
@@ -204,6 +206,23 @@ class TestView extends View
         <br/>
         <TextField label="Text input fullWidth" fullWidth />
         <TextField label="TextArea fullWidth" textArea fullWidth />
+    </div>
+
+    <h1>Toolbar</h1>
+    <div>
+        <Toolbar>
+            <ToolbarRow>
+                <ToolbarSection align=${ToolbarSectionAlign.Start}>
+                    <ToolbarMenuIcon name=${mdc.IconName.Menu} />
+                </ToolbarSection>
+                <ToolbarSection>
+                    <ToolbarTitle>Toolbar title</ToolbarTitle>
+                </ToolbarSection>
+                <ToolbarSection align=${ToolbarSectionAlign.End}>
+                    <ToolbarIcon name=${mdc.IconName.Person} />
+                </ToolbarSection>
+            </ToolbarRow>
+        </Toolbar>
     </div>
 
 </div>

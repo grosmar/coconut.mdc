@@ -75,7 +75,7 @@ class TabBar extends View
         ontabchange(mdcTabBar.activeTabIndex);
     }
 
-    override function destroy()
+    override function beforeDestroy(elem)
     {
         if ( this.mdcTabBar != null )
         {
