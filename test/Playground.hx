@@ -198,6 +198,25 @@ class TestView extends View
         <Radio label="Disabled" disabled />
     </div>
 
+    <h1>Switch</h1>
+    <div>
+        <div class="float">
+            <Switch label="Label" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        </div>
+        <div class="float">
+            <Switch label="Checked" checked value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        </div>
+        <div class="float">
+            <Switch label="Disabled" disabled value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        </div>
+        <div class="float">
+            <Switch label="Checked&Disabled" checked disabled value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        </div>
+        <div class="float">
+            <Switch value="nolabel" onchecked=${checked => {trace("checked:", checked);}} />
+        </div>
+    </div>
+
     <h1>TextField</h1>
     <div>
         <TextField label="Text input" />

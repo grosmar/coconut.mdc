@@ -623,7 +623,7 @@ coconut_ui_View.prototype = $extend(coconut_vdom_Renderable.prototype,{
 });
 var TestView = function(data) {
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Playground.hx", lineNumber : 36, className : "TestView", methodName : "new"});
-	this.__tink_defaults1130 = { };
+	this.__tink_defaults51 = { };
 	this.__slots = { };
 };
 $hxClasses["TestView"] = TestView;
@@ -632,7 +632,7 @@ TestView.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new TestView(attributes);
 	}
-	inst.__tink_init1131(attributes);
+	inst.__tink_init52(attributes);
 	return inst;
 };
 TestView.__super__ = coconut_ui_View;
@@ -1170,109 +1170,184 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __ret131 = { };
 		__r1.push(vdom_VDom.h("div",__ret131,__r74));
 		var __r75 = [];
-		__r75.push("TextField");
+		__r75.push("Switch");
 		var __ret132 = { };
 		__r1.push(vdom_VDom.h("h1",__ret132,__r75));
 		var __r76 = [];
-		var __ret133 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input")};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret133));
-		var __ret134 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Boxed input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret134));
-		var __ret135 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Password input"), type : tink_state__$Observable_Observable_$Impl_$["const"]("password")};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret135));
-		var __ret136 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("list")};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret136));
-		var __ret137 = { };
-		__r76.push(vdom_VDom.h("br",__ret137));
-		var __ret138 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with helper")};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret138));
-		var __ret139 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Helper for above")};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret139));
-		var __ret140 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with validation"), invalid : tink_state__$Observable_Observable_$Impl_$["const"](true), required : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret140));
-		var __ret141 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Error message"), validation : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret141));
-		var __ret142 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret142));
-		var __ret143 = { };
-		__r76.push(vdom_VDom.h("br",__ret143));
-		var __ret144 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input fullWidth"), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret144));
-		var __ret145 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea fullWidth"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r76.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret145));
-		var __ret146 = { };
-		__r1.push(vdom_VDom.h("div",__ret146,__r76));
+		var __ret133 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
 		var __r77 = [];
-		__r77.push("Toolbar");
-		var __ret147 = { };
-		__r1.push(vdom_VDom.h("h1",__ret147,__r77));
-		var __r78 = [];
+		var __ret134 = tink_state__$Observable_Observable_$Impl_$["const"]("Label");
+		var __ret135 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
 		var this153 = { f : function() {
-			var __r79 = [];
-			var this154 = { f : function() {
-				var __r80 = [];
-				var this155 = { f : function() {
+			return function(checked2) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 204, className : "TestView", methodName : "render", customParams : [checked2]});
+				return;
+			};
+		}};
+		var __ret136 = { label : __ret134, value : __ret135, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this153)};
+		__r77.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret136));
+		__r76.push(vdom_VDom.h("div",__ret133,__r77));
+		var __ret137 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r78 = [];
+		var __ret138 = tink_state__$Observable_Observable_$Impl_$["const"]("Checked");
+		var __ret139 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret140 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this154 = { f : function() {
+			return function(checked3) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 207, className : "TestView", methodName : "render", customParams : [checked3]});
+				return;
+			};
+		}};
+		var __ret141 = { label : __ret138, checked : __ret139, value : __ret140, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this154)};
+		__r78.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret141));
+		__r76.push(vdom_VDom.h("div",__ret137,__r78));
+		var __ret142 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r79 = [];
+		var __ret143 = tink_state__$Observable_Observable_$Impl_$["const"]("Disabled");
+		var __ret144 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret145 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this155 = { f : function() {
+			return function(checked4) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 210, className : "TestView", methodName : "render", customParams : [checked4]});
+				return;
+			};
+		}};
+		var __ret146 = { label : __ret143, disabled : __ret144, value : __ret145, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this155)};
+		__r79.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret146));
+		__r76.push(vdom_VDom.h("div",__ret142,__r79));
+		var __ret147 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r80 = [];
+		var __ret148 = tink_state__$Observable_Observable_$Impl_$["const"]("Checked&Disabled");
+		var __ret149 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret150 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret151 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this156 = { f : function() {
+			return function(checked5) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 213, className : "TestView", methodName : "render", customParams : [checked5]});
+				return;
+			};
+		}};
+		var __ret152 = { label : __ret148, checked : __ret149, disabled : __ret150, value : __ret151, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this156)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret152));
+		__r76.push(vdom_VDom.h("div",__ret147,__r80));
+		var __ret153 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __r81 = [];
+		var __ret154 = tink_state__$Observable_Observable_$Impl_$["const"]("nolabel");
+		var this157 = { f : function() {
+			return function(checked6) {
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 216, className : "TestView", methodName : "render", customParams : [checked6]});
+				return;
+			};
+		}};
+		var __ret155 = { value : __ret154, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this157)};
+		__r81.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret155));
+		__r76.push(vdom_VDom.h("div",__ret153,__r81));
+		var __ret156 = { };
+		__r1.push(vdom_VDom.h("div",__ret156,__r76));
+		var __r82 = [];
+		__r82.push("TextField");
+		var __ret157 = { };
+		__r1.push(vdom_VDom.h("h1",__ret157,__r82));
+		var __r83 = [];
+		var __ret158 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret158));
+		var __ret159 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Boxed input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret159));
+		var __ret160 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Password input"), type : tink_state__$Observable_Observable_$Impl_$["const"]("password")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret160));
+		var __ret161 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("list")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret161));
+		var __ret162 = { };
+		__r83.push(vdom_VDom.h("br",__ret162));
+		var __ret163 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with helper")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret163));
+		var __ret164 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Helper for above")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret164));
+		var __ret165 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with validation"), invalid : tink_state__$Observable_Observable_$Impl_$["const"](true), required : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret165));
+		var __ret166 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Error message"), validation : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret166));
+		var __ret167 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret167));
+		var __ret168 = { };
+		__r83.push(vdom_VDom.h("br",__ret168));
+		var __ret169 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input fullWidth"), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret169));
+		var __ret170 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea fullWidth"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret170));
+		var __ret171 = { };
+		__r1.push(vdom_VDom.h("div",__ret171,__r83));
+		var __r84 = [];
+		__r84.push("Toolbar");
+		var __ret172 = { };
+		__r1.push(vdom_VDom.h("h1",__ret172,__r84));
+		var __r85 = [];
+		var this158 = { f : function() {
+			var __r86 = [];
+			var this159 = { f : function() {
+				var __r87 = [];
+				var this160 = { f : function() {
 					return "mdc-toolbar__section--align-start";
 				}};
-				var __ret148 = tink_state__$Observable_Observable_$Impl_$.auto(this155);
-				var this156 = { f : function() {
-					var __r81 = [];
-					var this157 = { f : function() {
+				var __ret173 = tink_state__$Observable_Observable_$Impl_$.auto(this160);
+				var this161 = { f : function() {
+					var __r88 = [];
+					var this162 = { f : function() {
 						return "menu";
 					}};
-					var __ret149 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this157)};
-					__r81.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret149));
-					return __r81;
+					var __ret174 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this162)};
+					__r88.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret174));
+					return __r88;
 				}};
-				var __ret150 = { align : __ret148, children : tink_state__$Observable_Observable_$Impl_$.auto(this156)};
-				__r80.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret150));
-				var this158 = { f : function() {
-					var __r82 = [];
-					var this159 = { f : function() {
-						var __r83 = [];
-						__r83.push("Toolbar title");
-						return __r83;
+				var __ret175 = { align : __ret173, children : tink_state__$Observable_Observable_$Impl_$.auto(this161)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret175));
+				var this163 = { f : function() {
+					var __r89 = [];
+					var this164 = { f : function() {
+						var __r90 = [];
+						__r90.push("Toolbar title");
+						return __r90;
 					}};
-					var __ret151 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this159)};
-					__r82.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret151));
-					return __r82;
+					var __ret176 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this164)};
+					__r89.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret176));
+					return __r89;
 				}};
-				var __ret152 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this158)};
-				__r80.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret152));
-				var this160 = { f : function() {
+				var __ret177 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this163)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret177));
+				var this165 = { f : function() {
 					return "mdc-toolbar__section--align-end";
 				}};
-				var __ret153 = tink_state__$Observable_Observable_$Impl_$.auto(this160);
-				var this161 = { f : function() {
-					var __r84 = [];
-					var this162 = { f : function() {
+				var __ret178 = tink_state__$Observable_Observable_$Impl_$.auto(this165);
+				var this166 = { f : function() {
+					var __r91 = [];
+					var this167 = { f : function() {
 						return "person";
 					}};
-					var __ret154 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this162)};
-					__r84.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret154));
-					return __r84;
+					var __ret179 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this167)};
+					__r91.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret179));
+					return __r91;
 				}};
-				var __ret155 = { align : __ret153, children : tink_state__$Observable_Observable_$Impl_$.auto(this161)};
-				__r80.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret155));
-				return __r80;
+				var __ret180 = { align : __ret178, children : tink_state__$Observable_Observable_$Impl_$.auto(this166)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret180));
+				return __r87;
 			}};
-			var __ret156 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this154)};
-			__r79.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret156));
-			return __r79;
+			var __ret181 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this159)};
+			__r86.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret181));
+			return __r86;
 		}};
-		var __ret157 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this153)};
-		__r78.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret157));
-		var __ret158 = { };
-		__r1.push(vdom_VDom.h("div",__ret158,__r78));
+		var __ret182 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this158)};
+		__r85.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret182));
+		var __ret183 = { };
+		__r1.push(vdom_VDom.h("div",__ret183,__r85));
 		__r.push(vdom_VDom.h("div",__ret,__r1));
 		return __r[0];
 	}
-	,__tink_defaults1130: null
+	,__tink_defaults51: null
 	,__slots: null
 	,toString: function() {
 		return "TestView" + "#" + this.viewId;
 	}
-	,__tink_init1131: function(attributes) {
+	,__tink_init52: function(attributes) {
 	}
 	,__class__: TestView
 });
@@ -18181,6 +18256,1039 @@ mdc_Radio.prototype = $extend(coconut_ui_View.prototype,{
 	,__class__: mdc_Radio
 	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_onchecked:"get_onchecked",get_name:"get_name",get_value:"get_value",get_checked:"get_checked",get_disabled:"get_disabled",get_label:"get_label"}
 });
+var mdc_Switch = function(data) {
+	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Switch.hx", lineNumber : 5, className : "mdc.Switch", methodName : "new"});
+	this.switchId = mdc_Switch.switchIndex++;
+	this.__tink_defaults30 = { label : null, onchecked : null, accessKey : null, accessKeyLabel : null, attributes : null, autofocus : null, checked : null, className : null, dir : null, disabled : null, draggable : null, hidden : null, id : null, key : null, lang : null, max : null, maxlength : null, min : null, name : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, pattern : null, placeholder : null, required : null, spellcheck : null, step : null, style : null, tabIndex : null, title : null, type : null, value : null};
+	this.__slots = { label : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), autofocus : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), max : new coconut_ui_tools_Slot(this,null), maxlength : new coconut_ui_tools_Slot(this,null), min : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), pattern : new coconut_ui_tools_Slot(this,null), placeholder : new coconut_ui_tools_Slot(this,null), required : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), step : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null), type : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null)};
+};
+$hxClasses["mdc.Switch"] = mdc_Switch;
+mdc_Switch.__name__ = ["mdc","Switch"];
+mdc_Switch.__init = function(attributes,inst) {
+	if(inst == null) {
+		inst = new mdc_Switch(attributes);
+	}
+	inst.__tink_init31(attributes);
+	return inst;
+};
+mdc_Switch.__super__ = coconut_ui_View;
+mdc_Switch.prototype = $extend(coconut_ui_View.prototype,{
+	switchId: null
+	,render: function() {
+		var _gthis = this;
+		var id = this.get_id() != null ? this.get_id() : "switch_" + this.get_id();
+		var __r = [];
+		var __ret = { };
+		var _g = this.get_accessKey();
+		if(_g != null) {
+			var v = _g;
+			__ret.accessKey = v;
+		}
+		var _g1 = this.get_accessKeyLabel();
+		if(_g1 != null) {
+			var v1 = _g1;
+			__ret.accessKeyLabel = v1;
+		}
+		var _g2 = this.get_attributes();
+		if(_g2 != null) {
+			var v2 = _g2;
+			__ret.attributes = v2;
+		}
+		var _g3 = this.get_className();
+		if(_g3 != null) {
+			var v3 = _g3;
+			__ret.className = v3;
+		}
+		var _g4 = this.get_dir();
+		if(_g4 != null) {
+			var v4 = _g4;
+			__ret.dir = v4;
+		}
+		var _g5 = this.get_draggable();
+		if(_g5 != null) {
+			var v5 = _g5;
+			__ret.draggable = v5;
+		}
+		var _g6 = this.get_hidden();
+		if(_g6 != null) {
+			var v6 = _g6;
+			__ret.hidden = v6;
+		}
+		var _g7 = this.get_id();
+		if(_g7 != null) {
+			var v7 = _g7;
+			__ret.id = v7;
+		}
+		var _g8 = this.get_key();
+		if(_g8 != null) {
+			var v8 = _g8;
+			__ret.key = v8;
+		}
+		var _g9 = this.get_lang();
+		if(_g9 != null) {
+			var v9 = _g9;
+			__ret.lang = v9;
+		}
+		var _g10 = this.get_onabort();
+		if(_g10 != null) {
+			var v10 = _g10;
+			__ret.onabort = v10;
+		}
+		var _g11 = this.get_onblur();
+		if(_g11 != null) {
+			var v11 = _g11;
+			__ret.onblur = v11;
+		}
+		var _g12 = this.get_oncanplay();
+		if(_g12 != null) {
+			var v12 = _g12;
+			__ret.oncanplay = v12;
+		}
+		var _g13 = this.get_oncanplaythrough();
+		if(_g13 != null) {
+			var v13 = _g13;
+			__ret.oncanplaythrough = v13;
+		}
+		var _g14 = this.get_onchange();
+		if(_g14 != null) {
+			var v14 = _g14;
+			__ret.onchange = v14;
+		}
+		var _g15 = this.get_onclick();
+		if(_g15 != null) {
+			var v15 = _g15;
+			__ret.onclick = v15;
+		}
+		var _g16 = this.get_oncontextmenu();
+		if(_g16 != null) {
+			var v16 = _g16;
+			__ret.oncontextmenu = v16;
+		}
+		var _g17 = this.get_oncopy();
+		if(_g17 != null) {
+			var v17 = _g17;
+			__ret.oncopy = v17;
+		}
+		var _g18 = this.get_oncut();
+		if(_g18 != null) {
+			var v18 = _g18;
+			__ret.oncut = v18;
+		}
+		var _g19 = this.get_ondblclick();
+		if(_g19 != null) {
+			var v19 = _g19;
+			__ret.ondblclick = v19;
+		}
+		var _g20 = this.get_ondrag();
+		if(_g20 != null) {
+			var v20 = _g20;
+			__ret.ondrag = v20;
+		}
+		var _g21 = this.get_ondragend();
+		if(_g21 != null) {
+			var v21 = _g21;
+			__ret.ondragend = v21;
+		}
+		var _g22 = this.get_ondragenter();
+		if(_g22 != null) {
+			var v22 = _g22;
+			__ret.ondragenter = v22;
+		}
+		var _g23 = this.get_ondragleave();
+		if(_g23 != null) {
+			var v23 = _g23;
+			__ret.ondragleave = v23;
+		}
+		var _g24 = this.get_ondragover();
+		if(_g24 != null) {
+			var v24 = _g24;
+			__ret.ondragover = v24;
+		}
+		var _g25 = this.get_ondragstart();
+		if(_g25 != null) {
+			var v25 = _g25;
+			__ret.ondragstart = v25;
+		}
+		var _g26 = this.get_ondrop();
+		if(_g26 != null) {
+			var v26 = _g26;
+			__ret.ondrop = v26;
+		}
+		var _g27 = this.get_ondurationchange();
+		if(_g27 != null) {
+			var v27 = _g27;
+			__ret.ondurationchange = v27;
+		}
+		var _g28 = this.get_onemptied();
+		if(_g28 != null) {
+			var v28 = _g28;
+			__ret.onemptied = v28;
+		}
+		var _g29 = this.get_onended();
+		if(_g29 != null) {
+			var v29 = _g29;
+			__ret.onended = v29;
+		}
+		var _g30 = this.get_onerror();
+		if(_g30 != null) {
+			var v30 = _g30;
+			__ret.onerror = v30;
+		}
+		var _g31 = this.get_onfocus();
+		if(_g31 != null) {
+			var v31 = _g31;
+			__ret.onfocus = v31;
+		}
+		var _g32 = this.get_onfullscreenchange();
+		if(_g32 != null) {
+			var v32 = _g32;
+			__ret.onfullscreenchange = v32;
+		}
+		var _g33 = this.get_onfullscreenerror();
+		if(_g33 != null) {
+			var v33 = _g33;
+			__ret.onfullscreenerror = v33;
+		}
+		var _g34 = this.get_ongotpointercapture();
+		if(_g34 != null) {
+			var v34 = _g34;
+			__ret.ongotpointercapture = v34;
+		}
+		var _g35 = this.get_oninput();
+		if(_g35 != null) {
+			var v35 = _g35;
+			__ret.oninput = v35;
+		}
+		var _g36 = this.get_oninvalid();
+		if(_g36 != null) {
+			var v36 = _g36;
+			__ret.oninvalid = v36;
+		}
+		var _g37 = this.get_onkeydown();
+		if(_g37 != null) {
+			var v37 = _g37;
+			__ret.onkeydown = v37;
+		}
+		var _g38 = this.get_onkeypress();
+		if(_g38 != null) {
+			var v38 = _g38;
+			__ret.onkeypress = v38;
+		}
+		var _g39 = this.get_onkeyup();
+		if(_g39 != null) {
+			var v39 = _g39;
+			__ret.onkeyup = v39;
+		}
+		var _g40 = this.get_onload();
+		if(_g40 != null) {
+			var v40 = _g40;
+			__ret.onload = v40;
+		}
+		var _g41 = this.get_onloadeddata();
+		if(_g41 != null) {
+			var v41 = _g41;
+			__ret.onloadeddata = v41;
+		}
+		var _g42 = this.get_onloadedmetadata();
+		if(_g42 != null) {
+			var v42 = _g42;
+			__ret.onloadedmetadata = v42;
+		}
+		var _g43 = this.get_onloadstart();
+		if(_g43 != null) {
+			var v43 = _g43;
+			__ret.onloadstart = v43;
+		}
+		var _g44 = this.get_onlostpointercapture();
+		if(_g44 != null) {
+			var v44 = _g44;
+			__ret.onlostpointercapture = v44;
+		}
+		var _g45 = this.get_onmousedown();
+		if(_g45 != null) {
+			var v45 = _g45;
+			__ret.onmousedown = v45;
+		}
+		var _g46 = this.get_onmouseenter();
+		if(_g46 != null) {
+			var v46 = _g46;
+			__ret.onmouseenter = v46;
+		}
+		var _g47 = this.get_onmouseleave();
+		if(_g47 != null) {
+			var v47 = _g47;
+			__ret.onmouseleave = v47;
+		}
+		var _g48 = this.get_onmousemove();
+		if(_g48 != null) {
+			var v48 = _g48;
+			__ret.onmousemove = v48;
+		}
+		var _g49 = this.get_onmouseout();
+		if(_g49 != null) {
+			var v49 = _g49;
+			__ret.onmouseout = v49;
+		}
+		var _g50 = this.get_onmouseover();
+		if(_g50 != null) {
+			var v50 = _g50;
+			__ret.onmouseover = v50;
+		}
+		var _g51 = this.get_onmouseup();
+		if(_g51 != null) {
+			var v51 = _g51;
+			__ret.onmouseup = v51;
+		}
+		var _g52 = this.get_onpaste();
+		if(_g52 != null) {
+			var v52 = _g52;
+			__ret.onpaste = v52;
+		}
+		var _g53 = this.get_onpause();
+		if(_g53 != null) {
+			var v53 = _g53;
+			__ret.onpause = v53;
+		}
+		var _g54 = this.get_onplay();
+		if(_g54 != null) {
+			var v54 = _g54;
+			__ret.onplay = v54;
+		}
+		var _g55 = this.get_onplaying();
+		if(_g55 != null) {
+			var v55 = _g55;
+			__ret.onplaying = v55;
+		}
+		var _g56 = this.get_onpointercancel();
+		if(_g56 != null) {
+			var v56 = _g56;
+			__ret.onpointercancel = v56;
+		}
+		var _g57 = this.get_onpointerdown();
+		if(_g57 != null) {
+			var v57 = _g57;
+			__ret.onpointerdown = v57;
+		}
+		var _g58 = this.get_onpointerenter();
+		if(_g58 != null) {
+			var v58 = _g58;
+			__ret.onpointerenter = v58;
+		}
+		var _g59 = this.get_onpointerleave();
+		if(_g59 != null) {
+			var v59 = _g59;
+			__ret.onpointerleave = v59;
+		}
+		var _g60 = this.get_onpointerlockchange();
+		if(_g60 != null) {
+			var v60 = _g60;
+			__ret.onpointerlockchange = v60;
+		}
+		var _g61 = this.get_onpointerlockerror();
+		if(_g61 != null) {
+			var v61 = _g61;
+			__ret.onpointerlockerror = v61;
+		}
+		var _g62 = this.get_onpointermove();
+		if(_g62 != null) {
+			var v62 = _g62;
+			__ret.onpointermove = v62;
+		}
+		var _g63 = this.get_onpointerout();
+		if(_g63 != null) {
+			var v63 = _g63;
+			__ret.onpointerout = v63;
+		}
+		var _g64 = this.get_onpointerover();
+		if(_g64 != null) {
+			var v64 = _g64;
+			__ret.onpointerover = v64;
+		}
+		var _g65 = this.get_onpointerup();
+		if(_g65 != null) {
+			var v65 = _g65;
+			__ret.onpointerup = v65;
+		}
+		var _g66 = this.get_onprogress();
+		if(_g66 != null) {
+			var v66 = _g66;
+			__ret.onprogress = v66;
+		}
+		var _g67 = this.get_onratechange();
+		if(_g67 != null) {
+			var v67 = _g67;
+			__ret.onratechange = v67;
+		}
+		var _g68 = this.get_onreset();
+		if(_g68 != null) {
+			var v68 = _g68;
+			__ret.onreset = v68;
+		}
+		var _g69 = this.get_onresize();
+		if(_g69 != null) {
+			var v69 = _g69;
+			__ret.onresize = v69;
+		}
+		var _g70 = this.get_onscroll();
+		if(_g70 != null) {
+			var v70 = _g70;
+			__ret.onscroll = v70;
+		}
+		var _g71 = this.get_onseeked();
+		if(_g71 != null) {
+			var v71 = _g71;
+			__ret.onseeked = v71;
+		}
+		var _g72 = this.get_onseeking();
+		if(_g72 != null) {
+			var v72 = _g72;
+			__ret.onseeking = v72;
+		}
+		var _g73 = this.get_onselect();
+		if(_g73 != null) {
+			var v73 = _g73;
+			__ret.onselect = v73;
+		}
+		var _g74 = this.get_onshow();
+		if(_g74 != null) {
+			var v74 = _g74;
+			__ret.onshow = v74;
+		}
+		var _g75 = this.get_onstalled();
+		if(_g75 != null) {
+			var v75 = _g75;
+			__ret.onstalled = v75;
+		}
+		var _g76 = this.get_onsubmit();
+		if(_g76 != null) {
+			var v76 = _g76;
+			__ret.onsubmit = v76;
+		}
+		var _g77 = this.get_onsuspend();
+		if(_g77 != null) {
+			var v77 = _g77;
+			__ret.onsuspend = v77;
+		}
+		var _g78 = this.get_ontimeupdate();
+		if(_g78 != null) {
+			var v78 = _g78;
+			__ret.ontimeupdate = v78;
+		}
+		var _g79 = this.get_ontouchcancel();
+		if(_g79 != null) {
+			var v79 = _g79;
+			__ret.ontouchcancel = v79;
+		}
+		var _g80 = this.get_ontouchend();
+		if(_g80 != null) {
+			var v80 = _g80;
+			__ret.ontouchend = v80;
+		}
+		var _g81 = this.get_ontouchmove();
+		if(_g81 != null) {
+			var v81 = _g81;
+			__ret.ontouchmove = v81;
+		}
+		var _g82 = this.get_ontouchstart();
+		if(_g82 != null) {
+			var v82 = _g82;
+			__ret.ontouchstart = v82;
+		}
+		var _g83 = this.get_onvolumechange();
+		if(_g83 != null) {
+			var v83 = _g83;
+			__ret.onvolumechange = v83;
+		}
+		var _g84 = this.get_onwaiting();
+		if(_g84 != null) {
+			var v84 = _g84;
+			__ret.onwaiting = v84;
+		}
+		var _g85 = this.get_onwheel();
+		if(_g85 != null) {
+			var v85 = _g85;
+			__ret.onwheel = v85;
+		}
+		var _g86 = this.get_spellcheck();
+		if(_g86 != null) {
+			var v86 = _g86;
+			__ret.spellcheck = v86;
+		}
+		var _g87 = this.get_style();
+		if(_g87 != null) {
+			var v87 = _g87;
+			__ret.style = v87;
+		}
+		var _g88 = this.get_tabIndex();
+		if(_g88 != null) {
+			var v88 = _g88;
+			__ret.tabIndex = v88;
+		}
+		var _g89 = this.get_title();
+		if(_g89 != null) {
+			var v89 = _g89;
+			__ret.title = v89;
+		}
+		var __r1 = [];
+		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch")};
+		var __r2 = [];
+		var __ret2 = { type : "checkbox", id : id, value : _gthis.get_value(), checked : _gthis.get_checked(), onchange : function(event) {
+			if(_gthis.get_onchecked() != null) {
+				(_gthis.get_onchecked())(event.target.checked);
+			}
+		}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch__native-control"), disabled : _gthis.get_disabled()};
+		__r2.push(vdom_VDom.h("input",__ret2));
+		var __ret3 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch__background")};
+		var __r3 = [];
+		var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch__knob")};
+		var __r4 = [];
+		__r3.push(vdom_VDom.h("div",__ret4,__r4));
+		__r2.push(vdom_VDom.h("div",__ret3,__r3));
+		__r1.push(vdom_VDom.h("div",__ret1,__r2));
+		if(this.get_label() != null) {
+			var __ret5 = { htmlFor : id, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch-label")};
+			var __r5 = [];
+			__r5.push(this.get_label());
+			__r1.push(vdom_VDom.h("label",__ret5,__r5));
+		}
+		__r.push(vdom_VDom.h("div",__ret,__r1));
+		return __r[0];
+	}
+	,__tink_defaults30: null
+	,__slots: null
+	,toString: function() {
+		return "Switch" + "#" + this.viewId;
+	}
+	,__tink_init31: function(attributes) {
+		var this1 = attributes.label;
+		this.__slots.label.setData(this1 == null ? this.__tink_defaults30.label : this1);
+		var this11 = attributes.onchecked;
+		this.__slots.onchecked.setData(this11 == null ? this.__tink_defaults30.onchecked : this11);
+		var this12 = attributes.accessKey;
+		this.__slots.accessKey.setData(this12 == null ? this.__tink_defaults30.accessKey : this12);
+		var this13 = attributes.accessKeyLabel;
+		this.__slots.accessKeyLabel.setData(this13 == null ? this.__tink_defaults30.accessKeyLabel : this13);
+		var this14 = attributes.attributes;
+		this.__slots.attributes.setData(this14 == null ? this.__tink_defaults30.attributes : this14);
+		var this15 = attributes.autofocus;
+		this.__slots.autofocus.setData(this15 == null ? this.__tink_defaults30.autofocus : this15);
+		var this16 = attributes.checked;
+		this.__slots.checked.setData(this16 == null ? this.__tink_defaults30.checked : this16);
+		var this17 = attributes.className;
+		this.__slots.className.setData(this17 == null ? this.__tink_defaults30.className : this17);
+		var this18 = attributes.dir;
+		this.__slots.dir.setData(this18 == null ? this.__tink_defaults30.dir : this18);
+		var this19 = attributes.disabled;
+		this.__slots.disabled.setData(this19 == null ? this.__tink_defaults30.disabled : this19);
+		var this110 = attributes.draggable;
+		this.__slots.draggable.setData(this110 == null ? this.__tink_defaults30.draggable : this110);
+		var this111 = attributes.hidden;
+		this.__slots.hidden.setData(this111 == null ? this.__tink_defaults30.hidden : this111);
+		var this112 = attributes.id;
+		this.__slots.id.setData(this112 == null ? this.__tink_defaults30.id : this112);
+		var this113 = attributes.key;
+		this.__slots.key.setData(this113 == null ? this.__tink_defaults30.key : this113);
+		var this114 = attributes.lang;
+		this.__slots.lang.setData(this114 == null ? this.__tink_defaults30.lang : this114);
+		var this115 = attributes.max;
+		this.__slots.max.setData(this115 == null ? this.__tink_defaults30.max : this115);
+		var this116 = attributes.maxlength;
+		this.__slots.maxlength.setData(this116 == null ? this.__tink_defaults30.maxlength : this116);
+		var this117 = attributes.min;
+		this.__slots.min.setData(this117 == null ? this.__tink_defaults30.min : this117);
+		var this118 = attributes.name;
+		this.__slots.name.setData(this118 == null ? this.__tink_defaults30.name : this118);
+		var this119 = attributes.onabort;
+		this.__slots.onabort.setData(this119 == null ? this.__tink_defaults30.onabort : this119);
+		var this120 = attributes.onblur;
+		this.__slots.onblur.setData(this120 == null ? this.__tink_defaults30.onblur : this120);
+		var this121 = attributes.oncanplay;
+		this.__slots.oncanplay.setData(this121 == null ? this.__tink_defaults30.oncanplay : this121);
+		var this122 = attributes.oncanplaythrough;
+		this.__slots.oncanplaythrough.setData(this122 == null ? this.__tink_defaults30.oncanplaythrough : this122);
+		var this123 = attributes.onchange;
+		this.__slots.onchange.setData(this123 == null ? this.__tink_defaults30.onchange : this123);
+		var this124 = attributes.onclick;
+		this.__slots.onclick.setData(this124 == null ? this.__tink_defaults30.onclick : this124);
+		var this125 = attributes.oncontextmenu;
+		this.__slots.oncontextmenu.setData(this125 == null ? this.__tink_defaults30.oncontextmenu : this125);
+		var this126 = attributes.oncopy;
+		this.__slots.oncopy.setData(this126 == null ? this.__tink_defaults30.oncopy : this126);
+		var this127 = attributes.oncut;
+		this.__slots.oncut.setData(this127 == null ? this.__tink_defaults30.oncut : this127);
+		var this128 = attributes.ondblclick;
+		this.__slots.ondblclick.setData(this128 == null ? this.__tink_defaults30.ondblclick : this128);
+		var this129 = attributes.ondrag;
+		this.__slots.ondrag.setData(this129 == null ? this.__tink_defaults30.ondrag : this129);
+		var this130 = attributes.ondragend;
+		this.__slots.ondragend.setData(this130 == null ? this.__tink_defaults30.ondragend : this130);
+		var this131 = attributes.ondragenter;
+		this.__slots.ondragenter.setData(this131 == null ? this.__tink_defaults30.ondragenter : this131);
+		var this132 = attributes.ondragleave;
+		this.__slots.ondragleave.setData(this132 == null ? this.__tink_defaults30.ondragleave : this132);
+		var this133 = attributes.ondragover;
+		this.__slots.ondragover.setData(this133 == null ? this.__tink_defaults30.ondragover : this133);
+		var this134 = attributes.ondragstart;
+		this.__slots.ondragstart.setData(this134 == null ? this.__tink_defaults30.ondragstart : this134);
+		var this135 = attributes.ondrop;
+		this.__slots.ondrop.setData(this135 == null ? this.__tink_defaults30.ondrop : this135);
+		var this136 = attributes.ondurationchange;
+		this.__slots.ondurationchange.setData(this136 == null ? this.__tink_defaults30.ondurationchange : this136);
+		var this137 = attributes.onemptied;
+		this.__slots.onemptied.setData(this137 == null ? this.__tink_defaults30.onemptied : this137);
+		var this138 = attributes.onended;
+		this.__slots.onended.setData(this138 == null ? this.__tink_defaults30.onended : this138);
+		var this139 = attributes.onerror;
+		this.__slots.onerror.setData(this139 == null ? this.__tink_defaults30.onerror : this139);
+		var this140 = attributes.onfocus;
+		this.__slots.onfocus.setData(this140 == null ? this.__tink_defaults30.onfocus : this140);
+		var this141 = attributes.onfullscreenchange;
+		this.__slots.onfullscreenchange.setData(this141 == null ? this.__tink_defaults30.onfullscreenchange : this141);
+		var this142 = attributes.onfullscreenerror;
+		this.__slots.onfullscreenerror.setData(this142 == null ? this.__tink_defaults30.onfullscreenerror : this142);
+		var this143 = attributes.ongotpointercapture;
+		this.__slots.ongotpointercapture.setData(this143 == null ? this.__tink_defaults30.ongotpointercapture : this143);
+		var this144 = attributes.oninput;
+		this.__slots.oninput.setData(this144 == null ? this.__tink_defaults30.oninput : this144);
+		var this145 = attributes.oninvalid;
+		this.__slots.oninvalid.setData(this145 == null ? this.__tink_defaults30.oninvalid : this145);
+		var this146 = attributes.onkeydown;
+		this.__slots.onkeydown.setData(this146 == null ? this.__tink_defaults30.onkeydown : this146);
+		var this147 = attributes.onkeypress;
+		this.__slots.onkeypress.setData(this147 == null ? this.__tink_defaults30.onkeypress : this147);
+		var this148 = attributes.onkeyup;
+		this.__slots.onkeyup.setData(this148 == null ? this.__tink_defaults30.onkeyup : this148);
+		var this149 = attributes.onload;
+		this.__slots.onload.setData(this149 == null ? this.__tink_defaults30.onload : this149);
+		var this150 = attributes.onloadeddata;
+		this.__slots.onloadeddata.setData(this150 == null ? this.__tink_defaults30.onloadeddata : this150);
+		var this151 = attributes.onloadedmetadata;
+		this.__slots.onloadedmetadata.setData(this151 == null ? this.__tink_defaults30.onloadedmetadata : this151);
+		var this152 = attributes.onloadstart;
+		this.__slots.onloadstart.setData(this152 == null ? this.__tink_defaults30.onloadstart : this152);
+		var this153 = attributes.onlostpointercapture;
+		this.__slots.onlostpointercapture.setData(this153 == null ? this.__tink_defaults30.onlostpointercapture : this153);
+		var this154 = attributes.onmousedown;
+		this.__slots.onmousedown.setData(this154 == null ? this.__tink_defaults30.onmousedown : this154);
+		var this155 = attributes.onmouseenter;
+		this.__slots.onmouseenter.setData(this155 == null ? this.__tink_defaults30.onmouseenter : this155);
+		var this156 = attributes.onmouseleave;
+		this.__slots.onmouseleave.setData(this156 == null ? this.__tink_defaults30.onmouseleave : this156);
+		var this157 = attributes.onmousemove;
+		this.__slots.onmousemove.setData(this157 == null ? this.__tink_defaults30.onmousemove : this157);
+		var this158 = attributes.onmouseout;
+		this.__slots.onmouseout.setData(this158 == null ? this.__tink_defaults30.onmouseout : this158);
+		var this159 = attributes.onmouseover;
+		this.__slots.onmouseover.setData(this159 == null ? this.__tink_defaults30.onmouseover : this159);
+		var this160 = attributes.onmouseup;
+		this.__slots.onmouseup.setData(this160 == null ? this.__tink_defaults30.onmouseup : this160);
+		var this161 = attributes.onpaste;
+		this.__slots.onpaste.setData(this161 == null ? this.__tink_defaults30.onpaste : this161);
+		var this162 = attributes.onpause;
+		this.__slots.onpause.setData(this162 == null ? this.__tink_defaults30.onpause : this162);
+		var this163 = attributes.onplay;
+		this.__slots.onplay.setData(this163 == null ? this.__tink_defaults30.onplay : this163);
+		var this164 = attributes.onplaying;
+		this.__slots.onplaying.setData(this164 == null ? this.__tink_defaults30.onplaying : this164);
+		var this165 = attributes.onpointercancel;
+		this.__slots.onpointercancel.setData(this165 == null ? this.__tink_defaults30.onpointercancel : this165);
+		var this166 = attributes.onpointerdown;
+		this.__slots.onpointerdown.setData(this166 == null ? this.__tink_defaults30.onpointerdown : this166);
+		var this167 = attributes.onpointerenter;
+		this.__slots.onpointerenter.setData(this167 == null ? this.__tink_defaults30.onpointerenter : this167);
+		var this168 = attributes.onpointerleave;
+		this.__slots.onpointerleave.setData(this168 == null ? this.__tink_defaults30.onpointerleave : this168);
+		var this169 = attributes.onpointerlockchange;
+		this.__slots.onpointerlockchange.setData(this169 == null ? this.__tink_defaults30.onpointerlockchange : this169);
+		var this170 = attributes.onpointerlockerror;
+		this.__slots.onpointerlockerror.setData(this170 == null ? this.__tink_defaults30.onpointerlockerror : this170);
+		var this171 = attributes.onpointermove;
+		this.__slots.onpointermove.setData(this171 == null ? this.__tink_defaults30.onpointermove : this171);
+		var this172 = attributes.onpointerout;
+		this.__slots.onpointerout.setData(this172 == null ? this.__tink_defaults30.onpointerout : this172);
+		var this173 = attributes.onpointerover;
+		this.__slots.onpointerover.setData(this173 == null ? this.__tink_defaults30.onpointerover : this173);
+		var this174 = attributes.onpointerup;
+		this.__slots.onpointerup.setData(this174 == null ? this.__tink_defaults30.onpointerup : this174);
+		var this175 = attributes.onprogress;
+		this.__slots.onprogress.setData(this175 == null ? this.__tink_defaults30.onprogress : this175);
+		var this176 = attributes.onratechange;
+		this.__slots.onratechange.setData(this176 == null ? this.__tink_defaults30.onratechange : this176);
+		var this177 = attributes.onreset;
+		this.__slots.onreset.setData(this177 == null ? this.__tink_defaults30.onreset : this177);
+		var this178 = attributes.onresize;
+		this.__slots.onresize.setData(this178 == null ? this.__tink_defaults30.onresize : this178);
+		var this179 = attributes.onscroll;
+		this.__slots.onscroll.setData(this179 == null ? this.__tink_defaults30.onscroll : this179);
+		var this180 = attributes.onseeked;
+		this.__slots.onseeked.setData(this180 == null ? this.__tink_defaults30.onseeked : this180);
+		var this181 = attributes.onseeking;
+		this.__slots.onseeking.setData(this181 == null ? this.__tink_defaults30.onseeking : this181);
+		var this182 = attributes.onselect;
+		this.__slots.onselect.setData(this182 == null ? this.__tink_defaults30.onselect : this182);
+		var this183 = attributes.onshow;
+		this.__slots.onshow.setData(this183 == null ? this.__tink_defaults30.onshow : this183);
+		var this184 = attributes.onstalled;
+		this.__slots.onstalled.setData(this184 == null ? this.__tink_defaults30.onstalled : this184);
+		var this185 = attributes.onsubmit;
+		this.__slots.onsubmit.setData(this185 == null ? this.__tink_defaults30.onsubmit : this185);
+		var this186 = attributes.onsuspend;
+		this.__slots.onsuspend.setData(this186 == null ? this.__tink_defaults30.onsuspend : this186);
+		var this187 = attributes.ontimeupdate;
+		this.__slots.ontimeupdate.setData(this187 == null ? this.__tink_defaults30.ontimeupdate : this187);
+		var this188 = attributes.ontouchcancel;
+		this.__slots.ontouchcancel.setData(this188 == null ? this.__tink_defaults30.ontouchcancel : this188);
+		var this189 = attributes.ontouchend;
+		this.__slots.ontouchend.setData(this189 == null ? this.__tink_defaults30.ontouchend : this189);
+		var this190 = attributes.ontouchmove;
+		this.__slots.ontouchmove.setData(this190 == null ? this.__tink_defaults30.ontouchmove : this190);
+		var this191 = attributes.ontouchstart;
+		this.__slots.ontouchstart.setData(this191 == null ? this.__tink_defaults30.ontouchstart : this191);
+		var this192 = attributes.onvolumechange;
+		this.__slots.onvolumechange.setData(this192 == null ? this.__tink_defaults30.onvolumechange : this192);
+		var this193 = attributes.onwaiting;
+		this.__slots.onwaiting.setData(this193 == null ? this.__tink_defaults30.onwaiting : this193);
+		var this194 = attributes.onwheel;
+		this.__slots.onwheel.setData(this194 == null ? this.__tink_defaults30.onwheel : this194);
+		var this195 = attributes.pattern;
+		this.__slots.pattern.setData(this195 == null ? this.__tink_defaults30.pattern : this195);
+		var this196 = attributes.placeholder;
+		this.__slots.placeholder.setData(this196 == null ? this.__tink_defaults30.placeholder : this196);
+		var this197 = attributes.required;
+		this.__slots.required.setData(this197 == null ? this.__tink_defaults30.required : this197);
+		var this198 = attributes.spellcheck;
+		this.__slots.spellcheck.setData(this198 == null ? this.__tink_defaults30.spellcheck : this198);
+		var this199 = attributes.step;
+		this.__slots.step.setData(this199 == null ? this.__tink_defaults30.step : this199);
+		var this1100 = attributes.style;
+		this.__slots.style.setData(this1100 == null ? this.__tink_defaults30.style : this1100);
+		var this1101 = attributes.tabIndex;
+		this.__slots.tabIndex.setData(this1101 == null ? this.__tink_defaults30.tabIndex : this1101);
+		var this1102 = attributes.title;
+		this.__slots.title.setData(this1102 == null ? this.__tink_defaults30.title : this1102);
+		var this1103 = attributes.type;
+		this.__slots.type.setData(this1103 == null ? this.__tink_defaults30.type : this1103);
+		var this1104 = attributes.value;
+		this.__slots.value.setData(this1104 == null ? this.__tink_defaults30.value : this1104);
+	}
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
+	}
+	,get_onchecked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
+	}
+	,get_accessKey: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
+	}
+	,get_accessKeyLabel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
+	}
+	,get_attributes: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+	}
+	,get_autofocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.autofocus.observe());
+	}
+	,get_checked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_dir: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
+	}
+	,get_disabled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+	}
+	,get_draggable: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
+	}
+	,get_hidden: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+	}
+	,get_key: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
+	}
+	,get_lang: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
+	}
+	,get_max: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.max.observe());
+	}
+	,get_maxlength: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.maxlength.observe());
+	}
+	,get_min: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.min.observe());
+	}
+	,get_name: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
+	}
+	,get_onabort: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
+	}
+	,get_onblur: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
+	}
+	,get_oncanplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
+	}
+	,get_oncanplaythrough: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
+	}
+	,get_onchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
+	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
+	,get_oncontextmenu: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
+	}
+	,get_oncopy: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
+	}
+	,get_oncut: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
+	}
+	,get_ondblclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
+	}
+	,get_ondrag: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
+	}
+	,get_ondragend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
+	}
+	,get_ondragenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
+	}
+	,get_ondragleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
+	}
+	,get_ondragover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
+	}
+	,get_ondragstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
+	}
+	,get_ondrop: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
+	}
+	,get_ondurationchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
+	}
+	,get_onemptied: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
+	}
+	,get_onended: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
+	}
+	,get_onerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
+	}
+	,get_onfocus: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
+	}
+	,get_onfullscreenchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
+	}
+	,get_onfullscreenerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
+	}
+	,get_ongotpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
+	}
+	,get_oninput: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
+	}
+	,get_oninvalid: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
+	}
+	,get_onkeydown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
+	}
+	,get_onkeypress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
+	}
+	,get_onkeyup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
+	}
+	,get_onload: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
+	}
+	,get_onloadeddata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
+	}
+	,get_onloadedmetadata: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
+	}
+	,get_onloadstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
+	}
+	,get_onlostpointercapture: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
+	}
+	,get_onmousedown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
+	}
+	,get_onmouseenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
+	}
+	,get_onmouseleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
+	}
+	,get_onmousemove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
+	}
+	,get_onmouseout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
+	}
+	,get_onmouseover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
+	}
+	,get_onmouseup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
+	}
+	,get_onpaste: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
+	}
+	,get_onpause: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
+	}
+	,get_onplay: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
+	}
+	,get_onplaying: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
+	}
+	,get_onpointercancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
+	}
+	,get_onpointerdown: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
+	}
+	,get_onpointerenter: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
+	}
+	,get_onpointerleave: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
+	}
+	,get_onpointerlockchange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
+	}
+	,get_onpointerlockerror: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
+	}
+	,get_onpointermove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
+	}
+	,get_onpointerout: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
+	}
+	,get_onpointerover: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
+	}
+	,get_onpointerup: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
+	}
+	,get_onprogress: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
+	}
+	,get_onratechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
+	}
+	,get_onreset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
+	}
+	,get_onresize: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
+	}
+	,get_onscroll: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
+	}
+	,get_onseeked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
+	}
+	,get_onseeking: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
+	}
+	,get_onselect: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
+	}
+	,get_onshow: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
+	}
+	,get_onstalled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
+	}
+	,get_onsubmit: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
+	}
+	,get_onsuspend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
+	}
+	,get_ontimeupdate: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
+	}
+	,get_ontouchcancel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
+	}
+	,get_ontouchend: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
+	}
+	,get_ontouchmove: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
+	}
+	,get_ontouchstart: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
+	}
+	,get_onvolumechange: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
+	}
+	,get_onwaiting: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
+	}
+	,get_onwheel: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
+	}
+	,get_pattern: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.pattern.observe());
+	}
+	,get_placeholder: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.placeholder.observe());
+	}
+	,get_required: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.required.observe());
+	}
+	,get_spellcheck: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
+	}
+	,get_step: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.step.observe());
+	}
+	,get_style: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
+	}
+	,get_tabIndex: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
+	}
+	,get_title: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	}
+	,get_type: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.type.observe());
+	}
+	,get_value: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
+	}
+	,__class__: mdc_Switch
+	,__properties__: {get_value:"get_value",get_type:"get_type",get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_step:"get_step",get_spellcheck:"get_spellcheck",get_required:"get_required",get_placeholder:"get_placeholder",get_pattern:"get_pattern",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_name:"get_name",get_min:"get_min",get_maxlength:"get_maxlength",get_max:"get_max",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_disabled:"get_disabled",get_dir:"get_dir",get_className:"get_className",get_checked:"get_checked",get_autofocus:"get_autofocus",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_onchecked:"get_onchecked",get_label:"get_label"}
+});
 var mdc_TabBar = function(data) {
 	this.prevTabIndex = 0;
 	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TabBar.hx", lineNumber : 13, className : "mdc.TabBar", methodName : "new"});
@@ -34230,6 +35338,7 @@ mdc_Checkbox.checkboxIndex = 0;
 mdc_Checkbox.checkSvg = "background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='mdc-checkbox__checkmark__path' fill='none' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'/%3E%3C/svg%3E\");";
 mdc_MDC.DEFAULT_RIPPLE = true;
 mdc_Radio.radioIndex = 0;
+mdc_Switch.switchIndex = 0;
 mdc_Tab.tabIdIndex = 0;
 mdc_TextField.textFieldIdIndex = 0;
 tink_core__$Callback_Callback_$Impl_$.depth = 0;

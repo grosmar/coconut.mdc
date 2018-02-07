@@ -27,6 +27,8 @@ Check test/Playground.hx for usage examples.
 
 &#10003; Ripple
 
+&#10003; Switch
+
 &#10003; TabBar
 
 &#10003; TextField
