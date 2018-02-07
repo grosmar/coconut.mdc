@@ -30,8 +30,13 @@ class List extends View
 		return @hxx '<ul className=${className.add(["mdc-list" => true,
 													"mdc-list--two-line" => twoLine,
 													"mdc-list--avatar-list" => avatarList,
-													"mdc-list--non-interactive" => nonInteractive,
+
 													"mdc-list--dense" => dense ])} ${...this}>${...children}</ul>';
+	}
+
+	public function layout()
+	{
+		trace("layout");
 	}
 }
 
@@ -46,6 +51,12 @@ class ListItem extends View
 		<li class=${className.add(["mdc-list-item" => true])}
 			data-mdc-ripple-is-unbounded=${unboundedRipple} ${...this}>${...children}</li>
 	';
+
+	public function layout()
+	{
+		if (mdcRipple != null)
+			mdcRipple.layout();
+	}
 
 	override function afterInit(elem)
 	{
