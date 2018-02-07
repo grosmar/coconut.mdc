@@ -99,7 +99,10 @@ class MDC
 
 
 @:native("window.mdc.ripple.MDCRipple")
-extern class MDCRipple extends MDCComponent { }
+extern class MDCRipple extends MDCComponent
+{
+	function layout():Void;
+}
 
 @:native("mdc.textField.MDCTextField")
 extern class MDCTextField extends MDCComponent
