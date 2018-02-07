@@ -6,9 +6,25 @@ class MDC
 {
 	public static inline var DEFAULT_RIPPLE = true;
 
-	/*static function __init__()
+	static function __init__()
 	{
-		var observer = new MutationObserver( function( mutations:Array<MutationRecord>, mo:MutationObserver)
+		//TODO: temporary hack to work with first display:block views till google guys fix ripple rendering
+		var originalActivate = untyped mdc.ripple.MDCRippleFoundation.prototype.activate_;
+		untyped mdc.ripple.MDCRippleFoundation.prototype.activate_ = function(e)
+		{
+			var self = untyped __js__('this');
+			self.layoutInternal_();
+			originalActivate.call(self, e);
+		}
+		/*js.Browser.document.addEventListener("click",function(event)
+		{
+			switch(event.target.closest("mdc-ripple-upgraded"))
+			{
+				case surface:
+				case null:
+			}
+		});*/
+		/*var observer = new MutationObserver( function( mutations:Array<MutationRecord>, mo:MutationObserver)
 		{
 
 			for ( mutation in mutations )
@@ -44,10 +60,10 @@ class MDC
 			}
 		});
 
-		observer.observe(js.Browser.document.body, {childList:true, subtree:true});
+		observer.observe(js.Browser.document.body, {childList:true, subtree:true});*/
 	}
 
-	static inline function registerAll<T>(node:Node, className:String, handler:Class<T>, ref:String)
+	/*static inline function registerAll<T>(node:Node, className:String, handler:Class<T>, ref:String)
 	{
 		var el:Element = cast node;
 
