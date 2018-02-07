@@ -3,7 +3,6 @@ package mdc;
 import js.html.DOMElement;
 import vdom.VDom.AnchorAttr;
 import mdc.MDC.MDCTabBar;
-import vdom.VNode;
 import vdom.Attr;
 import vdom.VDom.*;
 import coconut.Ui.hxx;
@@ -24,6 +23,8 @@ class TabBar extends View
 
     function render()
     {
+        var activeTabIndex = this.activeTabIndex;
+        var children = this.children;
         return @hxx '<nav class=${className.add(["mdc-tab-bar" => true, mode => true])} {...this}>
             ${...children}
             <span class="mdc-tab-bar__indicator" ></span>
@@ -32,7 +33,6 @@ class TabBar extends View
 
     override function afterInit(elem:DOMElement)
     {
-        js.Browser.console.log(elem.children);
         this.mdcTabBar = new MDCTabBar(elem);
         mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
         mdcTabBar.activeTabIndex = activeTabIndex;
@@ -47,6 +47,7 @@ class TabBar extends View
     {
         if ( prevLength == elem.children.length )
         {
+            prevTabIndex = activeTabIndex;
             mdcTabBar.activeTabIndex = activeTabIndex;
             return;
         }
@@ -65,14 +66,15 @@ class TabBar extends View
         mdcTabBar = new MDCTabBar(elem);
         mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
         mdcTabBar.tabs[prevTabIndex].isActive = true;
+        mdcTabBar.activeTabIndex = prevTabIndex;
 
-        js.Browser.window.requestAnimationFrame(function(_) mdcTabBar.activeTabIndex = activeTabIndex);
+        js.Browser.window.requestAnimationFrame(function(_) { mdcTabBar.activeTabIndex = prevTabIndex = activeTabIndex;});
 
     }
 
-    function tabChangeHandler(data:{detail:MDCTabBar})
+    function tabChangeHandler(data:{detail:{activeTabIndex:Int}})
     {
-        ontabchange(mdcTabBar.activeTabIndex);
+        ontabchange(data.detail.activeTabIndex);
     }
 
     override function beforeDestroy(elem)
@@ -106,7 +108,7 @@ class Tab extends View
                 <TabIcon name=${icon} />
             </if>
             <if ${text != null}>
-                <TabText>${text}</TabText>
+                <TabText>${this.text}</TabText>
             </if>
             ${...children}
         </a>
