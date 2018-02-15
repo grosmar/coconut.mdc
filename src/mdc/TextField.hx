@@ -61,7 +61,7 @@ class TextField extends View
 
     override function afterPatching(elem)
     {
-        mdcTextField.valid = !invalid;
+        mdcTextField.valid = invalid != true;
         if ( value != null)
             mdcTextField.value = value;
     }
