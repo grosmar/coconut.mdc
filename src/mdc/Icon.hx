@@ -3,11 +3,11 @@ import coconut.ui.View;
 import vdom.Attr;
 class Icon extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
     @:attr var name:IconName;
 
     function render()
     '
-        <i class="material-icons" aria-hidden="true" ${...this}>$name</i>
+        <i class=${className.add(["material-icons" => true])} aria-hidden="true">$name</i>
     ';
 }

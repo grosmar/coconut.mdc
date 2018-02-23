@@ -4,6 +4,9 @@ package mdc;
  * @prop two-line = false
  * @prop interactive = false
  */
+import js.html.Element;
+import js.html.MouseEvent;
+import tink.core.Callback;
 import mdc.MDC.MDCRipple;
 import mdc.MDC.RippleAttr;
 import vdom.VDom.AnchorAttr;
@@ -18,7 +21,7 @@ import coconut.ui.Children;
 //TODO: make list items individual Views to have standalone ripple effect
 class List extends View
 {
-	var attributes:Attr;
+	@:attr var className:ClassName = "";
 	@:attr var dense:Bool = false;
 	@:attr var twoLine:Bool = false;
 	@:attr var avatarList:Bool = false;
@@ -33,16 +36,13 @@ class List extends View
 
 													"mdc-list--dense" => dense ])} ${...this}>${...children}</ul>';
 	}
-
-	public function layout()
-	{
-		trace("layout");
-	}
 }
 
 class ListItem extends View
 {
-	var attributes:{>Attr, >RippleAttr, };
+	var attributes:RippleAttr;
+	@:attr var onclick:Callback<EventFrom<MouseEvent, Element>> = null;
+	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 	var mdcRipple:MDCRipple;
 
@@ -51,12 +51,6 @@ class ListItem extends View
 		<li class=${className.add(["mdc-list-item" => true])}
 			data-mdc-ripple-is-unbounded=${unboundedRipple} ${...this}>${...children}</li>
 	';
-
-	public function layout()
-	{
-		if (mdcRipple != null)
-			mdcRipple.layout();
-	}
 
 	override function afterInit(elem)
 	{
@@ -71,29 +65,31 @@ class ListItem extends View
 
 class ListText extends View
 {
-	var attributes:Attr;
+	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 
 	function render()
 	'
-		<span class=${className.add(["mdc-list-item__text" => true])} ${...this}>${...children}</span>
+		<span class=${className.add(["mdc-list-item__text" => true])} >${...children}</span>
 	';
 }
 
 class ListTextSecondary extends View
 {
-	var attributes:Attr;
+	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 
 	function render()
 	'
-		<span class=${className.add(["mdc-list-item__secondary-text" => true])} ${...this}>${...children}</span>
+		<span class=${className.add(["mdc-list-item__secondary-text" => true])} >${...children}</span>
 	';
 }
 
 class ListGraphic extends View
 {
-	var attributes:{>Attr, >RippleAttr, };
+	var attributes:RippleAttr;
+	@:attr var className:ClassName = "";
+	@:attr var onclick:Callback<EventFrom<MouseEvent, Element>> = null;
 	@:attr var children:Children;
 
 	function render()
@@ -106,7 +102,11 @@ class ListGraphic extends View
 
 class ListGraphicImage extends View
 {
-	var attributes:{>ImgAttr, >RippleAttr, };
+	var attributes:RippleAttr;
+	@:attr var className:ClassName = "";
+	@:attr var src:String;
+	@:attr var width:Int = null;
+	@:attr var height:Int = null;
 
 	function render()
 	'
@@ -118,14 +118,15 @@ class ListGraphicImage extends View
 
 class ListMeta extends View
 {
-	var attributes:{>Attr, >RippleAttr, };
+	var attributes:RippleAttr;
+	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 
 	function render()
 	'
 		<span class=${className.add(["mdc-list-item__meta" => true,
 	 								 "mdc-ripple-surface" => ripple])}
-			  data-mdc-ripple-is-unbounded=${unboundedRipple} ${...this}>${...children}</span>
+			  data-mdc-ripple-is-unbounded=${unboundedRipple} >${...children}</span>
 	';
 }
 
