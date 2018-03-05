@@ -8,7 +8,8 @@ import coconut.ui.View;
 
 class Checkbox extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
+    @:attr var id:String = null;
     @:attr var label:String = null;
     @:attr var disabled:Bool = null;
     @:attr var checked:Bool = null;

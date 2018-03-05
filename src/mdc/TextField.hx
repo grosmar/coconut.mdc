@@ -1,5 +1,9 @@
 package mdc;
 
+import js.html.KeyboardEvent;
+import js.html.Element;
+import js.html.MouseEvent;
+import tink.core.Callback;
 import vdom.VDom.InputAttr;
 import js.html.DOMElement;
 import mdc.MDC.MDCTextField;
@@ -9,19 +13,21 @@ import coconut.ui.View;
 
 class TextField extends View
 {
-    var attributes:InputAttr;
+    @:attr var className:ClassName = "";
     @:attr var label:String = null;
-    //@:attr var value:String = null;
-    //@:attr var disabled:Bool = null;
+    @:attr var value:String = null;
+    @:attr var disabled:Bool = null;
     @:attr var invalid:Bool = null;
     @:attr var icon:String = null;
     @:attr var iconPos:TextFieldIconPos = null;
     @:attr var box:Bool = null;
     @:attr var fullWidth:Bool = null;
     @:attr var textArea:Bool = null;
-    //@:attr var type:String = null;
+    @:attr var type:String = null;
     @:attr var onedit:String->Void = null;
-    //@:attr var pattern:String = null;
+    @:attr var pattern:String = null;
+    @:attr var required:Bool = false;
+    @:attr var onkeydown:Callback<EventFrom<KeyboardEvent, Element>> = null;
 
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
@@ -91,7 +97,7 @@ class TextField extends View
 
 class TextFieldHelperText extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
     @:attr var label:String;
     @:attr var persistent:Bool = null;
     @:attr var validation:Bool = null;

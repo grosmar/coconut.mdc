@@ -5,7 +5,7 @@ import vdom.Attr;
 import coconut.ui.View;
 class LinearProgress extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
     @:attr var indeterminate:Bool = false;
     @:attr var progress:Float = null;
     @:attr var buffer:Float = null;

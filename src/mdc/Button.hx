@@ -1,24 +1,30 @@
 package mdc;
 
+import tink.core.Callback;
+import js.html.MouseEvent;
+import js.html.Element;
+import vdom.Attr.ClassName;
 import mdc.MDC.MDCRipple;
 import vdom.VDom.InputAttr;
 //import vdom.VNode;
 import vdom.VDom.*;
 import coconut.ui.View;
+import vdom.Attr;
 //import coconut.Ui.hxx;
 
 class Button extends View
 {
-    var attributes:InputAttr;
-    @:attribute var label:String = null;
-    // @:attribute var disabled:Bool = null;
-    @:attribute var icon:String = null;
-    @:attribute var raised:Bool = false;
-    @:attribute var unelevated:Bool = false;
-    @:attribute var stroked:Bool = false;
-    @:attribute var dense:Bool = false;
-    @:attribute var compact:Bool = false;
-    @:attribute var ripple:Bool = true;
+    @:attr var className:ClassName = "";
+    @:attr var onclick:Callback<EventFrom<MouseEvent, Element>> = null;
+    @:attr var label:String = null;
+    @:attr var disabled:Bool = null;
+    @:attr var icon:String = null;
+    @:attr var raised:Bool = false;
+    @:attr var unelevated:Bool = false;
+    @:attr var stroked:Bool = false;
+    @:attr var dense:Bool = false;
+    @:attr var compact:Bool = false;
+    @:attr var ripple:Bool = true;
     var mdcRipple:MDCRipple = null;
 
     function render()
@@ -32,7 +38,7 @@ class Button extends View
                                                          "mdc-button--compact" => compact])}
                              onclick=${onclick} {...this}>
             <if ${icon != null}>
-                <i class="mdc-button__icon material-icons">${icon}</i>
+                <i class="material-icons mdc-button__icon">${icon}</i>
             </if>
             ${label}
         </button>';
