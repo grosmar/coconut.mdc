@@ -1,5 +1,9 @@
 package mdc;
 
+import js.html.AnchorElement;
+import tink.core.Callback;
+import js.html.MouseEvent;
+import js.html.Element;
 import js.html.DOMElement;
 import vdom.VDom.AnchorAttr;
 import mdc.MDC.MDCTabBar;
@@ -12,7 +16,7 @@ import coconut.ui.Children;
 
 class TabBar extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
     @:attr var children:Children;
     @:attr var mode:TabBarMode = Text;
     @:attr var activeTabIndex:Int = 0;
@@ -93,7 +97,8 @@ class Tab extends View
 {
     static var tabIdIndex = 0;
 
-    var attributes:AnchorAttr;
+    @:attr var className:ClassName = "";
+    @:attr var onclick:Callback<EventFrom<MouseEvent, AnchorElement>> = null;
     @:attr var children:Children = null;
     @:attr var active:Bool = null;
     @:attr var icon:IconName = null;
@@ -101,9 +106,8 @@ class Tab extends View
 
     function render()
     '
-        <a  id=${id != null ? id : "tab_" + tabIdIndex++ }
-            class=${className.add(["mdc-tab" => true,
-                                   "mdc-tab--active" => active])} ${...this} >
+        <a class=${className.add(["mdc-tab" => true,
+                                  "mdc-tab--active" => active])} ${...this} >
             <if ${icon != null}>
                 <TabIcon name=${icon} />
             </if>
@@ -117,7 +121,7 @@ class Tab extends View
 
 class TabIcon extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
     @:attr var name:IconName;
 
     function render()
@@ -128,7 +132,7 @@ class TabIcon extends View
 
 class TabText extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
     @:attr var children:Children;
 
     function render()

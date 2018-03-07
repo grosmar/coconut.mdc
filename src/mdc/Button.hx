@@ -1,5 +1,7 @@
 package mdc;
 
+import js.html.InputElement;
+import js.html.ButtonElement;
 import tink.core.Callback;
 import js.html.MouseEvent;
 import js.html.Element;
@@ -15,9 +17,9 @@ import vdom.Attr;
 class Button extends View
 {
     @:attr var className:ClassName = "";
-    @:attr var onclick:Callback<EventFrom<MouseEvent, Element>> = null;
+    @:attr var onclick:Callback<EventFrom<MouseEvent, InputElement>> = null;
     @:attr var label:String = null;
-    @:attr var disabled:Bool = null;
+    @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
     @:attr var raised:Bool = false;
     @:attr var unelevated:Bool = false;
@@ -36,7 +38,7 @@ class Button extends View
                                                          "mdc-button--stroked" => stroked,
                                                          "mdc-button--dense" => dense,
                                                          "mdc-button--compact" => compact])}
-                             onclick=${onclick} {...this}>
+                             {...this}>
             <if ${icon != null}>
                 <i class="material-icons mdc-button__icon">${icon}</i>
             </if>
