@@ -23,9 +23,9 @@ class TextField extends View
     @:attr var box:Bool = null;
     @:attr var fullWidth:Bool = null;
     @:attr var textArea:Bool = null;
-    @:attr var type:String = null;
+    @:attr var type:String = "text";
     @:attr var onedit:String->Void = null;
-    @:attr var pattern:String = null;
+    @:attr var pattern:String = "*";
     @:attr var required:Bool = false;
     @:attr var onkeydown:Callback<EventFrom<KeyboardEvent, Element>> = null;
 
@@ -53,7 +53,7 @@ class TextField extends View
                         <if ${textArea}>
                             <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}>${value}</textarea>
                         <else>
-                            <input type=${type != null ? type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
+                            <input type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
                         </if>
                         <if ${label != null}>
                             <vdom.VDom.label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
