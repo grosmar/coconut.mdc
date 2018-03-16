@@ -53,7 +53,7 @@ class TextField extends View
                         <if ${textArea}>
                             <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}>${value}</textarea>
                         <else>
-                            <input type=${type != null ? type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern != null ? pattern : ""} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
+                            <input type=${type != null ? type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
                         </if>
                         <if ${label != null}>
                             <vdom.VDom.label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
