@@ -56,7 +56,7 @@ class TextField extends View
                             <input type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
                         </if>
                         <if ${label != null}>
-                            <vdom.VDom.label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
+                            <vdom.VDom.label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
                         </if>
                         <if ${icon != null && iconPos == TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${icon}</i>

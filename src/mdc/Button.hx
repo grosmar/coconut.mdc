@@ -25,7 +25,6 @@ class Button extends View
     @:attr var unelevated:Bool = false;
     @:attr var stroked:Bool = false;
     @:attr var dense:Bool = false;
-    @:attr var compact:Bool = false;
     @:attr var ripple:Bool = true;
     var mdcRipple:MDCRipple = null;
 
@@ -36,8 +35,7 @@ class Button extends View
                                                          "mdc-button--raised" => raised,
                                                          "mdc-button--unelevated" => unelevated,
                                                          "mdc-button--stroked" => stroked,
-                                                         "mdc-button--dense" => dense,
-                                                         "mdc-button--compact" => compact])}
+                                                         "mdc-button--dense" => dense])}
                              {...this}>
             <if ${icon != null}>
                 <i class="material-icons mdc-button__icon">${icon}</i>

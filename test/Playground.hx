@@ -1,7 +1,5 @@
 package;
 
-import vdom.Attr;
-import vdom.VNode;
 import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
@@ -41,7 +39,6 @@ class TestView extends View
     <div>
         <Button label="Simple" onclick=${trace("clicked")} />
         <Button label="Dense" dense/>
-        <Button label="Compact" compact />
         <Button label="Disabled" disabled />
         <Button label="Unelevated" unelevated />
         <Button label="Icon" icon="favorite" />
@@ -50,7 +47,6 @@ class TestView extends View
     <div>
         <Button label="Simple" raised onclick=${trace("clicked")} />
         <Button label="Dense" raised dense/>
-        <Button label="Compact" raised compact />
         <Button label="Disabled" raised disabled />
         <Button label="Unelevated" raised unelevated />
         <Button label="Icon" raised icon="favorite" />
