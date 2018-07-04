@@ -1,15 +1,10 @@
 package mdc;
 
 import js.html.KeyboardEvent;
-import js.html.Element;
-import js.html.MouseEvent;
-import tink.core.Callback;
-import vdom.VDom.InputAttr;
-import js.html.DOMElement;
 import mdc.MDC.MDCTextField;
-import vdom.Attr;
-import vdom.VDom.*;
 import coconut.ui.View;
+import coconut.vdom.ClassName;
+import js.html.Element;
 
 class TextField extends View
 {
@@ -27,7 +22,7 @@ class TextField extends View
     @:attr var onedit:String->Void = null;
     @:attr var pattern:String = "*";
     @:attr var required:Bool = false;
-    @:attr var onkeydown:Callback<EventFrom<KeyboardEvent, Element>> = null;
+    @:attr var onkeydown:KeyboardEvent->Void = null;
 
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
@@ -46,7 +41,7 @@ class TextField extends View
                                                       "mdc-text-field--with-leading-icon" => icon != null,
                                                       "mdc-text-field--box" => box,
                                                       "mdc-text-field--textarea" => textArea,
-                                                      "mdc-text-field--fullwidth" => fullWidth])} {...this}>
+                                                      "mdc-text-field--fullwidth" => fullWidth])} ${...this}>
                         <if ${icon != null && iconPos != TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
@@ -56,7 +51,7 @@ class TextField extends View
                             <input type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
                         </if>
                         <if ${label != null}>
-                            <vdom.VDom.label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
+                            <coconut.vdom.Html.label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</coconut.vdom.Html.label>
                         </if>
                         <if ${icon != null && iconPos == TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
@@ -72,7 +67,7 @@ class TextField extends View
             mdcTextField.value = value;
     }
 
-    override function afterInit(elem:DOMElement)
+    override function afterInit(elem:Element)
     {
         this.mdcTextField = new MDCTextField(elem);
     }

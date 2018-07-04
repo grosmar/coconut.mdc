@@ -1,9 +1,7 @@
 package mdc;
 
 import mdc.MDC.MDCCheckbox;
-import vdom.Attr;
-import vdom.VNode;
-import vdom.VDom.*;
+import coconut.vdom.ClassName;
 import coconut.ui.View;
 
 class Checkbox extends View
@@ -51,7 +49,7 @@ class Checkbox extends View
                               </div>
                           </div>
 
-                          <vdom.VDom.label htmlFor=${id}>${label}</vdom.VDom.label>
+                          <coconut.vdom.Html.label htmlFor=${id}>${label}</coconut.vdom.Html.label>
                     </div>';
             else
                 @hxx '<div class="mdc-checkbox" {...this}>

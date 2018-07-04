@@ -1,9 +1,8 @@
 package mdc;
 import coconut.ui.View;
-import vdom.Attr;
 class Icon extends View
 {
-    @:attr var className:ClassName = "";
+    @:attr var className:coconut.vdom.ClassName = "";
     @:attr var name:IconName;
 
     function render()

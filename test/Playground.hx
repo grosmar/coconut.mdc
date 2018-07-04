@@ -4,7 +4,6 @@ import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
 import mdc.TextField.TextFieldHelperText;
-import mdc.List.*;
 import mdc.List.ListItem;
 import mdc.List.ListText;
 import mdc.List.ListTextSecondary;
@@ -12,10 +11,8 @@ import mdc.List.ListGraphic;
 import mdc.List.ListGraphicImage;
 import mdc.List.ListMeta;
 import mdc.List.ListDivider;
-import mdc.TabBar.*;
 import mdc.TabBar.Tab;
 import mdc.Toolbar;
-import mdc.Toolbar.*;
 import mdc.Icon;
 
 class Playground
@@ -24,7 +21,7 @@ class Playground
     {
         //MDC.init();
         var view = coconut.Ui.hxx('<TestView />');
-        js.Browser.document.getElementById("app").appendChild(view.toElement());
+        view.mount(js.Browser.document.getElementById("app"));
     }
 
 

@@ -1,17 +1,11 @@
 package mdc;
 
-import js.html.AnchorElement;
-import tink.core.Callback;
 import js.html.MouseEvent;
-import js.html.Element;
 import js.html.DOMElement;
-import vdom.VDom.AnchorAttr;
 import mdc.MDC.MDCTabBar;
-import vdom.Attr;
-import vdom.VDom.*;
-import coconut.Ui.hxx;
 import coconut.ui.View;
 import coconut.ui.Children;
+import coconut.vdom.ClassName;
 //import coconut.Ui.hxx;
 
 class TabBar extends View
@@ -98,7 +92,7 @@ class Tab extends View
     static var tabIdIndex = 0;
 
     @:attr var className:ClassName = "";
-    @:attr var onclick:Callback<EventFrom<MouseEvent, AnchorElement>> = null;
+    @:attr var onclick:MouseEvent->Void = null;
     @:attr var children:Children = null;
     @:attr var active:Bool = null;
     @:attr var icon:IconName = null;

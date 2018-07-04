@@ -1,13 +1,13 @@
 package mdc;
 
 import mdc.MDC.MDCRadio;
-import vdom.Attr;
-import vdom.VDom.*;
 import coconut.ui.View;
+import coconut.vdom.ClassName;
 
 class Radio extends View
 {
-    var attributes:Attr;
+    @:attr var className:ClassName = "";
+    @:attr var id:String = null;
     @:attr var label:String = null;
     @:attr var disabled:Bool = null;
     @:attr var checked:Bool = null;
@@ -37,7 +37,7 @@ class Radio extends View
                                 <div class="mdc-radio__inner-circle"></div>
                               </div>
                           </div>
-                          <vdom.VDom.label htmlFor=${id}>${this.label}</vdom.VDom.label>
+                          <coconut.vdom.Html.label htmlFor=${id}>${this.label}</coconut.vdom.Html.label>
                     </div>';
             else
                 @hxx '<div class="mdc-radio">

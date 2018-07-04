@@ -1,12 +1,16 @@
 package mdc;
 import coconut.ui.View;
-import vdom.VDom.InputAttr;
+import coconut.vdom.ClassName;
 
 class Switch extends View
 {
-    var attributes:InputAttr;
+    @:attr var id:String = null;
+    @:attr var checked:Bool = null;
+    @:attr var className:ClassName = "";
     @:attr var label:String = null;
+    @:attr var value:String = null;
     @:attr var onchecked:Bool->Void = null;
+    @:attr var disabled:Bool = null;
 
     static var switchIndex = 0;
     var switchId:UInt = switchIndex++;
@@ -29,7 +33,7 @@ class Switch extends View
                 </div>
             </div>
             <if ${label != null}>
-                <vdom.VDom.label htmlFor=${id} class="mdc-switch-label">${label}</vdom.VDom.label>
+                <coconut.vdom.Html.label htmlFor=${id} class="mdc-switch-label">${label}</coconut.vdom.Html.label>
             </if>
         </div>
         ';

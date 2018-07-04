@@ -4,18 +4,12 @@ package mdc;
  * @prop two-line = false
  * @prop interactive = false
  */
-import js.html.Element;
 import js.html.MouseEvent;
-import tink.core.Callback;
 import mdc.MDC.MDCRipple;
 import mdc.MDC.RippleAttr;
-import vdom.VDom.AnchorAttr;
-import vdom.Attr;
-import vdom.VDom.*;
-import vdom.VNode;
-import vdom.VDom.ImgAttr;
 import coconut.ui.View;
 import coconut.ui.Children;
+import coconut.vdom.ClassName;
 
 //TODO: add list group support
 //TODO: make list items individual Views to have standalone ripple effect
@@ -41,7 +35,7 @@ class List extends View
 class ListItem extends View
 {
 	var attributes:RippleAttr;
-	@:attr var onclick:Callback<EventFrom<MouseEvent, Element>> = null;
+	@:attr var onclick:MouseEvent->Void = null;
 	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 	var mdcRipple:MDCRipple;
@@ -89,7 +83,7 @@ class ListGraphic extends View
 {
 	var attributes:RippleAttr;
 	@:attr var className:ClassName = "";
-	@:attr var onclick:Callback<EventFrom<MouseEvent, Element>> = null;
+	@:attr var onclick:MouseEvent->Void = null;
 	@:attr var children:Children;
 
 	function render()
@@ -132,7 +126,7 @@ class ListMeta extends View
 
 class ListDivider extends View
 {
-	var attributes:Attr;
+	@:attr var className:ClassName = "";
 	@:attr var inset:Bool = false;
 
 	function render()

@@ -1,23 +1,14 @@
 package mdc;
 
-import js.html.InputElement;
-import js.html.ButtonElement;
-import tink.core.Callback;
 import js.html.MouseEvent;
-import js.html.Element;
-import vdom.Attr.ClassName;
+import coconut.vdom.ClassName;
 import mdc.MDC.MDCRipple;
-import vdom.VDom.InputAttr;
-//import vdom.VNode;
-import vdom.VDom.*;
 import coconut.ui.View;
-import vdom.Attr;
-//import coconut.Ui.hxx;
 
 class Button extends View
 {
     @:attr var className:ClassName = "";
-    @:attr var onclick:Callback<EventFrom<MouseEvent, InputElement>> = null;
+    @:attr var onclick:MouseEvent->Void = null;
     @:attr var label:String = null;
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;

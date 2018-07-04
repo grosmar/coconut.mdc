@@ -1,12 +1,11 @@
 package mdc;
 
 import coconut.ui.Children;
-import vdom.Attr;
 import coconut.ui.View;
 
 class Toolbar extends View
 {
-	var attributes:Attr;
+	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var children:Children;
 	//TODO: add fixed&waterfal
 
@@ -20,7 +19,7 @@ class Toolbar extends View
 
 class ToolbarRow extends View
 {
-	var attributes:Attr;
+	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var children:Children;
 
 	function render(attr)
@@ -33,7 +32,7 @@ class ToolbarRow extends View
 
 class ToolbarSection extends View
 {
-	var attributes:Attr;
+	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var children:Children;
 	@:attr var align:ToolbarSectionAlign = ToolbarSectionAlign.Center;
 	@:attr var shringToFit:Bool = false;
@@ -55,7 +54,7 @@ class ToolbarSection extends View
 
 class ToolbarTitle extends View
 {
-	var attributes:Attr;
+	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var children:Children;
 
 	function render(attr)
@@ -68,7 +67,7 @@ class ToolbarTitle extends View
 
 class ToolbarMenuIcon extends View
 {
-	var attributes:Attr;
+	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var name:IconName;
 
 	function render(attr)
@@ -81,7 +80,7 @@ class ToolbarMenuIcon extends View
 
 class ToolbarIcon extends View
 {
-	var attributes:Attr;
+	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var name:IconName;
 
 	function render(attr)

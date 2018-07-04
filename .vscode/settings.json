@@ -1,0 +1,5 @@
+{
+    "haxe.displayConfigurations": [["completion.hxml"]],
+    "haxe.executable": "haxe.exe",
+    "terminal.integrated.shell.windows": "cmd.exe"
+}
