@@ -46,7 +46,7 @@ class ListItem extends View
 			data-mdc-ripple-is-unbounded=${unboundedRipple} ${...this}>${...children}</li>
 	';
 
-	override function afterInit(elem)
+	override function afterMounting(elem)
 	{
 		mdcRipple = new MDCRipple(elem);
 	}

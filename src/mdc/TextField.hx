@@ -4,7 +4,6 @@ import js.html.KeyboardEvent;
 import mdc.MDC.MDCTextField;
 import coconut.ui.View;
 import coconut.vdom.ClassName;
-import js.html.Element;
 
 class TextField extends View
 {
@@ -67,7 +66,7 @@ class TextField extends View
             mdcTextField.value = value;
     }
 
-    override function afterInit(elem:Element)
+    override function afterMounting(elem)
     {
         this.mdcTextField = new MDCTextField(elem);
     }

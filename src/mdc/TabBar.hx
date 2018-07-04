@@ -29,13 +29,13 @@ class TabBar extends View
         </nav>';
     }
 
-    override function afterInit(elem:DOMElement)
+    override function afterMounting(elem)
     {
-        this.mdcTabBar = new MDCTabBar(elem);
+        mdcTabBar = new MDCTabBar(elem);
         mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
         mdcTabBar.activeTabIndex = activeTabIndex;
         mdcTabBar.tabs[activeTabIndex].isActive = true;
-        prevLength = elem.children.length;
+        prevLength = elem.childNodes.length;
     }
 
     var prevLength:Int;

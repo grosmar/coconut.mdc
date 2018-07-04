@@ -38,7 +38,7 @@ class LinearProgress extends View
     }
 
 
-    override function afterInit(elem)
+    override function afterMounting(elem)
     {
         mdcLinearProgress = new MDCLinearProgress(elem);
 

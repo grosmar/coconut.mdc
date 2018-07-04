@@ -35,7 +35,7 @@ class Button extends View
         </button>';
     }
 
-    override function afterInit(elem)
+    override function afterMounting(elem)
     {
         this.mdcRipple = new MDCRipple(elem);
     }

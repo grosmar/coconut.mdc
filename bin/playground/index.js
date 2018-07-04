@@ -451,46 +451,64 @@ Playground.main = function() {
 	var __ret = { };
 	__r.push(coconut_ui_tools_ViewCache.mk("TestView",null,TestView.__init,__ret));
 	var view = __r[0];
-	window.document.getElementById("app").appendChild(view.toElement());
+	view.mount(window.document.getElementById("app"));
 };
-var vdom_Widget = function() {
-	this.type = "Widget";
+var coconut_vdom_Widget = function(key) {
+	this.t = ":widget";
+	this.k = key;
 };
-$hxClasses["vdom.Widget"] = vdom_Widget;
-vdom_Widget.__name__ = ["vdom","Widget"];
-vdom_Widget.prototype = {
-	type: null
-	,init: function() {
-		throw new js__$Boot_HaxeError("abstract");
+$hxClasses["coconut.vdom.Widget"] = coconut_vdom_Widget;
+coconut_vdom_Widget.__name__ = ["coconut","vdom","Widget"];
+coconut_vdom_Widget.prototype = {
+	t: null
+	,k: null
+	,a: null
+	,c: null
+	,__initWidget: function() {
+		throw new Error("" + this.t + " does not overwrite init method");
 	}
-	,update: function(prev,elt) {
-		throw new js__$Boot_HaxeError("abstract");
+	,__replaceWidget: function(w,e) {
+		return this.__initWidget();
 	}
-	,destroy: function() {
+	,__destroyWidget: function() {
 	}
-	,__class__: vdom_Widget
+	,afterMounting: function(n) {
+	}
+	,__class__: coconut_vdom_Widget
 };
 var coconut_vdom_Renderable = function(rendered) {
-	this.key = coconut_vdom_Renderable.keygen++;
-	vdom_Widget.call(this);
 	this.__rendered = rendered;
+	coconut_vdom_Widget.call(this,"coconut-widget:" + coconut_vdom_Renderable.keygen++);
 };
 $hxClasses["coconut.vdom.Renderable"] = coconut_vdom_Renderable;
 coconut_vdom_Renderable.__name__ = ["coconut","vdom","Renderable"];
-coconut_vdom_Renderable.__super__ = vdom_Widget;
-coconut_vdom_Renderable.prototype = $extend(vdom_Widget.prototype,{
+coconut_vdom_Renderable.__properties__ = {get_dummy:"get_dummy"};
+coconut_vdom_Renderable.dummy = null;
+coconut_vdom_Renderable.get_dummy = function() {
+	if(coconut_vdom_Renderable.dummy == null) {
+		coconut_vdom_Renderable.dummy = window.document.createElement("div");
+		coconut_vdom_Renderable.dummy.style.display = "none !important";
+		window.document.head.appendChild(coconut_vdom_Renderable.dummy);
+	}
+	return coconut_vdom_Renderable.dummy;
+};
+coconut_vdom_Renderable.__super__ = coconut_vdom_Widget;
+coconut_vdom_Renderable.prototype = $extend(coconut_vdom_Widget.prototype,{
 	__rendered: null
 	,__dom: null
 	,__binding: null
 	,__lastRender: null
-	,key: null
-	,init: function() {
+	,__initWidget: function() {
 		this.__lastRender = tink_state__$Observable_Observable_$Impl_$.get_value(this.__rendered);
-		this.beforeInit();
-		this.__dom = vdom_VDom.create(this.__lastRender);
-		this.afterInit(this.__dom);
+		this.__dom = coconut_vdom_VDom.createNode(this.__lastRender);
 		this.__setupBinding();
 		return this.__dom;
+	}
+	,mount: function(into) {
+		if(this.__dom != null) {
+			throw new js__$Boot_HaxeError("assert");
+		}
+		coconut_vdom_VDom.mount(this,into);
 	}
 	,__setupBinding: function() {
 		var _gthis = this;
@@ -501,24 +519,19 @@ coconut_vdom_Renderable.prototype = $extend(vdom_Widget.prototype,{
 		});
 	}
 	,__apply: function(next) {
-		var changes = vdom_VDom.diff(this.__lastRender,next);
 		this.beforePatching(this.__dom);
-		this.__dom = vdom_VDom.patch(this.__dom,changes);
+		this.__dom = coconut_vdom_VDom.updateNode(this.__dom,next,this.__lastRender);
 		this.__lastRender = next;
 		this.afterPatching(this.__dom);
 	}
 	,toElement: function() {
 		var _g = this.__dom;
 		if(_g == null) {
-			return this.init();
+			return this.__initWidget();
 		} else {
 			var v = _g;
 			return v;
 		}
-	}
-	,beforeInit: function() {
-	}
-	,afterInit: function(element) {
 	}
 	,beforePatching: function(element) {
 	}
@@ -528,50 +541,31 @@ coconut_vdom_Renderable.prototype = $extend(vdom_Widget.prototype,{
 	}
 	,afterDestroy: function(element) {
 	}
-	,update: function(x,y) {
-		var _g = (x instanceof coconut_vdom_Renderable) ? x : null;
-		if(_g != null) {
-			var v = _g;
-			this.__reuseRender(v);
-		}
-		return this.toElement();
-	}
-	,__reuseRender: function(that) {
-		this.__dom = that.__dom;
-		this.__lastRender = that.__lastRender;
-		this.__apply(tink_state__$Observable_Observable_$Impl_$.get_value(this.__rendered));
-		this.__setupBinding();
-		that.destroy();
-	}
-	,destroy: function() {
+	,__destroyWidget: function() {
 		this.beforeDestroy(this.__dom);
 		var this1 = this.__binding;
 		if(this1 != null) {
 			this1.dissolve();
 		}
-		vdom_Widget.prototype.destroy.call(this);
+		coconut_vdom_Widget.prototype.__destroyWidget.call(this);
 		var _destroy = null;
 		_destroy = function(v) {
-			var _g = v.children;
-			if(_g != null) {
-				var children = _g;
-				var _g1 = 0;
-				while(_g1 < children.length) {
-					var child = children[_g1];
-					++_g1;
-					var value = child;
-					var _g11 = (value instanceof vdom_Widget) ? value : null;
-					if(_g11 != null) {
-						var v1 = _g11;
-						v1.destroy();
-					}
-					_destroy(child);
+			var _g = 0;
+			var _g1 = v.c;
+			while(_g < (_g1 == null ? 0 : _g1.length)) {
+				var c = _g1[_g];
+				++_g;
+				if(c.t == ":widget") {
+					(c.t == ":widget" ? c : null).__destroyWidget();
+				} else {
+					_destroy(c);
 				}
 			}
 		};
 		var _destroy1 = _destroy;
 		_destroy1(this.__lastRender);
 		this.afterDestroy(this.__dom);
+		this.__dom = null;
 	}
 	,__class__: coconut_vdom_Renderable
 });
@@ -582,20 +576,19 @@ coconut_ui_Renderable.prototype = {
 	getRenderResult: null
 	,__class__: coconut_ui_Renderable
 };
-var coconut_ui_View = function(render,pos) {
+var coconut_ui_View = function(render) {
 	this.viewId = coconut_ui_View.idCounter++;
 	this.__coco__cache = new coconut_ui_tools_ViewCache();
 	var _gthis = this;
 	var last = haxe_ds_Option.None;
 	var this1 = { f : function() {
-		if(!_gthis.shouldViewUpdate() && last != haxe_ds_Option.None) {
-			haxe_Log.trace("skip " + Std.string(_gthis),{ fileName : "View.hx", lineNumber : 19, className : "coconut.ui.View", methodName : "new"});
+		if(!_gthis.shouldUpdate() && last != haxe_ds_Option.None) {
 			var this2;
 			if(last[1] == 0) {
 				var v = last[2];
 				this2 = v;
 			} else {
-				throw new js__$Boot_HaxeError(new tink_core_TypedError(404,"Some value expected but none found",{ fileName : "View.hx", lineNumber : 20, className : "coconut.ui.View", methodName : "new"}));
+				throw new js__$Boot_HaxeError(new tink_core_TypedError(404,"Some value expected but none found",{ fileName : "View.hx", lineNumber : 19, className : "coconut.ui.View", methodName : "new"}));
 			}
 			return this2;
 		} else {
@@ -613,7 +606,7 @@ coconut_ui_View.__super__ = coconut_vdom_Renderable;
 coconut_ui_View.prototype = $extend(coconut_vdom_Renderable.prototype,{
 	__coco__cache: null
 	,viewId: null
-	,shouldViewUpdate: function() {
+	,shouldUpdate: function() {
 		return true;
 	}
 	,getRenderResult: function() {
@@ -622,139 +615,171 @@ coconut_ui_View.prototype = $extend(coconut_vdom_Renderable.prototype,{
 	,__class__: coconut_ui_View
 });
 var TestView = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Playground.hx", lineNumber : 34, className : "TestView", methodName : "new"});
-	this.__tink_defaults85 = { };
+	this.__tink_defaults116 = { };
 	this.__slots = { };
+	this.__tink_init117(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["TestView"] = TestView;
 TestView.__name__ = ["TestView"];
 TestView.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new TestView(attributes);
+	} else {
+		inst.__tink_init117(attributes);
 	}
-	inst.__tink_init86(attributes);
 	return inst;
 };
 TestView.__super__ = coconut_ui_View;
 TestView.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var __r = [];
-		var __ret = { className : vdom__$Attr_ClassName_$Impl_$.ofString("demo")};
+		var __ret = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("demo")};
+		var attr = __ret;
 		var __r1 = [];
-		var __r2 = [];
-		__r2.push("Normal Buttons");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var __ret1 = { };
-		__r1.push(vdom_VDom.h("h1",__ret1,__r2));
+		var attr1 = __ret1;
+		var __r2 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		__r2.push({ t : ":text", k : "Normal Buttons", a : coconut_vdom_VDom.EMPTY});
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		__r1.push({ t : "h1", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
+		var __ret2 = { };
+		var attr2 = __ret2;
 		var __r3 = [];
-		var __ret2 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+		var __ret3 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
 		var this1 = { f : function() {
 			return function(event) {
-				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 40, className : "TestView", methodName : "render"});
+				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 37, className : "TestView", methodName : "render"});
 			};
 		}};
-		var __ret3 = { label : __ret2, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this1)};
-		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret3));
-		var __ret4 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret4 = { label : __ret3, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this1)};
 		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret4));
-		var __ret5 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret5 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret5));
-		var __ret6 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Unelevated"), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret6 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret6));
-		var __ret7 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon"), icon : tink_state__$Observable_Observable_$Impl_$["const"]("favorite")};
+		var __ret7 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Unelevated"), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret7));
-		var __ret8 = { };
-		__r1.push(vdom_VDom.h("div",__ret8,__r3));
-		var __r4 = [];
-		__r4.push("Raised Buttons");
+		var __ret8 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon"), icon : tink_state__$Observable_Observable_$Impl_$["const"]("favorite")};
+		__r3.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret8));
+		var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+		__r1.push({ t : "div", k : attr2 == null ? null : attr2.key, a : attr2, c : children1});
 		var __ret9 = { };
-		__r1.push(vdom_VDom.h("h1",__ret9,__r4));
+		var attr3 = __ret9;
+		var __r4 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+		__r4.push({ t : ":text", k : "Raised Buttons", a : coconut_vdom_VDom.EMPTY});
+		var children2 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+		__r1.push({ t : "h1", k : attr3 == null ? null : attr3.key, a : attr3, c : children2});
+		var __ret10 = { };
+		var attr4 = __ret10;
 		var __r5 = [];
-		var __ret10 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
-		var __ret11 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this2 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+		var __ret11 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		var __ret12 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var this11 = { f : function() {
 			return function(event1) {
-				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 48, className : "TestView", methodName : "render"});
+				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 45, className : "TestView", methodName : "render"});
 			};
 		}};
-		var __ret12 = { label : __ret10, raised : __ret11, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this2)};
-		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret12));
-		var __ret13 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret13 = { label : __ret11, raised : __ret12, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this11)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret13));
-		var __ret14 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret14 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret14));
-		var __ret15 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Unelevated"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret15 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret15));
-		var __ret16 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("favorite")};
+		var __ret16 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Unelevated"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret16));
-		var __ret17 = { };
-		__r1.push(vdom_VDom.h("div",__ret17,__r5));
-		var __r6 = [];
-		__r6.push("Checkbox");
+		var __ret17 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("favorite")};
+		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret17));
+		var children3 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+		__r1.push({ t : "div", k : attr4 == null ? null : attr4.key, a : attr4, c : children3});
 		var __ret18 = { };
-		__r1.push(vdom_VDom.h("h1",__ret18,__r6));
+		var attr5 = __ret18;
+		var __r6 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+		__r6.push({ t : ":text", k : "Checkbox", a : coconut_vdom_VDom.EMPTY});
+		var children4 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+		__r1.push({ t : "h1", k : attr5 == null ? null : attr5.key, a : attr5, c : children4});
+		var __ret19 = { };
+		var attr6 = __ret19;
 		var __r7 = [];
-		var __ret19 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
-		var __ret20 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this3 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r7);
+		var __ret20 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		var __ret21 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this12 = { f : function() {
 			return function(checked) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 57, className : "TestView", methodName : "render", customParams : [checked]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 54, className : "TestView", methodName : "render", customParams : [checked]});
 				return;
 			};
 		}};
-		var __ret21 = { label : __ret19, value : __ret20, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this3)};
-		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret21));
-		var __ret22 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret22 = { label : __ret20, value : __ret21, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this12)};
 		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret22));
-		var __ret23 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Indeterminate"), indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret23 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret23));
-		var __ret24 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret24 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Indeterminate"), indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret24));
-		var __ret25 = { };
-		__r1.push(vdom_VDom.h("div",__ret25,__r7));
-		var __r8 = [];
-		__r8.push("TabBar");
+		var __ret25 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret25));
+		var children5 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r7);
+		__r1.push({ t : "div", k : attr6 == null ? null : attr6.key, a : attr6, c : children5});
 		var __ret26 = { };
-		__r1.push(vdom_VDom.h("h1",__ret26,__r8));
-		var __ret27 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")};
+		var attr7 = __ret26;
+		var __r8 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r8);
+		__r8.push({ t : ":text", k : "TabBar", a : coconut_vdom_VDom.EMPTY});
+		var children6 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r8);
+		__r1.push({ t : "h1", k : attr7 == null ? null : attr7.key, a : attr7, c : children6});
+		var __ret27 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("flex-container")};
+		var attr8 = __ret27;
 		var __r9 = [];
-		var __ret28 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r9);
+		var __ret28 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr9 = __ret28;
 		var __r10 = [];
-		var this4 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r10);
+		var this13 = { f : function() {
 			var __r11 = [];
 			var __ret29 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-			var this5 = { f : function() {
+			var this14 = { f : function() {
 				var __r12 = [];
-				__r12.push("Tab1");
+				__r12.push({ t : ":text", k : "Tab1", a : coconut_vdom_VDom.EMPTY});
 				return __r12;
 			}};
-			var __ret30 = { active : __ret29, children : tink_state__$Observable_Observable_$Impl_$.auto(this5)};
+			var __ret30 = { active : __ret29, children : tink_state__$Observable_Observable_$Impl_$.auto(this14)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret30));
-			var this6 = { f : function() {
+			var this15 = { f : function() {
 				var __r13 = [];
-				__r13.push("Tab2");
+				__r13.push({ t : ":text", k : "Tab2", a : coconut_vdom_VDom.EMPTY});
 				return __r13;
 			}};
-			var __ret31 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this6)};
+			var __ret31 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this15)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret31));
-			var this7 = { f : function() {
+			var this16 = { f : function() {
 				var __r14 = [];
-				__r14.push("Tab3");
+				__r14.push({ t : ":text", k : "Tab3", a : coconut_vdom_VDom.EMPTY});
 				return __r14;
 			}};
-			var __ret32 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this7)};
+			var __ret32 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this16)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret32));
 			return __r11;
 		}};
-		var __ret33 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this4)};
+		var __ret33 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this13)};
 		__r10.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret33));
-		__r9.push(vdom_VDom.h("div",__ret28,__r10));
-		var __ret34 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var children7 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r10);
+		__r9.push({ t : "div", k : attr9 == null ? null : attr9.key, a : attr9, c : children7});
+		var __ret34 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr10 = __ret34;
 		var __r15 = [];
-		var this8 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r15);
+		var this17 = { f : function() {
 			return "mdc-tab-bar--icon-tab-bar";
 		}};
-		var __ret35 = tink_state__$Observable_Observable_$Impl_$.auto(this8);
-		var this9 = { f : function() {
+		var __ret35 = tink_state__$Observable_Observable_$Impl_$.auto(this17);
+		var this18 = { f : function() {
 			var __r16 = [];
 			var __ret36 = { icon : tink_state__$Observable_Observable_$Impl_$["const"]("camera"), active : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 			__r16.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret36));
@@ -764,599 +789,703 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			__r16.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret38));
 			return __r16;
 		}};
-		var __ret39 = { mode : __ret35, children : tink_state__$Observable_Observable_$Impl_$.auto(this9)};
+		var __ret39 = { mode : __ret35, children : tink_state__$Observable_Observable_$Impl_$.auto(this18)};
 		__r15.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret39));
-		__r9.push(vdom_VDom.h("div",__ret34,__r15));
-		var __ret40 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var children8 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r15);
+		__r9.push({ t : "div", k : attr10 == null ? null : attr10.key, a : attr10, c : children8});
+		var __ret40 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr11 = __ret40;
 		var __r17 = [];
-		var this10 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r17);
+		var this19 = { f : function() {
 			return "mdc-tab-bar--icons-with-text";
 		}};
-		var __ret41 = tink_state__$Observable_Observable_$Impl_$.auto(this10);
-		var this11 = { f : function() {
+		var __ret41 = tink_state__$Observable_Observable_$Impl_$.auto(this19);
+		var this110 = { f : function() {
 			var __r18 = [];
 			var __ret42 = tink_state__$Observable_Observable_$Impl_$["const"]("camera");
 			var __ret43 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-			var this12 = { f : function() {
+			var this111 = { f : function() {
 				var __r19 = [];
-				__r19.push("Tab1");
+				__r19.push({ t : ":text", k : "Tab1", a : coconut_vdom_VDom.EMPTY});
 				return __r19;
 			}};
-			var __ret44 = { icon : __ret42, active : __ret43, children : tink_state__$Observable_Observable_$Impl_$.auto(this12)};
+			var __ret44 = { icon : __ret42, active : __ret43, children : tink_state__$Observable_Observable_$Impl_$.auto(this111)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret44));
 			var __ret45 = tink_state__$Observable_Observable_$Impl_$["const"]("colorize");
-			var this13 = { f : function() {
+			var this112 = { f : function() {
 				var __r20 = [];
-				__r20.push("Tab2");
+				__r20.push({ t : ":text", k : "Tab2", a : coconut_vdom_VDom.EMPTY});
 				return __r20;
 			}};
-			var __ret46 = { icon : __ret45, children : tink_state__$Observable_Observable_$Impl_$.auto(this13)};
+			var __ret46 = { icon : __ret45, children : tink_state__$Observable_Observable_$Impl_$.auto(this112)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret46));
 			var __ret47 = tink_state__$Observable_Observable_$Impl_$["const"]("edit");
-			var this14 = { f : function() {
+			var this113 = { f : function() {
 				var __r21 = [];
-				__r21.push("Tab3");
+				__r21.push({ t : ":text", k : "Tab3", a : coconut_vdom_VDom.EMPTY});
 				return __r21;
 			}};
-			var __ret48 = { icon : __ret47, children : tink_state__$Observable_Observable_$Impl_$.auto(this14)};
+			var __ret48 = { icon : __ret47, children : tink_state__$Observable_Observable_$Impl_$.auto(this113)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret48));
 			return __r18;
 		}};
-		var __ret49 = { mode : __ret41, children : tink_state__$Observable_Observable_$Impl_$.auto(this11)};
+		var __ret49 = { mode : __ret41, children : tink_state__$Observable_Observable_$Impl_$.auto(this110)};
 		__r17.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret49));
-		__r9.push(vdom_VDom.h("div",__ret40,__r17));
-		__r1.push(vdom_VDom.h("div",__ret27,__r9));
-		var __r22 = [];
-		__r22.push("LinearProgress");
+		var children9 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r17);
+		__r9.push({ t : "div", k : attr11 == null ? null : attr11.key, a : attr11, c : children9});
+		var children10 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r9);
+		__r1.push({ t : "div", k : attr8 == null ? null : attr8.key, a : attr8, c : children10});
 		var __ret50 = { };
-		__r1.push(vdom_VDom.h("h1",__ret50,__r22));
-		var __ret51 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")};
+		var attr12 = __ret50;
+		var __r22 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r22);
+		__r22.push({ t : ":text", k : "LinearProgress", a : coconut_vdom_VDom.EMPTY});
+		var children11 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r22);
+		__r1.push({ t : "h1", k : attr12 == null ? null : attr12.key, a : attr12, c : children11});
+		var __ret51 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("flex-container")};
+		var attr13 = __ret51;
 		var __r23 = [];
-		var __r24 = [];
-		__r24.push("Progress");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r23);
 		var __ret52 = { };
-		__r23.push(vdom_VDom.h("h2",__ret52,__r24));
-		var this15 = { f : function() {
+		var attr14 = __ret52;
+		var __r24 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r24);
+		__r24.push({ t : ":text", k : "Progress", a : coconut_vdom_VDom.EMPTY});
+		var children12 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r24);
+		__r23.push({ t : "h2", k : attr14 == null ? null : attr14.key, a : attr14, c : children12});
+		var this114 = { f : function() {
 			return 0.7;
 		}};
-		var __ret53 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this15), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret53 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this114), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret53));
-		var __r25 = [];
-		__r25.push("Buffer");
 		var __ret54 = { };
-		__r23.push(vdom_VDom.h("h2",__ret54,__r25));
-		var this16 = { f : function() {
+		var attr15 = __ret54;
+		var __r25 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r25);
+		__r25.push({ t : ":text", k : "Buffer", a : coconut_vdom_VDom.EMPTY});
+		var children13 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r25);
+		__r23.push({ t : "h2", k : attr15 == null ? null : attr15.key, a : attr15, c : children13});
+		var this115 = { f : function() {
 			return 0.3;
 		}};
-		var __ret55 = tink_state__$Observable_Observable_$Impl_$.auto(this16);
-		var this17 = { f : function() {
+		var __ret55 = tink_state__$Observable_Observable_$Impl_$.auto(this115);
+		var this116 = { f : function() {
 			return 0.4;
 		}};
-		var __ret56 = { progress : __ret55, buffer : tink_state__$Observable_Observable_$Impl_$.auto(this17), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret56 = { progress : __ret55, buffer : tink_state__$Observable_Observable_$Impl_$.auto(this116), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret56));
-		var __r26 = [];
-		__r26.push("Indeterminate");
 		var __ret57 = { };
-		__r23.push(vdom_VDom.h("h2",__ret57,__r26));
+		var attr16 = __ret57;
+		var __r26 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r26);
+		__r26.push({ t : ":text", k : "Indeterminate", a : coconut_vdom_VDom.EMPTY});
+		var children14 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r26);
+		__r23.push({ t : "h2", k : attr16 == null ? null : attr16.key, a : attr16, c : children14});
 		var __ret58 = { indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret58));
-		var __r27 = [];
-		__r27.push("Reverse");
 		var __ret59 = { };
-		__r23.push(vdom_VDom.h("h2",__ret59,__r27));
-		var this18 = { f : function() {
+		var attr17 = __ret59;
+		var __r27 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r27);
+		__r27.push({ t : ":text", k : "Reverse", a : coconut_vdom_VDom.EMPTY});
+		var children15 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r27);
+		__r23.push({ t : "h2", k : attr17 == null ? null : attr17.key, a : attr17, c : children15});
+		var this117 = { f : function() {
 			return 0.7;
 		}};
-		var __ret60 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this18), reverse : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret60 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this117), reverse : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret60));
-		var __r28 = [];
-		__r28.push("Reverse indeterminate");
 		var __ret61 = { };
-		__r23.push(vdom_VDom.h("h2",__ret61,__r28));
+		var attr18 = __ret61;
+		var __r28 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r28);
+		__r28.push({ t : ":text", k : "Reverse indeterminate", a : coconut_vdom_VDom.EMPTY});
+		var children16 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r28);
+		__r23.push({ t : "h2", k : attr18 == null ? null : attr18.key, a : attr18, c : children16});
 		var __ret62 = { indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](true), reverse : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret62));
-		__r1.push(vdom_VDom.h("div",__ret51,__r23));
-		var __r29 = [];
-		__r29.push("List");
+		var children17 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r23);
+		__r1.push({ t : "div", k : attr13 == null ? null : attr13.key, a : attr13, c : children17});
 		var __ret63 = { };
-		__r1.push(vdom_VDom.h("h1",__ret63,__r29));
-		var __ret64 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("flex-container")};
+		var attr19 = __ret63;
+		var __r29 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r29);
+		__r29.push({ t : ":text", k : "List", a : coconut_vdom_VDom.EMPTY});
+		var children18 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r29);
+		__r1.push({ t : "h1", k : attr19 == null ? null : attr19.key, a : attr19, c : children18});
+		var __ret64 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("flex-container")};
+		var attr20 = __ret64;
 		var __r30 = [];
-		var __ret65 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r30);
+		var __ret65 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr21 = __ret65;
 		var __r31 = [];
-		var __r32 = [];
-		__r32.push("Simple list");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r31);
 		var __ret66 = { };
-		__r31.push(vdom_VDom.h("h2",__ret66,__r32));
-		var this19 = { f : function() {
+		var attr22 = __ret66;
+		var __r32 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r32);
+		__r32.push({ t : ":text", k : "Simple list", a : coconut_vdom_VDom.EMPTY});
+		var children19 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r32);
+		__r31.push({ t : "h2", k : attr22 == null ? null : attr22.key, a : attr22, c : children19});
+		var this118 = { f : function() {
 			var __r33 = [];
-			var this20 = { f : function() {
+			var this119 = { f : function() {
 				var __r34 = [];
-				__r34.push("Simple item 1");
+				__r34.push({ t : ":text", k : "Simple item 1", a : coconut_vdom_VDom.EMPTY});
 				return __r34;
 			}};
-			var __ret67 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this20)};
+			var __ret67 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this119)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret67));
-			var this21 = { f : function() {
+			var this120 = { f : function() {
 				var __r35 = [];
-				__r35.push("Simple item 2");
+				__r35.push({ t : ":text", k : "Simple item 2", a : coconut_vdom_VDom.EMPTY});
 				return __r35;
 			}};
-			var __ret68 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this21)};
+			var __ret68 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this120)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret68));
-			var this22 = { f : function() {
+			var this121 = { f : function() {
 				var __r36 = [];
-				__r36.push("Simple item 3");
+				__r36.push({ t : ":text", k : "Simple item 3", a : coconut_vdom_VDom.EMPTY});
 				return __r36;
 			}};
-			var __ret69 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this22)};
+			var __ret69 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this121)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret69));
 			return __r33;
 		}};
-		var __ret70 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this19)};
+		var __ret70 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this118)};
 		__r31.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret70));
-		__r30.push(vdom_VDom.h("div",__ret65,__r31));
-		var __ret71 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var children20 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r31);
+		__r30.push({ t : "div", k : attr21 == null ? null : attr21.key, a : attr21, c : children20});
+		var __ret71 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr23 = __ret71;
 		var __r37 = [];
-		var __r38 = [];
-		__r38.push("Dense list");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r37);
 		var __ret72 = { };
-		__r37.push(vdom_VDom.h("h2",__ret72,__r38));
-		var this23 = { f : function() {
+		var attr24 = __ret72;
+		var __r38 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r38);
+		__r38.push({ t : ":text", k : "Dense list", a : coconut_vdom_VDom.EMPTY});
+		var children21 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r38);
+		__r37.push({ t : "h2", k : attr24 == null ? null : attr24.key, a : attr24, c : children21});
+		var this122 = { f : function() {
 			var __r39 = [];
-			var this24 = { f : function() {
+			var this123 = { f : function() {
 				var __r40 = [];
-				__r40.push("Dense item 1");
+				__r40.push({ t : ":text", k : "Dense item 1", a : coconut_vdom_VDom.EMPTY});
 				return __r40;
 			}};
-			var __ret73 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this24)};
+			var __ret73 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this123)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret73));
-			var this25 = { f : function() {
+			var this124 = { f : function() {
 				var __r41 = [];
-				__r41.push("Dense item 2");
+				__r41.push({ t : ":text", k : "Dense item 2", a : coconut_vdom_VDom.EMPTY});
 				return __r41;
 			}};
-			var __ret74 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this25)};
+			var __ret74 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this124)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret74));
-			var this26 = { f : function() {
+			var this125 = { f : function() {
 				var __r42 = [];
-				__r42.push("Dense item 3");
+				__r42.push({ t : ":text", k : "Dense item 3", a : coconut_vdom_VDom.EMPTY});
 				return __r42;
 			}};
-			var __ret75 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this26)};
+			var __ret75 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this125)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret75));
 			return __r39;
 		}};
-		var __ret76 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this23)};
+		var __ret76 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this122)};
 		__r37.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret76));
-		__r30.push(vdom_VDom.h("div",__ret71,__r37));
-		var __ret77 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var children22 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r37);
+		__r30.push({ t : "div", k : attr23 == null ? null : attr23.key, a : attr23, c : children22});
+		var __ret77 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr25 = __ret77;
 		var __r43 = [];
-		var __r44 = [];
-		__r44.push("Interactive list");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r43);
 		var __ret78 = { };
-		__r43.push(vdom_VDom.h("h2",__ret78,__r44));
-		var this27 = { f : function() {
+		var attr26 = __ret78;
+		var __r44 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r44);
+		__r44.push({ t : ":text", k : "Interactive list", a : coconut_vdom_VDom.EMPTY});
+		var children23 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r44);
+		__r43.push({ t : "h2", k : attr26 == null ? null : attr26.key, a : attr26, c : children23});
+		var this126 = { f : function() {
 			var __r45 = [];
-			var this28 = { f : function() {
+			var this127 = { f : function() {
 				var __r46 = [];
-				var this29 = { f : function() {
+				var this128 = { f : function() {
 					var __r47 = [];
-					var this30 = { f : function() {
+					var this129 = { f : function() {
 						return "folder";
 					}};
-					var __ret79 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this30)};
+					var __ret79 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this129)};
 					__r47.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret79));
 					return __r47;
 				}};
-				var __ret80 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this29)};
+				var __ret80 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this128)};
 				__r46.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret80));
-				__r46.push("Link item with start icon 1");
+				__r46.push({ t : ":text", k : "Link item with start icon 1", a : coconut_vdom_VDom.EMPTY});
 				return __r46;
 			}};
-			var __ret81 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this28)};
+			var __ret81 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this127)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret81));
-			var this31 = { f : function() {
+			var this130 = { f : function() {
 				var __r48 = [];
-				var this32 = { f : function() {
+				var this131 = { f : function() {
 					var __r49 = [];
-					var this33 = { f : function() {
+					var this132 = { f : function() {
 						return "folder";
 					}};
-					var __ret82 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this33)};
+					var __ret82 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this132)};
 					__r49.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret82));
 					return __r49;
 				}};
-				var __ret83 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this32)};
+				var __ret83 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this131)};
 				__r48.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret83));
-				__r48.push("Link item with start icon 2");
+				__r48.push({ t : ":text", k : "Link item with start icon 2", a : coconut_vdom_VDom.EMPTY});
 				return __r48;
 			}};
-			var __ret84 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this31)};
+			var __ret84 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this130)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret84));
-			var this34 = { f : function() {
+			var this133 = { f : function() {
 				var __r50 = [];
-				var this35 = { f : function() {
+				var this134 = { f : function() {
 					var __r51 = [];
-					var this36 = { f : function() {
+					var this135 = { f : function() {
 						return "folder";
 					}};
-					var __ret85 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this36)};
+					var __ret85 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this135)};
 					__r51.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret85));
 					return __r51;
 				}};
-				var __ret86 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this35)};
+				var __ret86 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this134)};
 				__r50.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret86));
-				__r50.push("Link item with start icon 3");
+				__r50.push({ t : ":text", k : "Link item with start icon 3", a : coconut_vdom_VDom.EMPTY});
 				return __r50;
 			}};
-			var __ret87 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this34)};
+			var __ret87 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this133)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret87));
 			return __r45;
 		}};
-		var __ret88 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this27)};
+		var __ret88 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this126)};
 		__r43.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret88));
-		__r30.push(vdom_VDom.h("div",__ret77,__r43));
-		var __ret89 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var children24 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r43);
+		__r30.push({ t : "div", k : attr25 == null ? null : attr25.key, a : attr25, c : children24});
+		var __ret89 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr27 = __ret89;
 		var __r52 = [];
-		var __r53 = [];
-		__r53.push("Avatar list (+divider)");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r52);
 		var __ret90 = { };
-		__r52.push(vdom_VDom.h("h2",__ret90,__r53));
+		var attr28 = __ret90;
+		var __r53 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r53);
+		__r53.push({ t : ":text", k : "Avatar list (+divider)", a : coconut_vdom_VDom.EMPTY});
+		var children25 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r53);
+		__r52.push({ t : "h2", k : attr28 == null ? null : attr28.key, a : attr28, c : children25});
 		var __ret91 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this37 = { f : function() {
+		var this136 = { f : function() {
 			var __r54 = [];
-			var this38 = { f : function() {
+			var this137 = { f : function() {
 				var __r55 = [];
 				var __ret92 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/1.jpg")};
 				__r55.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret92));
-				__r55.push("Item with start icon 1");
+				__r55.push({ t : ":text", k : "Item with start icon 1", a : coconut_vdom_VDom.EMPTY});
 				return __r55;
 			}};
-			var __ret93 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this38)};
+			var __ret93 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this137)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret93));
-			var this39 = { f : function() {
+			var this138 = { f : function() {
 				var __r56 = [];
 				var __ret94 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/2.jpg")};
 				__r56.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret94));
-				__r56.push("Item with start icon 2");
+				__r56.push({ t : ":text", k : "Item with start icon 2", a : coconut_vdom_VDom.EMPTY});
 				return __r56;
 			}};
-			var __ret95 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this39)};
+			var __ret95 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this138)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret95));
 			var __ret96 = { };
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListDivider",null,mdc_ListDivider.__init,__ret96));
-			var this40 = { f : function() {
+			var this139 = { f : function() {
 				var __r57 = [];
 				var __ret97 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/3.jpg")};
 				__r57.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret97));
-				__r57.push("Item with start icon 3");
+				__r57.push({ t : ":text", k : "Item with start icon 3", a : coconut_vdom_VDom.EMPTY});
 				return __r57;
 			}};
-			var __ret98 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this40)};
+			var __ret98 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this139)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret98));
 			return __r54;
 		}};
-		var __ret99 = { avatarList : __ret91, children : tink_state__$Observable_Observable_$Impl_$.auto(this37)};
+		var __ret99 = { avatarList : __ret91, children : tink_state__$Observable_Observable_$Impl_$.auto(this136)};
 		__r52.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret99));
-		__r30.push(vdom_VDom.h("div",__ret89,__r52));
-		var __ret100 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var children26 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r52);
+		__r30.push({ t : "div", k : attr27 == null ? null : attr27.key, a : attr27, c : children26});
+		var __ret100 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr29 = __ret100;
 		var __r58 = [];
-		var __r59 = [];
-		__r59.push("Two line list (+inset divider)");
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r58);
 		var __ret101 = { };
-		__r58.push(vdom_VDom.h("h2",__ret101,__r59));
+		var attr30 = __ret101;
+		var __r59 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r59);
+		__r59.push({ t : ":text", k : "Two line list (+inset divider)", a : coconut_vdom_VDom.EMPTY});
+		var children27 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r59);
+		__r58.push({ t : "h2", k : attr30 == null ? null : attr30.key, a : attr30, c : children27});
 		var __ret102 = tink_state__$Observable_Observable_$Impl_$["const"](true);
 		var __ret103 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this41 = { f : function() {
+		var this140 = { f : function() {
 			var __r60 = [];
-			var this42 = { f : function() {
+			var this141 = { f : function() {
 				var __r61 = [];
 				var __ret104 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/1.jpg")};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret104));
-				var this43 = { f : function() {
+				var this142 = { f : function() {
 					var __r62 = [];
-					__r62.push("Item title 1");
-					var this44 = { f : function() {
+					__r62.push({ t : ":text", k : "Item title 1", a : coconut_vdom_VDom.EMPTY});
+					var this143 = { f : function() {
 						var __r63 = [];
-						__r63.push("Secondary text 1");
+						__r63.push({ t : ":text", k : "Secondary text 1", a : coconut_vdom_VDom.EMPTY});
 						return __r63;
 					}};
-					var __ret105 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this44)};
+					var __ret105 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this143)};
 					__r62.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret105));
 					return __r62;
 				}};
-				var __ret106 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this43)};
+				var __ret106 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this142)};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret106));
-				var this45 = { f : function() {
+				var this144 = { f : function() {
 					var __r64 = [];
-					var this46 = { f : function() {
+					var this145 = { f : function() {
 						return "info";
 					}};
-					var __ret107 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this46)};
+					var __ret107 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this145)};
 					__r64.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret107));
 					return __r64;
 				}};
-				var __ret108 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this45)};
+				var __ret108 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this144)};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret108));
 				return __r61;
 			}};
-			var __ret109 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this42)};
+			var __ret109 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this141)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret109));
-			var this47 = { f : function() {
+			var this146 = { f : function() {
 				var __r65 = [];
 				var __ret110 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/2.jpg")};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret110));
-				var this48 = { f : function() {
+				var this147 = { f : function() {
 					var __r66 = [];
-					__r66.push("Item title 2");
-					var this49 = { f : function() {
+					__r66.push({ t : ":text", k : "Item title 2", a : coconut_vdom_VDom.EMPTY});
+					var this148 = { f : function() {
 						var __r67 = [];
-						__r67.push("Secondary text 2");
+						__r67.push({ t : ":text", k : "Secondary text 2", a : coconut_vdom_VDom.EMPTY});
 						return __r67;
 					}};
-					var __ret111 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this49)};
+					var __ret111 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this148)};
 					__r66.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret111));
 					return __r66;
 				}};
-				var __ret112 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this48)};
+				var __ret112 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this147)};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret112));
-				var this50 = { f : function() {
+				var this149 = { f : function() {
 					var __r68 = [];
-					var this51 = { f : function() {
+					var this150 = { f : function() {
 						return "info";
 					}};
-					var __ret113 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this51)};
+					var __ret113 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this150)};
 					__r68.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret113));
 					return __r68;
 				}};
-				var __ret114 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this50)};
+				var __ret114 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this149)};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret114));
 				return __r65;
 			}};
-			var __ret115 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this47)};
+			var __ret115 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this146)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret115));
 			var __ret116 = { inset : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListDivider",null,mdc_ListDivider.__init,__ret116));
-			var this52 = { f : function() {
+			var this151 = { f : function() {
 				var __r69 = [];
 				var __ret117 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/3.jpg")};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret117));
-				var this53 = { f : function() {
+				var this152 = { f : function() {
 					var __r70 = [];
-					__r70.push("Item title 3");
-					var this54 = { f : function() {
+					__r70.push({ t : ":text", k : "Item title 3", a : coconut_vdom_VDom.EMPTY});
+					var this153 = { f : function() {
 						var __r71 = [];
-						__r71.push("Secondary text 3");
+						__r71.push({ t : ":text", k : "Secondary text 3", a : coconut_vdom_VDom.EMPTY});
 						return __r71;
 					}};
-					var __ret118 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this54)};
+					var __ret118 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this153)};
 					__r70.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret118));
 					return __r70;
 				}};
-				var __ret119 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this53)};
+				var __ret119 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this152)};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret119));
-				var this55 = { f : function() {
+				var this154 = { f : function() {
 					var __r72 = [];
-					var this56 = { f : function() {
+					var this155 = { f : function() {
 						return "info";
 					}};
-					var __ret120 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this56)};
+					var __ret120 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this155)};
 					__r72.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret120));
 					return __r72;
 				}};
-				var __ret121 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this55)};
+				var __ret121 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this154)};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret121));
 				return __r69;
 			}};
-			var __ret122 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this52)};
+			var __ret122 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this151)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret122));
 			return __r60;
 		}};
-		var __ret123 = { avatarList : __ret102, twoLine : __ret103, children : tink_state__$Observable_Observable_$Impl_$.auto(this41)};
+		var __ret123 = { avatarList : __ret102, twoLine : __ret103, children : tink_state__$Observable_Observable_$Impl_$.auto(this140)};
 		__r58.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret123));
-		__r30.push(vdom_VDom.h("div",__ret100,__r58));
-		__r1.push(vdom_VDom.h("div",__ret64,__r30));
-		var __r73 = [];
-		__r73.push("Radio");
+		var children28 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r58);
+		__r30.push({ t : "div", k : attr29 == null ? null : attr29.key, a : attr29, c : children28});
+		var children29 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r30);
+		__r1.push({ t : "div", k : attr20 == null ? null : attr20.key, a : attr20, c : children29});
 		var __ret124 = { };
-		__r1.push(vdom_VDom.h("h1",__ret124,__r73));
+		var attr31 = __ret124;
+		var __r73 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r73);
+		__r73.push({ t : ":text", k : "Radio", a : coconut_vdom_VDom.EMPTY});
+		var children30 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r73);
+		__r1.push({ t : "h1", k : attr31 == null ? null : attr31.key, a : attr31, c : children30});
+		var __ret125 = { };
+		var attr32 = __ret125;
 		var __r74 = [];
-		var __ret125 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
-		var __ret126 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this57 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r74);
+		var __ret126 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
+		var __ret127 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this156 = { f : function() {
 			return function(checked1) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 192, className : "TestView", methodName : "render", customParams : [checked1]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 189, className : "TestView", methodName : "render", customParams : [checked1]});
 				return;
 			};
 		}};
-		var __ret127 = { label : __ret125, value : __ret126, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this57)};
-		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret127));
-		var __ret128 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret128 = { label : __ret126, value : __ret127, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this156)};
 		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret128));
-		var __ret129 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret129 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret129));
-		var __ret130 = { };
-		__r1.push(vdom_VDom.h("div",__ret130,__r74));
-		var __r75 = [];
-		__r75.push("Switch");
+		var __ret130 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Disabled"), disabled : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret130));
+		var children31 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r74);
+		__r1.push({ t : "div", k : attr32 == null ? null : attr32.key, a : attr32, c : children31});
 		var __ret131 = { };
-		__r1.push(vdom_VDom.h("h1",__ret131,__r75));
+		var attr33 = __ret131;
+		var __r75 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r75);
+		__r75.push({ t : ":text", k : "Switch", a : coconut_vdom_VDom.EMPTY});
+		var children32 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r75);
+		__r1.push({ t : "h1", k : attr33 == null ? null : attr33.key, a : attr33, c : children32});
+		var __ret132 = { };
+		var attr34 = __ret132;
 		var __r76 = [];
-		var __ret132 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r76);
+		var __ret133 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr35 = __ret133;
 		var __r77 = [];
-		var __ret133 = tink_state__$Observable_Observable_$Impl_$["const"]("Label");
-		var __ret134 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this58 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r77);
+		var __ret134 = tink_state__$Observable_Observable_$Impl_$["const"]("Label");
+		var __ret135 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this157 = { f : function() {
 			return function(checked2) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 200, className : "TestView", methodName : "render", customParams : [checked2]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 197, className : "TestView", methodName : "render", customParams : [checked2]});
 				return;
 			};
 		}};
-		var __ret135 = { label : __ret133, value : __ret134, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this58)};
-		__r77.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret135));
-		__r76.push(vdom_VDom.h("div",__ret132,__r77));
-		var __ret136 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __ret136 = { label : __ret134, value : __ret135, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this157)};
+		__r77.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret136));
+		var children33 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r77);
+		__r76.push({ t : "div", k : attr35 == null ? null : attr35.key, a : attr35, c : children33});
+		var __ret137 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr36 = __ret137;
 		var __r78 = [];
-		var __ret137 = tink_state__$Observable_Observable_$Impl_$["const"]("Checked");
-		var __ret138 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var __ret139 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this59 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r78);
+		var __ret138 = tink_state__$Observable_Observable_$Impl_$["const"]("Checked");
+		var __ret139 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret140 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this158 = { f : function() {
 			return function(checked3) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 203, className : "TestView", methodName : "render", customParams : [checked3]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 200, className : "TestView", methodName : "render", customParams : [checked3]});
 				return;
 			};
 		}};
-		var __ret140 = { label : __ret137, checked : __ret138, value : __ret139, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this59)};
-		__r78.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret140));
-		__r76.push(vdom_VDom.h("div",__ret136,__r78));
-		var __ret141 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __ret141 = { label : __ret138, checked : __ret139, value : __ret140, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this158)};
+		__r78.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret141));
+		var children34 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r78);
+		__r76.push({ t : "div", k : attr36 == null ? null : attr36.key, a : attr36, c : children34});
+		var __ret142 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr37 = __ret142;
 		var __r79 = [];
-		var __ret142 = tink_state__$Observable_Observable_$Impl_$["const"]("Disabled");
-		var __ret143 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var __ret144 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this60 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r79);
+		var __ret143 = tink_state__$Observable_Observable_$Impl_$["const"]("Disabled");
+		var __ret144 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret145 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this159 = { f : function() {
 			return function(checked4) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 206, className : "TestView", methodName : "render", customParams : [checked4]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 203, className : "TestView", methodName : "render", customParams : [checked4]});
 				return;
 			};
 		}};
-		var __ret145 = { label : __ret142, disabled : __ret143, value : __ret144, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this60)};
-		__r79.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret145));
-		__r76.push(vdom_VDom.h("div",__ret141,__r79));
-		var __ret146 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __ret146 = { label : __ret143, disabled : __ret144, value : __ret145, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this159)};
+		__r79.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret146));
+		var children35 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r79);
+		__r76.push({ t : "div", k : attr37 == null ? null : attr37.key, a : attr37, c : children35});
+		var __ret147 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr38 = __ret147;
 		var __r80 = [];
-		var __ret147 = tink_state__$Observable_Observable_$Impl_$["const"]("Checked&Disabled");
-		var __ret148 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r80);
+		var __ret148 = tink_state__$Observable_Observable_$Impl_$["const"]("Checked&Disabled");
 		var __ret149 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var __ret150 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this61 = { f : function() {
+		var __ret150 = tink_state__$Observable_Observable_$Impl_$["const"](true);
+		var __ret151 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
+		var this160 = { f : function() {
 			return function(checked5) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 209, className : "TestView", methodName : "render", customParams : [checked5]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 206, className : "TestView", methodName : "render", customParams : [checked5]});
 				return;
 			};
 		}};
-		var __ret151 = { label : __ret147, checked : __ret148, disabled : __ret149, value : __ret150, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this61)};
-		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret151));
-		__r76.push(vdom_VDom.h("div",__ret146,__r80));
-		var __ret152 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("float")};
+		var __ret152 = { label : __ret148, checked : __ret149, disabled : __ret150, value : __ret151, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this160)};
+		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret152));
+		var children36 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r80);
+		__r76.push({ t : "div", k : attr38 == null ? null : attr38.key, a : attr38, c : children36});
+		var __ret153 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("float")};
+		var attr39 = __ret153;
 		var __r81 = [];
-		var __ret153 = tink_state__$Observable_Observable_$Impl_$["const"]("nolabel");
-		var this62 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r81);
+		var __ret154 = tink_state__$Observable_Observable_$Impl_$["const"]("nolabel");
+		var this161 = { f : function() {
 			return function(checked6) {
-				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 212, className : "TestView", methodName : "render", customParams : [checked6]});
+				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 209, className : "TestView", methodName : "render", customParams : [checked6]});
 				return;
 			};
 		}};
-		var __ret154 = { value : __ret153, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this62)};
-		__r81.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret154));
-		__r76.push(vdom_VDom.h("div",__ret152,__r81));
-		var __ret155 = { };
-		__r1.push(vdom_VDom.h("div",__ret155,__r76));
-		var __r82 = [];
-		__r82.push("TextField");
+		var __ret155 = { value : __ret154, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this161)};
+		__r81.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret155));
+		var children37 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r81);
+		__r76.push({ t : "div", k : attr39 == null ? null : attr39.key, a : attr39, c : children37});
+		var children38 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r76);
+		__r1.push({ t : "div", k : attr34 == null ? null : attr34.key, a : attr34, c : children38});
 		var __ret156 = { };
-		__r1.push(vdom_VDom.h("h1",__ret156,__r82));
+		var attr40 = __ret156;
+		var __r82 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r82);
+		__r82.push({ t : ":text", k : "TextField", a : coconut_vdom_VDom.EMPTY});
+		var children39 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r82);
+		__r1.push({ t : "h1", k : attr40 == null ? null : attr40.key, a : attr40, c : children39});
+		var __ret157 = { };
+		var attr41 = __ret157;
 		var __r83 = [];
-		var __ret157 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input")};
-		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret157));
-		var __ret158 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Boxed input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r83);
+		var __ret158 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input")};
 		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret158));
-		var __ret159 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Password input"), type : tink_state__$Observable_Observable_$Impl_$["const"]("password")};
+		var __ret159 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Boxed input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret159));
-		var __ret160 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("list")};
+		var __ret160 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Password input"), type : tink_state__$Observable_Observable_$Impl_$["const"]("password")};
 		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret160));
-		var __ret161 = { };
-		__r83.push(vdom_VDom.h("br",__ret161));
-		var __ret162 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with helper")};
-		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret162));
-		var __ret163 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Helper for above")};
-		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret163));
-		var __ret164 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with validation"), invalid : tink_state__$Observable_Observable_$Impl_$["const"](true), required : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret164));
-		var __ret165 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Error message"), validation : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret165));
-		var __ret166 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret166));
-		var __ret167 = { };
-		__r83.push(vdom_VDom.h("br",__ret167));
-		var __ret168 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input fullWidth"), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
-		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret168));
-		var __ret169 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea fullWidth"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret161 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Icon input"), box : tink_state__$Observable_Observable_$Impl_$["const"](true), icon : tink_state__$Observable_Observable_$Impl_$["const"]("list")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret161));
+		var __ret162 = { };
+		var attr42 = __ret162;
+		__r83.push({ t : "br", k : attr42 == null ? null : attr42.key, a : attr42, c : null});
+		var __ret163 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with helper")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret163));
+		var __ret164 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Helper for above")};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret164));
+		var __ret165 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Input with validation"), invalid : tink_state__$Observable_Observable_$Impl_$["const"](true), required : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret165));
+		var __ret166 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Error message"), validation : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextFieldHelperText",null,mdc_TextFieldHelperText.__init,__ret166));
+		var __ret167 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret167));
+		var __ret168 = { };
+		var attr43 = __ret168;
+		__r83.push({ t : "br", k : attr43 == null ? null : attr43.key, a : attr43, c : null});
+		var __ret169 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Text input fullWidth"), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret169));
-		var __ret170 = { };
-		__r1.push(vdom_VDom.h("div",__ret170,__r83));
-		var __r84 = [];
-		__r84.push("Toolbar");
+		var __ret170 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("TextArea fullWidth"), textArea : tink_state__$Observable_Observable_$Impl_$["const"](true), fullWidth : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		__r83.push(coconut_ui_tools_ViewCache.mk("mdc.TextField",null,mdc_TextField.__init,__ret170));
+		var children40 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r83);
+		__r1.push({ t : "div", k : attr41 == null ? null : attr41.key, a : attr41, c : children40});
 		var __ret171 = { };
-		__r1.push(vdom_VDom.h("h1",__ret171,__r84));
+		var attr44 = __ret171;
+		var __r84 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r84);
+		__r84.push({ t : ":text", k : "Toolbar", a : coconut_vdom_VDom.EMPTY});
+		var children41 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r84);
+		__r1.push({ t : "h1", k : attr44 == null ? null : attr44.key, a : attr44, c : children41});
+		var __ret172 = { };
+		var attr45 = __ret172;
 		var __r85 = [];
-		var this63 = { f : function() {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r85);
+		var this162 = { f : function() {
 			var __r86 = [];
-			var this64 = { f : function() {
+			var this163 = { f : function() {
 				var __r87 = [];
-				var this65 = { f : function() {
+				var this164 = { f : function() {
 					return "mdc-toolbar__section--align-start";
 				}};
-				var __ret172 = tink_state__$Observable_Observable_$Impl_$.auto(this65);
-				var this66 = { f : function() {
+				var __ret173 = tink_state__$Observable_Observable_$Impl_$.auto(this164);
+				var this165 = { f : function() {
 					var __r88 = [];
-					var this67 = { f : function() {
+					var this166 = { f : function() {
 						return "menu";
 					}};
-					var __ret173 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this67)};
-					__r88.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret173));
+					var __ret174 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this166)};
+					__r88.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret174));
 					return __r88;
 				}};
-				var __ret174 = { align : __ret172, children : tink_state__$Observable_Observable_$Impl_$.auto(this66)};
-				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret174));
-				var this68 = { f : function() {
+				var __ret175 = { align : __ret173, children : tink_state__$Observable_Observable_$Impl_$.auto(this165)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret175));
+				var this167 = { f : function() {
 					var __r89 = [];
-					var this69 = { f : function() {
+					var this168 = { f : function() {
 						var __r90 = [];
-						__r90.push("Toolbar title");
+						__r90.push({ t : ":text", k : "Toolbar title", a : coconut_vdom_VDom.EMPTY});
 						return __r90;
 					}};
-					var __ret175 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this69)};
-					__r89.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret175));
+					var __ret176 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this168)};
+					__r89.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret176));
 					return __r89;
 				}};
-				var __ret176 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this68)};
-				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret176));
-				var this70 = { f : function() {
+				var __ret177 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this167)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret177));
+				var this169 = { f : function() {
 					return "mdc-toolbar__section--align-end";
 				}};
-				var __ret177 = tink_state__$Observable_Observable_$Impl_$.auto(this70);
-				var this71 = { f : function() {
+				var __ret178 = tink_state__$Observable_Observable_$Impl_$.auto(this169);
+				var this170 = { f : function() {
 					var __r91 = [];
-					var this72 = { f : function() {
+					var this171 = { f : function() {
 						return "person";
 					}};
-					var __ret178 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this72)};
-					__r91.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret178));
+					var __ret179 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this171)};
+					__r91.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret179));
 					return __r91;
 				}};
-				var __ret179 = { align : __ret177, children : tink_state__$Observable_Observable_$Impl_$.auto(this71)};
-				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret179));
+				var __ret180 = { align : __ret178, children : tink_state__$Observable_Observable_$Impl_$.auto(this170)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret180));
 				return __r87;
 			}};
-			var __ret180 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this64)};
-			__r86.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret180));
+			var __ret181 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this163)};
+			__r86.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret181));
 			return __r86;
 		}};
-		var __ret181 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this63)};
-		__r85.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret181));
-		var __ret182 = { };
-		__r1.push(vdom_VDom.h("div",__ret182,__r85));
-		__r.push(vdom_VDom.h("div",__ret,__r1));
+		var __ret182 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this162)};
+		__r85.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret182));
+		var children42 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r85);
+		__r1.push({ t : "div", k : attr45 == null ? null : attr45.key, a : attr45, c : children42});
+		var children43 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children43});
 		return __r[0];
 	}
-	,__tink_defaults85: null
+	,__tink_defaults116: null
 	,__slots: null
 	,toString: function() {
 		return "TestView" + "#" + this.viewId;
 	}
-	,__tink_init86: function(attributes) {
+	,__tink_init117: function(attributes) {
 	}
 	,__class__: TestView
 });
@@ -2166,6 +2295,7 @@ tink_state_ObservableObject.prototype = {
 	,__class__: tink_state_ObservableObject
 };
 var coconut_ui_tools_Slot = function(owner,compare) {
+	this.cache = new coconut_ui_tools_ViewCache();
 	this.owner = owner;
 	var tmp;
 	if(compare == null) {
@@ -2187,6 +2317,7 @@ coconut_ui_tools_Slot.prototype = {
 	,link: null
 	,owner: null
 	,compare: null
+	,cache: null
 	,get_value: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.observe());
 	}
@@ -2197,7 +2328,7 @@ coconut_ui_tools_Slot.prototype = {
 				var this1 = new tink_core_MPair(null,new tink_core_FutureTrigger());
 				this.last = this1;
 			} else {
-				var m = tink_state__$Observable_Observable_$Impl_$.measure(this.data);
+				var m = this.measure();
 				var this2 = new tink_core_MPair(m.a,new tink_core_FutureTrigger());
 				this.last = this2;
 				this.link = m.b.handle(($_=this.last.b,$bind($_,$_.trigger)));
@@ -2211,6 +2342,13 @@ coconut_ui_tools_Slot.prototype = {
 		this3 = this4;
 		return this3;
 	}
+	,measure: function() {
+		var _e = this.data;
+		var tmp = function() {
+			return tink_state__$Observable_Observable_$Impl_$.measure(_e);
+		};
+		return this.cache.cached(tmp);
+	}
 	,observe: function() {
 		return this;
 	}
@@ -2222,10 +2360,7 @@ coconut_ui_tools_Slot.prototype = {
 				this1.dissolve();
 			}
 			if(data != null) {
-				var _e = data;
-				var m = tink_state__$Observable_Observable_$Impl_$.untracked(function() {
-					return tink_state__$Observable_Observable_$Impl_$.measure(_e);
-				});
+				var m = tink_state__$Observable_Observable_$Impl_$.untracked($bind(this,this.measure));
 				if(this.compare(m.a,this.last.a)) {
 					this.link = m.b.handle(($_=this.last.b,$bind($_,$_.trigger)));
 				} else {
@@ -2456,6 +2591,823 @@ coconut_ui_tools__$ViewCache_Key_$Impl_$.ofBool = function(b) {
 };
 coconut_ui_tools__$ViewCache_Key_$Impl_$.ofAny = function(o) {
 	return o;
+};
+var coconut_vdom__$Attr_Ext_$Impl_$ = {};
+$hxClasses["coconut.vdom._Attr.Ext_Impl_"] = coconut_vdom__$Attr_Ext_$Impl_$;
+coconut_vdom__$Attr_Ext_$Impl_$.__name__ = ["coconut","vdom","_Attr","Ext_Impl_"];
+coconut_vdom__$Attr_Ext_$Impl_$.ofInt = function(i) {
+	return i;
+};
+coconut_vdom__$Attr_Ext_$Impl_$.ofFloat = function(f) {
+	return f;
+};
+coconut_vdom__$Attr_Ext_$Impl_$.ofBool = function(b) {
+	if(b) {
+		return "";
+	} else {
+		return undefined;
+	}
+};
+var coconut_vdom__$Attr_Key_$Impl_$ = {};
+$hxClasses["coconut.vdom._Attr.Key_Impl_"] = coconut_vdom__$Attr_Key_$Impl_$;
+coconut_vdom__$Attr_Key_$Impl_$.__name__ = ["coconut","vdom","_Attr","Key_Impl_"];
+coconut_vdom__$Attr_Key_$Impl_$.ofObj = function(v) {
+	if(v == null) {
+		return null;
+	}
+	var o = v;
+	if(o.__vdomKey__ == null) {
+		o.__vdomKey__ = coconut_vdom__$Attr_Key_$Impl_$.keygen++;
+	}
+	return o.__vdomKey__;
+};
+coconut_vdom__$Attr_Key_$Impl_$.ofAny = function(v) {
+	var _g = Type["typeof"](v);
+	switch(_g[1]) {
+	case 1:case 2:case 3:
+		return v;
+	case 6:
+		switch(_g[2]) {
+		case Array:
+			return v.join(":");
+		case String:
+			return v;
+		default:
+			return coconut_vdom__$Attr_Key_$Impl_$.ofObj(v);
+		}
+		break;
+	default:
+		return coconut_vdom__$Attr_Key_$Impl_$.ofObj(v);
+	}
+};
+var coconut_vdom__$Attr_EventFrom_$Impl_$ = {};
+$hxClasses["coconut.vdom._Attr.EventFrom_Impl_"] = coconut_vdom__$Attr_EventFrom_$Impl_$;
+coconut_vdom__$Attr_EventFrom_$Impl_$.__name__ = ["coconut","vdom","_Attr","EventFrom_Impl_"];
+coconut_vdom__$Attr_EventFrom_$Impl_$.__properties__ = {get_dom:"get_dom",get_currentTarget:"get_currentTarget",get_target:"get_target"};
+coconut_vdom__$Attr_EventFrom_$Impl_$.get_target = function(this1) {
+	return this1.target;
+};
+coconut_vdom__$Attr_EventFrom_$Impl_$.get_currentTarget = function(this1) {
+	return this1.target;
+};
+coconut_vdom__$Attr_EventFrom_$Impl_$.get_dom = function(this1) {
+	return this1.target;
+};
+var coconut_vdom__$Child_Child_$Impl_$ = {};
+$hxClasses["coconut.vdom._Child.Child_Impl_"] = coconut_vdom__$Child_Child_$Impl_$;
+coconut_vdom__$Child_Child_$Impl_$.__name__ = ["coconut","vdom","_Child","Child_Impl_"];
+coconut_vdom__$Child_Child_$Impl_$.__properties__ = {get_children:"get_children",get_attributes:"get_attributes",get_type:"get_type",get_key:"get_key",get_isNative:"get_isNative",get_isWidget:"get_isWidget",get_isText:"get_isText"};
+coconut_vdom__$Child_Child_$Impl_$.get_isText = function(this1) {
+	return this1.t == ":text";
+};
+coconut_vdom__$Child_Child_$Impl_$.get_isWidget = function(this1) {
+	return this1.t == ":widget";
+};
+coconut_vdom__$Child_Child_$Impl_$.get_isNative = function(this1) {
+	return this1.t == ":native";
+};
+coconut_vdom__$Child_Child_$Impl_$.get_key = function(this1) {
+	return this1.k;
+};
+coconut_vdom__$Child_Child_$Impl_$.get_type = function(this1) {
+	return this1.t;
+};
+coconut_vdom__$Child_Child_$Impl_$.get_attributes = function(this1) {
+	return this1.a;
+};
+coconut_vdom__$Child_Child_$Impl_$.get_children = function(this1) {
+	return this1.c;
+};
+coconut_vdom__$Child_Child_$Impl_$.ofString = function(s) {
+	return { t : ":text", k : s, a : coconut_vdom_VDom.EMPTY};
+};
+coconut_vdom__$Child_Child_$Impl_$.ofInt = function(i) {
+	return { t : ":text", k : i == null ? "null" : "" + i, a : coconut_vdom_VDom.EMPTY};
+};
+coconut_vdom__$Child_Child_$Impl_$.ofElement = function(e) {
+	return { t : ":native", a : { ":native" : e}};
+};
+coconut_vdom__$Child_Child_$Impl_$.asText = function(this1) {
+	if(this1.t == ":text") {
+		return this1.k;
+	} else {
+		return null;
+	}
+};
+coconut_vdom__$Child_Child_$Impl_$.asNative = function(this1) {
+	if(this1.t == ":native") {
+		return this1.a[":native"];
+	} else {
+		return null;
+	}
+};
+coconut_vdom__$Child_Child_$Impl_$.asWidget = function(this1) {
+	if(this1.t == ":widget") {
+		return this1;
+	} else {
+		return null;
+	}
+};
+coconut_vdom__$Child_Child_$Impl_$.toDom = function(this1) {
+	return coconut_vdom_VDom.createNode(this1);
+};
+var coconut_vdom__$Children_Children_$Impl_$ = {};
+$hxClasses["coconut.vdom._Children.Children_Impl_"] = coconut_vdom__$Children_Children_$Impl_$;
+coconut_vdom__$Children_Children_$Impl_$.__name__ = ["coconut","vdom","_Children","Children_Impl_"];
+coconut_vdom__$Children_Children_$Impl_$.__properties__ = {get_length:"get_length"};
+coconut_vdom__$Children_Children_$Impl_$.get_length = function(this1) {
+	if(this1 == null) {
+		return 0;
+	} else {
+		return this1.length;
+	}
+};
+coconut_vdom__$Children_Children_$Impl_$._new = function(a) {
+	var this1 = a;
+	return this1;
+};
+coconut_vdom__$Children_Children_$Impl_$.get = function(this1,index) {
+	return this1[index];
+};
+coconut_vdom__$Children_Children_$Impl_$.ofArray = function(a) {
+	var _g = [];
+	var _g1 = 0;
+	while(_g1 < a.length) {
+		var c = a[_g1];
+		++_g1;
+		if(c != null) {
+			_g.push(c);
+		}
+	}
+	var this1 = _g;
+	return this1;
+};
+coconut_vdom__$Children_Children_$Impl_$.ofSingle = function(c) {
+	return coconut_vdom__$Children_Children_$Impl_$.ofArray([c]);
+};
+coconut_vdom__$Children_Children_$Impl_$.toArray = function(this1) {
+	if(this1 == null) {
+		return [];
+	} else {
+		return this1.slice();
+	}
+};
+var coconut_vdom__$ClassName_ClassName_$Impl_$ = {};
+$hxClasses["coconut.vdom._ClassName.ClassName_Impl_"] = coconut_vdom__$ClassName_ClassName_$Impl_$;
+coconut_vdom__$ClassName_ClassName_$Impl_$.__name__ = ["coconut","vdom","_ClassName","ClassName_Impl_"];
+coconut_vdom__$ClassName_ClassName_$Impl_$._new = function(s) {
+	var this1 = s;
+	return this1;
+};
+coconut_vdom__$ClassName_ClassName_$Impl_$.add = function(this1,that) {
+	var this2;
+	var _g = that;
+	if(this1 == null) {
+		var v = _g;
+		this2 = v;
+	} else if(_g == null) {
+		var v1 = this1;
+		this2 = v1;
+	} else {
+		var a = this1;
+		var b = _g;
+		this2 = "" + a + " " + b;
+	}
+	return this2;
+};
+coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap = function(parts) {
+	var _g = [];
+	var c = parts.keys();
+	while(c.hasNext()) {
+		var c1 = c.next();
+		if(__map_reserved[c1] != null ? parts.getReserved(c1) : parts.h[c1]) {
+			_g.push(coconut_vdom__$ClassName_ClassName_$Impl_$.ofString(c1));
+		}
+	}
+	var this1 = coconut_vdom__$ClassName_ClassName_$Impl_$.ofArray(_g);
+	return this1;
+};
+coconut_vdom__$ClassName_ClassName_$Impl_$.ofArray = function(parts) {
+	var this1 = parts.map(coconut_vdom__$ClassName_ClassName_$Impl_$.ofString).join(" ");
+	return this1;
+};
+coconut_vdom__$ClassName_ClassName_$Impl_$.ofString = function(s) {
+	var this1 = s.trim();
+	return this1;
+};
+var coconut_vdom__$Dict_Dict_$Impl_$ = {};
+$hxClasses["coconut.vdom._Dict.Dict_Impl_"] = coconut_vdom__$Dict_Dict_$Impl_$;
+coconut_vdom__$Dict_Dict_$Impl_$.__name__ = ["coconut","vdom","_Dict","Dict_Impl_"];
+coconut_vdom__$Dict_Dict_$Impl_$._new = function() {
+	var this1 = { };
+	return this1;
+};
+coconut_vdom__$Dict_Dict_$Impl_$.get = function(this1,key) {
+	return this1[key];
+};
+coconut_vdom__$Dict_Dict_$Impl_$.keys = function(this1) {
+	return Object.getOwnPropertyNames(this1);
+};
+coconut_vdom__$Dict_Dict_$Impl_$.getKeys = function(target) {
+	return Object.getOwnPropertyNames(target);
+};
+var coconut_vdom_Html = function() { };
+$hxClasses["coconut.vdom.Html"] = coconut_vdom_Html;
+coconut_vdom_Html.__name__ = ["coconut","vdom","Html"];
+coconut_vdom_Html.iframe = function(attr,children) {
+	return { t : "iframe", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.object = function(attr,children) {
+	return { t : "object", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.param = function(attr) {
+	return { t : "param", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.div = function(attr,children) {
+	return { t : "div", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.aside = function(attr,children) {
+	return { t : "aside", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.section = function(attr,children) {
+	return { t : "section", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.header = function(attr,children) {
+	return { t : "header", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.footer = function(attr,children) {
+	return { t : "footer", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.main = function(attr,children) {
+	return { t : "main", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.nav = function(attr,children) {
+	return { t : "nav", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.table = function(attr,children) {
+	return { t : "table", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.thead = function(attr,children) {
+	return { t : "thead", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.tbody = function(attr,children) {
+	return { t : "tbody", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.tfoot = function(attr,children) {
+	return { t : "tfoot", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.tr = function(attr,children) {
+	return { t : "tr", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.td = function(attr,children) {
+	return { t : "td", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.th = function(attr,children) {
+	return { t : "th", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.h1 = function(attr,children) {
+	return { t : "h1", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.h2 = function(attr,children) {
+	return { t : "h2", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.h3 = function(attr,children) {
+	return { t : "h3", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.h4 = function(attr,children) {
+	return { t : "h4", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.h5 = function(attr,children) {
+	return { t : "h5", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.strong = function(attr,children) {
+	return { t : "strong", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.em = function(attr,children) {
+	return { t : "em", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.span = function(attr,children) {
+	return { t : "span", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.a = function(attr,children) {
+	return { t : "a", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.p = function(attr,children) {
+	return { t : "p", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.i = function(attr,children) {
+	return { t : "i", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.b = function(attr,children) {
+	return { t : "b", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.small = function(attr,children) {
+	return { t : "small", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.menu = function(attr,children) {
+	return { t : "menu", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.ul = function(attr,children) {
+	return { t : "ul", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.ol = function(attr,children) {
+	return { t : "ol", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.li = function(attr,children) {
+	return { t : "li", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.label = function(attr,children) {
+	return { t : "label", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.button = function(attr,children) {
+	return { t : "button", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.textarea = function(attr,children) {
+	return { t : "textarea", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.pre = function(attr,children) {
+	return { t : "pre", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.hr = function(attr) {
+	return { t : "hr", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.br = function(attr) {
+	return { t : "br", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.wbr = function(attr) {
+	return { t : "wbr", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.canvas = function(attr) {
+	return { t : "canvas", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.img = function(attr) {
+	return { t : "img", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.audio = function(attr,children) {
+	return { t : "audio", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.video = function(attr,children) {
+	return { t : "video", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.source = function(attr) {
+	return { t : "source", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.input = function(attr) {
+	return { t : "input", k : attr == null ? null : attr.key, a : attr, c : null};
+};
+coconut_vdom_Html.form = function(attr,children) {
+	return { t : "form", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.fieldset = function(attr,children) {
+	return { t : "fieldset", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.select = function(attr,children) {
+	return { t : "select", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.option = function(attr,children) {
+	return { t : "option", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.script = function(attr,children) {
+	return { t : "script", k : attr == null ? null : attr.key, a : attr, c : children};
+};
+coconut_vdom_Html.raw = function(attr) {
+	return coconut_vdom_HtmlFragment.create(attr);
+};
+var coconut_vdom_HtmlFragment = function(content,tag,key,className) {
+	if(tag == null) {
+		tag = "span";
+	}
+	coconut_vdom_Widget.call(this,key);
+	this.content = content;
+	this.tag = tag;
+	this.className = className;
+};
+$hxClasses["coconut.vdom.HtmlFragment"] = coconut_vdom_HtmlFragment;
+coconut_vdom_HtmlFragment.__name__ = ["coconut","vdom","HtmlFragment"];
+coconut_vdom_HtmlFragment.create = function(attr) {
+	if(attr.content == "" && attr.force != true) {
+		return null;
+	} else {
+		return new coconut_vdom_HtmlFragment(attr.content,attr.tag,attr.key,attr.className);
+	}
+};
+coconut_vdom_HtmlFragment.__super__ = coconut_vdom_Widget;
+coconut_vdom_HtmlFragment.prototype = $extend(coconut_vdom_Widget.prototype,{
+	content: null
+	,tag: null
+	,element: null
+	,className: null
+	,__initWidget: function() {
+		if(this.element == null) {
+			this.element = window.document.createElement(this.tag);
+			this.element.innerHTML = this.content;
+			if(this.className != null) {
+				this.element.className = this.className;
+			}
+		}
+		return this.element;
+	}
+	,__replaceWidget: function(old,e) {
+		var _g = (old instanceof coconut_vdom_HtmlFragment) ? old : null;
+		if(_g == null) {
+			return this.__initWidget();
+		} else {
+			var v = _g;
+			if(v.tag == this.tag) {
+				this.element = e;
+				if(this.className != v.className) {
+					this.element.className = this.className;
+				}
+				if(this.content != v.content) {
+					this.element.innerHTML = this.content;
+				}
+				return e;
+			} else {
+				return this.__initWidget();
+			}
+		}
+	}
+	,__class__: coconut_vdom_HtmlFragment
+});
+var coconut_vdom__$Style_Style_$Impl_$ = {};
+$hxClasses["coconut.vdom._Style.Style_Impl_"] = coconut_vdom__$Style_Style_$Impl_$;
+coconut_vdom__$Style_Style_$Impl_$.__name__ = ["coconut","vdom","_Style","Style_Impl_"];
+coconut_vdom__$Style_Style_$Impl_$.ofString = function(s) {
+	coconut_vdom__$Style_Style_$Impl_$.style.cssText = s;
+	var ret = { };
+	var ret1 = ret;
+	var _g = 0;
+	var _g1 = coconut_vdom__$Style_Style_$Impl_$.style;
+	while(_g < _g1.length) {
+		var name = _g1[_g];
+		++_g;
+		ret1[name] = coconut_vdom__$Style_Style_$Impl_$.style.getPropertyValue(name);
+	}
+	return ret;
+};
+var coconut_vdom_VDom = function() { };
+$hxClasses["coconut.vdom.VDom"] = coconut_vdom_VDom;
+coconut_vdom_VDom.__name__ = ["coconut","vdom","VDom"];
+coconut_vdom_VDom.h = function(type,attributes,children) {
+	return { t : type, k : attributes == null ? null : attributes.key, a : attributes, c : children};
+};
+coconut_vdom_VDom.updateNode = function(domNode,newNode,oldNode) {
+	if(newNode == oldNode) {
+		return domNode;
+	}
+	var ret = domNode;
+	var replace = function($with) {
+		ret = $with;
+		if(domNode.parentNode != null) {
+			domNode.parentNode.replaceChild(ret,domNode);
+		}
+	};
+	var _g = oldNode.t == ":widget";
+	var _g1 = newNode.t == ":widget";
+	switch(_g1) {
+	case false:
+		switch(_g) {
+		case false:
+			if(newNode.t != oldNode.t) {
+				replace(coconut_vdom_VDom.createNode(newNode));
+			} else if(newNode.t == ":text") {
+				var oldText = oldNode.t == ":text" ? oldNode.k : null;
+				var newText = newNode.t == ":text" ? newNode.k : null;
+				if(oldText != newText) {
+					domNode.nodeValue = newText;
+				}
+			} else if((newNode.t == ":native" ? newNode.a[":native"] : null) != null) {
+				replace(newNode.t == ":native" ? newNode.a[":native"] : null);
+			} else {
+				var elt = domNode;
+				coconut_vdom_VDom.updateElement(elt,newNode.a,oldNode.a);
+				var newChildren = newNode.c;
+				var this1 = oldNode.c;
+				var oldChildren = this1 == null ? [] : this1.slice();
+				var oldDomChildren = domNode.childNodes;
+				var newLength = newChildren == null ? 0 : newChildren.length;
+				var oldLength = oldChildren.length;
+				var this2 = { };
+				var ret1 = this2;
+				var this3 = { };
+				var newKeys = this3;
+				var _g2 = 0;
+				while(_g2 < (newChildren == null ? 0 : newChildren.length)) {
+					var c = newChildren[_g2];
+					++_g2;
+					if(c.k != null && !newKeys[c.k]) {
+						newKeys[c.k] = true;
+					}
+				}
+				var _g11 = 0;
+				var _g3 = oldLength;
+				while(_g11 < _g3) {
+					var i = _g11++;
+					var old = oldChildren[i];
+					var k = old.k;
+					if(k != null && newKeys[k] && !Object.prototype.hasOwnProperty.call(ret1,k)) {
+						ret1[k] = i;
+					}
+				}
+				var oldKeyed = ret1;
+				var oldIndex = 0;
+				var _g4 = [];
+				var _g21 = 0;
+				var _g12 = newLength;
+				while(_g21 < _g12) {
+					var i1 = _g21++;
+					var newChild = newChildren[i1];
+					var oldChildIndex;
+					var _g31 = oldKeyed[newChild.k];
+					if(_g31 == null) {
+						while(oldIndex < oldLength) {
+							var oldChild = oldChildren[oldIndex];
+							if(oldChild == null || Object.prototype.hasOwnProperty.call(oldKeyed,oldChild.k)) {
+								++oldIndex;
+							} else {
+								break;
+							}
+						}
+						if(oldIndex < oldLength) {
+							oldChildIndex = oldIndex++;
+						} else {
+							oldChildIndex = oldIndex;
+						}
+					} else {
+						var v = _g31;
+						Reflect.deleteField(oldKeyed,newChild.k);
+						oldChildIndex = v;
+					}
+					var tmp;
+					var _g41 = oldDomChildren[oldChildIndex];
+					if(_g41 == null) {
+						tmp = coconut_vdom_VDom.createNode(newChild);
+					} else {
+						var target = _g41;
+						var oldChild1 = oldChildren[oldChildIndex];
+						oldChildren[oldChildIndex] = null;
+						tmp = coconut_vdom_VDom.updateNode(target,newChild,oldChild1);
+					}
+					_g4.push(tmp);
+				}
+				var newDomChildren = _g4;
+				var _g22 = 0;
+				var _g13 = newDomChildren.length;
+				while(_g22 < _g13) {
+					var i2 = _g22++;
+					var newDom = newDomChildren[i2];
+					if(newDom != domNode.childNodes[i2]) {
+						domNode.insertBefore(newDom,domNode.childNodes[i2]);
+					}
+				}
+				var _g23 = newLength;
+				var _g14 = domNode.childNodes.length;
+				while(_g23 < _g14) {
+					var i3 = _g23++;
+					domNode.removeChild(domNode.childNodes[newLength]);
+				}
+				var _g15 = 0;
+				while(_g15 < oldChildren.length) {
+					var o = oldChildren[_g15];
+					++_g15;
+					if(o != null && o.t == ":widget") {
+						(o.t == ":widget" ? o : null).__destroyWidget();
+					}
+				}
+			}
+			break;
+		case true:
+			(oldNode.t == ":widget" ? oldNode : null).__destroyWidget();
+			replace(coconut_vdom_VDom.createNode(newNode));
+			break;
+		}
+		break;
+	case true:
+		switch(_g) {
+		case false:
+			replace((newNode.t == ":widget" ? newNode : null).__initWidget());
+			break;
+		case true:
+			replace((newNode.t == ":widget" ? newNode : null).__replaceWidget(oldNode.t == ":widget" ? oldNode : null,domNode));
+			break;
+		}
+		break;
+	}
+	return ret;
+};
+coconut_vdom_VDom.setField = function(target,name,newVal,oldVal) {
+	if(oldVal != newVal) {
+		target[name] = newVal;
+	}
+};
+coconut_vdom_VDom.setProp = function(element,name,newVal,oldVal) {
+	switch(name) {
+	case "attributes":
+		var newProps = newVal;
+		var oldProps = oldVal;
+		var updateProp = coconut_vdom_VDom.updateAttribute;
+		if(newProps != oldProps) {
+			var keys = { };
+			if(newProps == null) {
+				newProps = coconut_vdom_VDom.EMPTY;
+			}
+			if(oldProps == null) {
+				oldProps = coconut_vdom_VDom.EMPTY;
+			}
+			var _g = 0;
+			var _g1 = Object.getOwnPropertyNames(newProps);
+			while(_g < _g1.length) {
+				var key = _g1[_g];
+				++_g;
+				keys[key] = true;
+			}
+			var _g2 = 0;
+			var _g11 = Object.getOwnPropertyNames(oldProps);
+			while(_g2 < _g11.length) {
+				var key1 = _g11[_g2];
+				++_g2;
+				keys[key1] = true;
+			}
+			var _g3 = 0;
+			var _g12 = Object.getOwnPropertyNames(keys);
+			while(_g3 < _g12.length) {
+				var key2 = _g12[_g3];
+				++_g3;
+				updateProp(element,key2,newProps[key2],oldProps[key2]);
+			}
+		}
+		break;
+	case "key":
+		break;
+	case "style":
+		var element1 = element.style;
+		var newProps1 = newVal;
+		var oldProps1 = oldVal;
+		var updateProp1 = coconut_vdom_VDom.setField;
+		if(newProps1 != oldProps1) {
+			var keys1 = { };
+			if(newProps1 == null) {
+				newProps1 = coconut_vdom_VDom.EMPTY;
+			}
+			if(oldProps1 == null) {
+				oldProps1 = coconut_vdom_VDom.EMPTY;
+			}
+			var _g4 = 0;
+			var _g13 = Object.getOwnPropertyNames(newProps1);
+			while(_g4 < _g13.length) {
+				var key3 = _g13[_g4];
+				++_g4;
+				keys1[key3] = true;
+			}
+			var _g5 = 0;
+			var _g14 = Object.getOwnPropertyNames(oldProps1);
+			while(_g5 < _g14.length) {
+				var key4 = _g14[_g5];
+				++_g5;
+				keys1[key4] = true;
+			}
+			var _g6 = 0;
+			var _g15 = Object.getOwnPropertyNames(keys1);
+			while(_g6 < _g15.length) {
+				var key5 = _g15[_g6];
+				++_g6;
+				updateProp1(element1,key5,newProps1[key5],oldProps1[key5]);
+			}
+		}
+		break;
+	default:
+		if(newVal == null) {
+			delete element[name];
+		} else {
+			element[name] = newVal;
+		}
+	}
+};
+coconut_vdom_VDom.updateAttribute = function(element,name,newVal,oldVal) {
+	if(newVal == null) {
+		element.removeAttribute(name);
+	} else {
+		element.setAttribute(name,newVal);
+	}
+};
+coconut_vdom_VDom.updateProp = function(element,name,newVal,oldVal) {
+	if(oldVal != newVal) {
+		coconut_vdom_VDom.setProp(element,name,newVal,oldVal);
+	}
+};
+coconut_vdom_VDom.updateElement = function(element,newProps,oldProps) {
+	var newProps1 = newProps;
+	var oldProps1 = oldProps;
+	var updateProp = coconut_vdom_VDom.updateProp;
+	if(newProps1 != oldProps1) {
+		var keys = { };
+		if(newProps1 == null) {
+			newProps1 = coconut_vdom_VDom.EMPTY;
+		}
+		if(oldProps1 == null) {
+			oldProps1 = coconut_vdom_VDom.EMPTY;
+		}
+		var _g = 0;
+		var _g1 = Object.getOwnPropertyNames(newProps1);
+		while(_g < _g1.length) {
+			var key = _g1[_g];
+			++_g;
+			keys[key] = true;
+		}
+		var _g2 = 0;
+		var _g11 = Object.getOwnPropertyNames(oldProps1);
+		while(_g2 < _g11.length) {
+			var key1 = _g11[_g2];
+			++_g2;
+			keys[key1] = true;
+		}
+		var _g3 = 0;
+		var _g12 = Object.getOwnPropertyNames(keys);
+		while(_g3 < _g12.length) {
+			var key2 = _g12[_g3];
+			++_g3;
+			updateProp(element,key2,newProps1[key2],oldProps1[key2]);
+		}
+	}
+};
+coconut_vdom_VDom.updateObject = function(element,newProps,oldProps,updateProp) {
+	if(newProps == oldProps) {
+		return;
+	}
+	var keys = { };
+	if(newProps == null) {
+		newProps = coconut_vdom_VDom.EMPTY;
+	}
+	if(oldProps == null) {
+		oldProps = coconut_vdom_VDom.EMPTY;
+	}
+	var _g = 0;
+	var _g1 = Object.getOwnPropertyNames(newProps);
+	while(_g < _g1.length) {
+		var key = _g1[_g];
+		++_g;
+		keys[key] = true;
+	}
+	var _g2 = 0;
+	var _g11 = Object.getOwnPropertyNames(oldProps);
+	while(_g2 < _g11.length) {
+		var key1 = _g11[_g2];
+		++_g2;
+		keys[key1] = true;
+	}
+	var _g3 = 0;
+	var _g12 = Object.getOwnPropertyNames(keys);
+	while(_g3 < _g12.length) {
+		var key2 = _g12[_g3];
+		++_g3;
+		updateProp(element,key2,newProps[key2],oldProps[key2]);
+	}
+};
+coconut_vdom_VDom.mount = function(c,parent) {
+	parent.appendChild(coconut_vdom_VDom.createNode(c));
+	var _g = 0;
+	var _g1 = coconut_vdom_VDom.afterMount.splice(0,coconut_vdom_VDom.afterMount.length);
+	while(_g < _g1.length) {
+		var f = _g1[_g];
+		++_g;
+		f();
+	}
+};
+coconut_vdom_VDom.createNode = function(c) {
+	if(c.t == ":widget") {
+		var w = c.t == ":widget" ? c : null;
+		var n = w.__initWidget();
+		var f = $bind(w,w.afterMounting);
+		var n1 = n;
+		var tmp = function() {
+			f(n1);
+		};
+		coconut_vdom_VDom.afterMount.push(tmp);
+		return n;
+	} else if(c.t == ":text") {
+		var tmp1 = c.t == ":text" ? c.k : null;
+		return window.document.createTextNode(tmp1);
+	} else {
+		var _g = c.t == ":native" ? c.a[":native"] : null;
+		if(_g == null) {
+			var ret = window.document.createElement(c.t);
+			var attributes = c.a;
+			coconut_vdom_VDom.updateElement(ret,attributes,null);
+			var _g1 = 0;
+			var _g11 = c.c;
+			while(_g1 < (_g11 == null ? 0 : _g11.length)) {
+				var c1 = _g11[_g1];
+				++_g1;
+				if(c1 != null) {
+					ret.appendChild(coconut_vdom_VDom.createNode(c1));
+				}
+			}
+			return ret;
+		} else {
+			var v = _g;
+			return v;
+		}
+	}
 };
 var haxe_StackItem = $hxClasses["haxe.StackItem"] = { __ename__ : ["haxe","StackItem"], __constructs__ : ["CFunction","Module","FilePos","Method","LocalFunction"] };
 haxe_StackItem.CFunction = ["CFunction",0];
@@ -4976,17 +5928,19 @@ js_html_compat_Uint8Array._subarray = function(start,end) {
 };
 var mdc_Button = function(data) {
 	this.mdcRipple = null;
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Button.hx", lineNumber : 17, className : "mdc.Button", methodName : "new"});
 	this.__tink_defaults89 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), onclick : null, label : null, disabled : tink_state__$Observable_Observable_$Impl_$["const"](false), icon : null, raised : tink_state__$Observable_Observable_$Impl_$["const"](false), unelevated : tink_state__$Observable_Observable_$Impl_$["const"](false), stroked : tink_state__$Observable_Observable_$Impl_$["const"](false), dense : tink_state__$Observable_Observable_$Impl_$["const"](false), ripple : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), icon : new coconut_ui_tools_Slot(this,null), raised : new coconut_ui_tools_Slot(this,null), unelevated : new coconut_ui_tools_Slot(this,null), stroked : new coconut_ui_tools_Slot(this,null), dense : new coconut_ui_tools_Slot(this,null), ripple : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init90(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.Button"] = mdc_Button;
 mdc_Button.__name__ = ["mdc","Button"];
 mdc_Button.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Button(attributes);
+	} else {
+		inst.__tink_init90(attributes);
 	}
-	inst.__tink_init90(attributes);
 	return inst;
 };
 mdc_Button.__super__ = coconut_ui_View;
@@ -4995,56 +5949,62 @@ mdc_Button.prototype = $extend(coconut_ui_View.prototype,{
 	,render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-button"] != null) {
 			_g.setReserved("mdc-button",true);
 		} else {
 			_g.h["mdc-button"] = true;
 		}
-		var value = _gthis.get_ripple();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.ripple.observe());
 		if(__map_reserved["mdc-ripple-surface"] != null) {
 			_g.setReserved("mdc-ripple-surface",value);
 		} else {
 			_g.h["mdc-ripple-surface"] = value;
 		}
-		var value1 = _gthis.get_raised();
+		var value1 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.raised.observe());
 		if(__map_reserved["mdc-button--raised"] != null) {
 			_g.setReserved("mdc-button--raised",value1);
 		} else {
 			_g.h["mdc-button--raised"] = value1;
 		}
-		var value2 = _gthis.get_unelevated();
+		var value2 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.unelevated.observe());
 		if(__map_reserved["mdc-button--unelevated"] != null) {
 			_g.setReserved("mdc-button--unelevated",value2);
 		} else {
 			_g.h["mdc-button--unelevated"] = value2;
 		}
-		var value3 = _gthis.get_stroked();
+		var value3 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.stroked.observe());
 		if(__map_reserved["mdc-button--stroked"] != null) {
 			_g.setReserved("mdc-button--stroked",value3);
 		} else {
 			_g.h["mdc-button--stroked"] = value3;
 		}
-		var value4 = _gthis.get_dense();
+		var value4 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.dense.observe());
 		if(__map_reserved["mdc-button--dense"] != null) {
 			_g.setReserved("mdc-button--dense",value4);
 		} else {
 			_g.h["mdc-button--dense"] = value4;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), onclick : this.get_onclick(), disabled : this.get_disabled()};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), onclick : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe()), disabled : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe())};
+		var attr = __ret1;
 		var __r1 = [];
-		if(this.get_icon() != null) {
-			var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-button__icon")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe()) != null) {
+			var __ret2 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("material-icons mdc-button__icon")};
+			var attr1 = __ret2;
 			var __r2 = [];
-			__r2.push(this.get_icon());
-			__r1.push(vdom_VDom.h("i",__ret2,__r2));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+			__r2.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe()), a : coconut_vdom_VDom.EMPTY});
+			var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+			__r1.push({ t : "i", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		}
-		__r1.push(this.get_label());
-		__r.push(vdom_VDom.h("button",__ret1,__r1));
+		__r1.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()), a : coconut_vdom_VDom.EMPTY});
+		var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "button", k : attr == null ? null : attr.key, a : attr, c : children1});
 		return __r[0];
 	}
-	,afterInit: function(elem) {
+	,afterMounting: function(elem) {
 		this.mdcRipple = new window.mdc.ripple.MDCRipple(elem);
 	}
 	,beforeDestroy: function(elem) {
@@ -5113,18 +6073,20 @@ mdc_Button.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_ripple:"get_ripple",get_dense:"get_dense",get_stroked:"get_stroked",get_unelevated:"get_unelevated",get_raised:"get_raised",get_icon:"get_icon",get_disabled:"get_disabled",get_label:"get_label",get_onclick:"get_onclick",get_className:"get_className"}
 });
 var mdc_Checkbox = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Checkbox.hx", lineNumber : 9, className : "mdc.Checkbox", methodName : "new"});
 	this.checkboxId = mdc_Checkbox.checkboxIndex++;
 	this.__tink_defaults93 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), id : null, label : null, disabled : null, checked : null, indeterminate : null, value : null, onchecked : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), indeterminate : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init94(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.Checkbox"] = mdc_Checkbox;
 mdc_Checkbox.__name__ = ["mdc","Checkbox"];
 mdc_Checkbox.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Checkbox(attributes);
+	} else {
+		inst.__tink_init94(attributes);
 	}
-	inst.__tink_init94(attributes);
 	return inst;
 };
 mdc_Checkbox.__super__ = coconut_ui_View;
@@ -5133,68 +6095,94 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 	,mdcCheckbox: null
 	,render: function() {
 		var _gthis = this;
-		var checked = this.get_checked();
-		var indeterminate = this.get_indeterminate();
-		var disabled = this.get_disabled();
-		var value = this.get_value();
-		var id = this.get_id() == null ? "ch_" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.checkboxId)) : this.get_id();
-		if(this.get_label() != null) {
+		var checked = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+		var indeterminate = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
+		var disabled = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
+		var id = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe()) == null ? "ch_" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.checkboxId)) : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()) != null) {
 			var __r = [];
-			var __ret = _gthis.get_className();
+			var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 			var _g = new haxe_ds_StringMap();
 			if(__map_reserved["mdc-form-field"] != null) {
 				_g.setReserved("mdc-form-field",true);
 			} else {
 				_g.h["mdc-form-field"] = true;
 			}
-			var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), id : this.get_id()};
+			var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), id : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe())};
+			var attr = __ret1;
 			var __r1 = [];
-			var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox")};
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+			var __ret2 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox")};
+			var attr1 = __ret2;
 			var __r2 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
 			var __ret3 = { type : "checkbox", onchange : function(event) {
-				if(_gthis.get_onchecked() != null) {
-					(_gthis.get_onchecked())(event.currentTarget.checked);
+				if(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()) != null) {
+					(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()))(event.target.checked);
 				}
-			}, value : value, checked : checked, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control"), id : id};
-			__r2.push(vdom_VDom.h("input",__ret3));
-			var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")};
+			}, value : value, checked : checked, className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox__native-control"), id : id};
+			var attr2 = __ret3;
+			__r2.push({ t : "input", k : attr2 == null ? null : attr2.key, a : attr2, c : null});
+			var __ret4 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox__background")};
+			var attr3 = __ret4;
 			var __r3 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
 			var __ret5 = { content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"};
-			__r3.push(vdom_HtmlFragment.create(__ret5));
-			var __ret6 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")};
+			__r3.push(coconut_vdom_HtmlFragment.create(__ret5));
+			var __ret6 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")};
+			var attr4 = __ret6;
 			var __r4 = [];
-			__r3.push(vdom_VDom.h("div",__ret6,__r4));
-			__r2.push(vdom_VDom.h("div",__ret4,__r3));
-			__r1.push(vdom_VDom.h("div",__ret2,__r2));
-			var __r5 = [];
-			__r5.push(this.get_label());
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+			var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+			__r3.push({ t : "div", k : attr4 == null ? null : attr4.key, a : attr4, c : children});
+			var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+			__r2.push({ t : "div", k : attr3 == null ? null : attr3.key, a : attr3, c : children1});
+			var children2 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+			__r1.push({ t : "div", k : attr1 == null ? null : attr1.key, a : attr1, c : children2});
 			var __ret7 = { htmlFor : id};
-			__r1.push(vdom_VDom.h("label",__ret7,__r5));
-			__r.push(vdom_VDom.h("div",__ret1,__r1));
+			var attr5 = __ret7;
+			var __r5 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			__r5.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()), a : coconut_vdom_VDom.EMPTY});
+			var children3 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			__r1.push({ t : "label", k : attr5 == null ? null : attr5.key, a : attr5, c : children3});
+			var children4 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+			__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children4});
 			return __r[0];
 		} else {
 			var __r6 = [];
-			var __ret8 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox"), id : this.get_id()};
+			var __ret8 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox"), id : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe())};
+			var attr6 = __ret8;
 			var __r7 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r7);
 			var __ret9 = { type : "checkbox", value : value, checked : checked, onchange : function(event1) {
-				if(_gthis.get_onchecked() != null) {
-					(_gthis.get_onchecked())(event1.currentTarget.checked);
+				if(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()) != null) {
+					(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()))(event1.target.checked);
 				}
-			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__native-control")};
-			__r7.push(vdom_VDom.h("input",__ret9));
-			var __ret10 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__background")};
+			}, className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox__native-control")};
+			var attr7 = __ret9;
+			__r7.push({ t : "input", k : attr7 == null ? null : attr7.key, a : attr7, c : null});
+			var __ret10 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox__background")};
+			var attr8 = __ret10;
 			var __r8 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r8);
 			var __ret11 = { content : "<svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\r\n                                      <path class=\"mdc-checkbox__checkmark__path\" fill=\"none\" stroke=\"white\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"></path>\r\n                                  </svg>"};
-			__r8.push(vdom_HtmlFragment.create(__ret11));
-			var __ret12 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")};
+			__r8.push(coconut_vdom_HtmlFragment.create(__ret11));
+			var __ret12 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-checkbox__mixedmark")};
+			var attr9 = __ret12;
 			var __r9 = [];
-			__r8.push(vdom_VDom.h("div",__ret12,__r9));
-			__r7.push(vdom_VDom.h("div",__ret10,__r8));
-			__r6.push(vdom_VDom.h("div",__ret8,__r7));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r9);
+			var children5 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r9);
+			__r8.push({ t : "div", k : attr9 == null ? null : attr9.key, a : attr9, c : children5});
+			var children6 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r8);
+			__r7.push({ t : "div", k : attr8 == null ? null : attr8.key, a : attr8, c : children6});
+			var children7 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r7);
+			__r6.push({ t : "div", k : attr6 == null ? null : attr6.key, a : attr6, c : children7});
 			return __r6[0];
 		}
 	}
-	,afterInit: function(elem) {
+	,afterMounting: function(elem) {
 		this.mdcCheckbox = new window.mdc.checkbox.MDCCheckbox(elem);
 		this.setCheckboxProperties();
 	}
@@ -5202,10 +6190,14 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 		this.setCheckboxProperties();
 	}
 	,setCheckboxProperties: function() {
-		this.mdcCheckbox.checked = this.get_checked();
-		this.mdcCheckbox.indeterminate = this.get_indeterminate();
-		this.mdcCheckbox.disabled = this.get_disabled();
-		this.mdcCheckbox.value = this.get_value();
+		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+		this.mdcCheckbox.checked = tmp;
+		var tmp1 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
+		this.mdcCheckbox.indeterminate = tmp1;
+		var tmp2 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+		this.mdcCheckbox.disabled = tmp2;
+		var tmp3 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
+		this.mdcCheckbox.value = tmp3;
 	}
 	,beforeDestroy: function(elem) {
 		if(this.mdcCheckbox != null) {
@@ -5263,17 +6255,19 @@ mdc_Checkbox.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_onchecked:"get_onchecked",get_value:"get_value",get_indeterminate:"get_indeterminate",get_checked:"get_checked",get_disabled:"get_disabled",get_label:"get_label",get_id:"get_id",get_className:"get_className"}
 });
 var mdc_Icon = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Icon.hx", lineNumber : 4, className : "mdc.Icon", methodName : "new"});
 	this.__tink_defaults1 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init2(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.Icon"] = mdc_Icon;
 mdc_Icon.__name__ = ["mdc","Icon"];
 mdc_Icon.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Icon(attributes);
+	} else {
+		inst.__tink_init2(attributes);
 	}
-	inst.__tink_init2(attributes);
 	return inst;
 };
 mdc_Icon.__super__ = coconut_ui_View;
@@ -5281,17 +6275,20 @@ mdc_Icon.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["material-icons"] != null) {
 			_g.setReserved("material-icons",true);
 		} else {
 			_g.h["material-icons"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}};
+		var attr = __ret1;
 		var __r1 = [];
-		__r1.push(this.get_name());
-		__r.push(vdom_VDom.h("i",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r1.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe()), a : coconut_vdom_VDom.EMPTY});
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "i", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults1: null
@@ -5314,17 +6311,19 @@ mdc_Icon.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_name:"get_name",get_className:"get_className"}
 });
 var mdc_LinearProgress = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "LinearProgress.hx", lineNumber : 6, className : "mdc.LinearProgress", methodName : "new"});
 	this.__tink_defaults98 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), indeterminate : tink_state__$Observable_Observable_$Impl_$["const"](false), progress : null, buffer : null, reverse : null, open : tink_state__$Observable_Observable_$Impl_$["const"](false)};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), indeterminate : new coconut_ui_tools_Slot(this,null), progress : new coconut_ui_tools_Slot(this,null), buffer : new coconut_ui_tools_Slot(this,null), reverse : new coconut_ui_tools_Slot(this,null), open : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init99(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.LinearProgress"] = mdc_LinearProgress;
 mdc_LinearProgress.__name__ = ["mdc","LinearProgress"];
 mdc_LinearProgress.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_LinearProgress(attributes);
+	} else {
+		inst.__tink_init99(attributes);
 	}
-	inst.__tink_init99(attributes);
 	return inst;
 };
 mdc_LinearProgress.__super__ = coconut_ui_View;
@@ -5332,43 +6331,64 @@ mdc_LinearProgress.prototype = $extend(coconut_ui_View.prototype,{
 	mdcLinearProgress: null
 	,render: function() {
 		var _gthis = this;
-		var intererminate = this.get_indeterminate();
-		var progress = this.get_progress();
-		var buffer = this.get_buffer();
-		var reverse = this.get_reverse();
-		var open = this.get_open();
+		var intererminate = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
+		var progress = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.progress.observe());
+		var buffer = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.buffer.observe());
+		var reverse = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.reverse.observe());
+		var open = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.open.observe());
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-linear-progress"] != null) {
 			_g.setReserved("mdc-linear-progress",true);
 		} else {
 			_g.h["mdc-linear-progress"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
+		var attr = __ret1;
 		var __r1 = [];
-		var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffering-dots")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		var __ret2 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-linear-progress__buffering-dots")};
+		var attr1 = __ret2;
 		var __r2 = [];
-		__r1.push(vdom_VDom.h("div",__ret2,__r2));
-		var __ret3 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__buffer")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		__r1.push({ t : "div", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
+		var __ret3 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-linear-progress__buffer")};
+		var attr2 = __ret3;
 		var __r3 = [];
-		__r1.push(vdom_VDom.h("div",__ret3,__r3));
-		var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__primary-bar")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+		var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+		__r1.push({ t : "div", k : attr2 == null ? null : attr2.key, a : attr2, c : children1});
+		var __ret4 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__primary-bar")};
+		var attr3 = __ret4;
 		var __r4 = [];
-		var __ret5 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+		var __ret5 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")};
+		var attr4 = __ret5;
 		var __r5 = [];
-		__r4.push(vdom_VDom.h("span",__ret5,__r5));
-		__r1.push(vdom_VDom.h("div",__ret4,__r4));
-		var __ret6 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__secondary-bar")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+		var children2 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+		__r4.push({ t : "span", k : attr4 == null ? null : attr4.key, a : attr4, c : children2});
+		var children3 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+		__r1.push({ t : "div", k : attr3 == null ? null : attr3.key, a : attr3, c : children3});
+		var __ret6 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-linear-progress__bar mdc-linear-progress__secondary-bar")};
+		var attr5 = __ret6;
 		var __r6 = [];
-		var __ret7 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+		var __ret7 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-linear-progress__bar-inner")};
+		var attr6 = __ret7;
 		var __r7 = [];
-		__r6.push(vdom_VDom.h("span",__ret7,__r7));
-		__r1.push(vdom_VDom.h("div",__ret6,__r6));
-		__r.push(vdom_VDom.h("div",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r7);
+		var children4 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r7);
+		__r6.push({ t : "span", k : attr6 == null ? null : attr6.key, a : attr6, c : children4});
+		var children5 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+		__r1.push({ t : "div", k : attr5 == null ? null : attr5.key, a : attr5, c : children5});
+		var children6 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children6});
 		return __r[0];
 	}
-	,afterInit: function(elem) {
+	,afterMounting: function(elem) {
 		this.mdcLinearProgress = new window.mdc.linearProgress.MDCLinearProgress(elem);
 		this.setLinearProgress();
 	}
@@ -5376,11 +6396,15 @@ mdc_LinearProgress.prototype = $extend(coconut_ui_View.prototype,{
 		this.setLinearProgress();
 	}
 	,setLinearProgress: function() {
-		this.mdcLinearProgress.determinate = !this.get_indeterminate();
-		this.mdcLinearProgress.progress = this.get_progress();
-		this.mdcLinearProgress.buffer = this.get_buffer();
-		this.mdcLinearProgress.reverse = this.get_reverse();
-		if(this.get_open() == true) {
+		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.indeterminate.observe());
+		this.mdcLinearProgress.determinate = !tmp;
+		var tmp1 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.progress.observe());
+		this.mdcLinearProgress.progress = tmp1;
+		var tmp2 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.buffer.observe());
+		this.mdcLinearProgress.buffer = tmp2;
+		var tmp3 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.reverse.observe());
+		this.mdcLinearProgress.reverse = tmp3;
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.open.observe()) == true) {
 			this.mdcLinearProgress.open();
 		} else {
 			this.mdcLinearProgress.close();
@@ -5427,17 +6451,19 @@ mdc_LinearProgress.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_open:"get_open",get_reverse:"get_reverse",get_buffer:"get_buffer",get_progress:"get_progress",get_indeterminate:"get_indeterminate",get_className:"get_className"}
 });
 var mdc_List = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 22, className : "mdc.List", methodName : "new"});
-	this.__tink_defaults0 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), dense : tink_state__$Observable_Observable_$Impl_$["const"](false), twoLine : tink_state__$Observable_Observable_$Impl_$["const"](false), avatarList : tink_state__$Observable_Observable_$Impl_$["const"](false), nonInteractive : tink_state__$Observable_Observable_$Impl_$["const"](false)};
+	this.__tink_defaults37 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), dense : tink_state__$Observable_Observable_$Impl_$["const"](false), twoLine : tink_state__$Observable_Observable_$Impl_$["const"](false), avatarList : tink_state__$Observable_Observable_$Impl_$["const"](false), nonInteractive : tink_state__$Observable_Observable_$Impl_$["const"](false)};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), dense : new coconut_ui_tools_Slot(this,null), twoLine : new coconut_ui_tools_Slot(this,null), avatarList : new coconut_ui_tools_Slot(this,null), nonInteractive : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init38(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.List"] = mdc_List;
 mdc_List.__name__ = ["mdc","List"];
 mdc_List.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_List(attributes);
+	} else {
+		inst.__tink_init38(attributes);
 	}
-	inst.__tink_init82(attributes);
 	return inst;
 };
 mdc_List.__super__ = coconut_ui_View;
@@ -5445,60 +6471,62 @@ mdc_List.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list"] != null) {
 			_g.setReserved("mdc-list",true);
 		} else {
 			_g.h["mdc-list"] = true;
 		}
-		var value = _gthis.get_twoLine();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.twoLine.observe());
 		if(__map_reserved["mdc-list--two-line"] != null) {
 			_g.setReserved("mdc-list--two-line",value);
 		} else {
 			_g.h["mdc-list--two-line"] = value;
 		}
-		var value1 = _gthis.get_avatarList();
+		var value1 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.avatarList.observe());
 		if(__map_reserved["mdc-list--avatar-list"] != null) {
 			_g.setReserved("mdc-list--avatar-list",value1);
 		} else {
 			_g.h["mdc-list--avatar-list"] = value1;
 		}
-		var value2 = _gthis.get_dense();
+		var value2 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.dense.observe());
 		if(__map_reserved["mdc-list--dense"] != null) {
 			_g.setReserved("mdc-list--dense",value2);
 		} else {
 			_g.h["mdc-list--dense"] = value2;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr = __ret1;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("ul",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "ul", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
-	,__tink_defaults0: null
+	,__tink_defaults37: null
 	,__slots: null
 	,toString: function() {
 		return "List" + "#" + this.viewId;
 	}
-	,__tink_init82: function(attributes) {
+	,__tink_init38: function(attributes) {
 		var this1 = attributes.className;
-		this.__slots.className.setData(this1 == null ? this.__tink_defaults0.className : this1);
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults37.className : this1);
 		var this2 = attributes.dense;
-		this.__slots.dense.setData(this2 == null ? this.__tink_defaults0.dense : this2);
+		this.__slots.dense.setData(this2 == null ? this.__tink_defaults37.dense : this2);
 		var this3 = attributes.twoLine;
-		this.__slots.twoLine.setData(this3 == null ? this.__tink_defaults0.twoLine : this3);
+		this.__slots.twoLine.setData(this3 == null ? this.__tink_defaults37.twoLine : this3);
 		var this4 = attributes.avatarList;
-		this.__slots.avatarList.setData(this4 == null ? this.__tink_defaults0.avatarList : this4);
+		this.__slots.avatarList.setData(this4 == null ? this.__tink_defaults37.avatarList : this4);
 		var this5 = attributes.nonInteractive;
-		this.__slots.nonInteractive.setData(this5 == null ? this.__tink_defaults0.nonInteractive : this5);
+		this.__slots.nonInteractive.setData(this5 == null ? this.__tink_defaults37.nonInteractive : this5);
 		this.__slots.children.setData(attributes.children);
 	}
 	,get_className: function() {
@@ -5523,17 +6551,19 @@ mdc_List.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_children:"get_children",get_nonInteractive:"get_nonInteractive",get_avatarList:"get_avatarList",get_twoLine:"get_twoLine",get_dense:"get_dense",get_className:"get_className"}
 });
 var mdc_ListItem = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 41, className : "mdc.ListItem", methodName : "new"});
 	this.__tink_defaults35 = { onclick : null, className : tink_state__$Observable_Observable_$Impl_$["const"](""), ripple : null, unboundedRipple : null};
 	this.__slots = { onclick : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null), ripple : new coconut_ui_tools_Slot(this,null), unboundedRipple : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init36(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ListItem"] = mdc_ListItem;
 mdc_ListItem.__name__ = ["mdc","ListItem"];
 mdc_ListItem.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ListItem(attributes);
+	} else {
+		inst.__tink_init36(attributes);
 	}
-	inst.__tink_init36(attributes);
 	return inst;
 };
 mdc_ListItem.__super__ = coconut_ui_View;
@@ -5542,30 +6572,32 @@ mdc_ListItem.prototype = $extend(coconut_ui_View.prototype,{
 	,render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list-item"] != null) {
 			_g.setReserved("mdc-list-item",true);
 		} else {
 			_g.h["mdc-list-item"] = true;
 		}
-		var __ret1 = vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g));
-		var __ret2 = _gthis.get_unboundedRipple() ? "" : undefined;
-		var __ret3 = this.get_onclick();
+		var __ret1 = coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g));
+		var __ret2 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.unboundedRipple.observe()) ? "" : undefined;
+		var __ret3 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
 		var __ret4 = { className : __ret1, attributes : { 'data-mdc-ripple-is-unbounded' : __ret2}, onclick : __ret3};
 		var attr = __ret4;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("li",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "li", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
-	,afterInit: function(elem) {
+	,afterMounting: function(elem) {
 		this.mdcRipple = new window.mdc.ripple.MDCRipple(elem);
 	}
 	,afterDestroy: function(elem) {
@@ -5606,17 +6638,19 @@ mdc_ListItem.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_unboundedRipple:"get_unboundedRipple",get_ripple:"get_ripple",get_children:"get_children",get_className:"get_className",get_onclick:"get_onclick"}
 });
 var mdc_ListText = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 66, className : "mdc.ListText", methodName : "new"});
 	this.__tink_defaults33 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init34(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ListText"] = mdc_ListText;
 mdc_ListText.__name__ = ["mdc","ListText"];
 mdc_ListText.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ListText(attributes);
+	} else {
+		inst.__tink_init34(attributes);
 	}
-	inst.__tink_init34(attributes);
 	return inst;
 };
 mdc_ListText.__super__ = coconut_ui_View;
@@ -5624,24 +6658,26 @@ mdc_ListText.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list-item__text"] != null) {
 			_g.setReserved("mdc-list-item__text",true);
 		} else {
 			_g.h["mdc-list-item__text"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr = __ret1;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("span",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults33: null
@@ -5664,17 +6700,19 @@ mdc_ListText.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_children:"get_children",get_className:"get_className"}
 });
 var mdc_ListTextSecondary = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 77, className : "mdc.ListTextSecondary", methodName : "new"});
 	this.__tink_defaults31 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init32(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ListTextSecondary"] = mdc_ListTextSecondary;
 mdc_ListTextSecondary.__name__ = ["mdc","ListTextSecondary"];
 mdc_ListTextSecondary.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ListTextSecondary(attributes);
+	} else {
+		inst.__tink_init32(attributes);
 	}
-	inst.__tink_init32(attributes);
 	return inst;
 };
 mdc_ListTextSecondary.__super__ = coconut_ui_View;
@@ -5682,24 +6720,26 @@ mdc_ListTextSecondary.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list-item__secondary-text"] != null) {
 			_g.setReserved("mdc-list-item__secondary-text",true);
 		} else {
 			_g.h["mdc-list-item__secondary-text"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr = __ret1;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("span",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults31: null
@@ -5722,17 +6762,19 @@ mdc_ListTextSecondary.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_children:"get_children",get_className:"get_className"}
 });
 var mdc_ListGraphic = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 88, className : "mdc.ListGraphic", methodName : "new"});
 	this.__tink_defaults29 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), onclick : null, ripple : null, unboundedRipple : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null), ripple : new coconut_ui_tools_Slot(this,null), unboundedRipple : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init30(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ListGraphic"] = mdc_ListGraphic;
 mdc_ListGraphic.__name__ = ["mdc","ListGraphic"];
 mdc_ListGraphic.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ListGraphic(attributes);
+	} else {
+		inst.__tink_init30(attributes);
 	}
-	inst.__tink_init30(attributes);
 	return inst;
 };
 mdc_ListGraphic.__super__ = coconut_ui_View;
@@ -5740,33 +6782,35 @@ mdc_ListGraphic.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list-item__graphic"] != null) {
 			_g.setReserved("mdc-list-item__graphic",true);
 		} else {
 			_g.h["mdc-list-item__graphic"] = true;
 		}
-		var value = _gthis.get_ripple();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.ripple.observe());
 		if(__map_reserved["mdc-ripple-surface"] != null) {
 			_g.setReserved("mdc-ripple-surface",value);
 		} else {
 			_g.h["mdc-ripple-surface"] = value;
 		}
-		var __ret1 = vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g));
-		var __ret2 = _gthis.get_unboundedRipple() ? "" : undefined;
-		var __ret3 = this.get_onclick();
+		var __ret1 = coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g));
+		var __ret2 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.unboundedRipple.observe()) ? "" : undefined;
+		var __ret3 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
 		var __ret4 = { className : __ret1, attributes : { 'data-mdc-ripple-is-unbounded' : __ret2}, onclick : __ret3};
 		var attr = __ret4;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("span",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults29: null
@@ -5804,17 +6848,19 @@ mdc_ListGraphic.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_unboundedRipple:"get_unboundedRipple",get_ripple:"get_ripple",get_children:"get_children",get_onclick:"get_onclick",get_className:"get_className"}
 });
 var mdc_ListGraphicImage = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 103, className : "mdc.ListGraphicImage", methodName : "new"});
 	this.__tink_defaults27 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), width : null, height : null, ripple : null, unboundedRipple : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), src : new coconut_ui_tools_Slot(this,null), width : new coconut_ui_tools_Slot(this,null), height : new coconut_ui_tools_Slot(this,null), ripple : new coconut_ui_tools_Slot(this,null), unboundedRipple : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init28(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ListGraphicImage"] = mdc_ListGraphicImage;
 mdc_ListGraphicImage.__name__ = ["mdc","ListGraphicImage"];
 mdc_ListGraphicImage.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ListGraphicImage(attributes);
+	} else {
+		inst.__tink_init28(attributes);
 	}
-	inst.__tink_init28(attributes);
 	return inst;
 };
 mdc_ListGraphicImage.__super__ = coconut_ui_View;
@@ -5822,26 +6868,27 @@ mdc_ListGraphicImage.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list-item__graphic"] != null) {
 			_g.setReserved("mdc-list-item__graphic",true);
 		} else {
 			_g.h["mdc-list-item__graphic"] = true;
 		}
-		var value = _gthis.get_ripple();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.ripple.observe());
 		if(__map_reserved["mdc-ripple-surface"] != null) {
 			_g.setReserved("mdc-ripple-surface",value);
 		} else {
 			_g.h["mdc-ripple-surface"] = value;
 		}
-		var __ret1 = vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g));
-		var __ret2 = _gthis.get_unboundedRipple() ? "" : undefined;
-		var __ret3 = this.get_src();
-		var __ret4 = this.get_width();
-		var __ret5 = this.get_height();
+		var __ret1 = coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g));
+		var __ret2 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.unboundedRipple.observe()) ? "" : undefined;
+		var __ret3 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.src.observe());
+		var __ret4 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.width.observe());
+		var __ret5 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.height.observe());
 		var __ret6 = { className : __ret1, attributes : { 'data-mdc-ripple-is-unbounded' : __ret2}, src : __ret3, width : __ret4, height : __ret5};
-		__r.push(vdom_VDom.h("img",__ret6));
+		var attr = __ret6;
+		__r.push({ t : "img", k : attr == null ? null : attr.key, a : attr, c : null});
 		return __r[0];
 	}
 	,__tink_defaults27: null
@@ -5884,17 +6931,19 @@ mdc_ListGraphicImage.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_unboundedRipple:"get_unboundedRipple",get_ripple:"get_ripple",get_height:"get_height",get_width:"get_width",get_src:"get_src",get_className:"get_className"}
 });
 var mdc_ListMeta = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 119, className : "mdc.ListMeta", methodName : "new"});
 	this.__tink_defaults25 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), ripple : null, unboundedRipple : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null), ripple : new coconut_ui_tools_Slot(this,null), unboundedRipple : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init26(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ListMeta"] = mdc_ListMeta;
 mdc_ListMeta.__name__ = ["mdc","ListMeta"];
 mdc_ListMeta.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ListMeta(attributes);
+	} else {
+		inst.__tink_init26(attributes);
 	}
-	inst.__tink_init26(attributes);
 	return inst;
 };
 mdc_ListMeta.__super__ = coconut_ui_View;
@@ -5902,30 +6951,32 @@ mdc_ListMeta.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list-item__meta"] != null) {
 			_g.setReserved("mdc-list-item__meta",true);
 		} else {
 			_g.h["mdc-list-item__meta"] = true;
 		}
-		var value = _gthis.get_ripple();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.ripple.observe());
 		if(__map_reserved["mdc-ripple-surface"] != null) {
 			_g.setReserved("mdc-ripple-surface",value);
 		} else {
 			_g.h["mdc-ripple-surface"] = value;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : _gthis.get_unboundedRipple() ? "" : undefined}};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), attributes : { 'data-mdc-ripple-is-unbounded' : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.unboundedRipple.observe()) ? "" : undefined}};
 		var attr = __ret1;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("span",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults25: null
@@ -5958,17 +7009,19 @@ mdc_ListMeta.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_unboundedRipple:"get_unboundedRipple",get_ripple:"get_ripple",get_children:"get_children",get_className:"get_className"}
 });
 var mdc_ListDivider = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "List.hx", lineNumber : 133, className : "mdc.ListDivider", methodName : "new"});
-	this.__tink_defaults23 = { inset : tink_state__$Observable_Observable_$Impl_$["const"](false), accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { inset : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults23 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), inset : tink_state__$Observable_Observable_$Impl_$["const"](false)};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), inset : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init24(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ListDivider"] = mdc_ListDivider;
 mdc_ListDivider.__name__ = ["mdc","ListDivider"];
 mdc_ListDivider.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ListDivider(attributes);
+	} else {
+		inst.__tink_init24(attributes);
 	}
-	inst.__tink_init24(attributes);
 	return inst;
 };
 mdc_ListDivider.__super__ = coconut_ui_View;
@@ -5976,467 +7029,25 @@ mdc_ListDivider.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-list-divider"] != null) {
 			_g.setReserved("mdc-list-divider",true);
 		} else {
 			_g.h["mdc-list-divider"] = true;
 		}
-		var value = _gthis.get_inset();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.inset.observe());
 		if(__map_reserved["mdc-list-divider--inset"] != null) {
 			_g.setReserved("mdc-list-divider--inset",value);
 		} else {
 			_g.h["mdc-list-divider--inset"] = value;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-		var _g1 = this.get_accessKey();
-		if(_g1 != null) {
-			var v = _g1;
-			__ret1.accessKey = v;
-		}
-		var _g2 = this.get_accessKeyLabel();
-		if(_g2 != null) {
-			var v1 = _g2;
-			__ret1.accessKeyLabel = v1;
-		}
-		var _g3 = this.get_attributes();
-		if(_g3 != null) {
-			var v2 = _g3;
-			__ret1.attributes = v2;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v3 = _g4;
-			__ret1.dir = v3;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v4 = _g5;
-			__ret1.draggable = v4;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v5 = _g6;
-			__ret1.hidden = v5;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v6 = _g7;
-			__ret1.id = v6;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v7 = _g8;
-			__ret1.key = v7;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v8 = _g9;
-			__ret1.lang = v8;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v9 = _g10;
-			__ret1.onabort = v9;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v10 = _g11;
-			__ret1.onblur = v10;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v11 = _g12;
-			__ret1.oncanplay = v11;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v12 = _g13;
-			__ret1.oncanplaythrough = v12;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v13 = _g14;
-			__ret1.onchange = v13;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v14 = _g15;
-			__ret1.onclick = v14;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v15 = _g16;
-			__ret1.oncontextmenu = v15;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v16 = _g17;
-			__ret1.oncopy = v16;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v17 = _g18;
-			__ret1.oncut = v17;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v18 = _g19;
-			__ret1.ondblclick = v18;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v19 = _g20;
-			__ret1.ondrag = v19;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v20 = _g21;
-			__ret1.ondragend = v20;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v21 = _g22;
-			__ret1.ondragenter = v21;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v22 = _g23;
-			__ret1.ondragleave = v22;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v23 = _g24;
-			__ret1.ondragover = v23;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v24 = _g25;
-			__ret1.ondragstart = v24;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v25 = _g26;
-			__ret1.ondrop = v25;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v26 = _g27;
-			__ret1.ondurationchange = v26;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v27 = _g28;
-			__ret1.onemptied = v27;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v28 = _g29;
-			__ret1.onended = v28;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v29 = _g30;
-			__ret1.onerror = v29;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v30 = _g31;
-			__ret1.onfocus = v30;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v31 = _g32;
-			__ret1.onfullscreenchange = v31;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v32 = _g33;
-			__ret1.onfullscreenerror = v32;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v33 = _g34;
-			__ret1.ongotpointercapture = v33;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v34 = _g35;
-			__ret1.oninput = v34;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v35 = _g36;
-			__ret1.oninvalid = v35;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v36 = _g37;
-			__ret1.onkeydown = v36;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v37 = _g38;
-			__ret1.onkeypress = v37;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v38 = _g39;
-			__ret1.onkeyup = v38;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v39 = _g40;
-			__ret1.onload = v39;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v40 = _g41;
-			__ret1.onloadeddata = v40;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v41 = _g42;
-			__ret1.onloadedmetadata = v41;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v42 = _g43;
-			__ret1.onloadstart = v42;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v43 = _g44;
-			__ret1.onlostpointercapture = v43;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v44 = _g45;
-			__ret1.onmousedown = v44;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v45 = _g46;
-			__ret1.onmouseenter = v45;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v46 = _g47;
-			__ret1.onmouseleave = v46;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v47 = _g48;
-			__ret1.onmousemove = v47;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v48 = _g49;
-			__ret1.onmouseout = v48;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v49 = _g50;
-			__ret1.onmouseover = v49;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v50 = _g51;
-			__ret1.onmouseup = v50;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v51 = _g52;
-			__ret1.onpaste = v51;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v52 = _g53;
-			__ret1.onpause = v52;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v53 = _g54;
-			__ret1.onplay = v53;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v54 = _g55;
-			__ret1.onplaying = v54;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v55 = _g56;
-			__ret1.onpointercancel = v55;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v56 = _g57;
-			__ret1.onpointerdown = v56;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v57 = _g58;
-			__ret1.onpointerenter = v57;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v58 = _g59;
-			__ret1.onpointerleave = v58;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v59 = _g60;
-			__ret1.onpointerlockchange = v59;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v60 = _g61;
-			__ret1.onpointerlockerror = v60;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v61 = _g62;
-			__ret1.onpointermove = v61;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v62 = _g63;
-			__ret1.onpointerout = v62;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v63 = _g64;
-			__ret1.onpointerover = v63;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v64 = _g65;
-			__ret1.onpointerup = v64;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v65 = _g66;
-			__ret1.onprogress = v65;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v66 = _g67;
-			__ret1.onratechange = v66;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v67 = _g68;
-			__ret1.onreset = v67;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v68 = _g69;
-			__ret1.onresize = v68;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v69 = _g70;
-			__ret1.onscroll = v69;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v70 = _g71;
-			__ret1.onseeked = v70;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v71 = _g72;
-			__ret1.onseeking = v71;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v72 = _g73;
-			__ret1.onselect = v72;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v73 = _g74;
-			__ret1.onshow = v73;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v74 = _g75;
-			__ret1.onstalled = v74;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v75 = _g76;
-			__ret1.onsubmit = v75;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v76 = _g77;
-			__ret1.onsuspend = v76;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v77 = _g78;
-			__ret1.ontimeupdate = v77;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v78 = _g79;
-			__ret1.ontouchcancel = v78;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v79 = _g80;
-			__ret1.ontouchend = v79;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v80 = _g81;
-			__ret1.ontouchmove = v80;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v81 = _g82;
-			__ret1.ontouchstart = v81;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v82 = _g83;
-			__ret1.onvolumechange = v82;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v83 = _g84;
-			__ret1.onwaiting = v83;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v84 = _g85;
-			__ret1.onwheel = v84;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v85 = _g86;
-			__ret1.spellcheck = v85;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v86 = _g87;
-			__ret1.style = v86;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v87 = _g88;
-			__ret1.tabIndex = v87;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v88 = _g89;
-			__ret1.title = v88;
-		}
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
+		var attr = __ret1;
 		var __r1 = [];
-		__r.push(vdom_VDom.h("li",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "li", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults23: null
@@ -6445,481 +7056,38 @@ mdc_ListDivider.prototype = $extend(coconut_ui_View.prototype,{
 		return "ListDivider" + "#" + this.viewId;
 	}
 	,__tink_init24: function(attributes) {
-		var this1 = attributes.inset;
-		this.__slots.inset.setData(this1 == null ? this.__tink_defaults23.inset : this1);
-		var this2 = attributes.accessKey;
-		this.__slots.accessKey.setData(this2 == null ? this.__tink_defaults23.accessKey : this2);
-		var this3 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this3 == null ? this.__tink_defaults23.accessKeyLabel : this3);
-		var this4 = attributes.attributes;
-		this.__slots.attributes.setData(this4 == null ? this.__tink_defaults23.attributes : this4);
-		var this5 = attributes.className;
-		this.__slots.className.setData(this5 == null ? this.__tink_defaults23.className : this5);
-		var this6 = attributes.dir;
-		this.__slots.dir.setData(this6 == null ? this.__tink_defaults23.dir : this6);
-		var this7 = attributes.draggable;
-		this.__slots.draggable.setData(this7 == null ? this.__tink_defaults23.draggable : this7);
-		var this8 = attributes.hidden;
-		this.__slots.hidden.setData(this8 == null ? this.__tink_defaults23.hidden : this8);
-		var this9 = attributes.id;
-		this.__slots.id.setData(this9 == null ? this.__tink_defaults23.id : this9);
-		var this10 = attributes.key;
-		this.__slots.key.setData(this10 == null ? this.__tink_defaults23.key : this10);
-		var this11 = attributes.lang;
-		this.__slots.lang.setData(this11 == null ? this.__tink_defaults23.lang : this11);
-		var this12 = attributes.onabort;
-		this.__slots.onabort.setData(this12 == null ? this.__tink_defaults23.onabort : this12);
-		var this13 = attributes.onblur;
-		this.__slots.onblur.setData(this13 == null ? this.__tink_defaults23.onblur : this13);
-		var this14 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this14 == null ? this.__tink_defaults23.oncanplay : this14);
-		var this15 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this15 == null ? this.__tink_defaults23.oncanplaythrough : this15);
-		var this16 = attributes.onchange;
-		this.__slots.onchange.setData(this16 == null ? this.__tink_defaults23.onchange : this16);
-		var this17 = attributes.onclick;
-		this.__slots.onclick.setData(this17 == null ? this.__tink_defaults23.onclick : this17);
-		var this18 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this18 == null ? this.__tink_defaults23.oncontextmenu : this18);
-		var this19 = attributes.oncopy;
-		this.__slots.oncopy.setData(this19 == null ? this.__tink_defaults23.oncopy : this19);
-		var this20 = attributes.oncut;
-		this.__slots.oncut.setData(this20 == null ? this.__tink_defaults23.oncut : this20);
-		var this21 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this21 == null ? this.__tink_defaults23.ondblclick : this21);
-		var this22 = attributes.ondrag;
-		this.__slots.ondrag.setData(this22 == null ? this.__tink_defaults23.ondrag : this22);
-		var this23 = attributes.ondragend;
-		this.__slots.ondragend.setData(this23 == null ? this.__tink_defaults23.ondragend : this23);
-		var this24 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this24 == null ? this.__tink_defaults23.ondragenter : this24);
-		var this25 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this25 == null ? this.__tink_defaults23.ondragleave : this25);
-		var this26 = attributes.ondragover;
-		this.__slots.ondragover.setData(this26 == null ? this.__tink_defaults23.ondragover : this26);
-		var this27 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this27 == null ? this.__tink_defaults23.ondragstart : this27);
-		var this28 = attributes.ondrop;
-		this.__slots.ondrop.setData(this28 == null ? this.__tink_defaults23.ondrop : this28);
-		var this29 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this29 == null ? this.__tink_defaults23.ondurationchange : this29);
-		var this30 = attributes.onemptied;
-		this.__slots.onemptied.setData(this30 == null ? this.__tink_defaults23.onemptied : this30);
-		var this31 = attributes.onended;
-		this.__slots.onended.setData(this31 == null ? this.__tink_defaults23.onended : this31);
-		var this32 = attributes.onerror;
-		this.__slots.onerror.setData(this32 == null ? this.__tink_defaults23.onerror : this32);
-		var this33 = attributes.onfocus;
-		this.__slots.onfocus.setData(this33 == null ? this.__tink_defaults23.onfocus : this33);
-		var this34 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this34 == null ? this.__tink_defaults23.onfullscreenchange : this34);
-		var this35 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this35 == null ? this.__tink_defaults23.onfullscreenerror : this35);
-		var this36 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this36 == null ? this.__tink_defaults23.ongotpointercapture : this36);
-		var this37 = attributes.oninput;
-		this.__slots.oninput.setData(this37 == null ? this.__tink_defaults23.oninput : this37);
-		var this38 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this38 == null ? this.__tink_defaults23.oninvalid : this38);
-		var this39 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this39 == null ? this.__tink_defaults23.onkeydown : this39);
-		var this40 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this40 == null ? this.__tink_defaults23.onkeypress : this40);
-		var this41 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this41 == null ? this.__tink_defaults23.onkeyup : this41);
-		var this42 = attributes.onload;
-		this.__slots.onload.setData(this42 == null ? this.__tink_defaults23.onload : this42);
-		var this43 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this43 == null ? this.__tink_defaults23.onloadeddata : this43);
-		var this44 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this44 == null ? this.__tink_defaults23.onloadedmetadata : this44);
-		var this45 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this45 == null ? this.__tink_defaults23.onloadstart : this45);
-		var this46 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this46 == null ? this.__tink_defaults23.onlostpointercapture : this46);
-		var this47 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this47 == null ? this.__tink_defaults23.onmousedown : this47);
-		var this48 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this48 == null ? this.__tink_defaults23.onmouseenter : this48);
-		var this49 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this49 == null ? this.__tink_defaults23.onmouseleave : this49);
-		var this50 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this50 == null ? this.__tink_defaults23.onmousemove : this50);
-		var this51 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this51 == null ? this.__tink_defaults23.onmouseout : this51);
-		var this52 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this52 == null ? this.__tink_defaults23.onmouseover : this52);
-		var this53 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this53 == null ? this.__tink_defaults23.onmouseup : this53);
-		var this54 = attributes.onpaste;
-		this.__slots.onpaste.setData(this54 == null ? this.__tink_defaults23.onpaste : this54);
-		var this55 = attributes.onpause;
-		this.__slots.onpause.setData(this55 == null ? this.__tink_defaults23.onpause : this55);
-		var this56 = attributes.onplay;
-		this.__slots.onplay.setData(this56 == null ? this.__tink_defaults23.onplay : this56);
-		var this57 = attributes.onplaying;
-		this.__slots.onplaying.setData(this57 == null ? this.__tink_defaults23.onplaying : this57);
-		var this58 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this58 == null ? this.__tink_defaults23.onpointercancel : this58);
-		var this59 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this59 == null ? this.__tink_defaults23.onpointerdown : this59);
-		var this60 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this60 == null ? this.__tink_defaults23.onpointerenter : this60);
-		var this61 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this61 == null ? this.__tink_defaults23.onpointerleave : this61);
-		var this62 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this62 == null ? this.__tink_defaults23.onpointerlockchange : this62);
-		var this63 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this63 == null ? this.__tink_defaults23.onpointerlockerror : this63);
-		var this64 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this64 == null ? this.__tink_defaults23.onpointermove : this64);
-		var this65 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this65 == null ? this.__tink_defaults23.onpointerout : this65);
-		var this66 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this66 == null ? this.__tink_defaults23.onpointerover : this66);
-		var this67 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this67 == null ? this.__tink_defaults23.onpointerup : this67);
-		var this68 = attributes.onprogress;
-		this.__slots.onprogress.setData(this68 == null ? this.__tink_defaults23.onprogress : this68);
-		var this69 = attributes.onratechange;
-		this.__slots.onratechange.setData(this69 == null ? this.__tink_defaults23.onratechange : this69);
-		var this70 = attributes.onreset;
-		this.__slots.onreset.setData(this70 == null ? this.__tink_defaults23.onreset : this70);
-		var this71 = attributes.onresize;
-		this.__slots.onresize.setData(this71 == null ? this.__tink_defaults23.onresize : this71);
-		var this72 = attributes.onscroll;
-		this.__slots.onscroll.setData(this72 == null ? this.__tink_defaults23.onscroll : this72);
-		var this73 = attributes.onseeked;
-		this.__slots.onseeked.setData(this73 == null ? this.__tink_defaults23.onseeked : this73);
-		var this74 = attributes.onseeking;
-		this.__slots.onseeking.setData(this74 == null ? this.__tink_defaults23.onseeking : this74);
-		var this75 = attributes.onselect;
-		this.__slots.onselect.setData(this75 == null ? this.__tink_defaults23.onselect : this75);
-		var this76 = attributes.onshow;
-		this.__slots.onshow.setData(this76 == null ? this.__tink_defaults23.onshow : this76);
-		var this77 = attributes.onstalled;
-		this.__slots.onstalled.setData(this77 == null ? this.__tink_defaults23.onstalled : this77);
-		var this78 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this78 == null ? this.__tink_defaults23.onsubmit : this78);
-		var this79 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this79 == null ? this.__tink_defaults23.onsuspend : this79);
-		var this80 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this80 == null ? this.__tink_defaults23.ontimeupdate : this80);
-		var this81 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this81 == null ? this.__tink_defaults23.ontouchcancel : this81);
-		var this82 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this82 == null ? this.__tink_defaults23.ontouchend : this82);
-		var this83 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this83 == null ? this.__tink_defaults23.ontouchmove : this83);
-		var this84 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this84 == null ? this.__tink_defaults23.ontouchstart : this84);
-		var this85 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this85 == null ? this.__tink_defaults23.onvolumechange : this85);
-		var this86 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this86 == null ? this.__tink_defaults23.onwaiting : this86);
-		var this87 = attributes.onwheel;
-		this.__slots.onwheel.setData(this87 == null ? this.__tink_defaults23.onwheel : this87);
-		var this88 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this88 == null ? this.__tink_defaults23.spellcheck : this88);
-		var this89 = attributes.style;
-		this.__slots.style.setData(this89 == null ? this.__tink_defaults23.style : this89);
-		var this90 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this90 == null ? this.__tink_defaults23.tabIndex : this90);
-		var this91 = attributes.title;
-		this.__slots.title.setData(this91 == null ? this.__tink_defaults23.title : this91);
-	}
-	,get_inset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.inset.observe());
-	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults23.className : this1);
+		var this2 = attributes.inset;
+		this.__slots.inset.setData(this2 == null ? this.__tink_defaults23.inset : this2);
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	,get_inset: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.inset.observe());
 	}
 	,__class__: mdc_ListDivider
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_inset:"get_inset"}
+	,__properties__: {get_inset:"get_inset",get_className:"get_className"}
 });
 var mdc_MDC = function() { };
 $hxClasses["mdc.MDC"] = mdc_MDC;
 mdc_MDC.__name__ = ["mdc","MDC"];
 var mdc_Radio = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Radio.hx", lineNumber : 8, className : "mdc.Radio", methodName : "new"});
 	this.radioId = mdc_Radio.radioIndex++;
-	this.__tink_defaults102 = { label : null, disabled : null, checked : null, value : null, name : null, onchecked : null, accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { label : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults102 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), id : null, label : null, disabled : null, checked : null, value : null, name : null, onchecked : null};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init103(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.Radio"] = mdc_Radio;
 mdc_Radio.__name__ = ["mdc","Radio"];
 mdc_Radio.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Radio(attributes);
+	} else {
+		inst.__tink_init103(attributes);
 	}
-	inst.__tink_init103(attributes);
 	return inst;
 };
 mdc_Radio.__super__ = coconut_ui_View;
@@ -6928,511 +7096,98 @@ mdc_Radio.prototype = $extend(coconut_ui_View.prototype,{
 	,mdcRadio: null
 	,render: function() {
 		var _gthis = this;
-		var id = this.get_id() == null ? "r_" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.radioId)) : this.get_id();
-		if(this.get_label() != null) {
+		var id = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe()) == null ? "r_" + Std.string(_$UInt_UInt_$Impl_$.toFloat(this.radioId)) : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()) != null) {
 			var __r = [];
-			var __ret = _gthis.get_className();
+			var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 			var _g = new haxe_ds_StringMap();
 			if(__map_reserved["mdc-form-field"] != null) {
 				_g.setReserved("mdc-form-field",true);
 			} else {
 				_g.h["mdc-form-field"] = true;
 			}
-			var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-			var _g1 = this.get_accessKey();
-			if(_g1 != null) {
-				var v = _g1;
-				__ret1.accessKey = v;
-			}
-			var _g2 = this.get_accessKeyLabel();
-			if(_g2 != null) {
-				var v1 = _g2;
-				__ret1.accessKeyLabel = v1;
-			}
-			var _g3 = this.get_attributes();
-			if(_g3 != null) {
-				var v2 = _g3;
-				__ret1.attributes = v2;
-			}
-			var _g4 = this.get_dir();
-			if(_g4 != null) {
-				var v3 = _g4;
-				__ret1.dir = v3;
-			}
-			var _g5 = this.get_draggable();
-			if(_g5 != null) {
-				var v4 = _g5;
-				__ret1.draggable = v4;
-			}
-			var _g6 = this.get_hidden();
-			if(_g6 != null) {
-				var v5 = _g6;
-				__ret1.hidden = v5;
-			}
-			var _g7 = this.get_id();
-			if(_g7 != null) {
-				var v6 = _g7;
-				__ret1.id = v6;
-			}
-			var _g8 = this.get_key();
-			if(_g8 != null) {
-				var v7 = _g8;
-				__ret1.key = v7;
-			}
-			var _g9 = this.get_lang();
-			if(_g9 != null) {
-				var v8 = _g9;
-				__ret1.lang = v8;
-			}
-			var _g10 = this.get_onabort();
-			if(_g10 != null) {
-				var v9 = _g10;
-				__ret1.onabort = v9;
-			}
-			var _g11 = this.get_onblur();
-			if(_g11 != null) {
-				var v10 = _g11;
-				__ret1.onblur = v10;
-			}
-			var _g12 = this.get_oncanplay();
-			if(_g12 != null) {
-				var v11 = _g12;
-				__ret1.oncanplay = v11;
-			}
-			var _g13 = this.get_oncanplaythrough();
-			if(_g13 != null) {
-				var v12 = _g13;
-				__ret1.oncanplaythrough = v12;
-			}
-			var _g14 = this.get_onchange();
-			if(_g14 != null) {
-				var v13 = _g14;
-				__ret1.onchange = v13;
-			}
-			var _g15 = this.get_onclick();
-			if(_g15 != null) {
-				var v14 = _g15;
-				__ret1.onclick = v14;
-			}
-			var _g16 = this.get_oncontextmenu();
-			if(_g16 != null) {
-				var v15 = _g16;
-				__ret1.oncontextmenu = v15;
-			}
-			var _g17 = this.get_oncopy();
-			if(_g17 != null) {
-				var v16 = _g17;
-				__ret1.oncopy = v16;
-			}
-			var _g18 = this.get_oncut();
-			if(_g18 != null) {
-				var v17 = _g18;
-				__ret1.oncut = v17;
-			}
-			var _g19 = this.get_ondblclick();
-			if(_g19 != null) {
-				var v18 = _g19;
-				__ret1.ondblclick = v18;
-			}
-			var _g20 = this.get_ondrag();
-			if(_g20 != null) {
-				var v19 = _g20;
-				__ret1.ondrag = v19;
-			}
-			var _g21 = this.get_ondragend();
-			if(_g21 != null) {
-				var v20 = _g21;
-				__ret1.ondragend = v20;
-			}
-			var _g22 = this.get_ondragenter();
-			if(_g22 != null) {
-				var v21 = _g22;
-				__ret1.ondragenter = v21;
-			}
-			var _g23 = this.get_ondragleave();
-			if(_g23 != null) {
-				var v22 = _g23;
-				__ret1.ondragleave = v22;
-			}
-			var _g24 = this.get_ondragover();
-			if(_g24 != null) {
-				var v23 = _g24;
-				__ret1.ondragover = v23;
-			}
-			var _g25 = this.get_ondragstart();
-			if(_g25 != null) {
-				var v24 = _g25;
-				__ret1.ondragstart = v24;
-			}
-			var _g26 = this.get_ondrop();
-			if(_g26 != null) {
-				var v25 = _g26;
-				__ret1.ondrop = v25;
-			}
-			var _g27 = this.get_ondurationchange();
-			if(_g27 != null) {
-				var v26 = _g27;
-				__ret1.ondurationchange = v26;
-			}
-			var _g28 = this.get_onemptied();
-			if(_g28 != null) {
-				var v27 = _g28;
-				__ret1.onemptied = v27;
-			}
-			var _g29 = this.get_onended();
-			if(_g29 != null) {
-				var v28 = _g29;
-				__ret1.onended = v28;
-			}
-			var _g30 = this.get_onerror();
-			if(_g30 != null) {
-				var v29 = _g30;
-				__ret1.onerror = v29;
-			}
-			var _g31 = this.get_onfocus();
-			if(_g31 != null) {
-				var v30 = _g31;
-				__ret1.onfocus = v30;
-			}
-			var _g32 = this.get_onfullscreenchange();
-			if(_g32 != null) {
-				var v31 = _g32;
-				__ret1.onfullscreenchange = v31;
-			}
-			var _g33 = this.get_onfullscreenerror();
-			if(_g33 != null) {
-				var v32 = _g33;
-				__ret1.onfullscreenerror = v32;
-			}
-			var _g34 = this.get_ongotpointercapture();
-			if(_g34 != null) {
-				var v33 = _g34;
-				__ret1.ongotpointercapture = v33;
-			}
-			var _g35 = this.get_oninput();
-			if(_g35 != null) {
-				var v34 = _g35;
-				__ret1.oninput = v34;
-			}
-			var _g36 = this.get_oninvalid();
-			if(_g36 != null) {
-				var v35 = _g36;
-				__ret1.oninvalid = v35;
-			}
-			var _g37 = this.get_onkeydown();
-			if(_g37 != null) {
-				var v36 = _g37;
-				__ret1.onkeydown = v36;
-			}
-			var _g38 = this.get_onkeypress();
-			if(_g38 != null) {
-				var v37 = _g38;
-				__ret1.onkeypress = v37;
-			}
-			var _g39 = this.get_onkeyup();
-			if(_g39 != null) {
-				var v38 = _g39;
-				__ret1.onkeyup = v38;
-			}
-			var _g40 = this.get_onload();
-			if(_g40 != null) {
-				var v39 = _g40;
-				__ret1.onload = v39;
-			}
-			var _g41 = this.get_onloadeddata();
-			if(_g41 != null) {
-				var v40 = _g41;
-				__ret1.onloadeddata = v40;
-			}
-			var _g42 = this.get_onloadedmetadata();
-			if(_g42 != null) {
-				var v41 = _g42;
-				__ret1.onloadedmetadata = v41;
-			}
-			var _g43 = this.get_onloadstart();
-			if(_g43 != null) {
-				var v42 = _g43;
-				__ret1.onloadstart = v42;
-			}
-			var _g44 = this.get_onlostpointercapture();
-			if(_g44 != null) {
-				var v43 = _g44;
-				__ret1.onlostpointercapture = v43;
-			}
-			var _g45 = this.get_onmousedown();
-			if(_g45 != null) {
-				var v44 = _g45;
-				__ret1.onmousedown = v44;
-			}
-			var _g46 = this.get_onmouseenter();
-			if(_g46 != null) {
-				var v45 = _g46;
-				__ret1.onmouseenter = v45;
-			}
-			var _g47 = this.get_onmouseleave();
-			if(_g47 != null) {
-				var v46 = _g47;
-				__ret1.onmouseleave = v46;
-			}
-			var _g48 = this.get_onmousemove();
-			if(_g48 != null) {
-				var v47 = _g48;
-				__ret1.onmousemove = v47;
-			}
-			var _g49 = this.get_onmouseout();
-			if(_g49 != null) {
-				var v48 = _g49;
-				__ret1.onmouseout = v48;
-			}
-			var _g50 = this.get_onmouseover();
-			if(_g50 != null) {
-				var v49 = _g50;
-				__ret1.onmouseover = v49;
-			}
-			var _g51 = this.get_onmouseup();
-			if(_g51 != null) {
-				var v50 = _g51;
-				__ret1.onmouseup = v50;
-			}
-			var _g52 = this.get_onpaste();
-			if(_g52 != null) {
-				var v51 = _g52;
-				__ret1.onpaste = v51;
-			}
-			var _g53 = this.get_onpause();
-			if(_g53 != null) {
-				var v52 = _g53;
-				__ret1.onpause = v52;
-			}
-			var _g54 = this.get_onplay();
-			if(_g54 != null) {
-				var v53 = _g54;
-				__ret1.onplay = v53;
-			}
-			var _g55 = this.get_onplaying();
-			if(_g55 != null) {
-				var v54 = _g55;
-				__ret1.onplaying = v54;
-			}
-			var _g56 = this.get_onpointercancel();
-			if(_g56 != null) {
-				var v55 = _g56;
-				__ret1.onpointercancel = v55;
-			}
-			var _g57 = this.get_onpointerdown();
-			if(_g57 != null) {
-				var v56 = _g57;
-				__ret1.onpointerdown = v56;
-			}
-			var _g58 = this.get_onpointerenter();
-			if(_g58 != null) {
-				var v57 = _g58;
-				__ret1.onpointerenter = v57;
-			}
-			var _g59 = this.get_onpointerleave();
-			if(_g59 != null) {
-				var v58 = _g59;
-				__ret1.onpointerleave = v58;
-			}
-			var _g60 = this.get_onpointerlockchange();
-			if(_g60 != null) {
-				var v59 = _g60;
-				__ret1.onpointerlockchange = v59;
-			}
-			var _g61 = this.get_onpointerlockerror();
-			if(_g61 != null) {
-				var v60 = _g61;
-				__ret1.onpointerlockerror = v60;
-			}
-			var _g62 = this.get_onpointermove();
-			if(_g62 != null) {
-				var v61 = _g62;
-				__ret1.onpointermove = v61;
-			}
-			var _g63 = this.get_onpointerout();
-			if(_g63 != null) {
-				var v62 = _g63;
-				__ret1.onpointerout = v62;
-			}
-			var _g64 = this.get_onpointerover();
-			if(_g64 != null) {
-				var v63 = _g64;
-				__ret1.onpointerover = v63;
-			}
-			var _g65 = this.get_onpointerup();
-			if(_g65 != null) {
-				var v64 = _g65;
-				__ret1.onpointerup = v64;
-			}
-			var _g66 = this.get_onprogress();
-			if(_g66 != null) {
-				var v65 = _g66;
-				__ret1.onprogress = v65;
-			}
-			var _g67 = this.get_onratechange();
-			if(_g67 != null) {
-				var v66 = _g67;
-				__ret1.onratechange = v66;
-			}
-			var _g68 = this.get_onreset();
-			if(_g68 != null) {
-				var v67 = _g68;
-				__ret1.onreset = v67;
-			}
-			var _g69 = this.get_onresize();
-			if(_g69 != null) {
-				var v68 = _g69;
-				__ret1.onresize = v68;
-			}
-			var _g70 = this.get_onscroll();
-			if(_g70 != null) {
-				var v69 = _g70;
-				__ret1.onscroll = v69;
-			}
-			var _g71 = this.get_onseeked();
-			if(_g71 != null) {
-				var v70 = _g71;
-				__ret1.onseeked = v70;
-			}
-			var _g72 = this.get_onseeking();
-			if(_g72 != null) {
-				var v71 = _g72;
-				__ret1.onseeking = v71;
-			}
-			var _g73 = this.get_onselect();
-			if(_g73 != null) {
-				var v72 = _g73;
-				__ret1.onselect = v72;
-			}
-			var _g74 = this.get_onshow();
-			if(_g74 != null) {
-				var v73 = _g74;
-				__ret1.onshow = v73;
-			}
-			var _g75 = this.get_onstalled();
-			if(_g75 != null) {
-				var v74 = _g75;
-				__ret1.onstalled = v74;
-			}
-			var _g76 = this.get_onsubmit();
-			if(_g76 != null) {
-				var v75 = _g76;
-				__ret1.onsubmit = v75;
-			}
-			var _g77 = this.get_onsuspend();
-			if(_g77 != null) {
-				var v76 = _g77;
-				__ret1.onsuspend = v76;
-			}
-			var _g78 = this.get_ontimeupdate();
-			if(_g78 != null) {
-				var v77 = _g78;
-				__ret1.ontimeupdate = v77;
-			}
-			var _g79 = this.get_ontouchcancel();
-			if(_g79 != null) {
-				var v78 = _g79;
-				__ret1.ontouchcancel = v78;
-			}
-			var _g80 = this.get_ontouchend();
-			if(_g80 != null) {
-				var v79 = _g80;
-				__ret1.ontouchend = v79;
-			}
-			var _g81 = this.get_ontouchmove();
-			if(_g81 != null) {
-				var v80 = _g81;
-				__ret1.ontouchmove = v80;
-			}
-			var _g82 = this.get_ontouchstart();
-			if(_g82 != null) {
-				var v81 = _g82;
-				__ret1.ontouchstart = v81;
-			}
-			var _g83 = this.get_onvolumechange();
-			if(_g83 != null) {
-				var v82 = _g83;
-				__ret1.onvolumechange = v82;
-			}
-			var _g84 = this.get_onwaiting();
-			if(_g84 != null) {
-				var v83 = _g84;
-				__ret1.onwaiting = v83;
-			}
-			var _g85 = this.get_onwheel();
-			if(_g85 != null) {
-				var v84 = _g85;
-				__ret1.onwheel = v84;
-			}
-			var _g86 = this.get_spellcheck();
-			if(_g86 != null) {
-				var v85 = _g86;
-				__ret1.spellcheck = v85;
-			}
-			var _g87 = this.get_style();
-			if(_g87 != null) {
-				var v86 = _g87;
-				__ret1.style = v86;
-			}
-			var _g88 = this.get_tabIndex();
-			if(_g88 != null) {
-				var v87 = _g88;
-				__ret1.tabIndex = v87;
-			}
-			var _g89 = this.get_title();
-			if(_g89 != null) {
-				var v88 = _g89;
-				__ret1.title = v88;
-			}
+			var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), id : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe())};
+			var attr = __ret1;
 			var __r1 = [];
-			var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio")};
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+			var __ret2 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio")};
+			var attr1 = __ret2;
 			var __r2 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
 			var __ret3 = { type : "radio", onchange : function(event) {
-				if(_gthis.get_onchecked() != null) {
-					(_gthis.get_onchecked())(event.currentTarget.checked);
+				if(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()) != null) {
+					(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()))(event.target.checked);
 				}
-			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__native-control"), id : "r_" + id, name : _gthis.get_name()};
-			__r2.push(vdom_VDom.h("input",__ret3));
-			var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__background")};
+			}, className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__native-control"), id : "r_" + id, name : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.name.observe())};
+			var attr2 = __ret3;
+			__r2.push({ t : "input", k : attr2 == null ? null : attr2.key, a : attr2, c : null});
+			var __ret4 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__background")};
+			var attr3 = __ret4;
 			var __r3 = [];
-			var __ret5 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__outer-circle")};
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+			var __ret5 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__outer-circle")};
+			var attr4 = __ret5;
 			var __r4 = [];
-			__r3.push(vdom_VDom.h("div",__ret5,__r4));
-			var __ret6 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__inner-circle")};
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+			var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+			__r3.push({ t : "div", k : attr4 == null ? null : attr4.key, a : attr4, c : children});
+			var __ret6 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__inner-circle")};
+			var attr5 = __ret6;
 			var __r5 = [];
-			__r3.push(vdom_VDom.h("div",__ret6,__r5));
-			__r2.push(vdom_VDom.h("div",__ret4,__r3));
-			__r1.push(vdom_VDom.h("div",__ret2,__r2));
-			var __r6 = [];
-			__r6.push(this.get_label());
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			__r3.push({ t : "div", k : attr5 == null ? null : attr5.key, a : attr5, c : children1});
+			var children2 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+			__r2.push({ t : "div", k : attr3 == null ? null : attr3.key, a : attr3, c : children2});
+			var children3 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+			__r1.push({ t : "div", k : attr1 == null ? null : attr1.key, a : attr1, c : children3});
 			var __ret7 = { htmlFor : id};
-			__r1.push(vdom_VDom.h("label",__ret7,__r6));
-			__r.push(vdom_VDom.h("div",__ret1,__r1));
+			var attr6 = __ret7;
+			var __r6 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+			__r6.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()), a : coconut_vdom_VDom.EMPTY});
+			var children4 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+			__r1.push({ t : "label", k : attr6 == null ? null : attr6.key, a : attr6, c : children4});
+			var children5 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+			__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children5});
 			return __r[0];
 		} else {
 			var __r7 = [];
-			var __ret8 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio")};
+			var __ret8 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio")};
+			var attr7 = __ret8;
 			var __r8 = [];
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r8);
 			var __ret9 = { type : "radio", onchange : function(event1) {
-				if(_gthis.get_onchecked() != null) {
-					(_gthis.get_onchecked())(event1.currentTarget.checked);
+				if(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()) != null) {
+					(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()))(event1.target.checked);
 				}
-			}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__native-control"), id : "r_" + id, name : _gthis.get_name()};
-			__r8.push(vdom_VDom.h("input",__ret9));
-			var __ret10 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__background")};
+			}, className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__native-control"), id : "r_" + id, name : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.name.observe())};
+			var attr8 = __ret9;
+			__r8.push({ t : "input", k : attr8 == null ? null : attr8.key, a : attr8, c : null});
+			var __ret10 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__background")};
+			var attr9 = __ret10;
 			var __r9 = [];
-			var __ret11 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__outer-circle")};
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r9);
+			var __ret11 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__outer-circle")};
+			var attr10 = __ret11;
 			var __r10 = [];
-			__r9.push(vdom_VDom.h("div",__ret11,__r10));
-			var __ret12 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-radio__inner-circle")};
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r10);
+			var children6 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r10);
+			__r9.push({ t : "div", k : attr10 == null ? null : attr10.key, a : attr10, c : children6});
+			var __ret12 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-radio__inner-circle")};
+			var attr11 = __ret12;
 			var __r11 = [];
-			__r9.push(vdom_VDom.h("div",__ret12,__r11));
-			__r8.push(vdom_VDom.h("div",__ret10,__r9));
-			__r7.push(vdom_VDom.h("div",__ret8,__r8));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r11);
+			var children7 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r11);
+			__r9.push({ t : "div", k : attr11 == null ? null : attr11.key, a : attr11, c : children7});
+			var children8 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r9);
+			__r8.push({ t : "div", k : attr9 == null ? null : attr9.key, a : attr9, c : children8});
+			var children9 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r8);
+			__r7.push({ t : "div", k : attr7 == null ? null : attr7.key, a : attr7, c : children9});
 			return __r7[0];
 		}
 	}
-	,afterInit: function(elem) {
+	,afterMounting: function(elem) {
 		this.mdcRadio = new window.mdc.radio.MDCRadio(elem);
 		this.setRadioProperties();
 	}
@@ -7440,9 +7195,12 @@ mdc_Radio.prototype = $extend(coconut_ui_View.prototype,{
 		this.setRadioProperties();
 	}
 	,setRadioProperties: function() {
-		this.mdcRadio.checked = this.get_checked();
-		this.mdcRadio.disabled = this.get_disabled();
-		this.mdcRadio.value = this.get_value();
+		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
+		this.mdcRadio.checked = tmp;
+		var tmp1 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+		this.mdcRadio.disabled = tmp1;
+		var tmp2 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
+		this.mdcRadio.value = tmp2;
 	}
 	,beforeDestroy: function(elem) {
 		if(this.mdcRadio != null) {
@@ -7455,198 +7213,28 @@ mdc_Radio.prototype = $extend(coconut_ui_View.prototype,{
 		return "Radio" + "#" + this.viewId;
 	}
 	,__tink_init103: function(attributes) {
-		var this1 = attributes.label;
-		this.__slots.label.setData(this1 == null ? this.__tink_defaults102.label : this1);
-		var this2 = attributes.disabled;
-		this.__slots.disabled.setData(this2 == null ? this.__tink_defaults102.disabled : this2);
-		var this3 = attributes.checked;
-		this.__slots.checked.setData(this3 == null ? this.__tink_defaults102.checked : this3);
-		var this4 = attributes.value;
-		this.__slots.value.setData(this4 == null ? this.__tink_defaults102.value : this4);
-		var this5 = attributes.name;
-		this.__slots.name.setData(this5 == null ? this.__tink_defaults102.name : this5);
-		var this6 = attributes.onchecked;
-		this.__slots.onchecked.setData(this6 == null ? this.__tink_defaults102.onchecked : this6);
-		var this7 = attributes.accessKey;
-		this.__slots.accessKey.setData(this7 == null ? this.__tink_defaults102.accessKey : this7);
-		var this8 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this8 == null ? this.__tink_defaults102.accessKeyLabel : this8);
-		var this9 = attributes.attributes;
-		this.__slots.attributes.setData(this9 == null ? this.__tink_defaults102.attributes : this9);
-		var this10 = attributes.className;
-		this.__slots.className.setData(this10 == null ? this.__tink_defaults102.className : this10);
-		var this11 = attributes.dir;
-		this.__slots.dir.setData(this11 == null ? this.__tink_defaults102.dir : this11);
-		var this12 = attributes.draggable;
-		this.__slots.draggable.setData(this12 == null ? this.__tink_defaults102.draggable : this12);
-		var this13 = attributes.hidden;
-		this.__slots.hidden.setData(this13 == null ? this.__tink_defaults102.hidden : this13);
-		var this14 = attributes.id;
-		this.__slots.id.setData(this14 == null ? this.__tink_defaults102.id : this14);
-		var this15 = attributes.key;
-		this.__slots.key.setData(this15 == null ? this.__tink_defaults102.key : this15);
-		var this16 = attributes.lang;
-		this.__slots.lang.setData(this16 == null ? this.__tink_defaults102.lang : this16);
-		var this17 = attributes.onabort;
-		this.__slots.onabort.setData(this17 == null ? this.__tink_defaults102.onabort : this17);
-		var this18 = attributes.onblur;
-		this.__slots.onblur.setData(this18 == null ? this.__tink_defaults102.onblur : this18);
-		var this19 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this19 == null ? this.__tink_defaults102.oncanplay : this19);
-		var this20 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this20 == null ? this.__tink_defaults102.oncanplaythrough : this20);
-		var this21 = attributes.onchange;
-		this.__slots.onchange.setData(this21 == null ? this.__tink_defaults102.onchange : this21);
-		var this22 = attributes.onclick;
-		this.__slots.onclick.setData(this22 == null ? this.__tink_defaults102.onclick : this22);
-		var this23 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this23 == null ? this.__tink_defaults102.oncontextmenu : this23);
-		var this24 = attributes.oncopy;
-		this.__slots.oncopy.setData(this24 == null ? this.__tink_defaults102.oncopy : this24);
-		var this25 = attributes.oncut;
-		this.__slots.oncut.setData(this25 == null ? this.__tink_defaults102.oncut : this25);
-		var this26 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this26 == null ? this.__tink_defaults102.ondblclick : this26);
-		var this27 = attributes.ondrag;
-		this.__slots.ondrag.setData(this27 == null ? this.__tink_defaults102.ondrag : this27);
-		var this28 = attributes.ondragend;
-		this.__slots.ondragend.setData(this28 == null ? this.__tink_defaults102.ondragend : this28);
-		var this29 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this29 == null ? this.__tink_defaults102.ondragenter : this29);
-		var this30 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this30 == null ? this.__tink_defaults102.ondragleave : this30);
-		var this31 = attributes.ondragover;
-		this.__slots.ondragover.setData(this31 == null ? this.__tink_defaults102.ondragover : this31);
-		var this32 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this32 == null ? this.__tink_defaults102.ondragstart : this32);
-		var this33 = attributes.ondrop;
-		this.__slots.ondrop.setData(this33 == null ? this.__tink_defaults102.ondrop : this33);
-		var this34 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this34 == null ? this.__tink_defaults102.ondurationchange : this34);
-		var this35 = attributes.onemptied;
-		this.__slots.onemptied.setData(this35 == null ? this.__tink_defaults102.onemptied : this35);
-		var this36 = attributes.onended;
-		this.__slots.onended.setData(this36 == null ? this.__tink_defaults102.onended : this36);
-		var this37 = attributes.onerror;
-		this.__slots.onerror.setData(this37 == null ? this.__tink_defaults102.onerror : this37);
-		var this38 = attributes.onfocus;
-		this.__slots.onfocus.setData(this38 == null ? this.__tink_defaults102.onfocus : this38);
-		var this39 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this39 == null ? this.__tink_defaults102.onfullscreenchange : this39);
-		var this40 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this40 == null ? this.__tink_defaults102.onfullscreenerror : this40);
-		var this41 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this41 == null ? this.__tink_defaults102.ongotpointercapture : this41);
-		var this42 = attributes.oninput;
-		this.__slots.oninput.setData(this42 == null ? this.__tink_defaults102.oninput : this42);
-		var this43 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this43 == null ? this.__tink_defaults102.oninvalid : this43);
-		var this44 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this44 == null ? this.__tink_defaults102.onkeydown : this44);
-		var this45 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this45 == null ? this.__tink_defaults102.onkeypress : this45);
-		var this46 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this46 == null ? this.__tink_defaults102.onkeyup : this46);
-		var this47 = attributes.onload;
-		this.__slots.onload.setData(this47 == null ? this.__tink_defaults102.onload : this47);
-		var this48 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this48 == null ? this.__tink_defaults102.onloadeddata : this48);
-		var this49 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this49 == null ? this.__tink_defaults102.onloadedmetadata : this49);
-		var this50 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this50 == null ? this.__tink_defaults102.onloadstart : this50);
-		var this51 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this51 == null ? this.__tink_defaults102.onlostpointercapture : this51);
-		var this52 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this52 == null ? this.__tink_defaults102.onmousedown : this52);
-		var this53 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this53 == null ? this.__tink_defaults102.onmouseenter : this53);
-		var this54 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this54 == null ? this.__tink_defaults102.onmouseleave : this54);
-		var this55 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this55 == null ? this.__tink_defaults102.onmousemove : this55);
-		var this56 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this56 == null ? this.__tink_defaults102.onmouseout : this56);
-		var this57 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this57 == null ? this.__tink_defaults102.onmouseover : this57);
-		var this58 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this58 == null ? this.__tink_defaults102.onmouseup : this58);
-		var this59 = attributes.onpaste;
-		this.__slots.onpaste.setData(this59 == null ? this.__tink_defaults102.onpaste : this59);
-		var this60 = attributes.onpause;
-		this.__slots.onpause.setData(this60 == null ? this.__tink_defaults102.onpause : this60);
-		var this61 = attributes.onplay;
-		this.__slots.onplay.setData(this61 == null ? this.__tink_defaults102.onplay : this61);
-		var this62 = attributes.onplaying;
-		this.__slots.onplaying.setData(this62 == null ? this.__tink_defaults102.onplaying : this62);
-		var this63 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this63 == null ? this.__tink_defaults102.onpointercancel : this63);
-		var this64 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this64 == null ? this.__tink_defaults102.onpointerdown : this64);
-		var this65 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this65 == null ? this.__tink_defaults102.onpointerenter : this65);
-		var this66 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this66 == null ? this.__tink_defaults102.onpointerleave : this66);
-		var this67 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this67 == null ? this.__tink_defaults102.onpointerlockchange : this67);
-		var this68 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this68 == null ? this.__tink_defaults102.onpointerlockerror : this68);
-		var this69 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this69 == null ? this.__tink_defaults102.onpointermove : this69);
-		var this70 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this70 == null ? this.__tink_defaults102.onpointerout : this70);
-		var this71 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this71 == null ? this.__tink_defaults102.onpointerover : this71);
-		var this72 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this72 == null ? this.__tink_defaults102.onpointerup : this72);
-		var this73 = attributes.onprogress;
-		this.__slots.onprogress.setData(this73 == null ? this.__tink_defaults102.onprogress : this73);
-		var this74 = attributes.onratechange;
-		this.__slots.onratechange.setData(this74 == null ? this.__tink_defaults102.onratechange : this74);
-		var this75 = attributes.onreset;
-		this.__slots.onreset.setData(this75 == null ? this.__tink_defaults102.onreset : this75);
-		var this76 = attributes.onresize;
-		this.__slots.onresize.setData(this76 == null ? this.__tink_defaults102.onresize : this76);
-		var this77 = attributes.onscroll;
-		this.__slots.onscroll.setData(this77 == null ? this.__tink_defaults102.onscroll : this77);
-		var this78 = attributes.onseeked;
-		this.__slots.onseeked.setData(this78 == null ? this.__tink_defaults102.onseeked : this78);
-		var this79 = attributes.onseeking;
-		this.__slots.onseeking.setData(this79 == null ? this.__tink_defaults102.onseeking : this79);
-		var this80 = attributes.onselect;
-		this.__slots.onselect.setData(this80 == null ? this.__tink_defaults102.onselect : this80);
-		var this81 = attributes.onshow;
-		this.__slots.onshow.setData(this81 == null ? this.__tink_defaults102.onshow : this81);
-		var this82 = attributes.onstalled;
-		this.__slots.onstalled.setData(this82 == null ? this.__tink_defaults102.onstalled : this82);
-		var this83 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this83 == null ? this.__tink_defaults102.onsubmit : this83);
-		var this84 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this84 == null ? this.__tink_defaults102.onsuspend : this84);
-		var this85 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this85 == null ? this.__tink_defaults102.ontimeupdate : this85);
-		var this86 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this86 == null ? this.__tink_defaults102.ontouchcancel : this86);
-		var this87 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this87 == null ? this.__tink_defaults102.ontouchend : this87);
-		var this88 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this88 == null ? this.__tink_defaults102.ontouchmove : this88);
-		var this89 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this89 == null ? this.__tink_defaults102.ontouchstart : this89);
-		var this90 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this90 == null ? this.__tink_defaults102.onvolumechange : this90);
-		var this91 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this91 == null ? this.__tink_defaults102.onwaiting : this91);
-		var this92 = attributes.onwheel;
-		this.__slots.onwheel.setData(this92 == null ? this.__tink_defaults102.onwheel : this92);
-		var this93 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this93 == null ? this.__tink_defaults102.spellcheck : this93);
-		var this94 = attributes.style;
-		this.__slots.style.setData(this94 == null ? this.__tink_defaults102.style : this94);
-		var this95 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this95 == null ? this.__tink_defaults102.tabIndex : this95);
-		var this96 = attributes.title;
-		this.__slots.title.setData(this96 == null ? this.__tink_defaults102.title : this96);
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults102.className : this1);
+		var this2 = attributes.id;
+		this.__slots.id.setData(this2 == null ? this.__tink_defaults102.id : this2);
+		var this3 = attributes.label;
+		this.__slots.label.setData(this3 == null ? this.__tink_defaults102.label : this3);
+		var this4 = attributes.disabled;
+		this.__slots.disabled.setData(this4 == null ? this.__tink_defaults102.disabled : this4);
+		var this5 = attributes.checked;
+		this.__slots.checked.setData(this5 == null ? this.__tink_defaults102.checked : this5);
+		var this6 = attributes.value;
+		this.__slots.value.setData(this6 == null ? this.__tink_defaults102.value : this6);
+		var this7 = attributes.name;
+		this.__slots.name.setData(this7 == null ? this.__tink_defaults102.name : this7);
+		var this8 = attributes.onchecked;
+		this.__slots.onchecked.setData(this8 == null ? this.__tink_defaults102.onchecked : this8);
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
+	}
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
 	}
 	,get_label: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
@@ -7666,292 +7254,24 @@ mdc_Radio.prototype = $extend(coconut_ui_View.prototype,{
 	,get_onchecked: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
 	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
-	}
-	,get_className: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
-	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
-	}
 	,__class__: mdc_Radio
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_onchecked:"get_onchecked",get_name:"get_name",get_value:"get_value",get_checked:"get_checked",get_disabled:"get_disabled",get_label:"get_label"}
+	,__properties__: {get_onchecked:"get_onchecked",get_name:"get_name",get_value:"get_value",get_checked:"get_checked",get_disabled:"get_disabled",get_label:"get_label",get_id:"get_id",get_className:"get_className"}
 });
 var mdc_Switch = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Switch.hx", lineNumber : 5, className : "mdc.Switch", methodName : "new"});
 	this.switchId = mdc_Switch.switchIndex++;
-	this.__tink_defaults107 = { label : null, onchecked : null, accept : null, accessKey : null, accessKeyLabel : null, attributes : null, autofocus : null, checked : null, className : null, dir : null, disabled : null, draggable : null, hidden : null, id : null, key : null, lang : null, max : null, maxlength : null, min : null, multiple : null, name : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, pattern : null, placeholder : null, required : null, spellcheck : null, step : null, style : null, tabIndex : null, title : null, type : null, value : null};
-	this.__slots = { label : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), accept : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), autofocus : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), max : new coconut_ui_tools_Slot(this,null), maxlength : new coconut_ui_tools_Slot(this,null), min : new coconut_ui_tools_Slot(this,null), multiple : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), pattern : new coconut_ui_tools_Slot(this,null), placeholder : new coconut_ui_tools_Slot(this,null), required : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), step : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null), type : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults107 = { id : null, checked : null, className : tink_state__$Observable_Observable_$Impl_$["const"](""), label : null, value : null, onchecked : null, disabled : null};
+	this.__slots = { id : new coconut_ui_tools_Slot(this,null), checked : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), onchecked : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init108(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.Switch"] = mdc_Switch;
 mdc_Switch.__name__ = ["mdc","Switch"];
 mdc_Switch.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Switch(attributes);
+	} else {
+		inst.__tink_init108(attributes);
 	}
-	inst.__tink_init108(attributes);
 	return inst;
 };
 mdc_Switch.__super__ = coconut_ui_View;
@@ -7959,482 +7279,48 @@ mdc_Switch.prototype = $extend(coconut_ui_View.prototype,{
 	switchId: null
 	,render: function() {
 		var _gthis = this;
-		var id = this.get_id() != null ? this.get_id() : "switch_" + this.get_id();
+		var id = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe()) != null ? tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe()) : "switch_" + tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
 		var __r = [];
-		var __ret = { };
-		var _g = this.get_accessKey();
-		if(_g != null) {
-			var v = _g;
-			__ret.accessKey = v;
-		}
-		var _g1 = this.get_accessKeyLabel();
-		if(_g1 != null) {
-			var v1 = _g1;
-			__ret.accessKeyLabel = v1;
-		}
-		var _g2 = this.get_attributes();
-		if(_g2 != null) {
-			var v2 = _g2;
-			__ret.attributes = v2;
-		}
-		var _g3 = this.get_className();
-		if(_g3 != null) {
-			var v3 = _g3;
-			__ret.className = v3;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v4 = _g4;
-			__ret.dir = v4;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v5 = _g5;
-			__ret.draggable = v5;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v6 = _g6;
-			__ret.hidden = v6;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v7 = _g7;
-			__ret.id = v7;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v8 = _g8;
-			__ret.key = v8;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v9 = _g9;
-			__ret.lang = v9;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v10 = _g10;
-			__ret.onabort = v10;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v11 = _g11;
-			__ret.onblur = v11;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v12 = _g12;
-			__ret.oncanplay = v12;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v13 = _g13;
-			__ret.oncanplaythrough = v13;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v14 = _g14;
-			__ret.onchange = v14;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v15 = _g15;
-			__ret.onclick = v15;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v16 = _g16;
-			__ret.oncontextmenu = v16;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v17 = _g17;
-			__ret.oncopy = v17;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v18 = _g18;
-			__ret.oncut = v18;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v19 = _g19;
-			__ret.ondblclick = v19;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v20 = _g20;
-			__ret.ondrag = v20;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v21 = _g21;
-			__ret.ondragend = v21;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v22 = _g22;
-			__ret.ondragenter = v22;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v23 = _g23;
-			__ret.ondragleave = v23;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v24 = _g24;
-			__ret.ondragover = v24;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v25 = _g25;
-			__ret.ondragstart = v25;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v26 = _g26;
-			__ret.ondrop = v26;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v27 = _g27;
-			__ret.ondurationchange = v27;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v28 = _g28;
-			__ret.onemptied = v28;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v29 = _g29;
-			__ret.onended = v29;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v30 = _g30;
-			__ret.onerror = v30;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v31 = _g31;
-			__ret.onfocus = v31;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v32 = _g32;
-			__ret.onfullscreenchange = v32;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v33 = _g33;
-			__ret.onfullscreenerror = v33;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v34 = _g34;
-			__ret.ongotpointercapture = v34;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v35 = _g35;
-			__ret.oninput = v35;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v36 = _g36;
-			__ret.oninvalid = v36;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v37 = _g37;
-			__ret.onkeydown = v37;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v38 = _g38;
-			__ret.onkeypress = v38;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v39 = _g39;
-			__ret.onkeyup = v39;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v40 = _g40;
-			__ret.onload = v40;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v41 = _g41;
-			__ret.onloadeddata = v41;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v42 = _g42;
-			__ret.onloadedmetadata = v42;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v43 = _g43;
-			__ret.onloadstart = v43;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v44 = _g44;
-			__ret.onlostpointercapture = v44;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v45 = _g45;
-			__ret.onmousedown = v45;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v46 = _g46;
-			__ret.onmouseenter = v46;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v47 = _g47;
-			__ret.onmouseleave = v47;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v48 = _g48;
-			__ret.onmousemove = v48;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v49 = _g49;
-			__ret.onmouseout = v49;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v50 = _g50;
-			__ret.onmouseover = v50;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v51 = _g51;
-			__ret.onmouseup = v51;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v52 = _g52;
-			__ret.onpaste = v52;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v53 = _g53;
-			__ret.onpause = v53;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v54 = _g54;
-			__ret.onplay = v54;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v55 = _g55;
-			__ret.onplaying = v55;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v56 = _g56;
-			__ret.onpointercancel = v56;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v57 = _g57;
-			__ret.onpointerdown = v57;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v58 = _g58;
-			__ret.onpointerenter = v58;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v59 = _g59;
-			__ret.onpointerleave = v59;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v60 = _g60;
-			__ret.onpointerlockchange = v60;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v61 = _g61;
-			__ret.onpointerlockerror = v61;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v62 = _g62;
-			__ret.onpointermove = v62;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v63 = _g63;
-			__ret.onpointerout = v63;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v64 = _g64;
-			__ret.onpointerover = v64;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v65 = _g65;
-			__ret.onpointerup = v65;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v66 = _g66;
-			__ret.onprogress = v66;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v67 = _g67;
-			__ret.onratechange = v67;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v68 = _g68;
-			__ret.onreset = v68;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v69 = _g69;
-			__ret.onresize = v69;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v70 = _g70;
-			__ret.onscroll = v70;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v71 = _g71;
-			__ret.onseeked = v71;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v72 = _g72;
-			__ret.onseeking = v72;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v73 = _g73;
-			__ret.onselect = v73;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v74 = _g74;
-			__ret.onshow = v74;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v75 = _g75;
-			__ret.onstalled = v75;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v76 = _g76;
-			__ret.onsubmit = v76;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v77 = _g77;
-			__ret.onsuspend = v77;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v78 = _g78;
-			__ret.ontimeupdate = v78;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v79 = _g79;
-			__ret.ontouchcancel = v79;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v80 = _g80;
-			__ret.ontouchend = v80;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v81 = _g81;
-			__ret.ontouchmove = v81;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v82 = _g82;
-			__ret.ontouchstart = v82;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v83 = _g83;
-			__ret.onvolumechange = v83;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v84 = _g84;
-			__ret.onwaiting = v84;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v85 = _g85;
-			__ret.onwheel = v85;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v86 = _g86;
-			__ret.spellcheck = v86;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v87 = _g87;
-			__ret.style = v87;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v88 = _g88;
-			__ret.tabIndex = v88;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v89 = _g89;
-			__ret.title = v89;
-		}
+		var __ret = { id : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe()), className : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe())};
+		var attr = __ret;
 		var __r1 = [];
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-switch")};
+		var attr1 = __ret1;
 		var __r2 = [];
-		var __ret2 = { type : "checkbox", id : id, value : _gthis.get_value(), checked : _gthis.get_checked(), onchange : function(event) {
-			if(_gthis.get_onchecked() != null) {
-				(_gthis.get_onchecked())(event.currentTarget.checked);
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		var __ret2 = { type : "checkbox", id : id, value : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.value.observe()), checked : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.checked.observe()), onchange : function(event) {
+			if(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()) != null) {
+				(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onchecked.observe()))(event.target.checked);
 			}
-		}, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch__native-control"), disabled : _gthis.get_disabled()};
-		__r2.push(vdom_VDom.h("input",__ret2));
-		var __ret3 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch__background")};
+		}, className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-switch__native-control"), disabled : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.disabled.observe())};
+		var attr2 = __ret2;
+		__r2.push({ t : "input", k : attr2 == null ? null : attr2.key, a : attr2, c : null});
+		var __ret3 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-switch__background")};
+		var attr3 = __ret3;
 		var __r3 = [];
-		var __ret4 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch__knob")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+		var __ret4 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-switch__knob")};
+		var attr4 = __ret4;
 		var __r4 = [];
-		__r3.push(vdom_VDom.h("div",__ret4,__r4));
-		__r2.push(vdom_VDom.h("div",__ret3,__r3));
-		__r1.push(vdom_VDom.h("div",__ret1,__r2));
-		if(this.get_label() != null) {
-			var __ret5 = { htmlFor : id, className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-switch-label")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+		__r3.push({ t : "div", k : attr4 == null ? null : attr4.key, a : attr4, c : children});
+		var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+		__r2.push({ t : "div", k : attr3 == null ? null : attr3.key, a : attr3, c : children1});
+		var children2 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		__r1.push({ t : "div", k : attr1 == null ? null : attr1.key, a : attr1, c : children2});
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()) != null) {
+			var __ret5 = { htmlFor : id, className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-switch-label")};
+			var attr5 = __ret5;
 			var __r5 = [];
-			__r5.push(this.get_label());
-			__r1.push(vdom_VDom.h("label",__ret5,__r5));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			__r5.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()), a : coconut_vdom_VDom.EMPTY});
+			var children3 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			__r1.push({ t : "label", k : attr5 == null ? null : attr5.key, a : attr5, c : children3});
 		}
-		__r.push(vdom_VDom.h("div",__ret,__r1));
+		var children4 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children4});
 		return __r[0];
 	}
 	,__tink_defaults107: null
@@ -8443,241 +7329,23 @@ mdc_Switch.prototype = $extend(coconut_ui_View.prototype,{
 		return "Switch" + "#" + this.viewId;
 	}
 	,__tink_init108: function(attributes) {
-		var this1 = attributes.label;
-		this.__slots.label.setData(this1 == null ? this.__tink_defaults107.label : this1);
-		var this2 = attributes.onchecked;
-		this.__slots.onchecked.setData(this2 == null ? this.__tink_defaults107.onchecked : this2);
-		var this3 = attributes.accept;
-		this.__slots.accept.setData(this3 == null ? this.__tink_defaults107.accept : this3);
-		var this4 = attributes.accessKey;
-		this.__slots.accessKey.setData(this4 == null ? this.__tink_defaults107.accessKey : this4);
-		var this5 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this5 == null ? this.__tink_defaults107.accessKeyLabel : this5);
-		var this6 = attributes.attributes;
-		this.__slots.attributes.setData(this6 == null ? this.__tink_defaults107.attributes : this6);
-		var this7 = attributes.autofocus;
-		this.__slots.autofocus.setData(this7 == null ? this.__tink_defaults107.autofocus : this7);
-		var this8 = attributes.checked;
-		this.__slots.checked.setData(this8 == null ? this.__tink_defaults107.checked : this8);
-		var this9 = attributes.className;
-		this.__slots.className.setData(this9 == null ? this.__tink_defaults107.className : this9);
-		var this10 = attributes.dir;
-		this.__slots.dir.setData(this10 == null ? this.__tink_defaults107.dir : this10);
-		var this11 = attributes.disabled;
-		this.__slots.disabled.setData(this11 == null ? this.__tink_defaults107.disabled : this11);
-		var this12 = attributes.draggable;
-		this.__slots.draggable.setData(this12 == null ? this.__tink_defaults107.draggable : this12);
-		var this13 = attributes.hidden;
-		this.__slots.hidden.setData(this13 == null ? this.__tink_defaults107.hidden : this13);
-		var this14 = attributes.id;
-		this.__slots.id.setData(this14 == null ? this.__tink_defaults107.id : this14);
-		var this15 = attributes.key;
-		this.__slots.key.setData(this15 == null ? this.__tink_defaults107.key : this15);
-		var this16 = attributes.lang;
-		this.__slots.lang.setData(this16 == null ? this.__tink_defaults107.lang : this16);
-		var this17 = attributes.max;
-		this.__slots.max.setData(this17 == null ? this.__tink_defaults107.max : this17);
-		var this18 = attributes.maxlength;
-		this.__slots.maxlength.setData(this18 == null ? this.__tink_defaults107.maxlength : this18);
-		var this19 = attributes.min;
-		this.__slots.min.setData(this19 == null ? this.__tink_defaults107.min : this19);
-		var this20 = attributes.multiple;
-		this.__slots.multiple.setData(this20 == null ? this.__tink_defaults107.multiple : this20);
-		var this21 = attributes.name;
-		this.__slots.name.setData(this21 == null ? this.__tink_defaults107.name : this21);
-		var this22 = attributes.onabort;
-		this.__slots.onabort.setData(this22 == null ? this.__tink_defaults107.onabort : this22);
-		var this23 = attributes.onblur;
-		this.__slots.onblur.setData(this23 == null ? this.__tink_defaults107.onblur : this23);
-		var this24 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this24 == null ? this.__tink_defaults107.oncanplay : this24);
-		var this25 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this25 == null ? this.__tink_defaults107.oncanplaythrough : this25);
-		var this26 = attributes.onchange;
-		this.__slots.onchange.setData(this26 == null ? this.__tink_defaults107.onchange : this26);
-		var this27 = attributes.onclick;
-		this.__slots.onclick.setData(this27 == null ? this.__tink_defaults107.onclick : this27);
-		var this28 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this28 == null ? this.__tink_defaults107.oncontextmenu : this28);
-		var this29 = attributes.oncopy;
-		this.__slots.oncopy.setData(this29 == null ? this.__tink_defaults107.oncopy : this29);
-		var this30 = attributes.oncut;
-		this.__slots.oncut.setData(this30 == null ? this.__tink_defaults107.oncut : this30);
-		var this31 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this31 == null ? this.__tink_defaults107.ondblclick : this31);
-		var this32 = attributes.ondrag;
-		this.__slots.ondrag.setData(this32 == null ? this.__tink_defaults107.ondrag : this32);
-		var this33 = attributes.ondragend;
-		this.__slots.ondragend.setData(this33 == null ? this.__tink_defaults107.ondragend : this33);
-		var this34 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this34 == null ? this.__tink_defaults107.ondragenter : this34);
-		var this35 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this35 == null ? this.__tink_defaults107.ondragleave : this35);
-		var this36 = attributes.ondragover;
-		this.__slots.ondragover.setData(this36 == null ? this.__tink_defaults107.ondragover : this36);
-		var this37 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this37 == null ? this.__tink_defaults107.ondragstart : this37);
-		var this38 = attributes.ondrop;
-		this.__slots.ondrop.setData(this38 == null ? this.__tink_defaults107.ondrop : this38);
-		var this39 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this39 == null ? this.__tink_defaults107.ondurationchange : this39);
-		var this40 = attributes.onemptied;
-		this.__slots.onemptied.setData(this40 == null ? this.__tink_defaults107.onemptied : this40);
-		var this41 = attributes.onended;
-		this.__slots.onended.setData(this41 == null ? this.__tink_defaults107.onended : this41);
-		var this42 = attributes.onerror;
-		this.__slots.onerror.setData(this42 == null ? this.__tink_defaults107.onerror : this42);
-		var this43 = attributes.onfocus;
-		this.__slots.onfocus.setData(this43 == null ? this.__tink_defaults107.onfocus : this43);
-		var this44 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this44 == null ? this.__tink_defaults107.onfullscreenchange : this44);
-		var this45 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this45 == null ? this.__tink_defaults107.onfullscreenerror : this45);
-		var this46 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this46 == null ? this.__tink_defaults107.ongotpointercapture : this46);
-		var this47 = attributes.oninput;
-		this.__slots.oninput.setData(this47 == null ? this.__tink_defaults107.oninput : this47);
-		var this48 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this48 == null ? this.__tink_defaults107.oninvalid : this48);
-		var this49 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this49 == null ? this.__tink_defaults107.onkeydown : this49);
-		var this50 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this50 == null ? this.__tink_defaults107.onkeypress : this50);
-		var this51 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this51 == null ? this.__tink_defaults107.onkeyup : this51);
-		var this52 = attributes.onload;
-		this.__slots.onload.setData(this52 == null ? this.__tink_defaults107.onload : this52);
-		var this53 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this53 == null ? this.__tink_defaults107.onloadeddata : this53);
-		var this54 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this54 == null ? this.__tink_defaults107.onloadedmetadata : this54);
-		var this55 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this55 == null ? this.__tink_defaults107.onloadstart : this55);
-		var this56 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this56 == null ? this.__tink_defaults107.onlostpointercapture : this56);
-		var this57 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this57 == null ? this.__tink_defaults107.onmousedown : this57);
-		var this58 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this58 == null ? this.__tink_defaults107.onmouseenter : this58);
-		var this59 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this59 == null ? this.__tink_defaults107.onmouseleave : this59);
-		var this60 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this60 == null ? this.__tink_defaults107.onmousemove : this60);
-		var this61 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this61 == null ? this.__tink_defaults107.onmouseout : this61);
-		var this62 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this62 == null ? this.__tink_defaults107.onmouseover : this62);
-		var this63 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this63 == null ? this.__tink_defaults107.onmouseup : this63);
-		var this64 = attributes.onpaste;
-		this.__slots.onpaste.setData(this64 == null ? this.__tink_defaults107.onpaste : this64);
-		var this65 = attributes.onpause;
-		this.__slots.onpause.setData(this65 == null ? this.__tink_defaults107.onpause : this65);
-		var this66 = attributes.onplay;
-		this.__slots.onplay.setData(this66 == null ? this.__tink_defaults107.onplay : this66);
-		var this67 = attributes.onplaying;
-		this.__slots.onplaying.setData(this67 == null ? this.__tink_defaults107.onplaying : this67);
-		var this68 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this68 == null ? this.__tink_defaults107.onpointercancel : this68);
-		var this69 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this69 == null ? this.__tink_defaults107.onpointerdown : this69);
-		var this70 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this70 == null ? this.__tink_defaults107.onpointerenter : this70);
-		var this71 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this71 == null ? this.__tink_defaults107.onpointerleave : this71);
-		var this72 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this72 == null ? this.__tink_defaults107.onpointerlockchange : this72);
-		var this73 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this73 == null ? this.__tink_defaults107.onpointerlockerror : this73);
-		var this74 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this74 == null ? this.__tink_defaults107.onpointermove : this74);
-		var this75 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this75 == null ? this.__tink_defaults107.onpointerout : this75);
-		var this76 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this76 == null ? this.__tink_defaults107.onpointerover : this76);
-		var this77 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this77 == null ? this.__tink_defaults107.onpointerup : this77);
-		var this78 = attributes.onprogress;
-		this.__slots.onprogress.setData(this78 == null ? this.__tink_defaults107.onprogress : this78);
-		var this79 = attributes.onratechange;
-		this.__slots.onratechange.setData(this79 == null ? this.__tink_defaults107.onratechange : this79);
-		var this80 = attributes.onreset;
-		this.__slots.onreset.setData(this80 == null ? this.__tink_defaults107.onreset : this80);
-		var this81 = attributes.onresize;
-		this.__slots.onresize.setData(this81 == null ? this.__tink_defaults107.onresize : this81);
-		var this82 = attributes.onscroll;
-		this.__slots.onscroll.setData(this82 == null ? this.__tink_defaults107.onscroll : this82);
-		var this83 = attributes.onseeked;
-		this.__slots.onseeked.setData(this83 == null ? this.__tink_defaults107.onseeked : this83);
-		var this84 = attributes.onseeking;
-		this.__slots.onseeking.setData(this84 == null ? this.__tink_defaults107.onseeking : this84);
-		var this85 = attributes.onselect;
-		this.__slots.onselect.setData(this85 == null ? this.__tink_defaults107.onselect : this85);
-		var this86 = attributes.onshow;
-		this.__slots.onshow.setData(this86 == null ? this.__tink_defaults107.onshow : this86);
-		var this87 = attributes.onstalled;
-		this.__slots.onstalled.setData(this87 == null ? this.__tink_defaults107.onstalled : this87);
-		var this88 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this88 == null ? this.__tink_defaults107.onsubmit : this88);
-		var this89 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this89 == null ? this.__tink_defaults107.onsuspend : this89);
-		var this90 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this90 == null ? this.__tink_defaults107.ontimeupdate : this90);
-		var this91 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this91 == null ? this.__tink_defaults107.ontouchcancel : this91);
-		var this92 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this92 == null ? this.__tink_defaults107.ontouchend : this92);
-		var this93 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this93 == null ? this.__tink_defaults107.ontouchmove : this93);
-		var this94 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this94 == null ? this.__tink_defaults107.ontouchstart : this94);
-		var this95 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this95 == null ? this.__tink_defaults107.onvolumechange : this95);
-		var this96 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this96 == null ? this.__tink_defaults107.onwaiting : this96);
-		var this97 = attributes.onwheel;
-		this.__slots.onwheel.setData(this97 == null ? this.__tink_defaults107.onwheel : this97);
-		var this98 = attributes.pattern;
-		this.__slots.pattern.setData(this98 == null ? this.__tink_defaults107.pattern : this98);
-		var this99 = attributes.placeholder;
-		this.__slots.placeholder.setData(this99 == null ? this.__tink_defaults107.placeholder : this99);
-		var this100 = attributes.required;
-		this.__slots.required.setData(this100 == null ? this.__tink_defaults107.required : this100);
-		var this101 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this101 == null ? this.__tink_defaults107.spellcheck : this101);
-		var this102 = attributes.step;
-		this.__slots.step.setData(this102 == null ? this.__tink_defaults107.step : this102);
-		var this103 = attributes.style;
-		this.__slots.style.setData(this103 == null ? this.__tink_defaults107.style : this103);
-		var this104 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this104 == null ? this.__tink_defaults107.tabIndex : this104);
-		var this105 = attributes.title;
-		this.__slots.title.setData(this105 == null ? this.__tink_defaults107.title : this105);
-		var this106 = attributes.type;
-		this.__slots.type.setData(this106 == null ? this.__tink_defaults107.type : this106);
-		var this107 = attributes.value;
-		this.__slots.value.setData(this107 == null ? this.__tink_defaults107.value : this107);
+		var this1 = attributes.id;
+		this.__slots.id.setData(this1 == null ? this.__tink_defaults107.id : this1);
+		var this2 = attributes.checked;
+		this.__slots.checked.setData(this2 == null ? this.__tink_defaults107.checked : this2);
+		var this3 = attributes.className;
+		this.__slots.className.setData(this3 == null ? this.__tink_defaults107.className : this3);
+		var this4 = attributes.label;
+		this.__slots.label.setData(this4 == null ? this.__tink_defaults107.label : this4);
+		var this5 = attributes.value;
+		this.__slots.value.setData(this5 == null ? this.__tink_defaults107.value : this5);
+		var this6 = attributes.onchecked;
+		this.__slots.onchecked.setData(this6 == null ? this.__tink_defaults107.onchecked : this6);
+		var this7 = attributes.disabled;
+		this.__slots.disabled.setData(this7 == null ? this.__tink_defaults107.disabled : this7);
 	}
-	,get_label: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
-	}
-	,get_onchecked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
-	}
-	,get_accept: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accept.observe());
-	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
-	}
-	,get_autofocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.autofocus.observe());
+	,get_id: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
 	}
 	,get_checked: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.checked.observe());
@@ -8685,306 +7353,23 @@ mdc_Switch.prototype = $extend(coconut_ui_View.prototype,{
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_disabled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_max: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.max.observe());
-	}
-	,get_maxlength: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.maxlength.observe());
-	}
-	,get_min: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.min.observe());
-	}
-	,get_multiple: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.multiple.observe());
-	}
-	,get_name: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_pattern: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.pattern.observe());
-	}
-	,get_placeholder: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.placeholder.observe());
-	}
-	,get_required: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.required.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_step: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.step.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
-	}
-	,get_type: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.type.observe());
+	,get_label: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe());
 	}
 	,get_value: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
 	}
+	,get_onchecked: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchecked.observe());
+	}
+	,get_disabled: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.disabled.observe());
+	}
 	,__class__: mdc_Switch
-	,__properties__: {get_value:"get_value",get_type:"get_type",get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_step:"get_step",get_spellcheck:"get_spellcheck",get_required:"get_required",get_placeholder:"get_placeholder",get_pattern:"get_pattern",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_name:"get_name",get_multiple:"get_multiple",get_min:"get_min",get_maxlength:"get_maxlength",get_max:"get_max",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_disabled:"get_disabled",get_dir:"get_dir",get_className:"get_className",get_checked:"get_checked",get_autofocus:"get_autofocus",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_accept:"get_accept",get_onchecked:"get_onchecked",get_label:"get_label"}
+	,__properties__: {get_disabled:"get_disabled",get_onchecked:"get_onchecked",get_value:"get_value",get_label:"get_label",get_className:"get_className",get_checked:"get_checked",get_id:"get_id"}
 });
 var mdc_TabBar = function(data) {
 	this.prevTabIndex = 0;
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TabBar.hx", lineNumber : 17, className : "mdc.TabBar", methodName : "new"});
 	var tmp = tink_state__$Observable_Observable_$Impl_$["const"]("");
 	var this1 = { f : function() {
 		return "";
@@ -8997,14 +7382,17 @@ var mdc_TabBar = function(data) {
 	}};
 	this.__tink_defaults21 = { className : tmp, mode : tmp1, activeTabIndex : tmp2, ontabchange : tink_state__$Observable_Observable_$Impl_$.auto(this2)};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null), mode : new coconut_ui_tools_Slot(this,null), activeTabIndex : new coconut_ui_tools_Slot(this,null), ontabchange : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init22(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.TabBar"] = mdc_TabBar;
 mdc_TabBar.__name__ = ["mdc","TabBar"];
 mdc_TabBar.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_TabBar(attributes);
+	} else {
+		inst.__tink_init22(attributes);
 	}
-	inst.__tink_init22(attributes);
 	return inst;
 };
 mdc_TabBar.__super__ = coconut_ui_View;
@@ -9012,63 +7400,70 @@ mdc_TabBar.prototype = $extend(coconut_ui_View.prototype,{
 	mdcTabBar: null
 	,render: function() {
 		var _gthis = this;
-		var activeTabIndex = this.get_activeTabIndex();
-		var children = this.get_children();
+		var activeTabIndex = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.activeTabIndex.observe());
+		var children = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-tab-bar"] != null) {
 			_g.setReserved("mdc-tab-bar",true);
 		} else {
 			_g.h["mdc-tab-bar"] = true;
 		}
-		var key = _gthis.get_mode();
+		var key = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.mode.observe());
 		if(__map_reserved[key] != null) {
 			_g.setReserved(key,true);
 		} else {
 			_g.h[key] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr = __ret1;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
 		while(_g1 < (children == null ? 0 : children.length)) {
 			var _0 = children == null ? null : children[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-tab-bar__indicator")};
+		var __ret2 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-tab-bar__indicator")};
+		var attr1 = __ret2;
 		var __r2 = [];
-		__r1.push(vdom_VDom.h("span",__ret2,__r2));
-		__r.push(vdom_VDom.h("nav",attr,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+		__r1.push({ t : "span", k : attr1 == null ? null : attr1.key, a : attr1, c : children1});
+		var children2 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "nav", k : attr == null ? null : attr.key, a : attr, c : children2});
 		return __r[0];
 	}
-	,afterInit: function(elem) {
+	,afterMounting: function(elem) {
 		this.mdcTabBar = new window.mdc.tabs.MDCTabBar(elem);
 		this.mdcTabBar.listen("MDCTabBar:change",$bind(this,this.tabChangeHandler));
-		this.mdcTabBar.activeTabIndex = this.get_activeTabIndex();
-		this.mdcTabBar.tabs[this.get_activeTabIndex()].isActive = true;
-		this.prevLength = elem.children.length;
+		var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.activeTabIndex.observe());
+		this.mdcTabBar.activeTabIndex = tmp;
+		this.mdcTabBar.tabs[tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.activeTabIndex.observe())].isActive = true;
+		this.prevLength = elem.childNodes.length;
 	}
 	,prevLength: null
 	,prevTabIndex: null
 	,afterPatching: function(elem) {
 		var _gthis = this;
 		if(this.prevLength == elem.children.length) {
-			this.prevTabIndex = this.get_activeTabIndex();
-			this.mdcTabBar.activeTabIndex = this.get_activeTabIndex();
+			this.prevTabIndex = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.activeTabIndex.observe());
+			var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.activeTabIndex.observe());
+			this.mdcTabBar.activeTabIndex = tmp;
 			return;
 		}
 		this.prevLength = elem.children.length;
 		if(this.mdcTabBar != null) {
-			var tmp;
-			var this1 = this.get_children();
+			var tmp1;
+			var this1 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 			if((this1 == null ? 0 : this1.length) - 1 < this.prevTabIndex) {
-				tmp = this.get_activeTabIndex();
+				tmp1 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.activeTabIndex.observe());
 			} else {
-				tmp = this.prevTabIndex;
+				tmp1 = this.prevTabIndex;
 			}
-			this.prevTabIndex = tmp;
+			this.prevTabIndex = tmp1;
 			this.mdcTabBar.unlisten("MDCTabBar:change",$bind(this,this.tabChangeHandler));
 			var _g = 0;
 			var _g1 = this.mdcTabBar.tabs;
@@ -9084,11 +7479,12 @@ mdc_TabBar.prototype = $extend(coconut_ui_View.prototype,{
 		this.mdcTabBar.tabs[this.prevTabIndex].isActive = true;
 		this.mdcTabBar.activeTabIndex = this.prevTabIndex;
 		window.requestAnimationFrame(function(_) {
-			_gthis.mdcTabBar.activeTabIndex = _gthis.prevTabIndex = _gthis.get_activeTabIndex();
+			var tmp2 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.activeTabIndex.observe());
+			_gthis.mdcTabBar.activeTabIndex = _gthis.prevTabIndex = tmp2;
 		});
 	}
 	,tabChangeHandler: function(data) {
-		(this.get_ontabchange())(data.detail.activeTabIndex);
+		(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontabchange.observe()))(data.detail.activeTabIndex);
 	}
 	,beforeDestroy: function(elem) {
 		if(this.mdcTabBar != null) {
@@ -9138,17 +7534,19 @@ mdc_TabBar.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_ontabchange:"get_ontabchange",get_activeTabIndex:"get_activeTabIndex",get_mode:"get_mode",get_children:"get_children",get_className:"get_className"}
 });
 var mdc_Tab = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TabBar.hx", lineNumber : 96, className : "mdc.Tab", methodName : "new"});
 	this.__tink_defaults19 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), onclick : null, children : null, active : null, icon : null, text : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null), active : new coconut_ui_tools_Slot(this,null), icon : new coconut_ui_tools_Slot(this,null), text : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init20(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.Tab"] = mdc_Tab;
 mdc_Tab.__name__ = ["mdc","Tab"];
 mdc_Tab.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Tab(attributes);
+	} else {
+		inst.__tink_init20(attributes);
 	}
-	inst.__tink_init20(attributes);
 	return inst;
 };
 mdc_Tab.__super__ = coconut_ui_View;
@@ -9156,46 +7554,48 @@ mdc_Tab.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-tab"] != null) {
 			_g.setReserved("mdc-tab",true);
 		} else {
 			_g.h["mdc-tab"] = true;
 		}
-		var value = _gthis.get_active();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.active.observe());
 		if(__map_reserved["mdc-tab--active"] != null) {
 			_g.setReserved("mdc-tab--active",value);
 		} else {
 			_g.h["mdc-tab--active"] = value;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), onclick : this.get_onclick()};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), onclick : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe())};
 		var attr = __ret1;
 		var __r1 = [];
-		if(this.get_icon() != null) {
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe()) != null) {
 			var this1 = { f : function() {
-				return _gthis.get_icon();
+				return tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.icon.observe());
 			}};
 			var __ret2 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this1)};
 			__r1.push(coconut_ui_tools_ViewCache.mk("mdc.TabIcon",null,mdc_TabIcon.__init,__ret2));
 		}
-		if(this.get_text() != null) {
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.text.observe()) != null) {
 			var this2 = { f : function() {
 				var __r2 = [];
-				__r2.push(_gthis.get_text());
+				__r2.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.text.observe()), a : coconut_vdom_VDom.EMPTY});
 				return __r2;
 			}};
 			var __ret3 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this2)};
 			__r1.push(coconut_ui_tools_ViewCache.mk("mdc.TabText",null,mdc_TabText.__init,__ret3));
 		}
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("a",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "a", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults19: null
@@ -9239,17 +7639,19 @@ mdc_Tab.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_text:"get_text",get_icon:"get_icon",get_active:"get_active",get_children:"get_children",get_onclick:"get_onclick",get_className:"get_className"}
 });
 var mdc_TabIcon = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TabBar.hx", lineNumber : 122, className : "mdc.TabIcon", methodName : "new"});
 	this.__tink_defaults17 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init18(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.TabIcon"] = mdc_TabIcon;
 mdc_TabIcon.__name__ = ["mdc","TabIcon"];
 mdc_TabIcon.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_TabIcon(attributes);
+	} else {
+		inst.__tink_init18(attributes);
 	}
-	inst.__tink_init18(attributes);
 	return inst;
 };
 mdc_TabIcon.__super__ = coconut_ui_View;
@@ -9257,7 +7659,7 @@ mdc_TabIcon.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-tab__icon"] != null) {
 			_g.setReserved("mdc-tab__icon",true);
@@ -9269,10 +7671,13 @@ mdc_TabIcon.prototype = $extend(coconut_ui_View.prototype,{
 		} else {
 			_g.h["material-icons"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
+		var attr = __ret1;
 		var __r1 = [];
-		__r1.push(this.get_name());
-		__r.push(vdom_VDom.h("i",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r1.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe()), a : coconut_vdom_VDom.EMPTY});
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "i", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults17: null
@@ -9295,17 +7700,19 @@ mdc_TabIcon.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_name:"get_name",get_className:"get_className"}
 });
 var mdc_TabText = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TabBar.hx", lineNumber : 133, className : "mdc.TabText", methodName : "new"});
 	this.__tink_defaults15 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init16(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.TabText"] = mdc_TabText;
 mdc_TabText.__name__ = ["mdc","TabText"];
 mdc_TabText.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_TabText(attributes);
+	} else {
+		inst.__tink_init16(attributes);
 	}
-	inst.__tink_init16(attributes);
 	return inst;
 };
 mdc_TabText.__super__ = coconut_ui_View;
@@ -9313,24 +7720,26 @@ mdc_TabText.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-tab__icon-text"] != null) {
 			_g.setReserved("mdc-tab__icon-text",true);
 		} else {
 			_g.h["mdc-tab__icon-text"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr = __ret1;
 		var __r1 = [];
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		var _g1 = 0;
-		var _g11 = this.get_children();
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
 			var _0 = _g11 == null ? null : _g11[_g1];
 			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("span",attr,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
 	,__tink_defaults15: null
@@ -9353,18 +7762,20 @@ mdc_TabText.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_children:"get_children",get_className:"get_className"}
 });
 var mdc_TextField = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TextField.hx", lineNumber : 14, className : "mdc.TextField", methodName : "new"});
 	this.textFieldId = mdc_TextField.textFieldIdIndex++;
-	this.__tink_defaults39 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), label : null, value : null, disabled : null, invalid : null, icon : null, iconPos : null, box : null, fullWidth : null, textArea : null, type : tink_state__$Observable_Observable_$Impl_$["const"]("text"), onedit : null, pattern : tink_state__$Observable_Observable_$Impl_$["const"]("*"), required : tink_state__$Observable_Observable_$Impl_$["const"](false), onkeydown : null};
+	this.__tink_defaults41 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), label : null, value : null, disabled : null, invalid : null, icon : null, iconPos : null, box : null, fullWidth : null, textArea : null, type : tink_state__$Observable_Observable_$Impl_$["const"]("text"), onedit : null, pattern : tink_state__$Observable_Observable_$Impl_$["const"]("*"), required : tink_state__$Observable_Observable_$Impl_$["const"](false), onkeydown : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), invalid : new coconut_ui_tools_Slot(this,null), icon : new coconut_ui_tools_Slot(this,null), iconPos : new coconut_ui_tools_Slot(this,null), box : new coconut_ui_tools_Slot(this,null), fullWidth : new coconut_ui_tools_Slot(this,null), textArea : new coconut_ui_tools_Slot(this,null), type : new coconut_ui_tools_Slot(this,null), onedit : new coconut_ui_tools_Slot(this,null), pattern : new coconut_ui_tools_Slot(this,null), required : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init42(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.TextField"] = mdc_TextField;
 mdc_TextField.__name__ = ["mdc","TextField"];
 mdc_TextField.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_TextField(attributes);
+	} else {
+		inst.__tink_init42(attributes);
 	}
-	inst.__tink_init40(attributes);
 	return inst;
 };
 mdc_TextField.__super__ = coconut_ui_View;
@@ -9373,95 +7784,115 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 	,mdcTextField: null
 	,render: function() {
 		var _gthis = this;
-		var invalid = this.get_invalid();
-		var value = this.get_value();
+		var invalid = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.invalid.observe());
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-text-field"] != null) {
 			_g.setReserved("mdc-text-field",true);
 		} else {
 			_g.h["mdc-text-field"] = true;
 		}
-		var value1 = _gthis.get_disabled();
+		var value1 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.disabled.observe());
 		if(__map_reserved["mdc-text-field--disabled"] != null) {
 			_g.setReserved("mdc-text-field--disabled",value1);
 		} else {
 			_g.h["mdc-text-field--disabled"] = value1;
 		}
-		var value2 = _gthis.get_icon() != null;
+		var value2 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.icon.observe()) != null;
 		if(__map_reserved["mdc-text-field--with-leading-icon"] != null) {
 			_g.setReserved("mdc-text-field--with-leading-icon",value2);
 		} else {
 			_g.h["mdc-text-field--with-leading-icon"] = value2;
 		}
-		var value3 = _gthis.get_box();
+		var value3 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.box.observe());
 		if(__map_reserved["mdc-text-field--box"] != null) {
 			_g.setReserved("mdc-text-field--box",value3);
 		} else {
 			_g.h["mdc-text-field--box"] = value3;
 		}
-		var value4 = _gthis.get_textArea();
+		var value4 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.textArea.observe());
 		if(__map_reserved["mdc-text-field--textarea"] != null) {
 			_g.setReserved("mdc-text-field--textarea",value4);
 		} else {
 			_g.h["mdc-text-field--textarea"] = value4;
 		}
-		var value5 = _gthis.get_fullWidth();
+		var value5 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.fullWidth.observe());
 		if(__map_reserved["mdc-text-field--fullwidth"] != null) {
 			_g.setReserved("mdc-text-field--fullwidth",value5);
 		} else {
 			_g.h["mdc-text-field--fullwidth"] = value5;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), onkeydown : this.get_onkeydown()};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), onkeydown : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe())};
+		var attr = __ret1;
 		var __r1 = [];
-		if(this.get_icon() != null && this.get_iconPos() != "right") {
-			var __ret2 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")};
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe()) != null && tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.iconPos.observe()) != "right") {
+			var __ret2 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")};
+			var attr1 = __ret2;
 			var __r2 = [];
-			__r2.push(this.get_icon());
-			__r1.push(vdom_VDom.h("i",__ret2,__r2));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+			__r2.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe()), a : coconut_vdom_VDom.EMPTY});
+			var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r2);
+			__r1.push({ t : "i", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		}
-		if(this.get_textArea()) {
-			var __ret3 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId)), required : _gthis.get_required(), onchange : function(event) {
-				if(_gthis.get_onedit() != null) {
-					(_gthis.get_onedit())(event.currentTarget.value);
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.textArea.observe())) {
+			var __ret3 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId)), required : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.required.observe()), onchange : function(event) {
+				if(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onedit.observe()) != null) {
+					(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onedit.observe()))(event.target.value);
 				}
 			}};
+			var attr2 = __ret3;
 			var __r3 = [];
-			__r3.push(value);
-			__r1.push(vdom_VDom.h("textarea",__ret3,__r3));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+			__r3.push({ t : ":text", k : value, a : coconut_vdom_VDom.EMPTY});
+			var children1 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r3);
+			__r1.push({ t : "textarea", k : attr2 == null ? null : attr2.key, a : attr2, c : children1});
 		} else {
-			var __ret4 = { type : _gthis.get_type(), className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId)), pattern : _gthis.get_pattern(), required : _gthis.get_required(), onchange : function(event1) {
-				if(_gthis.get_onedit() != null) {
-					(_gthis.get_onedit())(event1.currentTarget.value);
+			var __ret4 = { type : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.type.observe()), className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-text-field__input"), id : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId)), pattern : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.pattern.observe()), required : tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.required.observe()), onchange : function(event1) {
+				if(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onedit.observe()) != null) {
+					(tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.onedit.observe()))(event1.target.value);
 				}
 			}};
-			__r1.push(vdom_VDom.h("input",__ret4));
+			var attr3 = __ret4;
+			__r1.push({ t : "input", k : attr3 == null ? null : attr3.key, a : attr3, c : null});
 		}
-		if(this.get_label() != null) {
-			var __ret5 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-floating-label"), htmlFor : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId))};
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()) != null) {
+			var __ret5 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-floating-label"), htmlFor : "tf" + Std.string(_$UInt_UInt_$Impl_$.toFloat(_gthis.textFieldId))};
+			var attr4 = __ret5;
 			var __r4 = [];
-			__r4.push(this.get_label());
-			__r1.push(vdom_VDom.h("label",__ret5,__r4));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+			__r4.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()), a : coconut_vdom_VDom.EMPTY});
+			var children2 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r4);
+			__r1.push({ t : "label", k : attr4 == null ? null : attr4.key, a : attr4, c : children2});
 		}
-		if(this.get_icon() != null && this.get_iconPos() == "right") {
-			var __ret6 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")};
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe()) != null && tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.iconPos.observe()) == "right") {
+			var __ret6 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("material-icons mdc-text-field__icon")};
+			var attr5 = __ret6;
 			var __r5 = [];
-			__r5.push(this.get_icon());
-			__r1.push(vdom_VDom.h("i",__ret6,__r5));
+			coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			__r5.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.icon.observe()), a : coconut_vdom_VDom.EMPTY});
+			var children3 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
+			__r1.push({ t : "i", k : attr5 == null ? null : attr5.key, a : attr5, c : children3});
 		}
-		var __ret7 = { className : vdom__$Attr_ClassName_$Impl_$.ofString("mdc-line-ripple")};
+		var __ret7 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.ofString("mdc-line-ripple")};
+		var attr6 = __ret7;
 		var __r6 = [];
-		__r1.push(vdom_VDom.h("div",__ret7,__r6));
-		__r.push(vdom_VDom.h("div",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+		var children4 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r6);
+		__r1.push({ t : "div", k : attr6 == null ? null : attr6.key, a : attr6, c : children4});
+		var children5 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children5});
 		return __r[0];
 	}
 	,afterPatching: function(elem) {
-		if(this.get_value() != null) {
-			this.mdcTextField.value = this.get_value();
+		if(tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe()) != null) {
+			var tmp = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.value.observe());
+			this.mdcTextField.value = tmp;
 		}
 	}
-	,afterInit: function(elem) {
+	,afterMounting: function(elem) {
 		this.mdcTextField = new mdc.textField.MDCTextField(elem);
 	}
 	,beforeDestroy: function(elem) {
@@ -9469,42 +7900,42 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcTextField.destroy();
 		}
 	}
-	,__tink_defaults39: null
+	,__tink_defaults41: null
 	,__slots: null
 	,toString: function() {
 		return "TextField" + "#" + this.viewId;
 	}
-	,__tink_init40: function(attributes) {
+	,__tink_init42: function(attributes) {
 		var this1 = attributes.className;
-		this.__slots.className.setData(this1 == null ? this.__tink_defaults39.className : this1);
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults41.className : this1);
 		var this2 = attributes.label;
-		this.__slots.label.setData(this2 == null ? this.__tink_defaults39.label : this2);
+		this.__slots.label.setData(this2 == null ? this.__tink_defaults41.label : this2);
 		var this3 = attributes.value;
-		this.__slots.value.setData(this3 == null ? this.__tink_defaults39.value : this3);
+		this.__slots.value.setData(this3 == null ? this.__tink_defaults41.value : this3);
 		var this4 = attributes.disabled;
-		this.__slots.disabled.setData(this4 == null ? this.__tink_defaults39.disabled : this4);
+		this.__slots.disabled.setData(this4 == null ? this.__tink_defaults41.disabled : this4);
 		var this5 = attributes.invalid;
-		this.__slots.invalid.setData(this5 == null ? this.__tink_defaults39.invalid : this5);
+		this.__slots.invalid.setData(this5 == null ? this.__tink_defaults41.invalid : this5);
 		var this6 = attributes.icon;
-		this.__slots.icon.setData(this6 == null ? this.__tink_defaults39.icon : this6);
+		this.__slots.icon.setData(this6 == null ? this.__tink_defaults41.icon : this6);
 		var this7 = attributes.iconPos;
-		this.__slots.iconPos.setData(this7 == null ? this.__tink_defaults39.iconPos : this7);
+		this.__slots.iconPos.setData(this7 == null ? this.__tink_defaults41.iconPos : this7);
 		var this8 = attributes.box;
-		this.__slots.box.setData(this8 == null ? this.__tink_defaults39.box : this8);
+		this.__slots.box.setData(this8 == null ? this.__tink_defaults41.box : this8);
 		var this9 = attributes.fullWidth;
-		this.__slots.fullWidth.setData(this9 == null ? this.__tink_defaults39.fullWidth : this9);
+		this.__slots.fullWidth.setData(this9 == null ? this.__tink_defaults41.fullWidth : this9);
 		var this10 = attributes.textArea;
-		this.__slots.textArea.setData(this10 == null ? this.__tink_defaults39.textArea : this10);
+		this.__slots.textArea.setData(this10 == null ? this.__tink_defaults41.textArea : this10);
 		var this11 = attributes.type;
-		this.__slots.type.setData(this11 == null ? this.__tink_defaults39.type : this11);
+		this.__slots.type.setData(this11 == null ? this.__tink_defaults41.type : this11);
 		var this12 = attributes.onedit;
-		this.__slots.onedit.setData(this12 == null ? this.__tink_defaults39.onedit : this12);
+		this.__slots.onedit.setData(this12 == null ? this.__tink_defaults41.onedit : this12);
 		var this13 = attributes.pattern;
-		this.__slots.pattern.setData(this13 == null ? this.__tink_defaults39.pattern : this13);
+		this.__slots.pattern.setData(this13 == null ? this.__tink_defaults41.pattern : this13);
 		var this14 = attributes.required;
-		this.__slots.required.setData(this14 == null ? this.__tink_defaults39.required : this14);
+		this.__slots.required.setData(this14 == null ? this.__tink_defaults41.required : this14);
 		var this15 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this15 == null ? this.__tink_defaults39.onkeydown : this15);
+		this.__slots.onkeydown.setData(this15 == null ? this.__tink_defaults41.onkeydown : this15);
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
@@ -9555,17 +7986,19 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_onkeydown:"get_onkeydown",get_required:"get_required",get_pattern:"get_pattern",get_onedit:"get_onedit",get_type:"get_type",get_textArea:"get_textArea",get_fullWidth:"get_fullWidth",get_box:"get_box",get_iconPos:"get_iconPos",get_icon:"get_icon",get_invalid:"get_invalid",get_disabled:"get_disabled",get_value:"get_value",get_label:"get_label",get_className:"get_className"}
 });
 var mdc_TextFieldHelperText = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "TextField.hx", lineNumber : 98, className : "mdc.TextFieldHelperText", methodName : "new"});
-	this.__tink_defaults37 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), persistent : null, validation : null};
+	this.__tink_defaults39 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), persistent : null, validation : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), persistent : new coconut_ui_tools_Slot(this,null), validation : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init40(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.TextFieldHelperText"] = mdc_TextFieldHelperText;
 mdc_TextFieldHelperText.__name__ = ["mdc","TextFieldHelperText"];
 mdc_TextFieldHelperText.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_TextFieldHelperText(attributes);
+	} else {
+		inst.__tink_init40(attributes);
 	}
-	inst.__tink_init38(attributes);
 	return inst;
 };
 mdc_TextFieldHelperText.__super__ = coconut_ui_View;
@@ -9573,44 +8006,47 @@ mdc_TextFieldHelperText.prototype = $extend(coconut_ui_View.prototype,{
 	render: function() {
 		var _gthis = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-text-field-helper-text"] != null) {
 			_g.setReserved("mdc-text-field-helper-text",true);
 		} else {
 			_g.h["mdc-text-field-helper-text"] = true;
 		}
-		var value = _gthis.get_persistent();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.persistent.observe());
 		if(__map_reserved["mdc-text-field-helper-text--persistent"] != null) {
 			_g.setReserved("mdc-text-field-helper-text--persistent",value);
 		} else {
 			_g.h["mdc-text-field-helper-text--persistent"] = value;
 		}
-		var value1 = _gthis.get_validation();
+		var value1 = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.validation.observe());
 		if(__map_reserved["mdc-text-field-helper-text--validation-msg"] != null) {
 			_g.setReserved("mdc-text-field-helper-text--validation-msg",value1);
 		} else {
 			_g.h["mdc-text-field-helper-text--validation-msg"] = value1;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}};
+		var attr = __ret1;
 		var __r1 = [];
-		__r1.push(this.get_label());
-		__r.push(vdom_VDom.h("p",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r1.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.label.observe()), a : coconut_vdom_VDom.EMPTY});
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "p", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
-	,__tink_defaults37: null
+	,__tink_defaults39: null
 	,__slots: null
 	,toString: function() {
 		return "TextFieldHelperText" + "#" + this.viewId;
 	}
-	,__tink_init38: function(attributes) {
+	,__tink_init40: function(attributes) {
 		var this1 = attributes.className;
-		this.__slots.className.setData(this1 == null ? this.__tink_defaults37.className : this1);
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults39.className : this1);
 		this.__slots.label.setData(attributes.label);
 		var this2 = attributes.persistent;
-		this.__slots.persistent.setData(this2 == null ? this.__tink_defaults37.persistent : this2);
+		this.__slots.persistent.setData(this2 == null ? this.__tink_defaults39.persistent : this2);
 		var this3 = attributes.validation;
-		this.__slots.validation.setData(this3 == null ? this.__tink_defaults37.validation : this3);
+		this.__slots.validation.setData(this3 == null ? this.__tink_defaults39.validation : this3);
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
@@ -9628,17 +8064,19 @@ mdc_TextFieldHelperText.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_validation:"get_validation",get_persistent:"get_persistent",get_label:"get_label",get_className:"get_className"}
 });
 var mdc_Toolbar = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 7, className : "mdc.Toolbar", methodName : "new"});
-	this.__tink_defaults13 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { children : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults13 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init14(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.Toolbar"] = mdc_Toolbar;
 mdc_Toolbar.__name__ = ["mdc","Toolbar"];
 mdc_Toolbar.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_Toolbar(attributes);
+	} else {
+		inst.__tink_init14(attributes);
 	}
-	inst.__tink_init14(attributes);
 	return inst;
 };
 mdc_Toolbar.__super__ = coconut_ui_View;
@@ -9647,469 +8085,26 @@ mdc_Toolbar.prototype = $extend(coconut_ui_View.prototype,{
 		var _gthis = this;
 		var attr = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-toolbar"] != null) {
 			_g.setReserved("mdc-toolbar",true);
 		} else {
 			_g.h["mdc-toolbar"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-		var _g1 = this.get_accessKey();
-		if(_g1 != null) {
-			var v = _g1;
-			__ret1.accessKey = v;
-		}
-		var _g2 = this.get_accessKeyLabel();
-		if(_g2 != null) {
-			var v1 = _g2;
-			__ret1.accessKeyLabel = v1;
-		}
-		var _g3 = this.get_attributes();
-		if(_g3 != null) {
-			var v2 = _g3;
-			__ret1.attributes = v2;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v3 = _g4;
-			__ret1.dir = v3;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v4 = _g5;
-			__ret1.draggable = v4;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v5 = _g6;
-			__ret1.hidden = v5;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v6 = _g7;
-			__ret1.id = v6;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v7 = _g8;
-			__ret1.key = v7;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v8 = _g9;
-			__ret1.lang = v8;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v9 = _g10;
-			__ret1.onabort = v9;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v10 = _g11;
-			__ret1.onblur = v10;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v11 = _g12;
-			__ret1.oncanplay = v11;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v12 = _g13;
-			__ret1.oncanplaythrough = v12;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v13 = _g14;
-			__ret1.onchange = v13;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v14 = _g15;
-			__ret1.onclick = v14;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v15 = _g16;
-			__ret1.oncontextmenu = v15;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v16 = _g17;
-			__ret1.oncopy = v16;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v17 = _g18;
-			__ret1.oncut = v17;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v18 = _g19;
-			__ret1.ondblclick = v18;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v19 = _g20;
-			__ret1.ondrag = v19;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v20 = _g21;
-			__ret1.ondragend = v20;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v21 = _g22;
-			__ret1.ondragenter = v21;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v22 = _g23;
-			__ret1.ondragleave = v22;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v23 = _g24;
-			__ret1.ondragover = v23;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v24 = _g25;
-			__ret1.ondragstart = v24;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v25 = _g26;
-			__ret1.ondrop = v25;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v26 = _g27;
-			__ret1.ondurationchange = v26;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v27 = _g28;
-			__ret1.onemptied = v27;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v28 = _g29;
-			__ret1.onended = v28;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v29 = _g30;
-			__ret1.onerror = v29;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v30 = _g31;
-			__ret1.onfocus = v30;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v31 = _g32;
-			__ret1.onfullscreenchange = v31;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v32 = _g33;
-			__ret1.onfullscreenerror = v32;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v33 = _g34;
-			__ret1.ongotpointercapture = v33;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v34 = _g35;
-			__ret1.oninput = v34;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v35 = _g36;
-			__ret1.oninvalid = v35;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v36 = _g37;
-			__ret1.onkeydown = v36;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v37 = _g38;
-			__ret1.onkeypress = v37;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v38 = _g39;
-			__ret1.onkeyup = v38;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v39 = _g40;
-			__ret1.onload = v39;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v40 = _g41;
-			__ret1.onloadeddata = v40;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v41 = _g42;
-			__ret1.onloadedmetadata = v41;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v42 = _g43;
-			__ret1.onloadstart = v42;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v43 = _g44;
-			__ret1.onlostpointercapture = v43;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v44 = _g45;
-			__ret1.onmousedown = v44;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v45 = _g46;
-			__ret1.onmouseenter = v45;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v46 = _g47;
-			__ret1.onmouseleave = v46;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v47 = _g48;
-			__ret1.onmousemove = v47;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v48 = _g49;
-			__ret1.onmouseout = v48;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v49 = _g50;
-			__ret1.onmouseover = v49;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v50 = _g51;
-			__ret1.onmouseup = v50;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v51 = _g52;
-			__ret1.onpaste = v51;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v52 = _g53;
-			__ret1.onpause = v52;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v53 = _g54;
-			__ret1.onplay = v53;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v54 = _g55;
-			__ret1.onplaying = v54;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v55 = _g56;
-			__ret1.onpointercancel = v55;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v56 = _g57;
-			__ret1.onpointerdown = v56;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v57 = _g58;
-			__ret1.onpointerenter = v57;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v58 = _g59;
-			__ret1.onpointerleave = v58;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v59 = _g60;
-			__ret1.onpointerlockchange = v59;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v60 = _g61;
-			__ret1.onpointerlockerror = v60;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v61 = _g62;
-			__ret1.onpointermove = v61;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v62 = _g63;
-			__ret1.onpointerout = v62;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v63 = _g64;
-			__ret1.onpointerover = v63;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v64 = _g65;
-			__ret1.onpointerup = v64;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v65 = _g66;
-			__ret1.onprogress = v65;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v66 = _g67;
-			__ret1.onratechange = v66;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v67 = _g68;
-			__ret1.onreset = v67;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v68 = _g69;
-			__ret1.onresize = v68;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v69 = _g70;
-			__ret1.onscroll = v69;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v70 = _g71;
-			__ret1.onseeked = v70;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v71 = _g72;
-			__ret1.onseeking = v71;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v72 = _g73;
-			__ret1.onselect = v72;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v73 = _g74;
-			__ret1.onshow = v73;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v74 = _g75;
-			__ret1.onstalled = v74;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v75 = _g76;
-			__ret1.onsubmit = v75;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v76 = _g77;
-			__ret1.onsuspend = v76;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v77 = _g78;
-			__ret1.ontimeupdate = v77;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v78 = _g79;
-			__ret1.ontouchcancel = v78;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v79 = _g80;
-			__ret1.ontouchend = v79;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v80 = _g81;
-			__ret1.ontouchmove = v80;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v81 = _g82;
-			__ret1.ontouchstart = v81;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v82 = _g83;
-			__ret1.onvolumechange = v82;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v83 = _g84;
-			__ret1.onwaiting = v83;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v84 = _g85;
-			__ret1.onwheel = v84;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v85 = _g86;
-			__ret1.spellcheck = v85;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v86 = _g87;
-			__ret1.style = v86;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v87 = _g88;
-			__ret1.tabIndex = v87;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v88 = _g89;
-			__ret1.title = v88;
-		}
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr1 = __ret1;
 		var __r1 = [];
-		var _g90 = 0;
-		var _g110 = this.get_children();
-		while(_g90 < (_g110 == null ? 0 : _g110.length)) {
-			var _0 = _g110 == null ? null : _g110[_g90];
-			++_g90;
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		var _g1 = 0;
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
+		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
+			var _0 = _g11 == null ? null : _g11[_g1];
+			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("header",attr1,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "header", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		return __r[0];
 	}
 	,__tink_defaults13: null
@@ -10118,476 +8113,33 @@ mdc_Toolbar.prototype = $extend(coconut_ui_View.prototype,{
 		return "Toolbar" + "#" + this.viewId;
 	}
 	,__tink_init14: function(attributes) {
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults13.className : this1);
 		this.__slots.children.setData(attributes.children);
-		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults13.accessKey : this1);
-		var this2 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults13.accessKeyLabel : this2);
-		var this3 = attributes.attributes;
-		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults13.attributes : this3);
-		var this4 = attributes.className;
-		this.__slots.className.setData(this4 == null ? this.__tink_defaults13.className : this4);
-		var this5 = attributes.dir;
-		this.__slots.dir.setData(this5 == null ? this.__tink_defaults13.dir : this5);
-		var this6 = attributes.draggable;
-		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults13.draggable : this6);
-		var this7 = attributes.hidden;
-		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults13.hidden : this7);
-		var this8 = attributes.id;
-		this.__slots.id.setData(this8 == null ? this.__tink_defaults13.id : this8);
-		var this9 = attributes.key;
-		this.__slots.key.setData(this9 == null ? this.__tink_defaults13.key : this9);
-		var this10 = attributes.lang;
-		this.__slots.lang.setData(this10 == null ? this.__tink_defaults13.lang : this10);
-		var this11 = attributes.onabort;
-		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults13.onabort : this11);
-		var this12 = attributes.onblur;
-		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults13.onblur : this12);
-		var this13 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults13.oncanplay : this13);
-		var this14 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults13.oncanplaythrough : this14);
-		var this15 = attributes.onchange;
-		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults13.onchange : this15);
-		var this16 = attributes.onclick;
-		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults13.onclick : this16);
-		var this17 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults13.oncontextmenu : this17);
-		var this18 = attributes.oncopy;
-		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults13.oncopy : this18);
-		var this19 = attributes.oncut;
-		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults13.oncut : this19);
-		var this20 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults13.ondblclick : this20);
-		var this21 = attributes.ondrag;
-		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults13.ondrag : this21);
-		var this22 = attributes.ondragend;
-		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults13.ondragend : this22);
-		var this23 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults13.ondragenter : this23);
-		var this24 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults13.ondragleave : this24);
-		var this25 = attributes.ondragover;
-		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults13.ondragover : this25);
-		var this26 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults13.ondragstart : this26);
-		var this27 = attributes.ondrop;
-		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults13.ondrop : this27);
-		var this28 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults13.ondurationchange : this28);
-		var this29 = attributes.onemptied;
-		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults13.onemptied : this29);
-		var this30 = attributes.onended;
-		this.__slots.onended.setData(this30 == null ? this.__tink_defaults13.onended : this30);
-		var this31 = attributes.onerror;
-		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults13.onerror : this31);
-		var this32 = attributes.onfocus;
-		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults13.onfocus : this32);
-		var this33 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults13.onfullscreenchange : this33);
-		var this34 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults13.onfullscreenerror : this34);
-		var this35 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults13.ongotpointercapture : this35);
-		var this36 = attributes.oninput;
-		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults13.oninput : this36);
-		var this37 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults13.oninvalid : this37);
-		var this38 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults13.onkeydown : this38);
-		var this39 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults13.onkeypress : this39);
-		var this40 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults13.onkeyup : this40);
-		var this41 = attributes.onload;
-		this.__slots.onload.setData(this41 == null ? this.__tink_defaults13.onload : this41);
-		var this42 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults13.onloadeddata : this42);
-		var this43 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults13.onloadedmetadata : this43);
-		var this44 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults13.onloadstart : this44);
-		var this45 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults13.onlostpointercapture : this45);
-		var this46 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults13.onmousedown : this46);
-		var this47 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults13.onmouseenter : this47);
-		var this48 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults13.onmouseleave : this48);
-		var this49 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults13.onmousemove : this49);
-		var this50 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults13.onmouseout : this50);
-		var this51 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults13.onmouseover : this51);
-		var this52 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults13.onmouseup : this52);
-		var this53 = attributes.onpaste;
-		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults13.onpaste : this53);
-		var this54 = attributes.onpause;
-		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults13.onpause : this54);
-		var this55 = attributes.onplay;
-		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults13.onplay : this55);
-		var this56 = attributes.onplaying;
-		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults13.onplaying : this56);
-		var this57 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults13.onpointercancel : this57);
-		var this58 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults13.onpointerdown : this58);
-		var this59 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults13.onpointerenter : this59);
-		var this60 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults13.onpointerleave : this60);
-		var this61 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults13.onpointerlockchange : this61);
-		var this62 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults13.onpointerlockerror : this62);
-		var this63 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults13.onpointermove : this63);
-		var this64 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults13.onpointerout : this64);
-		var this65 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults13.onpointerover : this65);
-		var this66 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults13.onpointerup : this66);
-		var this67 = attributes.onprogress;
-		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults13.onprogress : this67);
-		var this68 = attributes.onratechange;
-		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults13.onratechange : this68);
-		var this69 = attributes.onreset;
-		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults13.onreset : this69);
-		var this70 = attributes.onresize;
-		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults13.onresize : this70);
-		var this71 = attributes.onscroll;
-		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults13.onscroll : this71);
-		var this72 = attributes.onseeked;
-		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults13.onseeked : this72);
-		var this73 = attributes.onseeking;
-		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults13.onseeking : this73);
-		var this74 = attributes.onselect;
-		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults13.onselect : this74);
-		var this75 = attributes.onshow;
-		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults13.onshow : this75);
-		var this76 = attributes.onstalled;
-		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults13.onstalled : this76);
-		var this77 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults13.onsubmit : this77);
-		var this78 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults13.onsuspend : this78);
-		var this79 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults13.ontimeupdate : this79);
-		var this80 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults13.ontouchcancel : this80);
-		var this81 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults13.ontouchend : this81);
-		var this82 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults13.ontouchmove : this82);
-		var this83 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults13.ontouchstart : this83);
-		var this84 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults13.onvolumechange : this84);
-		var this85 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults13.onwaiting : this85);
-		var this86 = attributes.onwheel;
-		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults13.onwheel : this86);
-		var this87 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults13.spellcheck : this87);
-		var this88 = attributes.style;
-		this.__slots.style.setData(this88 == null ? this.__tink_defaults13.style : this88);
-		var this89 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults13.tabIndex : this89);
-		var this90 = attributes.title;
-		this.__slots.title.setData(this90 == null ? this.__tink_defaults13.title : this90);
-	}
-	,get_children: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
-	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	,get_children: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 	}
 	,__class__: mdc_Toolbar
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_children:"get_children"}
+	,__properties__: {get_children:"get_children",get_className:"get_className"}
 });
 var mdc_ToolbarRow = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 21, className : "mdc.ToolbarRow", methodName : "new"});
-	this.__tink_defaults11 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { children : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults11 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init12(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ToolbarRow"] = mdc_ToolbarRow;
 mdc_ToolbarRow.__name__ = ["mdc","ToolbarRow"];
 mdc_ToolbarRow.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarRow(attributes);
+	} else {
+		inst.__tink_init12(attributes);
 	}
-	inst.__tink_init12(attributes);
 	return inst;
 };
 mdc_ToolbarRow.__super__ = coconut_ui_View;
@@ -10596,469 +8148,26 @@ mdc_ToolbarRow.prototype = $extend(coconut_ui_View.prototype,{
 		var _gthis = this;
 		var attr = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-toolbar__row"] != null) {
 			_g.setReserved("mdc-toolbar__row",true);
 		} else {
 			_g.h["mdc-toolbar__row"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-		var _g1 = this.get_accessKey();
-		if(_g1 != null) {
-			var v = _g1;
-			__ret1.accessKey = v;
-		}
-		var _g2 = this.get_accessKeyLabel();
-		if(_g2 != null) {
-			var v1 = _g2;
-			__ret1.accessKeyLabel = v1;
-		}
-		var _g3 = this.get_attributes();
-		if(_g3 != null) {
-			var v2 = _g3;
-			__ret1.attributes = v2;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v3 = _g4;
-			__ret1.dir = v3;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v4 = _g5;
-			__ret1.draggable = v4;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v5 = _g6;
-			__ret1.hidden = v5;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v6 = _g7;
-			__ret1.id = v6;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v7 = _g8;
-			__ret1.key = v7;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v8 = _g9;
-			__ret1.lang = v8;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v9 = _g10;
-			__ret1.onabort = v9;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v10 = _g11;
-			__ret1.onblur = v10;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v11 = _g12;
-			__ret1.oncanplay = v11;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v12 = _g13;
-			__ret1.oncanplaythrough = v12;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v13 = _g14;
-			__ret1.onchange = v13;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v14 = _g15;
-			__ret1.onclick = v14;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v15 = _g16;
-			__ret1.oncontextmenu = v15;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v16 = _g17;
-			__ret1.oncopy = v16;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v17 = _g18;
-			__ret1.oncut = v17;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v18 = _g19;
-			__ret1.ondblclick = v18;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v19 = _g20;
-			__ret1.ondrag = v19;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v20 = _g21;
-			__ret1.ondragend = v20;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v21 = _g22;
-			__ret1.ondragenter = v21;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v22 = _g23;
-			__ret1.ondragleave = v22;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v23 = _g24;
-			__ret1.ondragover = v23;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v24 = _g25;
-			__ret1.ondragstart = v24;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v25 = _g26;
-			__ret1.ondrop = v25;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v26 = _g27;
-			__ret1.ondurationchange = v26;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v27 = _g28;
-			__ret1.onemptied = v27;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v28 = _g29;
-			__ret1.onended = v28;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v29 = _g30;
-			__ret1.onerror = v29;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v30 = _g31;
-			__ret1.onfocus = v30;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v31 = _g32;
-			__ret1.onfullscreenchange = v31;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v32 = _g33;
-			__ret1.onfullscreenerror = v32;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v33 = _g34;
-			__ret1.ongotpointercapture = v33;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v34 = _g35;
-			__ret1.oninput = v34;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v35 = _g36;
-			__ret1.oninvalid = v35;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v36 = _g37;
-			__ret1.onkeydown = v36;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v37 = _g38;
-			__ret1.onkeypress = v37;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v38 = _g39;
-			__ret1.onkeyup = v38;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v39 = _g40;
-			__ret1.onload = v39;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v40 = _g41;
-			__ret1.onloadeddata = v40;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v41 = _g42;
-			__ret1.onloadedmetadata = v41;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v42 = _g43;
-			__ret1.onloadstart = v42;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v43 = _g44;
-			__ret1.onlostpointercapture = v43;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v44 = _g45;
-			__ret1.onmousedown = v44;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v45 = _g46;
-			__ret1.onmouseenter = v45;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v46 = _g47;
-			__ret1.onmouseleave = v46;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v47 = _g48;
-			__ret1.onmousemove = v47;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v48 = _g49;
-			__ret1.onmouseout = v48;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v49 = _g50;
-			__ret1.onmouseover = v49;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v50 = _g51;
-			__ret1.onmouseup = v50;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v51 = _g52;
-			__ret1.onpaste = v51;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v52 = _g53;
-			__ret1.onpause = v52;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v53 = _g54;
-			__ret1.onplay = v53;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v54 = _g55;
-			__ret1.onplaying = v54;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v55 = _g56;
-			__ret1.onpointercancel = v55;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v56 = _g57;
-			__ret1.onpointerdown = v56;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v57 = _g58;
-			__ret1.onpointerenter = v57;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v58 = _g59;
-			__ret1.onpointerleave = v58;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v59 = _g60;
-			__ret1.onpointerlockchange = v59;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v60 = _g61;
-			__ret1.onpointerlockerror = v60;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v61 = _g62;
-			__ret1.onpointermove = v61;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v62 = _g63;
-			__ret1.onpointerout = v62;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v63 = _g64;
-			__ret1.onpointerover = v63;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v64 = _g65;
-			__ret1.onpointerup = v64;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v65 = _g66;
-			__ret1.onprogress = v65;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v66 = _g67;
-			__ret1.onratechange = v66;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v67 = _g68;
-			__ret1.onreset = v67;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v68 = _g69;
-			__ret1.onresize = v68;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v69 = _g70;
-			__ret1.onscroll = v69;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v70 = _g71;
-			__ret1.onseeked = v70;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v71 = _g72;
-			__ret1.onseeking = v71;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v72 = _g73;
-			__ret1.onselect = v72;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v73 = _g74;
-			__ret1.onshow = v73;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v74 = _g75;
-			__ret1.onstalled = v74;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v75 = _g76;
-			__ret1.onsubmit = v75;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v76 = _g77;
-			__ret1.onsuspend = v76;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v77 = _g78;
-			__ret1.ontimeupdate = v77;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v78 = _g79;
-			__ret1.ontouchcancel = v78;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v79 = _g80;
-			__ret1.ontouchend = v79;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v80 = _g81;
-			__ret1.ontouchmove = v80;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v81 = _g82;
-			__ret1.ontouchstart = v81;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v82 = _g83;
-			__ret1.onvolumechange = v82;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v83 = _g84;
-			__ret1.onwaiting = v83;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v84 = _g85;
-			__ret1.onwheel = v84;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v85 = _g86;
-			__ret1.spellcheck = v85;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v86 = _g87;
-			__ret1.style = v86;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v87 = _g88;
-			__ret1.tabIndex = v87;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v88 = _g89;
-			__ret1.title = v88;
-		}
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr1 = __ret1;
 		var __r1 = [];
-		var _g90 = 0;
-		var _g110 = this.get_children();
-		while(_g90 < (_g110 == null ? 0 : _g110.length)) {
-			var _0 = _g110 == null ? null : _g110[_g90];
-			++_g90;
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		var _g1 = 0;
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
+		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
+			var _0 = _g11 == null ? null : _g11[_g1];
+			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("div",attr1,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "div", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		return __r[0];
 	}
 	,__tink_defaults11: null
@@ -11067,479 +8176,37 @@ mdc_ToolbarRow.prototype = $extend(coconut_ui_View.prototype,{
 		return "ToolbarRow" + "#" + this.viewId;
 	}
 	,__tink_init12: function(attributes) {
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults11.className : this1);
 		this.__slots.children.setData(attributes.children);
-		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults11.accessKey : this1);
-		var this2 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults11.accessKeyLabel : this2);
-		var this3 = attributes.attributes;
-		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults11.attributes : this3);
-		var this4 = attributes.className;
-		this.__slots.className.setData(this4 == null ? this.__tink_defaults11.className : this4);
-		var this5 = attributes.dir;
-		this.__slots.dir.setData(this5 == null ? this.__tink_defaults11.dir : this5);
-		var this6 = attributes.draggable;
-		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults11.draggable : this6);
-		var this7 = attributes.hidden;
-		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults11.hidden : this7);
-		var this8 = attributes.id;
-		this.__slots.id.setData(this8 == null ? this.__tink_defaults11.id : this8);
-		var this9 = attributes.key;
-		this.__slots.key.setData(this9 == null ? this.__tink_defaults11.key : this9);
-		var this10 = attributes.lang;
-		this.__slots.lang.setData(this10 == null ? this.__tink_defaults11.lang : this10);
-		var this11 = attributes.onabort;
-		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults11.onabort : this11);
-		var this12 = attributes.onblur;
-		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults11.onblur : this12);
-		var this13 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults11.oncanplay : this13);
-		var this14 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults11.oncanplaythrough : this14);
-		var this15 = attributes.onchange;
-		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults11.onchange : this15);
-		var this16 = attributes.onclick;
-		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults11.onclick : this16);
-		var this17 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults11.oncontextmenu : this17);
-		var this18 = attributes.oncopy;
-		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults11.oncopy : this18);
-		var this19 = attributes.oncut;
-		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults11.oncut : this19);
-		var this20 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults11.ondblclick : this20);
-		var this21 = attributes.ondrag;
-		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults11.ondrag : this21);
-		var this22 = attributes.ondragend;
-		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults11.ondragend : this22);
-		var this23 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults11.ondragenter : this23);
-		var this24 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults11.ondragleave : this24);
-		var this25 = attributes.ondragover;
-		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults11.ondragover : this25);
-		var this26 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults11.ondragstart : this26);
-		var this27 = attributes.ondrop;
-		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults11.ondrop : this27);
-		var this28 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults11.ondurationchange : this28);
-		var this29 = attributes.onemptied;
-		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults11.onemptied : this29);
-		var this30 = attributes.onended;
-		this.__slots.onended.setData(this30 == null ? this.__tink_defaults11.onended : this30);
-		var this31 = attributes.onerror;
-		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults11.onerror : this31);
-		var this32 = attributes.onfocus;
-		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults11.onfocus : this32);
-		var this33 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults11.onfullscreenchange : this33);
-		var this34 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults11.onfullscreenerror : this34);
-		var this35 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults11.ongotpointercapture : this35);
-		var this36 = attributes.oninput;
-		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults11.oninput : this36);
-		var this37 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults11.oninvalid : this37);
-		var this38 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults11.onkeydown : this38);
-		var this39 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults11.onkeypress : this39);
-		var this40 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults11.onkeyup : this40);
-		var this41 = attributes.onload;
-		this.__slots.onload.setData(this41 == null ? this.__tink_defaults11.onload : this41);
-		var this42 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults11.onloadeddata : this42);
-		var this43 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults11.onloadedmetadata : this43);
-		var this44 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults11.onloadstart : this44);
-		var this45 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults11.onlostpointercapture : this45);
-		var this46 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults11.onmousedown : this46);
-		var this47 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults11.onmouseenter : this47);
-		var this48 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults11.onmouseleave : this48);
-		var this49 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults11.onmousemove : this49);
-		var this50 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults11.onmouseout : this50);
-		var this51 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults11.onmouseover : this51);
-		var this52 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults11.onmouseup : this52);
-		var this53 = attributes.onpaste;
-		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults11.onpaste : this53);
-		var this54 = attributes.onpause;
-		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults11.onpause : this54);
-		var this55 = attributes.onplay;
-		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults11.onplay : this55);
-		var this56 = attributes.onplaying;
-		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults11.onplaying : this56);
-		var this57 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults11.onpointercancel : this57);
-		var this58 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults11.onpointerdown : this58);
-		var this59 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults11.onpointerenter : this59);
-		var this60 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults11.onpointerleave : this60);
-		var this61 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults11.onpointerlockchange : this61);
-		var this62 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults11.onpointerlockerror : this62);
-		var this63 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults11.onpointermove : this63);
-		var this64 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults11.onpointerout : this64);
-		var this65 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults11.onpointerover : this65);
-		var this66 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults11.onpointerup : this66);
-		var this67 = attributes.onprogress;
-		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults11.onprogress : this67);
-		var this68 = attributes.onratechange;
-		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults11.onratechange : this68);
-		var this69 = attributes.onreset;
-		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults11.onreset : this69);
-		var this70 = attributes.onresize;
-		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults11.onresize : this70);
-		var this71 = attributes.onscroll;
-		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults11.onscroll : this71);
-		var this72 = attributes.onseeked;
-		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults11.onseeked : this72);
-		var this73 = attributes.onseeking;
-		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults11.onseeking : this73);
-		var this74 = attributes.onselect;
-		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults11.onselect : this74);
-		var this75 = attributes.onshow;
-		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults11.onshow : this75);
-		var this76 = attributes.onstalled;
-		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults11.onstalled : this76);
-		var this77 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults11.onsubmit : this77);
-		var this78 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults11.onsuspend : this78);
-		var this79 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults11.ontimeupdate : this79);
-		var this80 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults11.ontouchcancel : this80);
-		var this81 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults11.ontouchend : this81);
-		var this82 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults11.ontouchmove : this82);
-		var this83 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults11.ontouchstart : this83);
-		var this84 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults11.onvolumechange : this84);
-		var this85 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults11.onwaiting : this85);
-		var this86 = attributes.onwheel;
-		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults11.onwheel : this86);
-		var this87 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults11.spellcheck : this87);
-		var this88 = attributes.style;
-		this.__slots.style.setData(this88 == null ? this.__tink_defaults11.style : this88);
-		var this89 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults11.tabIndex : this89);
-		var this90 = attributes.title;
-		this.__slots.title.setData(this90 == null ? this.__tink_defaults11.title : this90);
-	}
-	,get_children: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
-	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	,get_children: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 	}
 	,__class__: mdc_ToolbarRow
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_children:"get_children"}
+	,__properties__: {get_children:"get_children",get_className:"get_className"}
 });
 var mdc_ToolbarSection = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 34, className : "mdc.ToolbarSection", methodName : "new"});
+	var tmp = tink_state__$Observable_Observable_$Impl_$["const"]("");
 	var this1 = { f : function() {
 		return "";
 	}};
-	this.__tink_defaults9 = { align : tink_state__$Observable_Observable_$Impl_$.auto(this1), shringToFit : tink_state__$Observable_Observable_$Impl_$["const"](false), accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { children : new coconut_ui_tools_Slot(this,null), align : new coconut_ui_tools_Slot(this,null), shringToFit : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults9 = { className : tmp, align : tink_state__$Observable_Observable_$Impl_$.auto(this1), shringToFit : tink_state__$Observable_Observable_$Impl_$["const"](false)};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null), align : new coconut_ui_tools_Slot(this,null), shringToFit : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init10(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ToolbarSection"] = mdc_ToolbarSection;
 mdc_ToolbarSection.__name__ = ["mdc","ToolbarSection"];
 mdc_ToolbarSection.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarSection(attributes);
+	} else {
+		inst.__tink_init10(attributes);
 	}
-	inst.__tink_init10(attributes);
 	return inst;
 };
 mdc_ToolbarSection.__super__ = coconut_ui_View;
@@ -11548,481 +8215,38 @@ mdc_ToolbarSection.prototype = $extend(coconut_ui_View.prototype,{
 		var _gthis = this;
 		var attr = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-toolbar__section"] != null) {
 			_g.setReserved("mdc-toolbar__section",true);
 		} else {
 			_g.h["mdc-toolbar__section"] = true;
 		}
-		var value = _gthis.get_shringToFit();
+		var value = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.shringToFit.observe());
 		if(__map_reserved["mdc-toolbar__section--shrink-to-fit"] != null) {
 			_g.setReserved("mdc-toolbar__section--shrink-to-fit",value);
 		} else {
 			_g.h["mdc-toolbar__section--shrink-to-fit"] = value;
 		}
-		var key = _gthis.get_align();
+		var key = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.align.observe());
 		if(__map_reserved[key] != null) {
 			_g.setReserved(key,true);
 		} else {
 			_g.h[key] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-		var _g1 = this.get_accessKey();
-		if(_g1 != null) {
-			var v = _g1;
-			__ret1.accessKey = v;
-		}
-		var _g2 = this.get_accessKeyLabel();
-		if(_g2 != null) {
-			var v1 = _g2;
-			__ret1.accessKeyLabel = v1;
-		}
-		var _g3 = this.get_attributes();
-		if(_g3 != null) {
-			var v2 = _g3;
-			__ret1.attributes = v2;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v3 = _g4;
-			__ret1.dir = v3;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v4 = _g5;
-			__ret1.draggable = v4;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v5 = _g6;
-			__ret1.hidden = v5;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v6 = _g7;
-			__ret1.id = v6;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v7 = _g8;
-			__ret1.key = v7;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v8 = _g9;
-			__ret1.lang = v8;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v9 = _g10;
-			__ret1.onabort = v9;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v10 = _g11;
-			__ret1.onblur = v10;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v11 = _g12;
-			__ret1.oncanplay = v11;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v12 = _g13;
-			__ret1.oncanplaythrough = v12;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v13 = _g14;
-			__ret1.onchange = v13;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v14 = _g15;
-			__ret1.onclick = v14;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v15 = _g16;
-			__ret1.oncontextmenu = v15;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v16 = _g17;
-			__ret1.oncopy = v16;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v17 = _g18;
-			__ret1.oncut = v17;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v18 = _g19;
-			__ret1.ondblclick = v18;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v19 = _g20;
-			__ret1.ondrag = v19;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v20 = _g21;
-			__ret1.ondragend = v20;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v21 = _g22;
-			__ret1.ondragenter = v21;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v22 = _g23;
-			__ret1.ondragleave = v22;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v23 = _g24;
-			__ret1.ondragover = v23;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v24 = _g25;
-			__ret1.ondragstart = v24;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v25 = _g26;
-			__ret1.ondrop = v25;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v26 = _g27;
-			__ret1.ondurationchange = v26;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v27 = _g28;
-			__ret1.onemptied = v27;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v28 = _g29;
-			__ret1.onended = v28;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v29 = _g30;
-			__ret1.onerror = v29;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v30 = _g31;
-			__ret1.onfocus = v30;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v31 = _g32;
-			__ret1.onfullscreenchange = v31;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v32 = _g33;
-			__ret1.onfullscreenerror = v32;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v33 = _g34;
-			__ret1.ongotpointercapture = v33;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v34 = _g35;
-			__ret1.oninput = v34;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v35 = _g36;
-			__ret1.oninvalid = v35;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v36 = _g37;
-			__ret1.onkeydown = v36;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v37 = _g38;
-			__ret1.onkeypress = v37;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v38 = _g39;
-			__ret1.onkeyup = v38;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v39 = _g40;
-			__ret1.onload = v39;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v40 = _g41;
-			__ret1.onloadeddata = v40;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v41 = _g42;
-			__ret1.onloadedmetadata = v41;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v42 = _g43;
-			__ret1.onloadstart = v42;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v43 = _g44;
-			__ret1.onlostpointercapture = v43;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v44 = _g45;
-			__ret1.onmousedown = v44;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v45 = _g46;
-			__ret1.onmouseenter = v45;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v46 = _g47;
-			__ret1.onmouseleave = v46;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v47 = _g48;
-			__ret1.onmousemove = v47;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v48 = _g49;
-			__ret1.onmouseout = v48;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v49 = _g50;
-			__ret1.onmouseover = v49;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v50 = _g51;
-			__ret1.onmouseup = v50;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v51 = _g52;
-			__ret1.onpaste = v51;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v52 = _g53;
-			__ret1.onpause = v52;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v53 = _g54;
-			__ret1.onplay = v53;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v54 = _g55;
-			__ret1.onplaying = v54;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v55 = _g56;
-			__ret1.onpointercancel = v55;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v56 = _g57;
-			__ret1.onpointerdown = v56;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v57 = _g58;
-			__ret1.onpointerenter = v57;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v58 = _g59;
-			__ret1.onpointerleave = v58;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v59 = _g60;
-			__ret1.onpointerlockchange = v59;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v60 = _g61;
-			__ret1.onpointerlockerror = v60;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v61 = _g62;
-			__ret1.onpointermove = v61;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v62 = _g63;
-			__ret1.onpointerout = v62;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v63 = _g64;
-			__ret1.onpointerover = v63;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v64 = _g65;
-			__ret1.onpointerup = v64;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v65 = _g66;
-			__ret1.onprogress = v65;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v66 = _g67;
-			__ret1.onratechange = v66;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v67 = _g68;
-			__ret1.onreset = v67;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v68 = _g69;
-			__ret1.onresize = v68;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v69 = _g70;
-			__ret1.onscroll = v69;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v70 = _g71;
-			__ret1.onseeked = v70;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v71 = _g72;
-			__ret1.onseeking = v71;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v72 = _g73;
-			__ret1.onselect = v72;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v73 = _g74;
-			__ret1.onshow = v73;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v74 = _g75;
-			__ret1.onstalled = v74;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v75 = _g76;
-			__ret1.onsubmit = v75;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v76 = _g77;
-			__ret1.onsuspend = v76;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v77 = _g78;
-			__ret1.ontimeupdate = v77;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v78 = _g79;
-			__ret1.ontouchcancel = v78;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v79 = _g80;
-			__ret1.ontouchend = v79;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v80 = _g81;
-			__ret1.ontouchmove = v80;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v81 = _g82;
-			__ret1.ontouchstart = v81;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v82 = _g83;
-			__ret1.onvolumechange = v82;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v83 = _g84;
-			__ret1.onwaiting = v83;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v84 = _g85;
-			__ret1.onwheel = v84;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v85 = _g86;
-			__ret1.spellcheck = v85;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v86 = _g87;
-			__ret1.style = v86;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v87 = _g88;
-			__ret1.tabIndex = v87;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v88 = _g89;
-			__ret1.title = v88;
-		}
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr1 = __ret1;
 		var __r1 = [];
-		var _g90 = 0;
-		var _g110 = this.get_children();
-		while(_g90 < (_g110 == null ? 0 : _g110.length)) {
-			var _0 = _g110 == null ? null : _g110[_g90];
-			++_g90;
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		var _g1 = 0;
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
+		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
+			var _0 = _g11 == null ? null : _g11[_g1];
+			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("section",attr1,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "section", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		return __r[0];
 	}
 	,__tink_defaults9: null
@@ -12031,191 +8255,16 @@ mdc_ToolbarSection.prototype = $extend(coconut_ui_View.prototype,{
 		return "ToolbarSection" + "#" + this.viewId;
 	}
 	,__tink_init10: function(attributes) {
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults9.className : this1);
 		this.__slots.children.setData(attributes.children);
-		var this1 = attributes.align;
-		this.__slots.align.setData(this1 == null ? this.__tink_defaults9.align : this1);
-		var this2 = attributes.shringToFit;
-		this.__slots.shringToFit.setData(this2 == null ? this.__tink_defaults9.shringToFit : this2);
-		var this3 = attributes.accessKey;
-		this.__slots.accessKey.setData(this3 == null ? this.__tink_defaults9.accessKey : this3);
-		var this4 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this4 == null ? this.__tink_defaults9.accessKeyLabel : this4);
-		var this5 = attributes.attributes;
-		this.__slots.attributes.setData(this5 == null ? this.__tink_defaults9.attributes : this5);
-		var this6 = attributes.className;
-		this.__slots.className.setData(this6 == null ? this.__tink_defaults9.className : this6);
-		var this7 = attributes.dir;
-		this.__slots.dir.setData(this7 == null ? this.__tink_defaults9.dir : this7);
-		var this8 = attributes.draggable;
-		this.__slots.draggable.setData(this8 == null ? this.__tink_defaults9.draggable : this8);
-		var this9 = attributes.hidden;
-		this.__slots.hidden.setData(this9 == null ? this.__tink_defaults9.hidden : this9);
-		var this10 = attributes.id;
-		this.__slots.id.setData(this10 == null ? this.__tink_defaults9.id : this10);
-		var this11 = attributes.key;
-		this.__slots.key.setData(this11 == null ? this.__tink_defaults9.key : this11);
-		var this12 = attributes.lang;
-		this.__slots.lang.setData(this12 == null ? this.__tink_defaults9.lang : this12);
-		var this13 = attributes.onabort;
-		this.__slots.onabort.setData(this13 == null ? this.__tink_defaults9.onabort : this13);
-		var this14 = attributes.onblur;
-		this.__slots.onblur.setData(this14 == null ? this.__tink_defaults9.onblur : this14);
-		var this15 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this15 == null ? this.__tink_defaults9.oncanplay : this15);
-		var this16 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this16 == null ? this.__tink_defaults9.oncanplaythrough : this16);
-		var this17 = attributes.onchange;
-		this.__slots.onchange.setData(this17 == null ? this.__tink_defaults9.onchange : this17);
-		var this18 = attributes.onclick;
-		this.__slots.onclick.setData(this18 == null ? this.__tink_defaults9.onclick : this18);
-		var this19 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this19 == null ? this.__tink_defaults9.oncontextmenu : this19);
-		var this20 = attributes.oncopy;
-		this.__slots.oncopy.setData(this20 == null ? this.__tink_defaults9.oncopy : this20);
-		var this21 = attributes.oncut;
-		this.__slots.oncut.setData(this21 == null ? this.__tink_defaults9.oncut : this21);
-		var this22 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this22 == null ? this.__tink_defaults9.ondblclick : this22);
-		var this23 = attributes.ondrag;
-		this.__slots.ondrag.setData(this23 == null ? this.__tink_defaults9.ondrag : this23);
-		var this24 = attributes.ondragend;
-		this.__slots.ondragend.setData(this24 == null ? this.__tink_defaults9.ondragend : this24);
-		var this25 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this25 == null ? this.__tink_defaults9.ondragenter : this25);
-		var this26 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this26 == null ? this.__tink_defaults9.ondragleave : this26);
-		var this27 = attributes.ondragover;
-		this.__slots.ondragover.setData(this27 == null ? this.__tink_defaults9.ondragover : this27);
-		var this28 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this28 == null ? this.__tink_defaults9.ondragstart : this28);
-		var this29 = attributes.ondrop;
-		this.__slots.ondrop.setData(this29 == null ? this.__tink_defaults9.ondrop : this29);
-		var this30 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this30 == null ? this.__tink_defaults9.ondurationchange : this30);
-		var this31 = attributes.onemptied;
-		this.__slots.onemptied.setData(this31 == null ? this.__tink_defaults9.onemptied : this31);
-		var this32 = attributes.onended;
-		this.__slots.onended.setData(this32 == null ? this.__tink_defaults9.onended : this32);
-		var this33 = attributes.onerror;
-		this.__slots.onerror.setData(this33 == null ? this.__tink_defaults9.onerror : this33);
-		var this34 = attributes.onfocus;
-		this.__slots.onfocus.setData(this34 == null ? this.__tink_defaults9.onfocus : this34);
-		var this35 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this35 == null ? this.__tink_defaults9.onfullscreenchange : this35);
-		var this36 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this36 == null ? this.__tink_defaults9.onfullscreenerror : this36);
-		var this37 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this37 == null ? this.__tink_defaults9.ongotpointercapture : this37);
-		var this38 = attributes.oninput;
-		this.__slots.oninput.setData(this38 == null ? this.__tink_defaults9.oninput : this38);
-		var this39 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this39 == null ? this.__tink_defaults9.oninvalid : this39);
-		var this40 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this40 == null ? this.__tink_defaults9.onkeydown : this40);
-		var this41 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this41 == null ? this.__tink_defaults9.onkeypress : this41);
-		var this42 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this42 == null ? this.__tink_defaults9.onkeyup : this42);
-		var this43 = attributes.onload;
-		this.__slots.onload.setData(this43 == null ? this.__tink_defaults9.onload : this43);
-		var this44 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this44 == null ? this.__tink_defaults9.onloadeddata : this44);
-		var this45 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this45 == null ? this.__tink_defaults9.onloadedmetadata : this45);
-		var this46 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this46 == null ? this.__tink_defaults9.onloadstart : this46);
-		var this47 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this47 == null ? this.__tink_defaults9.onlostpointercapture : this47);
-		var this48 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this48 == null ? this.__tink_defaults9.onmousedown : this48);
-		var this49 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this49 == null ? this.__tink_defaults9.onmouseenter : this49);
-		var this50 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this50 == null ? this.__tink_defaults9.onmouseleave : this50);
-		var this51 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this51 == null ? this.__tink_defaults9.onmousemove : this51);
-		var this52 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this52 == null ? this.__tink_defaults9.onmouseout : this52);
-		var this53 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this53 == null ? this.__tink_defaults9.onmouseover : this53);
-		var this54 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this54 == null ? this.__tink_defaults9.onmouseup : this54);
-		var this55 = attributes.onpaste;
-		this.__slots.onpaste.setData(this55 == null ? this.__tink_defaults9.onpaste : this55);
-		var this56 = attributes.onpause;
-		this.__slots.onpause.setData(this56 == null ? this.__tink_defaults9.onpause : this56);
-		var this57 = attributes.onplay;
-		this.__slots.onplay.setData(this57 == null ? this.__tink_defaults9.onplay : this57);
-		var this58 = attributes.onplaying;
-		this.__slots.onplaying.setData(this58 == null ? this.__tink_defaults9.onplaying : this58);
-		var this59 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this59 == null ? this.__tink_defaults9.onpointercancel : this59);
-		var this60 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this60 == null ? this.__tink_defaults9.onpointerdown : this60);
-		var this61 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this61 == null ? this.__tink_defaults9.onpointerenter : this61);
-		var this62 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this62 == null ? this.__tink_defaults9.onpointerleave : this62);
-		var this63 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this63 == null ? this.__tink_defaults9.onpointerlockchange : this63);
-		var this64 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this64 == null ? this.__tink_defaults9.onpointerlockerror : this64);
-		var this65 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this65 == null ? this.__tink_defaults9.onpointermove : this65);
-		var this66 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this66 == null ? this.__tink_defaults9.onpointerout : this66);
-		var this67 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this67 == null ? this.__tink_defaults9.onpointerover : this67);
-		var this68 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this68 == null ? this.__tink_defaults9.onpointerup : this68);
-		var this69 = attributes.onprogress;
-		this.__slots.onprogress.setData(this69 == null ? this.__tink_defaults9.onprogress : this69);
-		var this70 = attributes.onratechange;
-		this.__slots.onratechange.setData(this70 == null ? this.__tink_defaults9.onratechange : this70);
-		var this71 = attributes.onreset;
-		this.__slots.onreset.setData(this71 == null ? this.__tink_defaults9.onreset : this71);
-		var this72 = attributes.onresize;
-		this.__slots.onresize.setData(this72 == null ? this.__tink_defaults9.onresize : this72);
-		var this73 = attributes.onscroll;
-		this.__slots.onscroll.setData(this73 == null ? this.__tink_defaults9.onscroll : this73);
-		var this74 = attributes.onseeked;
-		this.__slots.onseeked.setData(this74 == null ? this.__tink_defaults9.onseeked : this74);
-		var this75 = attributes.onseeking;
-		this.__slots.onseeking.setData(this75 == null ? this.__tink_defaults9.onseeking : this75);
-		var this76 = attributes.onselect;
-		this.__slots.onselect.setData(this76 == null ? this.__tink_defaults9.onselect : this76);
-		var this77 = attributes.onshow;
-		this.__slots.onshow.setData(this77 == null ? this.__tink_defaults9.onshow : this77);
-		var this78 = attributes.onstalled;
-		this.__slots.onstalled.setData(this78 == null ? this.__tink_defaults9.onstalled : this78);
-		var this79 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this79 == null ? this.__tink_defaults9.onsubmit : this79);
-		var this80 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this80 == null ? this.__tink_defaults9.onsuspend : this80);
-		var this81 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this81 == null ? this.__tink_defaults9.ontimeupdate : this81);
-		var this82 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this82 == null ? this.__tink_defaults9.ontouchcancel : this82);
-		var this83 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this83 == null ? this.__tink_defaults9.ontouchend : this83);
-		var this84 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this84 == null ? this.__tink_defaults9.ontouchmove : this84);
-		var this85 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this85 == null ? this.__tink_defaults9.ontouchstart : this85);
-		var this86 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this86 == null ? this.__tink_defaults9.onvolumechange : this86);
-		var this87 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this87 == null ? this.__tink_defaults9.onwaiting : this87);
-		var this88 = attributes.onwheel;
-		this.__slots.onwheel.setData(this88 == null ? this.__tink_defaults9.onwheel : this88);
-		var this89 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this89 == null ? this.__tink_defaults9.spellcheck : this89);
-		var this90 = attributes.style;
-		this.__slots.style.setData(this90 == null ? this.__tink_defaults9.style : this90);
-		var this91 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this91 == null ? this.__tink_defaults9.tabIndex : this91);
-		var this92 = attributes.title;
-		this.__slots.title.setData(this92 == null ? this.__tink_defaults9.title : this92);
+		var this2 = attributes.align;
+		this.__slots.align.setData(this2 == null ? this.__tink_defaults9.align : this2);
+		var this3 = attributes.shringToFit;
+		this.__slots.shringToFit.setData(this3 == null ? this.__tink_defaults9.shringToFit : this3);
+	}
+	,get_className: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
 	,get_children: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
@@ -12226,291 +8275,23 @@ mdc_ToolbarSection.prototype = $extend(coconut_ui_View.prototype,{
 	,get_shringToFit: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.shringToFit.observe());
 	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
-	}
-	,get_className: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
-	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
-	}
 	,__class__: mdc_ToolbarSection
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_shringToFit:"get_shringToFit",get_align:"get_align",get_children:"get_children"}
+	,__properties__: {get_shringToFit:"get_shringToFit",get_align:"get_align",get_children:"get_children",get_className:"get_className"}
 });
 var mdc_ToolbarTitle = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 56, className : "mdc.ToolbarTitle", methodName : "new"});
-	this.__tink_defaults7 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { children : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults7 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), children : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init8(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ToolbarTitle"] = mdc_ToolbarTitle;
 mdc_ToolbarTitle.__name__ = ["mdc","ToolbarTitle"];
 mdc_ToolbarTitle.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarTitle(attributes);
+	} else {
+		inst.__tink_init8(attributes);
 	}
-	inst.__tink_init8(attributes);
 	return inst;
 };
 mdc_ToolbarTitle.__super__ = coconut_ui_View;
@@ -12519,469 +8300,26 @@ mdc_ToolbarTitle.prototype = $extend(coconut_ui_View.prototype,{
 		var _gthis = this;
 		var attr = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-toolbar__title"] != null) {
 			_g.setReserved("mdc-toolbar__title",true);
 		} else {
 			_g.h["mdc-toolbar__title"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-		var _g1 = this.get_accessKey();
-		if(_g1 != null) {
-			var v = _g1;
-			__ret1.accessKey = v;
-		}
-		var _g2 = this.get_accessKeyLabel();
-		if(_g2 != null) {
-			var v1 = _g2;
-			__ret1.accessKeyLabel = v1;
-		}
-		var _g3 = this.get_attributes();
-		if(_g3 != null) {
-			var v2 = _g3;
-			__ret1.attributes = v2;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v3 = _g4;
-			__ret1.dir = v3;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v4 = _g5;
-			__ret1.draggable = v4;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v5 = _g6;
-			__ret1.hidden = v5;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v6 = _g7;
-			__ret1.id = v6;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v7 = _g8;
-			__ret1.key = v7;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v8 = _g9;
-			__ret1.lang = v8;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v9 = _g10;
-			__ret1.onabort = v9;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v10 = _g11;
-			__ret1.onblur = v10;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v11 = _g12;
-			__ret1.oncanplay = v11;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v12 = _g13;
-			__ret1.oncanplaythrough = v12;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v13 = _g14;
-			__ret1.onchange = v13;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v14 = _g15;
-			__ret1.onclick = v14;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v15 = _g16;
-			__ret1.oncontextmenu = v15;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v16 = _g17;
-			__ret1.oncopy = v16;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v17 = _g18;
-			__ret1.oncut = v17;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v18 = _g19;
-			__ret1.ondblclick = v18;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v19 = _g20;
-			__ret1.ondrag = v19;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v20 = _g21;
-			__ret1.ondragend = v20;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v21 = _g22;
-			__ret1.ondragenter = v21;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v22 = _g23;
-			__ret1.ondragleave = v22;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v23 = _g24;
-			__ret1.ondragover = v23;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v24 = _g25;
-			__ret1.ondragstart = v24;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v25 = _g26;
-			__ret1.ondrop = v25;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v26 = _g27;
-			__ret1.ondurationchange = v26;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v27 = _g28;
-			__ret1.onemptied = v27;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v28 = _g29;
-			__ret1.onended = v28;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v29 = _g30;
-			__ret1.onerror = v29;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v30 = _g31;
-			__ret1.onfocus = v30;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v31 = _g32;
-			__ret1.onfullscreenchange = v31;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v32 = _g33;
-			__ret1.onfullscreenerror = v32;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v33 = _g34;
-			__ret1.ongotpointercapture = v33;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v34 = _g35;
-			__ret1.oninput = v34;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v35 = _g36;
-			__ret1.oninvalid = v35;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v36 = _g37;
-			__ret1.onkeydown = v36;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v37 = _g38;
-			__ret1.onkeypress = v37;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v38 = _g39;
-			__ret1.onkeyup = v38;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v39 = _g40;
-			__ret1.onload = v39;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v40 = _g41;
-			__ret1.onloadeddata = v40;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v41 = _g42;
-			__ret1.onloadedmetadata = v41;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v42 = _g43;
-			__ret1.onloadstart = v42;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v43 = _g44;
-			__ret1.onlostpointercapture = v43;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v44 = _g45;
-			__ret1.onmousedown = v44;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v45 = _g46;
-			__ret1.onmouseenter = v45;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v46 = _g47;
-			__ret1.onmouseleave = v46;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v47 = _g48;
-			__ret1.onmousemove = v47;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v48 = _g49;
-			__ret1.onmouseout = v48;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v49 = _g50;
-			__ret1.onmouseover = v49;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v50 = _g51;
-			__ret1.onmouseup = v50;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v51 = _g52;
-			__ret1.onpaste = v51;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v52 = _g53;
-			__ret1.onpause = v52;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v53 = _g54;
-			__ret1.onplay = v53;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v54 = _g55;
-			__ret1.onplaying = v54;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v55 = _g56;
-			__ret1.onpointercancel = v55;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v56 = _g57;
-			__ret1.onpointerdown = v56;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v57 = _g58;
-			__ret1.onpointerenter = v57;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v58 = _g59;
-			__ret1.onpointerleave = v58;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v59 = _g60;
-			__ret1.onpointerlockchange = v59;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v60 = _g61;
-			__ret1.onpointerlockerror = v60;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v61 = _g62;
-			__ret1.onpointermove = v61;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v62 = _g63;
-			__ret1.onpointerout = v62;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v63 = _g64;
-			__ret1.onpointerover = v63;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v64 = _g65;
-			__ret1.onpointerup = v64;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v65 = _g66;
-			__ret1.onprogress = v65;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v66 = _g67;
-			__ret1.onratechange = v66;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v67 = _g68;
-			__ret1.onreset = v67;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v68 = _g69;
-			__ret1.onresize = v68;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v69 = _g70;
-			__ret1.onscroll = v69;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v70 = _g71;
-			__ret1.onseeked = v70;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v71 = _g72;
-			__ret1.onseeking = v71;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v72 = _g73;
-			__ret1.onselect = v72;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v73 = _g74;
-			__ret1.onshow = v73;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v74 = _g75;
-			__ret1.onstalled = v74;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v75 = _g76;
-			__ret1.onsubmit = v75;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v76 = _g77;
-			__ret1.onsuspend = v76;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v77 = _g78;
-			__ret1.ontimeupdate = v77;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v78 = _g79;
-			__ret1.ontouchcancel = v78;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v79 = _g80;
-			__ret1.ontouchend = v79;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v80 = _g81;
-			__ret1.ontouchmove = v80;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v81 = _g82;
-			__ret1.ontouchstart = v81;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v82 = _g83;
-			__ret1.onvolumechange = v82;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v83 = _g84;
-			__ret1.onwaiting = v83;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v84 = _g85;
-			__ret1.onwheel = v84;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v85 = _g86;
-			__ret1.spellcheck = v85;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v86 = _g87;
-			__ret1.style = v86;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v87 = _g88;
-			__ret1.tabIndex = v87;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v88 = _g89;
-			__ret1.title = v88;
-		}
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr1 = __ret1;
 		var __r1 = [];
-		var _g90 = 0;
-		var _g110 = this.get_children();
-		while(_g90 < (_g110 == null ? 0 : _g110.length)) {
-			var _0 = _g110 == null ? null : _g110[_g90];
-			++_g90;
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		var _g1 = 0;
+		var _g11 = tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
+		while(_g1 < (_g11 == null ? 0 : _g11.length)) {
+			var _0 = _g11 == null ? null : _g11[_g1];
+			++_g1;
 			__r1.push(_0);
 		}
-		__r.push(vdom_VDom.h("span",attr1,__r1));
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		return __r[0];
 	}
 	,__tink_defaults7: null
@@ -12990,476 +8328,33 @@ mdc_ToolbarTitle.prototype = $extend(coconut_ui_View.prototype,{
 		return "ToolbarTitle" + "#" + this.viewId;
 	}
 	,__tink_init8: function(attributes) {
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults7.className : this1);
 		this.__slots.children.setData(attributes.children);
-		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults7.accessKey : this1);
-		var this2 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults7.accessKeyLabel : this2);
-		var this3 = attributes.attributes;
-		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults7.attributes : this3);
-		var this4 = attributes.className;
-		this.__slots.className.setData(this4 == null ? this.__tink_defaults7.className : this4);
-		var this5 = attributes.dir;
-		this.__slots.dir.setData(this5 == null ? this.__tink_defaults7.dir : this5);
-		var this6 = attributes.draggable;
-		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults7.draggable : this6);
-		var this7 = attributes.hidden;
-		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults7.hidden : this7);
-		var this8 = attributes.id;
-		this.__slots.id.setData(this8 == null ? this.__tink_defaults7.id : this8);
-		var this9 = attributes.key;
-		this.__slots.key.setData(this9 == null ? this.__tink_defaults7.key : this9);
-		var this10 = attributes.lang;
-		this.__slots.lang.setData(this10 == null ? this.__tink_defaults7.lang : this10);
-		var this11 = attributes.onabort;
-		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults7.onabort : this11);
-		var this12 = attributes.onblur;
-		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults7.onblur : this12);
-		var this13 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults7.oncanplay : this13);
-		var this14 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults7.oncanplaythrough : this14);
-		var this15 = attributes.onchange;
-		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults7.onchange : this15);
-		var this16 = attributes.onclick;
-		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults7.onclick : this16);
-		var this17 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults7.oncontextmenu : this17);
-		var this18 = attributes.oncopy;
-		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults7.oncopy : this18);
-		var this19 = attributes.oncut;
-		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults7.oncut : this19);
-		var this20 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults7.ondblclick : this20);
-		var this21 = attributes.ondrag;
-		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults7.ondrag : this21);
-		var this22 = attributes.ondragend;
-		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults7.ondragend : this22);
-		var this23 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults7.ondragenter : this23);
-		var this24 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults7.ondragleave : this24);
-		var this25 = attributes.ondragover;
-		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults7.ondragover : this25);
-		var this26 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults7.ondragstart : this26);
-		var this27 = attributes.ondrop;
-		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults7.ondrop : this27);
-		var this28 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults7.ondurationchange : this28);
-		var this29 = attributes.onemptied;
-		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults7.onemptied : this29);
-		var this30 = attributes.onended;
-		this.__slots.onended.setData(this30 == null ? this.__tink_defaults7.onended : this30);
-		var this31 = attributes.onerror;
-		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults7.onerror : this31);
-		var this32 = attributes.onfocus;
-		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults7.onfocus : this32);
-		var this33 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults7.onfullscreenchange : this33);
-		var this34 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults7.onfullscreenerror : this34);
-		var this35 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults7.ongotpointercapture : this35);
-		var this36 = attributes.oninput;
-		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults7.oninput : this36);
-		var this37 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults7.oninvalid : this37);
-		var this38 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults7.onkeydown : this38);
-		var this39 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults7.onkeypress : this39);
-		var this40 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults7.onkeyup : this40);
-		var this41 = attributes.onload;
-		this.__slots.onload.setData(this41 == null ? this.__tink_defaults7.onload : this41);
-		var this42 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults7.onloadeddata : this42);
-		var this43 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults7.onloadedmetadata : this43);
-		var this44 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults7.onloadstart : this44);
-		var this45 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults7.onlostpointercapture : this45);
-		var this46 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults7.onmousedown : this46);
-		var this47 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults7.onmouseenter : this47);
-		var this48 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults7.onmouseleave : this48);
-		var this49 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults7.onmousemove : this49);
-		var this50 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults7.onmouseout : this50);
-		var this51 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults7.onmouseover : this51);
-		var this52 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults7.onmouseup : this52);
-		var this53 = attributes.onpaste;
-		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults7.onpaste : this53);
-		var this54 = attributes.onpause;
-		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults7.onpause : this54);
-		var this55 = attributes.onplay;
-		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults7.onplay : this55);
-		var this56 = attributes.onplaying;
-		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults7.onplaying : this56);
-		var this57 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults7.onpointercancel : this57);
-		var this58 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults7.onpointerdown : this58);
-		var this59 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults7.onpointerenter : this59);
-		var this60 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults7.onpointerleave : this60);
-		var this61 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults7.onpointerlockchange : this61);
-		var this62 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults7.onpointerlockerror : this62);
-		var this63 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults7.onpointermove : this63);
-		var this64 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults7.onpointerout : this64);
-		var this65 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults7.onpointerover : this65);
-		var this66 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults7.onpointerup : this66);
-		var this67 = attributes.onprogress;
-		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults7.onprogress : this67);
-		var this68 = attributes.onratechange;
-		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults7.onratechange : this68);
-		var this69 = attributes.onreset;
-		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults7.onreset : this69);
-		var this70 = attributes.onresize;
-		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults7.onresize : this70);
-		var this71 = attributes.onscroll;
-		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults7.onscroll : this71);
-		var this72 = attributes.onseeked;
-		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults7.onseeked : this72);
-		var this73 = attributes.onseeking;
-		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults7.onseeking : this73);
-		var this74 = attributes.onselect;
-		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults7.onselect : this74);
-		var this75 = attributes.onshow;
-		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults7.onshow : this75);
-		var this76 = attributes.onstalled;
-		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults7.onstalled : this76);
-		var this77 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults7.onsubmit : this77);
-		var this78 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults7.onsuspend : this78);
-		var this79 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults7.ontimeupdate : this79);
-		var this80 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults7.ontouchcancel : this80);
-		var this81 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults7.ontouchend : this81);
-		var this82 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults7.ontouchmove : this82);
-		var this83 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults7.ontouchstart : this83);
-		var this84 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults7.onvolumechange : this84);
-		var this85 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults7.onwaiting : this85);
-		var this86 = attributes.onwheel;
-		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults7.onwheel : this86);
-		var this87 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults7.spellcheck : this87);
-		var this88 = attributes.style;
-		this.__slots.style.setData(this88 == null ? this.__tink_defaults7.style : this88);
-		var this89 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults7.tabIndex : this89);
-		var this90 = attributes.title;
-		this.__slots.title.setData(this90 == null ? this.__tink_defaults7.title : this90);
-	}
-	,get_children: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
-	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	,get_children: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.children.observe());
 	}
 	,__class__: mdc_ToolbarTitle
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_children:"get_children"}
+	,__properties__: {get_children:"get_children",get_className:"get_className"}
 });
 var mdc_ToolbarMenuIcon = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 69, className : "mdc.ToolbarMenuIcon", methodName : "new"});
-	this.__tink_defaults5 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { name : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults5 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init6(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ToolbarMenuIcon"] = mdc_ToolbarMenuIcon;
 mdc_ToolbarMenuIcon.__name__ = ["mdc","ToolbarMenuIcon"];
 mdc_ToolbarMenuIcon.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarMenuIcon(attributes);
+	} else {
+		inst.__tink_init6(attributes);
 	}
-	inst.__tink_init6(attributes);
 	return inst;
 };
 mdc_ToolbarMenuIcon.__super__ = coconut_ui_View;
@@ -13468,7 +8363,7 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 		var _gthis = this;
 		var attr = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-toolbar__menu-icon"] != null) {
 			_g.setReserved("mdc-toolbar__menu-icon",true);
@@ -13480,455 +8375,13 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 		} else {
 			_g.h["material-icons"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-		var _g1 = this.get_accessKey();
-		if(_g1 != null) {
-			var v = _g1;
-			__ret1.accessKey = v;
-		}
-		var _g2 = this.get_accessKeyLabel();
-		if(_g2 != null) {
-			var v1 = _g2;
-			__ret1.accessKeyLabel = v1;
-		}
-		var _g3 = this.get_attributes();
-		if(_g3 != null) {
-			var v2 = _g3;
-			__ret1.attributes = v2;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v3 = _g4;
-			__ret1.dir = v3;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v4 = _g5;
-			__ret1.draggable = v4;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v5 = _g6;
-			__ret1.hidden = v5;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v6 = _g7;
-			__ret1.id = v6;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v7 = _g8;
-			__ret1.key = v7;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v8 = _g9;
-			__ret1.lang = v8;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v9 = _g10;
-			__ret1.onabort = v9;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v10 = _g11;
-			__ret1.onblur = v10;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v11 = _g12;
-			__ret1.oncanplay = v11;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v12 = _g13;
-			__ret1.oncanplaythrough = v12;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v13 = _g14;
-			__ret1.onchange = v13;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v14 = _g15;
-			__ret1.onclick = v14;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v15 = _g16;
-			__ret1.oncontextmenu = v15;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v16 = _g17;
-			__ret1.oncopy = v16;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v17 = _g18;
-			__ret1.oncut = v17;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v18 = _g19;
-			__ret1.ondblclick = v18;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v19 = _g20;
-			__ret1.ondrag = v19;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v20 = _g21;
-			__ret1.ondragend = v20;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v21 = _g22;
-			__ret1.ondragenter = v21;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v22 = _g23;
-			__ret1.ondragleave = v22;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v23 = _g24;
-			__ret1.ondragover = v23;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v24 = _g25;
-			__ret1.ondragstart = v24;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v25 = _g26;
-			__ret1.ondrop = v25;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v26 = _g27;
-			__ret1.ondurationchange = v26;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v27 = _g28;
-			__ret1.onemptied = v27;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v28 = _g29;
-			__ret1.onended = v28;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v29 = _g30;
-			__ret1.onerror = v29;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v30 = _g31;
-			__ret1.onfocus = v30;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v31 = _g32;
-			__ret1.onfullscreenchange = v31;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v32 = _g33;
-			__ret1.onfullscreenerror = v32;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v33 = _g34;
-			__ret1.ongotpointercapture = v33;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v34 = _g35;
-			__ret1.oninput = v34;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v35 = _g36;
-			__ret1.oninvalid = v35;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v36 = _g37;
-			__ret1.onkeydown = v36;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v37 = _g38;
-			__ret1.onkeypress = v37;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v38 = _g39;
-			__ret1.onkeyup = v38;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v39 = _g40;
-			__ret1.onload = v39;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v40 = _g41;
-			__ret1.onloadeddata = v40;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v41 = _g42;
-			__ret1.onloadedmetadata = v41;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v42 = _g43;
-			__ret1.onloadstart = v42;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v43 = _g44;
-			__ret1.onlostpointercapture = v43;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v44 = _g45;
-			__ret1.onmousedown = v44;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v45 = _g46;
-			__ret1.onmouseenter = v45;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v46 = _g47;
-			__ret1.onmouseleave = v46;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v47 = _g48;
-			__ret1.onmousemove = v47;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v48 = _g49;
-			__ret1.onmouseout = v48;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v49 = _g50;
-			__ret1.onmouseover = v49;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v50 = _g51;
-			__ret1.onmouseup = v50;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v51 = _g52;
-			__ret1.onpaste = v51;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v52 = _g53;
-			__ret1.onpause = v52;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v53 = _g54;
-			__ret1.onplay = v53;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v54 = _g55;
-			__ret1.onplaying = v54;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v55 = _g56;
-			__ret1.onpointercancel = v55;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v56 = _g57;
-			__ret1.onpointerdown = v56;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v57 = _g58;
-			__ret1.onpointerenter = v57;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v58 = _g59;
-			__ret1.onpointerleave = v58;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v59 = _g60;
-			__ret1.onpointerlockchange = v59;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v60 = _g61;
-			__ret1.onpointerlockerror = v60;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v61 = _g62;
-			__ret1.onpointermove = v61;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v62 = _g63;
-			__ret1.onpointerout = v62;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v63 = _g64;
-			__ret1.onpointerover = v63;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v64 = _g65;
-			__ret1.onpointerup = v64;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v65 = _g66;
-			__ret1.onprogress = v65;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v66 = _g67;
-			__ret1.onratechange = v66;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v67 = _g68;
-			__ret1.onreset = v67;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v68 = _g69;
-			__ret1.onresize = v68;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v69 = _g70;
-			__ret1.onscroll = v69;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v70 = _g71;
-			__ret1.onseeked = v70;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v71 = _g72;
-			__ret1.onseeking = v71;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v72 = _g73;
-			__ret1.onselect = v72;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v73 = _g74;
-			__ret1.onshow = v73;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v74 = _g75;
-			__ret1.onstalled = v74;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v75 = _g76;
-			__ret1.onsubmit = v75;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v76 = _g77;
-			__ret1.onsuspend = v76;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v77 = _g78;
-			__ret1.ontimeupdate = v77;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v78 = _g79;
-			__ret1.ontouchcancel = v78;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v79 = _g80;
-			__ret1.ontouchend = v79;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v80 = _g81;
-			__ret1.ontouchmove = v80;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v81 = _g82;
-			__ret1.ontouchstart = v81;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v82 = _g83;
-			__ret1.onvolumechange = v82;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v83 = _g84;
-			__ret1.onwaiting = v83;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v84 = _g85;
-			__ret1.onwheel = v84;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v85 = _g86;
-			__ret1.spellcheck = v85;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v86 = _g87;
-			__ret1.style = v86;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v87 = _g88;
-			__ret1.tabIndex = v87;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v88 = _g89;
-			__ret1.title = v88;
-		}
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
+		var attr1 = __ret1;
 		var __r1 = [];
-		__r1.push(this.get_name());
-		__r.push(vdom_VDom.h("span",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r1.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe()), a : coconut_vdom_VDom.EMPTY});
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		return __r[0];
 	}
 	,__tink_defaults5: null
@@ -13937,476 +8390,33 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 		return "ToolbarMenuIcon" + "#" + this.viewId;
 	}
 	,__tink_init6: function(attributes) {
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults5.className : this1);
 		this.__slots.name.setData(attributes.name);
-		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults5.accessKey : this1);
-		var this2 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults5.accessKeyLabel : this2);
-		var this3 = attributes.attributes;
-		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults5.attributes : this3);
-		var this4 = attributes.className;
-		this.__slots.className.setData(this4 == null ? this.__tink_defaults5.className : this4);
-		var this5 = attributes.dir;
-		this.__slots.dir.setData(this5 == null ? this.__tink_defaults5.dir : this5);
-		var this6 = attributes.draggable;
-		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults5.draggable : this6);
-		var this7 = attributes.hidden;
-		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults5.hidden : this7);
-		var this8 = attributes.id;
-		this.__slots.id.setData(this8 == null ? this.__tink_defaults5.id : this8);
-		var this9 = attributes.key;
-		this.__slots.key.setData(this9 == null ? this.__tink_defaults5.key : this9);
-		var this10 = attributes.lang;
-		this.__slots.lang.setData(this10 == null ? this.__tink_defaults5.lang : this10);
-		var this11 = attributes.onabort;
-		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults5.onabort : this11);
-		var this12 = attributes.onblur;
-		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults5.onblur : this12);
-		var this13 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults5.oncanplay : this13);
-		var this14 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults5.oncanplaythrough : this14);
-		var this15 = attributes.onchange;
-		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults5.onchange : this15);
-		var this16 = attributes.onclick;
-		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults5.onclick : this16);
-		var this17 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults5.oncontextmenu : this17);
-		var this18 = attributes.oncopy;
-		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults5.oncopy : this18);
-		var this19 = attributes.oncut;
-		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults5.oncut : this19);
-		var this20 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults5.ondblclick : this20);
-		var this21 = attributes.ondrag;
-		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults5.ondrag : this21);
-		var this22 = attributes.ondragend;
-		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults5.ondragend : this22);
-		var this23 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults5.ondragenter : this23);
-		var this24 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults5.ondragleave : this24);
-		var this25 = attributes.ondragover;
-		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults5.ondragover : this25);
-		var this26 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults5.ondragstart : this26);
-		var this27 = attributes.ondrop;
-		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults5.ondrop : this27);
-		var this28 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults5.ondurationchange : this28);
-		var this29 = attributes.onemptied;
-		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults5.onemptied : this29);
-		var this30 = attributes.onended;
-		this.__slots.onended.setData(this30 == null ? this.__tink_defaults5.onended : this30);
-		var this31 = attributes.onerror;
-		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults5.onerror : this31);
-		var this32 = attributes.onfocus;
-		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults5.onfocus : this32);
-		var this33 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults5.onfullscreenchange : this33);
-		var this34 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults5.onfullscreenerror : this34);
-		var this35 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults5.ongotpointercapture : this35);
-		var this36 = attributes.oninput;
-		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults5.oninput : this36);
-		var this37 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults5.oninvalid : this37);
-		var this38 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults5.onkeydown : this38);
-		var this39 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults5.onkeypress : this39);
-		var this40 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults5.onkeyup : this40);
-		var this41 = attributes.onload;
-		this.__slots.onload.setData(this41 == null ? this.__tink_defaults5.onload : this41);
-		var this42 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults5.onloadeddata : this42);
-		var this43 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults5.onloadedmetadata : this43);
-		var this44 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults5.onloadstart : this44);
-		var this45 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults5.onlostpointercapture : this45);
-		var this46 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults5.onmousedown : this46);
-		var this47 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults5.onmouseenter : this47);
-		var this48 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults5.onmouseleave : this48);
-		var this49 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults5.onmousemove : this49);
-		var this50 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults5.onmouseout : this50);
-		var this51 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults5.onmouseover : this51);
-		var this52 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults5.onmouseup : this52);
-		var this53 = attributes.onpaste;
-		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults5.onpaste : this53);
-		var this54 = attributes.onpause;
-		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults5.onpause : this54);
-		var this55 = attributes.onplay;
-		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults5.onplay : this55);
-		var this56 = attributes.onplaying;
-		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults5.onplaying : this56);
-		var this57 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults5.onpointercancel : this57);
-		var this58 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults5.onpointerdown : this58);
-		var this59 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults5.onpointerenter : this59);
-		var this60 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults5.onpointerleave : this60);
-		var this61 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults5.onpointerlockchange : this61);
-		var this62 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults5.onpointerlockerror : this62);
-		var this63 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults5.onpointermove : this63);
-		var this64 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults5.onpointerout : this64);
-		var this65 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults5.onpointerover : this65);
-		var this66 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults5.onpointerup : this66);
-		var this67 = attributes.onprogress;
-		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults5.onprogress : this67);
-		var this68 = attributes.onratechange;
-		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults5.onratechange : this68);
-		var this69 = attributes.onreset;
-		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults5.onreset : this69);
-		var this70 = attributes.onresize;
-		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults5.onresize : this70);
-		var this71 = attributes.onscroll;
-		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults5.onscroll : this71);
-		var this72 = attributes.onseeked;
-		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults5.onseeked : this72);
-		var this73 = attributes.onseeking;
-		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults5.onseeking : this73);
-		var this74 = attributes.onselect;
-		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults5.onselect : this74);
-		var this75 = attributes.onshow;
-		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults5.onshow : this75);
-		var this76 = attributes.onstalled;
-		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults5.onstalled : this76);
-		var this77 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults5.onsubmit : this77);
-		var this78 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults5.onsuspend : this78);
-		var this79 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults5.ontimeupdate : this79);
-		var this80 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults5.ontouchcancel : this80);
-		var this81 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults5.ontouchend : this81);
-		var this82 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults5.ontouchmove : this82);
-		var this83 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults5.ontouchstart : this83);
-		var this84 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults5.onvolumechange : this84);
-		var this85 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults5.onwaiting : this85);
-		var this86 = attributes.onwheel;
-		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults5.onwheel : this86);
-		var this87 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults5.spellcheck : this87);
-		var this88 = attributes.style;
-		this.__slots.style.setData(this88 == null ? this.__tink_defaults5.style : this88);
-		var this89 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults5.tabIndex : this89);
-		var this90 = attributes.title;
-		this.__slots.title.setData(this90 == null ? this.__tink_defaults5.title : this90);
-	}
-	,get_name: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
-	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	,get_name: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
 	}
 	,__class__: mdc_ToolbarMenuIcon
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_name:"get_name"}
+	,__properties__: {get_name:"get_name",get_className:"get_className"}
 });
 var mdc_ToolbarIcon = function(data) {
-	coconut_ui_View.call(this,$bind(this,this.render),{ fileName : "Toolbar.hx", lineNumber : 82, className : "mdc.ToolbarIcon", methodName : "new"});
-	this.__tink_defaults3 = { accessKey : null, accessKeyLabel : null, attributes : null, className : null, dir : null, draggable : null, hidden : null, id : null, key : null, lang : null, onabort : null, onblur : null, oncanplay : null, oncanplaythrough : null, onchange : null, onclick : null, oncontextmenu : null, oncopy : null, oncut : null, ondblclick : null, ondrag : null, ondragend : null, ondragenter : null, ondragleave : null, ondragover : null, ondragstart : null, ondrop : null, ondurationchange : null, onemptied : null, onended : null, onerror : null, onfocus : null, onfullscreenchange : null, onfullscreenerror : null, ongotpointercapture : null, oninput : null, oninvalid : null, onkeydown : null, onkeypress : null, onkeyup : null, onload : null, onloadeddata : null, onloadedmetadata : null, onloadstart : null, onlostpointercapture : null, onmousedown : null, onmouseenter : null, onmouseleave : null, onmousemove : null, onmouseout : null, onmouseover : null, onmouseup : null, onpaste : null, onpause : null, onplay : null, onplaying : null, onpointercancel : null, onpointerdown : null, onpointerenter : null, onpointerleave : null, onpointerlockchange : null, onpointerlockerror : null, onpointermove : null, onpointerout : null, onpointerover : null, onpointerup : null, onprogress : null, onratechange : null, onreset : null, onresize : null, onscroll : null, onseeked : null, onseeking : null, onselect : null, onshow : null, onstalled : null, onsubmit : null, onsuspend : null, ontimeupdate : null, ontouchcancel : null, ontouchend : null, ontouchmove : null, ontouchstart : null, onvolumechange : null, onwaiting : null, onwheel : null, spellcheck : null, style : null, tabIndex : null, title : null};
-	this.__slots = { name : new coconut_ui_tools_Slot(this,null), accessKey : new coconut_ui_tools_Slot(this,null), accessKeyLabel : new coconut_ui_tools_Slot(this,null), attributes : new coconut_ui_tools_Slot(this,null), className : new coconut_ui_tools_Slot(this,null), dir : new coconut_ui_tools_Slot(this,null), draggable : new coconut_ui_tools_Slot(this,null), hidden : new coconut_ui_tools_Slot(this,null), id : new coconut_ui_tools_Slot(this,null), key : new coconut_ui_tools_Slot(this,null), lang : new coconut_ui_tools_Slot(this,null), onabort : new coconut_ui_tools_Slot(this,null), onblur : new coconut_ui_tools_Slot(this,null), oncanplay : new coconut_ui_tools_Slot(this,null), oncanplaythrough : new coconut_ui_tools_Slot(this,null), onchange : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null), oncontextmenu : new coconut_ui_tools_Slot(this,null), oncopy : new coconut_ui_tools_Slot(this,null), oncut : new coconut_ui_tools_Slot(this,null), ondblclick : new coconut_ui_tools_Slot(this,null), ondrag : new coconut_ui_tools_Slot(this,null), ondragend : new coconut_ui_tools_Slot(this,null), ondragenter : new coconut_ui_tools_Slot(this,null), ondragleave : new coconut_ui_tools_Slot(this,null), ondragover : new coconut_ui_tools_Slot(this,null), ondragstart : new coconut_ui_tools_Slot(this,null), ondrop : new coconut_ui_tools_Slot(this,null), ondurationchange : new coconut_ui_tools_Slot(this,null), onemptied : new coconut_ui_tools_Slot(this,null), onended : new coconut_ui_tools_Slot(this,null), onerror : new coconut_ui_tools_Slot(this,null), onfocus : new coconut_ui_tools_Slot(this,null), onfullscreenchange : new coconut_ui_tools_Slot(this,null), onfullscreenerror : new coconut_ui_tools_Slot(this,null), ongotpointercapture : new coconut_ui_tools_Slot(this,null), oninput : new coconut_ui_tools_Slot(this,null), oninvalid : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null), onkeypress : new coconut_ui_tools_Slot(this,null), onkeyup : new coconut_ui_tools_Slot(this,null), onload : new coconut_ui_tools_Slot(this,null), onloadeddata : new coconut_ui_tools_Slot(this,null), onloadedmetadata : new coconut_ui_tools_Slot(this,null), onloadstart : new coconut_ui_tools_Slot(this,null), onlostpointercapture : new coconut_ui_tools_Slot(this,null), onmousedown : new coconut_ui_tools_Slot(this,null), onmouseenter : new coconut_ui_tools_Slot(this,null), onmouseleave : new coconut_ui_tools_Slot(this,null), onmousemove : new coconut_ui_tools_Slot(this,null), onmouseout : new coconut_ui_tools_Slot(this,null), onmouseover : new coconut_ui_tools_Slot(this,null), onmouseup : new coconut_ui_tools_Slot(this,null), onpaste : new coconut_ui_tools_Slot(this,null), onpause : new coconut_ui_tools_Slot(this,null), onplay : new coconut_ui_tools_Slot(this,null), onplaying : new coconut_ui_tools_Slot(this,null), onpointercancel : new coconut_ui_tools_Slot(this,null), onpointerdown : new coconut_ui_tools_Slot(this,null), onpointerenter : new coconut_ui_tools_Slot(this,null), onpointerleave : new coconut_ui_tools_Slot(this,null), onpointerlockchange : new coconut_ui_tools_Slot(this,null), onpointerlockerror : new coconut_ui_tools_Slot(this,null), onpointermove : new coconut_ui_tools_Slot(this,null), onpointerout : new coconut_ui_tools_Slot(this,null), onpointerover : new coconut_ui_tools_Slot(this,null), onpointerup : new coconut_ui_tools_Slot(this,null), onprogress : new coconut_ui_tools_Slot(this,null), onratechange : new coconut_ui_tools_Slot(this,null), onreset : new coconut_ui_tools_Slot(this,null), onresize : new coconut_ui_tools_Slot(this,null), onscroll : new coconut_ui_tools_Slot(this,null), onseeked : new coconut_ui_tools_Slot(this,null), onseeking : new coconut_ui_tools_Slot(this,null), onselect : new coconut_ui_tools_Slot(this,null), onshow : new coconut_ui_tools_Slot(this,null), onstalled : new coconut_ui_tools_Slot(this,null), onsubmit : new coconut_ui_tools_Slot(this,null), onsuspend : new coconut_ui_tools_Slot(this,null), ontimeupdate : new coconut_ui_tools_Slot(this,null), ontouchcancel : new coconut_ui_tools_Slot(this,null), ontouchend : new coconut_ui_tools_Slot(this,null), ontouchmove : new coconut_ui_tools_Slot(this,null), ontouchstart : new coconut_ui_tools_Slot(this,null), onvolumechange : new coconut_ui_tools_Slot(this,null), onwaiting : new coconut_ui_tools_Slot(this,null), onwheel : new coconut_ui_tools_Slot(this,null), spellcheck : new coconut_ui_tools_Slot(this,null), style : new coconut_ui_tools_Slot(this,null), tabIndex : new coconut_ui_tools_Slot(this,null), title : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_defaults3 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null)};
+	this.__tink_init4(data);
+	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.ToolbarIcon"] = mdc_ToolbarIcon;
 mdc_ToolbarIcon.__name__ = ["mdc","ToolbarIcon"];
 mdc_ToolbarIcon.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_ToolbarIcon(attributes);
+	} else {
+		inst.__tink_init4(attributes);
 	}
-	inst.__tink_init4(attributes);
 	return inst;
 };
 mdc_ToolbarIcon.__super__ = coconut_ui_View;
@@ -14415,7 +8425,7 @@ mdc_ToolbarIcon.prototype = $extend(coconut_ui_View.prototype,{
 		var _gthis = this;
 		var attr = this;
 		var __r = [];
-		var __ret = _gthis.get_className();
+		var __ret = tink_state__$Observable_Observable_$Impl_$.get_value(_gthis.__slots.className.observe());
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved["mdc-toolbar__icon"] != null) {
 			_g.setReserved("mdc-toolbar__icon",true);
@@ -14427,455 +8437,13 @@ mdc_ToolbarIcon.prototype = $extend(coconut_ui_View.prototype,{
 		} else {
 			_g.h["material-icons"] = true;
 		}
-		var __ret1 = { className : vdom__$Attr_ClassName_$Impl_$.add(__ret,vdom__$Attr_ClassName_$Impl_$.ofMap(_g))};
-		var _g1 = this.get_accessKey();
-		if(_g1 != null) {
-			var v = _g1;
-			__ret1.accessKey = v;
-		}
-		var _g2 = this.get_accessKeyLabel();
-		if(_g2 != null) {
-			var v1 = _g2;
-			__ret1.accessKeyLabel = v1;
-		}
-		var _g3 = this.get_attributes();
-		if(_g3 != null) {
-			var v2 = _g3;
-			__ret1.attributes = v2;
-		}
-		var _g4 = this.get_dir();
-		if(_g4 != null) {
-			var v3 = _g4;
-			__ret1.dir = v3;
-		}
-		var _g5 = this.get_draggable();
-		if(_g5 != null) {
-			var v4 = _g5;
-			__ret1.draggable = v4;
-		}
-		var _g6 = this.get_hidden();
-		if(_g6 != null) {
-			var v5 = _g6;
-			__ret1.hidden = v5;
-		}
-		var _g7 = this.get_id();
-		if(_g7 != null) {
-			var v6 = _g7;
-			__ret1.id = v6;
-		}
-		var _g8 = this.get_key();
-		if(_g8 != null) {
-			var v7 = _g8;
-			__ret1.key = v7;
-		}
-		var _g9 = this.get_lang();
-		if(_g9 != null) {
-			var v8 = _g9;
-			__ret1.lang = v8;
-		}
-		var _g10 = this.get_onabort();
-		if(_g10 != null) {
-			var v9 = _g10;
-			__ret1.onabort = v9;
-		}
-		var _g11 = this.get_onblur();
-		if(_g11 != null) {
-			var v10 = _g11;
-			__ret1.onblur = v10;
-		}
-		var _g12 = this.get_oncanplay();
-		if(_g12 != null) {
-			var v11 = _g12;
-			__ret1.oncanplay = v11;
-		}
-		var _g13 = this.get_oncanplaythrough();
-		if(_g13 != null) {
-			var v12 = _g13;
-			__ret1.oncanplaythrough = v12;
-		}
-		var _g14 = this.get_onchange();
-		if(_g14 != null) {
-			var v13 = _g14;
-			__ret1.onchange = v13;
-		}
-		var _g15 = this.get_onclick();
-		if(_g15 != null) {
-			var v14 = _g15;
-			__ret1.onclick = v14;
-		}
-		var _g16 = this.get_oncontextmenu();
-		if(_g16 != null) {
-			var v15 = _g16;
-			__ret1.oncontextmenu = v15;
-		}
-		var _g17 = this.get_oncopy();
-		if(_g17 != null) {
-			var v16 = _g17;
-			__ret1.oncopy = v16;
-		}
-		var _g18 = this.get_oncut();
-		if(_g18 != null) {
-			var v17 = _g18;
-			__ret1.oncut = v17;
-		}
-		var _g19 = this.get_ondblclick();
-		if(_g19 != null) {
-			var v18 = _g19;
-			__ret1.ondblclick = v18;
-		}
-		var _g20 = this.get_ondrag();
-		if(_g20 != null) {
-			var v19 = _g20;
-			__ret1.ondrag = v19;
-		}
-		var _g21 = this.get_ondragend();
-		if(_g21 != null) {
-			var v20 = _g21;
-			__ret1.ondragend = v20;
-		}
-		var _g22 = this.get_ondragenter();
-		if(_g22 != null) {
-			var v21 = _g22;
-			__ret1.ondragenter = v21;
-		}
-		var _g23 = this.get_ondragleave();
-		if(_g23 != null) {
-			var v22 = _g23;
-			__ret1.ondragleave = v22;
-		}
-		var _g24 = this.get_ondragover();
-		if(_g24 != null) {
-			var v23 = _g24;
-			__ret1.ondragover = v23;
-		}
-		var _g25 = this.get_ondragstart();
-		if(_g25 != null) {
-			var v24 = _g25;
-			__ret1.ondragstart = v24;
-		}
-		var _g26 = this.get_ondrop();
-		if(_g26 != null) {
-			var v25 = _g26;
-			__ret1.ondrop = v25;
-		}
-		var _g27 = this.get_ondurationchange();
-		if(_g27 != null) {
-			var v26 = _g27;
-			__ret1.ondurationchange = v26;
-		}
-		var _g28 = this.get_onemptied();
-		if(_g28 != null) {
-			var v27 = _g28;
-			__ret1.onemptied = v27;
-		}
-		var _g29 = this.get_onended();
-		if(_g29 != null) {
-			var v28 = _g29;
-			__ret1.onended = v28;
-		}
-		var _g30 = this.get_onerror();
-		if(_g30 != null) {
-			var v29 = _g30;
-			__ret1.onerror = v29;
-		}
-		var _g31 = this.get_onfocus();
-		if(_g31 != null) {
-			var v30 = _g31;
-			__ret1.onfocus = v30;
-		}
-		var _g32 = this.get_onfullscreenchange();
-		if(_g32 != null) {
-			var v31 = _g32;
-			__ret1.onfullscreenchange = v31;
-		}
-		var _g33 = this.get_onfullscreenerror();
-		if(_g33 != null) {
-			var v32 = _g33;
-			__ret1.onfullscreenerror = v32;
-		}
-		var _g34 = this.get_ongotpointercapture();
-		if(_g34 != null) {
-			var v33 = _g34;
-			__ret1.ongotpointercapture = v33;
-		}
-		var _g35 = this.get_oninput();
-		if(_g35 != null) {
-			var v34 = _g35;
-			__ret1.oninput = v34;
-		}
-		var _g36 = this.get_oninvalid();
-		if(_g36 != null) {
-			var v35 = _g36;
-			__ret1.oninvalid = v35;
-		}
-		var _g37 = this.get_onkeydown();
-		if(_g37 != null) {
-			var v36 = _g37;
-			__ret1.onkeydown = v36;
-		}
-		var _g38 = this.get_onkeypress();
-		if(_g38 != null) {
-			var v37 = _g38;
-			__ret1.onkeypress = v37;
-		}
-		var _g39 = this.get_onkeyup();
-		if(_g39 != null) {
-			var v38 = _g39;
-			__ret1.onkeyup = v38;
-		}
-		var _g40 = this.get_onload();
-		if(_g40 != null) {
-			var v39 = _g40;
-			__ret1.onload = v39;
-		}
-		var _g41 = this.get_onloadeddata();
-		if(_g41 != null) {
-			var v40 = _g41;
-			__ret1.onloadeddata = v40;
-		}
-		var _g42 = this.get_onloadedmetadata();
-		if(_g42 != null) {
-			var v41 = _g42;
-			__ret1.onloadedmetadata = v41;
-		}
-		var _g43 = this.get_onloadstart();
-		if(_g43 != null) {
-			var v42 = _g43;
-			__ret1.onloadstart = v42;
-		}
-		var _g44 = this.get_onlostpointercapture();
-		if(_g44 != null) {
-			var v43 = _g44;
-			__ret1.onlostpointercapture = v43;
-		}
-		var _g45 = this.get_onmousedown();
-		if(_g45 != null) {
-			var v44 = _g45;
-			__ret1.onmousedown = v44;
-		}
-		var _g46 = this.get_onmouseenter();
-		if(_g46 != null) {
-			var v45 = _g46;
-			__ret1.onmouseenter = v45;
-		}
-		var _g47 = this.get_onmouseleave();
-		if(_g47 != null) {
-			var v46 = _g47;
-			__ret1.onmouseleave = v46;
-		}
-		var _g48 = this.get_onmousemove();
-		if(_g48 != null) {
-			var v47 = _g48;
-			__ret1.onmousemove = v47;
-		}
-		var _g49 = this.get_onmouseout();
-		if(_g49 != null) {
-			var v48 = _g49;
-			__ret1.onmouseout = v48;
-		}
-		var _g50 = this.get_onmouseover();
-		if(_g50 != null) {
-			var v49 = _g50;
-			__ret1.onmouseover = v49;
-		}
-		var _g51 = this.get_onmouseup();
-		if(_g51 != null) {
-			var v50 = _g51;
-			__ret1.onmouseup = v50;
-		}
-		var _g52 = this.get_onpaste();
-		if(_g52 != null) {
-			var v51 = _g52;
-			__ret1.onpaste = v51;
-		}
-		var _g53 = this.get_onpause();
-		if(_g53 != null) {
-			var v52 = _g53;
-			__ret1.onpause = v52;
-		}
-		var _g54 = this.get_onplay();
-		if(_g54 != null) {
-			var v53 = _g54;
-			__ret1.onplay = v53;
-		}
-		var _g55 = this.get_onplaying();
-		if(_g55 != null) {
-			var v54 = _g55;
-			__ret1.onplaying = v54;
-		}
-		var _g56 = this.get_onpointercancel();
-		if(_g56 != null) {
-			var v55 = _g56;
-			__ret1.onpointercancel = v55;
-		}
-		var _g57 = this.get_onpointerdown();
-		if(_g57 != null) {
-			var v56 = _g57;
-			__ret1.onpointerdown = v56;
-		}
-		var _g58 = this.get_onpointerenter();
-		if(_g58 != null) {
-			var v57 = _g58;
-			__ret1.onpointerenter = v57;
-		}
-		var _g59 = this.get_onpointerleave();
-		if(_g59 != null) {
-			var v58 = _g59;
-			__ret1.onpointerleave = v58;
-		}
-		var _g60 = this.get_onpointerlockchange();
-		if(_g60 != null) {
-			var v59 = _g60;
-			__ret1.onpointerlockchange = v59;
-		}
-		var _g61 = this.get_onpointerlockerror();
-		if(_g61 != null) {
-			var v60 = _g61;
-			__ret1.onpointerlockerror = v60;
-		}
-		var _g62 = this.get_onpointermove();
-		if(_g62 != null) {
-			var v61 = _g62;
-			__ret1.onpointermove = v61;
-		}
-		var _g63 = this.get_onpointerout();
-		if(_g63 != null) {
-			var v62 = _g63;
-			__ret1.onpointerout = v62;
-		}
-		var _g64 = this.get_onpointerover();
-		if(_g64 != null) {
-			var v63 = _g64;
-			__ret1.onpointerover = v63;
-		}
-		var _g65 = this.get_onpointerup();
-		if(_g65 != null) {
-			var v64 = _g65;
-			__ret1.onpointerup = v64;
-		}
-		var _g66 = this.get_onprogress();
-		if(_g66 != null) {
-			var v65 = _g66;
-			__ret1.onprogress = v65;
-		}
-		var _g67 = this.get_onratechange();
-		if(_g67 != null) {
-			var v66 = _g67;
-			__ret1.onratechange = v66;
-		}
-		var _g68 = this.get_onreset();
-		if(_g68 != null) {
-			var v67 = _g68;
-			__ret1.onreset = v67;
-		}
-		var _g69 = this.get_onresize();
-		if(_g69 != null) {
-			var v68 = _g69;
-			__ret1.onresize = v68;
-		}
-		var _g70 = this.get_onscroll();
-		if(_g70 != null) {
-			var v69 = _g70;
-			__ret1.onscroll = v69;
-		}
-		var _g71 = this.get_onseeked();
-		if(_g71 != null) {
-			var v70 = _g71;
-			__ret1.onseeked = v70;
-		}
-		var _g72 = this.get_onseeking();
-		if(_g72 != null) {
-			var v71 = _g72;
-			__ret1.onseeking = v71;
-		}
-		var _g73 = this.get_onselect();
-		if(_g73 != null) {
-			var v72 = _g73;
-			__ret1.onselect = v72;
-		}
-		var _g74 = this.get_onshow();
-		if(_g74 != null) {
-			var v73 = _g74;
-			__ret1.onshow = v73;
-		}
-		var _g75 = this.get_onstalled();
-		if(_g75 != null) {
-			var v74 = _g75;
-			__ret1.onstalled = v74;
-		}
-		var _g76 = this.get_onsubmit();
-		if(_g76 != null) {
-			var v75 = _g76;
-			__ret1.onsubmit = v75;
-		}
-		var _g77 = this.get_onsuspend();
-		if(_g77 != null) {
-			var v76 = _g77;
-			__ret1.onsuspend = v76;
-		}
-		var _g78 = this.get_ontimeupdate();
-		if(_g78 != null) {
-			var v77 = _g78;
-			__ret1.ontimeupdate = v77;
-		}
-		var _g79 = this.get_ontouchcancel();
-		if(_g79 != null) {
-			var v78 = _g79;
-			__ret1.ontouchcancel = v78;
-		}
-		var _g80 = this.get_ontouchend();
-		if(_g80 != null) {
-			var v79 = _g80;
-			__ret1.ontouchend = v79;
-		}
-		var _g81 = this.get_ontouchmove();
-		if(_g81 != null) {
-			var v80 = _g81;
-			__ret1.ontouchmove = v80;
-		}
-		var _g82 = this.get_ontouchstart();
-		if(_g82 != null) {
-			var v81 = _g82;
-			__ret1.ontouchstart = v81;
-		}
-		var _g83 = this.get_onvolumechange();
-		if(_g83 != null) {
-			var v82 = _g83;
-			__ret1.onvolumechange = v82;
-		}
-		var _g84 = this.get_onwaiting();
-		if(_g84 != null) {
-			var v83 = _g84;
-			__ret1.onwaiting = v83;
-		}
-		var _g85 = this.get_onwheel();
-		if(_g85 != null) {
-			var v84 = _g85;
-			__ret1.onwheel = v84;
-		}
-		var _g86 = this.get_spellcheck();
-		if(_g86 != null) {
-			var v85 = _g86;
-			__ret1.spellcheck = v85;
-		}
-		var _g87 = this.get_style();
-		if(_g87 != null) {
-			var v86 = _g87;
-			__ret1.style = v86;
-		}
-		var _g88 = this.get_tabIndex();
-		if(_g88 != null) {
-			var v87 = _g88;
-			__ret1.tabIndex = v87;
-		}
-		var _g89 = this.get_title();
-		if(_g89 != null) {
-			var v88 = _g89;
-			__ret1.title = v88;
-		}
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
+		var attr1 = __ret1;
 		var __r1 = [];
-		__r1.push(this.get_name());
-		__r.push(vdom_VDom.h("span",__ret1,__r1));
+		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r1.push({ t : ":text", k : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe()), a : coconut_vdom_VDom.EMPTY});
+		var children = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
+		__r.push({ t : "span", k : attr1 == null ? null : attr1.key, a : attr1, c : children});
 		return __r[0];
 	}
 	,__tink_defaults3: null
@@ -14884,463 +8452,18 @@ mdc_ToolbarIcon.prototype = $extend(coconut_ui_View.prototype,{
 		return "ToolbarIcon" + "#" + this.viewId;
 	}
 	,__tink_init4: function(attributes) {
+		var this1 = attributes.className;
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults3.className : this1);
 		this.__slots.name.setData(attributes.name);
-		var this1 = attributes.accessKey;
-		this.__slots.accessKey.setData(this1 == null ? this.__tink_defaults3.accessKey : this1);
-		var this2 = attributes.accessKeyLabel;
-		this.__slots.accessKeyLabel.setData(this2 == null ? this.__tink_defaults3.accessKeyLabel : this2);
-		var this3 = attributes.attributes;
-		this.__slots.attributes.setData(this3 == null ? this.__tink_defaults3.attributes : this3);
-		var this4 = attributes.className;
-		this.__slots.className.setData(this4 == null ? this.__tink_defaults3.className : this4);
-		var this5 = attributes.dir;
-		this.__slots.dir.setData(this5 == null ? this.__tink_defaults3.dir : this5);
-		var this6 = attributes.draggable;
-		this.__slots.draggable.setData(this6 == null ? this.__tink_defaults3.draggable : this6);
-		var this7 = attributes.hidden;
-		this.__slots.hidden.setData(this7 == null ? this.__tink_defaults3.hidden : this7);
-		var this8 = attributes.id;
-		this.__slots.id.setData(this8 == null ? this.__tink_defaults3.id : this8);
-		var this9 = attributes.key;
-		this.__slots.key.setData(this9 == null ? this.__tink_defaults3.key : this9);
-		var this10 = attributes.lang;
-		this.__slots.lang.setData(this10 == null ? this.__tink_defaults3.lang : this10);
-		var this11 = attributes.onabort;
-		this.__slots.onabort.setData(this11 == null ? this.__tink_defaults3.onabort : this11);
-		var this12 = attributes.onblur;
-		this.__slots.onblur.setData(this12 == null ? this.__tink_defaults3.onblur : this12);
-		var this13 = attributes.oncanplay;
-		this.__slots.oncanplay.setData(this13 == null ? this.__tink_defaults3.oncanplay : this13);
-		var this14 = attributes.oncanplaythrough;
-		this.__slots.oncanplaythrough.setData(this14 == null ? this.__tink_defaults3.oncanplaythrough : this14);
-		var this15 = attributes.onchange;
-		this.__slots.onchange.setData(this15 == null ? this.__tink_defaults3.onchange : this15);
-		var this16 = attributes.onclick;
-		this.__slots.onclick.setData(this16 == null ? this.__tink_defaults3.onclick : this16);
-		var this17 = attributes.oncontextmenu;
-		this.__slots.oncontextmenu.setData(this17 == null ? this.__tink_defaults3.oncontextmenu : this17);
-		var this18 = attributes.oncopy;
-		this.__slots.oncopy.setData(this18 == null ? this.__tink_defaults3.oncopy : this18);
-		var this19 = attributes.oncut;
-		this.__slots.oncut.setData(this19 == null ? this.__tink_defaults3.oncut : this19);
-		var this20 = attributes.ondblclick;
-		this.__slots.ondblclick.setData(this20 == null ? this.__tink_defaults3.ondblclick : this20);
-		var this21 = attributes.ondrag;
-		this.__slots.ondrag.setData(this21 == null ? this.__tink_defaults3.ondrag : this21);
-		var this22 = attributes.ondragend;
-		this.__slots.ondragend.setData(this22 == null ? this.__tink_defaults3.ondragend : this22);
-		var this23 = attributes.ondragenter;
-		this.__slots.ondragenter.setData(this23 == null ? this.__tink_defaults3.ondragenter : this23);
-		var this24 = attributes.ondragleave;
-		this.__slots.ondragleave.setData(this24 == null ? this.__tink_defaults3.ondragleave : this24);
-		var this25 = attributes.ondragover;
-		this.__slots.ondragover.setData(this25 == null ? this.__tink_defaults3.ondragover : this25);
-		var this26 = attributes.ondragstart;
-		this.__slots.ondragstart.setData(this26 == null ? this.__tink_defaults3.ondragstart : this26);
-		var this27 = attributes.ondrop;
-		this.__slots.ondrop.setData(this27 == null ? this.__tink_defaults3.ondrop : this27);
-		var this28 = attributes.ondurationchange;
-		this.__slots.ondurationchange.setData(this28 == null ? this.__tink_defaults3.ondurationchange : this28);
-		var this29 = attributes.onemptied;
-		this.__slots.onemptied.setData(this29 == null ? this.__tink_defaults3.onemptied : this29);
-		var this30 = attributes.onended;
-		this.__slots.onended.setData(this30 == null ? this.__tink_defaults3.onended : this30);
-		var this31 = attributes.onerror;
-		this.__slots.onerror.setData(this31 == null ? this.__tink_defaults3.onerror : this31);
-		var this32 = attributes.onfocus;
-		this.__slots.onfocus.setData(this32 == null ? this.__tink_defaults3.onfocus : this32);
-		var this33 = attributes.onfullscreenchange;
-		this.__slots.onfullscreenchange.setData(this33 == null ? this.__tink_defaults3.onfullscreenchange : this33);
-		var this34 = attributes.onfullscreenerror;
-		this.__slots.onfullscreenerror.setData(this34 == null ? this.__tink_defaults3.onfullscreenerror : this34);
-		var this35 = attributes.ongotpointercapture;
-		this.__slots.ongotpointercapture.setData(this35 == null ? this.__tink_defaults3.ongotpointercapture : this35);
-		var this36 = attributes.oninput;
-		this.__slots.oninput.setData(this36 == null ? this.__tink_defaults3.oninput : this36);
-		var this37 = attributes.oninvalid;
-		this.__slots.oninvalid.setData(this37 == null ? this.__tink_defaults3.oninvalid : this37);
-		var this38 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this38 == null ? this.__tink_defaults3.onkeydown : this38);
-		var this39 = attributes.onkeypress;
-		this.__slots.onkeypress.setData(this39 == null ? this.__tink_defaults3.onkeypress : this39);
-		var this40 = attributes.onkeyup;
-		this.__slots.onkeyup.setData(this40 == null ? this.__tink_defaults3.onkeyup : this40);
-		var this41 = attributes.onload;
-		this.__slots.onload.setData(this41 == null ? this.__tink_defaults3.onload : this41);
-		var this42 = attributes.onloadeddata;
-		this.__slots.onloadeddata.setData(this42 == null ? this.__tink_defaults3.onloadeddata : this42);
-		var this43 = attributes.onloadedmetadata;
-		this.__slots.onloadedmetadata.setData(this43 == null ? this.__tink_defaults3.onloadedmetadata : this43);
-		var this44 = attributes.onloadstart;
-		this.__slots.onloadstart.setData(this44 == null ? this.__tink_defaults3.onloadstart : this44);
-		var this45 = attributes.onlostpointercapture;
-		this.__slots.onlostpointercapture.setData(this45 == null ? this.__tink_defaults3.onlostpointercapture : this45);
-		var this46 = attributes.onmousedown;
-		this.__slots.onmousedown.setData(this46 == null ? this.__tink_defaults3.onmousedown : this46);
-		var this47 = attributes.onmouseenter;
-		this.__slots.onmouseenter.setData(this47 == null ? this.__tink_defaults3.onmouseenter : this47);
-		var this48 = attributes.onmouseleave;
-		this.__slots.onmouseleave.setData(this48 == null ? this.__tink_defaults3.onmouseleave : this48);
-		var this49 = attributes.onmousemove;
-		this.__slots.onmousemove.setData(this49 == null ? this.__tink_defaults3.onmousemove : this49);
-		var this50 = attributes.onmouseout;
-		this.__slots.onmouseout.setData(this50 == null ? this.__tink_defaults3.onmouseout : this50);
-		var this51 = attributes.onmouseover;
-		this.__slots.onmouseover.setData(this51 == null ? this.__tink_defaults3.onmouseover : this51);
-		var this52 = attributes.onmouseup;
-		this.__slots.onmouseup.setData(this52 == null ? this.__tink_defaults3.onmouseup : this52);
-		var this53 = attributes.onpaste;
-		this.__slots.onpaste.setData(this53 == null ? this.__tink_defaults3.onpaste : this53);
-		var this54 = attributes.onpause;
-		this.__slots.onpause.setData(this54 == null ? this.__tink_defaults3.onpause : this54);
-		var this55 = attributes.onplay;
-		this.__slots.onplay.setData(this55 == null ? this.__tink_defaults3.onplay : this55);
-		var this56 = attributes.onplaying;
-		this.__slots.onplaying.setData(this56 == null ? this.__tink_defaults3.onplaying : this56);
-		var this57 = attributes.onpointercancel;
-		this.__slots.onpointercancel.setData(this57 == null ? this.__tink_defaults3.onpointercancel : this57);
-		var this58 = attributes.onpointerdown;
-		this.__slots.onpointerdown.setData(this58 == null ? this.__tink_defaults3.onpointerdown : this58);
-		var this59 = attributes.onpointerenter;
-		this.__slots.onpointerenter.setData(this59 == null ? this.__tink_defaults3.onpointerenter : this59);
-		var this60 = attributes.onpointerleave;
-		this.__slots.onpointerleave.setData(this60 == null ? this.__tink_defaults3.onpointerleave : this60);
-		var this61 = attributes.onpointerlockchange;
-		this.__slots.onpointerlockchange.setData(this61 == null ? this.__tink_defaults3.onpointerlockchange : this61);
-		var this62 = attributes.onpointerlockerror;
-		this.__slots.onpointerlockerror.setData(this62 == null ? this.__tink_defaults3.onpointerlockerror : this62);
-		var this63 = attributes.onpointermove;
-		this.__slots.onpointermove.setData(this63 == null ? this.__tink_defaults3.onpointermove : this63);
-		var this64 = attributes.onpointerout;
-		this.__slots.onpointerout.setData(this64 == null ? this.__tink_defaults3.onpointerout : this64);
-		var this65 = attributes.onpointerover;
-		this.__slots.onpointerover.setData(this65 == null ? this.__tink_defaults3.onpointerover : this65);
-		var this66 = attributes.onpointerup;
-		this.__slots.onpointerup.setData(this66 == null ? this.__tink_defaults3.onpointerup : this66);
-		var this67 = attributes.onprogress;
-		this.__slots.onprogress.setData(this67 == null ? this.__tink_defaults3.onprogress : this67);
-		var this68 = attributes.onratechange;
-		this.__slots.onratechange.setData(this68 == null ? this.__tink_defaults3.onratechange : this68);
-		var this69 = attributes.onreset;
-		this.__slots.onreset.setData(this69 == null ? this.__tink_defaults3.onreset : this69);
-		var this70 = attributes.onresize;
-		this.__slots.onresize.setData(this70 == null ? this.__tink_defaults3.onresize : this70);
-		var this71 = attributes.onscroll;
-		this.__slots.onscroll.setData(this71 == null ? this.__tink_defaults3.onscroll : this71);
-		var this72 = attributes.onseeked;
-		this.__slots.onseeked.setData(this72 == null ? this.__tink_defaults3.onseeked : this72);
-		var this73 = attributes.onseeking;
-		this.__slots.onseeking.setData(this73 == null ? this.__tink_defaults3.onseeking : this73);
-		var this74 = attributes.onselect;
-		this.__slots.onselect.setData(this74 == null ? this.__tink_defaults3.onselect : this74);
-		var this75 = attributes.onshow;
-		this.__slots.onshow.setData(this75 == null ? this.__tink_defaults3.onshow : this75);
-		var this76 = attributes.onstalled;
-		this.__slots.onstalled.setData(this76 == null ? this.__tink_defaults3.onstalled : this76);
-		var this77 = attributes.onsubmit;
-		this.__slots.onsubmit.setData(this77 == null ? this.__tink_defaults3.onsubmit : this77);
-		var this78 = attributes.onsuspend;
-		this.__slots.onsuspend.setData(this78 == null ? this.__tink_defaults3.onsuspend : this78);
-		var this79 = attributes.ontimeupdate;
-		this.__slots.ontimeupdate.setData(this79 == null ? this.__tink_defaults3.ontimeupdate : this79);
-		var this80 = attributes.ontouchcancel;
-		this.__slots.ontouchcancel.setData(this80 == null ? this.__tink_defaults3.ontouchcancel : this80);
-		var this81 = attributes.ontouchend;
-		this.__slots.ontouchend.setData(this81 == null ? this.__tink_defaults3.ontouchend : this81);
-		var this82 = attributes.ontouchmove;
-		this.__slots.ontouchmove.setData(this82 == null ? this.__tink_defaults3.ontouchmove : this82);
-		var this83 = attributes.ontouchstart;
-		this.__slots.ontouchstart.setData(this83 == null ? this.__tink_defaults3.ontouchstart : this83);
-		var this84 = attributes.onvolumechange;
-		this.__slots.onvolumechange.setData(this84 == null ? this.__tink_defaults3.onvolumechange : this84);
-		var this85 = attributes.onwaiting;
-		this.__slots.onwaiting.setData(this85 == null ? this.__tink_defaults3.onwaiting : this85);
-		var this86 = attributes.onwheel;
-		this.__slots.onwheel.setData(this86 == null ? this.__tink_defaults3.onwheel : this86);
-		var this87 = attributes.spellcheck;
-		this.__slots.spellcheck.setData(this87 == null ? this.__tink_defaults3.spellcheck : this87);
-		var this88 = attributes.style;
-		this.__slots.style.setData(this88 == null ? this.__tink_defaults3.style : this88);
-		var this89 = attributes.tabIndex;
-		this.__slots.tabIndex.setData(this89 == null ? this.__tink_defaults3.tabIndex : this89);
-		var this90 = attributes.title;
-		this.__slots.title.setData(this90 == null ? this.__tink_defaults3.title : this90);
-	}
-	,get_name: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
-	}
-	,get_accessKey: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKey.observe());
-	}
-	,get_accessKeyLabel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.accessKeyLabel.observe());
-	}
-	,get_attributes: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.attributes.observe());
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
 	}
-	,get_dir: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.dir.observe());
-	}
-	,get_draggable: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.draggable.observe());
-	}
-	,get_hidden: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.hidden.observe());
-	}
-	,get_id: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.id.observe());
-	}
-	,get_key: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.key.observe());
-	}
-	,get_lang: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.lang.observe());
-	}
-	,get_onabort: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onabort.observe());
-	}
-	,get_onblur: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onblur.observe());
-	}
-	,get_oncanplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplay.observe());
-	}
-	,get_oncanplaythrough: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncanplaythrough.observe());
-	}
-	,get_onchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onchange.observe());
-	}
-	,get_onclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
-	}
-	,get_oncontextmenu: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncontextmenu.observe());
-	}
-	,get_oncopy: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncopy.observe());
-	}
-	,get_oncut: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oncut.observe());
-	}
-	,get_ondblclick: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondblclick.observe());
-	}
-	,get_ondrag: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrag.observe());
-	}
-	,get_ondragend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragend.observe());
-	}
-	,get_ondragenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragenter.observe());
-	}
-	,get_ondragleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragleave.observe());
-	}
-	,get_ondragover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragover.observe());
-	}
-	,get_ondragstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondragstart.observe());
-	}
-	,get_ondrop: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondrop.observe());
-	}
-	,get_ondurationchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ondurationchange.observe());
-	}
-	,get_onemptied: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onemptied.observe());
-	}
-	,get_onended: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onended.observe());
-	}
-	,get_onerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onerror.observe());
-	}
-	,get_onfocus: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfocus.observe());
-	}
-	,get_onfullscreenchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenchange.observe());
-	}
-	,get_onfullscreenerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onfullscreenerror.observe());
-	}
-	,get_ongotpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ongotpointercapture.observe());
-	}
-	,get_oninput: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninput.observe());
-	}
-	,get_oninvalid: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.oninvalid.observe());
-	}
-	,get_onkeydown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeydown.observe());
-	}
-	,get_onkeypress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeypress.observe());
-	}
-	,get_onkeyup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onkeyup.observe());
-	}
-	,get_onload: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onload.observe());
-	}
-	,get_onloadeddata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadeddata.observe());
-	}
-	,get_onloadedmetadata: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadedmetadata.observe());
-	}
-	,get_onloadstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onloadstart.observe());
-	}
-	,get_onlostpointercapture: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onlostpointercapture.observe());
-	}
-	,get_onmousedown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousedown.observe());
-	}
-	,get_onmouseenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseenter.observe());
-	}
-	,get_onmouseleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseleave.observe());
-	}
-	,get_onmousemove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmousemove.observe());
-	}
-	,get_onmouseout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseout.observe());
-	}
-	,get_onmouseover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseover.observe());
-	}
-	,get_onmouseup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onmouseup.observe());
-	}
-	,get_onpaste: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpaste.observe());
-	}
-	,get_onpause: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpause.observe());
-	}
-	,get_onplay: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplay.observe());
-	}
-	,get_onplaying: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onplaying.observe());
-	}
-	,get_onpointercancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointercancel.observe());
-	}
-	,get_onpointerdown: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerdown.observe());
-	}
-	,get_onpointerenter: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerenter.observe());
-	}
-	,get_onpointerleave: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerleave.observe());
-	}
-	,get_onpointerlockchange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockchange.observe());
-	}
-	,get_onpointerlockerror: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerlockerror.observe());
-	}
-	,get_onpointermove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointermove.observe());
-	}
-	,get_onpointerout: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerout.observe());
-	}
-	,get_onpointerover: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerover.observe());
-	}
-	,get_onpointerup: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onpointerup.observe());
-	}
-	,get_onprogress: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onprogress.observe());
-	}
-	,get_onratechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onratechange.observe());
-	}
-	,get_onreset: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onreset.observe());
-	}
-	,get_onresize: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onresize.observe());
-	}
-	,get_onscroll: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onscroll.observe());
-	}
-	,get_onseeked: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeked.observe());
-	}
-	,get_onseeking: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onseeking.observe());
-	}
-	,get_onselect: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onselect.observe());
-	}
-	,get_onshow: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onshow.observe());
-	}
-	,get_onstalled: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onstalled.observe());
-	}
-	,get_onsubmit: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsubmit.observe());
-	}
-	,get_onsuspend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onsuspend.observe());
-	}
-	,get_ontimeupdate: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontimeupdate.observe());
-	}
-	,get_ontouchcancel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchcancel.observe());
-	}
-	,get_ontouchend: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchend.observe());
-	}
-	,get_ontouchmove: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchmove.observe());
-	}
-	,get_ontouchstart: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.ontouchstart.observe());
-	}
-	,get_onvolumechange: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onvolumechange.observe());
-	}
-	,get_onwaiting: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwaiting.observe());
-	}
-	,get_onwheel: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onwheel.observe());
-	}
-	,get_spellcheck: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.spellcheck.observe());
-	}
-	,get_style: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.style.observe());
-	}
-	,get_tabIndex: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.tabIndex.observe());
-	}
-	,get_title: function() {
-		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.title.observe());
+	,get_name: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
 	}
 	,__class__: mdc_ToolbarIcon
-	,__properties__: {get_title:"get_title",get_tabIndex:"get_tabIndex",get_style:"get_style",get_spellcheck:"get_spellcheck",get_onwheel:"get_onwheel",get_onwaiting:"get_onwaiting",get_onvolumechange:"get_onvolumechange",get_ontouchstart:"get_ontouchstart",get_ontouchmove:"get_ontouchmove",get_ontouchend:"get_ontouchend",get_ontouchcancel:"get_ontouchcancel",get_ontimeupdate:"get_ontimeupdate",get_onsuspend:"get_onsuspend",get_onsubmit:"get_onsubmit",get_onstalled:"get_onstalled",get_onshow:"get_onshow",get_onselect:"get_onselect",get_onseeking:"get_onseeking",get_onseeked:"get_onseeked",get_onscroll:"get_onscroll",get_onresize:"get_onresize",get_onreset:"get_onreset",get_onratechange:"get_onratechange",get_onprogress:"get_onprogress",get_onpointerup:"get_onpointerup",get_onpointerover:"get_onpointerover",get_onpointerout:"get_onpointerout",get_onpointermove:"get_onpointermove",get_onpointerlockerror:"get_onpointerlockerror",get_onpointerlockchange:"get_onpointerlockchange",get_onpointerleave:"get_onpointerleave",get_onpointerenter:"get_onpointerenter",get_onpointerdown:"get_onpointerdown",get_onpointercancel:"get_onpointercancel",get_onplaying:"get_onplaying",get_onplay:"get_onplay",get_onpause:"get_onpause",get_onpaste:"get_onpaste",get_onmouseup:"get_onmouseup",get_onmouseover:"get_onmouseover",get_onmouseout:"get_onmouseout",get_onmousemove:"get_onmousemove",get_onmouseleave:"get_onmouseleave",get_onmouseenter:"get_onmouseenter",get_onmousedown:"get_onmousedown",get_onlostpointercapture:"get_onlostpointercapture",get_onloadstart:"get_onloadstart",get_onloadedmetadata:"get_onloadedmetadata",get_onloadeddata:"get_onloadeddata",get_onload:"get_onload",get_onkeyup:"get_onkeyup",get_onkeypress:"get_onkeypress",get_onkeydown:"get_onkeydown",get_oninvalid:"get_oninvalid",get_oninput:"get_oninput",get_ongotpointercapture:"get_ongotpointercapture",get_onfullscreenerror:"get_onfullscreenerror",get_onfullscreenchange:"get_onfullscreenchange",get_onfocus:"get_onfocus",get_onerror:"get_onerror",get_onended:"get_onended",get_onemptied:"get_onemptied",get_ondurationchange:"get_ondurationchange",get_ondrop:"get_ondrop",get_ondragstart:"get_ondragstart",get_ondragover:"get_ondragover",get_ondragleave:"get_ondragleave",get_ondragenter:"get_ondragenter",get_ondragend:"get_ondragend",get_ondrag:"get_ondrag",get_ondblclick:"get_ondblclick",get_oncut:"get_oncut",get_oncopy:"get_oncopy",get_oncontextmenu:"get_oncontextmenu",get_onclick:"get_onclick",get_onchange:"get_onchange",get_oncanplaythrough:"get_oncanplaythrough",get_oncanplay:"get_oncanplay",get_onblur:"get_onblur",get_onabort:"get_onabort",get_lang:"get_lang",get_key:"get_key",get_id:"get_id",get_hidden:"get_hidden",get_draggable:"get_draggable",get_dir:"get_dir",get_className:"get_className",get_attributes:"get_attributes",get_accessKeyLabel:"get_accessKeyLabel",get_accessKey:"get_accessKey",get_name:"get_name"}
+	,__properties__: {get_name:"get_name",get_className:"get_className"}
 });
 var tink_core_Annex = function(target) {
 	this.target = target;
@@ -15352,12 +8475,6 @@ tink_core_Annex.prototype = {
 	target: null
 	,registry: null
 	,__class__: tink_core_Annex
-};
-var tink_core__$Any_Any_$Impl_$ = {};
-$hxClasses["tink.core._Any.Any_Impl_"] = tink_core__$Any_Any_$Impl_$;
-tink_core__$Any_Any_$Impl_$.__name__ = ["tink","core","_Any","Any_Impl_"];
-tink_core__$Any_Any_$Impl_$.__promote = function(this1) {
-	return this1;
 };
 var tink_core__$Callback_Callback_$Impl_$ = {};
 $hxClasses["tink.core._Callback.Callback_Impl_"] = tink_core__$Callback_Callback_$Impl_$;
@@ -15721,10 +8838,16 @@ tink_core__$Lazy_LazyConst.prototype = {
 		return this.value;
 	}
 	,map: function(f) {
-		return new tink_core__$Lazy_LazyConst(f(this.value));
+		var _gthis = this;
+		return new tink_core__$Lazy_LazyFunc(function() {
+			return f(_gthis.value);
+		});
 	}
 	,flatMap: function(f) {
-		return f(this.value);
+		var _gthis = this;
+		return new tink_core__$Lazy_LazyFunc(function() {
+			return f(_gthis.value).get();
+		});
 	}
 	,__class__: tink_core__$Lazy_LazyConst
 };
@@ -15994,10 +9117,14 @@ tink_core__$Future_SimpleFuture.prototype = {
 		}));
 	}
 	,gather: function() {
-		return tink_core_FutureTrigger.gatherFuture(this);
+		if(this.gathered != null) {
+			return this.gathered;
+		} else {
+			return this.gathered = tink_core_FutureTrigger.gatherFuture(this);
+		}
 	}
 	,eager: function() {
-		var ret = tink_core_FutureTrigger.gatherFuture(this);
+		var ret = this.gathered != null ? this.gathered : this.gathered = tink_core_FutureTrigger.gatherFuture(this);
 		ret.handle(tink_core__$Callback_Callback_$Impl_$.fromNiladic(function() {
 		}));
 		return ret;
@@ -16012,6 +9139,7 @@ tink_core__$Future_NestedFuture.__name__ = ["tink","core","_Future","NestedFutur
 tink_core__$Future_NestedFuture.__interfaces__ = [tink_core__$Future_FutureObject];
 tink_core__$Future_NestedFuture.prototype = {
 	outer: null
+	,gathered: null
 	,map: function(f) {
 		var ret = this.outer.flatMap(function(inner) {
 			var ret1 = inner.map(f);
@@ -16027,10 +9155,14 @@ tink_core__$Future_NestedFuture.prototype = {
 		return ret.gather();
 	}
 	,gather: function() {
-		return tink_core_FutureTrigger.gatherFuture(this);
+		if(this.gathered != null) {
+			return this.gathered;
+		} else {
+			return this.gathered = tink_core_FutureTrigger.gatherFuture(this);
+		}
 	}
 	,eager: function() {
-		var ret = tink_core_FutureTrigger.gatherFuture(this);
+		var ret = this.gathered != null ? this.gathered : this.gathered = tink_core_FutureTrigger.gatherFuture(this);
 		ret.handle(tink_core__$Callback_Callback_$Impl_$.fromNiladic(function() {
 		}));
 		return ret;
@@ -16673,6 +9805,50 @@ tink_core__$Promise_Promise_$Impl_$.and = function(a,b) {
 		return tink_core__$Promise_Promise_$Impl_$.ofOutcome(tink_core_Outcome.Success(this1));
 	});
 };
+tink_core__$Promise_Promise_$Impl_$.iterate = function(promises,$yield,$finally,lazy) {
+	return tink_core__$Future_Future_$Impl_$.async(function(cb) {
+		var iter = $iterator(promises)();
+		var next = null;
+		next = function() {
+			if(iter.hasNext()) {
+				iter.next().handle(function(o) {
+					switch(o[1]) {
+					case 0:
+						var v = o[2];
+						$yield(v).handle(function(o1) {
+							switch(o1[1]) {
+							case 0:
+								switch(o1[2][1]) {
+								case 0:
+									var ret = o1[2][2];
+									cb(tink_core_Outcome.Success(ret));
+									break;
+								case 1:
+									next();
+									break;
+								}
+								break;
+							case 1:
+								var e = o1[2];
+								cb(tink_core_Outcome.Failure(e));
+								break;
+							}
+						});
+						break;
+					case 1:
+						var e1 = o[2];
+						cb(tink_core_Outcome.Failure(e1));
+						break;
+					}
+				});
+			} else {
+				$finally.handle(cb);
+			}
+		};
+		var next1 = next;
+		next1();
+	},lazy);
+};
 tink_core__$Promise_Promise_$Impl_$.ofJsPromise = function(promise) {
 	return tink_core__$Future_Future_$Impl_$.ofJsPromise(promise);
 };
@@ -16772,6 +9948,32 @@ tink_core__$Promise_Promise_$Impl_$.inSequence = function(a) {
 	};
 	var loop1 = loop;
 	return loop1(0);
+};
+tink_core__$Promise_Promise_$Impl_$.cache = function(gen) {
+	var p = null;
+	return function() {
+		var ret = p;
+		if(ret == null) {
+			var sync = false;
+			ret = tink_core__$Promise_Promise_$Impl_$.next(gen(),function(o) {
+				o.b.handle(function(_) {
+					sync = true;
+					p = null;
+				});
+				return tink_core__$Promise_Promise_$Impl_$.ofOutcome(tink_core_Outcome.Success(o.a));
+			});
+			if(!sync) {
+				p = ret;
+			}
+		}
+		var ret1 = ret.map(function(o1) {
+			if(!tink_core_OutcomeTools.isSuccess(o1)) {
+				p = null;
+			}
+			return o1;
+		});
+		return ret1.gather();
+	};
 };
 tink_core__$Promise_Promise_$Impl_$.lift = function(p) {
 	return p;
@@ -17180,7 +10382,7 @@ tink_state__$Observable_Observable_$Impl_$.measure = function(this1) {
 	var _g = (before instanceof tink_state__$Observable_AutoObservable) ? before : null;
 	if(_g != null) {
 		var v = _g;
-		p.b.handle(tink_core__$Callback_Callback_$Impl_$.fromNiladic($bind(v,v.invalidate)));
+		v.subscribe(p.b);
 	}
 	tink_state__$Observable_Observable_$Impl_$.stack.pop();
 	return p;
@@ -17205,6 +10407,25 @@ tink_state__$Observable_Observable_$Impl_$.switchSync = function(this1,cases,dfa
 	});
 };
 tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
+	var cb1;
+	if(options == null) {
+		cb1 = cb;
+	} else if(options.comparator == null) {
+		cb1 = cb;
+	} else {
+		var equal = options.comparator;
+		var isFirst = true;
+		var last = null;
+		cb1 = function(data) {
+			if(isFirst) {
+				isFirst = false;
+				tink_core__$Callback_Callback_$Impl_$.invoke(cb,data);
+			} else if(!equal(last,data)) {
+				tink_core__$Callback_Callback_$Impl_$.invoke(cb,data);
+			}
+			last = data;
+		};
+	}
 	if(options == null) {
 		var scheduled = false;
 		var active = true;
@@ -17213,7 +10434,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 		var update = function() {
 			if(active) {
 				var next = tink_state__$Observable_Observable_$Impl_$.measure(this1);
-				tink_core__$Callback_Callback_$Impl_$.invoke(cb,next.a);
+				tink_core__$Callback_Callback_$Impl_$.invoke(cb1,next.a);
 				scheduled = false;
 				link = next.b.handle(updated);
 			}
@@ -17244,7 +10465,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 		var update1 = function() {
 			if(active1) {
 				var next1 = tink_state__$Observable_Observable_$Impl_$.measure(this1);
-				tink_core__$Callback_Callback_$Impl_$.invoke(cb,next1.a);
+				tink_core__$Callback_Callback_$Impl_$.invoke(cb1,next1.a);
 				scheduled1 = false;
 				link1 = next1.b.handle(updated1);
 			}
@@ -17275,7 +10496,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 		var update2 = function() {
 			if(active2) {
 				var next2 = tink_state__$Observable_Observable_$Impl_$.measure(this1);
-				tink_core__$Callback_Callback_$Impl_$.invoke(cb,next2.a);
+				tink_core__$Callback_Callback_$Impl_$.invoke(cb1,next2.a);
 				scheduled2 = false;
 				link2 = next2.b.handle(updated2);
 			}
@@ -17303,7 +10524,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 		var update3 = null;
 		update3 = function(_) {
 			var next3 = tink_state__$Observable_Observable_$Impl_$.measure(this1);
-			tink_core__$Callback_Callback_$Impl_$.invoke(cb,next3.a);
+			tink_core__$Callback_Callback_$Impl_$.invoke(cb1,next3.a);
 			link3 = next3.b.handle(update3);
 		};
 		var update4 = update3;
@@ -17441,12 +10662,25 @@ tink_state__$Observable_Observable_$Impl_$.auto = function(f) {
 tink_state__$Observable_Observable_$Impl_$["const"] = function(value) {
 	return new tink_state_ConstObservable(value);
 };
-tink_state__$Observable_Observable_$Impl_$.ofConst = function(value) {
-	return tink_state__$Observable_Observable_$Impl_$["const"](value);
-};
 tink_state__$Observable_Observable_$Impl_$.untracked = function(f) {
 	tink_state__$Observable_Observable_$Impl_$.stack.push(null);
 	return tink_core_TypedError.tryFinally(f,($_=tink_state__$Observable_Observable_$Impl_$.stack,$bind($_,$_.pop)));
+};
+tink_state__$Observable_Observable_$Impl_$.eq = function(a,b) {
+	if(a == null) {
+		if(b == null) {
+			return true;
+		} else {
+			return false;
+		}
+	} else if(b == null) {
+		return false;
+	} else {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(a) == tink_state__$Observable_Observable_$Impl_$.get_value(b);
+	}
+};
+tink_state__$Observable_Observable_$Impl_$.neq = function(a,b) {
+	return !tink_state__$Observable_Observable_$Impl_$.eq(a,b);
 };
 var tink_state__$Observable_Computation_$Impl_$ = {};
 $hxClasses["tink.state._Observable.Computation_Impl_"] = tink_state__$Observable_Computation_$Impl_$;
@@ -17564,8 +10798,10 @@ tink_state_ConstObservable.prototype = {
 	,__class__: tink_state_ConstObservable
 };
 var tink_state__$Observable_AutoObservable = function(comp) {
+	this.subscriptions = new haxe_ds_ObjectMap();
 	var _gthis = this;
 	tink_state__$Observable_SimpleObservable.call(this,function() {
+		_gthis.subscriptions = new haxe_ds_ObjectMap();
 		_gthis.trigger = new tink_core_FutureTrigger();
 		var this1;
 		var this2 = new tink_core_MPair(comp.f(),_gthis.trigger);
@@ -17578,8 +10814,13 @@ tink_state__$Observable_AutoObservable.__name__ = ["tink","state","_Observable",
 tink_state__$Observable_AutoObservable.__super__ = tink_state__$Observable_SimpleObservable;
 tink_state__$Observable_AutoObservable.prototype = $extend(tink_state__$Observable_SimpleObservable.prototype,{
 	trigger: null
-	,invalidate: function() {
-		this.trigger.trigger(tink_core_Noise.Noise);
+	,subscriptions: null
+	,subscribe: function(change) {
+		if(this.subscriptions.h.__keys__[change.__id__] == null) {
+			var this1 = this.subscriptions;
+			var v = change.handle(($_=this.trigger,$bind($_,$_.trigger)));
+			this1.set(change,v);
+		}
 	}
 	,__class__: tink_state__$Observable_AutoObservable
 });
@@ -17645,224 +10886,6 @@ tink_state_PromisedTools.orNull = function(p) {
 		return null;
 	}
 };
-var vdom__$Attr_ClassName_$Impl_$ = {};
-$hxClasses["vdom._Attr.ClassName_Impl_"] = vdom__$Attr_ClassName_$Impl_$;
-vdom__$Attr_ClassName_$Impl_$.__name__ = ["vdom","_Attr","ClassName_Impl_"];
-vdom__$Attr_ClassName_$Impl_$._new = function(s) {
-	var this1 = s;
-	return this1;
-};
-vdom__$Attr_ClassName_$Impl_$.add = function(this1,that) {
-	var this2;
-	var _g = that;
-	if(this1 == null) {
-		var v = _g;
-		this2 = v;
-	} else if(_g == null) {
-		var v1 = this1;
-		this2 = v1;
-	} else {
-		var a = this1;
-		var b = _g;
-		this2 = "" + a + " " + b;
-	}
-	return this2;
-};
-vdom__$Attr_ClassName_$Impl_$.ofMap = function(parts) {
-	var _g = [];
-	var c = parts.keys();
-	while(c.hasNext()) {
-		var c1 = c.next();
-		if(__map_reserved[c1] != null ? parts.getReserved(c1) : parts.h[c1]) {
-			_g.push(vdom__$Attr_ClassName_$Impl_$.ofString(c1));
-		}
-	}
-	var this1 = vdom__$Attr_ClassName_$Impl_$.ofArray(_g);
-	return this1;
-};
-vdom__$Attr_ClassName_$Impl_$.ofArray = function(parts) {
-	var this1 = parts.map(vdom__$Attr_ClassName_$Impl_$.ofString).join(" ");
-	return this1;
-};
-vdom__$Attr_ClassName_$Impl_$.ofString = function(s) {
-	var this1 = StringTools.trim(s);
-	return this1;
-};
-var vdom__$Attr_Ext_$Impl_$ = {};
-$hxClasses["vdom._Attr.Ext_Impl_"] = vdom__$Attr_Ext_$Impl_$;
-vdom__$Attr_Ext_$Impl_$.__name__ = ["vdom","_Attr","Ext_Impl_"];
-vdom__$Attr_Ext_$Impl_$.ofInt = function(i) {
-	return i;
-};
-vdom__$Attr_Ext_$Impl_$.ofFloat = function(f) {
-	return f;
-};
-vdom__$Attr_Ext_$Impl_$.ofBool = function(b) {
-	if(b) {
-		return "";
-	} else {
-		return undefined;
-	}
-};
-var vdom__$Attr_Key_$Impl_$ = {};
-$hxClasses["vdom._Attr.Key_Impl_"] = vdom__$Attr_Key_$Impl_$;
-vdom__$Attr_Key_$Impl_$.__name__ = ["vdom","_Attr","Key_Impl_"];
-vdom__$Attr_Key_$Impl_$.ofObj = function(v) {
-	if(v == null) {
-		return null;
-	}
-	var o = v;
-	if(o.__vdomKey__ == null) {
-		o.__vdomKey__ = vdom__$Attr_Key_$Impl_$.keygen++;
-	}
-	return o.__vdomKey__;
-};
-vdom__$Attr_Key_$Impl_$.ofAny = function(v) {
-	var _g = Type["typeof"](v);
-	switch(_g[1]) {
-	case 1:case 2:case 3:
-		return v;
-	case 6:
-		switch(_g[2]) {
-		case Array:
-			return v.join(":");
-		case String:
-			return v;
-		default:
-			return vdom__$Attr_Key_$Impl_$.ofObj(v);
-		}
-		break;
-	default:
-		return vdom__$Attr_Key_$Impl_$.ofObj(v);
-	}
-};
-var vdom__$Attr_EventFrom_$Impl_$ = {};
-$hxClasses["vdom._Attr.EventFrom_Impl_"] = vdom__$Attr_EventFrom_$Impl_$;
-vdom__$Attr_EventFrom_$Impl_$.__name__ = ["vdom","_Attr","EventFrom_Impl_"];
-vdom__$Attr_EventFrom_$Impl_$.__properties__ = {get_exactTarget:"get_exactTarget",get_target:"get_target"};
-vdom__$Attr_EventFrom_$Impl_$.get_target = function(this1) {
-	return this1.currentTarget;
-};
-vdom__$Attr_EventFrom_$Impl_$.get_exactTarget = function(this1) {
-	return this1.target;
-};
-var vdom__$Attr_PureDynamicAccess_$Impl_$ = {};
-$hxClasses["vdom._Attr.PureDynamicAccess_Impl_"] = vdom__$Attr_PureDynamicAccess_$Impl_$;
-vdom__$Attr_PureDynamicAccess_$Impl_$.__name__ = ["vdom","_Attr","PureDynamicAccess_Impl_"];
-vdom__$Attr_PureDynamicAccess_$Impl_$._new = function() {
-	var this1 = { };
-	return this1;
-};
-vdom__$Attr_PureDynamicAccess_$Impl_$.get = function(this1,key) {
-	return this1[key];
-};
-vdom__$Attr_PureDynamicAccess_$Impl_$.exists = function(this1,key) {
-	return Object.prototype.hasOwnProperty.call(this1,key);
-};
-vdom__$Attr_PureDynamicAccess_$Impl_$.keys = function(this1) {
-	return Reflect.fields(this1);
-};
-var vdom_HtmlFragment = function(content,tag,className) {
-	if(tag == null) {
-		tag = "span";
-	}
-	vdom_Widget.call(this);
-	this.content = content;
-	this.tag = tag;
-	this.className = className;
-};
-$hxClasses["vdom.HtmlFragment"] = vdom_HtmlFragment;
-vdom_HtmlFragment.__name__ = ["vdom","HtmlFragment"];
-vdom_HtmlFragment.create = function(attr) {
-	if(attr.content == "" && attr.force != true) {
-		return null;
-	} else {
-		return new vdom_HtmlFragment(attr.content,attr.tag,attr.className);
-	}
-};
-vdom_HtmlFragment.__super__ = vdom_Widget;
-vdom_HtmlFragment.prototype = $extend(vdom_Widget.prototype,{
-	content: null
-	,tag: null
-	,element: null
-	,className: null
-	,init: function() {
-		if(this.element == null) {
-			this.element = window.document.createElement(this.tag);
-			this.element.innerHTML = this.content;
-			if(this.className != null) {
-				this.element.className = this.className;
-			}
-		}
-		return this.element;
-	}
-	,update: function(old,e) {
-		var _g = (old instanceof vdom_HtmlFragment) ? old : null;
-		if(_g == null) {
-			return this.init();
-		} else {
-			var v = _g;
-			if(v.tag == this.tag) {
-				this.element = e;
-				if(this.className != v.className) {
-					this.element.className = this.className;
-				}
-				if(this.content != v.content) {
-					this.element.innerHTML = this.content;
-				}
-				return e;
-			} else {
-				return this.init();
-			}
-		}
-	}
-	,__class__: vdom_HtmlFragment
-});
-var vdom__$Style_Style_$Impl_$ = {};
-$hxClasses["vdom._Style.Style_Impl_"] = vdom__$Style_Style_$Impl_$;
-vdom__$Style_Style_$Impl_$.__name__ = ["vdom","_Style","Style_Impl_"];
-vdom__$Style_Style_$Impl_$.ofString = function(s) {
-	vdom__$Style_Style_$Impl_$.style.cssText = s;
-	var ret = { };
-	var ret1 = ret;
-	var _g = 0;
-	var _g1 = vdom__$Style_Style_$Impl_$.style;
-	while(_g < _g1.length) {
-		var name = _g1[_g];
-		++_g;
-		ret1[name] = vdom__$Style_Style_$Impl_$.style.getPropertyValue(name);
-	}
-	return ret;
-};
-var vdom__$VDom_VDom_$Impl_$ = function() { };
-$hxClasses["vdom._VDom.VDom_Impl_"] = vdom__$VDom_VDom_$Impl_$;
-vdom__$VDom_VDom_$Impl_$.__name__ = ["vdom","_VDom","VDom_Impl_"];
-vdom__$VDom_VDom_$Impl_$.label = function(attr,children) {
-	return vdom_VDom.h("label",attr,children);
-};
-var vdom__$VNode_VNode_$Impl_$ = {};
-$hxClasses["vdom._VNode.VNode_Impl_"] = vdom__$VNode_VNode_$Impl_$;
-vdom__$VNode_VNode_$Impl_$.__name__ = ["vdom","_VNode","VNode_Impl_"];
-vdom__$VNode_VNode_$Impl_$.toElement = function(this1) {
-	return vdom_VDom.create(this1);
-};
-vdom__$VNode_VNode_$Impl_$.toChildList = function(this1) {
-	return [this1];
-};
-vdom__$VNode_VNode_$Impl_$._new = function(tagName,properties,children,key,$namespace) {
-	var this1 = new window.virtualDom.VNode(tagName,properties,children,key,$namespace);
-	return this1;
-};
-vdom__$VNode_VNode_$Impl_$.ofInt = function(i) {
-	if(i == null) {
-		return "null";
-	} else {
-		return "" + i;
-	}
-};
-var vdom_macros_Loader = function() { };
-$hxClasses["vdom.macros.Loader"] = vdom_macros_Loader;
-vdom_macros_Loader.__name__ = ["vdom","macros","Loader"];
 function $iterator(o) { if( o instanceof Array ) return function() { return HxOverrides.iter(o); }; return typeof(o.iterator) == 'function' ? $bind(o,o.iterator) : o.iterator; }
 var $_, $fid = 0;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $fid++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = function(){ return f.method.apply(f.scope, arguments); }; f.scope = o; f.method = m; o.hx__closures__[m.__id__] = f; } return f; }
@@ -17896,1681 +10919,17 @@ mdc.ripple.MDCRippleFoundation.prototype.activate_ = function(e) {
 	self.layoutInternal_();
 	originalActivate.call(self,e);
 };
-var vdom_VDom = function(e){return e()}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var createElement = require("./vdom/create-element.js")
-
-module.exports = createElement
-
-},{"./vdom/create-element.js":15}],2:[function(require,module,exports){
-var diff = require("./vtree/diff.js")
-
-module.exports = diff
-
-},{"./vtree/diff.js":35}],3:[function(require,module,exports){
-var h = require("./virtual-hyperscript/index.js")
-
-module.exports = h
-
-},{"./virtual-hyperscript/index.js":22}],4:[function(require,module,exports){
-var diff = require("./diff.js")
-var patch = require("./patch.js")
-var h = require("./h.js")
-var create = require("./create-element.js")
-var VNode = require('./vnode/vnode.js')
-var VText = require('./vnode/vtext.js')
-
-module.exports = {
-    diff: diff,
-    patch: patch,
-    h: h,
-    create: create,
-    VNode: VNode,
-    VText: VText
-}
-
-//for (var name in module.exports)
-	//window[name] = module.exports[name];
-
-},{"./create-element.js":1,"./diff.js":2,"./h.js":3,"./patch.js":13,"./vnode/vnode.js":31,"./vnode/vtext.js":33}],5:[function(require,module,exports){
-/*!
- * Cross-Browser Split 1.1.1
- * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
- * Available under the MIT License
- * ECMAScript compliant, uniform cross-browser split method
- */
-
-/**
- * Splits a string into an array of strings using a regex or string separator. Matches of the
- * separator are not included in the result array. However, if `separator` is a regex that contains
- * capturing groups, backreferences are spliced into the result each time `separator` is matched.
- * Fixes browser bugs compared to the native `String.prototype.split` and can be used reliably
- * cross-browser.
- * @param {String} str String to split.
- * @param {RegExp|String} separator Regex or string to use for separating the string.
- * @param {Number} [limit] Maximum number of items to include in the result array.
- * @returns {Array} Array of substrings.
- * @example
- *
- * // Basic use
- * split('a b c d', ' ');
- * // -> ['a', 'b', 'c', 'd']
- *
- * // With limit
- * split('a b c d', ' ', 2);
- * // -> ['a', 'b']
- *
- * // Backreferences in result array
- * split('..word1 word2..', /([a-z]+)(\d+)/i);
- * // -> ['..', 'word', '1', ' ', 'word', '2', '..']
- */
-module.exports = (function split(undef) {
-
-  var nativeSplit = String.prototype.split,
-    compliantExecNpcg = /()??/.exec("")[1] === undef,
-    // NPCG: nonparticipating capturing group
-    self;
-
-  self = function(str, separator, limit) {
-    // If `separator` is not a regex, use `nativeSplit`
-    if (Object.prototype.toString.call(separator) !== "[object RegExp]") {
-      return nativeSplit.call(str, separator, limit);
-    }
-    var output = [],
-      flags = (separator.ignoreCase ? "i" : "") + (separator.multiline ? "m" : "") + (separator.extended ? "x" : "") + // Proposed for ES6
-      (separator.sticky ? "y" : ""),
-      // Firefox 3+
-      lastLastIndex = 0,
-      // Make `global` and avoid `lastIndex` issues by working with a copy
-      separator = new RegExp(separator.source, flags + "g"),
-      separator2, match, lastIndex, lastLength;
-    str += ""; // Type-convert
-    if (!compliantExecNpcg) {
-      // Doesn't need flags gy, but they don't hurt
-      separator2 = new RegExp("^" + separator.source + "$(?!\\s)", flags);
-    }
-    /* Values for `limit`, per the spec:
-     * If undefined: 4294967295 // Math.pow(2, 32) - 1
-     * If 0, Infinity, or NaN: 0
-     * If positive number: limit = Math.floor(limit); if (limit > 4294967295) limit -= 4294967296;
-     * If negative number: 4294967296 - Math.floor(Math.abs(limit))
-     * If other: Type-convert, then use the above rules
-     */
-    limit = limit === undef ? -1 >>> 0 : // Math.pow(2, 32) - 1
-    limit >>> 0; // ToUint32(limit)
-    while (match = separator.exec(str)) {
-      // `separator.lastIndex` is not reliable cross-browser
-      lastIndex = match.index + match[0].length;
-      if (lastIndex > lastLastIndex) {
-        output.push(str.slice(lastLastIndex, match.index));
-        // Fix browsers whose `exec` methods don't consistently return `undefined` for
-        // nonparticipating capturing groups
-        if (!compliantExecNpcg && match.length > 1) {
-          match[0].replace(separator2, function() {
-            for (var i = 1; i < arguments.length - 2; i++) {
-              if (arguments[i] === undef) {
-                match[i] = undef;
-              }
-            }
-          });
-        }
-        if (match.length > 1 && match.index < str.length) {
-          Array.prototype.push.apply(output, match.slice(1));
-        }
-        lastLength = match[0].length;
-        lastLastIndex = lastIndex;
-        if (output.length >= limit) {
-          break;
-        }
-      }
-      if (separator.lastIndex === match.index) {
-        separator.lastIndex++; // Avoid an infinite loop
-      }
-    }
-    if (lastLastIndex === str.length) {
-      if (lastLength || !separator.test("")) {
-        output.push("");
-      }
-    } else {
-      output.push(str.slice(lastLastIndex));
-    }
-    return output.length > limit ? output.slice(0, limit) : output;
-  };
-
-  return self;
-})();
-
-},{}],6:[function(require,module,exports){
-
-},{}],7:[function(require,module,exports){
-'use strict';
-
-var OneVersionConstraint = require('individual/one-version');
-
-var MY_VERSION = '7';
-OneVersionConstraint('ev-store', MY_VERSION);
-
-var hashKey = '__EV_STORE_KEY@' + MY_VERSION;
-
-module.exports = EvStore;
-
-function EvStore(elem) {
-    var hash = elem[hashKey];
-
-    if (!hash) {
-        hash = elem[hashKey] = {};
-    }
-
-    return hash;
-}
-
-},{"individual/one-version":9}],8:[function(require,module,exports){
-(function (global){
-'use strict';
-
-/*global window, global*/
-
-var root = typeof window !== 'undefined' ?
-    window : typeof global !== 'undefined' ?
-    global : {};
-
-module.exports = Individual;
-
-function Individual(key, value) {
-    if (key in root) {
-        return root[key];
-    }
-
-    root[key] = value;
-
-    return value;
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(require,module,exports){
-'use strict';
-
-var Individual = require('./index.js');
-
-module.exports = OneVersion;
-
-function OneVersion(moduleName, version, defaultValue) {
-    var key = '__INDIVIDUAL_ONE_VERSION_' + moduleName;
-    var enforceKey = key + '_ENFORCE_SINGLETON';
-
-    var versionValue = Individual(enforceKey, version);
-
-    if (versionValue !== version) {
-        throw new Error('Can only have one copy of ' +
-            moduleName + '.\n' +
-            'You already have version ' + versionValue +
-            ' installed.\n' +
-            'This means you cannot install version ' + version);
-    }
-
-    return Individual(key, defaultValue);
-}
-
-},{"./index.js":8}],10:[function(require,module,exports){
-(function (global){
-var topLevel = typeof global !== 'undefined' ? global :
-    typeof window !== 'undefined' ? window : {}
-var minDoc = require('min-document');
-
-if (typeof document !== 'undefined') {
-    module.exports = document;
-} else {
-    var doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'];
-
-    if (!doccy) {
-        doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'] = minDoc;
-    }
-
-    module.exports = doccy;
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":6}],11:[function(require,module,exports){
-"use strict";
-
-module.exports = function isObject(x) {
-	return typeof x === "object" && x !== null;
-};
-
-},{}],12:[function(require,module,exports){
-var nativeIsArray = Array.isArray
-var toString = Object.prototype.toString
-
-module.exports = nativeIsArray || isArray
-
-function isArray(obj) {
-    return toString.call(obj) === "[object Array]"
-}
-
-},{}],13:[function(require,module,exports){
-var patch = require("./vdom/patch.js")
-
-module.exports = patch
-
-},{"./vdom/patch.js":18}],14:[function(require,module,exports){
-var isObject = require("is-object")
-var isHook = require("../vnode/is-vhook.js")
-
-module.exports = applyProperties
-
-function applyProperties(node, props, previous) {
-    for (var propName in props) {
-        var propValue = props[propName]
-
-        if (propValue === undefined) {
-            removeProperty(node, propName, propValue, previous);
-        } else if (isHook(propValue)) {
-            removeProperty(node, propName, propValue, previous)
-            if (propValue.hook) {
-                propValue.hook(node,
-                    propName,
-                    previous ? previous[propName] : undefined)
-            }
-        } else {
-            if (isObject(propValue)) {
-                patchObject(node, props, previous, propName, propValue);
-            } else {
-                node[propName] = propValue
-            }
-        }
-    }
-}
-
-function removeProperty(node, propName, propValue, previous) {
-    if (previous) {
-        var previousValue = previous[propName]
-
-        if (!isHook(previousValue)) {
-            if (propName === "attributes") {
-                for (var attrName in previousValue) {
-                    node.removeAttribute(attrName)
-                }
-            } else if (propName === "style") {
-                for (var i in previousValue) {
-                    node.style[i] = ""
-                }
-            } else if (typeof previousValue === "string") {
-                node[propName] = ""
-            } else {
-                node[propName] = null
-            }
-        } else if (previousValue.unhook) {
-            previousValue.unhook(node, propName, propValue)
-        }
-    }
-}
-
-function patchObject(node, props, previous, propName, propValue) {
-    var previousValue = previous ? previous[propName] : undefined
-
-    // Set attributes
-    if (propName === "attributes") {
-        for (var attrName in propValue) {
-            var attrValue = propValue[attrName]
-
-            if (attrValue === undefined) {
-                node.removeAttribute(attrName)
-            } else {
-                node.setAttribute(attrName, attrValue)
-            }
-        }
-
-        return
-    }
-
-    if(previousValue && isObject(previousValue) &&
-        getPrototype(previousValue) !== getPrototype(propValue)) {
-        node[propName] = propValue
-        return
-    }
-
-    if (!isObject(node[propName])) {
-        node[propName] = {}
-    }
-
-    var replacer = propName === "style" ? "" : undefined
-
-    for (var k in propValue) {
-        var value = propValue[k]
-        node[propName][k] = (value === undefined) ? replacer : value
-    }
-}
-
-function getPrototype(value) {
-    if (Object.getPrototypeOf) {
-        return Object.getPrototypeOf(value)
-    } else if (value.__proto__) {
-        return value.__proto__
-    } else if (value.constructor) {
-        return value.constructor.prototype
-    }
-}
-
-},{"../vnode/is-vhook.js":26,"is-object":11}],15:[function(require,module,exports){
-var document = require("global/document")
-
-var applyProperties = require("./apply-properties")
-
-var isVNode = require("../vnode/is-vnode.js")
-var isVText = require("../vnode/is-vtext.js")
-var isWidget = require("../vnode/is-widget.js")
-var handleThunk = require("../vnode/handle-thunk.js")
-
-module.exports = createElement
-
-function createElement(vnode, opts) {
-    var doc = opts ? opts.document || document : document
-    var warn = opts ? opts.warn : null
-
-    vnode = handleThunk(vnode).a
-
-    if (isWidget(vnode)) {
-        return vnode.init()
-    } else if (isVText(vnode)) {
-        return doc.createTextNode(vnode.text)
-    } else if (!isVNode(vnode)) {
-        if (warn) {
-            warn("Item is not a valid virtual dom node", vnode)
-        }
-        return null
-    }
-
-    var node = (vnode.namespace === null) ?
-        doc.createElement(vnode.tagName) :
-        doc.createElementNS(vnode.namespace, vnode.tagName)
-
-    var props = vnode.properties
-    applyProperties(node, props)
-
-    var children = vnode.children
-
-    for (var i = 0; i < children.length; i++) {
-        var childNode = createElement(children[i], opts)
-        if (childNode) {
-            node.appendChild(childNode)
-        }
-    }
-
-    return node
-}
-
-},{"../vnode/handle-thunk.js":24,"../vnode/is-vnode.js":27,"../vnode/is-vtext.js":28,"../vnode/is-widget.js":29,"./apply-properties":14,"global/document":10}],16:[function(require,module,exports){
-// Maps a virtual DOM tree onto a real DOM tree in an efficient manner.
-// We don't want to read all of the DOM nodes in the tree so we use
-// the in-order tree indexing to eliminate recursion down certain branches.
-// We only recurse into a DOM node if we know that it contains a child of
-// interest.
-
-var noChild = {}
-
-module.exports = domIndex
-
-function domIndex(rootNode, tree, indices, nodes) {
-    if (!indices || indices.length === 0) {
-        return {}
-    } else {
-        indices.sort(ascending)
-        return recurse(rootNode, tree, indices, nodes, 0)
-    }
-}
-
-function recurse(rootNode, tree, indices, nodes, rootIndex) {
-    nodes = nodes || {}
-
-
-    if (rootNode) {
-        if (indexInRange(indices, rootIndex, rootIndex)) {
-            nodes[rootIndex] = rootNode
-        }
-
-        var vChildren = tree.children
-
-        if (vChildren) {
-
-            var childNodes = rootNode.childNodes
-
-            for (var i = 0; i < tree.children.length; i++) {
-                rootIndex += 1
-
-                var vChild = vChildren[i] || noChild
-                var nextIndex = rootIndex + (vChild.count || 0)
-
-                // skip recursion down the tree if there are no nodes down here
-                if (indexInRange(indices, rootIndex, nextIndex)) {
-                    recurse(childNodes[i], vChild, indices, nodes, rootIndex)
-                }
-
-                rootIndex = nextIndex
-            }
-        }
-    }
-
-    return nodes
-}
-
-// Binary search for an index in the interval [left, right]
-function indexInRange(indices, left, right) {
-    if (indices.length === 0) {
-        return false
-    }
-
-    var minIndex = 0
-    var maxIndex = indices.length - 1
-    var currentIndex
-    var currentItem
-
-    while (minIndex <= maxIndex) {
-        currentIndex = ((maxIndex + minIndex) / 2) >> 0
-        currentItem = indices[currentIndex]
-
-        if (minIndex === maxIndex) {
-            return currentItem >= left && currentItem <= right
-        } else if (currentItem < left) {
-            minIndex = currentIndex + 1
-        } else  if (currentItem > right) {
-            maxIndex = currentIndex - 1
-        } else {
-            return true
-        }
-    }
-
-    return false;
-}
-
-function ascending(a, b) {
-    return a > b ? 1 : -1
-}
-
-},{}],17:[function(require,module,exports){
-var applyProperties = require("./apply-properties")
-
-var isWidget = require("../vnode/is-widget.js")
-var VPatch = require("../vnode/vpatch.js")
-
-var updateWidget = require("./update-widget")
-
-module.exports = applyPatch
-
-function applyPatch(vpatch, domNode, renderOptions) {
-    var type = vpatch.type
-    var vNode = vpatch.vNode
-    var patch = vpatch.patch
-
-    switch (type) {
-        case VPatch.REMOVE:
-            return removeNode(domNode, vNode)
-        case VPatch.INSERT:
-            return insertNode(domNode, patch, renderOptions)
-        case VPatch.VTEXT:
-            return stringPatch(domNode, vNode, patch, renderOptions)
-        case VPatch.WIDGET:
-            return widgetPatch(domNode, vNode, patch, renderOptions)
-        case VPatch.VNODE:
-            return vNodePatch(domNode, vNode, patch, renderOptions)
-        case VPatch.ORDER:
-            reorderChildren(domNode, patch)
-            return domNode
-        case VPatch.PROPS:
-            applyProperties(domNode, patch, vNode.properties)
-            return domNode
-        case VPatch.THUNK:
-            return replaceRoot(domNode,
-                renderOptions.patch(domNode, patch, renderOptions))
-        default:
-            return domNode
-    }
-}
-
-function removeNode(domNode, vNode) {
-    var parentNode = domNode.parentNode
-
-    if (parentNode) {
-        parentNode.removeChild(domNode)
-    }
-
-    destroyWidget(domNode, vNode);
-
-    return null
-}
-
-function insertNode(parentNode, vNode, renderOptions) {
-    var newNode = renderOptions.render(vNode, renderOptions)
-
-    if (parentNode) {
-        parentNode.appendChild(newNode)
-    }
-
-    return parentNode
-}
-
-function stringPatch(domNode, leftVNode, vText, renderOptions) {
-    var newNode
-
-    if (domNode.nodeType === 3) {
-        domNode.replaceData(0, domNode.length, vText.text)
-        newNode = domNode
-    } else {
-        var parentNode = domNode.parentNode
-        newNode = renderOptions.render(vText, renderOptions)
-
-        if (parentNode && newNode !== domNode) {
-            parentNode.replaceChild(newNode, domNode)
-        }
-    }
-
-    return newNode
-}
-
-function widgetPatch(domNode, leftVNode, widget, renderOptions) {
-    var updating = updateWidget(leftVNode, widget)
-    var newNode
-
-    if (updating) {
-        newNode = widget.update(leftVNode, domNode) || domNode
-    } else {
-        newNode = renderOptions.render(widget, renderOptions)
-    }
-
-    var parentNode = domNode.parentNode
-
-    if (parentNode && newNode !== domNode) {
-        parentNode.replaceChild(newNode, domNode)
-    }
-
-    if (!updating) {
-        destroyWidget(domNode, leftVNode)
-    }
-
-    return newNode
-}
-
-function vNodePatch(domNode, leftVNode, vNode, renderOptions) {
-    var parentNode = domNode.parentNode
-    var newNode = renderOptions.render(vNode, renderOptions)
-
-    if (parentNode && newNode !== domNode) {
-        parentNode.replaceChild(newNode, domNode)
-    }
-
-    return newNode
-}
-
-function destroyWidget(domNode, w) {
-    if (typeof w.destroy === "function" && isWidget(w)) {
-        w.destroy(domNode)
-    }
-}
-
-function reorderChildren(domNode, moves) {
-    var childNodes = domNode.childNodes
-    var keyMap = {}
-    var node
-    var remove
-    var insert
-
-    for (var i = 0; i < moves.removes.length; i++) {
-        remove = moves.removes[i]
-        node = childNodes[remove.from]
-        if (remove.key) {
-            keyMap[remove.key] = node
-        }
-        domNode.removeChild(node)
-    }
-
-    var length = childNodes.length
-    for (var j = 0; j < moves.inserts.length; j++) {
-        insert = moves.inserts[j]
-        node = keyMap[insert.key]
-        // this is the weirdest bug i've ever seen in webkit
-        domNode.insertBefore(node, insert.to >= length++ ? null : childNodes[insert.to])
-    }
-}
-
-function replaceRoot(oldRoot, newRoot) {
-    if (oldRoot && newRoot && oldRoot !== newRoot && oldRoot.parentNode) {
-        oldRoot.parentNode.replaceChild(newRoot, oldRoot)
-    }
-
-    return newRoot;
-}
-
-},{"../vnode/is-widget.js":29,"../vnode/vpatch.js":32,"./apply-properties":14,"./update-widget":19}],18:[function(require,module,exports){
-var document = require("global/document")
-var isArray = require("x-is-array")
-
-var render = require("./create-element")
-var domIndex = require("./dom-index")
-var patchOp = require("./patch-op")
-module.exports = patch
-
-function patch(rootNode, patches, renderOptions) {
-    renderOptions = renderOptions || {}
-    renderOptions.patch = renderOptions.patch && renderOptions.patch !== patch
-        ? renderOptions.patch
-        : patchRecursive
-    renderOptions.render = renderOptions.render || render
-
-    return renderOptions.patch(rootNode, patches, renderOptions)
-}
-
-function patchRecursive(rootNode, patches, renderOptions) {
-    var indices = patchIndices(patches)
-
-    if (indices.length === 0) {
-        return rootNode
-    }
-
-    var index = domIndex(rootNode, patches.a, indices)
-    var ownerDocument = rootNode.ownerDocument
-
-    if (!renderOptions.document && ownerDocument !== document) {
-        renderOptions.document = ownerDocument
-    }
-
-    for (var i = 0; i < indices.length; i++) {
-        var nodeIndex = indices[i]
-        rootNode = applyPatch(rootNode,
-            index[nodeIndex],
-            patches[nodeIndex],
-            renderOptions)
-    }
-
-    return rootNode
-}
-
-function applyPatch(rootNode, domNode, patchList, renderOptions) {
-    if (!domNode) {
-        return rootNode
-    }
-
-    var newNode
-
-    if (isArray(patchList)) {
-        for (var i = 0; i < patchList.length; i++) {
-            newNode = patchOp(patchList[i], domNode, renderOptions)
-
-            if (domNode === rootNode) {
-                rootNode = newNode
-            }
-        }
-    } else {
-        newNode = patchOp(patchList, domNode, renderOptions)
-
-        if (domNode === rootNode) {
-            rootNode = newNode
-        }
-    }
-
-    return rootNode
-}
-
-function patchIndices(patches) {
-    var indices = []
-
-    for (var key in patches) {
-        if (key !== "a") {
-            indices.push(Number(key))
-        }
-    }
-
-    return indices
-}
-
-},{"./create-element":15,"./dom-index":16,"./patch-op":17,"global/document":10,"x-is-array":12}],19:[function(require,module,exports){
-var isWidget = require("../vnode/is-widget.js")
-
-module.exports = updateWidget
-
-function updateWidget(a, b) {
-    if (isWidget(a) && isWidget(b)) {
-        if ("name" in a && "name" in b) {
-            return a.id === b.id
-        } else {
-            return a.init === b.init
-        }
-    }
-
-    return false
-}
-
-},{"../vnode/is-widget.js":29}],20:[function(require,module,exports){
-'use strict';
-
-var EvStore = require('ev-store');
-
-module.exports = EvHook;
-
-function EvHook(value) {
-    if (!(this instanceof EvHook)) {
-        return new EvHook(value);
-    }
-
-    this.value = value;
-}
-
-EvHook.prototype.hook = function (node, propertyName) {
-    var es = EvStore(node);
-    var propName = propertyName.substr(3);
-
-    es[propName] = this.value;
-};
-
-EvHook.prototype.unhook = function(node, propertyName) {
-    var es = EvStore(node);
-    var propName = propertyName.substr(3);
-
-    es[propName] = undefined;
-};
-
-},{"ev-store":7}],21:[function(require,module,exports){
-'use strict';
-
-module.exports = SoftSetHook;
-
-function SoftSetHook(value) {
-    if (!(this instanceof SoftSetHook)) {
-        return new SoftSetHook(value);
-    }
-
-    this.value = value;
-}
-
-SoftSetHook.prototype.hook = function (node, propertyName) {
-    if (node[propertyName] !== this.value) {
-        node[propertyName] = this.value;
-    }
-};
-
-},{}],22:[function(require,module,exports){
-'use strict';
-
-var isArray = require('x-is-array');
-
-var VNode = require('../vnode/vnode.js');
-var VText = require('../vnode/vtext.js');
-var isVNode = require('../vnode/is-vnode');
-var isVText = require('../vnode/is-vtext');
-var isWidget = require('../vnode/is-widget');
-var isHook = require('../vnode/is-vhook');
-var isVThunk = require('../vnode/is-thunk');
-
-var parseTag = require('./parse-tag.js');
-var softSetHook = require('./hooks/soft-set-hook.js');
-var evHook = require('./hooks/ev-hook.js');
-
-module.exports = h;
-
-function h(tagName, properties, children) {
-    var childNodes = [];
-    var tag, props, key, namespace;
-
-    if (!children && isChildren(properties)) {
-        children = properties;
-        props = {};
-    }
-
-    props = props || properties || {};
-    tag = parseTag(tagName, props);
-
-    // support keys
-    if (props.hasOwnProperty('key')) {
-        key = props.key;
-        props.key = undefined;
-    }
-
-    // support namespace
-    if (props.hasOwnProperty('namespace')) {
-        namespace = props.namespace;
-        props.namespace = undefined;
-    }
-
-    // fix cursor bug
-    if (tag === 'INPUT' &&
-        !namespace &&
-        props.hasOwnProperty('value') &&
-        props.value !== undefined &&
-        !isHook(props.value)
-    ) {
-        props.value = softSetHook(props.value);
-    }
-
-    transformProperties(props);
-
-    if (children !== undefined && children !== null) {
-        addChild(children, childNodes, tag, props);
-    }
-
-
-    return new VNode(tag, props, childNodes, key, namespace);
-}
-
-function addChild(c, childNodes, tag, props) {
-    if (typeof c === 'string') {
-        childNodes.push(new VText(c));
-    } else if (typeof c === 'number') {
-        childNodes.push(new VText(String(c)));
-    } else if (isChild(c)) {
-        childNodes.push(c);
-    } else if (isArray(c)) {
-        for (var i = 0; i < c.length; i++) {
-            addChild(c[i], childNodes, tag, props);
-        }
-    } else if (c === null || c === undefined) {
-        return;
-    } else {
-        throw UnexpectedVirtualElement({
-            foreignObject: c,
-            parentVnode: {
-                tagName: tag,
-                properties: props
-            }
-        });
-    }
-}
-
-function transformProperties(props) {
-    for (var propName in props) {
-        if (props.hasOwnProperty(propName)) {
-            var value = props[propName];
-
-            if (isHook(value)) {
-                continue;
-            }
-
-            if (propName.substr(0, 3) === 'ev-') {
-                // add ev-foo support
-                props[propName] = evHook(value);
-            }
-        }
-    }
-}
-
-function isChild(x) {
-    return isVNode(x) || isVText(x) || isWidget(x) || isVThunk(x);
-}
-
-function isChildren(x) {
-    return typeof x === 'string' || isArray(x) || isChild(x);
-}
-
-function UnexpectedVirtualElement(data) {
-    var err = new Error();
-
-    err.type = 'virtual-hyperscript.unexpected.virtual-element';
-    err.message = 'Unexpected virtual child passed to h().\n' +
-        'Expected a VNode / Vthunk / VWidget / string but:\n' +
-        'got:\n' +
-        errorString(data.foreignObject) +
-        '.\n' +
-        'The parent vnode is:\n' +
-        errorString(data.parentVnode)
-        '\n' +
-        'Suggested fix: change your `h(..., [ ... ])` callsite.';
-    err.foreignObject = data.foreignObject;
-    err.parentVnode = data.parentVnode;
-
-    return err;
-}
-
-function errorString(obj) {
-    try {
-        return JSON.stringify(obj, null, '    ');
-    } catch (e) {
-        return String(obj);
-    }
-}
-
-},{"../vnode/is-thunk":25,"../vnode/is-vhook":26,"../vnode/is-vnode":27,"../vnode/is-vtext":28,"../vnode/is-widget":29,"../vnode/vnode.js":31,"../vnode/vtext.js":33,"./hooks/ev-hook.js":20,"./hooks/soft-set-hook.js":21,"./parse-tag.js":23,"x-is-array":12}],23:[function(require,module,exports){
-'use strict';
-
-var split = require('browser-split');
-
-var classIdSplit = /([\.#]?[a-zA-Z0-9\u007F-\uFFFF_:-]+)/;
-var notClassId = /^\.|#/;
-
-module.exports = parseTag;
-
-function parseTag(tag, props) {
-    if (!tag) {
-        return 'DIV';
-    }
-
-    var noId = !(props.hasOwnProperty('id'));
-
-    var tagParts = split(tag, classIdSplit);
-    var tagName = null;
-
-    if (notClassId.test(tagParts[1])) {
-        tagName = 'DIV';
-    }
-
-    var classes, part, type, i;
-
-    for (i = 0; i < tagParts.length; i++) {
-        part = tagParts[i];
-
-        if (!part) {
-            continue;
-        }
-
-        type = part.charAt(0);
-
-        if (!tagName) {
-            tagName = part;
-        } else if (type === '.') {
-            classes = classes || [];
-            classes.push(part.substring(1, part.length));
-        } else if (type === '#' && noId) {
-            props.id = part.substring(1, part.length);
-        }
-    }
-
-    if (classes) {
-        if (props.className) {
-            classes.push(props.className);
-        }
-
-        props.className = classes.join(' ');
-    }
-
-    return props.namespace ? tagName : tagName.toUpperCase();
-}
-
-},{"browser-split":5}],24:[function(require,module,exports){
-var isVNode = require("./is-vnode")
-var isVText = require("./is-vtext")
-var isWidget = require("./is-widget")
-var isThunk = require("./is-thunk")
-
-module.exports = handleThunk
-
-function handleThunk(a, b) {
-    var renderedA = a
-    var renderedB = b
-
-    if (isThunk(b)) {
-        renderedB = renderThunk(b, a)
-    }
-
-    if (isThunk(a)) {
-        renderedA = renderThunk(a, null)
-    }
-
-    return {
-        a: renderedA,
-        b: renderedB
-    }
-}
-
-function renderThunk(thunk, previous) {
-    var renderedThunk = thunk.vnode
-
-    if (!renderedThunk) {
-        renderedThunk = thunk.vnode = thunk.render(previous)
-    }
-
-    if (!(isVNode(renderedThunk) ||
-            isVText(renderedThunk) ||
-            isWidget(renderedThunk))) {
-        throw new Error("thunk did not return a valid node");
-    }
-
-    return renderedThunk
-}
-
-},{"./is-thunk":25,"./is-vnode":27,"./is-vtext":28,"./is-widget":29}],25:[function(require,module,exports){
-module.exports = isThunk
-
-function isThunk(t) {
-    return t && t.type === "Thunk"
-}
-
-},{}],26:[function(require,module,exports){
-module.exports = isHook
-
-function isHook(hook) {
-    return hook &&
-      (typeof hook.hook === "function" && !hook.hasOwnProperty("hook") ||
-       typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
-}
-
-},{}],27:[function(require,module,exports){
-var version = require("./version")
-
-module.exports = isVirtualNode
-
-function isVirtualNode(x) {
-    return x && x.type === "VirtualNode" && x.version === version
-}
-
-},{"./version":30}],28:[function(require,module,exports){
-var version = require("./version")
-
-module.exports = isVirtualText
-
-function isVirtualText(x) {
-    return x && x.type === "VirtualText" && x.version === version
-}
-
-},{"./version":30}],29:[function(require,module,exports){
-module.exports = isWidget
-
-function isWidget(w) {
-    return w && w.type === "Widget"
-}
-
-},{}],30:[function(require,module,exports){
-module.exports = "2"
-
-},{}],31:[function(require,module,exports){
-var version = require("./version")
-var isVNode = require("./is-vnode")
-var isWidget = require("./is-widget")
-var isThunk = require("./is-thunk")
-var isVHook = require("./is-vhook")
-
-module.exports = VirtualNode
-
-var noProperties = {}
-var noChildren = []
-
-function VirtualNode(tagName, properties, children, key, namespace) {
-    this.tagName = tagName
-    this.properties = properties || noProperties
-    this.children = children || noChildren
-    this.key = key != null ? String(key) : undefined
-    this.namespace = (typeof namespace === "string") ? namespace : null
-
-    var count = (children && children.length) || 0
-    var descendants = 0
-    var hasWidgets = false
-    var hasThunks = false
-    var descendantHooks = false
-    var hooks
-
-    for (var propName in properties) {
-        if (properties.hasOwnProperty(propName)) {
-            var property = properties[propName]
-            if (isVHook(property) && property.unhook) {
-                if (!hooks) {
-                    hooks = {}
-                }
-
-                hooks[propName] = property
-            }
-        }
-    }
-
-    for (var i = 0; i < count; i++) {
-        var child = children[i]
-        if (isVNode(child)) {
-            descendants += child.count || 0
-
-            if (!hasWidgets && child.hasWidgets) {
-                hasWidgets = true
-            }
-
-            if (!hasThunks && child.hasThunks) {
-                hasThunks = true
-            }
-
-            if (!descendantHooks && (child.hooks || child.descendantHooks)) {
-                descendantHooks = true
-            }
-        } else if (!hasWidgets && isWidget(child)) {
-            if (typeof child.destroy === "function") {
-                hasWidgets = true
-            }
-        } else if (!hasThunks && isThunk(child)) {
-            hasThunks = true;
-        }
-    }
-
-    this.count = count + descendants
-    this.hasWidgets = hasWidgets
-    this.hasThunks = hasThunks
-    this.hooks = hooks
-    this.descendantHooks = descendantHooks
-}
-
-VirtualNode.prototype.version = version
-VirtualNode.prototype.type = "VirtualNode"
-
-},{"./is-thunk":25,"./is-vhook":26,"./is-vnode":27,"./is-widget":29,"./version":30}],32:[function(require,module,exports){
-var version = require("./version")
-
-VirtualPatch.NONE = 0
-VirtualPatch.VTEXT = 1
-VirtualPatch.VNODE = 2
-VirtualPatch.WIDGET = 3
-VirtualPatch.PROPS = 4
-VirtualPatch.ORDER = 5
-VirtualPatch.INSERT = 6
-VirtualPatch.REMOVE = 7
-VirtualPatch.THUNK = 8
-
-module.exports = VirtualPatch
-
-function VirtualPatch(type, vNode, patch) {
-    this.type = Number(type)
-    this.vNode = vNode
-    this.patch = patch
-}
-
-VirtualPatch.prototype.version = version
-VirtualPatch.prototype.type = "VirtualPatch"
-
-},{"./version":30}],33:[function(require,module,exports){
-var version = require("./version")
-
-module.exports = VirtualText
-
-function VirtualText(text) {
-    this.text = String(text)
-}
-
-VirtualText.prototype.version = version
-VirtualText.prototype.type = "VirtualText"
-
-},{"./version":30}],34:[function(require,module,exports){
-var isObject = require("is-object")
-var isHook = require("../vnode/is-vhook")
-
-module.exports = diffProps
-
-function diffProps(a, b) {
-    var diff
-
-    for (var aKey in a) {
-        if (!(aKey in b)) {
-            diff = diff || {}
-            diff[aKey] = undefined
-        }
-
-        var aValue = a[aKey]
-        var bValue = b[aKey]
-
-        if (aValue === bValue) {
-            continue
-        } else if (isObject(aValue) && isObject(bValue)) {
-            if (getPrototype(bValue) !== getPrototype(aValue)) {
-                diff = diff || {}
-                diff[aKey] = bValue
-            } else if (isHook(bValue)) {
-                 diff = diff || {}
-                 diff[aKey] = bValue
-            } else {
-                var objectDiff = diffProps(aValue, bValue)
-                if (objectDiff) {
-                    diff = diff || {}
-                    diff[aKey] = objectDiff
-                }
-            }
-        } else {
-            diff = diff || {}
-            diff[aKey] = bValue
-        }
-    }
-
-    for (var bKey in b) {
-        if (!(bKey in a)) {
-            diff = diff || {}
-            diff[bKey] = b[bKey]
-        }
-    }
-
-    return diff
-}
-
-function getPrototype(value) {
-  if (Object.getPrototypeOf) {
-    return Object.getPrototypeOf(value)
-  } else if (value.__proto__) {
-    return value.__proto__
-  } else if (value.constructor) {
-    return value.constructor.prototype
-  }
-}
-
-},{"../vnode/is-vhook":26,"is-object":11}],35:[function(require,module,exports){
-var isArray = require("x-is-array")
-
-var VPatch = require("../vnode/vpatch")
-var isVNode = require("../vnode/is-vnode")
-var isVText = require("../vnode/is-vtext")
-var isWidget = require("../vnode/is-widget")
-var isThunk = require("../vnode/is-thunk")
-var handleThunk = require("../vnode/handle-thunk")
-
-var diffProps = require("./diff-props")
-
-module.exports = diff
-
-function diff(a, b) {
-    var patch = { a: a }
-    walk(a, b, patch, 0)
-    return patch
-}
-
-function walk(a, b, patch, index) {
-    if (a === b) {
-        return
-    }
-
-    var apply = patch[index]
-    var applyClear = false
-
-    if (isThunk(a) || isThunk(b)) {
-        thunks(a, b, patch, index)
-    } else if (b == null) {
-
-        // If a is a widget we will add a remove patch for it
-        // Otherwise any child widgets/hooks must be destroyed.
-        // This prevents adding two remove patches for a widget.
-        if (!isWidget(a)) {
-            clearState(a, patch, index)
-            apply = patch[index]
-        }
-
-        apply = appendPatch(apply, new VPatch(VPatch.REMOVE, a, b))
-    } else if (isVNode(b)) {
-        if (isVNode(a)) {
-            if (a.tagName === b.tagName &&
-                a.namespace === b.namespace &&
-                a.key === b.key) {
-                var propsPatch = diffProps(a.properties, b.properties)
-                if (propsPatch) {
-                    apply = appendPatch(apply,
-                        new VPatch(VPatch.PROPS, a, propsPatch))
-                }
-                apply = diffChildren(a, b, patch, apply, index)
-            } else {
-                apply = appendPatch(apply, new VPatch(VPatch.VNODE, a, b))
-                applyClear = true
-            }
-        } else {
-            apply = appendPatch(apply, new VPatch(VPatch.VNODE, a, b))
-            applyClear = true
-        }
-    } else if (isVText(b)) {
-        if (!isVText(a)) {
-            apply = appendPatch(apply, new VPatch(VPatch.VTEXT, a, b))
-            applyClear = true
-        } else if (a.text !== b.text) {
-            apply = appendPatch(apply, new VPatch(VPatch.VTEXT, a, b))
-        }
-    } else if (isWidget(b)) {
-        if (!isWidget(a)) {
-            applyClear = true
-        }
-
-        apply = appendPatch(apply, new VPatch(VPatch.WIDGET, a, b))
-    }
-
-    if (apply) {
-        patch[index] = apply
-    }
-
-    if (applyClear) {
-        clearState(a, patch, index)
-    }
-}
-
-function diffChildren(a, b, patch, apply, index) {
-    var aChildren = a.children
-    var orderedSet = reorder(aChildren, b.children)
-    var bChildren = orderedSet.children
-
-    var aLen = aChildren.length
-    var bLen = bChildren.length
-    var len = aLen > bLen ? aLen : bLen
-
-    for (var i = 0; i < len; i++) {
-        var leftNode = aChildren[i]
-        var rightNode = bChildren[i]
-        index += 1
-
-        if (!leftNode) {
-            if (rightNode) {
-                // Excess nodes in b need to be added
-                apply = appendPatch(apply,
-                    new VPatch(VPatch.INSERT, null, rightNode))
-            }
-        } else {
-            walk(leftNode, rightNode, patch, index)
-        }
-
-        if (isVNode(leftNode) && leftNode.count) {
-            index += leftNode.count
-        }
-    }
-
-    if (orderedSet.moves) {
-        // Reorder nodes last
-        apply = appendPatch(apply, new VPatch(
-            VPatch.ORDER,
-            a,
-            orderedSet.moves
-        ))
-    }
-
-    return apply
-}
-
-function clearState(vNode, patch, index) {
-    // TODO: Make this a single walk, not two
-    unhook(vNode, patch, index)
-    destroyWidgets(vNode, patch, index)
-}
-
-// Patch records for all destroyed widgets must be added because we need
-// a DOM node reference for the destroy function
-function destroyWidgets(vNode, patch, index) {
-    if (isWidget(vNode)) {
-        if (typeof vNode.destroy === "function") {
-            patch[index] = appendPatch(
-                patch[index],
-                new VPatch(VPatch.REMOVE, vNode, null)
-            )
-        }
-    } else if (isVNode(vNode) && (vNode.hasWidgets || vNode.hasThunks)) {
-        var children = vNode.children
-        var len = children.length
-        for (var i = 0; i < len; i++) {
-            var child = children[i]
-            index += 1
-
-            destroyWidgets(child, patch, index)
-
-            if (isVNode(child) && child.count) {
-                index += child.count
-            }
-        }
-    } else if (isThunk(vNode)) {
-        thunks(vNode, null, patch, index)
-    }
-}
-
-// Create a sub-patch for thunks
-function thunks(a, b, patch, index) {
-    var nodes = handleThunk(a, b)
-    var thunkPatch = diff(nodes.a, nodes.b)
-    if (hasPatches(thunkPatch)) {
-        patch[index] = new VPatch(VPatch.THUNK, null, thunkPatch)
-    }
-}
-
-function hasPatches(patch) {
-    for (var index in patch) {
-        if (index !== "a") {
-            return true
-        }
-    }
-
-    return false
-}
-
-// Execute hooks when two nodes are identical
-function unhook(vNode, patch, index) {
-    if (isVNode(vNode)) {
-        if (vNode.hooks) {
-            patch[index] = appendPatch(
-                patch[index],
-                new VPatch(
-                    VPatch.PROPS,
-                    vNode,
-                    undefinedKeys(vNode.hooks)
-                )
-            )
-        }
-
-        if (vNode.descendantHooks || vNode.hasThunks) {
-            var children = vNode.children
-            var len = children.length
-            for (var i = 0; i < len; i++) {
-                var child = children[i]
-                index += 1
-
-                unhook(child, patch, index)
-
-                if (isVNode(child) && child.count) {
-                    index += child.count
-                }
-            }
-        }
-    } else if (isThunk(vNode)) {
-        thunks(vNode, null, patch, index)
-    }
-}
-
-function undefinedKeys(obj) {
-    var result = {}
-
-    for (var key in obj) {
-        result[key] = undefined
-    }
-
-    return result
-}
-
-// List diff, naive left to right reordering
-function reorder(aChildren, bChildren) {
-    // O(M) time, O(M) memory
-    var bChildIndex = keyIndex(bChildren)
-    var bKeys = bChildIndex.keys
-    var bFree = bChildIndex.free
-
-    if (bFree.length === bChildren.length) {
-        return {
-            children: bChildren,
-            moves: null
-        }
-    }
-
-    // O(N) time, O(N) memory
-    var aChildIndex = keyIndex(aChildren)
-    var aKeys = aChildIndex.keys
-    var aFree = aChildIndex.free
-
-    if (aFree.length === aChildren.length) {
-        return {
-            children: bChildren,
-            moves: null
-        }
-    }
-
-    // O(MAX(N, M)) memory
-    var newChildren = []
-
-    var freeIndex = 0
-    var freeCount = bFree.length
-    var deletedItems = 0
-
-    // Iterate through a and match a node in b
-    // O(N) time,
-    for (var i = 0 ; i < aChildren.length; i++) {
-        var aItem = aChildren[i]
-        var itemIndex
-
-        if (aItem.key) {
-            if (bKeys.hasOwnProperty(aItem.key)) {
-                // Match up the old keys
-                itemIndex = bKeys[aItem.key]
-                newChildren.push(bChildren[itemIndex])
-
-            } else {
-                // Remove old keyed items
-                itemIndex = i - deletedItems++
-                newChildren.push(null)
-            }
-        } else {
-            // Match the item in a with the next free item in b
-            if (freeIndex < freeCount) {
-                itemIndex = bFree[freeIndex++]
-                newChildren.push(bChildren[itemIndex])
-            } else {
-                // There are no free items in b to match with
-                // the free items in a, so the extra free nodes
-                // are deleted.
-                itemIndex = i - deletedItems++
-                newChildren.push(null)
-            }
-        }
-    }
-
-    var lastFreeIndex = freeIndex >= bFree.length ?
-        bChildren.length :
-        bFree[freeIndex]
-
-    // Iterate through b and append any new keys
-    // O(M) time
-    for (var j = 0; j < bChildren.length; j++) {
-        var newItem = bChildren[j]
-
-        if (newItem.key) {
-            if (!aKeys.hasOwnProperty(newItem.key)) {
-                // Add any new keyed items
-                // We are adding new items to the end and then sorting them
-                // in place. In future we should insert new items in place.
-                newChildren.push(newItem)
-            }
-        } else if (j >= lastFreeIndex) {
-            // Add any leftover non-keyed items
-            newChildren.push(newItem)
-        }
-    }
-
-    var simulate = newChildren.slice()
-    var simulateIndex = 0
-    var removes = []
-    var inserts = []
-    var simulateItem
-
-    for (var k = 0; k < bChildren.length;) {
-        var wantedItem = bChildren[k]
-        simulateItem = simulate[simulateIndex]
-
-        // remove items
-        while (simulateItem === null && simulate.length) {
-            removes.push(remove(simulate, simulateIndex, null))
-            simulateItem = simulate[simulateIndex]
-        }
-
-        if (!simulateItem || simulateItem.key !== wantedItem.key) {
-            // if we need a key in this position...
-            if (wantedItem.key) {
-                if (simulateItem && simulateItem.key) {
-                    // if an insert doesn't put this key in place, it needs to move
-                    if (bKeys[simulateItem.key] !== k + 1) {
-                        removes.push(remove(simulate, simulateIndex, simulateItem.key))
-                        simulateItem = simulate[simulateIndex]
-                        // if the remove didn't put the wanted item in place, we need to insert it
-                        if (!simulateItem || simulateItem.key !== wantedItem.key) {
-                            inserts.push({key: wantedItem.key, to: k})
-                        }
-                        // items are matching, so skip ahead
-                        else {
-                            simulateIndex++
-                        }
-                    }
-                    else {
-                        inserts.push({key: wantedItem.key, to: k})
-                    }
-                }
-                else {
-                    inserts.push({key: wantedItem.key, to: k})
-                }
-                k++
-            }
-            // a key in simulate has no matching wanted key, remove it
-            else if (simulateItem && simulateItem.key) {
-                removes.push(remove(simulate, simulateIndex, simulateItem.key))
-            }
-        }
-        else {
-            simulateIndex++
-            k++
-        }
-    }
-
-    // remove all the remaining nodes from simulate
-    while(simulateIndex < simulate.length) {
-        simulateItem = simulate[simulateIndex]
-        removes.push(remove(simulate, simulateIndex, simulateItem && simulateItem.key))
-    }
-
-    // If the only moves we have are deletes then we can just
-    // let the delete patch remove these items.
-    if (removes.length === deletedItems && !inserts.length) {
-        return {
-            children: newChildren,
-            moves: null
-        }
-    }
-
-    return {
-        children: newChildren,
-        moves: {
-            removes: removes,
-            inserts: inserts
-        }
-    }
-}
-
-function remove(arr, index, key) {
-    arr.splice(index, 1)
-
-    return {
-        from: index,
-        key: key
-    }
-}
-
-function keyIndex(children) {
-    var keys = {}
-    var free = []
-    var length = children.length
-
-    for (var i = 0; i < length; i++) {
-        var child = children[i]
-
-        if (child.key) {
-            keys[child.key] = i
-        } else {
-            free.push(i)
-        }
-    }
-
-    return {
-        keys: keys,     // A hash of key name to index
-        free: free      // An array of unkeyed item indices
-    }
-}
-
-function appendPatch(apply, patch) {
-    if (apply) {
-        if (isArray(apply)) {
-            apply.push(patch)
-        } else {
-            apply = [apply, patch]
-        }
-
-        return apply
-    } else {
-        return patch
-    }
-}
-
-},{"../vnode/handle-thunk":24,"../vnode/is-thunk":25,"../vnode/is-vnode":27,"../vnode/is-vtext":28,"../vnode/is-widget":29,"../vnode/vpatch":32,"./diff-props":34,"x-is-array":12}]},{},[4])(4)
-});
 coconut_vdom_Renderable.keygen = 0;
 coconut_ui_View.idCounter = 0;
 StringTools.winMetaCharacters = [32,40,41,37,33,94,34,60,62,38,124,10,13,44,59];
 coconut_ui_tools_ViewCache.stack = [];
+coconut_vdom__$Attr_Key_$Impl_$.keygen = 0;
+coconut_vdom__$Child_Child_$Impl_$.WIDGET = ":widget";
+coconut_vdom__$Child_Child_$Impl_$.TEXT = ":text";
+coconut_vdom__$Child_Child_$Impl_$.NATIVE = ":native";
+coconut_vdom__$Style_Style_$Impl_$.style = window.document.createElement("div").style;
+coconut_vdom_VDom.EMPTY = { };
+coconut_vdom_VDom.afterMount = [];
 haxe__$Int32_Int32_$Impl_$._mul = Math.imul != null ? Math.imul : function(a,b) {
 	return a * (b & 65535) + (a * (b >>> 16) << 16 | 0) | 0;
 };
@@ -19619,7 +10978,5 @@ tink_state_ConstObservable.NEVER = (function($this) {
 	$r = this1;
 	return $r;
 }(this));
-vdom__$Attr_Key_$Impl_$.keygen = 0;
-vdom__$Style_Style_$Impl_$.style = window.document.createElement("div").style;
 Playground.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

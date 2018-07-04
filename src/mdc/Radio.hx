@@ -55,7 +55,7 @@ class Radio extends View
 
     }
 
-    override function afterInit(elem)
+    override function afterMounting(elem)
     {
         this.mdcRadio = new MDCRadio(elem);
         setRadioProperties();

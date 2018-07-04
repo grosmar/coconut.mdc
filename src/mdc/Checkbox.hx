@@ -68,7 +68,7 @@ class Checkbox extends View
 
     }
 
-    override function afterInit(elem)
+    override function afterMounting(elem)
     {
         this.mdcCheckbox = new MDCCheckbox(elem);
         setCheckboxProperties();
