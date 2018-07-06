@@ -11,6 +11,6 @@
     "author": "grosmar",
     "license": "MIT",
     "dependencies": {
-        "material-components-web": "^0.34.1"
+        "material-components-web": "^0.37.0"
     }
 }

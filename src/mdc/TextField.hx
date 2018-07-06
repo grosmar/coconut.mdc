@@ -9,7 +9,7 @@ class TextField extends View
 {
     @:attr var className:ClassName = "";
     @:attr var label:String = null;
-    @:attr var value:String = null;
+    @:attr var value:String = "";
     @:attr var disabled:Bool = null;
     @:attr var invalid:Bool = null;
     @:attr var icon:String = null;
