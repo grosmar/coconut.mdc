@@ -615,9 +615,9 @@ coconut_ui_View.prototype = $extend(coconut_vdom_Renderable.prototype,{
 	,__class__: coconut_ui_View
 });
 var TestView = function(data) {
-	this.__tink_defaults162 = { };
+	this.__tink_defaults225 = { };
 	this.__slots = { };
-	this.__tink_init163(data);
+	this.__tink_init226(data);
 	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["TestView"] = TestView;
@@ -626,7 +626,7 @@ TestView.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new TestView(attributes);
 	} else {
-		inst.__tink_init163(attributes);
+		inst.__tink_init226(attributes);
 	}
 	return inst;
 };
@@ -1480,12 +1480,12 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children43});
 		return __r[0];
 	}
-	,__tink_defaults162: null
+	,__tink_defaults225: null
 	,__slots: null
 	,toString: function() {
 		return "TestView" + "#" + this.viewId;
 	}
-	,__tink_init163: function(attributes) {
+	,__tink_init226: function(attributes) {
 	}
 	,__class__: TestView
 });
@@ -7763,9 +7763,9 @@ mdc_TabText.prototype = $extend(coconut_ui_View.prototype,{
 });
 var mdc_TextField = function(data) {
 	this.textFieldId = mdc_TextField.textFieldIdIndex++;
-	this.__tink_defaults168 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), label : null, value : tink_state__$Observable_Observable_$Impl_$["const"](""), disabled : null, invalid : null, icon : null, iconPos : null, box : null, fullWidth : null, textArea : null, type : tink_state__$Observable_Observable_$Impl_$["const"]("text"), onedit : null, pattern : tink_state__$Observable_Observable_$Impl_$["const"]("*"), required : tink_state__$Observable_Observable_$Impl_$["const"](false), onkeydown : null};
+	this.__tink_defaults231 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), label : null, value : tink_state__$Observable_Observable_$Impl_$["const"](""), disabled : null, invalid : null, icon : null, iconPos : null, box : null, fullWidth : null, textArea : null, type : tink_state__$Observable_Observable_$Impl_$["const"]("text"), onedit : null, pattern : tink_state__$Observable_Observable_$Impl_$["const"]("*"), required : tink_state__$Observable_Observable_$Impl_$["const"](false), onkeydown : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), value : new coconut_ui_tools_Slot(this,null), disabled : new coconut_ui_tools_Slot(this,null), invalid : new coconut_ui_tools_Slot(this,null), icon : new coconut_ui_tools_Slot(this,null), iconPos : new coconut_ui_tools_Slot(this,null), box : new coconut_ui_tools_Slot(this,null), fullWidth : new coconut_ui_tools_Slot(this,null), textArea : new coconut_ui_tools_Slot(this,null), type : new coconut_ui_tools_Slot(this,null), onedit : new coconut_ui_tools_Slot(this,null), pattern : new coconut_ui_tools_Slot(this,null), required : new coconut_ui_tools_Slot(this,null), onkeydown : new coconut_ui_tools_Slot(this,null)};
-	this.__tink_init169(data);
+	this.__tink_init232(data);
 	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.TextField"] = mdc_TextField;
@@ -7774,7 +7774,7 @@ mdc_TextField.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_TextField(attributes);
 	} else {
-		inst.__tink_init169(attributes);
+		inst.__tink_init232(attributes);
 	}
 	return inst;
 };
@@ -7900,42 +7900,42 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 			this.mdcTextField.destroy();
 		}
 	}
-	,__tink_defaults168: null
+	,__tink_defaults231: null
 	,__slots: null
 	,toString: function() {
 		return "TextField" + "#" + this.viewId;
 	}
-	,__tink_init169: function(attributes) {
+	,__tink_init232: function(attributes) {
 		var this1 = attributes.className;
-		this.__slots.className.setData(this1 == null ? this.__tink_defaults168.className : this1);
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults231.className : this1);
 		var this11 = attributes.label;
-		this.__slots.label.setData(this11 == null ? this.__tink_defaults168.label : this11);
+		this.__slots.label.setData(this11 == null ? this.__tink_defaults231.label : this11);
 		var this12 = attributes.value;
-		this.__slots.value.setData(this12 == null ? this.__tink_defaults168.value : this12);
+		this.__slots.value.setData(this12 == null ? this.__tink_defaults231.value : this12);
 		var this13 = attributes.disabled;
-		this.__slots.disabled.setData(this13 == null ? this.__tink_defaults168.disabled : this13);
+		this.__slots.disabled.setData(this13 == null ? this.__tink_defaults231.disabled : this13);
 		var this14 = attributes.invalid;
-		this.__slots.invalid.setData(this14 == null ? this.__tink_defaults168.invalid : this14);
+		this.__slots.invalid.setData(this14 == null ? this.__tink_defaults231.invalid : this14);
 		var this15 = attributes.icon;
-		this.__slots.icon.setData(this15 == null ? this.__tink_defaults168.icon : this15);
+		this.__slots.icon.setData(this15 == null ? this.__tink_defaults231.icon : this15);
 		var this16 = attributes.iconPos;
-		this.__slots.iconPos.setData(this16 == null ? this.__tink_defaults168.iconPos : this16);
+		this.__slots.iconPos.setData(this16 == null ? this.__tink_defaults231.iconPos : this16);
 		var this17 = attributes.box;
-		this.__slots.box.setData(this17 == null ? this.__tink_defaults168.box : this17);
+		this.__slots.box.setData(this17 == null ? this.__tink_defaults231.box : this17);
 		var this18 = attributes.fullWidth;
-		this.__slots.fullWidth.setData(this18 == null ? this.__tink_defaults168.fullWidth : this18);
+		this.__slots.fullWidth.setData(this18 == null ? this.__tink_defaults231.fullWidth : this18);
 		var this19 = attributes.textArea;
-		this.__slots.textArea.setData(this19 == null ? this.__tink_defaults168.textArea : this19);
+		this.__slots.textArea.setData(this19 == null ? this.__tink_defaults231.textArea : this19);
 		var this110 = attributes.type;
-		this.__slots.type.setData(this110 == null ? this.__tink_defaults168.type : this110);
+		this.__slots.type.setData(this110 == null ? this.__tink_defaults231.type : this110);
 		var this111 = attributes.onedit;
-		this.__slots.onedit.setData(this111 == null ? this.__tink_defaults168.onedit : this111);
+		this.__slots.onedit.setData(this111 == null ? this.__tink_defaults231.onedit : this111);
 		var this112 = attributes.pattern;
-		this.__slots.pattern.setData(this112 == null ? this.__tink_defaults168.pattern : this112);
+		this.__slots.pattern.setData(this112 == null ? this.__tink_defaults231.pattern : this112);
 		var this113 = attributes.required;
-		this.__slots.required.setData(this113 == null ? this.__tink_defaults168.required : this113);
+		this.__slots.required.setData(this113 == null ? this.__tink_defaults231.required : this113);
 		var this114 = attributes.onkeydown;
-		this.__slots.onkeydown.setData(this114 == null ? this.__tink_defaults168.onkeydown : this114);
+		this.__slots.onkeydown.setData(this114 == null ? this.__tink_defaults231.onkeydown : this114);
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
@@ -7986,9 +7986,9 @@ mdc_TextField.prototype = $extend(coconut_ui_View.prototype,{
 	,__properties__: {get_onkeydown:"get_onkeydown",get_required:"get_required",get_pattern:"get_pattern",get_onedit:"get_onedit",get_type:"get_type",get_textArea:"get_textArea",get_fullWidth:"get_fullWidth",get_box:"get_box",get_iconPos:"get_iconPos",get_icon:"get_icon",get_invalid:"get_invalid",get_disabled:"get_disabled",get_value:"get_value",get_label:"get_label",get_className:"get_className"}
 });
 var mdc_TextFieldHelperText = function(data) {
-	this.__tink_defaults166 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), persistent : null, validation : null};
+	this.__tink_defaults229 = { className : tink_state__$Observable_Observable_$Impl_$["const"](""), persistent : null, validation : null};
 	this.__slots = { className : new coconut_ui_tools_Slot(this,null), label : new coconut_ui_tools_Slot(this,null), persistent : new coconut_ui_tools_Slot(this,null), validation : new coconut_ui_tools_Slot(this,null)};
-	this.__tink_init167(data);
+	this.__tink_init230(data);
 	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["mdc.TextFieldHelperText"] = mdc_TextFieldHelperText;
@@ -7997,7 +7997,7 @@ mdc_TextFieldHelperText.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new mdc_TextFieldHelperText(attributes);
 	} else {
-		inst.__tink_init167(attributes);
+		inst.__tink_init230(attributes);
 	}
 	return inst;
 };
@@ -8034,19 +8034,19 @@ mdc_TextFieldHelperText.prototype = $extend(coconut_ui_View.prototype,{
 		__r.push({ t : "p", k : attr == null ? null : attr.key, a : attr, c : children});
 		return __r[0];
 	}
-	,__tink_defaults166: null
+	,__tink_defaults229: null
 	,__slots: null
 	,toString: function() {
 		return "TextFieldHelperText" + "#" + this.viewId;
 	}
-	,__tink_init167: function(attributes) {
+	,__tink_init230: function(attributes) {
 		var this1 = attributes.className;
-		this.__slots.className.setData(this1 == null ? this.__tink_defaults166.className : this1);
+		this.__slots.className.setData(this1 == null ? this.__tink_defaults229.className : this1);
 		this.__slots.label.setData(attributes.label);
 		var this11 = attributes.persistent;
-		this.__slots.persistent.setData(this11 == null ? this.__tink_defaults166.persistent : this11);
+		this.__slots.persistent.setData(this11 == null ? this.__tink_defaults229.persistent : this11);
 		var this12 = attributes.validation;
-		this.__slots.validation.setData(this12 == null ? this.__tink_defaults166.validation : this12);
+		this.__slots.validation.setData(this12 == null ? this.__tink_defaults229.validation : this12);
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
