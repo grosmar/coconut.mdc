@@ -6,6 +6,7 @@ import coconut.ui.View;
 class InfiniteScroll extends View
 {
     @:attr var children:coconut.ui.Children;
+    @:attr var className:coconut.vdom.ClassName = "";
     @:attr var tolerance:Float = 0.1;
     @:attr var onscrolltop:Void->Void;
     @:attr var onscrollbottom:Void->Void;
@@ -14,7 +15,9 @@ class InfiniteScroll extends View
     {
         return @hxx '
         <div {...this} style="overflow-y:auto">
-            ${children}
+            <for ${child in children}>
+                ${child}
+            </for>
         </div>
         ';
     };

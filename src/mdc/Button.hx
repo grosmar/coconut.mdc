@@ -9,7 +9,7 @@ class Button extends View
 {
     @:attr var className:ClassName = "";
     @:attr var onclick:MouseEvent->Void = null;
-    @:attr var label:String = null;
+    @:attr var label:String = "";
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
     @:attr var raised:Bool = false;
