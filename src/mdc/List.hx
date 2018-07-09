@@ -53,7 +53,8 @@ class ListItem extends View
 
 	override function afterDestroy(elem)
 	{
-		mdcRipple.destroy();
+		if (mdcRipple != null)
+			mdcRipple.destroy();
 	}
 }
 
