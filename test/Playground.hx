@@ -1,12 +1,9 @@
 package;
 
-import vdom.Attr;
-import vdom.VNode;
 import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
 import mdc.TextField.TextFieldHelperText;
-import mdc.List.*;
 import mdc.List.ListItem;
 import mdc.List.ListText;
 import mdc.List.ListTextSecondary;
@@ -14,10 +11,8 @@ import mdc.List.ListGraphic;
 import mdc.List.ListGraphicImage;
 import mdc.List.ListMeta;
 import mdc.List.ListDivider;
-import mdc.TabBar.*;
 import mdc.TabBar.Tab;
 import mdc.Toolbar;
-import mdc.Toolbar.*;
 import mdc.Icon;
 
 class Playground
@@ -26,7 +21,7 @@ class Playground
     {
         //MDC.init();
         var view = coconut.Ui.hxx('<TestView />');
-        js.Browser.document.getElementById("app").appendChild(view.toElement());
+        view.mount(js.Browser.document.getElementById("app"));
     }
 
 
@@ -41,7 +36,6 @@ class TestView extends View
     <div>
         <Button label="Simple" onclick=${trace("clicked")} />
         <Button label="Dense" dense/>
-        <Button label="Compact" compact />
         <Button label="Disabled" disabled />
         <Button label="Unelevated" unelevated />
         <Button label="Icon" icon="favorite" />
@@ -50,7 +44,6 @@ class TestView extends View
     <div>
         <Button label="Simple" raised onclick=${trace("clicked")} />
         <Button label="Dense" raised dense/>
-        <Button label="Compact" raised compact />
         <Button label="Disabled" raised disabled />
         <Button label="Unelevated" raised unelevated />
         <Button label="Icon" raised icon="favorite" />

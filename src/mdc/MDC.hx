@@ -176,7 +176,7 @@ extern class MDCLinearProgress extends MDCComponent
 
 extern class MDCComponent
 {
-	function new(element:DOMElement);
+	function new(element:Node);
 
 	function initialize():Void;
 	function destroy():Void;

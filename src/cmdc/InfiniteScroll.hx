@@ -2,28 +2,29 @@ package cmdc;
 
 import js.html.MouseEvent;
 import js.html.DOMElement;
-import vdom.Attr;
-import vdom.VNode;
 import coconut.ui.View;
 class InfiniteScroll extends View
 {
-    var attributes:Attr;
-    @:attribute var children:VNode;
-    @:attribute var tolerance:Float = 0.1;
-    @:attribute var onscrolltop:Void->Void;
-    @:attribute var onscrollbottom:Void->Void;
+    @:attr var children:coconut.ui.Children;
+    @:attr var className:coconut.vdom.ClassName = "";
+    @:attr var tolerance:Float = 0.1;
+    @:attr var onscrolltop:Void->Void;
+    @:attr var onscrollbottom:Void->Void;
 
     function render()
     {
         return @hxx '
         <div {...this} style="overflow-y:auto">
-            ${children}
+            <for ${child in children}>
+                ${child}
+            </for>
         </div>
         ';
     };
 
-    override function afterInit(elem:DOMElement)
+    override function afterMounting(element)
     {
+        var elem:DOMElement = cast element;
         var ratio = elem.scrollTop / (elem.scrollHeight - elem.clientHeight);
 
         var topPassed:Bool = ratio <= tolerance;

@@ -1,21 +1,15 @@
 package mdc;
 
 import js.html.KeyboardEvent;
-import js.html.Element;
-import js.html.MouseEvent;
-import tink.core.Callback;
-import vdom.VDom.InputAttr;
-import js.html.DOMElement;
 import mdc.MDC.MDCTextField;
-import vdom.Attr;
-import vdom.VDom.*;
 import coconut.ui.View;
+import coconut.vdom.ClassName;
 
 class TextField extends View
 {
     @:attr var className:ClassName = "";
     @:attr var label:String = null;
-    @:attr var value:String = null;
+    @:attr var value:String = "";
     @:attr var disabled:Bool = null;
     @:attr var invalid:Bool = null;
     @:attr var icon:String = null;
@@ -23,11 +17,11 @@ class TextField extends View
     @:attr var box:Bool = null;
     @:attr var fullWidth:Bool = null;
     @:attr var textArea:Bool = null;
-    @:attr var type:String = null;
+    @:attr var type:String = "text";
     @:attr var onedit:String->Void = null;
-    @:attr var pattern:String = null;
+    @:attr var pattern:String = "*";
     @:attr var required:Bool = false;
-    @:attr var onkeydown:Callback<EventFrom<KeyboardEvent, Element>> = null;
+    @:attr var onkeydown:KeyboardEvent->Void = null;
 
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
@@ -46,17 +40,17 @@ class TextField extends View
                                                       "mdc-text-field--with-leading-icon" => icon != null,
                                                       "mdc-text-field--box" => box,
                                                       "mdc-text-field--textarea" => textArea,
-                                                      "mdc-text-field--fullwidth" => fullWidth])} {...this}>
+                                                      "mdc-text-field--fullwidth" => fullWidth])} ${...this}>
                         <if ${icon != null && iconPos != TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
                         <if ${textArea}>
                             <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}>${value}</textarea>
                         <else>
-                            <input type=${type != null ? type : "text"} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern != null ? pattern : ""} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
+                            <input type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
                         </if>
                         <if ${label != null}>
-                            <vdom.VDom.label class="mdc-text-field__label" htmlFor=${"tf" + textFieldId}>${label}</vdom.VDom.label>
+                            <coconut.vdom.Html.label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</coconut.vdom.Html.label>
                         </if>
                         <if ${icon != null && iconPos == TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
@@ -72,7 +66,7 @@ class TextField extends View
             mdcTextField.value = value;
     }
 
-    override function afterInit(elem:DOMElement)
+    override function afterMounting(elem)
     {
         this.mdcTextField = new MDCTextField(elem);
     }

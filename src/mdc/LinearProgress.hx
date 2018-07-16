@@ -1,8 +1,8 @@
 package mdc;
 
 import mdc.MDC.MDCLinearProgress;
-import vdom.Attr;
 import coconut.ui.View;
+import coconut.vdom.ClassName;
 class LinearProgress extends View
 {
     @:attr var className:ClassName = "";
@@ -38,7 +38,7 @@ class LinearProgress extends View
     }
 
 
-    override function afterInit(elem)
+    override function afterMounting(elem)
     {
         mdcLinearProgress = new MDCLinearProgress(elem);
 

@@ -9,8 +9,8 @@
         "playground": "haxe playground.hxml"
     },
     "author": "grosmar",
-    "license": "",
+    "license": "MIT",
     "dependencies": {
-        "material-components-web": "^0.30.0"
+        "material-components-web": "^0.37.0"
     }
 }
