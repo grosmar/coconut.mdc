@@ -1,16 +1,15 @@
 package cmdc;
 
 import mdc.MDC.MDCRipple;
-import vdom.VDom.InputAttr;
-import vdom.VDom.*;
 import coconut.ui.View;
+import js.html.MouseEvent;
 
 class LabelButton extends View
 {
-    var attributes:InputAttr;
+    @:attr var className:coconut.vdom.ClassName;
     @:attr var htmlFor:String;
     @:attr var label:String = null;
-    // @:attr var disabled:Bool = null;
+    @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
     @:attr var raised:Bool = false;
     @:attr var unelevated:Bool = false;
@@ -18,11 +17,12 @@ class LabelButton extends View
     @:attr var dense:Bool = false;
     @:attr var compact:Bool = false;
     @:attr var ripple:Bool = true;
+    @:attr var onclick:MouseEvent->Void = null;
     var mdcRipple:MDCRipple = null;
 
     function render()
     {
-        return @hxx '<vdom.VDom.label class=${className.add(["mdc-button" => true,
+        return @hxx '<coconut.vdom.Html.label class=${className.add(["mdc-button" => true,
         "mdc-ripple-surface" => ripple,
         "mdc-button--raised" => raised,
         "mdc-button--unelevated" => unelevated,
@@ -35,10 +35,10 @@ class LabelButton extends View
                 <i class="mdc-button__icon material-icons">${icon}</i>
             </if>
             ${label}
-        </vdom.VDom.label>';
+        </coconut.vdom.Html.label>';
     }
 
-    override function afterInit(elem)
+    override function afterMounting(elem)
     {
         this.mdcRipple = new MDCRipple(elem);
     }

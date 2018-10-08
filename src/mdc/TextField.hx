@@ -100,7 +100,7 @@ class TextFieldHelperText extends View
     '
         <p class=${className.add([ "mdc-text-field-helper-text" => true,
                                    "mdc-text-field-helper-text--persistent" => persistent,
-                                   "mdc-text-field-helper-text--validation-msg" => validation])} aria-hidden="true" ${...this} >
+                                   "mdc-text-field-helper-text--validation-msg" => validation])} ${...this} >
             ${label}
         </p>
     ';

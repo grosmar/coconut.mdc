@@ -8,6 +8,7 @@ class InfiniteScroll extends View
     @:attr var children:coconut.ui.Children;
     @:attr var className:coconut.vdom.ClassName = "";
     @:attr var tolerance:Float = 0.1;
+    @:attr var tabIndex:Int = null;
     @:attr var onscrolltop:Void->Void;
     @:attr var onscrollbottom:Void->Void;
 

@@ -6,9 +6,9 @@ class MDC
 {
 	public static inline var DEFAULT_RIPPLE = true;
 
-	static function __init__()
+	static public function init()
 	{
-		//TODO: temporary hack to work with first display:block views till google guys fix ripple rendering
+		//TODO: temporary hack to work with first display:none views till google guys fix ripple rendering
 		var originalActivate = untyped mdc.ripple.MDCRippleFoundation.prototype.activate_;
 		untyped mdc.ripple.MDCRippleFoundation.prototype.activate_ = function(e)
 		{

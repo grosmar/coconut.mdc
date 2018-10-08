@@ -69,6 +69,7 @@ class ToolbarMenuIcon extends View
 {
 	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var name:IconName;
+	@:attr var onclick:js.html.Event->Void;
 
 	function render(attr)
 	'
