@@ -145,12 +145,19 @@ extern class MDCRadio extends MDCComponent
 	var value:String;
 }
 
-@:native("window.mdc.tabs.MDCTabBar")
+@:native("window.mdc.switchControl.MDCSwitch")
+extern class MDCSwitch extends MDCComponent
+{
+	var checked:Bool;
+	var disabled:Bool;
+}
+
+@:native("window.mdc.tabBar.MDCTabBar")
 extern class MDCTabBar extends MDCComponent
 {
-	var activeTabIndex(default,default):Int;
-	var tabs(default,default):Array<MDCTab>;
 
+	function activateTab(index:Int):Void;
+	function getTabElements_():Array<MDCTab>;
 	function listen(event:String, callback:{detail:{activeTabIndex:Int}}->Void):Void;
 	function unlisten(event:String, callback:{detail:{activeTabIndex:Int}}->Void):Void;
 
@@ -160,7 +167,7 @@ extern class MDCTabBar extends MDCComponent
 @:native("window.mdc.tabs.MDCTab")
 extern class MDCTab extends MDCComponent
 {
-	var isActive:Bool;
+	function isActive():Bool;
 }
 
 @:native("window.mdc.linearProgress.MDCLinearProgress")

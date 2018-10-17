@@ -69,6 +69,17 @@ class ListText extends View
 	';
 }
 
+class ListTextPrimary extends View
+{
+	@:attr var className:ClassName = "";
+	@:attr var children:Children;
+
+	function render()
+	'
+		<span class=${className.add(["mdc-list-item__primary-text" => true])} >${...children}</span>
+	';
+}
+
 class ListTextSecondary extends View
 {
 	@:attr var className:ClassName = "";

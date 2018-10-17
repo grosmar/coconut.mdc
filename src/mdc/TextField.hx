@@ -39,6 +39,8 @@ class TextField extends View
                                                       "mdc-text-field--disabled" => disabled,
                                                       "mdc-text-field--with-leading-icon" => icon != null,
                                                       "mdc-text-field--box" => box,
+                                                      "mdc-text-field--with-leading-icon" => icon != null && iconPos != TextFieldIconPos.Right,
+                                                      "mdc-text-field--with-trailing-icon" => iconPos == TextFieldIconPos.Right,
                                                       "mdc-text-field--textarea" => textArea,
                                                       "mdc-text-field--fullwidth" => fullWidth])} ${...this}>
                         <if ${icon != null && iconPos != TextFieldIconPos.Right}>

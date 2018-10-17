@@ -1,6 +1,7 @@
 package mdc;
 import coconut.ui.View;
 import coconut.vdom.ClassName;
+import mdc.MDC.MDCSwitch;
 
 class Switch extends View
 {
@@ -14,28 +15,46 @@ class Switch extends View
 
     static var switchIndex = 0;
     var switchId:UInt = switchIndex++;
+    //var mdcSwitch:MDCSwitch;
 
     function render()
     {
-        var id = id != null ? id : "switch_" + id;
+        var id = id != null ? id : "switch_" + switchId;
 
         return @hxx '
-        <div {...this}>
-            <div class="mdc-switch">
-                <input type="checkbox"
-                       id=${id}
-                       value=${value}
-                       checked=${checked}
-                       onchange=${if(onchecked != null) onchecked(event.target.checked) }
-                       class="mdc-switch__native-control" disabled=${disabled} />
-                <div class="mdc-switch__background">
-                    <div class="mdc-switch__knob"></div>
+        <span {...this}>
+            <div  class=${className.add(["mdc-switch" => true, 
+                                         "mdc-switch--disabled" => disabled,
+                                         "mdc-switch--checked" => checked])}>
+                <div class="mdc-switch__track"></div>            
+                <div class="mdc-switch__thumb-underlay">
+                    <div class="mdc-switch__thumb">
+                        <input type="checkbox"
+                                id=${id}
+                                value=${value}
+                                checked=${checked}
+                                onchange=${if(onchecked != null) onchecked(event.target.checked) }
+                                class="mdc-switch__native-control" disabled=${disabled} />
+                    </div>
                 </div>
             </div>
             <if ${label != null}>
                 <coconut.vdom.Html.label htmlFor=${id} class="mdc-switch-label">${label}</coconut.vdom.Html.label>
             </if>
-        </div>
+        </span>
         ';
     }
+
+    /*override function afterMounting(elem)
+    {
+        mdcSwitch = new MDCSwitch(elem);
+    }
+
+    override function beforeDestroy(elem)
+    {
+        if ( this.mdcSwitch != null )
+        {
+            mdcSwitch.destroy();
+        }
+    }*/
 }

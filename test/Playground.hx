@@ -3,9 +3,11 @@ package;
 import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
+import mdc.TextField.TextFieldIconPos;
 import mdc.TextField.TextFieldHelperText;
 import mdc.List.ListItem;
 import mdc.List.ListText;
+import mdc.List.ListTextPrimary;
 import mdc.List.ListTextSecondary;
 import mdc.List.ListGraphic;
 import mdc.List.ListGraphicImage;
@@ -68,7 +70,7 @@ class TestView extends View
         </div>
 
         <div class="float" >
-            <TabBar mode=${mdc.TabBar.TabBarMode.Icon}>
+            <TabBar>
                 <Tab icon="camera" active />
                 <Tab icon="colorize" />
                 <Tab icon="edit" />
@@ -76,7 +78,7 @@ class TestView extends View
         </div>
 
         <div class="float">
-            <TabBar mode=${mdc.TabBar.TabBarMode.IconWithText}>
+            <TabBar>
                 <Tab icon="camera" active>Tab1</Tab>
                 <Tab icon="colorize">Tab2</Tab>
                 <Tab icon="edit">Tab3</Tab>
@@ -158,7 +160,7 @@ class TestView extends View
                 <ListItem>
                     <ListGraphicImage src="https://randomuser.me/api/portraits/women/1.jpg" />
                     <ListText>
-                        Item title 1
+                        <ListTextPrimary>Item title 1</ListTextPrimary>
                         <ListTextSecondary>Secondary text 1</ListTextSecondary>
                     </ListText>
                     <ListMeta><Icon name=${mdc.IconName.Info} /></ListMeta>
@@ -166,7 +168,7 @@ class TestView extends View
                 <ListItem>
                     <ListGraphicImage src="https://randomuser.me/api/portraits/women/2.jpg" />
                     <ListText>
-                        Item title 2
+                        <ListTextPrimary>Item title 2</ListTextPrimary>
                         <ListTextSecondary>Secondary text 2</ListTextSecondary>
                     </ListText>
                     <ListMeta><Icon name=${mdc.IconName.Info} /></ListMeta>
@@ -175,7 +177,7 @@ class TestView extends View
                 <ListItem>
                     <ListGraphicImage src="https://randomuser.me/api/portraits/women/3.jpg" />
                     <ListText>
-                        Item title 3
+                        <ListTextPrimary>Item title 3</ListTextPrimary>
                         <ListTextSecondary>Secondary text 3</ListTextSecondary>
                     </ListText>
                     <ListMeta><Icon name=${mdc.IconName.Info} /></ListMeta>
@@ -186,13 +188,16 @@ class TestView extends View
 
     <h1>Radio</h1>
     <div>
-        <Radio label="Simple" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
-        <Radio label="Checked" checked />
-        <Radio label="Disabled" disabled />
+        <Radio label="Simple" name="simple-set" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
+        <Radio label="Checked" name="simple-set" checked />
+        <Radio label="Disabled" name="simple-set" disabled />
     </div>
 
     <h1>Switch</h1>
     <div>
+        <div class="float">
+            <Switch value="nolabel" onchecked=${checked => {trace("checked:", checked);}} />
+        </div>
         <div class="float">
             <Switch label="Label" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
         </div>
@@ -205,9 +210,6 @@ class TestView extends View
         <div class="float">
             <Switch label="Checked&Disabled" checked disabled value="simple" onchecked=${checked => {trace("checked:", checked);}} />
         </div>
-        <div class="float">
-            <Switch value="nolabel" onchecked=${checked => {trace("checked:", checked);}} />
-        </div>
     </div>
 
     <h1>TextField</h1>
@@ -216,6 +218,7 @@ class TestView extends View
         <TextField label="Boxed input" box />
         <TextField label="Password input" type="password" />
         <TextField label="Icon input" box icon="list" />
+        <TextField label="Right Icon input" box icon="list" iconPos=${TextFieldIconPos.Right} />
         <br/>
         <TextField label="Input with helper" />
         <TextFieldHelperText label="Helper for above" />

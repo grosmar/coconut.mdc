@@ -12,7 +12,6 @@ class TabBar extends View
 {
     @:attr var className:ClassName = "";
     @:attr var children:Children;
-    @:attr var mode:TabBarMode = Text;
     @:attr var activeTabIndex:Int = 0;
     @:attr function ontabchange(index:UInt):Void {}
 
@@ -23,18 +22,22 @@ class TabBar extends View
     {
         var activeTabIndex = this.activeTabIndex;
         var children = this.children;
-        return @hxx '<nav class=${className.add(["mdc-tab-bar" => true, mode => true])} {...this}>
-            ${...children}
-            <span class="mdc-tab-bar__indicator" ></span>
-        </nav>';
+        return @hxx '<div class=${className.add(["mdc-tab-bar" => true])} {...this}>
+            <div class="mdc-tab-scroller">
+                <div class="mdc-tab-scroller__scroll-area">
+                    <div class="mdc-tab-scroller__scroll-content">
+                        ${...children}
+                    </div>
+                </div>
+            </div>
+        </div>';
     }
 
     override function afterMounting(elem)
     {
         mdcTabBar = new MDCTabBar(elem);
         mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
-        mdcTabBar.activeTabIndex = activeTabIndex;
-        mdcTabBar.tabs[activeTabIndex].isActive = true;
+        mdcTabBar.activateTab(activeTabIndex);
         prevLength = elem.childNodes.length;
     }
 
@@ -46,7 +49,7 @@ class TabBar extends View
         if ( prevLength == elem.children.length )
         {
             prevTabIndex = activeTabIndex;
-            mdcTabBar.activeTabIndex = activeTabIndex;
+            mdcTabBar.activateTab(activeTabIndex);
             return;
         }
 
@@ -56,17 +59,16 @@ class TabBar extends View
         {
             prevTabIndex = children.length -1 < prevTabIndex ? activeTabIndex : prevTabIndex;
             mdcTabBar.unlisten('MDCTabBar:change', tabChangeHandler);
-            for ( tab in this.mdcTabBar.tabs )
+            for ( tab in this.mdcTabBar.getTabElements_() )
                 tab.destroy();
             this.mdcTabBar.destroy();
         }
 
         mdcTabBar = new MDCTabBar(elem);
         mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
-        mdcTabBar.tabs[prevTabIndex].isActive = true;
-        mdcTabBar.activeTabIndex = prevTabIndex;
+        mdcTabBar.activateTab(activeTabIndex);
 
-        js.Browser.window.requestAnimationFrame(function(_) { mdcTabBar.activeTabIndex = prevTabIndex = activeTabIndex;});
+        js.Browser.window.requestAnimationFrame(function(_) { prevTabIndex = activeTabIndex; mdcTabBar.activateTab(activeTabIndex); });
 
     }
 
@@ -80,7 +82,7 @@ class TabBar extends View
         if ( this.mdcTabBar != null )
         {
             mdcTabBar.unlisten('MDCTabBar:change', tabChangeHandler);
-            for ( tab in this.mdcTabBar.tabs )
+            for ( tab in this.mdcTabBar.getTabElements_() )
                 tab.destroy();
             mdcTabBar.destroy();
         }
@@ -100,16 +102,23 @@ class Tab extends View
 
     function render()
     '
-        <a class=${className.add(["mdc-tab" => true,
-                                  "mdc-tab--active" => active])} ${...this} >
-            <if ${icon != null}>
-                <TabIcon name=${icon} />
-            </if>
-            <if ${text != null}>
-                <TabText>${this.text}</TabText>
-            </if>
-            ${...children}
-        </a>
+        <button class=${className.add(["mdc-tab" => true,
+                                       "mdc-tab--active" => active])} ${...this} >
+            <span class="mdc-tab__content">
+                <if ${icon != null}>
+                    <TabIcon name=${icon} />
+                </if>
+                <if ${text != null}>
+                    <TabText>${this.text}</TabText>
+                </if>
+                ${...children}
+            </span>
+            <span class=${className.add(["mdc-tab-indicator" => true,
+                                         "mdc-tab-indicator--active" => active])} >
+                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+            </span>
+            <span class="mdc-tab__ripple"></span>
+        </button>
     ';
 }
 
@@ -120,7 +129,7 @@ class TabIcon extends View
 
     function render()
     '
-        <i class=${className.add(["mdc-tab__icon" => true, "material-icons" => true])} {...this} >${name}</i>
+        <span class=${className.add(["mdc-tab__icon" => true, "material-icons" => true])} {...this} >${name}</span>
     ';
 }
 
@@ -131,13 +140,6 @@ class TabText extends View
 
     function render()
     '
-        <span class=${className.add(["mdc-tab__icon-text" => true])} {...this} >${...children}</span>
+        <span class=${className.add(["mdc-tab__text-label" => true])} {...this} >${...children}</span>
     ';
-}
-
-@:enum abstract TabBarMode(String) to String
-{
-    var Text = "";
-    var Icon = "mdc-tab-bar--icon-tab-bar";
-    var IconWithText = "mdc-tab-bar--icons-with-text";
 }

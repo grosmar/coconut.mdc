@@ -29,7 +29,7 @@ class Radio extends View
                               <input type="radio"
                                    onchange=${if (onchecked != null) onchecked(event.target.checked)}
                                    class="mdc-radio__native-control"
-                                   id=${"r_" + id}
+                                   id=${id}
                                    name=${name}
                               />
                               <div class="mdc-radio__background">
@@ -44,7 +44,7 @@ class Radio extends View
                           <input type="radio"
                                onchange=${if (onchecked != null) onchecked(event.target.checked)}
                                class="mdc-radio__native-control"
-                               id=${"r_" + id}
+                               id=${id}
                                name=${name}
                           />
                           <div class="mdc-radio__background">
