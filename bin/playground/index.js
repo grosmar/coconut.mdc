@@ -545,7 +545,7 @@ coconut_vdom_Renderable.prototype = $extend(coconut_vdom_Widget.prototype,{
 		this.beforeDestroy(this.__dom);
 		var this1 = this.__binding;
 		if(this1 != null) {
-			this1.dissolve();
+			this1.cancel();
 		}
 		coconut_vdom_Widget.prototype.__destroyWidget.call(this);
 		var _destroy = null;
@@ -615,9 +615,9 @@ coconut_ui_View.prototype = $extend(coconut_vdom_Renderable.prototype,{
 	,__class__: coconut_ui_View
 });
 var TestView = function(data) {
-	this.__tink_defaults0 = { };
+	this.__tink_defaults120 = { };
 	this.__slots = { };
-	this.__tink_init86(data);
+	this.__tink_init121(data);
 	coconut_ui_View.call(this,$bind(this,this.render));
 };
 $hxClasses["TestView"] = TestView;
@@ -626,7 +626,7 @@ TestView.__init = function(attributes,inst) {
 	if(inst == null) {
 		inst = new TestView(attributes);
 	} else {
-		inst.__tink_init86(attributes);
+		inst.__tink_init121(attributes);
 	}
 	return inst;
 };
@@ -680,12 +680,12 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r5);
 		var __ret11 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
 		var __ret12 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this2 = { f : function() {
+		var this11 = { f : function() {
 			return function(event1) {
 				haxe_Log.trace("clicked",{ fileName : "Playground.hx", lineNumber : 45, className : "TestView", methodName : "render"});
 			};
 		}};
-		var __ret13 = { label : __ret11, raised : __ret12, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this2)};
+		var __ret13 = { label : __ret11, raised : __ret12, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this11)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret13));
 		var __ret14 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Dense"), raised : tink_state__$Observable_Observable_$Impl_$["const"](true), dense : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r5.push(coconut_ui_tools_ViewCache.mk("mdc.Button",null,mdc_Button.__init,__ret14));
@@ -710,13 +710,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r7);
 		var __ret20 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
 		var __ret21 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this3 = { f : function() {
+		var this12 = { f : function() {
 			return function(checked) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 54, className : "TestView", methodName : "render", customParams : [checked]});
 				return;
 			};
 		}};
-		var __ret22 = { label : __ret20, value : __ret21, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this3)};
+		var __ret22 = { label : __ret20, value : __ret21, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this12)};
 		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret22));
 		var __ret23 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r7.push(coconut_ui_tools_ViewCache.mk("mdc.Checkbox",null,mdc_Checkbox.__init,__ret23));
@@ -741,33 +741,33 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var attr9 = __ret28;
 		var __r10 = [];
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r10);
-		var this4 = { f : function() {
+		var this13 = { f : function() {
 			var __r11 = [];
 			var __ret29 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-			var this5 = { f : function() {
+			var this14 = { f : function() {
 				var __r12 = [];
 				__r12.push({ t : ":text", k : "Tab1", a : coconut_vdom_VDom.EMPTY});
 				return __r12;
 			}};
-			var __ret30 = { active : __ret29, children : tink_state__$Observable_Observable_$Impl_$.auto(this5)};
+			var __ret30 = { active : __ret29, children : tink_state__$Observable_Observable_$Impl_$.auto(this14)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret30));
-			var this6 = { f : function() {
+			var this15 = { f : function() {
 				var __r13 = [];
 				__r13.push({ t : ":text", k : "Tab2", a : coconut_vdom_VDom.EMPTY});
 				return __r13;
 			}};
-			var __ret31 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this6)};
+			var __ret31 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this15)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret31));
-			var this7 = { f : function() {
+			var this16 = { f : function() {
 				var __r14 = [];
 				__r14.push({ t : ":text", k : "Tab3", a : coconut_vdom_VDom.EMPTY});
 				return __r14;
 			}};
-			var __ret32 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this7)};
+			var __ret32 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this16)};
 			__r11.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret32));
 			return __r11;
 		}};
-		var __ret33 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this4)};
+		var __ret33 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this13)};
 		__r10.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret33));
 		var children7 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r10);
 		__r9.push({ t : "div", k : attr9 == null ? null : attr9.key, a : attr9, c : children7});
@@ -775,11 +775,11 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var attr10 = __ret34;
 		var __r15 = [];
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r15);
-		var this8 = { f : function() {
+		var this17 = { f : function() {
 			return "mdc-tab-bar--icon-tab-bar";
 		}};
-		var __ret35 = tink_state__$Observable_Observable_$Impl_$.auto(this8);
-		var this9 = { f : function() {
+		var __ret35 = tink_state__$Observable_Observable_$Impl_$.auto(this17);
+		var this18 = { f : function() {
 			var __r16 = [];
 			var __ret36 = { icon : tink_state__$Observable_Observable_$Impl_$["const"]("camera"), active : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 			__r16.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret36));
@@ -789,7 +789,7 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 			__r16.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret38));
 			return __r16;
 		}};
-		var __ret39 = { mode : __ret35, children : tink_state__$Observable_Observable_$Impl_$.auto(this9)};
+		var __ret39 = { mode : __ret35, children : tink_state__$Observable_Observable_$Impl_$.auto(this18)};
 		__r15.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret39));
 		var children8 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r15);
 		__r9.push({ t : "div", k : attr10 == null ? null : attr10.key, a : attr10, c : children8});
@@ -797,40 +797,40 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var attr11 = __ret40;
 		var __r17 = [];
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r17);
-		var this10 = { f : function() {
+		var this19 = { f : function() {
 			return "mdc-tab-bar--icons-with-text";
 		}};
-		var __ret41 = tink_state__$Observable_Observable_$Impl_$.auto(this10);
-		var this11 = { f : function() {
+		var __ret41 = tink_state__$Observable_Observable_$Impl_$.auto(this19);
+		var this110 = { f : function() {
 			var __r18 = [];
 			var __ret42 = tink_state__$Observable_Observable_$Impl_$["const"]("camera");
 			var __ret43 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-			var this12 = { f : function() {
+			var this111 = { f : function() {
 				var __r19 = [];
 				__r19.push({ t : ":text", k : "Tab1", a : coconut_vdom_VDom.EMPTY});
 				return __r19;
 			}};
-			var __ret44 = { icon : __ret42, active : __ret43, children : tink_state__$Observable_Observable_$Impl_$.auto(this12)};
+			var __ret44 = { icon : __ret42, active : __ret43, children : tink_state__$Observable_Observable_$Impl_$.auto(this111)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret44));
 			var __ret45 = tink_state__$Observable_Observable_$Impl_$["const"]("colorize");
-			var this13 = { f : function() {
+			var this112 = { f : function() {
 				var __r20 = [];
 				__r20.push({ t : ":text", k : "Tab2", a : coconut_vdom_VDom.EMPTY});
 				return __r20;
 			}};
-			var __ret46 = { icon : __ret45, children : tink_state__$Observable_Observable_$Impl_$.auto(this13)};
+			var __ret46 = { icon : __ret45, children : tink_state__$Observable_Observable_$Impl_$.auto(this112)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret46));
 			var __ret47 = tink_state__$Observable_Observable_$Impl_$["const"]("edit");
-			var this14 = { f : function() {
+			var this113 = { f : function() {
 				var __r21 = [];
 				__r21.push({ t : ":text", k : "Tab3", a : coconut_vdom_VDom.EMPTY});
 				return __r21;
 			}};
-			var __ret48 = { icon : __ret47, children : tink_state__$Observable_Observable_$Impl_$.auto(this14)};
+			var __ret48 = { icon : __ret47, children : tink_state__$Observable_Observable_$Impl_$.auto(this113)};
 			__r18.push(coconut_ui_tools_ViewCache.mk("mdc.Tab",null,mdc_Tab.__init,__ret48));
 			return __r18;
 		}};
-		var __ret49 = { mode : __ret41, children : tink_state__$Observable_Observable_$Impl_$.auto(this11)};
+		var __ret49 = { mode : __ret41, children : tink_state__$Observable_Observable_$Impl_$.auto(this110)};
 		__r17.push(coconut_ui_tools_ViewCache.mk("mdc.TabBar",null,mdc_TabBar.__init,__ret49));
 		var children9 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r17);
 		__r9.push({ t : "div", k : attr11 == null ? null : attr11.key, a : attr11, c : children9});
@@ -854,10 +854,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r24.push({ t : ":text", k : "Progress", a : coconut_vdom_VDom.EMPTY});
 		var children12 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r24);
 		__r23.push({ t : "h2", k : attr14 == null ? null : attr14.key, a : attr14, c : children12});
-		var this15 = { f : function() {
+		var this114 = { f : function() {
 			return 0.7;
 		}};
-		var __ret53 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this15), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret53 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this114), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret53));
 		var __ret54 = { };
 		var attr15 = __ret54;
@@ -866,14 +866,14 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r25.push({ t : ":text", k : "Buffer", a : coconut_vdom_VDom.EMPTY});
 		var children13 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r25);
 		__r23.push({ t : "h2", k : attr15 == null ? null : attr15.key, a : attr15, c : children13});
-		var this16 = { f : function() {
+		var this115 = { f : function() {
 			return 0.3;
 		}};
-		var __ret55 = tink_state__$Observable_Observable_$Impl_$.auto(this16);
-		var this17 = { f : function() {
+		var __ret55 = tink_state__$Observable_Observable_$Impl_$.auto(this115);
+		var this116 = { f : function() {
 			return 0.4;
 		}};
-		var __ret56 = { progress : __ret55, buffer : tink_state__$Observable_Observable_$Impl_$.auto(this17), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret56 = { progress : __ret55, buffer : tink_state__$Observable_Observable_$Impl_$.auto(this116), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret56));
 		var __ret57 = { };
 		var attr16 = __ret57;
@@ -891,10 +891,10 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r27.push({ t : ":text", k : "Reverse", a : coconut_vdom_VDom.EMPTY});
 		var children15 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r27);
 		__r23.push({ t : "h2", k : attr17 == null ? null : attr17.key, a : attr17, c : children15});
-		var this18 = { f : function() {
+		var this117 = { f : function() {
 			return 0.7;
 		}};
-		var __ret60 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this18), reverse : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
+		var __ret60 = { progress : tink_state__$Observable_Observable_$Impl_$.auto(this117), reverse : tink_state__$Observable_Observable_$Impl_$["const"](true), open : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r23.push(coconut_ui_tools_ViewCache.mk("mdc.LinearProgress",null,mdc_LinearProgress.__init,__ret60));
 		var __ret61 = { };
 		var attr18 = __ret61;
@@ -929,32 +929,32 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r32.push({ t : ":text", k : "Simple list", a : coconut_vdom_VDom.EMPTY});
 		var children19 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r32);
 		__r31.push({ t : "h2", k : attr22 == null ? null : attr22.key, a : attr22, c : children19});
-		var this19 = { f : function() {
+		var this118 = { f : function() {
 			var __r33 = [];
-			var this20 = { f : function() {
+			var this119 = { f : function() {
 				var __r34 = [];
 				__r34.push({ t : ":text", k : "Simple item 1", a : coconut_vdom_VDom.EMPTY});
 				return __r34;
 			}};
-			var __ret67 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this20)};
+			var __ret67 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this119)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret67));
-			var this21 = { f : function() {
+			var this120 = { f : function() {
 				var __r35 = [];
 				__r35.push({ t : ":text", k : "Simple item 2", a : coconut_vdom_VDom.EMPTY});
 				return __r35;
 			}};
-			var __ret68 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this21)};
+			var __ret68 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this120)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret68));
-			var this22 = { f : function() {
+			var this121 = { f : function() {
 				var __r36 = [];
 				__r36.push({ t : ":text", k : "Simple item 3", a : coconut_vdom_VDom.EMPTY});
 				return __r36;
 			}};
-			var __ret69 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this22)};
+			var __ret69 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this121)};
 			__r33.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret69));
 			return __r33;
 		}};
-		var __ret70 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this19)};
+		var __ret70 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this118)};
 		__r31.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret70));
 		var children20 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r31);
 		__r30.push({ t : "div", k : attr21 == null ? null : attr21.key, a : attr21, c : children20});
@@ -969,32 +969,32 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r38.push({ t : ":text", k : "Dense list", a : coconut_vdom_VDom.EMPTY});
 		var children21 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r38);
 		__r37.push({ t : "h2", k : attr24 == null ? null : attr24.key, a : attr24, c : children21});
-		var this23 = { f : function() {
+		var this122 = { f : function() {
 			var __r39 = [];
-			var this24 = { f : function() {
+			var this123 = { f : function() {
 				var __r40 = [];
 				__r40.push({ t : ":text", k : "Dense item 1", a : coconut_vdom_VDom.EMPTY});
 				return __r40;
 			}};
-			var __ret73 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this24)};
+			var __ret73 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this123)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret73));
-			var this25 = { f : function() {
+			var this124 = { f : function() {
 				var __r41 = [];
 				__r41.push({ t : ":text", k : "Dense item 2", a : coconut_vdom_VDom.EMPTY});
 				return __r41;
 			}};
-			var __ret74 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this25)};
+			var __ret74 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this124)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret74));
-			var this26 = { f : function() {
+			var this125 = { f : function() {
 				var __r42 = [];
 				__r42.push({ t : ":text", k : "Dense item 3", a : coconut_vdom_VDom.EMPTY});
 				return __r42;
 			}};
-			var __ret75 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this26)};
+			var __ret75 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this125)};
 			__r39.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret75));
 			return __r39;
 		}};
-		var __ret76 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this23)};
+		var __ret76 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this122)};
 		__r37.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret76));
 		var children22 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r37);
 		__r30.push({ t : "div", k : attr23 == null ? null : attr23.key, a : attr23, c : children22});
@@ -1009,65 +1009,65 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r44.push({ t : ":text", k : "Interactive list", a : coconut_vdom_VDom.EMPTY});
 		var children23 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r44);
 		__r43.push({ t : "h2", k : attr26 == null ? null : attr26.key, a : attr26, c : children23});
-		var this27 = { f : function() {
+		var this126 = { f : function() {
 			var __r45 = [];
-			var this28 = { f : function() {
+			var this127 = { f : function() {
 				var __r46 = [];
-				var this29 = { f : function() {
+				var this128 = { f : function() {
 					var __r47 = [];
-					var this30 = { f : function() {
+					var this129 = { f : function() {
 						return "folder";
 					}};
-					var __ret79 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this30)};
+					var __ret79 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this129)};
 					__r47.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret79));
 					return __r47;
 				}};
-				var __ret80 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this29)};
+				var __ret80 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this128)};
 				__r46.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret80));
 				__r46.push({ t : ":text", k : "Link item with start icon 1", a : coconut_vdom_VDom.EMPTY});
 				return __r46;
 			}};
-			var __ret81 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this28)};
+			var __ret81 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this127)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret81));
-			var this31 = { f : function() {
+			var this130 = { f : function() {
 				var __r48 = [];
-				var this32 = { f : function() {
+				var this131 = { f : function() {
 					var __r49 = [];
-					var this33 = { f : function() {
+					var this132 = { f : function() {
 						return "folder";
 					}};
-					var __ret82 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this33)};
+					var __ret82 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this132)};
 					__r49.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret82));
 					return __r49;
 				}};
-				var __ret83 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this32)};
+				var __ret83 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this131)};
 				__r48.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret83));
 				__r48.push({ t : ":text", k : "Link item with start icon 2", a : coconut_vdom_VDom.EMPTY});
 				return __r48;
 			}};
-			var __ret84 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this31)};
+			var __ret84 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this130)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret84));
-			var this34 = { f : function() {
+			var this133 = { f : function() {
 				var __r50 = [];
-				var this35 = { f : function() {
+				var this134 = { f : function() {
 					var __r51 = [];
-					var this36 = { f : function() {
+					var this135 = { f : function() {
 						return "folder";
 					}};
-					var __ret85 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this36)};
+					var __ret85 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this135)};
 					__r51.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret85));
 					return __r51;
 				}};
-				var __ret86 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this35)};
+				var __ret86 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this134)};
 				__r50.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphic",null,mdc_ListGraphic.__init,__ret86));
 				__r50.push({ t : ":text", k : "Link item with start icon 3", a : coconut_vdom_VDom.EMPTY});
 				return __r50;
 			}};
-			var __ret87 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this34)};
+			var __ret87 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this133)};
 			__r45.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret87));
 			return __r45;
 		}};
-		var __ret88 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this27)};
+		var __ret88 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this126)};
 		__r43.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret88));
 		var children24 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r43);
 		__r30.push({ t : "div", k : attr25 == null ? null : attr25.key, a : attr25, c : children24});
@@ -1083,40 +1083,40 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var children25 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r53);
 		__r52.push({ t : "h2", k : attr28 == null ? null : attr28.key, a : attr28, c : children25});
 		var __ret91 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this37 = { f : function() {
+		var this136 = { f : function() {
 			var __r54 = [];
-			var this38 = { f : function() {
+			var this137 = { f : function() {
 				var __r55 = [];
 				var __ret92 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/1.jpg")};
 				__r55.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret92));
 				__r55.push({ t : ":text", k : "Item with start icon 1", a : coconut_vdom_VDom.EMPTY});
 				return __r55;
 			}};
-			var __ret93 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this38)};
+			var __ret93 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this137)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret93));
-			var this39 = { f : function() {
+			var this138 = { f : function() {
 				var __r56 = [];
 				var __ret94 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/2.jpg")};
 				__r56.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret94));
 				__r56.push({ t : ":text", k : "Item with start icon 2", a : coconut_vdom_VDom.EMPTY});
 				return __r56;
 			}};
-			var __ret95 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this39)};
+			var __ret95 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this138)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret95));
 			var __ret96 = { };
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListDivider",null,mdc_ListDivider.__init,__ret96));
-			var this40 = { f : function() {
+			var this139 = { f : function() {
 				var __r57 = [];
 				var __ret97 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/3.jpg")};
 				__r57.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret97));
 				__r57.push({ t : ":text", k : "Item with start icon 3", a : coconut_vdom_VDom.EMPTY});
 				return __r57;
 			}};
-			var __ret98 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this40)};
+			var __ret98 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this139)};
 			__r54.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret98));
 			return __r54;
 		}};
-		var __ret99 = { avatarList : __ret91, children : tink_state__$Observable_Observable_$Impl_$.auto(this37)};
+		var __ret99 = { avatarList : __ret91, children : tink_state__$Observable_Observable_$Impl_$.auto(this136)};
 		__r52.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret99));
 		var children26 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r52);
 		__r30.push({ t : "div", k : attr27 == null ? null : attr27.key, a : attr27, c : children26});
@@ -1133,112 +1133,112 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		__r58.push({ t : "h2", k : attr30 == null ? null : attr30.key, a : attr30, c : children27});
 		var __ret102 = tink_state__$Observable_Observable_$Impl_$["const"](true);
 		var __ret103 = tink_state__$Observable_Observable_$Impl_$["const"](true);
-		var this41 = { f : function() {
+		var this140 = { f : function() {
 			var __r60 = [];
-			var this42 = { f : function() {
+			var this141 = { f : function() {
 				var __r61 = [];
 				var __ret104 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/1.jpg")};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret104));
-				var this43 = { f : function() {
+				var this142 = { f : function() {
 					var __r62 = [];
 					__r62.push({ t : ":text", k : "Item title 1", a : coconut_vdom_VDom.EMPTY});
-					var this44 = { f : function() {
+					var this143 = { f : function() {
 						var __r63 = [];
 						__r63.push({ t : ":text", k : "Secondary text 1", a : coconut_vdom_VDom.EMPTY});
 						return __r63;
 					}};
-					var __ret105 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this44)};
+					var __ret105 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this143)};
 					__r62.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret105));
 					return __r62;
 				}};
-				var __ret106 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this43)};
+				var __ret106 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this142)};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret106));
-				var this45 = { f : function() {
+				var this144 = { f : function() {
 					var __r64 = [];
-					var this46 = { f : function() {
+					var this145 = { f : function() {
 						return "info";
 					}};
-					var __ret107 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this46)};
+					var __ret107 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this145)};
 					__r64.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret107));
 					return __r64;
 				}};
-				var __ret108 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this45)};
+				var __ret108 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this144)};
 				__r61.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret108));
 				return __r61;
 			}};
-			var __ret109 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this42)};
+			var __ret109 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this141)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret109));
-			var this47 = { f : function() {
+			var this146 = { f : function() {
 				var __r65 = [];
 				var __ret110 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/2.jpg")};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret110));
-				var this48 = { f : function() {
+				var this147 = { f : function() {
 					var __r66 = [];
 					__r66.push({ t : ":text", k : "Item title 2", a : coconut_vdom_VDom.EMPTY});
-					var this49 = { f : function() {
+					var this148 = { f : function() {
 						var __r67 = [];
 						__r67.push({ t : ":text", k : "Secondary text 2", a : coconut_vdom_VDom.EMPTY});
 						return __r67;
 					}};
-					var __ret111 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this49)};
+					var __ret111 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this148)};
 					__r66.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret111));
 					return __r66;
 				}};
-				var __ret112 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this48)};
+				var __ret112 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this147)};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret112));
-				var this50 = { f : function() {
+				var this149 = { f : function() {
 					var __r68 = [];
-					var this51 = { f : function() {
+					var this150 = { f : function() {
 						return "info";
 					}};
-					var __ret113 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this51)};
+					var __ret113 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this150)};
 					__r68.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret113));
 					return __r68;
 				}};
-				var __ret114 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this50)};
+				var __ret114 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this149)};
 				__r65.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret114));
 				return __r65;
 			}};
-			var __ret115 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this47)};
+			var __ret115 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this146)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret115));
 			var __ret116 = { inset : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListDivider",null,mdc_ListDivider.__init,__ret116));
-			var this52 = { f : function() {
+			var this151 = { f : function() {
 				var __r69 = [];
 				var __ret117 = { src : tink_state__$Observable_Observable_$Impl_$["const"]("https://randomuser.me/api/portraits/women/3.jpg")};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListGraphicImage",null,mdc_ListGraphicImage.__init,__ret117));
-				var this53 = { f : function() {
+				var this152 = { f : function() {
 					var __r70 = [];
 					__r70.push({ t : ":text", k : "Item title 3", a : coconut_vdom_VDom.EMPTY});
-					var this54 = { f : function() {
+					var this153 = { f : function() {
 						var __r71 = [];
 						__r71.push({ t : ":text", k : "Secondary text 3", a : coconut_vdom_VDom.EMPTY});
 						return __r71;
 					}};
-					var __ret118 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this54)};
+					var __ret118 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this153)};
 					__r70.push(coconut_ui_tools_ViewCache.mk("mdc.ListTextSecondary",null,mdc_ListTextSecondary.__init,__ret118));
 					return __r70;
 				}};
-				var __ret119 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this53)};
+				var __ret119 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this152)};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListText",null,mdc_ListText.__init,__ret119));
-				var this55 = { f : function() {
+				var this154 = { f : function() {
 					var __r72 = [];
-					var this56 = { f : function() {
+					var this155 = { f : function() {
 						return "info";
 					}};
-					var __ret120 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this56)};
+					var __ret120 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this155)};
 					__r72.push(coconut_ui_tools_ViewCache.mk("mdc.Icon",null,mdc_Icon.__init,__ret120));
 					return __r72;
 				}};
-				var __ret121 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this55)};
+				var __ret121 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this154)};
 				__r69.push(coconut_ui_tools_ViewCache.mk("mdc.ListMeta",null,mdc_ListMeta.__init,__ret121));
 				return __r69;
 			}};
-			var __ret122 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this52)};
+			var __ret122 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this151)};
 			__r60.push(coconut_ui_tools_ViewCache.mk("mdc.ListItem",null,mdc_ListItem.__init,__ret122));
 			return __r60;
 		}};
-		var __ret123 = { avatarList : __ret102, twoLine : __ret103, children : tink_state__$Observable_Observable_$Impl_$.auto(this41)};
+		var __ret123 = { avatarList : __ret102, twoLine : __ret103, children : tink_state__$Observable_Observable_$Impl_$.auto(this140)};
 		__r58.push(coconut_ui_tools_ViewCache.mk("mdc.List",null,mdc_List.__init,__ret123));
 		var children28 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r58);
 		__r30.push({ t : "div", k : attr29 == null ? null : attr29.key, a : attr29, c : children28});
@@ -1257,13 +1257,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r74);
 		var __ret126 = tink_state__$Observable_Observable_$Impl_$["const"]("Simple");
 		var __ret127 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this57 = { f : function() {
+		var this156 = { f : function() {
 			return function(checked1) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 189, className : "TestView", methodName : "render", customParams : [checked1]});
 				return;
 			};
 		}};
-		var __ret128 = { label : __ret126, value : __ret127, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this57)};
+		var __ret128 = { label : __ret126, value : __ret127, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this156)};
 		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret128));
 		var __ret129 = { label : tink_state__$Observable_Observable_$Impl_$["const"]("Checked"), checked : tink_state__$Observable_Observable_$Impl_$["const"](true)};
 		__r74.push(coconut_ui_tools_ViewCache.mk("mdc.Radio",null,mdc_Radio.__init,__ret129));
@@ -1288,13 +1288,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r77);
 		var __ret134 = tink_state__$Observable_Observable_$Impl_$["const"]("Label");
 		var __ret135 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this58 = { f : function() {
+		var this157 = { f : function() {
 			return function(checked2) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 197, className : "TestView", methodName : "render", customParams : [checked2]});
 				return;
 			};
 		}};
-		var __ret136 = { label : __ret134, value : __ret135, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this58)};
+		var __ret136 = { label : __ret134, value : __ret135, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this157)};
 		__r77.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret136));
 		var children33 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r77);
 		__r76.push({ t : "div", k : attr35 == null ? null : attr35.key, a : attr35, c : children33});
@@ -1305,13 +1305,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __ret138 = tink_state__$Observable_Observable_$Impl_$["const"]("Checked");
 		var __ret139 = tink_state__$Observable_Observable_$Impl_$["const"](true);
 		var __ret140 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this59 = { f : function() {
+		var this158 = { f : function() {
 			return function(checked3) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 200, className : "TestView", methodName : "render", customParams : [checked3]});
 				return;
 			};
 		}};
-		var __ret141 = { label : __ret138, checked : __ret139, value : __ret140, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this59)};
+		var __ret141 = { label : __ret138, checked : __ret139, value : __ret140, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this158)};
 		__r78.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret141));
 		var children34 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r78);
 		__r76.push({ t : "div", k : attr36 == null ? null : attr36.key, a : attr36, c : children34});
@@ -1322,13 +1322,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __ret143 = tink_state__$Observable_Observable_$Impl_$["const"]("Disabled");
 		var __ret144 = tink_state__$Observable_Observable_$Impl_$["const"](true);
 		var __ret145 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this60 = { f : function() {
+		var this159 = { f : function() {
 			return function(checked4) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 203, className : "TestView", methodName : "render", customParams : [checked4]});
 				return;
 			};
 		}};
-		var __ret146 = { label : __ret143, disabled : __ret144, value : __ret145, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this60)};
+		var __ret146 = { label : __ret143, disabled : __ret144, value : __ret145, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this159)};
 		__r79.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret146));
 		var children35 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r79);
 		__r76.push({ t : "div", k : attr37 == null ? null : attr37.key, a : attr37, c : children35});
@@ -1340,13 +1340,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __ret149 = tink_state__$Observable_Observable_$Impl_$["const"](true);
 		var __ret150 = tink_state__$Observable_Observable_$Impl_$["const"](true);
 		var __ret151 = tink_state__$Observable_Observable_$Impl_$["const"]("simple");
-		var this61 = { f : function() {
+		var this160 = { f : function() {
 			return function(checked5) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 206, className : "TestView", methodName : "render", customParams : [checked5]});
 				return;
 			};
 		}};
-		var __ret152 = { label : __ret148, checked : __ret149, disabled : __ret150, value : __ret151, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this61)};
+		var __ret152 = { label : __ret148, checked : __ret149, disabled : __ret150, value : __ret151, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this160)};
 		__r80.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret152));
 		var children36 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r80);
 		__r76.push({ t : "div", k : attr38 == null ? null : attr38.key, a : attr38, c : children36});
@@ -1355,13 +1355,13 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var __r81 = [];
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r81);
 		var __ret154 = tink_state__$Observable_Observable_$Impl_$["const"]("nolabel");
-		var this62 = { f : function() {
+		var this161 = { f : function() {
 			return function(checked6) {
 				haxe_Log.trace("checked:",{ fileName : "Playground.hx", lineNumber : 209, className : "TestView", methodName : "render", customParams : [checked6]});
 				return;
 			};
 		}};
-		var __ret155 = { value : __ret154, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this62)};
+		var __ret155 = { value : __ret154, onchecked : tink_state__$Observable_Observable_$Impl_$.auto(this161)};
 		__r81.push(coconut_ui_tools_ViewCache.mk("mdc.Switch",null,mdc_Switch.__init,__ret155));
 		var children37 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r81);
 		__r76.push({ t : "div", k : attr39 == null ? null : attr39.key, a : attr39, c : children37});
@@ -1419,73 +1419,78 @@ TestView.prototype = $extend(coconut_ui_View.prototype,{
 		var attr45 = __ret172;
 		var __r85 = [];
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r85);
-		var this63 = { f : function() {
+		var this162 = { f : function() {
 			var __r86 = [];
-			var this64 = { f : function() {
+			var this163 = { f : function() {
 				var __r87 = [];
-				var this65 = { f : function() {
+				var this164 = { f : function() {
 					return "mdc-toolbar__section--align-start";
 				}};
-				var __ret173 = tink_state__$Observable_Observable_$Impl_$.auto(this65);
-				var this66 = { f : function() {
+				var __ret173 = tink_state__$Observable_Observable_$Impl_$.auto(this164);
+				var this165 = { f : function() {
 					var __r88 = [];
-					var this67 = { f : function() {
+					var this166 = { f : function() {
 						return "menu";
 					}};
-					var __ret174 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this67)};
-					__r88.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret174));
+					var __ret174 = tink_state__$Observable_Observable_$Impl_$.auto(this166);
+					var this167 = { f : function() {
+						return function(e) {
+						};
+					}};
+					var __ret175 = { name : __ret174, onclick : tink_state__$Observable_Observable_$Impl_$.auto(this167)};
+					__r88.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarMenuIcon",null,mdc_ToolbarMenuIcon.__init,__ret175));
 					return __r88;
 				}};
-				var __ret175 = { align : __ret173, children : tink_state__$Observable_Observable_$Impl_$.auto(this66)};
-				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret175));
-				var this68 = { f : function() {
+				var __ret176 = { align : __ret173, children : tink_state__$Observable_Observable_$Impl_$.auto(this165)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret176));
+				var this168 = { f : function() {
 					var __r89 = [];
-					var this69 = { f : function() {
+					var this169 = { f : function() {
 						var __r90 = [];
 						__r90.push({ t : ":text", k : "Toolbar title", a : coconut_vdom_VDom.EMPTY});
 						return __r90;
 					}};
-					var __ret176 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this69)};
-					__r89.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret176));
+					var __ret177 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this169)};
+					__r89.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarTitle",null,mdc_ToolbarTitle.__init,__ret177));
 					return __r89;
 				}};
-				var __ret177 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this68)};
-				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret177));
-				var this70 = { f : function() {
+				var __ret178 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this168)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret178));
+				var this170 = { f : function() {
 					return "mdc-toolbar__section--align-end";
 				}};
-				var __ret178 = tink_state__$Observable_Observable_$Impl_$.auto(this70);
-				var this71 = { f : function() {
+				var __ret179 = tink_state__$Observable_Observable_$Impl_$.auto(this170);
+				var this171 = { f : function() {
 					var __r91 = [];
-					var this72 = { f : function() {
+					var this172 = { f : function() {
 						return "person";
 					}};
-					var __ret179 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this72)};
-					__r91.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret179));
+					var __ret180 = { name : tink_state__$Observable_Observable_$Impl_$.auto(this172)};
+					__r91.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarIcon",null,mdc_ToolbarIcon.__init,__ret180));
 					return __r91;
 				}};
-				var __ret180 = { align : __ret178, children : tink_state__$Observable_Observable_$Impl_$.auto(this71)};
-				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret180));
+				var __ret181 = { align : __ret179, children : tink_state__$Observable_Observable_$Impl_$.auto(this171)};
+				__r87.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarSection",null,mdc_ToolbarSection.__init,__ret181));
 				return __r87;
 			}};
-			var __ret181 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this64)};
-			__r86.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret181));
+			var __ret182 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this163)};
+			__r86.push(coconut_ui_tools_ViewCache.mk("mdc.ToolbarRow",null,mdc_ToolbarRow.__init,__ret182));
 			return __r86;
 		}};
-		var __ret182 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this63)};
-		__r85.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret182));
+		var __ret183 = { children : tink_state__$Observable_Observable_$Impl_$.auto(this162)};
+		__r85.push(coconut_ui_tools_ViewCache.mk("mdc.Toolbar",null,mdc_Toolbar.__init,__ret183));
 		var children42 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r85);
 		__r1.push({ t : "div", k : attr45 == null ? null : attr45.key, a : attr45, c : children42});
 		var children43 = coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
 		__r.push({ t : "div", k : attr == null ? null : attr.key, a : attr, c : children43});
 		return __r[0];
 	}
-	,__tink_defaults0: null
+	,__tink_defaults120: null
 	,__slots: null
 	,toString: function() {
 		return "TestView" + "#" + this.viewId;
 	}
-	,__tink_init86: function(attributes) {
+	,__tink_init121: function(attributes) {
 	}
 	,__class__: TestView
 });
@@ -2287,11 +2292,19 @@ coconut_ui__$Children_Children_$Impl_$.get = function(this1,index) {
 coconut_ui__$Children_Children_$Impl_$.ofSingle = function(r) {
 	return [r];
 };
+coconut_ui__$Children_Children_$Impl_$.concat = function(this1,that) {
+	if(this1 == null) {
+		return that;
+	} else {
+		return this1.concat(that);
+	}
+};
 var tink_state_ObservableObject = function() { };
 $hxClasses["tink.state.ObservableObject"] = tink_state_ObservableObject;
 tink_state_ObservableObject.__name__ = ["tink","state","ObservableObject"];
 tink_state_ObservableObject.prototype = {
-	poll: null
+	isValid: null
+	,poll: null
 	,__class__: tink_state_ObservableObject
 };
 var coconut_ui_tools_Slot = function(owner,compare) {
@@ -2321,6 +2334,13 @@ coconut_ui_tools_Slot.prototype = {
 	,get_value: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.observe());
 	}
+	,isValid: function() {
+		if(this.data != null) {
+			return this.data.isValid();
+		} else {
+			return false;
+		}
+	}
 	,poll: function() {
 		var _gthis = this;
 		if(this.last == null) {
@@ -2343,11 +2363,15 @@ coconut_ui_tools_Slot.prototype = {
 		return this3;
 	}
 	,measure: function() {
-		var _e = this.data;
-		var tmp = function() {
-			return tink_state__$Observable_Observable_$Impl_$.measure(_e);
-		};
-		return this.cache.cached(tmp);
+		if(this.isValid()) {
+			return tink_state__$Observable_Observable_$Impl_$.measure(this.data);
+		} else {
+			var _e = this.data;
+			var tmp = function() {
+				return tink_state__$Observable_Observable_$Impl_$.measure(_e);
+			};
+			return this.cache.cached(tmp);
+		}
 	}
 	,observe: function() {
 		return this;
@@ -2357,7 +2381,7 @@ coconut_ui_tools_Slot.prototype = {
 		if(this.last != null) {
 			var this1 = this.link;
 			if(this1 != null) {
-				this1.dissolve();
+				this1.cancel();
 			}
 			if(data != null) {
 				var m = tink_state__$Observable_Observable_$Impl_$.untracked($bind(this,this.measure));
@@ -8035,7 +8059,7 @@ mdc_TextFieldHelperText.prototype = $extend(coconut_ui_View.prototype,{
 		} else {
 			_g.h["mdc-text-field-helper-text--validation-msg"] = value1;
 		}
-		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), attributes : { 'aria-hidden' : "true"}};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
 		var attr = __ret1;
 		var __r1 = [];
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
@@ -8353,7 +8377,7 @@ mdc_ToolbarTitle.prototype = $extend(coconut_ui_View.prototype,{
 });
 var mdc_ToolbarMenuIcon = function(data) {
 	this.__tink_defaults5 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
-	this.__slots = { className : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null)};
+	this.__slots = { className : new coconut_ui_tools_Slot(this,null), name : new coconut_ui_tools_Slot(this,null), onclick : new coconut_ui_tools_Slot(this,null)};
 	this.__tink_init6(data);
 	coconut_ui_View.call(this,$bind(this,this.render));
 };
@@ -8385,7 +8409,7 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 		} else {
 			_g.h["material-icons"] = true;
 		}
-		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g))};
+		var __ret1 = { className : coconut_vdom__$ClassName_ClassName_$Impl_$.add(__ret,coconut_vdom__$ClassName_ClassName_$Impl_$.ofMap(_g)), onclick : tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe())};
 		var attr1 = __ret1;
 		var __r1 = [];
 		coconut_vdom__$Children_Children_$Impl_$.ofArray(__r1);
@@ -8403,6 +8427,7 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 		var this1 = attributes.className;
 		this.__slots.className.setData(this1 == null ? this.__tink_defaults5.className : this1);
 		this.__slots.name.setData(attributes.name);
+		this.__slots.onclick.setData(attributes.onclick);
 	}
 	,get_className: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.className.observe());
@@ -8410,8 +8435,11 @@ mdc_ToolbarMenuIcon.prototype = $extend(coconut_ui_View.prototype,{
 	,get_name: function() {
 		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.name.observe());
 	}
+	,get_onclick: function() {
+		return tink_state__$Observable_Observable_$Impl_$.get_value(this.__slots.onclick.observe());
+	}
 	,__class__: mdc_ToolbarMenuIcon
-	,__properties__: {get_name:"get_name",get_className:"get_className"}
+	,__properties__: {get_onclick:"get_onclick",get_name:"get_name",get_className:"get_className"}
 });
 var mdc_ToolbarIcon = function(data) {
 	this.__tink_defaults3 = { className : tink_state__$Observable_Observable_$Impl_$["const"]("")};
@@ -8513,15 +8541,12 @@ tink_core__$Callback_Callback_$Impl_$.invoke = function(this1,data) {
 	}
 };
 tink_core__$Callback_Callback_$Impl_$.ignore = function(cb) {
-	return tink_core__$Callback_Callback_$Impl_$.fromNiladic(function() {
+	return function(_) {
 		tink_core__$Callback_Callback_$Impl_$.invoke(cb,tink_core_Noise.Noise);
-	});
+	};
 };
 tink_core__$Callback_Callback_$Impl_$.fromNiladic = function(f) {
-	var this1 = function(r) {
-		f();
-	};
-	return this1;
+	return f;
 };
 tink_core__$Callback_Callback_$Impl_$.fromMany = function(callbacks) {
 	return function(v) {
@@ -8540,7 +8565,7 @@ var tink_core__$Callback_LinkObject = function() { };
 $hxClasses["tink.core._Callback.LinkObject"] = tink_core__$Callback_LinkObject;
 tink_core__$Callback_LinkObject.__name__ = ["tink","core","_Callback","LinkObject"];
 tink_core__$Callback_LinkObject.prototype = {
-	dissolve: null
+	cancel: null
 	,__class__: tink_core__$Callback_LinkObject
 };
 var tink_core__$Callback_CallbackLink_$Impl_$ = {};
@@ -8552,17 +8577,26 @@ tink_core__$Callback_CallbackLink_$Impl_$._new = function(link) {
 };
 tink_core__$Callback_CallbackLink_$Impl_$.cancel = function(this1) {
 	if(this1 != null) {
-		this1.dissolve();
+		this1.cancel();
 	}
 };
 tink_core__$Callback_CallbackLink_$Impl_$.dissolve = function(this1) {
 	if(this1 != null) {
-		this1.dissolve();
+		this1.cancel();
+	}
+};
+tink_core__$Callback_CallbackLink_$Impl_$.noop = function() {
+};
+tink_core__$Callback_CallbackLink_$Impl_$.toFunction = function(this1) {
+	if(this1 == null) {
+		return tink_core__$Callback_CallbackLink_$Impl_$.noop;
+	} else {
+		return $bind(this1,this1.cancel);
 	}
 };
 tink_core__$Callback_CallbackLink_$Impl_$.toCallback = function(this1) {
 	return function(_) {
-		this1.dissolve();
+		this1.cancel();
 	};
 };
 tink_core__$Callback_CallbackLink_$Impl_$.fromFunction = function(f) {
@@ -8579,7 +8613,7 @@ tink_core__$Callback_CallbackLink_$Impl_$.fromMany = function(callbacks) {
 			var cb = callbacks[_g];
 			++_g;
 			if(cb != null) {
-				cb.dissolve();
+				cb.cancel();
 			}
 		}
 	});
@@ -8593,9 +8627,10 @@ tink_core__$Callback_SimpleLink.__name__ = ["tink","core","_Callback","SimpleLin
 tink_core__$Callback_SimpleLink.__interfaces__ = [tink_core__$Callback_LinkObject];
 tink_core__$Callback_SimpleLink.prototype = {
 	f: null
-	,dissolve: function() {
+	,cancel: function() {
 		if(this.f != null) {
 			this.f();
+			this.f = null;
 		}
 	}
 	,__class__: tink_core__$Callback_SimpleLink
@@ -8612,17 +8647,19 @@ tink_core__$Callback_LinkPair.prototype = {
 	a: null
 	,b: null
 	,dissolved: null
-	,dissolve: function() {
+	,cancel: function() {
 		if(!this.dissolved) {
 			this.dissolved = true;
 			var this1 = this.a;
 			if(this1 != null) {
-				this1.dissolve();
+				this1.cancel();
 			}
 			var this2 = this.b;
 			if(this2 != null) {
-				this2.dissolve();
+				this2.cancel();
 			}
+			this.a = null;
+			this.b = null;
 		}
 	}
 	,__class__: tink_core__$Callback_LinkPair
@@ -8649,7 +8686,7 @@ tink_core__$Callback_ListCell.prototype = {
 		this.list = null;
 		this.cb = null;
 	}
-	,dissolve: function() {
+	,cancel: function() {
 		var _g = this.list;
 		if(_g != null) {
 			var v = _g;
@@ -8693,6 +8730,17 @@ tink_core__$Callback_CallbackList_$Impl_$.clear = function(this1) {
 		var cell = _g1[_g];
 		++_g;
 		cell.clear();
+	}
+};
+tink_core__$Callback_CallbackList_$Impl_$.invokeAndClear = function(this1,data) {
+	var _g = 0;
+	var _g1 = this1.splice(0,this1.length);
+	while(_g < _g1.length) {
+		var cell = _g1[_g];
+		++_g;
+		if(cell.cb != null) {
+			tink_core__$Callback_Callback_$Impl_$.invoke(cell.cb,data);
+		}
 	}
 };
 var tink_core_TypedError = function(code,message,pos) {
@@ -8822,11 +8870,6 @@ tink_core__$Future_NeverFuture.prototype = {
 	}
 	,__class__: tink_core__$Future_NeverFuture
 };
-var tink_core_Noise = $hxClasses["tink.core.Noise"] = { __ename__ : ["tink","core","Noise"], __constructs__ : ["Noise"] };
-tink_core_Noise.Noise = ["Noise",0];
-tink_core_Noise.Noise.toString = $estr;
-tink_core_Noise.Noise.__enum__ = tink_core_Noise;
-tink_core_Noise.__empty_constructs__ = [tink_core_Noise.Noise];
 var tink_core__$Lazy_LazyObject = function() { };
 $hxClasses["tink.core._Lazy.LazyObject"] = tink_core__$Lazy_LazyObject;
 tink_core__$Lazy_LazyObject.__name__ = ["tink","core","_Lazy","LazyObject"];
@@ -8890,6 +8933,11 @@ tink_core__$Future_SyncFuture.prototype = {
 	}
 	,__class__: tink_core__$Future_SyncFuture
 };
+var tink_core_Noise = $hxClasses["tink.core.Noise"] = { __ename__ : ["tink","core","Noise"], __constructs__ : ["Noise"] };
+tink_core_Noise.Noise = ["Noise",0];
+tink_core_Noise.Noise.toString = $estr;
+tink_core_Noise.Noise.__enum__ = tink_core_Noise;
+tink_core_Noise.__empty_constructs__ = [tink_core_Noise.Noise];
 var tink_core__$Future_Future_$Impl_$ = {};
 $hxClasses["tink.core._Future.Future_Impl_"] = tink_core__$Future_Future_$Impl_$;
 tink_core__$Future_Future_$Impl_$.__name__ = ["tink","core","_Future","Future_Impl_"];
@@ -8905,13 +8953,13 @@ tink_core__$Future_Future_$Impl_$.first = function(this1,other) {
 	if(l1 != null) {
 		var this2 = l1;
 		ret1.handle(function(_) {
-			this2.dissolve();
+			this2.cancel();
 		});
 	}
 	if(l2 != null) {
 		var this3 = l2;
 		ret1.handle(function(_1) {
-			this3.dissolve();
+			this3.cancel();
 		});
 	}
 	return ret1;
@@ -8971,6 +9019,9 @@ tink_core__$Future_Future_$Impl_$.ofJsPromise = function(promise) {
 			cb(tmp);
 		});
 	});
+};
+tink_core__$Future_Future_$Impl_$.ofAny = function(v) {
+	return new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(v));
 };
 tink_core__$Future_Future_$Impl_$.asPromise = function(s) {
 	return s;
@@ -9088,12 +9139,6 @@ tink_core__$Future_Future_$Impl_$._map = function(f,map) {
 };
 tink_core__$Future_Future_$Impl_$.trigger = function() {
 	return new tink_core_FutureTrigger();
-};
-var tink_core__$Future_Futuristic_$Impl_$ = {};
-$hxClasses["tink.core._Future.Futuristic_Impl_"] = tink_core__$Future_Futuristic_$Impl_$;
-tink_core__$Future_Futuristic_$Impl_$.__name__ = ["tink","core","_Future","Futuristic_Impl_"];
-tink_core__$Future_Futuristic_$Impl_$.ofAny = function(v) {
-	return new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(v));
 };
 var tink_core__$Future_SimpleFuture = function(f) {
 	this.f = f;
@@ -9883,7 +9928,7 @@ tink_core__$Promise_Promise_$Impl_$.lazy = function(p) {
 		p.get().handle(cb);
 	},true);
 };
-tink_core__$Promise_Promise_$Impl_$.inParallel = function(a,lazy) {
+tink_core__$Promise_Promise_$Impl_$.inParallel = function(a,concurrency,lazy) {
 	if(a.length == 0) {
 		return new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core_Outcome.Success([])));
 	} else {
@@ -9891,53 +9936,69 @@ tink_core__$Promise_Promise_$Impl_$.inParallel = function(a,lazy) {
 			var result = [];
 			var pending = a.length;
 			var links = null;
+			var linkArray = [];
 			var sync = false;
+			var i = 0;
+			var iter = HxOverrides.iter(a);
+			var next = null;
 			var done = function(o) {
 				if(links == null) {
 					sync = true;
 				} else if(links != null) {
-					links.dissolve();
+					links.cancel();
 				}
 				cb(o);
 			};
 			var fail = function(e) {
+				pending = 0;
 				done(tink_core_Outcome.Failure(e));
 			};
 			var set = function(index,value) {
 				result[index] = value;
 				if((pending -= 1) == 0) {
 					done(tink_core_Outcome.Success(result));
+				} else if(iter.hasNext() && pending > 0) {
+					next();
 				}
 			};
-			var linkArray = [];
-			var _g1 = 0;
-			var _g = a.length;
-			while(_g1 < _g) {
-				var i = [_g1++];
-				if(sync) {
+			next = function() {
+				i += 1;
+				var index1 = i - 1;
+				var next1 = iter.next().handle(function(o1) {
+					switch(o1[1]) {
+					case 0:
+						var v = o1[2];
+						set(index1,v);
+						break;
+					case 1:
+						var e1 = o1[2];
+						fail(e1);
+						break;
+					}
+				});
+				linkArray.push(next1);
+			};
+			while(true) {
+				var tmp;
+				if(iter.hasNext() && pending > 0) {
+					if(concurrency != null) {
+						concurrency -= 1;
+						tmp = concurrency + 1 > 0;
+					} else {
+						tmp = true;
+					}
+				} else {
+					tmp = false;
+				}
+				if(!tmp) {
 					break;
 				}
-				var i1 = i[0];
-				var tmp = (function(i2) {
-					return function(o1) {
-						switch(o1[1]) {
-						case 0:
-							var v = o1[2];
-							set(i2[0],v);
-							break;
-						case 1:
-							var e1 = o1[2];
-							fail(e1);
-							break;
-						}
-					};
-				})(i);
-				linkArray.push(a[i1].handle(tmp));
+				next();
 			}
 			links = tink_core__$Callback_CallbackLink_$Impl_$.fromMany(linkArray);
 			if(sync) {
 				if(links != null) {
-					links.dissolve();
+					links.cancel();
 				}
 			}
 		},lazy);
@@ -10172,15 +10233,27 @@ tink_core__$Signal_Signal_$Impl_$.nextTime = function(this1,condition) {
 			if(link == null) {
 				immediate = true;
 			} else if(link != null) {
-				link.dissolve();
+				link.cancel();
 			}
 		}
 	});
 	if(immediate) {
 		if(link != null) {
-			link.dissolve();
+			link.cancel();
 		}
 	}
+	return ret;
+};
+tink_core__$Signal_Signal_$Impl_$.until = function(this1,end) {
+	var ret = new tink_core__$Signal_Suspendable(function($yield) {
+		var this2 = this1.handle($yield);
+		if(this2 == null) {
+			return tink_core__$Callback_CallbackLink_$Impl_$.noop;
+		} else {
+			return ($_=this2,$bind($_,$_.cancel));
+		}
+	});
+	end.handle(tink_core__$Callback_Callback_$Impl_$.fromNiladic($bind(ret,ret.kill)));
 	return ret;
 };
 tink_core__$Signal_Signal_$Impl_$.next = function(this1,condition) {
@@ -10205,6 +10278,9 @@ tink_core__$Signal_Signal_$Impl_$.generate = function(generator) {
 };
 tink_core__$Signal_Signal_$Impl_$.trigger = function() {
 	return new tink_core_SignalTrigger();
+};
+tink_core__$Signal_Signal_$Impl_$.create = function(create) {
+	return new tink_core__$Signal_Suspendable(create);
 };
 tink_core__$Signal_Signal_$Impl_$.ofClassical = function(add,remove,gather) {
 	if(gather == null) {
@@ -10249,6 +10325,45 @@ tink_core__$Signal_SimpleSignal.prototype = {
 		return this.f(cb);
 	}
 	,__class__: tink_core__$Signal_SimpleSignal
+};
+var tink_core__$Signal_Suspendable = function(activate) {
+	this.killed = false;
+	this.trigger = new tink_core_SignalTrigger();
+	this.activate = activate;
+};
+$hxClasses["tink.core._Signal.Suspendable"] = tink_core__$Signal_Suspendable;
+tink_core__$Signal_Suspendable.__name__ = ["tink","core","_Signal","Suspendable"];
+tink_core__$Signal_Suspendable.__interfaces__ = [tink_core_SignalObject];
+tink_core__$Signal_Suspendable.prototype = {
+	trigger: null
+	,activate: null
+	,suspend: null
+	,check: null
+	,killed: null
+	,kill: function() {
+		if(!this.killed) {
+			this.killed = true;
+			this.trigger = null;
+		}
+	}
+	,handle: function(cb) {
+		var _gthis = this;
+		if(this.killed) {
+			return null;
+		}
+		if(this.trigger.handlers.length == 0) {
+			this.suspend = this.activate(($_=this.trigger,$bind($_,$_.trigger)));
+		}
+		var a = tink_core__$Callback_CallbackList_$Impl_$.add(this.trigger.handlers,cb);
+		var this1 = new tink_core__$Callback_SimpleLink(function() {
+			if(_gthis.trigger.handlers.length == 0) {
+				_gthis.suspend();
+				_gthis.suspend = null;
+			}
+		});
+		return new tink_core__$Callback_LinkPair(a,this1);
+	}
+	,__class__: tink_core__$Signal_Suspendable
 };
 var tink_core_SignalTrigger = function() {
 	var this1 = [];
@@ -10308,7 +10423,7 @@ tink_state__$Observable_Observable_$Impl_$.get_value = function(this1) {
 tink_state__$Observable_Observable_$Impl_$._new = function(get,changed) {
 	var this1 = tink_state__$Observable_Observable_$Impl_$.create(function() {
 		var this2;
-		var this3 = new tink_core_MPair(get(),tink_core__$Signal_Signal_$Impl_$.nextTime(changed,null));
+		var this3 = new tink_core_MPair(get(),tink_core__$Signal_Signal_$Impl_$.nextTime(changed));
 		this2 = this3;
 		return this2;
 	});
@@ -10354,7 +10469,7 @@ tink_state__$Observable_Observable_$Impl_$.getNext = function(this1,options,sele
 	var _e = link;
 	var tmp = function() {
 		if(_e != null) {
-			_e.dissolve();
+			_e.cancel();
 		}
 	};
 	ret.handle(tink_core__$Callback_Callback_$Impl_$.fromNiladic(tmp));
@@ -10462,7 +10577,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 			if(active) {
 				active = false;
 				if(link != null) {
-					link.dissolve();
+					link.cancel();
 				}
 			}
 		});
@@ -10493,7 +10608,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 			if(active1) {
 				active1 = false;
 				if(link1 != null) {
-					link1.dissolve();
+					link1.cancel();
 				}
 			}
 		});
@@ -10524,7 +10639,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 			if(active2) {
 				active2 = false;
 				if(link2 != null) {
-					link2.dissolve();
+					link2.cancel();
 				}
 			}
 		});
@@ -10541,7 +10656,7 @@ tink_state__$Observable_Observable_$Impl_$.bind = function(this1,options,cb) {
 		update4(tink_core_Noise.Noise);
 		var this5 = new tink_core__$Callback_SimpleLink(function() {
 			if(link3 != null) {
-				link3.dissolve();
+				link3.cancel();
 			}
 		});
 		return this5;
@@ -10710,8 +10825,34 @@ tink_state__$Observable_Computation_$Impl_$.async = function(f) {
 	}};
 	return this2;
 };
+tink_state__$Observable_Computation_$Impl_$.asyncWithLast = function(f) {
+	var last = haxe_ds_Option.None;
+	var this1 = { f : function() {
+		return f(last);
+	}};
+	var o = tink_state__$Observable_Observable_$Impl_$.map(tink_state__$Observable_Observable_$Impl_$.auto(this1),tink_state__$Observable_Transform_$Impl_$.plain(tink_state__$Observable_Observable_$Impl_$.ofPromise));
+	var this2 = { f : function() {
+		var ret = tink_state__$Observable_Observable_$Impl_$.get_value(tink_state__$Observable_Observable_$Impl_$.get_value(o));
+		if(ret[1] == 1) {
+			var v = ret[2];
+			last = haxe_ds_Option.Some(v);
+		}
+		return ret;
+	}};
+	return this2;
+};
 tink_state__$Observable_Computation_$Impl_$.plain = function(f) {
 	var this1 = { f : f};
+	return this1;
+};
+tink_state__$Observable_Computation_$Impl_$.withLast = function(f) {
+	var this1;
+	var last = haxe_ds_Option.None;
+	this1 = { f : function() {
+		var ret = f(last);
+		last = haxe_ds_Option.Some(ret);
+		return ret;
+	}};
 	return this1;
 };
 var tink_state__$Observable_SimpleObservable = function(f) {
@@ -10725,6 +10866,9 @@ tink_state__$Observable_SimpleObservable.prototype = {
 	,cache: null
 	,resetCache: function(_) {
 		this.cache = null;
+	}
+	,isValid: function() {
+		return this.cache != null;
 	}
 	,poll: function() {
 		var count = 0;
@@ -10805,6 +10949,9 @@ tink_state_ConstObservable.prototype = {
 	,poll: function() {
 		return this.m;
 	}
+	,isValid: function() {
+		return true;
+	}
 	,__class__: tink_state_ConstObservable
 };
 var tink_state__$Observable_AutoObservable = function(comp) {
@@ -10880,6 +11027,14 @@ tink_state_PromisedTools.flatMap = function(a,f) {
 		return tink_state_Promised.Failed(e);
 	}
 };
+tink_state_PromisedTools.toOption = function(p) {
+	if(p[1] == 1) {
+		var data = p[2];
+		return haxe_ds_Option.Some(data);
+	} else {
+		return haxe_ds_Option.None;
+	}
+};
 tink_state_PromisedTools.or = function(p,l) {
 	if(p[1] == 1) {
 		var v = p[2];
@@ -10895,6 +11050,25 @@ tink_state_PromisedTools.orNull = function(p) {
 	} else {
 		return null;
 	}
+};
+tink_state_PromisedTools.all = function(p) {
+	var ret = [];
+	var p1 = $iterator(p)();
+	while(p1.hasNext()) {
+		var p2 = p1.next();
+		switch(p2[1]) {
+		case 0:
+			return tink_state_Promised.Loading;
+		case 1:
+			var v = p2[2];
+			ret.push(v);
+			break;
+		case 2:
+			var e = p2[2];
+			return tink_state_Promised.Failed(e);
+		}
+	}
+	return tink_state_Promised.Done(ret);
 };
 function $iterator(o) { if( o instanceof Array ) return function() { return HxOverrides.iter(o); }; return typeof(o.iterator) == 'function' ? $bind(o,o.iterator) : o.iterator; }
 var $_, $fid = 0;
@@ -10960,7 +11134,7 @@ tink_core__$Callback_Callback_$Impl_$.MAX_DEPTH = 1000;
 tink_core__$Future_NeverFuture.inst = new tink_core__$Future_NeverFuture();
 tink_core__$Future_Future_$Impl_$.NULL = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(null));
 tink_core__$Future_Future_$Impl_$.NOISE = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core_Noise.Noise));
-tink_core__$Future_Future_$Impl_$.NEVER = tink_core__$Future_NeverFuture.inst;
+tink_core__$Future_Future_$Impl_$.NEVER = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core__$Future_NeverFuture.inst));
 tink_core__$Promise_Promise_$Impl_$.NULL = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core_Outcome.Success(null)));
 tink_core__$Promise_Promise_$Impl_$.NOISE = new tink_core__$Future_SyncFuture(new tink_core__$Lazy_LazyConst(tink_core_Outcome.Success(tink_core_Noise.Noise)));
 tink_core__$Promise_Promise_$Impl_$.NEVER = (function($this) {

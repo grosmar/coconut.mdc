@@ -232,7 +232,7 @@ class TestView extends View
         <Toolbar>
             <ToolbarRow>
                 <ToolbarSection align=${ToolbarSectionAlign.Start}>
-                    <ToolbarMenuIcon name=${mdc.IconName.Menu} />
+                    <ToolbarMenuIcon name=${mdc.IconName.Menu} onclick=${function(e){}} />
                 </ToolbarSection>
                 <ToolbarSection>
                     <ToolbarTitle>Toolbar title</ToolbarTitle>

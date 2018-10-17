@@ -1,7 +1,6 @@
 {
     "haxe.displayConfigurations": [["completion.hxml"]],
-    "haxe.executable": "haxe.exe",
-    "terminal.integrated.shell.windows": "cmd.exe",
+    "haxe.executable": "haxe.cmd",
     "liveServer.settings.port": 5555,
     "liveServer.settings.root": "/bin/playground"
 }
