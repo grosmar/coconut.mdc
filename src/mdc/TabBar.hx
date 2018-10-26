@@ -36,7 +36,7 @@ class TabBar extends View
     override function afterMounting(elem)
     {
         mdcTabBar = new MDCTabBar(elem);
-        mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
+        mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
         mdcTabBar.activateTab(activeTabIndex);
         prevLength = elem.childNodes.length;
     }
@@ -46,10 +46,11 @@ class TabBar extends View
 
     override function afterPatching(elem:DOMElement)
     {
-        if ( prevLength == elem.children.length )
+        mdcTabBar.activateTab(activeTabIndex);
+
+        if ( prevLength == children.length )
         {
             prevTabIndex = activeTabIndex;
-            mdcTabBar.activateTab(activeTabIndex);
             return;
         }
 
@@ -58,30 +59,31 @@ class TabBar extends View
         if ( this.mdcTabBar != null )
         {
             prevTabIndex = children.length -1 < prevTabIndex ? activeTabIndex : prevTabIndex;
-            mdcTabBar.unlisten('MDCTabBar:change', tabChangeHandler);
-            for ( tab in this.mdcTabBar.getTabElements_() )
-                tab.destroy();
+            mdcTabBar.unlisten('MDCTabBar:activated', tabChangeHandler);
+            //TODO: add it back, because now it's leaking
+            /*for ( tab in this.mdcTabBar.getTabElements_() )
+                tab.destroy();*/
             this.mdcTabBar.destroy();
         }
 
         mdcTabBar = new MDCTabBar(elem);
-        mdcTabBar.listen('MDCTabBar:change', tabChangeHandler);
-        mdcTabBar.activateTab(activeTabIndex);
+        mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
+        
 
         js.Browser.window.requestAnimationFrame(function(_) { prevTabIndex = activeTabIndex; mdcTabBar.activateTab(activeTabIndex); });
 
     }
 
-    function tabChangeHandler(data:{detail:{activeTabIndex:Int}})
+    function tabChangeHandler(data:{detail:{index:Int}})
     {
-        ontabchange(data.detail.activeTabIndex);
+        ontabchange(data.detail.index);
     }
 
     override function beforeDestroy(elem)
     {
         if ( this.mdcTabBar != null )
         {
-            mdcTabBar.unlisten('MDCTabBar:change', tabChangeHandler);
+            mdcTabBar.unlisten('MDCTabBar:activated', tabChangeHandler);
             for ( tab in this.mdcTabBar.getTabElements_() )
                 tab.destroy();
             mdcTabBar.destroy();

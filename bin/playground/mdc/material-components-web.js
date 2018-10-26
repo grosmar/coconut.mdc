@@ -23107,7 +23107,8 @@ var MDCTabBarFoundation = function (_MDCFoundation) {
         return;
       }
 
-      this.adapter_.deactivateTabAtIndex(previousActiveIndex);
+      if (previousActiveIndex > -1)
+        this.adapter_.deactivateTabAtIndex(previousActiveIndex);
       this.adapter_.activateTabAtIndex(index, this.adapter_.getTabIndicatorClientRectAtIndex(previousActiveIndex));
       this.scrollIntoView(index);
 

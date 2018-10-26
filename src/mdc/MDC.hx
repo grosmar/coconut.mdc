@@ -158,8 +158,8 @@ extern class MDCTabBar extends MDCComponent
 
 	function activateTab(index:Int):Void;
 	function getTabElements_():Array<MDCTab>;
-	function listen(event:String, callback:{detail:{activeTabIndex:Int}}->Void):Void;
-	function unlisten(event:String, callback:{detail:{activeTabIndex:Int}}->Void):Void;
+	function listen(event:String, callback:{detail:{index:Int}}->Void):Void;
+	function unlisten(event:String, callback:{detail:{index:Int}}->Void):Void;
 
 	function layout():Void;
 }
