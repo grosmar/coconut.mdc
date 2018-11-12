@@ -33,6 +33,8 @@ class Playground
 class TestView extends View
 {
 
+    @:state var activeTab:Int = 2;
+    @:state var activeTab2:Int = 1;
     @:state var dynamicTabBar:Int = 2;
 
     function render() '
@@ -65,8 +67,8 @@ class TestView extends View
     <h1>TabBar</h1>
     <div class="flex-container">
         <div class="float">
-            <TabBar ontabchange=${function(e) {trace(e);}}>
-                <Tab active>Tab1a</Tab>
+            <TabBar ontabchange=${function(e) {trace(activeTab, e); activeTab=e;}} activeTabIndex=${activeTab}>
+                <Tab active>Tab1</Tab>
                 <Tab>Tab2</Tab>
                 <Tab>Tab3</Tab>
             </TabBar>
@@ -89,13 +91,13 @@ class TestView extends View
         </div>
 
         <div >
-            <TabBar>
+            <TabBar activeTabIndex=${activeTab2} ontabchange=${function(e) {activeTab2=e;}}>
                 <for ${i in 0...dynamicTabBar}>
                     <Tab active=${i==0}>${"Tab" + Std.string(i+1)}</Tab>
                 </for>
             </TabBar>
             <Button label="Add tab" class="float" raised onclick=${dynamicTabBar++} />
-            <Button label="Del tab" class="float" raised onclick=${dynamicTabBar--} />
+            <Button label="Del tab" class="float" raised onclick=${function(e) {dynamicTabBar--; if ( activeTab2 >= dynamicTabBar ) activeTab2--;}} />
         </div>
     </div>
 

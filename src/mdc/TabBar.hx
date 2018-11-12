@@ -20,7 +20,7 @@ class TabBar extends View
 
     function render()
     {
-        var activeTabIndex = this.activeTabIndex;
+        //var activeTabIndex = this.activeTabIndex;
         var children = this.children;
         return @hxx '<div class=${className.add(["mdc-tab-bar" => true])} {...this}>
             <div class="mdc-tab-scroller">
@@ -36,8 +36,8 @@ class TabBar extends View
     override function afterMounting(elem)
     {
         mdcTabBar = new MDCTabBar(elem);
-        mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
         mdcTabBar.activateTab(activeTabIndex);
+        mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
         prevLength = elem.childNodes.length;
     }
 
