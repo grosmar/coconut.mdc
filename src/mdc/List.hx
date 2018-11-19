@@ -39,19 +39,20 @@ class ListItem extends View
 	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 	var mdcRipple:MDCRipple;
+	@:ref var root:js.html.Element;
 
 	function render()
 	'
-		<li class=${className.add(["mdc-list-item" => true])}
+		<li ref=${root} class=${className.add(["mdc-list-item" => true])}
 			data-mdc-ripple-is-unbounded=${unboundedRipple} ${...this}>${...children}</li>
 	';
 
-	override function afterMounting(elem)
+	override function viewDidMount()
 	{
-		mdcRipple = new MDCRipple(elem);
+		mdcRipple = new MDCRipple(root);
 	}
 
-	override function afterDestroy(elem)
+	override function viewWillUnmount()
 	{
 		if (mdcRipple != null)
 			mdcRipple.destroy();

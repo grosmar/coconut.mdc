@@ -19,9 +19,11 @@ class Button extends View
     @:attr var ripple:Bool = true;
     var mdcRipple:MDCRipple = null;
 
+    @:ref var root:js.html.Element;
+
     function render()
     {
-        return @hxx '<button class=${className.add(["mdc-button" => true,
+        return @hxx '<button ref=${root} class=${className.add(["mdc-button" => true,
                                                          "mdc-ripple-surface" => ripple,
                                                          "mdc-button--raised" => raised,
                                                          "mdc-button--unelevated" => unelevated,
@@ -35,12 +37,12 @@ class Button extends View
         </button>';
     }
 
-    override function afterMounting(elem)
+    override function viewDidMount()
     {
-        this.mdcRipple = new MDCRipple(elem);
+        this.mdcRipple = new MDCRipple(root);
     }
 
-    override function beforeDestroy(elem)
+    override function viewWillUnmount()
     {
         if ( this.mdcRipple != null )
             this.mdcRipple.destroy();

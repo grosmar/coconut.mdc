@@ -12,6 +12,8 @@ class LinearProgress extends View
     @:attr var reverse:Bool = null;
     @:attr var open:Bool = false;
 
+    @:ref var root:js.html.Element;
+
     var mdcLinearProgress:MDCLinearProgress;
 
     function render()
@@ -24,7 +26,7 @@ class LinearProgress extends View
         var open = this.open;
 
         return @hxx '
-        <div class=${className.add(["mdc-linear-progress"=>true])} ${...this}>
+        <div ref=${root} class=${className.add(["mdc-linear-progress"=>true])} ${...this}>
             <div class="mdc-linear-progress__buffering-dots"></div>
             <div class="mdc-linear-progress__buffer"></div>
             <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
@@ -38,14 +40,14 @@ class LinearProgress extends View
     }
 
 
-    override function afterMounting(elem)
+    override function viewDidMount()
     {
-        mdcLinearProgress = new MDCLinearProgress(elem);
+        mdcLinearProgress = new MDCLinearProgress(root.current);
 
         setLinearProgress();
     }
 
-    override function afterPatching(elem)
+    override function viewDidUpdate()
     {
         setLinearProgress();
     }

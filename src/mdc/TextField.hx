@@ -26,6 +26,8 @@ class TextField extends View
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
 
+    @:ref var root:js.html.Element;
+
     var mdcTextField:MDCTextField;
 
 
@@ -35,7 +37,7 @@ class TextField extends View
         var invalid = this.invalid; //TODO: remove after fixing referencing issue
         var value = this.value; //TODO: remove after fixing referencing issue
 
-        return @hxx '<div class=${className.add(["mdc-text-field" => true,
+        return @hxx '<div ref=${root} class=${className.add(["mdc-text-field" => true,
                                                       "mdc-text-field--disabled" => disabled,
                                                       "mdc-text-field--with-leading-icon" => icon != null,
                                                       "mdc-text-field--box" => box,
@@ -47,9 +49,9 @@ class TextField extends View
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
                         <if ${textArea}>
-                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}>${value}</textarea>
+                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${if(onedit != null) onedit(event.currentTarget.value)}>${value}</textarea>
                         <else>
-                            <input type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.target.value)}/>
+                            <input type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.currentTarget.value)}/>
                         </if>
                         <if ${label != null}>
                             <coconut.vdom.Html.label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</coconut.vdom.Html.label>
@@ -61,19 +63,19 @@ class TextField extends View
                     </div>';
     }
 
-    override function afterPatching(elem)
+    override function viewDidUpdate()
     {
         //mdcTextField.valid = invalid != true;
         if ( value != null)
             mdcTextField.value = value;
     }
 
-    override function afterMounting(elem)
+    override function viewDidMount()
     {
-        this.mdcTextField = new MDCTextField(elem);
+        this.mdcTextField = new MDCTextField(root);
     }
 
-    override function beforeDestroy(elem)
+    override function viewWillUnmount()
     {
         if ( this.mdcTextField != null )
             this.mdcTextField.destroy();

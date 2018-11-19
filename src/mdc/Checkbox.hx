@@ -15,6 +15,8 @@ class Checkbox extends View
     @:attr var value:String = null;
     @:attr var onchecked:Bool->Void = null;
 
+    @:ref var root:js.html.Element;
+
     static var checkboxIndex = 0;
     var checkboxId:UInt = checkboxIndex++;
     var mdcCheckbox:MDCCheckbox;
@@ -32,49 +34,49 @@ class Checkbox extends View
         var id:String = this.id == null ? "ch_" + checkboxId : this.id;
         return
             if ( label != null )
-                @hxx '<div class=${className.add(["mdc-form-field" => true])} {...this}>
+                @hxx '<div ref=${root} class=${className.add(["mdc-form-field" => true])} {...this}>
                           <div class="mdc-checkbox">
                               <input type="checkbox"
-                                   onchange=${if(onchecked != null) onchecked(event.target.checked) }
+                                   onchange=${if(onchecked != null) onchecked(event.currentTarget.checked) }
                                    value=${value}
                                    checked=${checked}
                                    class="mdc-checkbox__native-control"
                                    id=${id}
                                    />
                               <div class="mdc-checkbox__background">
-                                  <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                    <!--<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                                       <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                                  </svg>'} />
-                            <div class="mdc-checkbox__mixedmark"></div>
+                                    </svg>-->
+                                    <div class="mdc-checkbox__mixedmark"></div>
                               </div>
                           </div>
 
                           <coconut.vdom.Html.label htmlFor=${id}>${label}</coconut.vdom.Html.label>
                     </div>';
             else
-                @hxx '<div class="mdc-checkbox" {...this}>
-                      <input type="checkbox"
-                             value=${value}
-                             checked=${checked}
-                             onchange=${if(onchecked != null) onchecked(event.target.checked)}
-                             class="mdc-checkbox__native-control"/>
-                      <div class="mdc-checkbox__background">
-                        <raw content=${'<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                                      <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-                                  </svg>'} />
-                        <div class="mdc-checkbox__mixedmark"></div>
-                      </div>
+                @hxx '<div ref=${root} class="mdc-checkbox" {...this}>
+                        <input type="checkbox"
+                            value=${value}
+                            checked=${checked}
+                            onchange=${if(onchecked != null) onchecked(event.currentTarget.checked)}
+                            class="mdc-checkbox__native-control"/>
+                        <div class="mdc-checkbox__background">
+                            <!--<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                            </svg>-->
+                            <div class="mdc-checkbox__mixedmark"></div>
+                        </div>
                     </div>';
 
     }
 
-    override function afterMounting(elem)
+    override function viewDidMount()
     {
-        this.mdcCheckbox = new MDCCheckbox(elem);
+        this.mdcCheckbox = new MDCCheckbox(root);
         setCheckboxProperties();
     }
 
-    override function afterPatching(elem)
+    override function viewDidUpdate()
     {
         setCheckboxProperties();
     }
@@ -87,9 +89,13 @@ class Checkbox extends View
         mdcCheckbox.value = value;
     }
 
-    override function beforeDestroy(elem)
+    override function viewWillUnmount()
     {
         if ( this.mdcCheckbox != null )
             this.mdcCheckbox.destroy();
     }
+
+    //function svg(attr:{className:ClassName, viewBox:String}, ?children:Children) return h('svg', attr, children);
+    //function path(attr:{className:ClassName, fill:String, stroke:String, d:String}, ?children:Children):VNode return h('path', attr, children);
+
 }

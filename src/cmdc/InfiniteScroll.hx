@@ -23,7 +23,7 @@ class InfiniteScroll extends View
         ';
     };
 
-    override function afterMounting(element)
+    override function viewDidMount(element)
     {
         var elem:DOMElement = cast element;
         var ratio = elem.scrollTop / (elem.scrollHeight - elem.clientHeight);

@@ -17,12 +17,14 @@ class TabBar extends View
 
     var mdcTabBar:MDCTabBar;
 
+    @:ref var root:js.html.Element;
+
 
     function render()
     {
         //var activeTabIndex = this.activeTabIndex;
         var children = this.children;
-        return @hxx '<div class=${className.add(["mdc-tab-bar" => true])} {...this}>
+        return @hxx '<div ref=${root} class=${className.add(["mdc-tab-bar" => true])} {...this}>
             <div class="mdc-tab-scroller">
                 <div class="mdc-tab-scroller__scroll-area">
                     <div class="mdc-tab-scroller__scroll-content">
@@ -33,18 +35,18 @@ class TabBar extends View
         </div>';
     }
 
-    override function afterMounting(elem)
+    override function viewDidMount()
     {
-        mdcTabBar = new MDCTabBar(elem);
+        mdcTabBar = new MDCTabBar(root);
         mdcTabBar.activateTab(activeTabIndex);
         mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
-        prevLength = elem.childNodes.length;
+        prevLength = root.current.childNodes.length;
     }
 
     var prevLength:Int;
     var prevTabIndex:Int = 0;
 
-    override function afterPatching(elem:DOMElement)
+    override function viewDidUpdate()
     {
         mdcTabBar.activateTab(activeTabIndex);
 
@@ -54,7 +56,7 @@ class TabBar extends View
             return;
         }
 
-        prevLength = elem.children.length;
+        prevLength = root.current.children.length;
 
         if ( this.mdcTabBar != null )
         {
@@ -66,7 +68,7 @@ class TabBar extends View
             this.mdcTabBar.destroy();
         }
 
-        mdcTabBar = new MDCTabBar(elem);
+        mdcTabBar = new MDCTabBar(root);
         mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
         
 
@@ -79,7 +81,7 @@ class TabBar extends View
         ontabchange(data.detail.index);
     }
 
-    override function beforeDestroy(elem)
+    override function viewWillUnmount()
     {
         if ( this.mdcTabBar != null )
         {

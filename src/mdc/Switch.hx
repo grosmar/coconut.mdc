@@ -33,7 +33,7 @@ class Switch extends View
                                 id=${id}
                                 value=${value}
                                 checked=${checked}
-                                onchange=${if(onchecked != null) onchecked(event.target.checked) }
+                                onchange=${if(onchecked != null) onchecked(event.currentTarget.checked) }
                                 class="mdc-switch__native-control" disabled=${disabled} />
                     </div>
                 </div>
@@ -45,12 +45,12 @@ class Switch extends View
         ';
     }
 
-    /*override function afterMounting(elem)
+    /*override function viewDidMount(elem)
     {
         mdcSwitch = new MDCSwitch(elem);
     }
 
-    override function beforeDestroy(elem)
+    override function viewWillUnmount(elem)
     {
         if ( this.mdcSwitch != null )
         {

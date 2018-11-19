@@ -14,6 +14,8 @@ class Radio extends View
     @:attr var value:String = null;
     @:attr var name:String = null;
     @:attr var onchecked:Bool->Void = null;
+
+    @:ref var root:js.html.Element;
     
     static var radioIndex = 0;
     var radioId:UInt = radioIndex++;
@@ -24,10 +26,10 @@ class Radio extends View
         var id = id == null ? "r_" + radioId : id;
         return
             if ( label != null )
-                @hxx '<div class=${className.add(["mdc-form-field" => true])} {...this}>
+                @hxx '<div ref=${root} class=${className.add(["mdc-form-field" => true])} {...this}>
                           <div class="mdc-radio">
                               <input type="radio"
-                                   onchange=${if (onchecked != null) onchecked(event.target.checked)}
+                                   onchange=${if (onchecked != null) onchecked(event.currentTarget.checked)}
                                    class="mdc-radio__native-control"
                                    id=${id}
                                    name=${name}
@@ -42,7 +44,7 @@ class Radio extends View
             else
                 @hxx '<div class="mdc-radio">
                           <input type="radio"
-                               onchange=${if (onchecked != null) onchecked(event.target.checked)}
+                               onchange=${if (onchecked != null) onchecked(event.currentTarget.checked)}
                                class="mdc-radio__native-control"
                                id=${id}
                                name=${name}
@@ -55,13 +57,13 @@ class Radio extends View
 
     }
 
-    override function afterMounting(elem)
+    override function viewDidMount()
     {
-        this.mdcRadio = new MDCRadio(elem);
+        this.mdcRadio = new MDCRadio(root.current);
         setRadioProperties();
     }
 
-    override function afterPatching(elem)
+    override function viewDidUpdate()
     {
         setRadioProperties();
     }
@@ -73,7 +75,7 @@ class Radio extends View
         mdcRadio.value = value;
     }
 
-    override function beforeDestroy(elem)
+    override function viewWillUnmount()
     {
         if ( this.mdcRadio != null )
             this.mdcRadio.destroy();

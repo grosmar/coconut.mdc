@@ -23,7 +23,7 @@ class Playground
     {
         //MDC.init();
         var view = coconut.Ui.hxx('<TestView />');
-        view.mount(js.Browser.document.getElementById("app"));
+        view.renderInto(js.Browser.document.getElementById("app"));
     }
 
 

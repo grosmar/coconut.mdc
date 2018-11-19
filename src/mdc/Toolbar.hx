@@ -9,7 +9,7 @@ class Toolbar extends View
 	@:attr var children:Children;
 	//TODO: add fixed&waterfal
 
-	function render(attr)
+	function render()
 	'
 		<header class=${className.add(["mdc-toolbar" => true])} ${...this}>
 			${...children}
@@ -22,7 +22,7 @@ class ToolbarRow extends View
 	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var children:Children;
 
-	function render(attr)
+	function render()
 	'
 		<div class=${className.add(["mdc-toolbar__row" => true])} ${...this}>
 			${...children}
@@ -37,7 +37,7 @@ class ToolbarSection extends View
 	@:attr var align:ToolbarSectionAlign = ToolbarSectionAlign.Center;
 	@:attr var shringToFit:Bool = false;
 
-	function render(attr)
+	function render()
 	'
 		<section class=${className.add(["mdc-toolbar__section" => true, "mdc-toolbar__section--shrink-to-fit" => shringToFit, align => true])} ${...this}>
 			${...children}
@@ -57,7 +57,7 @@ class ToolbarTitle extends View
 	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var children:Children;
 
-	function render(attr)
+	function render()
 	'
 		<span class=${className.add(["mdc-toolbar__title" => true])} ${...this}>
 			${...children}
@@ -71,7 +71,7 @@ class ToolbarMenuIcon extends View
 	@:attr var name:IconName;
 	@:attr var onclick:js.html.Event->Void;
 
-	function render(attr)
+	function render()
 	'
 		<span class=${className.add(["mdc-toolbar__menu-icon" => true, "material-icons" => true])} ${...this}>
 			${name}
@@ -84,7 +84,7 @@ class ToolbarIcon extends View
 	@:attr var className:coconut.vdom.ClassName = "";
 	@:attr var name:IconName;
 
-	function render(attr)
+	function render()
 	'
 		<span class=${className.add(["mdc-toolbar__icon" => true, "material-icons" => true])} ${...this}>
 			${name}

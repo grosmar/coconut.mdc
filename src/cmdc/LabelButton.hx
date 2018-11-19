@@ -38,12 +38,12 @@ class LabelButton extends View
         </coconut.vdom.Html.label>';
     }
 
-    override function afterMounting(elem)
+    override function viewDidMount(elem)
     {
         this.mdcRipple = new MDCRipple(elem);
     }
 
-    override function beforeDestroy(elem)
+    override function viewWillUnmount(elem)
     {
         if ( this.mdcRipple != null )
             this.mdcRipple.destroy();
