@@ -18,11 +18,12 @@ class LabelButton extends View
     @:attr var compact:Bool = false;
     @:attr var ripple:Bool = true;
     @:attr var onclick:MouseEvent->Void = null;
+    @:ref var root:js.html.Element;
     var mdcRipple:MDCRipple = null;
 
     function render()
     {
-        return @hxx '<coconut.vdom.Html.label class=${className.add(["mdc-button" => true,
+        return @hxx '<coconut.vdom.Html.label ref=${root} class=${className.add(["mdc-button" => true,
         "mdc-ripple-surface" => ripple,
         "mdc-button--raised" => raised,
         "mdc-button--unelevated" => unelevated,
@@ -38,12 +39,12 @@ class LabelButton extends View
         </coconut.vdom.Html.label>';
     }
 
-    override function viewDidMount(elem)
+    override function viewDidMount()
     {
-        this.mdcRipple = new MDCRipple(elem);
+        this.mdcRipple = new MDCRipple(root.current);
     }
 
-    override function viewWillUnmount(elem)
+    override function viewWillUnmount()
     {
         if ( this.mdcRipple != null )
             this.mdcRipple.destroy();

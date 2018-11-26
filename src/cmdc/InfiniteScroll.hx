@@ -6,16 +6,18 @@ import coconut.ui.View;
 class InfiniteScroll extends View
 {
     @:attr var children:coconut.ui.Children;
-    @:attr var className:coconut.vdom.ClassName = "";
+    @:attr var className:tink.domspec.ClassName = "";
     @:attr var tolerance:Float = 0.1;
     @:attr var tabIndex:Int = null;
     @:attr var onscrolltop:Void->Void;
     @:attr var onscrollbottom:Void->Void;
+    @:state public var scrollTop:Int = 0;
+    @:ref public var root:js.html.Element;
 
     function render()
     {
         return @hxx '
-        <div {...this} style="overflow-y:auto">
+        <div ref=${root} {...this} style=${{overflowY:"auto"}}>
             <for ${child in children}>
                 ${child}
             </for>
@@ -23,10 +25,11 @@ class InfiniteScroll extends View
         ';
     };
 
-    override function viewDidMount(element)
+    override function viewDidMount()
     {
-        var elem:DOMElement = cast element;
+        var elem = root.current;
         var ratio = elem.scrollTop / (elem.scrollHeight - elem.clientHeight);
+        scrollTop = elem.scrollTop;
 
         var topPassed:Bool = ratio <= tolerance;
         var bottomPassed:Bool = ratio >= 1 - tolerance;
@@ -37,6 +40,7 @@ class InfiniteScroll extends View
         {
             var isDown = elem.scrollTop > lastScrollTop;
             lastScrollTop = elem.scrollTop;
+            scrollTop = elem.scrollTop;
 
             var ratio = elem.scrollTop / (elem.scrollHeight - elem.clientHeight);
 

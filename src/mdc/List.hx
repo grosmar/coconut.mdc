@@ -9,7 +9,7 @@ import mdc.MDC.MDCRipple;
 import mdc.MDC.RippleAttr;
 import coconut.ui.View;
 import coconut.ui.Children;
-import coconut.vdom.ClassName;
+import tink.domspec.ClassName;
 
 //TODO: add list group support
 //TODO: make list items individual Views to have standalone ripple effect

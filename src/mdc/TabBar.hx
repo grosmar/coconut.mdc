@@ -38,7 +38,7 @@ class TabBar extends View
     override function viewDidMount()
     {
         mdcTabBar = new MDCTabBar(root);
-        mdcTabBar.activateTab(activeTabIndex);
+        //mdcTabBar.activateTab(activeTabIndex);
         mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
         prevLength = root.current.childNodes.length;
     }
