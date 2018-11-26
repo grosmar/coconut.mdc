@@ -3,7 +3,7 @@ package mdc;
 import js.html.KeyboardEvent;
 import mdc.MDC.MDCTextField;
 import coconut.ui.View;
-import coconut.vdom.ClassName;
+import tink.domspec.ClassName;
 
 class TextField extends View
 {
@@ -21,12 +21,19 @@ class TextField extends View
     @:attr var onedit:String->Void = null;
     @:attr var pattern:String = "*";
     @:attr var required:Bool = false;
-    @:attr var onkeydown:KeyboardEvent->Void = null;
+    @:attr var onkeydown:coconut.react.ReactEvent<js.html.Element,KeyboardEvent>->Void = null;
+
+    public var currentValue(get, never):String;
+
+    function get_currentValue() {
+        return input.current.value;
+    }
 
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
 
     @:ref var root:js.html.Element;
+    @:ref var input:js.html.InputElement;
 
     var mdcTextField:MDCTextField;
 
@@ -49,12 +56,12 @@ class TextField extends View
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
                         <if ${textArea}>
-                            <textarea class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${if(onedit != null) onedit(event.currentTarget.value)}>${value}</textarea>
+                            <textarea ref=${input} class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${function (event) {value = event.currentTarget.value; if(onedit != null) onedit(event.currentTarget.value);}} value=${value}></textarea>
                         <else>
-                            <input type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${if(onedit != null) onedit(event.currentTarget.value)}/>
+                            <input ref=${input} type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${function (event) {value = event.currentTarget.value; if(onedit != null) onedit(event.currentTarget.value);}}/>
                         </if>
                         <if ${label != null}>
-                            <coconut.vdom.Html.label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</coconut.vdom.Html.label>
+                            <label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</label>
                         </if>
                         <if ${icon != null && iconPos == TextFieldIconPos.Right}>
                             <i class="material-icons mdc-text-field__icon">${icon}</i>

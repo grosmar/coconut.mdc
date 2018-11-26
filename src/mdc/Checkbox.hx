@@ -1,7 +1,7 @@
 package mdc;
 
 import mdc.MDC.MDCCheckbox;
-import coconut.vdom.ClassName;
+import tink.domspec.ClassName;
 import coconut.ui.View;
 
 class Checkbox extends View
@@ -12,7 +12,7 @@ class Checkbox extends View
     @:attr var disabled:Bool = null;
     @:attr var checked:Bool = null;
     @:attr var indeterminate:Bool = null;
-    @:attr var value:String = null;
+    @:attr var value:String = "";
     @:attr var onchecked:Bool->Void = null;
 
     @:ref var root:js.html.Element;
@@ -51,7 +51,7 @@ class Checkbox extends View
                               </div>
                           </div>
 
-                          <coconut.vdom.Html.label htmlFor=${id}>${label}</coconut.vdom.Html.label>
+                          <label htmlFor=${id}>${label}</label>
                     </div>';
             else
                 @hxx '<div ref=${root} class="mdc-checkbox" {...this}>

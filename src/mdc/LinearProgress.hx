@@ -2,7 +2,7 @@ package mdc;
 
 import mdc.MDC.MDCLinearProgress;
 import coconut.ui.View;
-import coconut.vdom.ClassName;
+import tink.domspec.ClassName;
 class LinearProgress extends View
 {
     @:attr var className:ClassName = "";

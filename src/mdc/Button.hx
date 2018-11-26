@@ -1,14 +1,14 @@
 package mdc;
 
 import js.html.MouseEvent;
-import coconut.vdom.ClassName;
+import tink.domspec.ClassName;
 import mdc.MDC.MDCRipple;
 import coconut.ui.View;
 
 class Button extends View
 {
     @:attr var className:ClassName = "";
-    @:attr var onclick:MouseEvent->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.InputElement,MouseEvent>->Void = null;
     @:attr var label:String = "";
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;

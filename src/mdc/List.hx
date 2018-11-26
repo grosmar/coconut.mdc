@@ -35,7 +35,7 @@ class List extends View
 class ListItem extends View
 {
 	var attributes:RippleAttr;
-	@:attr var onclick:MouseEvent->Void = null;
+	@:attr var onclick:coconut.react.ReactEvent<js.html.Element,js.html.MouseEvent>->Void = null;
 	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 	var mdcRipple:MDCRipple;
@@ -96,7 +96,7 @@ class ListGraphic extends View
 {
 	var attributes:RippleAttr;
 	@:attr var className:ClassName = "";
-	@:attr var onclick:MouseEvent->Void = null;
+	@:attr var onclick:coconut.react.ReactEvent<js.html.Element,js.html.MouseEvent>->Void = null;
 	@:attr var children:Children;
 
 	function render()
@@ -119,7 +119,7 @@ class ListGraphicImage extends View
 	'
 		<img class=${className.add(["mdc-list-item__graphic" => true,
 								    "mdc-ripple-surface" => ripple])}
-		     data-mdc-ripple-is-unbounded=${unboundedRipple} ${...this}></img>
+		     data-mdc-ripple-is-unbounded=${unboundedRipple} ${...this} />
 	';
 }
 

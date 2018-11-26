@@ -1,5 +1,5 @@
 package mdc;
-@:enum abstract IconName(String) to String
+@:enum abstract IconName(String) to String to coconut.ui.RenderResult
 {
     var ThreeDRotation = "3d_rotation";
     var Accessibility = "accessibility";

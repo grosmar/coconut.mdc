@@ -1,5 +1,7 @@
 echo Updating lix dependencies...
+call li#gen4
 call lix install gh:MVCoconut/coconut.data
+call lix install gh:MVCoconut/coconut.react#gen4
 call lix install gh:MVCoconut/coconut.ui#gen4
 call lix install gh:MVCoconut/coconut.vdom#gen4
 call lix install gh:haxetink/tink_anon

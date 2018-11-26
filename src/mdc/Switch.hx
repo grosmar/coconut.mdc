@@ -1,6 +1,7 @@
 package mdc;
 import coconut.ui.View;
-import coconut.vdom.ClassName;
+import tink.domspec.ClassName;
+
 import mdc.MDC.MDCSwitch;
 
 class Switch extends View
@@ -39,7 +40,7 @@ class Switch extends View
                 </div>
             </div>
             <if ${label != null}>
-                <coconut.vdom.Html.label htmlFor=${id} class="mdc-switch-label">${label}</coconut.vdom.Html.label>
+                <label htmlFor=${id} class="mdc-switch-label">${label}</label>
             </if>
         </span>
         ';

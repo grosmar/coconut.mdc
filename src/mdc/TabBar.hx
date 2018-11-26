@@ -5,8 +5,7 @@ import js.html.DOMElement;
 import mdc.MDC.MDCTabBar;
 import coconut.ui.View;
 import coconut.ui.Children;
-import coconut.vdom.ClassName;
-//import coconut.Ui.hxx;
+import tink.domspec.ClassName;
 
 class TabBar extends View
 {
@@ -98,7 +97,7 @@ class Tab extends View
     static var tabIdIndex = 0;
 
     @:attr var className:ClassName = "";
-    @:attr var onclick:MouseEvent->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.InputElement,js.html.MouseEvent>->Void = null;
     @:attr var children:Children = null;
     @:attr var active:Bool = null;
     @:attr var icon:IconName = null;

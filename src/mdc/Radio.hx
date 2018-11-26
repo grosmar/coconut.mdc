@@ -2,7 +2,7 @@ package mdc;
 
 import mdc.MDC.MDCRadio;
 import coconut.ui.View;
-import coconut.vdom.ClassName;
+import tink.domspec.ClassName;
 
 class Radio extends View
 {
@@ -39,7 +39,7 @@ class Radio extends View
                                 <div class="mdc-radio__inner-circle"></div>
                               </div>
                           </div>
-                          <coconut.vdom.Html.label htmlFor=${id}>${this.label}</coconut.vdom.Html.label>
+                          <label htmlFor=${id}>${this.label}</label>
                     </div>';
             else
                 @hxx '<div class="mdc-radio">

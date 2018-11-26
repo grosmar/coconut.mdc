@@ -6,7 +6,7 @@ import js.html.MouseEvent;
 
 class LabelButton extends View
 {
-    @:attr var className:coconut.vdom.ClassName;
+    @:attr var className:tink.domspec.ClassName;
     @:attr var htmlFor:String;
     @:attr var label:String = null;
     @:attr var disabled:Bool = false;
@@ -23,7 +23,7 @@ class LabelButton extends View
 
     function render()
     {
-        return @hxx '<coconut.vdom.Html.label ref=${root} class=${className.add(["mdc-button" => true,
+        return @hxx '<label ref=${root} class=${className.add(["mdc-button" => true,
         "mdc-ripple-surface" => ripple,
         "mdc-button--raised" => raised,
         "mdc-button--unelevated" => unelevated,
@@ -36,7 +36,7 @@ class LabelButton extends View
                 <i class="mdc-button__icon material-icons">${icon}</i>
             </if>
             ${label}
-        </coconut.vdom.Html.label>';
+        </label>';
     }
 
     override function viewDidMount()

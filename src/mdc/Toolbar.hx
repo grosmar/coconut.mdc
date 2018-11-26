@@ -2,10 +2,11 @@ package mdc;
 
 import coconut.ui.Children;
 import coconut.ui.View;
+import tink.domspec.ClassName;
 
 class Toolbar extends View
 {
-	@:attr var className:coconut.vdom.ClassName = "";
+	@:attr var className:tink.domspec.ClassName = "";
 	@:attr var children:Children;
 	//TODO: add fixed&waterfal
 
@@ -19,7 +20,7 @@ class Toolbar extends View
 
 class ToolbarRow extends View
 {
-	@:attr var className:coconut.vdom.ClassName = "";
+	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 
 	function render()
@@ -32,7 +33,7 @@ class ToolbarRow extends View
 
 class ToolbarSection extends View
 {
-	@:attr var className:coconut.vdom.ClassName = "";
+	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 	@:attr var align:ToolbarSectionAlign = ToolbarSectionAlign.Center;
 	@:attr var shringToFit:Bool = false;
@@ -54,7 +55,7 @@ class ToolbarSection extends View
 
 class ToolbarTitle extends View
 {
-	@:attr var className:coconut.vdom.ClassName = "";
+	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 
 	function render()
@@ -67,9 +68,9 @@ class ToolbarTitle extends View
 
 class ToolbarMenuIcon extends View
 {
-	@:attr var className:coconut.vdom.ClassName = "";
+	@:attr var className:ClassName = "";
 	@:attr var name:IconName;
-	@:attr var onclick:js.html.Event->Void;
+	@:attr var onclick:coconut.react.ReactEvent<js.html.Element,js.html.MouseEvent>->Void;
 
 	function render()
 	'
@@ -81,7 +82,7 @@ class ToolbarMenuIcon extends View
 
 class ToolbarIcon extends View
 {
-	@:attr var className:coconut.vdom.ClassName = "";
+	@:attr var className:ClassName = "";
 	@:attr var name:IconName;
 
 	function render()

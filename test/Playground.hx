@@ -21,14 +21,36 @@ class Playground
 {
     public static function main()
     {
-        //MDC.init();
+        MDC.init();
         var view = coconut.Ui.hxx('<TestView />');
-        view.renderInto(js.Browser.document.getElementById("app"));
+        //view.renderInto(js.Browser.document.getElementById("app"));
+        react.ReactDOM.render(view, js.Browser.document.getElementById("app"));
     }
 
 
 
 }
+
+/*class TestView extends View
+{
+
+    @:state var activeTab:Int = 2;
+    @:state var activeTab2:Int = 1;
+    @:state var dynamicTabBar:Int = 2;
+
+
+    function render() '
+        <div class="demo" onclick=${test}>Hali</div>';
+
+
+    function test(e:JsEvent):Void
+    {
+        trace(e.clientX);
+    }
+
+}
+
+typedef JsEvent = tink.domspec.EventFrom<xdom.Wrapped<js.html.Element>, js.html.MouseEvent>;*/
 
 class TestView extends View
 {
@@ -55,7 +77,7 @@ class TestView extends View
         <Button label="Unelevated" raised unelevated />
         <Button label="Icon" raised icon="favorite" />
     </div>
-
+    
     <h1>Checkbox</h1>
     <div>
         <Checkbox label="Simple" value="simple" onchecked=${checked => {trace("checked:", checked);}} />

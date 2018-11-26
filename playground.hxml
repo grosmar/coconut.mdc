@@ -1,7 +1,9 @@
 -cp src
 -cp test
 -dce no
--lib coconut.vdom
+-lib coconut.react
+-D react_global
 -main Playground
 -js bin/playground/index.js
+#-cp ../haxe/std 
 #--connect 6000
