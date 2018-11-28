@@ -46,6 +46,7 @@
 -cp C:/Users/balazs.zubak.SSC/AppData/Roaming/haxe/haxe_libraries/tink_syntaxhub/0.4.3/github/8b928af11fb39170dcb7254d02923777cddcc678/src
 -cp C:/Users/balazs.zubak.SSC/AppData/Roaming/haxe/haxe_libraries/xDOM/0.1.0/github/a3e3f092cd62db94a06edf40f1c819cf38fe27c1/src
 -cp src
+-cp std
 -cp test
 -dce no
 -js bin/playground/index.js
