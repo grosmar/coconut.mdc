@@ -10,7 +10,7 @@ class Switch extends View
     @:attr var checked:Bool = null;
     @:attr var className:ClassName = "";
     @:attr var label:String = null;
-    @:attr var value:String = null;
+    @:attr var value:String = "";
     @:attr var onchecked:Bool->Void = null;
     @:attr var disabled:Bool = null;
 
