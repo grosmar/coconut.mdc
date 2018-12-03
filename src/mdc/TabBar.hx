@@ -102,11 +102,13 @@ class Tab extends View
     @:attr var active:Bool = null;
     @:attr var icon:IconName = null;
     @:attr var text:String = null;
+    @:attr var stacked:Bool = false;
 
     function render()
     '
         <button class=${className.add(["mdc-tab" => true,
-                                       "mdc-tab--active" => active])} ${...this} >
+                                       "mdc-tab--active" => active,
+                                       "mdc-tab--stacked" => stacked])} ${...this} >
             <span class="mdc-tab__content">
                 <if ${icon != null}>
                     <TabIcon name=${icon} />
