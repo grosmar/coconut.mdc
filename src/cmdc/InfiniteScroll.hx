@@ -12,6 +12,7 @@ class InfiniteScroll extends View
     @:attr var onscrolltop:Void->Void;
     @:attr var onscrollbottom:Void->Void;
     @:state public var scrollTop:Int = 0;
+    //TODO: remove root access, expose necessary properties
     @:ref public var root:js.html.Element;
 
     function render()

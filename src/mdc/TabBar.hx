@@ -85,8 +85,8 @@ class TabBar extends View
         if ( this.mdcTabBar != null )
         {
             mdcTabBar.unlisten('MDCTabBar:activated', tabChangeHandler);
-            for ( tab in this.mdcTabBar.getTabElements_() )
-                tab.destroy();
+            /*for ( tab in this.mdcTabBar.getTabElements_() )
+                tab.destroy();*/
             mdcTabBar.destroy();
         }
     }

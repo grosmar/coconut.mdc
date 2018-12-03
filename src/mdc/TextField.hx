@@ -23,10 +23,14 @@ class TextField extends View
     @:attr var required:Bool = false;
     @:attr var onkeydown:coconut.react.ReactEvent<js.html.Element,KeyboardEvent>->Void = null;
 
-    public var currentValue(get, never):String;
+    public var currentValue(get, set):String;
 
     function get_currentValue() {
         return input.current.value;
+    }
+
+    function set_currentValue(value) {
+        return input.current.value = value;
     }
 
     static var textFieldIdIndex = 0;
@@ -41,9 +45,6 @@ class TextField extends View
 
     function render()
     {
-        var invalid = this.invalid; //TODO: remove after fixing referencing issue
-        var value = this.value; //TODO: remove after fixing referencing issue
-
         return @hxx '<div ref=${root} class=${className.add(["mdc-text-field" => true,
                                                       "mdc-text-field--disabled" => disabled,
                                                       "mdc-text-field--with-leading-icon" => icon != null,
@@ -56,9 +57,9 @@ class TextField extends View
                             <i class="material-icons mdc-text-field__icon">${icon}</i>
                         </if>
                         <if ${textArea}>
-                            <textarea ref=${input} class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${function (event) {value = event.currentTarget.value; if(onedit != null) onedit(event.currentTarget.value);}} value=${value}></textarea>
+                            <textarea ref=${input} class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${function (event) {if(onedit != null) onedit(event.currentTarget.value);}} value=${value}></textarea>
                         <else>
-                            <input ref=${input} type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${function (event) {value = event.currentTarget.value; if(onedit != null) onedit(event.currentTarget.value);}}/>
+                            <input ref=${input} type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${function (event) {if(onedit != null) onedit(event.currentTarget.value);}}/>
                         </if>
                         <if ${label != null}>
                             <label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</label>
@@ -72,9 +73,9 @@ class TextField extends View
 
     override function viewDidUpdate()
     {
-        //mdcTextField.valid = invalid != true;
-        if ( value != null)
-            mdcTextField.value = value;
+        mdcTextField.valid = invalid != true;
+        //if ( value != null)
+        //    mdcTextField.value = value;
     }
 
     override function viewDidMount()
