@@ -1,6 +1,7 @@
 package mdc;
 
 import js.html.KeyboardEvent;
+import js.html.MouseEvent;
 import mdc.MDC.MDCTextField;
 import coconut.ui.View;
 import tink.domspec.ClassName;
@@ -8,30 +9,30 @@ import tink.domspec.ClassName;
 class TextField extends View
 {
     @:attr var className:ClassName = "";
+    @:attr var inputClass:ClassName = "";
     @:attr var label:String = null;
-    @:attr var value:String = "";
+    @:attr var defaultValue:String = null;
     @:attr var disabled:Bool = null;
     @:attr var invalid:Bool = null;
-    @:attr var icon:String = null;
-    @:attr var iconPos:TextFieldIconPos = null;
+    @:attr var leadingIcon:String = null;
+    @:attr var trailingIcon:String = null;
     @:attr var box:Bool = null;
     @:attr var fullWidth:Bool = null;
     @:attr var textArea:Bool = null;
+    @:attr var maxLength:Int = null;
     @:attr var type:String = "text";
-    @:attr var onedit:String->Void = null;
-    @:attr var pattern:String = "*";
+    @:attr var onChange:String->Void = null;
+    @:attr var pattern:String = null;
     @:attr var required:Bool = false;
-    @:attr var onkeydown:coconut.react.ReactEvent<js.html.Element,KeyboardEvent>->Void = null;
+    @:attr var onLeadingIconClick:coconut.react.ReactEvent<js.html.Element,MouseEvent>->Void = null;
+    @:attr var onLeadingIconMouseDown:coconut.react.ReactEvent<js.html.Element,MouseEvent>->Void = null;
+    @:attr var onLeadingIconMouseUp:coconut.react.ReactEvent<js.html.Element,MouseEvent>->Void = null;
+    @:attr var onTrailingIconClick:coconut.react.ReactEvent<js.html.Element,MouseEvent>->Void = null;
+    @:attr var onTrailingIconMouseDown:coconut.react.ReactEvent<js.html.Element,MouseEvent>->Void = null;
+    @:attr var onTrailingIconMouseUp:coconut.react.ReactEvent<js.html.Element,MouseEvent>->Void = null;
 
-    public var currentValue(get, set):String;
-
-    function get_currentValue() {
-        return input.current.value;
-    }
-
-    function set_currentValue(value) {
-        return input.current.value = value;
-    }
+    @:attr public var value:String = null;
+    @:state var valueNeedsUpdate:Bool = false;
 
     static var textFieldIdIndex = 0;
     var textFieldId:UInt = textFieldIdIndex++;
@@ -45,27 +46,39 @@ class TextField extends View
 
     function render()
     {
-        return @hxx '<div ref=${root} class=${className.add(["mdc-text-field" => true,
-                                                      "mdc-text-field--disabled" => disabled,
-                                                      "mdc-text-field--with-leading-icon" => icon != null,
-                                                      "mdc-text-field--box" => box,
-                                                      "mdc-text-field--with-leading-icon" => icon != null && iconPos != TextFieldIconPos.Right,
-                                                      "mdc-text-field--with-trailing-icon" => iconPos == TextFieldIconPos.Right,
-                                                      "mdc-text-field--textarea" => textArea,
-                                                      "mdc-text-field--fullwidth" => fullWidth])} ${...this}>
-                        <if ${icon != null && iconPos != TextFieldIconPos.Right}>
-                            <i class="material-icons mdc-text-field__icon">${icon}</i>
+        if ( value != null && mdcTextField != null && value != mdcTextField.value )
+            valueNeedsUpdate = true;
+
+        return @hxx '<div ref=${root} 
+                          class=${className.add(["mdc-text-field" => true,
+                                                 "mdc-text-field--disabled" => disabled,
+                                                 "mdc-text-field--with-leading-icon" => leadingIcon != null,
+                                                 "mdc-text-field--box" => box,
+                                                 "mdc-text-field--with-trailing-icon" => trailingIcon != null,
+                                                 "mdc-text-field--textarea" => textArea,
+                                                 "mdc-text-field--fullwidth" => fullWidth])}
+                            >
+                        <if ${leadingIcon != null}>
+                            <i class="material-icons mdc-text-field__icon" 
+                               tabIndex=${0} 
+                               onmousedown=${if (onLeadingIconMouseDown != null) onLeadingIconMouseDown(event)} 
+                               onmouseup=${if (onLeadingIconMouseUp != null) onLeadingIconMouseUp(event)} 
+                               onclick=${if (onLeadingIconClick != null) onLeadingIconClick(event)}>${leadingIcon}</i>
                         </if>
                         <if ${textArea}>
-                            <textarea ref=${input} class="mdc-text-field__input" id=${"tf" + textFieldId} required=${required} onchange=${function (event) {if(onedit != null) onedit(event.currentTarget.value);}} value=${value}></textarea>
+                            <textarea ref=${input} maxlength=${maxLength} class=${inputClass.add(["mdc-text-field__input" => true])} id=${"tf" + textFieldId} required=${required} onchange=${function (event) {if(onChange != null) onChange(event.currentTarget.value);}} ></textarea>
                         <else>
-                            <input ref=${input} type=${type} class="mdc-text-field__input" id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${function (event) {if(onedit != null) onedit(event.currentTarget.value);}}/>
+                            <input ref=${input} maxLength=${maxLength} type=${type} class=${inputClass.add(["mdc-text-field__input" => true])} id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${function (event) {if(onChange != null) onChange(event.currentTarget.value);}} />
                         </if>
                         <if ${label != null}>
                             <label class="mdc-floating-label" htmlFor=${"tf" + textFieldId}>${label}</label>
                         </if>
-                        <if ${icon != null && iconPos == TextFieldIconPos.Right}>
-                            <i class="material-icons mdc-text-field__icon">${icon}</i>
+                        <if ${trailingIcon != null}>
+                            <i class="material-icons mdc-text-field__icon" 
+                               tabIndex=${0} 
+                               onmousedown=${if (onTrailingIconMouseDown != null) onTrailingIconMouseDown(event)} 
+                               onmouseup=${if (onTrailingIconMouseUp != null) onTrailingIconMouseUp(event)} 
+                               onclick=${if (onTrailingIconClick != null) onTrailingIconClick(event)}>${trailingIcon}</i>
                         </if>
                         <div class="mdc-line-ripple"></div>
                     </div>';
@@ -74,13 +87,28 @@ class TextField extends View
     override function viewDidUpdate()
     {
         mdcTextField.valid = invalid != true;
-        //if ( value != null)
-        //    mdcTextField.value = value;
+        
+        if ( value != null && valueNeedsUpdate )
+        {
+            mdcTextField.value = value;
+            valueNeedsUpdate = false;
+        }
+            
     }
 
     override function viewDidMount()
     {
         this.mdcTextField = new MDCTextField(root);
+        mdcTextField.valid = invalid != true;
+        
+        if ( defaultValue != null)
+        {
+            this.mdcTextField.value = defaultValue;
+        }
+        if ( value != null )
+        {
+            this.mdcTextField.value = value;
+        }
     }
 
     override function viewWillUnmount()
@@ -94,11 +122,6 @@ class TextField extends View
     var Text = "";
     var Icon = "mdc-tab-bar--icon-tab-bar";
     var IconWithText = "mdc-tab-bar--icons-with-text";
-}
-
-@:enum abstract TextFieldIconPos(String) from String to String {
-    var Left = "left";
-    var Right = "right";
 }
 
 class TextFieldHelperText extends View

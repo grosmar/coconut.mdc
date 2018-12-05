@@ -1,3 +1,3 @@
-# @install: lix --silent download "https://github.com/haxetink/tink_priority/archive/9c83be54d05e88960d10e3c6cb0dc6b5185f305f.tar.gz" into tink_priority/0.1.3/github/9c83be54d05e88960d10e3c6cb0dc6b5185f305f
 -D tink_priority=0.1.3
--cp ${HAXESHIM_LIBCACHE}/tink_priority/0.1.3/github/9c83be54d05e88960d10e3c6cb0dc6b5185f305f/src
+# @install: lix --silent download "gh://github.com/haxetink/tink_priority#9c83be54d05e88960d10e3c6cb0dc6b5185f305f" into tink_priority/0.1.3/github/9c83be54d05e88960d10e3c6cb0dc6b5185f305f
+-cp ${HAXE_LIBCACHE}/tink_priority/0.1.3/github/9c83be54d05e88960d10e3c6cb0dc6b5185f305f/src

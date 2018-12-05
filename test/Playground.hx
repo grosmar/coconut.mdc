@@ -3,7 +3,6 @@ package;
 import coconut.ui.View;
 import mdc.MDC;
 import mdc.*;
-import mdc.TextField.TextFieldIconPos;
 import mdc.TextField.TextFieldHelperText;
 import mdc.List.ListItem;
 import mdc.List.ListText;
@@ -16,6 +15,7 @@ import mdc.List.ListDivider;
 import mdc.TabBar.Tab;
 import mdc.Toolbar;
 import mdc.Icon;
+import cmdc.PasswordTextField;
 
 class Playground
 {
@@ -58,6 +58,9 @@ class TestView extends View
     @:state var activeTab:Int = 2;
     @:state var activeTab2:Int = 1;
     @:state var dynamicTabBar:Int = 2;
+
+    @:ref var myInput:TextField;
+    @:state var myInputValue:String = "Default";
 
     function render() '
 <div class="demo">
@@ -254,8 +257,11 @@ class TestView extends View
         <TextField label="Text input" />
         <TextField label="Boxed input" box />
         <TextField label="Password input" type="password" />
-        <TextField label="Icon input" box icon="list" />
-        <TextField label="Right Icon input" box icon="list" iconPos=${TextFieldIconPos.Right} />
+        <TextField label="Leading Icon" box leadingIcon=${IconName.List} />
+        <TextField label="Trailing Icon" box trailingIcon=${IconName.List} />
+        <TextField label="Lead&Trailing Icon" box leadingIcon=${IconName.List} trailingIcon=${IconName.Visibility} />
+        <TextField label="Default Controlled input" defaultValue="something..." ref=${myInput} value=${myInputValue} onChange=${function(e) { myInputValue = e; trace(e == "333"); if(e == "333") myInputValue="";}} />
+        <TextField label="Default Uncontrolled input" defaultValue="something..." />
         <br/>
         <TextField label="Input with helper" />
         <TextFieldHelperText label="Helper for above" />
@@ -265,6 +271,8 @@ class TestView extends View
         <br/>
         <TextField label="Text input fullWidth" fullWidth />
         <TextField label="TextArea fullWidth" textArea fullWidth />
+        <br/>
+        <PasswordTextField label="Password TextField" />
     </div>
 
     <h1>Toolbar</h1>
