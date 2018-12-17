@@ -120,6 +120,14 @@ extern class MDCRipple extends MDCComponent
 	function layout():Void;
 }
 
+@:native("window.mdc.iconButton.MDCIconButtonToggle")
+extern class MDCIconButtonToggle extends MDCComponent
+{
+	var on:Bool;
+	function listen(event:String, callback:{detail:{isOn:Bool}}->Void):Void;
+	function unlisten(event:String, callback:{detail:{isOn:Bool}}->Void):Void;
+}
+
 @:native("mdc.textField.MDCTextField")
 extern class MDCTextField extends MDCComponent
 {

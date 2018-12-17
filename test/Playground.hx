@@ -15,7 +15,7 @@ import mdc.List.ListDivider;
 import mdc.TabBar.Tab;
 import mdc.Toolbar;
 import mdc.Icon;
-import cmdc.PasswordTextField;
+import cmdc.*;
 
 class Playground
 {
@@ -80,7 +80,12 @@ class TestView extends View
         <Button label="Unelevated" raised unelevated />
         <Button label="Icon" raised icon="favorite" />
     </div>
-    
+    <h1>Icon Buttons</h1>
+    <div>
+        <IconButton icon="favorite" onclick=${trace("clicked")} />
+        <IconButton icon="favorite_border" toggledIcon="favorite" onclick=${trace("clicked")} />
+        <IconButton icon="favorite_border" toggledIcon="favorite" toggled=${true} onToggle=${trace("toggled", event)} />
+    </div>
     <h1>Checkbox</h1>
     <div>
         <Checkbox label="Simple" value="simple" onchecked=${checked => {trace("checked:", checked);}} />
@@ -271,8 +276,6 @@ class TestView extends View
         <br/>
         <TextField label="Text input fullWidth" fullWidth />
         <TextField label="TextArea fullWidth" textArea fullWidth />
-        <br/>
-        <PasswordTextField label="Password TextField" />
     </div>
 
     <h1>Toolbar</h1>
@@ -292,6 +295,13 @@ class TestView extends View
         </Toolbar>
     </div>
 
+    <h1>Non-native components</h1>
+    <div>
+        <PasswordTextField label="Password TextField" />
+        <InfiniteScroll onscrollbottom=${trace("scrollbottom")} onscrolltop=${trace("scrolltop")}>
+            <div>Hello it should be a long text</div>
+        </InfiniteScroll>
+    </div>
 </div>
     ';
 }

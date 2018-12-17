@@ -19,6 +19,8 @@ Check test/Playground.hx for usage examples.
 
 &#10003; Checkbox
 
+&#10003; IconButton
+
 &#10003; LinearProgress
 
 &#10003; List
