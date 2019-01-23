@@ -39,6 +39,7 @@ class TextField extends View
 
     @:ref var root:js.html.Element;
     @:ref var input:js.html.InputElement;
+    @:ref var textAreaInput:js.html.TextAreaElement;
 
     var mdcTextField:MDCTextField;
 
@@ -66,7 +67,7 @@ class TextField extends View
                                onclick=${if (onLeadingIconClick != null) onLeadingIconClick(event)}>${leadingIcon}</i>
                         </if>
                         <if ${textArea}>
-                            <textarea ref=${input} maxlength=${maxLength} class=${inputClass.add(["mdc-text-field__input" => true])} id=${"tf" + textFieldId} required=${required} onchange=${function (event) {if(onChange != null) onChange(event.currentTarget.value);}} ></textarea>
+                            <textarea ref=${textAreaInput} maxlength=${maxLength} class=${inputClass.add(["mdc-text-field__input" => true])} id=${"tf" + textFieldId} required=${required} onchange=${function (event) {if(onChange != null) onChange(event.currentTarget.value);}} ></textarea>
                         <else>
                             <input ref=${input} maxLength=${maxLength} type=${type} class=${inputClass.add(["mdc-text-field__input" => true])} id=${"tf" + textFieldId} pattern=${pattern} required=${required} onchange=${function (event) {if(onChange != null) onChange(event.currentTarget.value);}} />
                         </if>
@@ -98,7 +99,7 @@ class TextField extends View
 
     override function viewDidMount()
     {
-        this.mdcTextField = new MDCTextField(root);
+        this.mdcTextField = new MDCTextField(root.current);
         mdcTextField.valid = invalid != true;
         
         if ( defaultValue != null)

@@ -49,7 +49,7 @@ class ListItem extends View
 
 	override function viewDidMount()
 	{
-		mdcRipple = new MDCRipple(root);
+		mdcRipple = new MDCRipple(root.current);
 	}
 
 	override function viewWillUnmount()

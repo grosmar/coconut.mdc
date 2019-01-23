@@ -72,7 +72,7 @@ class Checkbox extends View
 
     override function viewDidMount()
     {
-        this.mdcCheckbox = new MDCCheckbox(root);
+        this.mdcCheckbox = new MDCCheckbox(root.current);
         setCheckboxProperties();
     }
 

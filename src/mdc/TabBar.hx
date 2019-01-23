@@ -36,7 +36,7 @@ class TabBar extends View
 
     override function viewDidMount()
     {
-        mdcTabBar = new MDCTabBar(root);
+        mdcTabBar = new MDCTabBar(root.current);
         //mdcTabBar.activateTab(activeTabIndex);
         mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
         prevLength = root.current.childNodes.length;
@@ -67,7 +67,7 @@ class TabBar extends View
             this.mdcTabBar.destroy();
         }
 
-        mdcTabBar = new MDCTabBar(root);
+        mdcTabBar = new MDCTabBar(root.current);
         mdcTabBar.listen('MDCTabBar:activated', tabChangeHandler);
         
 
@@ -97,7 +97,7 @@ class Tab extends View
     static var tabIdIndex = 0;
 
     @:attr var className:ClassName = "";
-    @:attr var onclick:coconut.react.ReactEvent<js.html.InputElement,js.html.MouseEvent>->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,js.html.MouseEvent>->Void = null;
     @:attr var children:Children = null;
     @:attr var active:Bool = null;
     @:attr var icon:IconName = null;

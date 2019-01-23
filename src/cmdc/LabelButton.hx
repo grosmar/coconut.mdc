@@ -6,8 +6,8 @@ import js.html.MouseEvent;
 
 class LabelButton extends View
 {
-    @:attr var className:tink.domspec.ClassName;
-    @:attr var htmlFor:String;
+    @:attr var className:tink.domspec.ClassName = null;
+    @:attr var htmlFor:String = null;
     @:attr var label:String = null;
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
@@ -18,7 +18,7 @@ class LabelButton extends View
     @:attr var compact:Bool = false;
     @:attr var ripple:Bool = true;
     @:attr var onclick:MouseEvent->Void = null;
-    @:ref var root:js.html.Element;
+    @:ref var root:js.html.LabelElement;
     var mdcRipple:MDCRipple = null;
 
     function render()

@@ -8,7 +8,7 @@ import coconut.ui.View;
 class IconButton extends View
 {
     @:attr var className:ClassName = "";
-    @:attr var onclick:coconut.react.ReactEvent<js.html.InputElement,MouseEvent>->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,MouseEvent>->Void = null;
     @:attr var onToggle:Bool->Void = null;
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
@@ -17,7 +17,7 @@ class IconButton extends View
     @:attr var toggled:Bool = false;
     var mdcIconButtonToggle:MDCIconButtonToggle = null;
 
-    @:ref var root:js.html.Element;
+    @:ref var root:js.html.ButtonElement;
 
     function render()
     {
@@ -36,7 +36,7 @@ class IconButton extends View
 
     override function viewDidMount()
     {
-        this.mdcIconButtonToggle = new MDCIconButtonToggle(root);
+        this.mdcIconButtonToggle = new MDCIconButtonToggle(root.current);
         mdcIconButtonToggle.listen("MDCIconButtonToggle:change", function(event:{detail:{isOn:Bool}}) if (onToggle != null) onToggle(event.detail.isOn));
         if ( toggled != this.mdcIconButtonToggle.on)
             this.mdcIconButtonToggle.on = toggled;

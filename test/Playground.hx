@@ -70,7 +70,7 @@ class TestView extends View
         <Button label="Dense" dense/>
         <Button label="Disabled" disabled />
         <Button label="Unelevated" unelevated />
-        <Button label="Icon" icon="favorite" />
+        <Button label="Icon" icon=${mdc.IconName.Favorite} />
     </div>
     <h1>Raised Buttons</h1>
     <div>
@@ -78,13 +78,13 @@ class TestView extends View
         <Button label="Dense" raised dense/>
         <Button label="Disabled" raised disabled />
         <Button label="Unelevated" raised unelevated />
-        <Button label="Icon" raised icon="favorite" />
+        <Button label="Icon" raised icon=${mdc.IconName.Favorite} />
     </div>
     <h1>Icon Buttons</h1>
     <div>
-        <IconButton icon="favorite" onclick=${trace("clicked")} />
-        <IconButton icon="favorite_border" toggledIcon="favorite" onclick=${trace("clicked")} />
-        <IconButton icon="favorite_border" toggledIcon="favorite" toggled=${true} onToggle=${trace("toggled", event)} />
+        <IconButton icon=${mdc.IconName.Favorite} onclick=${trace("clicked")} />
+        <IconButton icon=${mdc.IconName.FavoriteBorder} toggledIcon="favorite" onclick=${trace("clicked")} />
+        <IconButton icon=${mdc.IconName.FavoriteBorder} toggledIcon=${mdc.IconName.Favorite} toggled=${true} onToggle=${trace("toggled", event)} />
     </div>
     <h1>Checkbox</h1>
     <div>
@@ -106,17 +106,17 @@ class TestView extends View
 
         <div class="float" >
             <TabBar>
-                <Tab icon="camera" active />
-                <Tab icon="colorize" />
-                <Tab icon="edit" />
+                <Tab icon=${mdc.IconName.Camera} active />
+                <Tab icon=${mdc.IconName.Colorize} />
+                <Tab icon=${mdc.IconName.Edit} />
             </TabBar>
         </div>
 
         <div class="float">
             <TabBar>
-                <Tab icon="camera" active>Tab1</Tab>
-                <Tab icon="colorize">Tab2</Tab>
-                <Tab icon="edit">Tab3</Tab>
+                <Tab icon=${mdc.IconName.Camera} active />
+                <Tab icon=${mdc.IconName.Colorize} />
+                <Tab icon=${mdc.IconName.Edit} />
             </TabBar>
         </div>
 
@@ -301,6 +301,7 @@ class TestView extends View
         <InfiniteScroll onscrollbottom=${trace("scrollbottom")} onscrolltop=${trace("scrolltop")}>
             <div>Hello it should be a long text</div>
         </InfiniteScroll>
+        <LabelButton label="Label Button" icon=${mdc.IconName.Favorite} />
     </div>
 </div>
     ';

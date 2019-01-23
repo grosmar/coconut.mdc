@@ -8,7 +8,7 @@ import coconut.ui.View;
 class Button extends View
 {
     @:attr var className:ClassName = "";
-    @:attr var onclick:coconut.react.ReactEvent<js.html.InputElement,MouseEvent>->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,MouseEvent>->Void = null;
     @:attr var label:String = "";
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
@@ -19,7 +19,7 @@ class Button extends View
     @:attr var ripple:Bool = true;
     var mdcRipple:MDCRipple = null;
 
-    @:ref var root:js.html.Element;
+    @:ref var root:js.html.ButtonElement;
 
     function render()
     {
@@ -39,7 +39,7 @@ class Button extends View
 
     override function viewDidMount()
     {
-        this.mdcRipple = new MDCRipple(root);
+        this.mdcRipple = new MDCRipple(root.current);
     }
 
     override function viewWillUnmount()
