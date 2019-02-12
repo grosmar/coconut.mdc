@@ -35,7 +35,7 @@ class List extends View
 class ListItem extends View
 {
 	var attributes:RippleAttr;
-	@:attr var onclick:coconut.react.ReactEvent<js.html.Element,js.html.MouseEvent>->Void = null;
+	@:attr var onclick:coconut.react.ReactEvent<js.html.Element,js.html.MouseEvent>->Void = function(_) {};
 	@:attr var className:ClassName = "";
 	@:attr var children:Children;
 	var mdcRipple:MDCRipple;

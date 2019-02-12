@@ -145,6 +145,27 @@ extern class MDCCheckbox extends MDCComponent
 	var value:String;
 }
 
+@:native("window.mdc.chips.MDCChip")
+extern class MDCChip extends MDCComponent
+{
+	var selected:Bool;
+	var id:String;
+	var shouldRemoveOnTrailingIconClick:Bool;
+	@:overload(function(event:String, callback:{detail:{chipId:String, selected:Bool}}->Void):Void {})
+	@:overload(function(event:String, callback:{detail:{chipId:String, root:js.html.Element}}->Void):Void {})
+	function listen(event:String, callback:{detail:{chipId:String}}->Void):Void;
+	@:overload(function(event:String, callback:{detail:{chipId:String, selected:Bool}}->Void):Void {})
+	@:overload(function(event:String, callback:{detail:{chipId:String, root:js.html.Element}}->Void):Void {})
+	function unlisten(event:String, callback:{detail:{chipId:String}}->Void):Void;
+}
+
+@:native("window.mdc.chips.MDCChipSet")
+extern class MDCChipSet extends MDCComponent
+{
+	var chips:Array<MDCChip>;
+	var selectedChipIds:Array<String>;
+}
+
 @:native("window.mdc.radio.MDCRadio")
 extern class MDCRadio extends MDCComponent
 {

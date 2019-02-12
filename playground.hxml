@@ -1,7 +1,7 @@
 -cp src
 -cp test
 -dce no
--lib coconut.react
+-lib coconut.react-dom
 -D react_global
 -main Playground
 -js bin/playground/index.js

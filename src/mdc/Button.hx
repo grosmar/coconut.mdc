@@ -8,7 +8,7 @@ import coconut.ui.View;
 class Button extends View
 {
     @:attr var className:ClassName = "";
-    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,MouseEvent>->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,MouseEvent>->Void = function(_) {};
     @:attr var label:String = "";
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;

@@ -15,6 +15,8 @@ import mdc.List.ListDivider;
 import mdc.TabBar.Tab;
 import mdc.Toolbar;
 import mdc.Icon;
+import mdc.Chip.ChipSet;
+import mdc.Chip.ChipSetType;
 import cmdc.*;
 
 class Playground
@@ -31,26 +33,6 @@ class Playground
 
 }
 
-/*class TestView extends View
-{
-
-    @:state var activeTab:Int = 2;
-    @:state var activeTab2:Int = 1;
-    @:state var dynamicTabBar:Int = 2;
-
-
-    function render() '
-        <div class="demo" onclick=${test}>Hali</div>';
-
-
-    function test(e:JsEvent):Void
-    {
-        trace(e.clientX);
-    }
-
-}
-
-typedef JsEvent = tink.domspec.EventFrom<xdom.Wrapped<js.html.Element>, js.html.MouseEvent>;*/
 
 class TestView extends View
 {
@@ -92,6 +74,25 @@ class TestView extends View
         <Checkbox label="Checked" checked />
         <Checkbox label="Indeterminate" indeterminate />
         <Checkbox label="Disabled" disabled />
+    </div>
+
+    <h1>Chip</h1>
+    <div>
+        <ChipSet>
+            <Chip label="Chip" />
+            <Chip label="Chip" trailingIcon=${IconName.Favorite} />
+            <Chip label="Chip" leadingIcon=${IconName.Camera} />
+        </ChipSet>
+        <ChipSet type=${ChipSetType.Choice}>
+            <Chip label="Chip choice1" />
+            <Chip label="Chip choice2" />
+            <Chip label="Chip choice3" />
+        </ChipSet>
+        <ChipSet type=${ChipSetType.Filter}>
+            <Chip label="Chip multichoice1" filter />
+            <Chip label="Chip multichoice2" filter />
+            <Chip label="Chip multichoice3" filter />
+        </ChipSet>
     </div>
 
     <h1>TabBar</h1>

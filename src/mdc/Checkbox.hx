@@ -13,7 +13,7 @@ class Checkbox extends View
     @:attr var checked:Bool = null;
     @:attr var indeterminate:Bool = null;
     @:attr var value:String = "";
-    @:attr var onchecked:Bool->Void = null;
+    @:attr var onchecked:Bool->Void = function (_) {};
 
     @:ref var root:js.html.Element;
 
