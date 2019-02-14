@@ -55,6 +55,7 @@ class TextField extends View
                                                  "mdc-text-field--disabled" => disabled,
                                                  "mdc-text-field--with-leading-icon" => leadingIcon != null,
                                                  "mdc-text-field--box" => box,
+                                                 "mdc-text-field--invalid" => invalid,
                                                  "mdc-text-field--with-trailing-icon" => trailingIcon != null,
                                                  "mdc-text-field--textarea" => textArea,
                                                  "mdc-text-field--fullwidth" => fullWidth])}
