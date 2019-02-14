@@ -9,7 +9,7 @@ class IconButton extends View
 {
     @:attr var className:ClassName = "";
     @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,MouseEvent>->Void = function(_){};
-    @:attr var onToggle:Bool->Void = null;
+    @:attr var onToggle:Bool->Void = function(_){};
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
     @:attr var ripple:Bool = true;

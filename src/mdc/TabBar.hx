@@ -97,7 +97,7 @@ class Tab extends View
     static var tabIdIndex = 0;
 
     @:attr var className:ClassName = "";
-    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,js.html.MouseEvent>->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,js.html.MouseEvent>->Void = function(_) {};
     @:attr var children:Children = null;
     @:attr var active:Bool = null;
     @:attr var icon:IconName = null;
