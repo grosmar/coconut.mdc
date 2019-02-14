@@ -8,7 +8,7 @@ import coconut.ui.View;
 class IconButton extends View
 {
     @:attr var className:ClassName = "";
-    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,MouseEvent>->Void = null;
+    @:attr var onclick:coconut.react.ReactEvent<js.html.ButtonElement,MouseEvent>->Void = function(_){};
     @:attr var onToggle:Bool->Void = null;
     @:attr var disabled:Bool = false;
     @:attr var icon:String = null;
